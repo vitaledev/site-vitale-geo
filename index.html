@@ -44,16 +44,16 @@
 
     <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 group">
+            <a href="https://vitalegeo.com.br/" class="flex items-center gap-2 group">
                 <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
                 <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
             </a>
             <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
-                <a href="index.html" class="text-white border-b border-geoGold pb-1">Home</a>
-                <a href="blog/" class="hover:text-white transition">Blog</a>
-                <a href="videos.html" class="hover:text-white transition">Vídeos</a>
-                <a href="ferramentas/" class="hover:text-white transition">Ferramentas</a>
-                <a href="jogos/" class="hover:text-white transition">Jogos</a>
+                <a href="https://vitalegeo.com.br/" class="text-white border-b border-geoGold pb-1">Home</a>
+                <a href="/jogos" class="hover:text-white transition">Jogos</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/blog" class="hover:text-white transition">Blog</a>
             </div>
             <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
                 <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
@@ -78,7 +78,7 @@
             </p>
             
             <div class="flex justify-center gap-4">
-                <a href="blog/" class="bg-geoGold text-geoNavy px-8 py-3 rounded font-bold uppercase tracking-widest hover:bg-white transition shadow-lg flex items-center gap-2">
+                <a href="/blog" class="bg-geoGold text-geoNavy px-8 py-3 rounded font-bold uppercase tracking-widest hover:bg-white transition shadow-lg flex items-center gap-2">
                     Explorar Agora <i class="ph-bold ph-compass"></i>
                 </a>
             </div>
@@ -91,7 +91,7 @@
                 <i class="ph-duotone ph-newspaper-clipping text-geoGold text-2xl"></i>
                 <h2 class="text-2xl font-serif font-bold text-white">Últimos Posts</h2>
             </div>
-            <a href="blog/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+            <a href="/blog" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
                 Ver Tudo <i class="ph-bold ph-arrow-right"></i>
             </a>
         </div>
@@ -108,7 +108,7 @@
                     <i class="ph-duotone ph-film-strip text-red-500 text-2xl"></i>
                     <h2 class="text-2xl font-serif font-bold text-white">Vídeos Recentes</h2>
                 </div>
-                <a href="videos.html" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                <a href="/videos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
                     Ver Canal <i class="ph-bold ph-arrow-right"></i>
                 </a>
             </div>
@@ -124,7 +124,7 @@
                 <i class="ph-duotone ph-wrench text-blue-400 text-2xl"></i>
                 <h2 class="text-2xl font-serif font-bold text-white">Ferramentas de Inteligência</h2>
             </div>
-            <a href="ferramentas/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+            <a href="/ferramentas" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
                 Acessar Todas <i class="ph-bold ph-arrow-right"></i>
             </a>
         </div>
@@ -140,7 +140,7 @@
                     <i class="ph-duotone ph-game-controller text-green-400 text-2xl"></i>
                     <h2 class="text-2xl font-serif font-bold text-white">Simulações & Jogos</h2>
                 </div>
-                <a href="jogos/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                <a href="/jogos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
                     Ver Arcade <i class="ph-bold ph-arrow-right"></i>
                 </a>
             </div>
@@ -170,7 +170,7 @@
         if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
             blogContainer.innerHTML = '';
             blogPosts.slice(0, 3).forEach(post => {
-                let link = post.link.includes('blog/') ? post.link : `blog/${post.link}`;
+                let link = post.link.includes('blog/') ? post.link : `/blog/${post.link}`;
                 blogContainer.innerHTML += `
                     <article class="group bg-geoPaper border border-white/5 rounded-xl overflow-hidden hover:border-geoGold/50 transition duration-300 shadow-lg flex flex-col h-full card-hover">
                         <a href="${link}" class="block flex-grow flex flex-col">
@@ -195,7 +195,7 @@
         if (typeof videosLongos !== 'undefined' && videosLongos.length > 0) {
             videosLongos.slice(0, 3).forEach(video => {
                 videoContainer.innerHTML += `
-                    <div class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative" onclick="window.location.href='videos.html'">
+                    <div class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative" onclick="window.location.href='/videos'">
                         <div class="aspect-video relative">
                             <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
                             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/0 transition"><i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl group-hover:scale-110"></i></div>
@@ -218,7 +218,7 @@
         const toolsContainer = document.getElementById('home-tools-grid');
         if (typeof toolsDB !== 'undefined' && toolsDB.length > 0) {
             toolsDB.slice(0, 4).forEach(item => {
-                let link = item.link.includes('ferramentas/') ? item.link : `ferramentas/${item.link}`;
+                let link = item.link.includes('ferramentas/') ? item.link : `/ferramentas/${item.link}`;
                 toolsContainer.innerHTML += `
                     <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-blue-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
                         <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-blue-400 transition shrink-0">
@@ -233,7 +233,7 @@
         const gamesContainer = document.getElementById('home-games-grid');
         if (typeof gamesDB !== 'undefined' && gamesDB.length > 0) {
             gamesDB.slice(0, 4).forEach(item => {
-                let link = item.link.includes('jogos/') ? item.link : `jogos/${item.link}`;
+                let link = item.link.includes('jogos/') ? item.link : `/jogos/${item.link}`;
                 gamesContainer.innerHTML += `
                     <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-green-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
                         <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-400 transition shrink-0">
