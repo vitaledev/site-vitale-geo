@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operação Bandeira | VitaleGeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Animação suave para a bandeira */
+        .flag-img {
+            transition: transform 0.3s ease;
+        }
+        .flag-img:hover {
+            transform: scale(1.05) rotate(1deg);
+        }
+    </style>
+</head>
+<body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 select-none bg-slate-900">
+
+    <a href="index.html" class="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest z-10">
+        <i class="ph-bold ph-arrow-left"></i> Voltar
+    </a>
+
+    <div class="text-center w-full max-w-md relative z-0">
+        <div class="mb-8 relative flex flex-col items-center">
+            <span class="text-yellow-500 font-bold tracking-widest text-xs uppercase mb-4">Identifique o País</span>
+            
+            <div class="w-64 h-40 bg-slate-800 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 flex items-center justify-center relative group">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <i class="ph-duotone ph-spinner animate-spin text-2xl text-slate-600"></i>
+                </div>
+                <img id="flag-img" src="" class="w-full h-full object-cover z-10 relative flag-img" alt="Bandeira">
+            </div>
+            
+            <div class="mt-4 bg-slate-800 px-4 py-1 rounded-full text-xs font-bold border border-white/10 shadow-lg">
+                Acertos: <span id="score" class="text-green-400 text-base ml-1">0</span>
+            </div>
+        </div>
+
+        <div id="options-grid" class="grid grid-cols-2 gap-3 w-full">
+            </div>
+
+        <p id="feedback" class="h-8 mt-6 text-sm font-bold uppercase tracking-widest text-slate-500"></p>
+    </div>
+
+    <script>
+        // BANCO DE DADOS (Nome + Código ISO para buscar a imagem)
+        const allCountries = [
+            { name: "Brasil", code: "br" },
+            { name: "Estados Unidos", code: "us" },
+            { name: "Canadá", code: "ca" },
+            { name: "Reino Unido", code: "gb" },
+            { name: "Alemanha", code: "de" },
+            { name: "França", code: "fr" },
+            { name: "Itália", code: "it" },
+            { name: "Japão", code: "jp" },
+            { name: "China", code: "cn" },
+            { name: "Rússia", code: "ru" },
+            { name: "Austrália", code: "au" },
+            { name: "Coreia do Sul", code: "kr" },
+            { name: "Índia", code: "in" },
+            { name: "Argentina", code: "ar" },
+            { name: "México", code: "mx" },
+            { name: "Espanha", code: "es" },
+            { name: "Portugal", code: "pt" },
+            { name: "Suíça", code: "ch" },
+            { name: "Suécia", code: "se" },
+            { name: "África do Sul", code: "za" },
+            { name: "Israel", code: "il" },
+            { name: "Turquia", code: "tr" },
+            { name: "Ucrânia", code: "ua" },
+            { name: "Holanda", code: "nl" },
+            { name: "Bélgica", code: "be" }
+        ];
+
+        let correctCountry;
+        let score = 0;
+
+        // 1. INICIA A RODADA
+        function startGame() {
+            // Escolhe um país correto aleatório
+            correctCountry = allCountries[Math.floor(Math.random() * allCountries.length)];
+            
+            // Escolhe 3 errados
+            let options = [correctCountry];
+            while (options.length < 4) {
+                let random = allCountries[Math.floor(Math.random() * allCountries.length)];
+                if (!options.some(o => o.code === random.code)) {
+                    options.push(random);
+                }
+            }
+
+            // Embaralha
+            options.sort(() => Math.random() - 0.5);
+
+            // Renderiza Imagem (Usa API FlagCDN que é rápida e gratuita)
+            const imgEl = document.getElementById("flag-img");
+            imgEl.src = `https://flagcdn.com/w640/${correctCountry.code}.png`;
+            
+            // Renderiza Botões
+            const grid = document.getElementById("options-grid");
+            grid.innerHTML = "";
+            
+            const feedback = document.getElementById("feedback");
+            feedback.innerText = "";
+            feedback.className = "h-8 mt-6 text-sm font-bold uppercase tracking-widest text-slate-500";
+
+            options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.className = "bg-slate-800 border border-white/10 hover:bg-slate-700 hover:border-yellow-500 py-3 px-2 rounded-lg font-bold transition shadow-md text-sm leading-tight hover:-translate-y-1 active:scale-95 text-slate-200";
+                btn.innerText = opt.name;
+                btn.onclick = () => checkAnswer(opt, btn);
+                grid.appendChild(btn);
+            });
+        }
+
+        // 2. VERIFICA RESPOSTA
+        function checkAnswer(selected, btn) {
+            const feedback = document.getElementById("feedback");
+            const allBtns = document.getElementById("options-grid").querySelectorAll("button");
+            
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selected.code === correctCountry.code) {
+                // ACERTOU
+                btn.classList.remove("bg-slate-800", "border-white/10");
+                btn.classList.add("bg-green-600", "border-green-400", "text-white");
+                
+                feedback.innerText = "Alvo Confirmado!";
+                feedback.className = "h-8 mt-6 text-sm font-bold uppercase tracking-widest text-green-400 animate-pulse";
+                
+                score++;
+                document.getElementById("score").innerText = score;
+                setTimeout(startGame, 800);
+            } else {
+                // ERROU
+                btn.classList.remove("bg-slate-800", "border-white/10");
+                btn.classList.add("bg-red-600", "border-red-400", "text-white");
+                
+                feedback.innerText = `Erro! Era: ${correctCountry.name}`;
+                feedback.className = "h-8 mt-6 text-sm font-bold uppercase tracking-widest text-red-500";
+                
+                // Mostra o certo
+                allBtns.forEach(b => {
+                    if (b.innerText === correctCountry.name) {
+                        b.classList.add("border-green-500", "text-green-400", "border-2");
+                    }
+                });
+                
+                score = 0;
+                document.getElementById("score").innerText = score;
+                setTimeout(startGame, 2000);
+            }
+        }
+
+        // Inicia o jogo imediatamente
+        startGame();
+    </script>
+</body>
+</html>

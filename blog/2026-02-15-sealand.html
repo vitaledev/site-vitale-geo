@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Principado de Sealand: A Menor Nação do Mundo | Blog VitaleGeo</title>
+    <meta name="description" content="Conheça a história da plataforma antiaérea que virou um país independente (pelo menos eles dizem que sim).">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Courier Prime', 'monospace'] // Fonte de máquina de escrever
+                    },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoRed: '#dc2626' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* EFEITO DE PAPEL VELHO/OFICIAL */
+        .official-paper {
+            background-color: #fdfbf7;
+            color: #1f2937;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border: 1px solid #d1d5db;
+        }
+
+        /* CARIMBO (Stamp Effect) */
+        .stamp {
+            transform: rotate(-12deg);
+            color: #dc2626; /* Vermelho */
+            border: 0.25rem solid #dc2626;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            text-transform: uppercase;
+            border-radius: 1rem;
+            font-family: 'Courier Prime', monospace;
+            font-weight: 700;
+            font-size: 1.5rem;
+            opacity: 0; /* Começa invisível */
+            mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); /* Efeito falhado */
+            mask-size: 944px 604px;
+            mix-blend-mode: multiply;
+        }
+
+        .stamp-visible {
+            animation: stampIn 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335) forwards;
+        }
+
+        @keyframes stampIn {
+            0% { opacity: 0; transform: scale(3) rotate(-12deg); }
+            100% { opacity: 0.8; transform: scale(1) rotate(-12deg); }
+        }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoRed selection:text-white">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="../index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 px-4 min-h-screen flex justify-center">
+        
+        <div class="official-paper max-w-3xl w-full p-8 md:p-16 rounded-sm relative">
+            
+            <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+                <i class="ph-fill ph-anchor text-[400px]"></i>
+            </div>
+
+            <header class="text-center border-b-2 border-slate-800 pb-8 mb-8">
+                <div class="w-20 h-20 bg-slate-900 text-white rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-double border-geoGold">
+                    <i class="ph-fill ph-crown text-4xl text-geoGold"></i>
+                </div>
+                <h1 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-2">Principado de Sealand</h1>
+                <p class="font-mono text-sm uppercase tracking-[0.3em] text-slate-500">E Mare Libertas • Desde 1967</p>
+                
+                <div class="mt-6 flex justify-between items-end font-mono text-xs text-slate-600 border-t border-slate-300 pt-2">
+                    <span>DOC. REF: #VG-2026-SL</span>
+                    <span>CLASSIFICAÇÃO: PÚBLICA</span>
+                </div>
+            </header>
+
+            <article class="prose prose-slate max-w-none prose-headings:font-serif prose-p:text-justify prose-img:rounded-sm prose-img:shadow-lg prose-img:border prose-img:border-slate-300">
+                
+                <p class="lead font-bold">
+                    A cerca de 12 km da costa da Inglaterra, existe uma estrutura de concreto e ferro enferrujado no meio do mar. Para a Marinha Real, é apenas o "HM Fort Roughs", uma relíquia abandonada da Segunda Guerra Mundial. Mas para a família Bates, é um país soberano.
+                </p>
+
+                <h3>O Golpe de Estado no Mar</h3>
+                <p>
+                    Em 1967, o ex-major britânico <strong>Paddy Roy Bates</strong> ocupou a plataforma com a intenção de transmitir sua rádio pirata. Como a estrutura estava em águas internacionais (na época), ele percebeu uma brecha legal: a lei britânica não se aplicava ali.
+                </p>
+                <p>
+                    Em vez de apenas tocar música, ele declarou independência, hasteou uma bandeira e se autoproclamou <strong>Príncipe Roy de Sealand</strong>.
+                </p>
+
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg" alt="A Plataforma de Sealand">
+                    <figcaption class="text-center font-mono text-xs">Território Nacional de Sealand (População: Variavel)</figcaption>
+                </figure>
+
+                <h3>Guerra e Passaportes</h3>
+                <p>
+                    Sealand tem uma história digna de filme:
+                </p>
+                <ul class="font-mono text-sm bg-slate-100 p-4 border-l-4 border-slate-800">
+                    <li><strong>1978:</strong> Foi invadida por mercenários contratados por um advogado alemão. O Príncipe Roy retomou a plataforma com armas e manteve os invasores como "prisioneiros de guerra".</li>
+                    <li><strong>Passaportes:</strong> Eles emitiram tantos passaportes que criminosos internacionais começaram a usá-los, forçando o "país" a revogar todos em 1997.</li>
+                    <li><strong>Economia:</strong> Hoje, eles vendem títulos de nobreza (Lorde, Barão, Conde) pela internet para financiar a manutenção da ferrugem.</li>
+                </ul>
+
+                <h3>É um país de verdade?</h3>
+                <p>
+                    Embora nenhum país da ONU reconheça Sealand, eles cumprem os critérios da Convenção de Montevidéu para ser um estado: têm território, população, governo e capacidade de se relacionar com outros estados (mesmo que ninguém responda aos seus e-mails).
+                </p>
+
+            </article>
+
+            <section class="mt-16 border-t-2 border-dashed border-slate-400 pt-8 relative">
+                <div class="bg-slate-100 p-6 border border-slate-300 shadow-inner">
+                    <h3 class="font-mono font-bold text-lg uppercase mb-4 flex items-center gap-2">
+                        <i class="ph-bold ph-stamp text-slate-500"></i> Solicitação de Cidadania Honorária
+                    </h3>
+                    
+                    <form id="visa-form" onsubmit="applyVisa(event)" class="space-y-4 font-mono text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs uppercase text-slate-500 mb-1">Nome Completo</label>
+                                <input type="text" required class="w-full bg-white border border-slate-300 p-2 focus:border-geoBlue outline-none uppercase" placeholder="SEU NOME">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase text-slate-500 mb-1">Título Desejado</label>
+                                <select class="w-full bg-white border border-slate-300 p-2 outline-none">
+                                    <option>LORDE / LADY</option>
+                                    <option>BARÃO / BARONESA</option>
+                                    <option>CONDE / CONDESSA</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-2 text-xs text-slate-600 mt-2">
+                            <input type="checkbox" required id="oath">
+                            <label for="oath">Juro solenemente defender a plataforma contra gaivotas e a Marinha Britânica.</label>
+                        </div>
+
+                        <button type="submit" class="bg-slate-900 text-white font-bold uppercase px-6 py-3 hover:bg-geoRed transition w-full md:w-auto">
+                            Submeter Requerimento
+                        </button>
+                    </form>
+
+                    <div id="stamp-area" class="absolute bottom-10 right-10 md:right-20 pointer-events-none">
+                        <div id="stamp-mark" class="stamp">APROVADO<br><span class="text-xs">Roy of Sealand</span></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Sealand Consulate</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function applyVisa(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const stamp = document.getElementById('stamp-mark');
+            
+            // Simula processamento
+            btn.innerText = "Processando...";
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                // Toca som de carimbo (opcional, aqui é só visual)
+                stamp.classList.add('stamp-visible');
+                btn.innerText = "Cidadania Concedida";
+                btn.classList.remove('bg-slate-900');
+                btn.classList.add('bg-green-600');
+                
+                // Confete ou alerta simples
+                setTimeout(() => {
+                    alert("Bem-vindo à nobreza, Vossa Excelência! 🎖️");
+                }, 500);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

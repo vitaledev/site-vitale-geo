@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerra de Números | VitaleGeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Efeito de sobreposição escura nas imagens */
+        .card-bg {
+            transition: transform 0.5s ease;
+        }
+        .game-card:hover .card-bg {
+            transform: scale(1.05);
+        }
+        .vs-badge {
+            box-shadow: 0 0 0 8px #0f172a; /* Cria borda falsa misturando com fundo */
+        }
+    </style>
+</head>
+<body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden selection:bg-yellow-500 selection:text-black">
+
+    <a href="index.html" class="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest z-20">
+        <i class="ph-bold ph-arrow-left"></i> Voltar
+    </a>
+
+    <div class="text-center mb-8 relative z-10">
+        <h1 class="text-2xl font-bold uppercase tracking-tighter text-white">Quem é mais rico?</h1>
+        <p class="text-slate-400 text-xs tracking-widest uppercase mt-1">Comparando PIB (Produto Interno Bruto)</p>
+        <div class="mt-4 bg-slate-800 border border-white/10 inline-block px-4 py-1 rounded-full text-green-400 font-bold text-sm shadow-lg">
+            Acertos: <span id="score">0</span>
+        </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row w-full max-w-5xl h-[60vh] md:h-[500px] relative">
+        
+        <div class="game-card w-full md:w-1/2 h-full relative overflow-hidden bg-slate-800 border-b-2 md:border-b-0 md:border-r-2 border-slate-900 group">
+            <img id="left-img" src="" class="card-bg absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg" id="left-name">Carregando...</h2>
+                <div class="text-2xl md:text-3xl text-yellow-400 font-mono font-bold drop-shadow-md" id="left-value">---</div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mt-2">Trilhões (USD)</p>
+            </div>
+        </div>
+
+        <div class="vs-badge absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white text-slate-900 font-black rounded-full w-12 h-12 flex items-center justify-center text-sm md:text-base">
+            VS
+        </div>
+
+        <div class="game-card w-full md:w-1/2 h-full relative overflow-hidden bg-slate-800 group">
+            <img id="right-img" src="" class="card-bg absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg" id="right-name">Carregando...</h2>
+                
+                <div id="game-controls" class="flex flex-col gap-3 w-48">
+                    <button onclick="guess('higher')" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition shadow-lg border border-green-400/30 hover:scale-105 active:scale-95">
+                        <i class="ph-bold ph-caret-up"></i> MAIOR
+                    </button>
+                    <button onclick="guess('lower')" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition shadow-lg border border-red-400/30 hover:scale-105 active:scale-95">
+                        <i class="ph-bold ph-caret-down"></i> MENOR
+                    </button>
+                </div>
+
+                <div id="result-overlay" class="hidden flex-col items-center animate-in fade-in zoom-in duration-300">
+                    <div class="text-3xl text-yellow-400 font-mono font-bold drop-shadow-md mb-1" id="right-value-reveal">---</div>
+                    <div id="result-message" class="font-bold uppercase tracking-widest text-sm mb-4"></div>
+                    <button onclick="nextRound()" class="bg-white text-slate-900 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded hover:bg-slate-200 transition shadow-xl">
+                        Próxima Rodada <i class="ph-bold ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DADOS "HARDCODED" (PIB Aproximado em Trilhões USD - Dados 2024/25)
+        // Code: Código ISO de 2 letras (usado para pegar a bandeira)
+        const countryData = [
+            { name: "Estados Unidos", code: "us", gdp: 27.36 },
+            { name: "China", code: "cn", gdp: 17.79 },
+            { name: "Alemanha", code: "de", gdp: 4.45 },
+            { name: "Japão", code: "jp", gdp: 4.21 },
+            { name: "Índia", code: "in", gdp: 3.73 },
+            { name: "Reino Unido", code: "gb", gdp: 3.34 },
+            { name: "França", code: "fr", gdp: 3.03 },
+            { name: "Itália", code: "it", gdp: 2.25 },
+            { name: "Brasil", code: "br", gdp: 2.17 },
+            { name: "Canadá", code: "ca", gdp: 2.14 },
+            { name: "Rússia", code: "ru", gdp: 1.99 }, // Variável devido a sanções
+            { name: "México", code: "mx", gdp: 1.78 },
+            { name: "Austrália", code: "au", gdp: 1.72 },
+            { name: "Coreia do Sul", code: "kr", gdp: 1.71 },
+            { name: "Espanha", code: "es", gdp: 1.58 },
+            { name: "Indonésia", code: "id", gdp: 1.37 },
+            { name: "Turquia", code: "tr", gdp: 1.10 },
+            { name: "Holanda", code: "nl", gdp: 1.09 },
+            { name: "Arábia Saudita", code: "sa", gdp: 1.06 },
+            { name: "Suíça", code: "ch", gdp: 0.90 },
+            { name: "Polônia", code: "pl", gdp: 0.81 },
+            { name: "Argentina", code: "ar", gdp: 0.63 },
+            { name: "Suécia", code: "se", gdp: 0.59 },
+            { name: "Bélgica", code: "be", gdp: 0.58 },
+            { name: "Tailândia", code: "th", gdp: 0.51 },
+            { name: "Israel", code: "il", gdp: 0.50 },
+            { name: "Singapura", code: "sg", gdp: 0.49 },
+            { name: "Portugal", code: "pt", gdp: 0.28 },
+            { name: "Chile", code: "cl", gdp: 0.33 },
+            { name: "Egito", code: "eg", gdp: 0.39 }
+        ];
+
+        let leftItem, rightItem;
+        let score = 0;
+
+        function initGame() {
+            score = 0;
+            document.getElementById("score").innerText = score;
+            
+            // Escolhe o primeiro item aleatório
+            leftItem = countryData[Math.floor(Math.random() * countryData.length)];
+            pickNextItem();
+        }
+
+        function pickNextItem() {
+            // Garante que o item da direita não seja igual ao da esquerda
+            do {
+                rightItem = countryData[Math.floor(Math.random() * countryData.length)];
+            } while (rightItem.code === leftItem.code);
+            
+            render();
+        }
+
+        function render() {
+            // Configura Esquerda
+            document.getElementById("left-name").innerText = leftItem.name;
+            document.getElementById("left-value").innerText = `$ ${leftItem.gdp.toFixed(2)}`;
+            document.getElementById("left-img").src = `https://flagcdn.com/w640/${leftItem.code}.png`;
+
+            // Configura Direita
+            document.getElementById("right-name").innerText = rightItem.name;
+            document.getElementById("right-img").src = `https://flagcdn.com/w640/${rightItem.code}.png`;
+
+            // Reseta Estado
+            document.getElementById("game-controls").classList.remove("hidden");
+            document.getElementById("game-controls").classList.add("flex");
+            document.getElementById("result-overlay").classList.add("hidden");
+            document.getElementById("result-overlay").classList.remove("flex");
+        }
+
+        function guess(choice) {
+            const isHigher = rightItem.gdp >= leftItem.gdp;
+            let win = false;
+
+            if (choice === 'higher' && isHigher) win = true;
+            if (choice === 'lower' && !isHigher) win = true;
+
+            showResult(win);
+        }
+
+        function showResult(win) {
+            const overlay = document.getElementById("result-overlay");
+            const message = document.getElementById("result-message");
+            const valueReveal = document.getElementById("right-value-reveal");
+
+            // Esconde botões, mostra resultado
+            document.getElementById("game-controls").classList.add("hidden");
+            document.getElementById("game-controls").classList.remove("flex");
+            
+            overlay.classList.remove("hidden");
+            overlay.classList.add("flex");
+
+            valueReveal.innerText = `$ ${rightItem.gdp.toFixed(2)}`;
+
+            if (win) {
+                score++;
+                message.innerText = "CORRETO!";
+                message.className = "font-bold uppercase tracking-widest text-sm text-green-400";
+            } else {
+                score = 0; // Game Over
+                message.innerText = "GAME OVER!";
+                message.className = "font-bold uppercase tracking-widest text-sm text-red-500";
+                
+                // Em caso de derrota, escolhemos um novo par totalmente aleatório no próximo round
+                // Para não ficar preso num loop se o jogador perder
+            }
+            document.getElementById("score").innerText = score;
+        }
+
+        function nextRound() {
+            // O item da direita vira o da esquerda (progressão do jogo)
+            // Se o jogador perdeu, o score zerou, mas a lógica continua ou reseta
+            if (document.getElementById("result-message").innerText === "GAME OVER!") {
+                // Se perdeu, reinicia tudo aleatório
+                leftItem = countryData[Math.floor(Math.random() * countryData.length)];
+            } else {
+                // Se ganhou, o vencedor da direita vai para a esquerda desafiar o próximo
+                leftItem = rightItem;
+            }
+            
+            pickNextItem();
+        }
+
+        // Inicia o jogo
+        initGame();
+    </script>
+</body>
+</html>

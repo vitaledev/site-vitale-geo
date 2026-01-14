@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Geopolítico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 selection:bg-yellow-500 selection:text-black">
+
+    <div class="max-w-lg w-full bg-slate-800 border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-slate-700">
+            <div id="progress" class="h-full bg-yellow-500 w-0 transition-all duration-300"></div>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Missão: Quiz</span>
+            <span id="score" class="text-yellow-500 font-bold">Pts: 0</span>
+        </div>
+
+        <div id="quiz-container">
+            <h2 id="question" class="text-2xl font-bold mb-8 text-center min-h-[80px] flex items-center justify-center">
+                Carregando dados de inteligência...
+            </h2>
+            <div id="options" class="grid gap-3">
+                </div>
+        </div>
+
+        <div id="end-screen" class="hidden text-center">
+            <i class="ph-duotone ph-medal text-6xl text-yellow-500 mb-4"></i>
+            <h2 class="text-3xl font-bold mb-2">Missão Cumprida!</h2>
+            <p class="text-slate-400 mb-6">Sua pontuação final:</p>
+            <div class="text-5xl font-bold text-white mb-8" id="final-score">0</div>
+            <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg transition w-full">
+                Jogar Novamente
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // BANCO DE PERGUNTAS (Edite aqui para adicionar mais)
+        const questions = [
+            { q: "Qual é a capital da Austrália?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], a: 2 },
+            { q: "Qual país tem a maior população do mundo (2025)?", options: ["China", "Índia", "EUA", "Indonésia"], a: 1 },
+            { q: "Qual país NÃO faz parte da OTAN?", options: ["Turquia", "Brasil", "Alemanha", "França"], a: 1 },
+            { q: "Qual é a moeda oficial do Reino Unido?", options: ["Euro", "Dólar", "Libra Esterlina", "Franco"], a: 2 },
+            { q: "Onde fica a sede da ONU?", options: ["Genebra", "Bruxelas", "Nova York", "Paris"], a: 2 },
+            { q: "Qual país tem o maior território do mundo?", options: ["China", "EUA", "Canadá", "Rússia"], a: 3 }
+        ];
+
+        let current = 0;
+        let score = 0;
+        const qEl = document.getElementById("question");
+        const optEl = document.getElementById("options");
+        const scoreEl = document.getElementById("score");
+        const progressEl = document.getElementById("progress");
+
+        function loadQuestion() {
+            if (current >= questions.length) return showEnd();
+            
+            const data = questions[current];
+            qEl.textContent = data.q;
+            optEl.innerHTML = "";
+            
+            // Atualiza barra
+            progressEl.style.width = `${(current / questions.length) * 100}%`;
+
+            data.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "w-full text-left bg-slate-700/50 hover:bg-slate-700 border border-white/5 hover:border-yellow-500 p-4 rounded-lg transition font-bold";
+                btn.textContent = opt;
+                btn.onclick = () => check(index, btn);
+                optEl.appendChild(btn);
+            });
+        }
+
+        function check(selected, btn) {
+            const correct = questions[current].a;
+            // Bloqueia cliques
+            const allBtns = optEl.querySelectorAll("button");
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                btn.classList.add("bg-green-600", "border-green-400");
+                score += 100;
+                scoreEl.textContent = "Pts: " + score;
+            } else {
+                btn.classList.add("bg-red-600", "border-red-400");
+                // Mostra a correta
+                allBtns[correct].classList.add("bg-green-600", "border-green-400");
+            }
+
+            setTimeout(() => {
+                current++;
+                loadQuestion();
+            }, 1000);
+        }
+
+        function showEnd() {
+            document.getElementById("quiz-container").classList.add("hidden");
+            document.getElementById("end-screen").classList.remove("hidden");
+            document.getElementById("final-score").textContent = score;
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

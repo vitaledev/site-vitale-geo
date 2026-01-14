@@ -3,6 +3,22 @@
 
 const blogPosts = [
     {
+        titulo: "Principado de Sealand: A Menor Nação",
+        categoria: "Curiosidades",
+        data: "15 Fev 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg",
+        link: "2026-02-15-sealand.html",
+        resumo: "Conheça a plataforma de petróleo que virou um país, emitiu passaportes e travou uma guerra contra helicópteros."
+    },  
+    {
+        titulo: "Whittier: A Cidade de Um Prédio Só",
+        categoria: "Urbanismo",
+        data: "20 Fev 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/71/Back_to_Whittier...Sun_is_out...Water_is_Rough_%282571032531%29.jpg",
+        link: "2026-02-20-whittier.html",
+        resumo: "Conheça a cidade no Alasca onde toda a população mora no mesmo edifício e o único acesso é um túnel que fecha à noite."
+    },
+    {
         titulo: "A Farsa de Mercator",
         categoria: "Cartografia",
         data: "20 Jan 2026",
@@ -42,5 +58,7 @@ const blogPosts = [
         link: "2026-02-01-area-51.html",
         resumo: "Relatório desclassificado sobre a base militar mais secreta do mundo. [DADOS EXPURGADOS]"
     },
+    
+  
     // COPIE E COLE ESTE BLOCO PARA ADICIONAR NOVO POST
 ];

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Capital | VitaleGeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .flag-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        /* Animação de entrada */
+        .slide-in {
+            animation: slideIn 0.4s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 select-none overflow-hidden bg-slate-900">
+
+    <a href="index.html" class="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest z-20">
+        <i class="ph-bold ph-arrow-left"></i> Voltar
+    </a>
+
+    <div class="w-full max-w-lg relative z-10">
+        
+        <div class="text-center mb-8">
+            <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4 animate-pulse">
+                <i class="ph-fill ph-target"></i> Localizar Alvo
+            </span>
+            <div class="flex justify-between items-end px-4">
+                <div class="text-left">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Pontuação</p>
+                    <p class="text-2xl font-mono font-bold text-yellow-500" id="score">0</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Rodada</p>
+                    <p class="text-2xl font-mono font-bold" id="round">1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-800 border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center">
+                
+                <div class="w-24 h-16 md:w-32 md:h-20 rounded-lg overflow-hidden flag-shadow mb-4 border border-white/20">
+                    <img id="flag-img" src="" class="w-full h-full object-cover" alt="Bandeira">
+                </div>
+
+                <h2 class="text-xl md:text-2xl font-bold text-white mb-1" id="country-name">Carregando...</h2>
+                <p class="text-slate-400 text-xs uppercase tracking-widest mb-6">Qual é a capital?</p>
+
+                <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+                    </div>
+            </div>
+
+            <div id="feedback-overlay" class="absolute inset-0 bg-slate-900/90 z-20 hidden flex-col items-center justify-center backdrop-blur-sm">
+                <i id="feedback-icon" class="text-6xl mb-4"></i>
+                <h3 id="feedback-text" class="text-2xl font-bold uppercase tracking-widest mb-1"></h3>
+                <p id="feedback-sub" class="text-slate-400 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BANCO DE DADOS (País, Código ISO, Capital)
+        const countryData = [
+            { name: "Brasil", code: "br", capital: "Brasília" },
+            { name: "Estados Unidos", code: "us", capital: "Washington, D.C." },
+            { name: "Reino Unido", code: "gb", capital: "Londres" },
+            { name: "França", code: "fr", capital: "Paris" },
+            { name: "Alemanha", code: "de", capital: "Berlim" },
+            { name: "Itália", code: "it", capital: "Roma" },
+            { name: "Japão", code: "jp", capital: "Tóquio" },
+            { name: "China", code: "cn", capital: "Pequim" },
+            { name: "Rússia", code: "ru", capital: "Moscou" },
+            { name: "Canadá", code: "ca", capital: "Ottawa" },
+            { name: "Austrália", code: "au", capital: "Canberra" },
+            { name: "Espanha", code: "es", capital: "Madri" },
+            { name: "Argentina", code: "ar", capital: "Buenos Aires" },
+            { name: "Coreia do Sul", code: "kr", capital: "Seul" },
+            { name: "Índia", code: "in", capital: "Nova Delhi" },
+            { name: "Egito", code: "eg", capital: "Cairo" },
+            { name: "Turquia", code: "tr", capital: "Ancara" },
+            { name: "México", code: "mx", capital: "Cidade do México" },
+            { name: "Portugal", code: "pt", capital: "Lisboa" },
+            { name: "Suíça", code: "ch", capital: "Berna" },
+            { name: "Suécia", code: "se", capital: "Estocolmo" },
+            { name: "Holanda", code: "nl", capital: "Amsterdã" },
+            { name: "Bélgica", code: "be", capital: "Bruxelas" },
+            { name: "Noruega", code: "no", capital: "Oslo" },
+            { name: "Grécia", code: "gr", capital: "Atenas" },
+            { name: "Chile", code: "cl", capital: "Santiago" },
+            { name: "Colômbia", code: "co", capital: "Bogotá" },
+            { name: "Peru", code: "pe", capital: "Lima" },
+            { name: "África do Sul", code: "za", capital: "Pretória" }, // Uma das capitais
+            { name: "Nova Zelândia", code: "nz", capital: "Wellington" },
+            { name: "Ucrânia", code: "ua", capital: "Kiev" },
+            { name: "Polônia", code: "pl", capital: "Varsóvia" },
+            { name: "Tailândia", code: "th", capital: "Bangkok" },
+            { name: "Vietnã", code: "vn", capital: "Hanói" },
+            { name: "Indonésia", code: "id", capital: "Jacarta" }, // Em transição, mas oficial por enquanto
+            { name: "Arábia Saudita", code: "sa", capital: "Riade" },
+            { name: "Israel", code: "il", capital: "Jerusalém" }
+        ];
+
+        let currentRound = 1;
+        let score = 0;
+        let correctTarget;
+
+        function startGame() {
+            pickQuestion();
+        }
+
+        function pickQuestion() {
+            // Escolhe um país alvo
+            correctTarget = countryData[Math.floor(Math.random() * countryData.length)];
+            
+            // Escolhe 3 capitais erradas
+            let options = [correctTarget];
+            while (options.length < 4) {
+                let random = countryData[Math.floor(Math.random() * countryData.length)];
+                // Garante que não é o mesmo país e não repete opção
+                if (!options.some(o => o.code === random.code)) {
+                    options.push(random);
+                }
+            }
+
+            // Embaralha
+            options.sort(() => Math.random() - 0.5);
+
+            render(options);
+        }
+
+        function render(options) {
+            // Renderiza Dados
+            document.getElementById("flag-img").src = `https://flagcdn.com/w640/${correctTarget.code}.png`;
+            document.getElementById("country-name").innerText = correctTarget.name;
+            document.getElementById("round").innerText = currentRound;
+
+            // Esconde Feedback
+            document.getElementById("feedback-overlay").classList.add("hidden");
+            document.getElementById("feedback-overlay").classList.remove("flex");
+
+            // Renderiza Botões
+            const grid = document.getElementById("options-grid");
+            grid.innerHTML = "";
+
+            options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "bg-slate-700/50 hover:bg-slate-700 border border-white/5 hover:border-blue-400 py-3 px-4 rounded-xl font-bold transition text-sm md:text-base text-left flex items-center gap-3 group slide-in";
+                btn.style.animationDelay = `${index * 0.1}s`; // Efeito cascata
+                
+                // Letra da opção (A, B, C, D)
+                const letter = ["A", "B", "C", "D"][index];
+                
+                btn.innerHTML = `
+                    <span class="bg-slate-900 text-slate-500 group-hover:text-blue-400 w-6 h-6 flex items-center justify-center rounded text-xs font-bold border border-white/10 transition">${letter}</span>
+                    <span class="flex-1">${opt.capital}</span>
+                `;
+                
+                btn.onclick = () => checkAnswer(opt);
+                grid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const overlay = document.getElementById("feedback-overlay");
+            const icon = document.getElementById("feedback-icon");
+            const text = document.getElementById("feedback-text");
+            const sub = document.getElementById("feedback-sub");
+
+            overlay.classList.remove("hidden");
+            overlay.classList.add("flex");
+
+            if (selected.code === correctTarget.code) {
+                // CORRETO
+                score += 100;
+                document.getElementById("score").innerText = score;
+                
+                icon.className = "ph-duotone ph-check-circle text-6xl mb-4 text-green-500";
+                text.innerText = "LOCALIZADO!";
+                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-green-400";
+                sub.innerText = `Capital confirmada: ${correctTarget.capital}`;
+                
+                setTimeout(() => {
+                    currentRound++;
+                    pickQuestion();
+                }, 1200);
+
+            } else {
+                // ERRO
+                score = Math.max(0, score - 50); // Perde pontos mas não fica negativo
+                document.getElementById("score").innerText = score;
+
+                icon.className = "ph-duotone ph-x-circle text-6xl mb-4 text-red-500";
+                text.innerText = "FALHA NA MISSÃO";
+                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-red-500";
+                sub.innerText = `A capital correta era: ${correctTarget.capital}`;
+
+                setTimeout(() => {
+                    currentRound++;
+                    pickQuestion();
+                }, 2000); // Demora um pouco mais pra ler a resposta certa
+            }
+        }
+
+        startGame();
+    </script>
+</body>
+</html>

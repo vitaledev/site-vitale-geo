@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Whittier: A Cidade de Um Prédio Só | Blog VitaleGeo</title>
+    <meta name="description" content="Bem-vindo a Begich Towers, onde a delegacia, o correio e sua casa ficam no mesmo elevador.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        mono: ['Share Tech Mono', 'monospace'] // Fonte estilo Painel Digital
+                    },
+                    colors: { 
+                        bunker: '#1e293b', 
+                        led: '#0ea5e9', // Azul Gelo
+                        alert: '#ef4444' 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* EFEITO DE MONITOR ANTIGO (Scanlines) */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* Animação de Luz Piscando (Frio Extremo) */
+        .flicker {
+            animation: flickerAnimation 3s infinite;
+        }
+        @keyframes flickerAnimation {
+            0%   { opacity: 1; }
+            3%   { opacity: 0.4; }
+            6%   { opacity: 1; }
+            7%   { opacity: 0.4; }
+            8%   { opacity: 1; }
+            9%   { opacity: 1; }
+            10%  { opacity: 0.1; }
+            11%  { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        /* Botão do Elevador */
+        .elevator-btn {
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+            transition: all 0.2s;
+        }
+        .elevator-btn:hover {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+            transform: scale(1.05);
+        }
+        .elevator-btn.active {
+            background-color: #0ea5e9;
+            color: #0f172a;
+            box-shadow: 0 0 15px #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-led selection:text-white">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="../index.html" class="text-led font-mono text-lg tracking-widest">SYS.VITALE.GEO</a>
+        </div>
+    </nav>
+
+    <div class="fixed top-16 left-0 w-full bg-slate-800/90 border-b border-white/5 z-30 backdrop-blur font-mono text-xs md:text-sm py-2 px-4 flex justify-between items-center text-slate-400 shadow-lg">
+        <div class="flex gap-4">
+            <span class="flex items-center gap-2"><i class="ph-fill ph-thermometer-cold text-led"></i> EXT: -22°C</span>
+            <span class="flex items-center gap-2 hidden md:flex"><i class="ph-fill ph-wind text-slate-500"></i> VENTO: 60km/h</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span>STATUS TÚNEL:</span>
+            <span class="bg-red-500/20 text-red-400 px-2 py-0.5 rounded border border-red-500/50 animate-pulse font-bold">FECHADO</span>
+        </div>
+    </div>
+
+    <main class="pt-32 pb-20 px-4 min-h-screen max-w-4xl mx-auto flex flex-col md:flex-row gap-8">
+        
+        <aside class="md:w-64 flex-shrink-0 order-2 md:order-1">
+            <div class="sticky top-32 bg-slate-800 border border-white/10 p-6 rounded-xl shadow-2xl">
+                <h3 class="font-mono text-led text-sm uppercase mb-4 border-b border-white/10 pb-2">Níveis de Acesso</h3>
+                
+                <div class="flex flex-col gap-3">
+                    <button onclick="scrollToId('intro')" class="elevator-btn text-left px-4 py-3 rounded border border-white/10 text-xs font-bold uppercase tracking-widest flex items-center gap-3 bg-slate-900 group">
+                        <span class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] group-hover:border-led">1</span>
+                        <span>Recepção</span>
+                    </button>
+                    <button onclick="scrollToId('history')" class="elevator-btn text-left px-4 py-3 rounded border border-white/10 text-xs font-bold uppercase tracking-widest flex items-center gap-3 bg-slate-900 group">
+                        <span class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] group-hover:border-led">2</span>
+                        <span>O Bunker</span>
+                    </button>
+                    <button onclick="scrollToId('life')" class="elevator-btn text-left px-4 py-3 rounded border border-white/10 text-xs font-bold uppercase tracking-widest flex items-center gap-3 bg-slate-900 group">
+                        <span class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] group-hover:border-led">3</span>
+                        <span>Vida Diária</span>
+                    </button>
+                    <button onclick="scrollToId('tunnel')" class="elevator-btn text-left px-4 py-3 rounded border border-white/10 text-xs font-bold uppercase tracking-widest flex items-center gap-3 bg-slate-900 group">
+                        <span class="w-6 h-6 rounded-full border border-slate-600 flex items-center justify-center text-[10px] group-hover:border-led">B1</span>
+                        <span>O Túnel</span>
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-white/10 text-center">
+                    <div class="text-[10px] text-slate-500 font-mono mb-2">SISTEMA OPERACIONAL</div>
+                    <div class="inline-block w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="flex-1 order-1 md:order-2 prose prose-invert prose-slate max-w-none prose-headings:font-mono prose-headings:text-led">
+            
+            <header id="intro" class="mb-12 border-b border-white/10 pb-8">
+                <h1 class="text-4xl md:text-5xl mb-4 flicker text-white">Bem-vindo a Whittier</h1>
+                <p class="font-mono text-sm text-led uppercase tracking-widest">População: 272 • Edifícios: 1 (Basicamente)</p>
+            </header>
+
+            <p class="lead">
+                Imagine uma cidade inteira onde você nunca precisa sair na rua para ir ao correio, à delegacia ou visitar seu vizinho. Em Whittier, Alasca, quase toda a população vive sob o mesmo teto: as <strong>Begich Towers</strong>.
+            </p>
+
+            <figure class="bg-slate-800 p-2 rounded border border-white/10 shadow-lg">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Back_to_Whittier...Sun_is_out...Water_is_Rough_%282571032531%29.jpg" alt="Begich Towers" class="rounded opacity-80 hover:opacity-100 transition duration-500">
+                <figcaption class="text-center font-mono text-xs text-slate-500 mt-2">Begich Towers: 14 andares, 1 cidade.</figcaption>
+            </figure>
+
+            <h2 id="history">Nível 2: O Bunker da Guerra Fria</h2>
+            <p>
+                A cidade não foi construída assim por preguiça. Foi estratégia militar. Durante a Segunda Guerra Mundial e a Guerra Fria, os EUA precisavam de um porto secreto e impenetrável no Alasca.
+            </p>
+            <p>
+                Whittier é cercada por montanhas gigantescas e geleiras, tornando-a invisível do ar e quase impossível de acessar por terra. As "Begich Towers" (antigo Hodge Building) foram projetadas para resistir a bombardeios e invernos brutais.
+            </p>
+
+            <h2 id="life">Nível 3: Vida Sem Sair de Casa</h2>
+            <p>
+                No inverno, a neve pode chegar a 6 metros de altura e os ventos a 100 km/h. Sair na rua é perigoso. Por isso, o prédio tem tudo:
+            </p>
+            <ul class="font-mono text-sm bg-slate-800/50 p-6 border-l-2 border-led rounded-r">
+                <li class="flex items-center gap-2"><i class="ph-bold ph-check text-green-500"></i> Delegacia de Polícia</li>
+                <li class="flex items-center gap-2"><i class="ph-bold ph-check text-green-500"></i> Agência dos Correios</li>
+                <li class="flex items-center gap-2"><i class="ph-bold ph-check text-green-500"></i> Mercado</li>
+                <li class="flex items-center gap-2"><i class="ph-bold ph-check text-green-500"></i> Lavanderia</li>
+                <li class="flex items-center gap-2"><i class="ph-bold ph-check text-green-500"></i> Igreja (no subsolo)</li>
+            </ul>
+            <p>
+                As crianças vão para a escola através de um <strong>túnel subterrâneo</strong> conectado ao prédio, para não congelarem no caminho. É a única cidade onde você pode ir à escola de chinelo quando lá fora está -20°C.
+            </p>
+
+            <h2 id="tunnel">Subsolo: O Túnel da Morte?</h2>
+            <p>
+                O único acesso por terra a Whittier é o <strong>Anton Anderson Memorial Tunnel</strong>. Ele tem 4 km de extensão, passa por dentro de uma montanha e tem uma peculiaridade assustadora:
+            </p>
+            <blockquote class="border-l-4 border-red-500 bg-red-900/10 p-4 not-italic">
+                <strong class="text-red-400 font-mono uppercase text-sm block mb-2">⚠️ ALERTA DE TRÁFEGO</strong>
+                É um túnel de via única. Carros e trens compartilham a mesma pista. O sentido do trânsito inverte a cada hora. À noite, o túnel fecha completamente. Se você perder o horário, dorme no carro.
+            </blockquote>
+
+        </article>
+
+    </main>
+
+    <footer class="bg-slate-950 py-10 text-center text-xs text-slate-600 font-mono border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">SYSTEM.END_OF_FILE</p>
+        <p>&copy; 2026 Begich Towers Management.</p>
+    </footer>
+
+    <script>
+        function scrollToId(id) {
+            const element = document.getElementById(id);
+            const offset = 100; // Compensa a navbar fixa
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            // Efeito visual no botão
+            document.querySelectorAll('.elevator-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

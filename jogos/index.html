@@ -114,27 +114,38 @@
         const modal = document.getElementById('tool-modal');
         const iframe = document.getElementById('tool-frame');
 
-        // Verificação segura do banco de dados (gameDB ou gamesDB)
+        // Verificação segura do banco de dados
         const db = (typeof gameDB !== 'undefined') ? gameDB : (typeof gamesDB !== 'undefined' ? gamesDB : []);
 
         if (db.length > 0) {
-            container.innerHTML = ''; // Limpa o "Carregando..."
+            container.innerHTML = ''; 
             
             db.forEach(game => {
-                // Truque para o GitHub Pages:
-                // Se o link no banco é "/jogos/quiz/", transformamos em "quiz/" (relativo)
-                // para funcionar dentro desta pasta.
                 let cleanLink = game.link;
                 if (cleanLink.startsWith('/jogos/')) {
                     cleanLink = cleanLink.replace('/jogos/', '');
                 } else if (cleanLink.startsWith('/')) {
-                    cleanLink = '..' + cleanLink; // Sobe um nível se for link absoluto de outra pasta
+                    cleanLink = '..' + cleanLink;
                 }
+
+                // --- A MÁGICA ACONTECE AQUI ---
+                // Verifica se o ícone é um Link de Imagem (http) ou Classe de Ícone (ph-)
+                let iconHTML = '';
+                if (game.icon.includes('/') || game.icon.includes('.')) {
+                    // É uma imagem/link
+                    iconHTML = `<img src="${game.icon}" class="w-24 h-24 object-contain drop-shadow-lg group-hover:scale-110 transition duration-500">`;
+                } else {
+                    // É um ícone do Phosphor
+                    iconHTML = `<i class="${game.icon} text-8xl text-slate-700 group-hover:text-geoGold/20 transition duration-500"></i>`;
+                }
+                // -----------------------------
 
                 container.innerHTML += `
                     <div onclick="openTool('${cleanLink}')" class="group cursor-pointer relative bg-geoPaper border border-white/5 p-4 rounded-2xl hover:border-geoGold transition duration-300 shadow-2xl hover:-translate-y-2">
                         <div class="aspect-[4/3] bg-slate-800 rounded-xl overflow-hidden relative mb-4 flex items-center justify-center">
-                            <i class="${game.icon} text-8xl text-slate-700 group-hover:text-geoGold/20 transition duration-500"></i>
+                            
+                            ${iconHTML}
+
                             <div class="absolute bottom-4 left-4">
                                 <h3 class="text-2xl font-bold text-white group-hover:text-geoGold transition drop-shadow-md">${game.titulo}</h3>
                             </div>

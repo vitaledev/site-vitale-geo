@@ -3,8 +3,9 @@
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+     { titulo: "Por que a Argentina é tão estratégica na América do Sul?", id: "LHANhd4PMYk", link: "https://www.youtube.com/watch?v=LHANhd4PMYk" },
     { titulo: "Você vive num mundo maquiavélico (e nem sabe disso)", id: "yerRMDGkxrw", link: "https://www.youtube.com/watch?v=yerRMDGkxrw" },
-    { titulo: "Por que a Argentina é tão estratégica na América do Sul?", id: "LHANhd4PMYk", link: "https://www.youtube.com/watch?v=LHANhd4PMYk" },
+   
     { titulo: "Como a China se Tornou a Maior Potência Econômica do Mundo?", id: "9NqG_5amPfo", link: "https://www.youtube.com/watch?v=9NqG_5amPfo" },
     { titulo: "A Verdade Sobre a Crise Econômica da Venezuela", id: "iBM8Tl52PqM", link: "https://www.youtube.com/watch?v=iBM8Tl52PqM" },
     { titulo: "Quais Países Nunca Estiveram em Guerra?", id: "oR5nBKPuQXc", link: "https://www.youtube.com/watch?v=oR5nBKPuQXc" },
