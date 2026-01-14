@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ilhas Diomedes: A Fronteira do Tempo | Blog VitaleGeo</title>
+    <meta name="description" content="A apenas 3,8 km de distância, estas ilhas separam os EUA da Rússia e o Hoje do Amanhã. Conheça a fronteira mais curiosa do mundo.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em' },
+                                strong: { color: theme('colors.geoBlue') },
+                                a: { color: theme('colors.geoGold'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.geoBlue'), color: '#fff', fontStyle: 'italic', backgroundColor: 'rgba(59, 130, 246, 0.1)', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-geoNavy">
+        <div id="progressBar" class="h-1 bg-cyan-400 w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(34,211,238,0.7)]"></div>
+    </div>
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="../index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-cyan-900/30 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-clock"></i> Fusos Horários
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Ilhas Diomedes: O único lugar onde você pode ver o "amanhã"
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <span><i class="ph-bold ph-calendar"></i> 28 JAN 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock"></i> 4 min leitura</span>
+                <span>•</span>
+                <span>Por VitaleGeo</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
+            
+            <p class="lead text-xl text-slate-200">
+                Imagine estar em uma praia olhando para uma ilha a apenas 3,8 km de distância. Você consegue ver as pedras, a neve e talvez até alguma construção. Só tem um detalhe: o que você está vendo lá <strong>já aconteceu 21 horas no futuro</strong>.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Flag-map_of_Diomede_Islands_%28Russia_and_USA%29.png" alt="Vista da Pequena Diomedes para a Grande Diomedes" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">Vista da ilha americana (Pequena Diomedes) olhando para a ilha russa (Grande Diomedes).</figcaption>
+            </figure>
+
+            <h2>A Cortina de Gelo</h2>
+            <p>
+                As Ilhas Diomedes ficam no Estreito de Bering, exatamente entre o Alasca (EUA) e a Sibéria (Rússia).
+            </p>
+            <ul>
+                <li><strong>Grande Diomedes:</strong> Pertence à Rússia. É uma base militar, sem população civil.</li>
+                <li><strong>Pequena Diomedes:</strong> Pertence aos EUA. Tem uma pequena vila com cerca de 100 habitantes inuítes.</li>
+            </ul>
+            <p>
+                Durante a Guerra Fria, essa pequena faixa de água era conhecida como "A Cortina de Gelo". Famílias que viviam nas duas ilhas foram separadas por décadas, olhando umas para as outras sem poder atravessar.
+            </p>
+
+            <h2>A Viagem no Tempo</h2>
+            <p>
+                O mais fascinante não é a política, mas a geografia. A <strong>Linha Internacional da Data</strong> passa exatamente entre as duas ilhas.
+            </p>
+            <p>
+                Isso cria uma situação bizarra:
+            </p>
+            <blockquote>
+                "Se for <strong>meio-dia de terça-feira</strong> na ilha americana, já é <strong>9h da manhã de quarta-feira</strong> na ilha russa, a apenas 3 km de distância."
+            </blockquote>
+            <p>
+                No inverno, a água entre as ilhas congela, formando uma ponte de gelo. Teoricamente, você poderia caminhar dos EUA para a Rússia (e avançar um dia inteiro no tempo) em menos de uma hora. Porém, é estritamente proibido e ilegal fazer essa travessia.
+            </p>
+
+            <figure>
+                <div class="bg-white p-2 rounded-xl">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg" alt="Foto de Satélite da NASA" class="rounded w-full">
+                </div>
+                <figcaption class="text-center text-sm text-slate-500 mt-2">Foto da NASA. A linha imaginária do tempo passa exatamente no meio do canal.</figcaption>
+            </figure>
+
+            <h3>Lynne Cox: A mulher que nadou através do tempo</h3>
+            <p>
+                Em 1987, no auge das tensões finais da Guerra Fria, a nadadora americana Lynne Cox fez o impensável: ela nadou da Pequena Diomedes para a Grande Diomedes.
+            </p>
+            <p>
+                A água estava a 3°C (quase congelando). Ela nadou por 2 horas, não apenas cruzando uma fronteira geopolítica tensa, mas literalmente "nadando para o amanhã". Seu feito foi elogiado tanto por Ronald Reagan quanto por Mikhail Gorbachev como um sinal de paz.
+            </p>
+
+            <h3>Conclusão</h3>
+            <p>
+                As Ilhas Diomedes nos lembram que o tempo é uma invenção humana. O sol nasce e se põe ao mesmo tempo para as duas ilhas, mas nossos relógios e mapas insistem que elas estão em dias diferentes.
+            </p>
+        </div>
+    </article>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-slate-800 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+            <div class="bg-cyan-500/10 p-4 rounded-full text-cyan-400">
+                <i class="ph-duotone ph-globe-hemisphere-west text-4xl"></i>
+            </div>
+            <div class="text-center md:text-left flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">Confuso com os horários?</h3>
+                <p class="text-slate-400 text-sm">
+                    Use nossa calculadora de fuso horário para entender a diferença entre qualquer lugar do mundo.
+                </p>
+            </div>
+            <a href="../ferramentas/calculadora-fuso/" class="bg-cyan-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-cyan-500 transition whitespace-nowrap shadow-lg">
+                Abrir Calculadora
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Blog</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Arquivo Confidencial: O que escondem na Área 51? | Blog VitaleGeo</title>
+    <meta name="description" content="Relatório desclassificado sobre a base militar mais secreta do mundo. Passe o mouse para revelar os segredos.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* O EFEITO DE TARJA PRETA */
+        .confidencial {
+            background-color: #000;
+            color: transparent; /* Texto invisível */
+            cursor: help;
+            border-radius: 2px;
+            padding: 0 6px;
+            margin: 0 2px;
+            position: relative;
+            transition: all 0.4s ease;
+            user-select: none; /* Impede selecionar o texto antes de revelar */
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            font-family: 'Courier New', monospace; /* Fonte monoespaçada para parecer datilografado */
+            letter-spacing: -1px;
+        }
+
+        /* A "Capa" da Tarja */
+        .confidencial::after {
+            content: "TOP SECRET";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: #333;
+            font-size: 9px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1px;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Quando passa o mouse (Revelação) */
+        .confidencial:hover {
+            color: #f59e0b; /* Texto vira Dourado */
+            background-color: rgba(255,255,255,0.05);
+            letter-spacing: normal;
+        }
+        
+        .confidencial:hover::after {
+            opacity: 0; /* Tarja some */
+        }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="../index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/30 text-red-400 text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-6 animate-pulse">
+                <i class="ph-fill ph-warning-octagon"></i> Nível de Acesso: 5
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Dossiê Área 51: O que o governo não quer que você veja?
+            </h1>
+
+            <p class="text-sm text-slate-400 max-w-lg mx-auto mb-6 italic border-l-2 border-red-500 pl-4 text-left">
+                <strong>AVISO:</strong> Este documento contém informações sensíveis desclassificadas. Passe o cursor sobre as <span class="bg-black px-2 py-0.5 text-xs text-gray-600 rounded inline-block mx-1 border border-gray-800">TARJAS PRETAS</span> para descriptografar o conteúdo.
+            </p>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <span><i class="ph-bold ph-calendar"></i> 01 FEV 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-user-focus"></i> Agente Vitale</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
+            
+            <p class="lead text-xl text-slate-200">
+                Durante décadas, o governo dos Estados Unidos negou a existência da base militar localizada no lago seco de Groom Lake, em Nevada. Hoje sabemos que ela existe, mas o que acontece lá dentro ainda é <span class="confidencial">EXTREMAMENTE PERIGOSO</span>.
+            </p>
+
+            <figure>
+                <div class="relative group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Area51_Aerial_photograph.jpg" alt="Imagem de Satélite da Área 51" class="rounded border border-white/10 w-full grayscale contrast-125 hover:grayscale-0 transition duration-700">
+                    
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-red-500/50 rounded-full flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="w-1 h-1 bg-red-500 rounded-full animate-ping"></div>
+                    </div>
+                </div>
+                <figcaption class="text-center text-sm text-slate-500 mt-2 font-mono">IMG_SAT_V2 // COORD: 37°14′0″N 115°48′30″W</figcaption>
+            </figure>
+
+            <h2>A Companhia Aérea Fantasma</h2>
+            <p>
+                Como centenas de funcionários chegam a um lugar que "não existe"? Eles usam a <span class="confidencial">JANET Airlines</span>.
+            </p>
+            <p>
+                Operando a partir de um terminal privado e vigiado no Aeroporto Internacional Harry Reid, em Las Vegas, esses aviões Boeing 737 são completamente brancos, exceto por uma única <span class="confidencial">listra vermelha</span> na lateral. Eles não têm logotipo, nem nome.
+            </p>
+            <p>
+                O indicativo de chamada "JANET" é muitas vezes piadisticamente traduzido pelos pilotos como <em>"Just Another Non-Existent Terminal"</em> (Apenas Outro Terminal Inexistente).
+            </p>
+
+            <h2>O Projeto OXCART e OVNIs</h2>
+            <p>
+                A maioria das pessoas acredita que a Área 51 abriga <span class="confidencial">naves alienígenas</span>. No entanto, documentos liberados pela CIA revelam que o local foi usado principalmente para testar o avião espião <span class="confidencial">Lockheed A-12</span> e o famoso U-2.
+            </p>
+            <p>
+                Esses aviões voavam tão alto e eram tão rápidos que pilotos comerciais frequentemente os confundiam com OVNIs. A CIA preferiu deixar o público acreditar em <span class="confidencial">marcianos</span> do que admitir que possuía tecnologia avançada de espionagem contra a <span class="confidencial">União Soviética</span>.
+            </p>
+
+            <h2>O Setor 4 (S-4) e Bob Lazar</h2>
+            <p>
+                Bob Lazar, um suposto ex-funcionário, afirmou nos anos 80 que trabalhava no "Setor 4" (S-4), localizado <span class="confidencial">ao sul da base principal</span>, embutido na montanha Papoose.
+            </p>
+            <p>
+                Segundo ele, sua função era fazer engenharia reversa em nove discos voadores recuperados. Ele descreveu que os propulsores usavam o elemento <span class="confidencial">Moscóvio (Elemento 115)</span> como combustível para dobrar o espaço-tempo. Na época, o elemento 115 nem havia sido descoberto pela ciência oficial.
+            </p>
+
+            <blockquote>
+                "A tecnologia que vi lá não foi feita por mãos humanas. Não havia fios, não havia junções. Parecia ter sido <span class="confidencial">cultivada</span>, não construída." — Relato do arquivo #8921.
+            </blockquote>
+
+            <h2>Vigilância Extrema: Eles sabem seu cheiro</h2>
+            <p>
+                Tente chegar perto da base hoje e você será parado pelos "Cammo Dudes", seguranças privados em picapes brancas que têm permissão para usar <span class="confidencial">força letal</span> se você cruzar a linha.
+            </p>
+            <p>
+                Mas eles sabem que você está lá muito antes de você ver a cerca. A estrada de terra que leva à base é cercada por sensores sísmicos (que detectam vibração de passos e pneus) e, segundo rumores, sensores de <span class="confidencial">amônia</span>, projetados para detectar o cheiro de suor humano no deserto.
+            </p>
+
+            <h3>O que existe no subsolo?</h3>
+            <p>
+                Imagens de satélite mostram poucas construções na superfície, mas a quantidade de terra removida sugere algo maior. Ex-funcionários relatam a existência de até <span class="confidencial">40 andares subterrâneos</span> conectados por trens de alta velocidade que podem ligar a Área 51 a outras bases em outros estados.
+            </p>
+
+        </div>
+    </article>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-slate-900 border border-red-500/20 rounded-lg p-8 text-center shadow-[0_0_30px_rgba(239,68,68,0.1)] relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-transparent blur-2xl rounded-full animate-spin-slow"></div>
+
+            <i class="ph-duotone ph-detective text-5xl text-red-500 mb-4 relative z-10"></i>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2 relative z-10">Quer investigar por conta própria?</h3>
+            <p class="text-slate-400 mb-6 font-mono text-sm relative z-10">
+                Use nossas ferramentas de satélite para explorar coordenadas restritas e calcular distâncias seguras.
+            </p>
+            
+            <a href="../ferramentas/index.html" class="relative z-10 inline-flex items-center gap-3 bg-red-600 text-white font-bold uppercase tracking-widest px-8 py-3 rounded hover:bg-red-700 transition shadow-lg text-xs border border-red-400/30 hover:border-white/50">
+                Acessar Terminal de Ferramentas <i class="ph-bold ph-terminal-window"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Top Secret Clearance</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
