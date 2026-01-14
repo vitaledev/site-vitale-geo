@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaleGeo | O Portal da Geografia</title>
+    <meta name="description" content="Hub da comunidade de geografia. Jogos, ferramentas, vídeos e artigos.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .bg-grid-pattern { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        #tool-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        #tool-modal.hidden-modal { opacity: 0; visibility: hidden; pointer-events: none; }
+        #tool-modal.visible-modal { opacity: 1; visibility: visible; pointer-events: auto; }
+        
+        .modal-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+
+    <div id="tool-modal" class="hidden-modal fixed inset-0 z-[100] bg-geoNavy/95 flex flex-col backdrop-blur-md modal-grid-bg">
+        <div class="flex justify-between items-center px-6 py-3 border-b border-white/10 bg-geoNavy/80 relative z-20">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_currentColor]" id="modal-status-light"></span>
+                <span id="modal-title" class="text-xs font-bold tracking-widest uppercase text-white font-mono">Sistema Online</span>
+            </div>
+            <button onclick="closeTool()" class="text-sm font-bold uppercase tracking-widest text-white hover:text-geoGold transition flex items-center gap-2 px-4 py-2 bg-white/5 rounded hover:bg-white/10 border border-white/10 hover:border-geoGold/50">
+                Fechar <i class="ph-bold ph-x text-lg"></i>
+            </button>
+        </div>
+
+        <div class="relative flex-1 overflow-hidden p-4 md:p-8 flex justify-center items-center z-10">
+            <div class="pointer-events-none absolute inset-4 md:inset-8 z-0">
+                <div class="absolute inset-0 border border-geoBlue/30 opacity-50"></div>
+                <div class="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-geoGold"></div>
+                <div class="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-geoGold"></div>
+                <div class="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-geoGold"></div>
+                <div class="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-geoGold"></div>
+            </div>
+            <iframe id="tool-frame" class="w-full h-full bg-black shadow-[0_0_50px_rgba(59,130,246,0.2)] z-10 relative rounded border border-geoBlue/20" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="index.html" class="text-white border-b border-geoGold pb-1">Home</a>
+                <a href="jogos/" class="hover:text-white transition">Jogos</a>
+                <a href="ferramentas/" class="hover:text-white transition">Ferramentas</a>
+                <a href="videos.html" class="hover:text-white transition">Vídeos</a>
+                <a href="blog/" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-48 pb-24 px-6 text-center border-b border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-geoBlue/10 blur-[120px] -z-10 rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-geoGold text-xs font-bold mb-6 uppercase tracking-wider">
+                🎮 Hub da Comunidade
+            </div>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Explore. Jogue.<br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold to-yellow-200">Domine o Mapa.</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Bem-vindo ao quartel-general do VitaleGeo. Ferramentas, jogos e análises que movem nossa comunidade.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="jogos/" class="bg-geoGold text-geoNavy px-8 py-4 rounded font-bold text-sm uppercase tracking-widest hover:bg-white transition shadow-xl">
+                    Ir para o Arcade
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto border-b border-white/5">
+        <div class="flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-game-controller text-geoGold text-3xl"></i>
+                <h2 class="text-3xl font-serif font-bold text-white">Arcade & Desafios</h2>
+            </div>
+            <a href="jogos/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-geoGold transition">Ver todos &rarr;</a>
+        </div>
+        <div id="home-games-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto border-b border-white/5">
+        <div class="flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-wrench text-geoBlue text-3xl"></i>
+                <h2 class="text-3xl font-serif font-bold text-white">Toolkit Útil</h2>
+            </div>
+            <a href="ferramentas/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-geoGold transition">Todas as Ferramentas &rarr;</a>
+        </div>
+        <div id="home-tools-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto border-b border-white/5 bg-slate-900/30">
+        <div class="flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-monitor-play text-red-500 text-3xl"></i>
+                <h2 class="text-3xl font-serif font-bold text-white">Do Canal</h2>
+            </div>
+            <a href="videos.html" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-geoGold transition">Galeria Completa &rarr;</a>
+        </div>
+        <div id="home-videos-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-newspaper text-white text-3xl"></i>
+                <h2 class="text-3xl font-serif font-bold text-white">Últimas do Blog</h2>
+            </div>
+            <a href="blog/" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-geoGold transition">Ler Blog &rarr;</a>
+        </div>
+        <div id="home-blog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <div class="flex justify-center gap-6 mb-6 text-xl">
+            <a href="#" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="#" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • O Portal da Geografia</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="assets/js/game.js"></script> <script src="assets/js/tools.js"></script>
+    <script src="assets/js/videos.js"></script>
+    <script src="assets/js/posts.js"></script>
+
+    <script>
+        // --- 1. RENDERIZAR JOGOS ---
+        const gamesContainer = document.getElementById('home-games-grid');
+        // Verificação de segurança caso o array chame gamesDB ou gameDB
+        const gamesData = (typeof gamesDB !== 'undefined') ? gamesDB : (typeof gameDB !== 'undefined' ? gameDB : []);
+        
+        if (gamesData.length > 0) {
+            gamesData.slice(0, 3).forEach(game => {
+                // Remove barra inicial para evitar erro no GitHub Pages se houver
+                const cleanLink = game.link.startsWith('/') ? game.link.substring(1) : game.link;
+                gamesContainer.innerHTML += `
+                    <div onclick="openTool('${cleanLink}')" class="group cursor-pointer bg-geoPaper border border-white/5 p-4 rounded-xl hover:border-geoGold transition">
+                        <div class="aspect-video bg-slate-800 rounded-lg overflow-hidden relative mb-4 flex items-center justify-center">
+                            <i class="${game.icon} text-6xl text-slate-600 group-hover:text-geoGold transition"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">${game.titulo}</h3>
+                        <p class="text-sm text-slate-400">${game.desc}</p>
+                    </div>`;
+            });
+        }
+
+        // --- 2. RENDERIZAR FERRAMENTAS ---
+        const toolsContainer = document.getElementById('home-tools-grid');
+        if (typeof toolsDB !== 'undefined') {
+            toolsDB.slice(0, 4).forEach(tool => {
+                const cleanLink = tool.link.startsWith('/') ? tool.link.substring(1) : tool.link;
+                toolsContainer.innerHTML += `
+                    <div onclick="openTool('${cleanLink}')" class="cursor-pointer bg-geoPaper p-4 rounded border border-white/5 hover:border-geoBlue transition hover:bg-slate-800 group">
+                        <div class="text-geoBlue mb-3 group-hover:scale-110 transition origin-left"><i class="${tool.icon} text-2xl"></i></div>
+                        <h3 class="font-bold text-white mb-1">${tool.titulo}</h3>
+                        <p class="text-xs text-slate-400">${tool.desc}</p>
+                    </div>`;
+            });
+        }
+
+        // --- 3. RENDERIZAR VÍDEOS (Lista de Longos) ---
+        const videosContainer = document.getElementById('home-videos-grid');
+        if (typeof videosLongos !== 'undefined') {
+            videosLongos.slice(0, 3).forEach(video => {
+                videosContainer.innerHTML += `
+                    <div onclick="playVideo('${video.id}')" class="group block bg-geoPaper rounded-lg overflow-hidden border border-white/5 hover:border-red-500 transition cursor-pointer">
+                        <div class="aspect-video relative">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                            <div class="absolute inset-0 flex items-center justify-center"><i class="ph-fill ph-play-circle text-5xl text-white group-hover:text-red-500 transition drop-shadow-lg"></i></div>
+                        </div>
+                        <div class="p-4"><h3 class="font-bold text-white text-sm line-clamp-2">${video.titulo}</h3></div>
+                    </div>`;
+            });
+        }
+
+        // --- 4. RENDERIZAR BLOG ---
+        const blogContainer = document.getElementById('home-blog-grid');
+        if (typeof blogPosts !== 'undefined') {
+            blogPosts.slice(0, 2).forEach(post => {
+                const cleanLink = post.link.startsWith('/') ? post.link.substring(1) : post.link;
+                blogContainer.innerHTML += `
+                    <a href="${cleanLink}" class="flex items-center gap-4 bg-geoPaper p-4 rounded-xl border border-white/5 hover:border-white transition group h-full">
+                        <div class="h-24 w-24 bg-slate-800 rounded-lg flex-shrink-0 overflow-hidden relative border border-white/10">
+                            <img src="${post.img}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-geoGold mb-1">${post.categoria}</span>
+                            <h3 class="font-bold text-white text-lg group-hover:text-geoBlue transition leading-tight line-clamp-2">${post.titulo}</h3>
+                            <p class="text-xs text-slate-400 mt-1 line-clamp-1">${post.resumo}</p>
+                        </div>
+                    </a>`;
+            });
+        }
+
+        // --- FUNÇÕES DO MODAL ---
+        const modal = document.getElementById('tool-modal');
+        const iframe = document.getElementById('tool-frame');
+        const modalTitle = document.getElementById('modal-title');
+        const modalLight = document.getElementById('modal-status-light');
+
+        function openTool(url) {
+            if (window.innerWidth < 768) { window.open(url, '_blank'); } 
+            else { 
+                modalTitle.innerText = "Sistema Online";
+                modalLight.className = "w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_currentColor]";
+                iframe.src = url; 
+                modal.classList.remove('hidden-modal'); 
+                modal.classList.add('visible-modal'); 
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function playVideo(videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&modestbranding=1&theme=dark`;
+            modalTitle.innerText = "Reprodutor Tático";
+            modalLight.className = "w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_currentColor]";
+            iframe.src = embedUrl;
+            modal.classList.remove('hidden-modal'); 
+            modal.classList.add('visible-modal'); 
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTool() { 
+            modal.classList.remove('visible-modal'); 
+            modal.classList.add('hidden-modal'); 
+            setTimeout(() => { iframe.src = ''; }, 300); 
+            document.body.style.overflow = 'auto'; 
+        }
+    </script>
+</body>
+</html>

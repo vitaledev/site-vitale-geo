@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ponto Nemo: O lugar mais solitário da Terra | Blog VitaleGeo</title>
+    <meta name="description" content="Você sabia que no Ponto Nemo os humanos mais próximos de você estão no espaço? Conheça o cemitério de naves espaciais no meio do Pacífico.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em' },
+                                strong: { color: theme('colors.geoBlue') },
+                                a: { color: theme('colors.geoGold'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.geoBlue'), color: '#fff', fontStyle: 'italic' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-geoNavy">
+        <div id="progressBar" class="h-1 bg-blue-500 w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(59,130,246,0.7)]"></div>
+    </div>
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="/blog/" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="/index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-blue-900/30 border border-blue-500/30 text-blue-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-waves"></i> Oceanografia
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Ponto Nemo: O lugar onde os humanos mais próximos estão no espaço
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <span><i class="ph-bold ph-calendar"></i> 22 JAN 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock"></i> 4 min leitura</span>
+                <span>•</span>
+                <span>Por VitaleGeo</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
+            
+            <p class="lead text-xl text-slate-200">
+                Se você viajasse para o <strong>Ponto Nemo</strong> e seu barco afundasse, não adiantaria gritar por socorro. A terra firme mais próxima estaria a 2.688 km de distância. Na verdade, é provável que os humanos mais próximos de você não estivessem na Terra, mas orbitando acima dela.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Point_Nemo.png/1200px-Point_Nemo.png" alt="Localização do Ponto Nemo no Pacífico Sul" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">O ponto vermelho é o local mais distante de qualquer continente.</figcaption>
+            </figure>
+
+            <h2>O Polo de Inacessibilidade</h2>
+            <p>
+                Oficialmente conhecido como "Polo Oceânico de Inacessibilidade", o Ponto Nemo fica no Pacífico Sul. O nome vem do Capitão Nemo, do livro <em>Vinte Mil Léguas Submarinas</em> de Júlio Verne (e também significa "Ninguém" em latim).
+            </p>
+            <p>
+                Para você ter uma ideia do isolamento:
+            </p>
+            <ul>
+                <li><strong>Terra firme mais próxima:</strong> Ilha Ducie (norte), Motu Nui (nordeste) ou Ilha Maher (sul). Todas estão a quase 2.700 km.</li>
+                <li><strong>Estação Espacial Internacional (ISS):</strong> Orbita a terra a cerca de <strong>400 km de altura</strong>.</li>
+            </ul>
+
+            <blockquote>
+                "Quando a ISS passa sobre o Pacífico Sul, os astronautas estão 7 vezes mais perto de você do que qualquer outra pessoa no planeta."
+            </blockquote>
+
+            <h2>O Cemitério de Espaçonaves</h2>
+            <p>
+                Por ser tão remoto e vazio (a vida marinha lá é escassa devido à falta de nutrientes na água), as agências espaciais como a NASA e a Roscosmos usam essa área como um "lixão espacial".
+            </p>
+            <p>
+                Quando um satélite ou estação espacial chega ao fim da vida, eles são derrubados propositalmente no Ponto Nemo para evitar que caiam em áreas habitadas.
+            </p>
+            <p>
+                Lá no fundo do oceano, repousam os restos da estação espacial russa <strong>Mir</strong> e, no futuro, será o local de descanso final da própria Estação Espacial Internacional.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Mir_Space_Station_viewed_from_Endeavour_during_STS-89.jpg" alt="Estação Espacial Mir" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">A lendária estação Mir foi desorbitada e caiu no Ponto Nemo em 2001.</figcaption>
+            </figure>
+
+            <h2>Monstros nas profundezas?</h2>
+            <p>
+                Em 1997, oceanógrafos captaram um som ultra-baixo e extremamente potente vindo perto dessa região. O som foi apelidado de <strong>"The Bloop"</strong>.
+            </p>
+            <p>
+                Imediatamente, teorias da conspiração surgiram. Coincidentemente, o escritor H.P. Lovecraft localizou sua cidade fictícia de <em>R'lyeh</em> (onde vive o monstro Cthulhu) assustadoramente perto do Ponto Nemo, décadas antes do ponto ser calculado por computadores.
+            </p>
+            <p>
+                Mas, para a tristeza dos fãs de ficção científica, a NOAA (Administração Oceânica dos EUA) confirmou anos depois: o som era apenas um gigantesco iceberg se partindo na Antártica.
+            </p>
+
+            <h3>Conclusão</h3>
+            <p>
+                O Ponto Nemo é um lembrete de quão vasto nosso planeta é. Um lugar de silêncio absoluto, onde a história da exploração espacial humana vai para dormir.
+            </p>
+        </div>
+    </article>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-slate-800 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+            <div class="bg-blue-500/10 p-4 rounded-full text-blue-400">
+                <i class="ph-duotone ph-ruler text-4xl"></i>
+            </div>
+            <div class="text-center md:text-left flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">Quer calcular distâncias reais?</h3>
+                <p class="text-slate-400 text-sm">
+                    Use nossa calculadora para medir a distância entre sua cidade e qualquer lugar do mundo (até o Ponto Nemo).
+                </p>
+            </div>
+            <a href="/ferramentas/calculadora-distancia/" class="bg-blue-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-blue-500 transition whitespace-nowrap shadow-lg">
+                Calcular Agora
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Blog</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

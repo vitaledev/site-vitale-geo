@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaleGeo | Arquivos Confidenciais</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        /* Efeito de brilho ao passar o mouse */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../index.html" class="hover:text-white transition">Home</a>
+                <a href="../jogos/" class="hover:text-white transition">Jogos</a>
+                <a href="../ferramentas/" class="hover:text-white transition">Ferramentas</a>
+                <a href="../videos.html" class="hover:text-white transition">Vídeos</a>
+                <a href="index.html" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="text-geoGold text-xs font-bold uppercase tracking-[0.2em] mb-4 block animate-pulse">
+                    <i class="ph-fill ph-lock-key-open"></i> Acesso Liberado
+                </span>
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">
+                    Arquivos VitaleGeo
+                </h1>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                    Análises profundas, curiosidades cartográficas e relatórios de inteligência.
+                </p>
+            </div>
+
+            <div id="hero-post-container" class="mb-12"></div>
+
+        </div>
+    </header>
+
+    <div class="sticky top-20 z-30 bg-geoNavy/95 backdrop-blur-md border-y border-white/5 py-4 px-6 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                <button onclick="filterPosts('all')" class="filter-btn active bg-white text-geoNavy px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition hover:bg-geoGold">
+                    Todos
+                </button>
+                </div>
+
+            <div class="relative w-full md:w-64">
+                <input type="text" id="search-input" onkeyup="searchPosts()" placeholder="Buscar relatório..." class="w-full bg-slate-800 border border-white/10 rounded-full py-2 px-4 pl-10 text-sm text-white focus:outline-none focus:border-geoGold transition placeholder-slate-500">
+                <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-2.5 text-slate-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-16 px-6 max-w-7xl mx-auto min-h-[50vh]">
+        <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center text-slate-500 animate-pulse">Descriptografando arquivos...</div>
+        </div>
+        
+        <div id="no-results" class="hidden text-center py-20">
+            <i class="ph-duotone ph-file-search text-6xl text-slate-700 mb-4"></i>
+            <p class="text-xl text-slate-500">Nenhum arquivo encontrado com esses parâmetros.</p>
+            <button onclick="filterPosts('all'); document.getElementById('search-input').value=''" class="mt-4 text-geoGold hover:underline text-sm font-bold uppercase tracking-wider">Limpar Filtros</button>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <div class="flex justify-center gap-6 mb-6 text-xl">
+            <a href="#" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="#" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Blog</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../assets/js/posts.js"></script>
+
+    <script>
+        // Elementos
+        const grid = document.getElementById('blog-grid');
+        const heroContainer = document.getElementById('hero-post-container');
+        const filterContainer = document.getElementById('category-filters');
+        const noResults = document.getElementById('no-results');
+
+        // Estado Global
+        let currentCategory = 'all';
+
+        // Inicialização
+        if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
+            initBlog();
+        } else {
+            grid.innerHTML = '<p class="col-span-full text-center text-red-500">Erro: Base de dados vazia ou não encontrada.</p>';
+        }
+
+        function initBlog() {
+            // 1. Renderizar o Hero (O post mais recente)
+            renderHero(blogPosts[0]);
+
+            // 2. Gerar Botões de Categoria Automaticamente
+            const categories = [...new Set(blogPosts.map(post => post.categoria))];
+            categories.forEach(cat => {
+                filterContainer.innerHTML += `
+                    <button onclick="filterPosts('${cat}')" class="filter-btn border border-white/10 text-slate-400 hover:text-white hover:border-geoGold px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition">
+                        ${cat}
+                    </button>
+                `;
+            });
+
+            // 3. Renderizar o Grid (excluindo o primeiro que já está no Hero, ou incluindo, você decide. Aqui vou incluir todos menos o Hero para não repetir)
+            // Se quiser repetir, use blogPosts. Se não, use blogPosts.slice(1)
+            renderGrid(blogPosts.slice(1)); 
+        }
+
+        // --- RENDERIZADORES ---
+
+        function renderHero(post) {
+            const link = fixLink(post.link);
+            heroContainer.innerHTML = `
+                <a href="${link}" class="group relative block w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover-glow transition">
+                    <img src="${post.img}" alt="${post.titulo}" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition duration-1000">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-geoNavy via-geoNavy/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-geoGold text-geoNavy text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Destaque</span>
+                            <span class="text-geoBlue text-xs font-bold uppercase tracking-wider border border-geoBlue/30 px-2 py-1 rounded bg-geoBlue/10">${post.categoria}</span>
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4 leading-tight group-hover:text-geoGold transition">
+                            ${post.titulo}
+                        </h2>
+                        <p class="text-slate-300 text-sm md:text-base line-clamp-2 md:line-clamp-3 mb-6">
+                            ${post.resumo}
+                        </p>
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400">
+                            <span>Ler Relatório Completo</span>
+                            <i class="ph-bold ph-arrow-right text-geoGold group-hover:translate-x-1 transition"></i>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function renderGrid(posts) {
+            grid.innerHTML = '';
+            
+            if (posts.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            posts.forEach(post => {
+                const link = fixLink(post.link);
+                grid.innerHTML += `
+                    <article class="group bg-geoPaper border border-white/5 rounded-xl overflow-hidden hover:border-geoGold/50 transition hover:-translate-y-2 duration-300 flex flex-col h-full shadow-lg">
+                        <a href="${link}" class="block flex-grow flex flex-col">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${post.img}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded border border-white/10 uppercase tracking-wide">
+                                        ${post.categoria}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-2 text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-3">
+                                    <i class="ph-fill ph-calendar text-geoGold"></i> ${post.data}
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 leading-snug group-hover:text-geoGold transition">
+                                    ${post.titulo}
+                                </h3>
+                                <p class="text-sm text-slate-400 line-clamp-3 leading-relaxed">
+                                    ${post.resumo}
+                                </p>
+                            </div>
+                            <div class="px-6 pb-6 mt-auto">
+                                <div class="w-full h-[1px] bg-white/5 mb-4"></div>
+                                <span class="text-xs font-bold text-geoBlue group-hover:text-white transition flex items-center gap-1 uppercase tracking-wider">
+                                    Acessar <i class="ph-bold ph-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </article>
+                `;
+            });
+        }
+
+        // --- FUNÇÕES DE CONTROLE ---
+
+        function filterPosts(category) {
+            currentCategory = category;
+            
+            // Atualiza visual dos botões
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if ((category === 'all' && btn.innerText === 'TODOS') || btn.innerText === category.toUpperCase()) {
+                    btn.classList.remove('bg-transparent', 'text-slate-400', 'border-white/10');
+                    btn.classList.add('bg-white', 'text-geoNavy', 'border-white');
+                } else {
+                    btn.classList.add('bg-transparent', 'text-slate-400', 'border-white/10');
+                    btn.classList.remove('bg-white', 'text-geoNavy', 'border-white');
+                }
+            });
+
+            // Filtra os dados (Sempre excluindo o Hero da lista principal para não duplicar, ou não, sua escolha)
+            // Aqui vou filtrar TUDO (hero + grid) para que a busca funcione em tudo
+            let filtered = blogPosts.slice(1); // Pega todos menos o primeiro (Hero)
+            
+            if (category !== 'all') {
+                filtered = filtered.filter(post => post.categoria === category);
+            }
+            
+            // Se a busca estiver ativa, aplica ela também
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(post => post.titulo.toLowerCase().includes(searchTerm));
+            }
+
+            renderGrid(filtered);
+        }
+
+        function searchPosts() {
+            // Reaproveita a lógica do filtro para manter consistência
+            filterPosts(currentCategory);
+        }
+
+        // --- UTILITÁRIOS ---
+        function fixLink(url) {
+            // Corrige links para funcionar no GitHub Pages e na pasta /blog/
+            if (url.startsWith('/blog/')) return url.replace('/blog/', '');
+            if (url.startsWith('/')) return '..' + url;
+            return url;
+        }
+
+    </script>
+</body>
+</html>

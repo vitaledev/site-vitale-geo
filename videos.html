@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaleGeo TV | Galeria Tática</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .bg-grid-pattern { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .video-glow:hover { box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
+        
+        /* Modal Animation */
+        #video-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        #video-modal.hidden-modal { opacity: 0; visibility: hidden; pointer-events: none; }
+        #video-modal.visible-modal { opacity: 1; visibility: visible; pointer-events: auto; }
+
+        .modal-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+
+    <div id="video-modal" class="hidden-modal fixed inset-0 z-[100] bg-geoNavy/95 flex flex-col justify-center items-center backdrop-blur-md modal-grid-bg p-4">
+        
+        <div id="modal-container" class="w-full max-w-5xl bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300">
+            
+            <div class="flex justify-between items-center px-4 py-2 bg-black/40 border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_red]"></span>
+                    <span class="text-[10px] font-bold tracking-widest uppercase text-white font-mono">Transmissão Segura</span>
+                </div>
+                <button onclick="closeVideo()" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white flex items-center gap-2 px-3 py-1 hover:bg-white/10 rounded transition">
+                    Fechar <i class="ph-bold ph-x text-base"></i>
+                </button>
+            </div>
+
+            <div id="video-wrapper" class="relative bg-black group aspect-video">
+                <div class="absolute inset-0 pointer-events-none z-10 border border-white/5 m-1">
+                    <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-geoBlue/50"></div>
+                    <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-geoBlue/50"></div>
+                    <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-geoBlue/50"></div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-geoBlue/50"></div>
+                </div>
+                <iframe id="video-frame" class="w-full h-full relative z-0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 -z-10" onclick="closeVideo()"></div>
+    </div>
+
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="index.html" class="hover:text-white transition">Home</a>
+                <a href="jogos/" class="hover:text-white transition">Jogos</a>
+                <a href="ferramentas/" class="hover:text-white transition">Ferramentas</a>
+                <a href="videos.html" class="text-white border-b border-geoGold pb-1">Vídeos</a>
+                <a href="blog/" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-10 px-6 relative overflow-hidden border-b border-white/5">
+        <div id="hero-video-container" class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row gap-10 items-center">
+            <div class="w-full h-96 bg-slate-800/50 animate-pulse rounded-xl flex items-center justify-center">
+                <span class="text-slate-500 font-mono">CARREGANDO SATÉLITE...</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 mb-8">
+            <i class="ph-duotone ph-film-strip text-geoGold text-2xl"></i>
+            <h2 class="text-2xl font-serif font-bold text-white">Análises & Documentários</h2>
+        </div>
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </section>
+
+    <section class="py-16 px-6 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="ph-duotone ph-lightning text-red-500 text-2xl"></i>
+                <h2 class="text-2xl font-serif font-bold text-white">Shorts & Curiosidades</h2>
+            </div>
+            
+            <div id="shorts-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                </div>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Galeria</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="assets/js/videos.js"></script>
+
+    <script>
+        // Elementos do DOM
+        const heroContainer = document.getElementById('hero-video-container');
+        const galleryContainer = document.getElementById('gallery-grid');
+        const shortsContainer = document.getElementById('shorts-grid');
+        
+        // Elementos do Modal
+        const modal = document.getElementById('video-modal');
+        const modalContainer = document.getElementById('modal-container');
+        const videoWrapper = document.getElementById('video-wrapper');
+        const iframe = document.getElementById('video-frame');
+
+        // --- 1. RENDERIZAR LONGOS ---
+        if (typeof videosLongos !== 'undefined' && videosLongos.length > 0) {
+            
+            // A. Hero Section (Primeiro vídeo da lista)
+            const heroVid = videosLongos[0];
+            heroContainer.innerHTML = `
+                <div onclick="playVideo('${heroVid.id}', 'long')" class="w-full md:w-2/3 aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10 group relative video-glow transition duration-500 cursor-pointer">
+                    <img src="https://img.youtube.com/vi/${heroVid.id}/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition">
+                        <i class="ph-fill ph-play-circle text-7xl text-white drop-shadow-lg group-hover:text-geoGold group-hover:scale-110 transition duration-300"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 text-left">
+                    <span class="inline-block px-3 py-1 bg-geoGold text-geoNavy text-xs font-bold uppercase tracking-widest rounded mb-4">Em Destaque</span>
+                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6 leading-tight">${heroVid.titulo}</h1>
+                    <button onclick="playVideo('${heroVid.id}', 'long')" class="w-full md:w-auto bg-white text-geoNavy font-bold uppercase tracking-widest px-8 py-4 rounded hover:bg-slate-200 transition flex items-center justify-center gap-2">
+                        <i class="ph-fill ph-play"></i> Assistir Agora
+                    </button>
+                </div>
+            `;
+
+            // B. Galeria (Do segundo vídeo em diante)
+            videosLongos.slice(1).forEach(video => {
+                galleryContainer.innerHTML += `
+                    <div onclick="playVideo('${video.id}', 'long')" class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer">
+                        <div class="aspect-video relative">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-white text-lg leading-snug group-hover:text-geoGold transition line-clamp-2">${video.titulo}</h3>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // --- 2. RENDERIZAR SHORTS ---
+        if (typeof videosShorts !== 'undefined' && videosShorts.length > 0) {
+            videosShorts.forEach(short => {
+                // Shorts usam 'hqdefault' pois 'maxresdefault' as vezes falha em vídeos verticais
+                shortsContainer.innerHTML += `
+                    <div onclick="playVideo('${short.id}', 'short')" class="group block bg-geoPaper border border-white/5 hover:border-red-500 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative aspect-[9/16]">
+                        <img src="https://img.youtube.com/vi/${short.id}/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 p-3 w-full">
+                            <h3 class="font-bold text-white text-xs leading-tight group-hover:text-red-400 transition line-clamp-3">${short.titulo}</h3>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <i class="ph-fill ph-play-circle text-4xl text-white drop-shadow-md"></i>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-white uppercase tracking-wider backdrop-blur-sm">Shorts</div>
+                    </div>`;
+            });
+        }
+
+        // --- 3. LÓGICA DO PLAYER (Muda formato da janela) ---
+        function playVideo(videoId, type) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&modestbranding=1&theme=dark`;
+            iframe.src = embedUrl;
+
+            if (type === 'short') {
+                // MODO VERTICAL (Celular)
+                // Altura de 80% da tela, aspecto 9/16
+                modalContainer.className = "h-[85vh] aspect-[9/16] bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300";
+                videoWrapper.className = "relative h-full bg-black group"; 
+            } else {
+                // MODO HORIZONTAL (Cinema)
+                // Largura máxima, aspecto 16/9
+                modalContainer.className = "w-full max-w-5xl bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300";
+                videoWrapper.className = "relative aspect-video bg-black group";
+            }
+
+            modal.classList.remove('hidden-modal');
+            modal.classList.add('visible-modal');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            modal.classList.remove('visible-modal');
+            modal.classList.add('hidden-modal');
+            setTimeout(() => { iframe.src = ''; }, 300);
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>

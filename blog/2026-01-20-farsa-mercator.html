@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>A Farsa de Mercator: O Mapa Mente? | Blog VitaleGeo</title>
+    <meta name="description" content="Por que a Groenlândia parece maior que a África? Entenda a distorção matemática da Projeção de Mercator e como ela afeta nossa visão de mundo.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em' },
+                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.geoGold'), color: '#fff' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-geoNavy">
+        <div id="progressBar" class="h-1 bg-green-500 w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(34,197,94,0.7)]"></div>
+    </div>
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="/blog/" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="/index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-500/30 text-purple-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-lightbulb"></i> Curiosidade Cartográfica
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                A Grande Mentira do Mapa Mundi: Por que a Groenlândia é tão grande?
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <span><i class="ph-bold ph-calendar"></i> 20 JAN 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock"></i> 5 min leitura</span>
+                <span>•</span>
+                <span>Por VitaleGeo</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
+            
+            <p class="lead text-xl text-slate-200">
+                Abra o Google Maps agora. Afaste o zoom até ver o mundo inteiro. Olhe para a Groenlândia lá no norte. Ela parece gigantesca, não é? Maior que toda a América do Sul, talvez do tamanho da África.
+            </p>
+
+            <p>
+                Pois bem, essa é a mentira mais antiga da geografia. A imagem que você tem do mundo na sua cabeça está <strong>errada</strong>. O culpado? Um homem chamado Gerardo Mercator.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mercator_projection_SW.jpg/1280px-Mercator_projection_SW.jpg" alt="Projeção de Mercator Clássica" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">O mapa clássico: Note como a Groenlândia (no topo) parece maior que a América do Sul.</figcaption>
+            </figure>
+
+            <h2>O Problema da Laranja</h2>
+            <p>
+                Imagine que a Terra é uma laranja. Agora, tente descascar essa laranja e esticar a casca inteira sobre uma mesa, formando um retângulo perfeito, sem rasgar e sem esticar nenhuma parte. <strong>É impossível.</strong>
+            </p>
+            <p>
+                Esse é o dilema eterno da cartografia. A Terra é uma esfera, e um mapa é plano. Para transformar o 3D em 2D, você precisa escolher o que vai distorcer:
+            </p>
+            <ul>
+                <li>Ou você distorce as <strong>Formas</strong> dos países.</li>
+                <li>Ou você distorce os <strong>Tamanhos</strong> (áreas) dos países.</li>
+            </ul>
+
+            <h2>A Solução de Mercator (1569)</h2>
+            <p>
+                Gerardo Mercator criou seu mapa em 1569 com um objetivo claro: <strong>ajudar navegadores</strong>. Na projeção dele, as linhas retas preservam os ângulos. Se um capitão traçasse uma rota no mapa, ele chegaria ao destino.
+            </p>
+            <p>
+                Mas o preço foi alto: para manter os ângulos retos, Mercator teve que "esticar" o mapa conforme se aproximava dos Polos.
+            </p>
+
+            <h2>A Ilusão do Tamanho</h2>
+            <p>
+                O resultado é que tudo perto da linha do Equador (Brasil, África) parece pequeno, e tudo perto dos polos (Europa, Canadá, Rússia) parece inflado.
+            </p>
+
+            <figure>
+                <div class="bg-white p-2 rounded-xl">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Mercator_projection_Square.JPG" alt="Indicação de Tissot mostrando a distorção" class="rounded w-full">
+                </div>
+                <figcaption class="text-center text-sm text-slate-500 mt-2">Os círculos vermelhos deveriam ter o mesmo tamanho. Veja como eles "incham" no topo.</figcaption>
+            </figure>
+
+            <h3>Comparação Real:</h3>
+            <ul>
+                <li><strong>A Groenlândia</strong> parece do tamanho da África no mapa. Na realidade, a África é <strong>14 vezes maior</strong>.</li>
+                <li><strong>O Brasil</strong> é maior que a Europa inteira (excluindo a Rússia), mas no mapa parece menor.</li>
+                <li><strong>A Rússia</strong> parece um monstro que ocupa metade do mundo, mas na verdade é "apenas" o dobro do Brasil.</li>
+            </ul>
+
+            <blockquote>
+                "O mapa de Mercator moldou nossa visão geopolítica, fazendo o Hemisfério Norte parecer muito mais dominante e imponente do que realmente é."
+            </blockquote>
+
+            <h2>Existem mapas "honestos"?</h2>
+            <p>
+                Sim! A <strong>Projeção de Gall-Peters</strong> (abaixo), por exemplo, tenta manter as áreas corretas. O problema? Para fazer a África e o Brasil terem o tamanho certo, ela precisa "espremer" o formato deles. Eles ficam parecendo esticados verticalmente.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg" alt="Projeção Gall Peters" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">Gall-Peters: Tamanhos corretos, mas formas estranhas.</figcaption>
+            </figure>
+
+            <h3>Conclusão</h3>
+            <p>
+                Não existe mapa perfeito. Todo mapa é uma "mentira" matemática necessária. O importante é saber que, quando você olha para o norte do mapa, as coisas não são tão grandes quanto parecem.
+            </p>
+        </div>
+    </article>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-geoBlue/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-geoBlue/20 transition duration-700"></div>
+
+            <i class="ph-duotone ph-globe-stand text-5xl text-geoBlue mb-4"></i>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2">Não acredita em mim?</h3>
+            <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+                Desenvolvemos uma ferramenta onde você pode <strong>arrastar o Brasil até a Groenlândia</strong> e ver a mágica acontecer com seus próprios olhos.
+            </p>
+            
+            <a href="/ferramentas/comparador-paises/" class="inline-flex items-center gap-3 bg-geoBlue text-white font-bold uppercase tracking-widest px-8 py-4 rounded hover:bg-blue-600 transition shadow-lg shadow-geoBlue/30 hover:-translate-y-1 transform">
+                Testar Comparador Agora <i class="ph-bold ph-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Blog</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

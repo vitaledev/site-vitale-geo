@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>A Fronteira Mais Louca do Mundo: Onde você dorme na Bélgica e come na Holanda | Blog VitaleGeo</title>
+    <meta name="description" content="Conheça Baarle, a cidade onde a fronteira passa dentro de casas, restaurantes e lojas. Uma bagunça geográfica entre Bélgica e Holanda.">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.geoGold'), color: '#fff', fontStyle: 'italic', backgroundColor: theme('colors.slate.800'), padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-geoNavy">
+        <div id="progressBar" class="h-1 bg-geoGold w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(245,158,11,0.7)]"></div>
+    </div>
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="/blog/" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+            </a>
+            <a href="/index.html" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-yellow-900/30 border border-yellow-500/30 text-yellow-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-map-pin-line"></i> Fronteiras Estranhas
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                A Fronteira Mais Louca do Mundo: Onde você dorme na Bélgica e come na Holanda
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <span><i class="ph-bold ph-calendar"></i> 25 JAN 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock"></i> 5 min leitura</span>
+                <span>•</span>
+                <span>Por VitaleGeo</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
+            
+            <p class="lead text-xl text-slate-200">
+                Imagine que você está sentado no sofá da sua sala assistindo TV na <strong>Bélgica</strong>, mas quando levanta para ir à cozinha pegar um copo d'água, você acabou de entrar na <strong>Holanda</strong>. Bem-vindo a Baarle, a cidade com a fronteira mais complexa do planeta.
+            </p>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Baarle-Nassau_fronti%C3%A8re.jpg/1200px-Baarle-Nassau_fronti%C3%A8re.jpg" alt="Linha de fronteira no chão de Baarle" class="rounded-xl shadow-2xl border border-white/10 w-full">
+                <figcaption class="text-center text-sm text-slate-500 mt-2">As cruzes brancas marcam a fronteira: NL (Holanda) à esquerda, B (Bélgica) à direita.</figcaption>
+            </figure>
+
+            <h2>O Queijo Suíço Geográfico</h2>
+            <p>
+                Normalmente, uma fronteira é uma linha simples que separa o país A do país B. Em Baarle, a situação é um caos histórico.
+            </p>
+            <p>
+                A cidade é composta por dois municípios:
+            </p>
+            <ul>
+                <li><strong>Baarle-Nassau (Holanda)</strong></li>
+                <li><strong>Baarle-Hertog (Bélgica)</strong></li>
+            </ul>
+            <p>
+                O problema é que eles não estão lado a lado. A parte belga é formada por <strong>22 pequenos pedaços de terra (exclaves)</strong> espalhados dentro do território holandês. E para piorar, dentro desses pedaços belgas, existem outros <strong>7 pedaços holandeses (contra-enclaves)</strong>.
+            </p>
+            <p>
+                É como um queijo suíço geográfico, resultado de tratados medievais complexos de troca de terras entre duques que ninguém nunca teve coragem de simplificar.
+            </p>
+
+            <h2>A Fronteira Entra na Sua Casa</h2>
+            <p>
+                A linha da fronteira não respeita nada. Ela corta ruas, parques, lojas e, claro, casas.
+            </p>
+            <p>
+                A regra para definir em qual país você mora é simples (mas bizarra): a nacionalidade da sua casa é determinada por <strong>onde fica a sua porta da frente</strong>.
+            </p>
+
+            <figure>
+                <div class="bg-white p-2 rounded-xl">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Baarle-Nassau_-_Lovers_Lane.jpg" alt="Fronteira passando no meio de uma casa" class="rounded w-full">
+                </div>
+                <figcaption class="text-center text-sm text-slate-500 mt-2">Esta casa tem dois números e duas campainhas: uma belga e uma holandesa, porque a porta fica exatamente na linha.</figcaption>
+            </figure>
+
+            <h2>Situações Bizarras</h2>
+            <p>
+                Viver em Baarle gera situações cômicas e desafios legais únicos:
+            </p>
+
+            <blockquote>
+                "Houve uma época em que os bares holandeses precisavam fechar mais cedo que os belgas. A solução? Os clientes que estavam sentados nas mesas do lado holandês simplesmente arrastavam suas cadeiras alguns metros para o lado belga do bar e continuavam bebendo legalmente."
+            </blockquote>
+
+            <p>
+                Outras curiosidades incluem:
+            </p>
+            <ul>
+                <li>Existem duas prefeituras, dois corpos de bombeiros e duas polícias.</li>
+                <li>Os correios entregam cartas dos dois lados, mas você precisa usar o selo correto do país onde está a caixa de correio.</li>
+                <li>Se um crime acontece exatamente na linha, as duas polícias precisam decidir quem assume o caso.</li>
+            </ul>
+
+            <h3>Conclusão</h3>
+            <p>
+                Baarle é a prova viva de que fronteiras são apenas linhas imaginárias que nós humanos inventamos, e que, com um pouco de bom humor e cooperação, é possível viver na bagunça mais organizada do mundo.
+            </p>
+        </div>
+    </article>
+
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-slate-800 border border-white/10 rounded-2xl p-8 text-center shadow-xl relative overflow-hidden group">
+             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-geoGold/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-geoGold/20 transition duration-700"></div>
+            
+            <i class="ph-duotone ph-youtube-logo text-5xl text-red-500 mb-4 relative z-10"></i>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2 relative z-10">Ama essas loucuras geográficas?</h3>
+            <p class="text-slate-400 text-sm mb-6 relative z-10">
+                No nosso canal, exploramos esses lugares com mapas detalhados e animações. Não perca o próximo vídeo!
+            </p>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-red-700 transition relative z-10 shadow-lg">
+                Inscrever-se no Canal
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Blog</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
