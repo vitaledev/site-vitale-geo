@@ -2,6 +2,14 @@
 // Adicione novos posts aqui no topo da lista. O site atualiza sozinho.
 
 const blogPosts = [
+    {
+        titulo: "O Crepúsculo das Nações e as Hipercidades de 2100",
+        categoria: "Futurologia",
+        data: "05 Fev 2026",
+        img: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop", // Imagem placeholder de cidade futurista/densa
+        link: "hipercidades-2100",
+        resumo: "Por que o futuro não será desenhado por fronteiras, mas por cidades com 80 milhões de habitantes. Bem-vindo à era das Megacidades Africanas."
+    },
     
     {
         titulo: "Principado de Sealand: A Menor Nação",

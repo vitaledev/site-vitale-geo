@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mapa Urbano de 2100 | VitaleGeo</title> 
+    <meta name="description" content="O crepúsculo das nações e a alvorada das hipercidades. Como viveremos com 80 milhões de vizinhos?">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Courier Prime', 'monospace']
+                    },
+                    colors: { 
+                        geoNavy: '#0f172a', 
+                        geoBlue: '#3b82f6', 
+                        neonCyan: '#06b6d4',
+                        neonPurple: '#8b5cf6',
+                        alertRed: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fundo Grid Futurista */
+        body {
+            background-color: #020617;
+            background-image: linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: #cbd5e1;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.05);
+        }
+
+        /* Barra de Progresso Animada */
+        .load-bar {
+            width: 0%;
+            animation: load 2s ease-out forwards;
+        }
+        @keyframes load { to { width: var(--width); } }
+
+        /* Efeito de Scanner na imagem */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #06b6d4;
+            opacity: 0.6;
+            box-shadow: 0 0 10px #06b6d4;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan { 0% { top: 0%; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-neonCyan selection:text-black">
+
+    <nav class="fixed w-full z-40 top-0 border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-neonCyan transition group font-mono">
+                <i class="ph-bold ph-caret-left group-hover:-translate-x-1 transition"></i> Retornar
+            </a>
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs font-mono text-slate-500">SYSTEM: ONLINE</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 px-4 min-h-screen flex justify-center">
+        
+        <div class="w-full max-w-3xl">
+            
+            <header class="mb-12 border-l-4 border-neonCyan pl-6 py-2">
+                <div class="flex items-center gap-2 text-neonCyan font-mono text-xs tracking-[0.3em] mb-2 uppercase">
+                    <i class="ph-bold ph-globe"></i> Geopolítica 2100
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-none">
+                    O Crepúsculo <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonPurple">das Nações</span>
+                </h1>
+                <p class="text-lg text-slate-400 font-light border-t border-white/10 pt-4 mt-4">
+                    Por que o futuro da humanidade não será desenhado por fronteiras nacionais, mas por aglomerados urbanos de proporções inimagináveis.
+                </p>
+            </header>
+
+            <article class="prose prose-invert prose-lg max-w-none prose-headings:font-mono prose-headings:text-neonCyan prose-p:text-justify prose-a:text-neonPurple hover:prose-a:text-neonCyan">
+                
+                <p class="lead text-xl text-slate-200">
+                    Se pudéssemos viajar no tempo para o ano de 2100 e olhar para a Terra a partir da órbita, a primeira coisa que notaríamos não seriam as muralhas ou as fronteiras políticas desenhadas nos mapas do século XX. O que veríamos seriam manchas luminosas colossais, vastas teias de aranha de luz elétrica e fluxo de dados que ignoram limites geográficos.
+                </p>
+                <p>
+                    A era dos Estados-Nação, tal como foi concebida na Paz de Vestfália em 1648, está dando lugar à <strong>Era das Megacidades</strong>.
+                </p>
+                <p>
+                    Mas estas não são as metrópoles que conhecemos hoje. Nova York, Londres e até mesmo Tóquio parecerão vilarejos pitorescos em comparação com os titãs demográficos que estão emergindo no Sul Global. Estamos falando de organismos urbanos com 80, 90, talvez 100 milhões de habitantes. Cidades que consomem mais energia que países inteiros hoje, que possuem seus próprios climas, suas próprias economias e, crucialmente, seus próprios problemas existenciais.
+                </p>
+                <p>
+                    Neste artigo, vamos desvendar a anatomia dessas futuras megacidades, explorando como a demografia, a tecnologia e a crise climática irão forjar a geografia do próximo século.
+                </p>
+
+                <hr class="border-white/10 my-8">
+
+                <h3>1. A Grande Virada Demográfica: O Eixo Afro-Asiático</h3>
+                <p>
+                    Durante os séculos XIX e XX, a urbanização foi sinônimo de ocidentalização. O crescimento explosivo de Londres durante a Revolução Industrial ou a ascensão dos arranha-céus de Nova York definiram o modelo de "cidade moderna". No final do século XX, o bastão foi passado para a Ásia Oriental (Tóquio, Xangai, Seul). No entanto, o século XXI guarda uma mudança drástica de latitude e longitude.
+                </p>
+                <p>
+                    O futuro é africano e sul-asiático. De acordo com projeções do Global Cities Institute e da ONU, as maiores cidades de 2100 não estarão na China, nos EUA ou na Europa (regiões que enfrentarão um severo inverno demográfico e encolhimento populacional).
+                </p>
+
+                <div class="glass-panel p-6 rounded my-8 not-prose">
+                    <h4 class="font-mono text-neonCyan text-sm uppercase mb-4 border-b border-white/10 pb-2">Top Megacidades (Projeção 2100)</h4>
+                    
+                    <div class="space-y-4 font-mono text-xs md:text-sm">
+                        <div>
+                            <div class="flex justify-between mb-1"><span>LAGOS (Nigéria)</span> <span class="text-neonCyan">88M</span></div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-neonCyan h-full load-bar" style="--width: 95%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span>KINSHASA (RDC)</span> <span class="text-neonPurple">83M</span></div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-neonPurple h-full load-bar" style="--width: 90%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span>DAR ES SALAAM (Tanzânia)</span> <span class="text-emerald-400">73M</span></div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full load-bar" style="--width: 75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>O Caso de Lagos: A Nova "Capital do Mundo"?</h4>
+                <p>
+                    Lagos, na Nigéria, é o exemplo perfeito dessa transformação. Hoje já caótica e vibrante, projeta-se que ela se torne a maior cidade do mundo até o final do século, com uma população que pode ultrapassar 88 milhões de pessoas. Para colocar isso em perspectiva, é como colocar quase toda a população da Alemanha dentro de uma única mancha urbana.
+                </p>
+                <p>
+                    Lagos não crescerá isolada. Ela será a âncora de um corredor urbano maciço que se estenderá de Abidjan (Costa do Marfim) até Lagos, atravessando Gana, Togo e Benin. Essa megalópole transnacional funcionará como uma única entidade econômica, desafiando a capacidade de governança de cinco países diferentes.
+                </p>
+                <p>Este deslocamento do eixo urbano tem implicações geopolíticas profundas. O centro de gravidade da economia global, da cultura jovem e da inovação de "frugalidade" (fazer muito com poucos recursos) estará nestas regiões.</p>
+
+                <h3>2. A Engenharia da Sobrevivência: Infraestrutura 4.0</h3>
+                <p>
+                    Como gerenciar o esgoto, a energia, o transporte e a alimentação de 80 milhões de pessoas em um espaço confinado? A resposta reside na fusão total entre a infraestrutura física e digital. A "Smart City" de hoje, com seus sensores de estacionamento e Wi-Fi público, é apenas um protótipo primitivo.
+                </p>
+                
+                <ul class="list-none pl-0 space-y-4">
+                    <li class="pl-4 border-l-2 border-neonCyan">
+                        <strong class="text-neonCyan block font-mono uppercase text-sm">O Gêmeo Digital (Digital Twin)</strong>
+                        As megacidades do futuro serão governadas através de Gêmeos Digitais. Um modelo virtual exato da cidade, atualizado em tempo real por trilhões de sensores IoT. Se um cano estourar no subsolo do distrito 9, o Gêmeo Digital detectará a anomalia, enviará drones de reparo e desviará o tráfego antes que a água toque o asfalto.
+                    </li>
+                    <li class="pl-4 border-l-2 border-neonPurple">
+                        <strong class="text-neonPurple block font-mono uppercase text-sm">Mobilidade como Serviço (MaaS)</strong>
+                        A propriedade de carros particulares será um conceito obsoleto. O espaço urbano será precioso demais. Pods Autônomos circularão 24 horas por dia, enquanto a logística subirá para os céus (drones) ou descerá para tubos pneumáticos subterrâneos.
+                    </li>
+                    <li class="pl-4 border-l-2 border-emerald-400">
+                        <strong class="text-emerald-400 block font-mono uppercase text-sm">Energia Descentralizada</strong>
+                        A ideia de grandes usinas distantes acabará. Cada arranha-céu será uma usina. Vidros fotovoltaicos e sistemas de biogás que convertem o lixo do prédio em energia tornarão os bairros autossuficientes.
+                    </li>
+                </ul>
+
+                <h3>3. O Desafio Vertical: Arcologias e Agricultura Urbana</h3>
+                <p>
+                    A expansão horizontal (espalhamento urbano) é inimiga da eficiência e destruidora de ecossistemas naturais. A megacidade do futuro precisará crescer para cima, mas de uma forma radicalmente diferente dos condomínios atuais.
+                </p>
+                <p>
+                    Estamos caminhando para o conceito de <strong>Arcologia</strong> (Arquitetura + Ecologia). Estes não são apenas prédios, são cidades verticais contidas. Imagine uma torre de 150 andares onde os primeiros 20 são comerciais, os próximos 40 são residenciais, seguidos por 20 andares de escolas e hospitais, e coroados por 30 andares de fazendas verticais.
+                </p>
+                <p>
+                    Para alimentar 80 milhões de pessoas, não podemos depender de caminhões trazendo comida de longe. A agricultura será urbana: Hidroponia com luzes LED e fábricas de proteína sintética nos distritos industriais liberarão terras rurais para o reflorestamento.
+                </p>
+
+                <h3>4. O Clima como Inimigo: Cidades-Esponja</h3>
+                <p>
+                    A geografia física imporá os maiores desafios. Muitas dessas futuras megacidades (Lagos, Mumbai, Daca, Xangai) são costeiras e extremamente vulneráveis à elevação do nível do mar.
+                </p>
+                <p>
+                    O asfalto e o concreto tradicionais criam enchentes e ilhas de calor. O futuro pertence às <strong>Cidades-Esponja</strong>. Parques alagáveis, calçadas permeáveis e telhados verdes que absorvem a chuva monçônica e a armazenam. Em regiões de calor mortal, partes da cidade terão que ser climatizadas sob domos parciais ou ruas subterrâneas.
+                </p>
+
+                <div class="bg-red-950/30 border border-alertRed/50 p-6 rounded my-8 not-prose relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-alertRed/10 text-9xl"><i class="ph-fill ph-warning-octagon"></i></div>
+                    <h3 class="text-alertRed font-mono uppercase text-lg mb-2 z-10 relative">5. A Geografia da Desigualdade</h3>
+                    <p class="text-slate-300 z-10 relative text-sm font-mono">
+                        Este é o ponto mais crítico. O risco real é a consolidação do "Urbanismo Fragmentado". Podemos ver o surgimento de <strong>Cidadelas Premium</strong>: enclaves fortificados com ar purificado e segurança biométrica para a elite, cercados por vastas "Slums Digitais".
+                    </p>
+                    <p class="text-slate-300 z-10 relative text-sm font-mono mt-2">
+                        O maior desafio geopolítico não será a guerra entre países, mas a tensão interna nessas megacidades. Como manter a coesão social quando a expectativa de vida no bairro A é 100 anos e no bairro B é 60?
+                    </p>
+                </div>
+
+                <h3>6. Conclusão: O Novo Papel do Geógrafo</h3>
+                <p>
+                    Para nós, estudantes e amantes da geografia e das relações internacionais, as megacidades do futuro oferecem um campo de estudo fascinante e aterrorizante. Elas representam o triunfo da espécie humana como "moldadora de mundos", mas também nossa fragilidade.
+                </p>
+                <p>
+                    O futuro não será rural. O futuro será denso, vertical, conectado e intensamente humano. Resta saber se conseguiremos projetar essas colmeias de concreto para serem lares dignos, ou se elas se tornarão apenas gaiolas eficientes para a força de trabalho global.
+                </p>
+                <p>
+                    A geografia do futuro não é sobre desenhar mapas de territórios, mas sobre entender os fluxos — de pessoas, energia, dados e capital — que correm pelas veias dessas bestas urbanas.
+                </p>
+
+                <div class="bg-slate-900 p-4 border-l-2 border-slate-600 text-sm font-mono text-slate-400 mt-12">
+                    <strong class="text-white block mb-2 uppercase">Dados & Referências</strong>
+                    <ul class="space-y-1 list-disc pl-4">
+                        <li><strong>Leitura:</strong> "Planet of Slums" de Mike Davis.</li>
+                        <li><strong>Conceito:</strong> Ecumenópole (Constantinos Doxiadis) - a cidade planetária.</li>
+                        <li><strong>Dado:</strong> Segundo a OCDE, em 2050, 70% da população mundial será urbana.</li>
+                    </ul>
+                </div>
+
+            </article>
+
+            <section class="mt-16 pt-8 border-t border-dashed border-slate-800">
+                <div class="glass-panel p-8 text-center relative overflow-hidden group">
+                    <div class="scan-line pointer-events-none"></div>
+
+                    <h3 class="font-mono text-neonCyan text-xl mb-2 uppercase tracking-widest">Migração 2100</h3>
+                    <p class="text-xs text-slate-500 font-mono mb-6">Selecione seu destino na Ecumenópole.</p>
+                    
+                    <form onsubmit="joinCity(event)" class="max-w-md mx-auto space-y-4">
+                        <input type="text" placeholder="ID CIDADÃO (NOME)" class="w-full bg-slate-950 border border-slate-700 text-white p-3 font-mono text-sm focus:border-neonCyan outline-none uppercase">
+                        
+                        <select class="w-full bg-slate-950 border border-slate-700 text-white p-3 font-mono text-sm focus:border-neonCyan outline-none">
+                            <option>LAGOS PRIME (Setor A)</option>
+                            <option>NOVA MUMBAI (Arcologia 7)</option>
+                            <option>SÃO PAULO (Distrito Sul)</option>
+                            <option>KINSHASA (Zona Franca)</option>
+                        </select>
+
+                        <button class="w-full bg-neonCyan/10 border border-neonCyan text-neonCyan hover:bg-neonCyan hover:text-black font-bold uppercase py-3 transition tracking-widest font-mono">
+                            Solicitar Visto
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-xs font-mono text-slate-600 border-t border-slate-900 mt-20">
+        <p>VITALE-GEO SYSTEM // VER 2.1.0</p>
+        <p class="mt-2">&copy; 2026 Agnaldo Vitale. All streams secured.</p>
+    </footer>
+
+    <script>
+        function joinCity(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "CONECTANDO AO SERVIDOR CENTRAL...";
+            btn.classList.add('opacity-50', 'cursor-wait');
+            
+            setTimeout(() => {
+                btn.innerText = "ACESSO PERMITIDO";
+                btn.classList.remove('bg-neonCyan/10', 'text-neonCyan', 'border-neonCyan');
+                btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-500');
+                alert("Bem-vindo à Hipercidade. Prepare seu Gêmeo Digital. 🏙️");
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
