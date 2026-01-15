@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Projeto | VitaleGeo</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Courier Prime', 'monospace']
+                    },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoRed: '#dc2626' }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Fundo com mapa sutil */
+        .bg-map-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased bg-map-pattern selection:bg-geoGold selection:text-black">
+
+    <nav class="fixed w-full z-40 top-0 bg-geoNavy/95 backdrop-blur border-b border-white/5">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Início
+            </a>
+            <span class="text-geoGold font-serif italic text-lg">VitaleGeo</span>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-4 min-h-screen">
+        
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-geoGold mb-6 uppercase tracking-widest">
+                <i class="ph-fill ph-compass"></i> Manifesto do Projeto
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                Decodificando as<br> <span class="text-geoBlue">Fronteiras Invisíveis</span>
+            </h1>
+            <p class="text-lg text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
+                O mundo é mais complexo do que os mapas escolares nos mostram. O VitaleGeo é um arquivo digital dedicado a explorar o lado B da geografia: micronações, anomalias cartográficas e o futuro das cidades.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mb-20">
+            
+            <div class="glass-panel p-8 rounded-sm hover:border-geoGold/50 transition duration-300 group">
+                <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center mb-6 group-hover:bg-geoGold group-hover:text-black transition text-geoGold">
+                    <i class="ph-fill ph-globe-stand text-2xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-2 font-serif">Geopolítica</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Analisamos como o poder flui pelo mapa. De fronteiras disputadas a novas alianças econômicas que moldarão o século XXI.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-sm hover:border-geoBlue/50 transition duration-300 group">
+                <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center mb-6 group-hover:bg-geoBlue group-hover:text-white transition text-geoBlue">
+                    <i class="ph-fill ph-magnifying-glass text-2xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-2 font-serif">Curiosidades</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    O arquivo de lugares estranhos. Cidades de um prédio só, ilhas que mudam de data e países que existem apenas na teoria.
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-sm hover:border-emerald-500/50 transition duration-300 group">
+                <div class="w-12 h-12 bg-slate-800 rounded flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition text-emerald-500">
+                    <i class="ph-fill ph-game-controller text-2xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-lg mb-2 font-serif">Interatividade</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    A geografia não deve ser apenas lida. Desenvolvemos jogos e ferramentas para visualizar dados e testar conhecimentos.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="max-w-3xl mx-auto border-t border-b border-white/10 py-12 my-12 text-center">
+            <i class="ph-fill ph-quotes text-4xl text-slate-700 mb-4 block"></i>
+            <p class="font-serif text-2xl text-slate-300 italic mb-6">
+                "Mapas são a representação visual de nossos preconceitos, desejos e medos. Compreender o mapa é compreender a nós mesmos."
+            </p>
+            <span class="font-mono text-xs uppercase tracking-widest text-geoGold">— Filosofia do Arquivo</span>
+        </div>
+
+        <div class="text-center max-w-xl mx-auto">
+            <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Entre em Contato</h4>
+            <p class="text-slate-500 text-sm mb-6">
+                Tem uma sugestão de pauta, encontrou um erro no mapa ou quer colaborar com o arquivo?
+            </p>
+            <a href="mailto:contato@vitalegeo.com.br" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-geoNavy font-bold rounded hover:bg-geoGold transition">
+                <i class="ph-bold ph-paper-plane-right"></i> Enviar Mensagem
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="text-center py-8 text-xs text-slate-700 font-mono border-t border-white/5 bg-slate-900">
+        <p>&copy; 2026 VitaleGeo Project. Todos os direitos reservados.</p>
+            <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
+        <span class="text-slate-700">?</span>
+</footer>
+
+</body>
+</html>
