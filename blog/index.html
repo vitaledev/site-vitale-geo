@@ -272,10 +272,10 @@
 
         // --- UTILITÁRIOS ---
         function fixLink(url) {
-            // Corrige links para funcionar no GitHub Pages e na pasta /blog/
-            if (url.startsWith('/blog/')) return url.replace('/blog/', '');
-            if (url.startsWith('/')) return '..' + url;
-            return url;
+            // Normaliza links para URLs limpas
+            if (url.startsWith('/blog/')) return url;
+            if (url.startsWith('/')) return url;
+            return `/blog/${url}`;
         }
 
     </script>
