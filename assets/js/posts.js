@@ -6,7 +6,7 @@ const blogPosts = [
         titulo: "Cidades-Esponja: O Fim das Enchentes?",
         categoria: "Urbanismo",
         data: "15 Jan 2026",
-        img: "https://images.unsplash.com/photo-1515266591878-5a1477d2a125?q=80&w=2070&auto=format&fit=crop", // Imagem de uma cidade com chuva/água
+        img: "https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg", // Imagem de uma cidade com chuva/água
         link: "cidades-esponja",
         resumo: "Por que o concreto precisa dar lugar à natureza. Entenda a tecnologia e a geopolítica por trás das Sponge Cities."
     },
