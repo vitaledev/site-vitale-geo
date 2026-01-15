@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaleGeo | Inteligência Geopolítica</title>
+    <meta name="description" content="Posts, vídeos e ferramentas de inteligência geográfica.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .card-hover:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="https://vitalegeo.com.br/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="https://vitalegeo.com.br/" class="text-white border-b border-geoGold pb-1">Home</a>
+                <a href="/jogos" class="hover:text-white transition">Jogos</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 text-center border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+            
+            <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-geoGold mb-6 animate-pulse">
+                <i class="ph-fill ph-binoculars"></i> Área de Exploração
+            </span>
+            
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                O Mundo é Mais Estranho <br> 
+                do Que <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold to-yellow-200">Parece</span>.
+            </h1>
+            
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
+                 Descubra as anomalias e curiosidades geográficas que desafiam a lógica.
+            </p>
+            
+            <div class="flex justify-center gap-4">
+                <a href="/blog" class="bg-geoGold text-geoNavy px-8 py-3 rounded font-bold uppercase tracking-widest hover:bg-white transition shadow-lg flex items-center gap-2">
+                    Explorar Agora <i class="ph-bold ph-compass"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-newspaper-clipping text-geoGold text-2xl"></i>
+                <h2 class="text-2xl font-serif font-bold text-white">Últimos Posts</h2>
+            </div>
+            <a href="/blog" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                Ver Tudo <i class="ph-bold ph-arrow-right"></i>
+            </a>
+        </div>
+
+        <div id="home-blog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="col-span-full text-center text-slate-600 animate-pulse">Carregando posts...</div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-slate-900/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-10">
+                <div class="flex items-center gap-3">
+                    <i class="ph-duotone ph-film-strip text-red-500 text-2xl"></i>
+                    <h2 class="text-2xl font-serif font-bold text-white">Vídeos Recentes</h2>
+                </div>
+                <a href="/videos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                    Ver Canal <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div id="home-videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
+            <div class="flex items-center gap-3">
+                <i class="ph-duotone ph-wrench text-blue-400 text-2xl"></i>
+                <h2 class="text-2xl font-serif font-bold text-white">Ferramentas de Inteligência</h2>
+            </div>
+            <a href="/ferramentas" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                Acessar Todas <i class="ph-bold ph-arrow-right"></i>
+            </a>
+        </div>
+
+        <div id="home-tools-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            </div>
+    </section>
+
+    <section class="py-20 px-6 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-10">
+                <div class="flex items-center gap-3">
+                    <i class="ph-duotone ph-game-controller text-green-400 text-2xl"></i>
+                    <h2 class="text-2xl font-serif font-bold text-white">Simulações & Jogos</h2>
+                </div>
+                <a href="/jogos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
+                    Ver Arcade <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div id="home-games-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                </div>
+        </div>
+    </section>
+
+    <footer class="bg-geoNavy py-12 text-center text-xs text-slate-500 border-t border-white/5">
+        <div class="flex justify-center gap-6 mb-8 text-xl">
+            <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="uppercase tracking-widest mb-2">VitaleGeo • Inteligência Geográfica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
+        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
+        <span class="text-slate-700">?</span>
+</footer>
+
+    <script src="assets/js/posts.js"></script>
+    <script src="assets/js/videos.js"></script>
+    <script src="assets/js/tools.js"></script>
+    <script src="assets/js/game.js"></script>
+
+    <script>
+        // --- 1. RENDERIZAR POSTS (Top 3) ---
+        const blogContainer = document.getElementById('home-blog-grid');
+        if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
+            blogContainer.innerHTML = '';
+            blogPosts.slice(0, 3).forEach(post => {
+                let link = post.link.includes('blog/') ? post.link : `/blog/${post.link}`;
+                blogContainer.innerHTML += `
+                    <article class="group bg-geoPaper border border-white/5 rounded-xl overflow-hidden hover:border-geoGold/50 transition duration-300 shadow-lg flex flex-col h-full card-hover">
+                        <a href="${link}" class="block flex-grow flex flex-col">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${post.img}" alt="${post.titulo}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-105">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded border border-white/10 uppercase tracking-wide">${post.categoria}</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-2 text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-2"><i class="ph-fill ph-calendar text-geoGold"></i> ${post.data}</div>
+                                <h3 class="text-lg font-bold text-white mb-2 leading-snug group-hover:text-geoGold transition">${post.titulo}</h3>
+                                <p class="text-sm text-slate-400 line-clamp-2 leading-relaxed">${post.resumo}</p>
+                            </div>
+                        </a>
+                    </article>`;
+            });
+        }
+
+        // --- 2. RENDERIZAR VÍDEOS (Top 3) ---
+        const videoContainer = document.getElementById('home-videos-grid');
+        if (typeof videosLongos !== 'undefined' && videosLongos.length > 0) {
+            videosLongos.slice(0, 3).forEach(video => {
+                videoContainer.innerHTML += `
+                    <div class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative" onclick="window.location.href='/videos'">
+                        <div class="aspect-video relative">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/0 transition"><i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl group-hover:scale-110"></i></div>
+                        </div>
+                        <div class="p-4"><h3 class="font-bold text-white text-sm leading-snug group-hover:text-geoGold transition line-clamp-2">${video.titulo}</h3></div>
+                    </div>`;
+            });
+        }
+
+        // --- FUNÇÃO AUXILIAR PARA ÍCONES ---
+        function getIconHTML(iconClassOrUrl) {
+            if (iconClassOrUrl.includes('/') || iconClassOrUrl.includes('.')) {
+                return `<img src="${iconClassOrUrl}" class="w-8 h-8 object-contain">`;
+            } else {
+                return `<i class="${iconClassOrUrl} text-2xl text-geoGold"></i>`;
+            }
+        }
+
+        // --- 3. RENDERIZAR FERRAMENTAS (Top 4 de toolsDB) ---
+        const toolsContainer = document.getElementById('home-tools-grid');
+        if (typeof toolsDB !== 'undefined' && toolsDB.length > 0) {
+            toolsDB.slice(0, 4).forEach(item => {
+                let link = item.link.includes('ferramentas/') ? item.link : `/ferramentas/${item.link}`;
+                toolsContainer.innerHTML += `
+                    <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-blue-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
+                        <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-blue-400 transition shrink-0">
+                            ${getIconHTML(item.icon)}
+                        </div>
+                        <div><h4 class="font-bold text-white text-sm group-hover:text-blue-400 transition leading-tight">${item.titulo}</h4></div>
+                    </a>`;
+            });
+        }
+
+        // --- 4. RENDERIZAR JOGOS (Top 4 de gamesDB) ---
+        const gamesContainer = document.getElementById('home-games-grid');
+        if (typeof gamesDB !== 'undefined' && gamesDB.length > 0) {
+            gamesDB.slice(0, 4).forEach(item => {
+                let link = item.link.includes('jogos/') ? item.link : `/jogos/${item.link}`;
+                gamesContainer.innerHTML += `
+                    <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-green-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
+                        <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-400 transition shrink-0">
+                            ${getIconHTML(item.icon)}
+                        </div>
+                        <div><h4 class="font-bold text-white text-sm group-hover:text-green-400 transition leading-tight">${item.titulo}</h4></div>
+                    </a>`;
+            });
+        }
+    </script>
+</body>
+</html>
