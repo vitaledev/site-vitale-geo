@@ -3,6 +3,14 @@
 
 const blogPosts = [
     {
+        titulo: "O Reino da Areia: A História de Bir Tawil",
+        categoria: "Geopolítica",
+        data: "18 Fev 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Bir_Tawil_map.png/800px-Bir_Tawil_map.png",
+        link: "bir-tawil/", // Link para a pasta
+        resumo: "Um lugar de 2.000 km² sem dono, sem leis e sem governo. Conheça a anomalia geográfica que desafia a lógica moderna."
+    },
+    {
         titulo: "Cidades-Esponja: O Fim das Enchentes?",
         categoria: "Urbanismo",
         data: "15 Jan 2026",
