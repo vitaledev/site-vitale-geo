@@ -7,7 +7,7 @@ const blogPosts = [
         categoria: "Fronteiras",
         data: "05 Abr 2026",
         img: "https://mega.ibxk.com.br/2024/04/10/10181558422191.jpg",
-        link: "blog/fronteira-mais-curta/",
+        link: "fronteira-mais-curta/",
         resumo: "Ela é menor que um campo de futebol, separa dois continentes e foi criada por um 'acidente' meteorológico."
     },
     {
@@ -15,7 +15,7 @@ const blogPosts = [
         categoria: "Curiosidades",
         data: "30 Mar 2026",
         img: "https://mega.ibxk.com.br/2018/01/24/24174917163561.jpg",
-        link: "blog/guerra-uisque/",
+        link: "guerra-uisque/",
         resumo: "Durante décadas, duas nações disputaram uma ilha deixando garrafas de uísque e schnapps para os 'invasores'."
     },
     {
@@ -23,7 +23,7 @@ const blogPosts = [
         categoria: "Fronteiras",
         data: "25 Mar 2026",
         img: "https://cdn.britannica.com/47/19747-050-02FEF79F/Vatican-City.jpg",
-        link: "blog/enclaves/",
+        link: "enclaves/",
         resumo: "Existem apenas três países no mundo inteiramente cercados por um único vizinho. Conheça Lesoto, San Marino e Vaticano."
     },
     {
@@ -31,7 +31,7 @@ const blogPosts = [
         categoria: "Fronteiras",
         data: "20 Mar 2026",
         img: "https://quirkytravelguy.com/wp-content/uploads/2024/08/point-roberts-map.jpg",
-        link: "blog/point-roberts/",
+        link: "point-roberts/",
         resumo: "Para ir à escola ou ao mercado, os moradores precisam cruzar duas fronteiras internacionais. Conheça o erro do Paralelo 49."
     },
     {
@@ -39,7 +39,7 @@ const blogPosts = [
         categoria: "Fronteiras",
         data: "10 Mar 2026",
         img: "https://conteudo.imguol.com.br/blogsbol/2/2022/12/ilha-2-300x225.png",
-        link: "blog/ilha-faisoes/",
+        link: "ilha-faisoes/",
         resumo: "Seis meses é da França, seis meses é da Espanha. Conheça o condomínio internacional mais antigo do mundo."
     },
     {
