@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Países Prisioneiros: Lesoto, San Marino e Vaticano | VitaleGeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        geoNavy: '#020617',
+                        geoGold: '#f59e0b',
+                        geoCyan: '#06b6d4',
+                        geoRed: '#dc2626',
+                        geoSlate: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #020617; color: #cbd5e1; overflow-x: hidden; }
+        
+        .tactical-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+        }
+
+        /* Efeito de "Cercado" */
+        .enclave-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .enclave-card:hover {
+            transform: translateY(-5px);
+        }
+        .enclave-border {
+            position: absolute;
+            inset: 0;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+        
+        /* Marcador de Altitude para o Lesoto */
+        .altitude-marker {
+            background: linear-gradient(to top, #0f172a 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="tactical-grid relative">
+
+    <!-- Navegação -->
+    <nav class="fixed top-0 w-full z-50 p-4 flex justify-between items-center glass-nav">
+        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-geoGold hover:text-white transition group z-50">
+            <i class="ph-bold ph-caret-left"></i> Retornar à Base
+        </a>
+        <div class="hidden md:flex items-center gap-4 font-mono text-[9px] text-slate-500 uppercase">
+            <span>TIPO: ENCLAVE SOBERANO</span>
+            <span class="text-geoGold">STATUS: CERCO TOTAL</span>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative min-h-[80vh] flex flex-col items-center justify-center px-6 pt-24 text-center z-10">
+        <div class="inline-block px-4 py-1 border border-geoGold/30 text-geoGold text-[9px] font-mono uppercase tracking-[0.4em] mb-8 animate-pulse bg-geoGold/5">
+            Geografia Extrema #07
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-serif font-bold text-white mb-6 leading-tight">
+            Os Prisioneiros <br> 
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold via-white to-yellow-200">Geográficos</span>
+        </h1>
+        
+        <p class="max-w-2xl mx-auto text-lg text-slate-400 font-light leading-relaxed mb-12">
+            Existem apenas três países no mundo inteiramente cercados por um único vizinho. Conheça <strong>Lesoto, San Marino e Vaticano</strong>: as ilhas de soberania em terra firme.
+        </p>
+        
+        <!-- Ícones dos 3 Países -->
+        <div class="flex gap-8 opacity-60">
+            <div class="flex flex-col items-center gap-2">
+                <i class="ph-duotone ph-mountains text-4xl text-white"></i>
+                <span class="text-[9px] font-mono tracking-widest">LSO</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i class="ph-duotone ph-shield-check text-4xl text-white"></i>
+                <span class="text-[9px] font-mono tracking-widest">SMR</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i class="ph-duotone ph-church text-4xl text-white"></i>
+                <span class="text-[9px] font-mono tracking-widest">VAT</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pb-40 relative z-10">
+        
+        <!-- Intro -->
+        <section class="mb-32">
+            <div class="border-l-2 border-geoGold pl-8 py-2">
+                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed mb-8">
+                    Imagine que, para ir à praia, comprar um carro importado ou visitar qualquer outro país do mundo, você tenha que pedir permissão ao seu único vizinho. Essa é a realidade geopolítica dos <strong>Enclaves</strong>.
+                </p>
+                <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">
+                    > Definição: Um território totalmente cercado por outro território estrangeiro.
+                </p>
+            </div>
+        </section>
+
+        <!-- 1. LESOTO -->
+        <section class="mb-32 grid md:grid-cols-2 gap-12 items-center">
+            <div class="bg-slate-900 p-6 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-2 py-1 uppercase">África Austral</div>
+                
+                <!-- Imagem -->
+                <div class="aspect-[4/3] overflow-hidden rounded relative">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lesotho_location_map.svg/1200px-Lesotho_location_map.svg.png" 
+                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-bold">Lesoto 🇱🇸</h3>
+                        <p class="text-xs text-blue-300 font-mono">VIZINHO: ÁFRICA DO SUL</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="text-white font-serif text-3xl mb-4">O Reino no Céu</h2>
+                <div class="prose prose-invert text-slate-400">
+                    <p>
+                        O Lesoto não é apenas um enclave; é uma fortaleza natural. É o único país do mundo onde <strong>todo o território</strong> está acima de 1.000 metros de altitude.
+                    </p>
+                    <p>
+                        Sua independência da África do Sul é um milagre histórico. Durante o Apartheid, o Lesoto serviu como refúgio para ativistas. Hoje, ele sobrevive vendendo seu recurso mais precioso para o vizinho que o cerca: <strong>Água</strong>. Se a África do Sul fechasse as fronteiras, o Lesoto colapsaria em dias.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SAN MARINO -->
+        <section class="mb-32 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <h2 class="text-white font-serif text-3xl mb-4">A República Mais Antiga</h2>
+                <div class="prose prose-invert text-slate-400">
+                    <p>
+                        Fundada no ano 301 d.C., San Marino viu o Império Romano cair, a Europa ser desenhada e redesenhada, e Napoleão conquistar quase tudo — exceto eles.
+                    </p>
+                    <p>
+                        Cercada pela Itália, esta pequena república no topo do Monte Titano sobreviveu graças à diplomacia. Quando Napoleão ofereceu expandir suas terras, eles recusaram educadamente, dizendo que preferiam continuar pequenos e livres. Abraham Lincoln foi cidadão honorário.
+                    </p>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 bg-slate-900 p-6 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-geoCyan text-white text-[9px] font-bold px-2 py-1 uppercase">Europa</div>
+                
+                <div class="aspect-[4/3] overflow-hidden rounded relative">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/San_Marino_in_Italy.svg/1200px-San_Marino_in_Italy.svg.png" 
+                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-bold">San Marino 🇸🇲</h3>
+                        <p class="text-xs text-cyan-300 font-mono">VIZINHO: ITÁLIA</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VATICANO -->
+        <section class="mb-32 grid md:grid-cols-2 gap-12 items-center">
+            <div class="bg-slate-900 p-6 rounded-xl border border-white/5 shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-geoGold text-geoNavy text-[9px] font-bold px-2 py-1 uppercase">Roma</div>
+                
+                <div class="aspect-[4/3] overflow-hidden rounded relative">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Vatican_City_map_EN.png/1200px-Vatican_City_map_EN.png" 
+                         class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 scale-125">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-bold">Vaticano 🇻🇦</h3>
+                        <p class="text-xs text-yellow-300 font-mono">VIZINHO: ITÁLIA (ROMA)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="text-white font-serif text-3xl mb-4">O Poder da Fé e dos Muros</h2>
+                <div class="prose prose-invert text-slate-400">
+                    <p>
+                        O menor país do mundo (0,44 km²) é o exemplo máximo de poder concentrado. Ele não tem exército (apenas a Guarda Suíça), não tem agricultura e importa 100% de sua comida e energia da Itália.
+                    </p>
+                    <p>
+                        No entanto, sua influência global supera a de superpotências. É o único enclave que possui embaixadas em quase todos os países do mundo, mas, por falta de espaço, as embaixadas <em>para</em> o Vaticano ficam fisicamente localizadas... na Itália.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dados Comparativos -->
+        <section class="mb-32">
+            <h2 class="text-geoGold font-mono text-xs uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                <span class="w-8 h-px bg-geoGold"></span> Dados de Inteligência
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+                <div class="bg-slate-800/50 p-6 rounded border border-white/5">
+                    <span class="text-slate-500 block mb-2">MAIOR POPULAÇÃO</span>
+                    <span class="text-white text-xl font-bold">Lesoto</span>
+                    <span class="block text-geoGold mt-1">2.3 Milhões</span>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded border border-white/5">
+                    <span class="text-slate-500 block mb-2">MAIOR PIB PER CAPITA</span>
+                    <span class="text-white text-xl font-bold">San Marino</span>
+                    <span class="block text-geoCyan mt-1">$47,000</span>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded border border-white/5">
+                    <span class="text-slate-500 block mb-2">MENOR ÁREA</span>
+                    <span class="text-white text-xl font-bold">Vaticano</span>
+                    <span class="block text-red-400 mt-1">0.44 km²</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusão -->
+        <section class="max-w-2xl mx-auto text-center pt-12 border-t border-white/10">
+            <p class="text-xl text-white font-serif italic mb-6">
+                "Ser um enclave é viver em constante negociação. Sua soberania termina exatamente onde começa o quintal do vizinho."
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-20 border-t border-white/5 flex flex-col items-center relative z-10">
+        <div class="text-slate-500 font-serif font-bold text-2xl mb-4 italic tracking-tighter opacity-60">VitaleGeo</div>
+        <p class="text-slate-700 text-[10px] font-mono uppercase tracking-[0.5em]">Geopolitical Analysis // 2026</p>
+    </footer>
+
+</body>
+</html>

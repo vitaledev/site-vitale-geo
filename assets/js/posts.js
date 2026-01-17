@@ -3,6 +3,46 @@
 
 const blogPosts = [
     {
+        titulo: "A Fronteira Mais Curta do Mundo: 85 Metros",
+        categoria: "Fronteiras",
+        data: "05 Abr 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pe%C3%B1on_de_Velez_de_la_Gomera.jpg/800px-Pe%C3%B1on_de_Velez_de_la_Gomera.jpg",
+        link: "blog/fronteira-mais-curta/",
+        resumo: "Ela é menor que um campo de futebol, separa dois continentes e foi criada por um 'acidente' meteorológico."
+    },
+    {
+        titulo: "A Guerra do Uísque: Canadá vs Dinamarca",
+        categoria: "Curiosidades",
+        data: "30 Mar 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Hans_Island.jpg",
+        link: "blog/guerra-uisque/",
+        resumo: "Durante décadas, duas nações disputaram uma ilha deixando garrafas de uísque e schnapps para os 'invasores'."
+    },
+    {
+        titulo: "Os Prisioneiros Geográficos: Países dentro de Países",
+        categoria: "Fronteiras",
+        data: "25 Mar 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lesotho_location_map.svg/1200px-Lesotho_location_map.svg.png",
+        link: "blog/enclaves/",
+        resumo: "Existem apenas três países no mundo inteiramente cercados por um único vizinho. Conheça Lesoto, San Marino e Vaticano."
+    },
+    {
+        titulo: "Point Roberts: A Cidade Americana Presa no Canadá",
+        categoria: "Fronteiras",
+        data: "20 Mar 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Point_Roberts_border_monument.jpg/800px-Point_Roberts_border_monument.jpg",
+        link: "blog/point-roberts/",
+        resumo: "Para ir à escola ou ao mercado, os moradores precisam cruzar duas fronteiras internacionais. Conheça o erro do Paralelo 49."
+    },
+    {
+        titulo: "A Ilha que Troca de Dono: Ilha dos Faisões",
+        categoria: "Fronteiras",
+        data: "10 Mar 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pheasant_Island_01.jpg",
+        link: "blog/ilha-faisoes/",
+        resumo: "Seis meses é da França, seis meses é da Espanha. Conheça o condomínio internacional mais antigo do mundo."
+    },
+    {
         titulo: "O Reino da Areia: A História de Bir Tawil",
         categoria: "Geopolítica",
         data: "18 Fev 2026",

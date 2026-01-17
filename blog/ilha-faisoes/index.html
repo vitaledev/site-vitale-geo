@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilha dos Faisões: A Ilha Compartilhada | VitaleGeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        geoNavy: '#020617',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#3b82f6', // França
+                        geoRed: '#ef4444',  // Espanha
+                        geoSlate: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #020617; color: #cbd5e1; overflow-x: hidden; }
+        
+        .tactical-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Efeito de Divisão (Split) */
+        .split-border {
+            background: linear-gradient(90deg, #3b82f6 50%, #ef4444 50%);
+            height: 4px;
+            width: 100px;
+            margin: 0 auto;
+        }
+
+        /* Status Badge Animado */
+        .status-badge {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+    </style>
+</head>
+<body class="tactical-grid relative">
+
+    <!-- Navegação -->
+    <nav class="fixed top-0 w-full z-50 p-4 flex justify-between items-center glass-nav">
+        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition group z-50">
+            <i class="ph-bold ph-caret-left"></i> Retornar à Base
+        </a>
+        <div class="hidden md:flex items-center gap-4 font-mono text-[9px] text-slate-500 uppercase">
+            <span>COORD: 43°20′34″N 1°45′56″W</span>
+            <span class="text-white">PROTOCOLO: CONDOMÍNIO</span>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative min-h-[80vh] flex flex-col items-center justify-center px-6 pt-24 text-center z-10">
+        <div class="inline-block px-4 py-1 border border-white/20 text-white text-[9px] font-mono uppercase tracking-[0.4em] mb-8 animate-pulse bg-white/5">
+            Curiosidade Geopolítica #05
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-serif font-bold text-white mb-6 leading-tight">
+            A Ilha de <br> 
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoBlue via-white to-geoRed">Duas Nações</span>
+        </h1>
+        
+        <div class="split-border mb-8"></div>
+
+        <p class="max-w-2xl mx-auto text-lg text-slate-400 font-light leading-relaxed mb-12">
+            Metade do ano é francesa. Metade do ano é espanhola. Conheça a <strong>Ilha dos Faisões</strong>, o condomínio internacional mais antigo do mundo.
+        </p>
+        
+        <!-- STATUS EM TEMPO REAL (JS vai preencher) -->
+        <div id="current-status" class="status-badge inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-900 border border-white/10 shadow-2xl">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+            <span class="font-mono text-xs text-slate-300">CALCULANDO SOBERANIA ATUAL...</span>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 pb-40 relative z-10">
+        
+        <!-- Intro -->
+        <section class="mb-32">
+            <div class="border-l-2 border-white/20 pl-8 py-2">
+                <p class="text-xl md:text-2xl text-slate-200 leading-relaxed mb-8">
+                    Imagine um pedaço de terra onde, a cada seis meses, a polícia muda, a administração muda e a bandeira muda. Não é uma invasão, não é uma guerra. É um acordo de cavalheiros que dura mais de 350 anos.
+                </p>
+                <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">
+                    > Local: Rio Bidasoa, fronteira França-Espanha.
+                </p>
+            </div>
+        </section>
+
+        <!-- MAPA TÁTICO -->
+        <section class="mb-32 bg-slate-900/50 border border-white/5 p-4 md:p-8 rounded-xl shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-mono text-[10px] text-geoBlue uppercase tracking-widest"><i class="ph-fill ph-arrow-left"></i> Lado Francês (Hendaye)</span>
+                <span class="font-mono text-[10px] text-geoRed uppercase tracking-widest">Lado Espanhol (Irun) <i class="ph-fill ph-arrow-right"></i></span>
+            </div>
+            
+            <div class="aspect-video relative flex items-center justify-center overflow-hidden rounded-lg border border-white/10 group">
+                <!-- Imagem Satélite -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Pheasant_Island_01.jpg" 
+                     alt="Ilha dos Faisões vista de cima" 
+                     class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                
+                <!-- Overlay Gráfico -->
+                <div class="absolute inset-0 bg-gradient-to-r from-geoBlue/20 via-transparent to-geoRed/20 mix-blend-overlay pointer-events-none"></div>
+                
+                <!-- Marcador -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div class="w-4 h-4 bg-white rounded-full animate-ping absolute"></div>
+                    <div class="w-4 h-4 bg-white rounded-full relative z-10 border-2 border-slate-900"></div>
+                    <span class="mt-2 bg-black/70 text-white text-[9px] px-2 py-1 rounded font-mono uppercase backdrop-blur-md">Ilha dos Faisões (6.820 m²)</span>
+                </div>
+            </div>
+            <p class="text-center font-mono text-[10px] text-slate-500 mt-4">
+                FIG 01 // ZONA NEUTRA NO MEIO DO RIO BIDASOA
+            </p>
+        </section>
+
+        <!-- A História -->
+        <section class="mb-32 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-white font-serif text-3xl mb-6">O Tratado dos Pirenéus</h2>
+                <div class="prose prose-invert text-slate-400">
+                    <p>
+                        Em 1659, após décadas de guerra sangrenta, as coroas da França e da Espanha decidiram selar a paz. Eles escolheram esta ilha neutra no meio do rio fronteiriço para assinar o tratado.
+                    </p>
+                    <p>
+                        Para garantir que ninguém "ganhasse" a ilha, decidiram compartilhá-la. Nasceu assim o <strong>condomínio</strong> mais antigo do mundo.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-slate-800 p-6 rounded border border-white/5 relative">
+                <div class="absolute -top-3 -left-3 text-4xl text-geoGold opacity-20"><i class="ph-fill ph-scroll"></i></div>
+                <h4 class="font-mono text-geoGold text-xs uppercase mb-4 tracking-widest">Protocolo de Transferência</h4>
+                <ul class="space-y-4 text-sm font-mono text-slate-300">
+                    <li class="flex items-center gap-4">
+                        <span class="text-geoRed font-bold">FEV - JUL</span>
+                        <span class="border-b border-dashed border-slate-600 flex-grow"></span>
+                        <span>ESPANHA 🇪🇸</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="text-geoBlue font-bold">AGO - JAN</span>
+                        <span class="border-b border-dashed border-slate-600 flex-grow"></span>
+                        <span>FRANÇA 🇫🇷</span>
+                    </li>
+                </ul>
+                <p class="mt-6 text-xs text-slate-500 italic">
+                    * A cerimónia de troca de chaves é realizada pelos comandantes navais de San Sebastian e Bayonne.
+                </p>
+            </div>
+        </section>
+
+        <!-- Curiosidades -->
+        <section class="mb-32">
+            <h2 class="text-geoGold font-mono text-xs uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                <span class="w-8 h-px bg-geoGold"></span> Fatos de Inteligência
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/50 p-6 rounded border border-white/5 hover:border-geoGold/50 transition duration-300">
+                    <i class="ph-duotone ph-users-three text-3xl text-slate-400 mb-4"></i>
+                    <h3 class="text-white font-bold mb-2">População Zero</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Ninguém mora na ilha. O acesso é estritamente proibido ao público, exceto para membros dos comandos navais ou historiadores autorizados.
+                    </p>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded border border-white/5 hover:border-geoGold/50 transition duration-300">
+                    <i class="ph-duotone ph-crown text-3xl text-slate-400 mb-4"></i>
+                    <h3 class="text-white font-bold mb-2">Casamentos Reais</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Foi aqui que Luís XIV conheceu sua noiva espanhola, Maria Teresa. A ilha serviu como palco neutro para trocas de princesas e prisioneiros.
+                    </p>
+                </div>
+                <div class="bg-slate-900/50 p-6 rounded border border-white/5 hover:border-geoGold/50 transition duration-300">
+                    <i class="ph-duotone ph-waves text-3xl text-slate-400 mb-4"></i>
+                    <h3 class="text-white font-bold mb-2">Ela está diminuindo</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        A erosão do rio Bidasoa fez a ilha perder quase metade do seu tamanho original ao longo dos séculos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusão -->
+        <section class="max-w-2xl mx-auto text-center border-t border-white/10 pt-12">
+            <p class="text-xl text-white font-serif italic mb-6">
+                "A Ilha dos Faisões é a prova de que fronteiras podem ser fluidas. Em vez de construir muros, França e Espanha construíram um cronograma."
+            </p>
+            <div class="flex justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-geoBlue"></span>
+                <span class="w-2 h-2 rounded-full bg-geoRed"></span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-20 border-t border-white/5 flex flex-col items-center relative z-10">
+        <div class="text-slate-500 font-serif font-bold text-2xl mb-4 italic tracking-tighter opacity-60">VitaleGeo</div>
+        <p class="text-slate-700 text-[10px] font-mono uppercase tracking-[0.5em]">Archives // 2026</p>
+    </footer>
+
+    <!-- SCRIPT DE SOBERANIA -->
+    <script>
+        function checkSovereignty() {
+            const date = new Date();
+            const month = date.getMonth(); // 0 = Jan, 1 = Fev ... 11 = Dez
+            const statusBox = document.getElementById('current-status');
+            const statusLight = statusBox.querySelector('span:first-child');
+            const statusText = statusBox.querySelector('span:last-child');
+
+            // Regra:
+            // Espanha: Fevereiro (1) a Julho (6)
+            // França: Agosto (7) a Janeiro (0)
+            
+            // Meses que a Espanha controla (Fev, Mar, Abr, Mai, Jun, Jul)
+            const spainMonths = [1, 2, 3, 4, 5, 6];
+
+            if (spainMonths.includes(month)) {
+                // É da ESPANHA
+                statusBox.classList.add('border-red-500/50');
+                statusLight.className = "w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_red]";
+                statusText.innerHTML = `AGORA: SOBERANIA <span class="text-red-400 font-bold">ESPANHOLA 🇪🇸</span>`;
+            } else {
+                // É da FRANÇA
+                statusBox.classList.add('border-blue-500/50');
+                statusLight.className = "w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_blue]";
+                statusText.innerHTML = `AGORA: SOBERANIA <span class="text-blue-400 font-bold">FRANCESA 🇫🇷</span>`;
+            }
+        }
+
+        // Roda ao carregar
+        checkSovereignty();
+    </script>
+
+</body>
+</html>

@@ -21,12 +21,27 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/fronteira-mais-curta/</loc>
+      <lastmod>2026-01-17</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/fronteira-mais-louca/</loc>
       <lastmod>2026-01-17</lastmod>
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/guerra-uisque/</loc>
+      <lastmod>2026-01-17</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/hipercidades-2100/</loc>
+      <lastmod>2026-01-17</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ilha-faisoes/</loc>
       <lastmod>2026-01-17</lastmod>
       <priority>0.8</priority>
    </url>
@@ -37,6 +52,11 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/</loc>
+      <lastmod>2026-01-17</lastmod>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/point-roberts/</loc>
       <lastmod>2026-01-17</lastmod>
       <priority>0.8</priority>
    </url>
