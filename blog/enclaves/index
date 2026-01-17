@@ -132,7 +132,7 @@
                 
                 <!-- Imagem -->
                 <div class="aspect-[4/3] overflow-hidden rounded relative">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lesotho_location_map.svg/1200px-Lesotho_location_map.svg.png" 
+                    <img src="https://cdn.jornalopcao.com.br/assets/2025/03/OverlookingMaserufromParliamentHillcredOERAfrica.jpg" 
                          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     
@@ -174,7 +174,7 @@
                 <div class="absolute top-0 right-0 bg-geoCyan text-white text-[9px] font-bold px-2 py-1 uppercase">Europa</div>
                 
                 <div class="aspect-[4/3] overflow-hidden rounded relative">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/San_Marino_in_Italy.svg/1200px-San_Marino_in_Italy.svg.png" 
+                    <img src="https://ita.travel/user/blogimg/other/san-marino/san-marino_torre-guaita_torre-cesta_aerial.jpg" 
                          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     
@@ -192,7 +192,7 @@
                 <div class="absolute top-0 right-0 bg-geoGold text-geoNavy text-[9px] font-bold px-2 py-1 uppercase">Roma</div>
                 
                 <div class="aspect-[4/3] overflow-hidden rounded relative">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Vatican_City_map_EN.png/1200px-Vatican_City_map_EN.png" 
+                    <img src="https://itamcap.com/wp-content/uploads/2022/07/famous-saint-peters-square-in-vatican-1024x684.jpg" 
                          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 scale-125">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     

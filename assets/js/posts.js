@@ -6,7 +6,7 @@ const blogPosts = [
         titulo: "A Fronteira Mais Curta do Mundo: 85 Metros",
         categoria: "Fronteiras",
         data: "05 Abr 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pe%C3%B1on_de_Velez_de_la_Gomera.jpg/800px-Pe%C3%B1on_de_Velez_de_la_Gomera.jpg",
+        img: "https://mega.ibxk.com.br/2024/04/10/10181558422191.jpg",
         link: "blog/fronteira-mais-curta/",
         resumo: "Ela é menor que um campo de futebol, separa dois continentes e foi criada por um 'acidente' meteorológico."
     },
@@ -14,7 +14,7 @@ const blogPosts = [
         titulo: "A Guerra do Uísque: Canadá vs Dinamarca",
         categoria: "Curiosidades",
         data: "30 Mar 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Hans_Island.jpg",
+        img: "https://mega.ibxk.com.br/2018/01/24/24174917163561.jpg",
         link: "blog/guerra-uisque/",
         resumo: "Durante décadas, duas nações disputaram uma ilha deixando garrafas de uísque e schnapps para os 'invasores'."
     },
@@ -22,7 +22,7 @@ const blogPosts = [
         titulo: "Os Prisioneiros Geográficos: Países dentro de Países",
         categoria: "Fronteiras",
         data: "25 Mar 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lesotho_location_map.svg/1200px-Lesotho_location_map.svg.png",
+        img: "https://cdn.britannica.com/47/19747-050-02FEF79F/Vatican-City.jpg",
         link: "blog/enclaves/",
         resumo: "Existem apenas três países no mundo inteiramente cercados por um único vizinho. Conheça Lesoto, San Marino e Vaticano."
     },
@@ -30,7 +30,7 @@ const blogPosts = [
         titulo: "Point Roberts: A Cidade Americana Presa no Canadá",
         categoria: "Fronteiras",
         data: "20 Mar 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Point_Roberts_border_monument.jpg/800px-Point_Roberts_border_monument.jpg",
+        img: "https://quirkytravelguy.com/wp-content/uploads/2024/08/point-roberts-map.jpg",
         link: "blog/point-roberts/",
         resumo: "Para ir à escola ou ao mercado, os moradores precisam cruzar duas fronteiras internacionais. Conheça o erro do Paralelo 49."
     },
@@ -38,7 +38,7 @@ const blogPosts = [
         titulo: "A Ilha que Troca de Dono: Ilha dos Faisões",
         categoria: "Fronteiras",
         data: "10 Mar 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pheasant_Island_01.jpg",
+        img: "https://conteudo.imguol.com.br/blogsbol/2/2022/12/ilha-2-300x225.png",
         link: "blog/ilha-faisoes/",
         resumo: "Seis meses é da França, seis meses é da Espanha. Conheça o condomínio internacional mais antigo do mundo."
     },
@@ -46,7 +46,7 @@ const blogPosts = [
         titulo: "O Reino da Areia: A História de Bir Tawil",
         categoria: "Geopolítica",
         data: "18 Fev 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Bir_Tawil_map.png/800px-Bir_Tawil_map.png",
+        img: "https://i.guim.co.uk/img/media/5ebf8e25c9fd8c7cdbf46e9d9aa89b05617a1f7f/0_145_4072_2445/master/4072.jpg?width=700&quality=85&auto=format&fit=max&s=387582e0008572dc062ebcf9729511c5",
         link: "bir-tawil/", // Link para a pasta
         resumo: "Um lugar de 2.000 km² sem dono, sem leis e sem governo. Conheça a anomalia geográfica que desafia a lógica moderna."
     },
