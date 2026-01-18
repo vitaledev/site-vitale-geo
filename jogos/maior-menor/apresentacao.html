@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Guerra de Números | Compare o PIB dos Países | VitaleGeo</title>
+    <meta name="description" content="Compare o PIB de países e descubra qual é mais rico! Jogo educativo que ensina economia global de forma divertida e interativa.">
+    <meta name="keywords" content="PIB, economia, países, jogo, quiz, comparação, educativo, economia global">
+    <meta property="og:title" content="Guerra de Números | VitaleGeo">
+    <meta property="og:description" content="Compare o PIB de países e descubra qual é mais rico!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/maior-menor">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/maior-menor">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar aos Jogos
+        </a>
+    </div>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-yellow-900/30 border border-yellow-500/30 text-yellow-400 text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-currency-dollar"></i> Jogo Econômico
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Guerra de Números
+            </h1>
+
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+                Qual país é mais rico? Compare o PIB de nações ao redor do mundo e descubra as potências econômicas globais. Um jogo que alia diversão com aprendizado econômico!
+            </p>
+
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-6 py-3 rounded font-bold hover:bg-white transition shadow-lg">
+                    <i class="ph-fill ph-play"></i> Jogar Agora
+                </a>
+                <a href="../index.html" class="inline-flex items-center gap-2 border border-slate-500 text-slate-300 px-6 py-3 rounded font-bold hover:border-white hover:text-white transition">
+                    <i class="ph-fill ph-list"></i> Todos os Jogos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-20">
+        <article class="prose prose-invert max-w-none">
+            <h2>Como Jogar</h2>
+            <p>São exibidos dois países com seus PIBs em trilhões de dólares. Você deve escolher qual tem o PIB maior. Cada acerto ganha você pontos. Teste se realmente sabe quais são as maiores economias do mundo!</p>
+
+            <h2>O Que é PIB?</h2>
+            <p>O PIB (Produto Interno Bruto) é o valor total de todos os bens e serviços produzidos por um país em um determinado período. É um dos principais indicadores de riqueza econômica de uma nação.</p>
+
+            <h2>Por Que Entender Economia?</h2>
+            <ul>
+                <li><strong>Compreensão Geopolítica:</strong> A economia determina o poder e influência dos países</li>
+                <li><strong>Mercado Global:</strong> Entender PIBs ajuda a compreender o comércio internacional</li>
+                <li><strong>Investimentos:</strong> Conhecimento essencial para futuras decisões de carreira</li>
+                <li><strong>Educação Financeira:</strong> Base para compreender economia pessoal e nacional</li>
+            </ul>
+
+            <h2>Curiosidades Econômicas</h2>
+            <p>Você sabia que o PIB dos EUA representa mais de 20% do PIB mundial? Ou que a China é a segunda maior economia, seguida pelo Japão? Mas PIB alto não significa que o país é rico per capita - a distribuição de renda também importa!</p>
+
+            <blockquote>
+                <p>"Entender a economia global é entender o poder mundial." - VitaleGeo</p>
+            </blockquote>
+
+            <div class="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-6 mt-12 text-center">
+                <h3 class="text-white mb-2">Sabe quem é mais rico?</h3>
+                <p class="text-slate-300 mb-4">Teste seus conhecimentos econômicos!</p>
+                <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-6 py-3 rounded font-bold hover:bg-white transition shadow-lg">
+                    <i class="ph-fill ph-play"></i> Iniciar Jogo
+                </a>
+            </div>
+        </article>
+    </main>
+
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Operação Bandeira | Identifique os Países do Mundo | VitaleGeo</title>
+    <meta name="description" content="Teste seus conhecimentos de geografia identificando bandeiras de países ao redor do mundo. Jogo interativo educativo para todas as idades.">
+    <meta name="keywords" content="bandeiras, geografia, jogo, quiz, países, educativo">
+    <meta property="og:title" content="Operação Bandeira | VitaleGeo">
+    <meta property="og:description" content="Teste seus conhecimentos de geografia identificando bandeiras de países.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/bandeiras">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/bandeiras">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar aos Jogos
+        </a>
+    </div>
+
+    <header class="pt-48 pb-24 px-6 text-center border-b border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-geoBlue/10 blur-[120px] -z-10 rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-geoGold text-xs font-bold mb-6 uppercase tracking-wider">
+                🚩 Jogo Educativo
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                Operação <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold to-yellow-200">Bandeira.</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Desafie seus conhecimentos de geografia identificando bandeiras de países ao redor do mundo.
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-6 py-3 rounded font-bold hover:bg-white transition shadow-lg">
+                    <i class="ph-fill ph-play"></i> Jogar Agora
+                </a>
+                <a href="../" class="inline-flex items-center gap-2 border border-geoGold text-geoGold px-6 py-3 rounded font-bold hover:bg-geoGold hover:text-geoNavy transition">
+                    <i class="ph-fill ph-list"></i> Todos os Jogos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-geoPaper border border-white/5 rounded-2xl p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl text-geoGold">🚩</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Como Jogar</h3>
+                        <p class="text-slate-400">Uma bandeira é exibida e você escolhe entre 4 opções. Teste seus conhecimentos geográficos!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-geoPaper border border-white/5 rounded-2xl p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl text-geoGold">🧠</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Aprendizado</h3>
+                        <p class="text-slate-400">Conheça melhor a localização e identificação de países do mundo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-geoPaper border border-white/5 rounded-2xl p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl text-geoGold">⏱️</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sem Pressão</h3>
+                        <p class="text-slate-400">Aprenda brincando, sem prazos ou limites de tempo. Apenas diversão!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-geoPaper border border-white/5 rounded-2xl p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl text-geoGold">✨</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Para Todos</h3>
+                        <p class="text-slate-400">Adequado para crianças, adolescentes e adultos de todas as idades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-geoBlue/10 border border-geoBlue/30 rounded-2xl p-12 text-center mt-16">
+            <h2 class="text-2xl font-bold text-white mb-4">Pronto para o desafio?</h2>
+            <p class="text-slate-300 mb-6">Teste seus conhecimentos de bandeiras e geopolítica agora!</p>
+            <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-8 py-4 rounded font-bold hover:bg-white transition shadow-lg text-lg">
+                <i class="ph-fill ph-play text-2xl"></i> Iniciar Jogo
+            </a>
+        </div>
+    </section>
+
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+

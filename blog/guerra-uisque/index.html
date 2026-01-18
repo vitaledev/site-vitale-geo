@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Guerra do Uísque: Canadá vs Dinamarca | VitaleGeo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -29,50 +30,34 @@
             }
         }
     </script>
-
-    <style>
-        body { background-color: #020617; color: #cbd5e1; overflow-x: hidden; }
-        
-        .tactical-grid {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .glass-nav {
-            background: rgba(2, 6, 23, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        /* Animação das Garrafas */
-        .bottle-icon {
-            transition: transform 0.3s;
-        }
-        .bottle-icon:hover {
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        /* Divisor de Gelo */
-        .ice-divider {
-            border-top: 2px dashed #06b6d4;
-            opacity: 0.3;
-            margin: 2rem 0;
-        }
-    </style>
 </head>
 <body class="tactical-grid relative">
 
     <!-- Navegação -->
-    <nav class="fixed top-0 w-full z-50 p-4 flex justify-between items-center glass-nav">
-        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-geoRed hover:text-white transition group z-50">
-            <i class="ph-bold ph-caret-left"></i> Retornar à Base
-        </a>
-        <div class="hidden md:flex items-center gap-4 font-mono text-[9px] text-slate-500 uppercase">
-            <span>ALVO: ILHA HANS</span>
-            <span class="text-white">STATUS: RESOLVIDO (2022)</span>
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
         </div>
     </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        </a>
+    </div>
 
     <!-- Header -->
     <header class="relative min-h-[80vh] flex flex-col items-center justify-center px-6 pt-24 text-center z-10">
@@ -248,10 +233,20 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black py-20 border-t border-white/5 flex flex-col items-center relative z-10">
-        <div class="text-slate-500 font-serif font-bold text-2xl mb-4 italic tracking-tighter opacity-60">VitaleGeo</div>
-        <p class="text-slate-700 text-[10px] font-mono uppercase tracking-[0.5em]">Peace Archives // 2026</p>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
     </footer>
 
 </body>
 </html>
+
+

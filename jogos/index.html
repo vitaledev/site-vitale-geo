@@ -6,6 +6,7 @@
     <title>Arcade VitaleGeo | Jogos e Quizzes</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
@@ -21,46 +22,10 @@
             }
         }
     </script>
-
-    <style>
-        .bg-grid-pattern { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        #tool-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        #tool-modal.hidden-modal { opacity: 0; visibility: hidden; pointer-events: none; }
-        #tool-modal.visible-modal { opacity: 1; visibility: visible; pointer-events: auto; }
-        
-        .modal-grid-bg {
-            background-image: 
-                linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-    </style>
 </head>
 <body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
 
-    <div id="tool-modal" class="hidden-modal fixed inset-0 z-[100] bg-geoNavy/95 flex flex-col backdrop-blur-md modal-grid-bg">
-        <div class="flex justify-between items-center px-6 py-3 border-b border-white/10 bg-geoNavy/80 relative z-20">
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_currentColor]" id="modal-status-light"></span>
-                <span id="modal-title" class="text-xs font-bold tracking-widest uppercase text-white font-mono">Jogando Agora</span>
-            </div>
-            <button onclick="closeTool()" class="text-sm font-bold uppercase tracking-widest text-white hover:text-geoGold transition flex items-center gap-2 px-4 py-2 bg-white/5 rounded hover:bg-white/10 border border-white/10 hover:border-geoGold/50">
-                Sair <i class="ph-bold ph-x text-lg"></i>
-            </button>
-        </div>
 
-        <div class="relative flex-1 overflow-hidden p-2 md:p-4 flex justify-center items-center z-10">
-            <div class="pointer-events-none absolute inset-4 md:inset-8 z-0">
-                <div class="absolute inset-0 border border-geoBlue/30 opacity-50"></div>
-                <div class="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-geoGold"></div>
-                <div class="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-geoGold"></div>
-                <div class="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-geoGold"></div>
-                <div class="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-geoGold"></div>
-            </div>
-            <iframe id="tool-frame" class="w-full h-full bg-black shadow-[0_0_50px_rgba(59,130,246,0.2)] z-10 relative rounded border border-geoBlue/20" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    </div>
 
     <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -102,20 +67,23 @@
         </div>
     </section>
 
-    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
-        <p class="uppercase tracking-widest mb-2">VitaleGeo • Arcade</p>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
         <p>&copy; 2026 Todos os direitos reservados.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
     <script src="../assets/js/game.js"></script>
 
     <script>
         const container = document.getElementById('games-grid');
-        const modal = document.getElementById('tool-modal');
-        const iframe = document.getElementById('tool-frame');
 
         // Verificação segura do banco de dados
         const db = (typeof gameDB !== 'undefined') ? gameDB : (typeof gamesDB !== 'undefined' ? gamesDB : []);
@@ -144,7 +112,7 @@
                 // -----------------------------
 
                 container.innerHTML += `
-                    <div onclick="openTool('${cleanLink}')" class="group cursor-pointer relative bg-geoPaper border border-white/5 p-4 rounded-2xl hover:border-geoGold transition duration-300 shadow-2xl hover:-translate-y-2">
+                    <a href="${cleanLink}" class="group cursor-pointer relative bg-geoPaper border border-white/5 p-4 rounded-2xl hover:border-geoGold transition duration-300 shadow-2xl hover:-translate-y-2">
                         <div class="aspect-[4/3] bg-slate-800 rounded-xl overflow-hidden relative mb-4 flex items-center justify-center">
                             
                             ${iconHTML}
@@ -159,30 +127,14 @@
                                 Jogar
                             </button>
                         </div>
-                    </div>
+                    </a>
                 `;
             });
         } else {
             container.innerHTML = '<p class="text-center text-red-500 col-span-full">Erro: Crie o arquivo assets/js/game.js</p>';
         }
-
-        function openTool(url) {
-            if (window.innerWidth < 768) { 
-                window.open(url, '_blank'); 
-            } else { 
-                iframe.src = url; 
-                modal.classList.remove('hidden-modal'); 
-                modal.classList.add('visible-modal'); 
-                document.body.style.overflow = 'hidden'; 
-            }
-        }
-
-        function closeTool() { 
-            modal.classList.remove('visible-modal'); 
-            modal.classList.add('hidden-modal'); 
-            setTimeout(() => { iframe.src = ''; }, 300); 
-            document.body.style.overflow = 'auto'; 
-        }
     </script>
 </body>
 </html>
+
+

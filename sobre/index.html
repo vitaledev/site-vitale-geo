@@ -6,6 +6,8 @@
     <title>Sobre o Projeto | VitaleGeo</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -23,19 +25,6 @@
             }
         }
     </script>
-    
-    <style>
-        /* Fundo com mapa sutil */
-        .bg-map-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
 </head>
 <body class="bg-geoNavy text-slate-300 font-sans antialiased bg-map-pattern selection:bg-geoGold selection:text-black">
 
@@ -116,11 +105,20 @@
 
     </main>
 
-    <footer class="text-center py-8 text-xs text-slate-700 font-mono border-t border-white/5 bg-slate-900">
-        <p>&copy; 2026 VitaleGeo Project. Todos os direitos reservados.</p>
-            <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
 </body>
 </html>
+
+

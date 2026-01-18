@@ -4,26 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guerra de Números | VitaleGeo</title>
+    <meta name="description" content="Compare o PIB de países e descubra qual é o mais rico! Jogo educativo que ensina economia global e comparação de dados econômicos.">
+    <meta name="keywords" content="PIB, economia, países, jogo, quiz, comparação, geografia econômica">
+    <meta property="og:title" content="Guerra de Números | VitaleGeo">
+    <meta property="og:description" content="Compare o PIB de países e descubra qual é o mais rico!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/maior-menor">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/maior-menor">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        /* Efeito de sobreposição escura nas imagens */
-        .card-bg {
-            transition: transform 0.5s ease;
-        }
-        .game-card:hover .card-bg {
-            transform: scale(1.05);
-        }
-        .vs-badge {
-            box-shadow: 0 0 0 8px #0f172a; /* Cria borda falsa misturando com fundo */
-        }
-    </style>
 </head>
 <body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden selection:bg-yellow-500 selection:text-black">
 
-    <a href="/jogos" class="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest z-20">
-        <i class="ph-bold ph-arrow-left"></i> Voltar
-    </a>
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="absolute top-24 right-6 z-30">
+        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
 
     <div class="text-center mb-8 relative z-10">
         <h1 class="text-2xl font-bold uppercase tracking-tighter text-white">Quem é mais rico?</h1>
@@ -33,7 +50,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row w-full max-w-5xl h-[60vh] md:h-[500px] relative">
+    <div class="flex flex-col md:flex-row w-full max-w-5xl h-[60vh] md:h-[500px] relative pt-28">
         
         <div class="game-card w-full md:w-1/2 h-full relative overflow-hidden bg-slate-800 border-b-2 md:border-b-0 md:border-r-2 border-slate-900 group">
             <img id="left-img" src="" class="card-bg absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition">
@@ -207,5 +224,20 @@
         // Inicia o jogo
         initGame();
     </script>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 </body>
 </html>
+
+
+

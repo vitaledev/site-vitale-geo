@@ -7,6 +7,7 @@
     <title>Principado de Sealand: A Menor Nação do Mundo | Blog VitaleGeo</title>
     <meta name="description" content="Conheça a história da plataforma antiaérea que virou um país independente (pelo menos eles dizem que sim).">
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
@@ -26,57 +27,33 @@
             }
         }
     </script>
-
-    <style>
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        /* EFEITO DE PAPEL VELHO/OFICIAL */
-        .official-paper {
-            background-color: #fdfbf7;
-            color: #1f2937;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            border: 1px solid #d1d5db;
-        }
-
-        /* CARIMBO (Stamp Effect) */
-        .stamp {
-            transform: rotate(-12deg);
-            color: #dc2626; /* Vermelho */
-            border: 0.25rem solid #dc2626;
-            display: inline-block;
-            padding: 0.25rem 1rem;
-            text-transform: uppercase;
-            border-radius: 1rem;
-            font-family: 'Courier Prime', monospace;
-            font-weight: 700;
-            font-size: 1.5rem;
-            opacity: 0; /* Começa invisível */
-            mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png'); /* Efeito falhado */
-            mask-size: 944px 604px;
-            mix-blend-mode: multiply;
-        }
-
-        .stamp-visible {
-            animation: stampIn 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335) forwards;
-        }
-
-        @keyframes stampIn {
-            0% { opacity: 0; transform: scale(3) rotate(-12deg); }
-            100% { opacity: 0.8; transform: scale(1) rotate(-12deg); }
-        }
-    </style>
 </head>
 <body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoRed selection:text-white">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="/blog" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
-                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
             </a>
-            <a href="https://vitalegeo.com.br/" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
         </div>
     </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        </a>
+    </div>
 
     <main class="pt-28 pb-20 px-4 min-h-screen flex justify-center">
         
@@ -176,13 +153,18 @@
         </div>
     </main>
 
-    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
-        <p class="uppercase tracking-widest mb-2">VitaleGeo • Sealand Consulate</p>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
         <p>&copy; 2026 Todos os direitos reservados.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
     <script>
         function applyVisa(e) {
@@ -210,3 +192,5 @@
     </script>
 </body>
 </html>
+
+

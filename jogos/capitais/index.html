@@ -4,29 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missão Capital | VitaleGeo</title>
+    <meta name="description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos sobre capitais de países.">
+    <meta name="keywords" content="capitais, geografia, jogo, quiz, países, cidades">
+    <meta property="og:title" content="Missão Capital | VitaleGeo">
+    <meta property="og:description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/capitais">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/capitais">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        .flag-shadow {
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-        /* Animação de entrada */
-        .slide-in {
-            animation: slideIn 0.4s ease-out forwards;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
 </head>
 <body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 select-none overflow-hidden bg-slate-900">
 
-    <a href="/jogos" class="absolute top-6 left-6 flex items-center gap-2 text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest z-20">
-        <i class="ph-bold ph-arrow-left"></i> Voltar
-    </a>
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
 
-    <div class="w-full max-w-lg relative z-10">
+    <div class="absolute top-24 right-6 z-30">
+        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
+
+    <div class="w-full max-w-lg relative z-10 pt-28">
         
         <div class="text-center mb-8">
             <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4 animate-pulse">
@@ -213,5 +229,20 @@
 
         startGame();
     </script>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 </body>
 </html>
+
+
+

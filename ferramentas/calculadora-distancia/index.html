@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Rotas | VitaleGeo</title>
+    <meta name="description" content="Calcule a distancia entre dois pontos no globo.">
+    <meta property="og:title" content="Medidor de Rotas | VitaleGeo">
+    <meta property="og:description" content="Calcule a distancia entre dois pontos no globo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/calculadora-distancia">
+    <meta name="canonical" href="https://vitalegeo.com.br/ferramentas/calculadora-distancia">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="/" class="hover:text-white transition">Home</a>
+                <a href="/jogos" class="hover:text-white transition">Jogos</a>
+                <a href="/ferramentas" class="text-white border-b border-geoGold pb-1">Ferramentas</a>
+                <a href="/videos" class="hover:text-white transition">Videos</a>
+                <a href="/blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 right-6 z-30">
+        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
+
+    <main class="pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
+                <i class="ph-bold ph-path"></i> Ferramenta
+            </div>
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Medidor de Rotas</h1>
+            <p class="text-slate-400 max-w-2xl mb-10">
+                Calcule a distancia entre dois pontos usando coordenadas geograficas.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-serif text-white">Coordenadas</h2>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest">Haversine</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lat">Lat inicio</label>
+                            <input id="start-lat" type="number" step="0.0001" placeholder="-23.5505" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lng">Lon inicio</label>
+                            <input id="start-lng" type="number" step="0.0001" placeholder="-46.6333" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lat">Lat destino</label>
+                            <input id="end-lat" type="number" step="0.0001" placeholder="40.7128" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lng">Lon destino</label>
+                            <input id="end-lng" type="number" step="0.0001" placeholder="-74.0060" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                    </div>
+
+                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="speed">Velocidade media (km/h)</label>
+                    <input id="speed" type="number" step="1" placeholder="800" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6">
+
+                    <button id="btn-calc" class="bg-geoGold text-geoNavy text-xs font-bold px-4 py-2 rounded uppercase hover:bg-white transition shadow-lg">
+                        Calcular
+                    </button>
+                </div>
+
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <h2 class="text-xl font-serif text-white mb-4">Resultado</h2>
+                    <div class="space-y-3" id="result-box"></div>
+                    <p id="result-empty" class="text-sm text-slate-500">Informe os pontos para calcular.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
+
+    <script>
+        const startLat = document.getElementById('start-lat');
+        const startLng = document.getElementById('start-lng');
+        const endLat = document.getElementById('end-lat');
+        const endLng = document.getElementById('end-lng');
+        const speed = document.getElementById('speed');
+        const resultBox = document.getElementById('result-box');
+        const resultEmpty = document.getElementById('result-empty');
+
+        const toRad = (deg) => deg * Math.PI / 180;
+
+        const haversineKm = (lat1, lon1, lat2, lon2) => {
+            const R = 6371;
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon / 2) ** 2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        };
+
+        const formatTime = (hours) => {
+            if (!isFinite(hours)) return 'n/a';
+            const h = Math.floor(hours);
+            const m = Math.round((hours - h) * 60);
+            if (h <= 0) return `${m} min`;
+            return `${h} h ${m} min`;
+        };
+
+        const buildResult = () => {
+            const lat1 = parseFloat(startLat.value);
+            const lon1 = parseFloat(startLng.value);
+            const lat2 = parseFloat(endLat.value);
+            const lon2 = parseFloat(endLng.value);
+            if ([lat1, lon1, lat2, lon2].some(n => Number.isNaN(n))) return;
+
+            const km = haversineKm(lat1, lon1, lat2, lon2);
+            const mi = km * 0.621371;
+            const nm = km * 0.539957;
+            const spd = parseFloat(speed.value);
+            const eta = spd && spd > 0 ? formatTime(km / spd) : 'n/a';
+
+            resultEmpty.classList.add('hidden');
+            resultBox.innerHTML = `
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Distancia</div>
+                    <div class="text-lg font-bold text-white">${km.toFixed(2)} km</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas</div>
+                    <div class="text-lg font-bold text-white">${mi.toFixed(2)} mi</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas nauticas</div>
+                    <div class="text-lg font-bold text-white">${nm.toFixed(2)} nm</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Tempo estimado</div>
+                    <div class="text-lg font-bold text-geoGold">${eta}</div>
+                </div>
+            `;
+        };
+
+        document.getElementById('btn-calc').addEventListener('click', buildResult);
+    </script>
+</body>
+</html>
+
+
+

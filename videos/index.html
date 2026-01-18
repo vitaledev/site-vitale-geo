@@ -6,6 +6,7 @@
     <title>VitaleGeo TV | Galeria Tática</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
@@ -21,24 +22,6 @@
             }
         }
     </script>
-
-    <style>
-        .bg-grid-pattern { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .video-glow:hover { box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
-        
-        /* Modal Animation */
-        #video-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        #video-modal.hidden-modal { opacity: 0; visibility: hidden; pointer-events: none; }
-        #video-modal.visible-modal { opacity: 1; visibility: visible; pointer-events: auto; }
-
-        .modal-grid-bg {
-            background-image: 
-                linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-    </style>
 </head>
 <body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
 
@@ -119,13 +102,18 @@
         </div>
     </section>
 
-    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
-        <p class="uppercase tracking-widest mb-2">VitaleGeo • Galeria</p>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
         <p>&copy; 2026 Todos os direitos reservados.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
     <script src="/assets/js/videos.js"></script>
 
@@ -229,3 +217,5 @@
     </script>
 </body>
 </html>
+
+

@@ -7,6 +7,7 @@
     <title>Arquivo Confidencial: O que escondem na Área 51? | Blog VitaleGeo</title>
     <meta name="description" content="Relatório desclassificado sobre a base militar mais secreta do mundo. Passe o mouse para revelar os segredos.">
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
@@ -35,67 +36,33 @@
             }
         }
     </script>
-
-    <style>
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        /* O EFEITO DE TARJA PRETA */
-        .confidencial {
-            background-color: #000;
-            color: transparent; /* Texto invisível */
-            cursor: help;
-            border-radius: 2px;
-            padding: 0 6px;
-            margin: 0 2px;
-            position: relative;
-            transition: all 0.4s ease;
-            user-select: none; /* Impede selecionar o texto antes de revelar */
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
-            font-family: 'Courier New', monospace; /* Fonte monoespaçada para parecer datilografado */
-            letter-spacing: -1px;
-        }
-
-        /* A "Capa" da Tarja */
-        .confidencial::after {
-            content: "TOP SECRET";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            color: #333;
-            font-size: 9px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 1px;
-            opacity: 1;
-            transition: opacity 0.2s ease;
-        }
-
-        /* Quando passa o mouse (Revelação) */
-        .confidencial:hover {
-            color: #f59e0b; /* Texto vira Dourado */
-            background-color: rgba(255,255,255,0.05);
-            letter-spacing: normal;
-        }
-        
-        .confidencial:hover::after {
-            opacity: 0; /* Tarja some */
-        }
-    </style>
 </head>
 <body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="/blog" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
-                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
             </a>
-            <a href="https://vitalegeo.com.br/" class="text-geoGold font-serif font-bold text-lg">VitaleGeo</a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
         </div>
     </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        </a>
+    </div>
 
     <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
         <div class="max-w-3xl mx-auto text-center">
@@ -201,13 +168,20 @@
         </div>
     </section>
 
-    <footer class="bg-geoNavy py-10 text-center text-xs text-slate-500 border-t border-white/5">
-        <p class="uppercase tracking-widest mb-2">VitaleGeo • Top Secret Clearance</p>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
         <p>&copy; 2026 Todos os direitos reservados.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
 </body>
 </html>
+
+

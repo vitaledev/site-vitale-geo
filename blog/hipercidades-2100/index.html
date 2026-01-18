@@ -7,6 +7,7 @@
     <meta name="description" content="O crepúsculo das nações e a alvorada das hipercidades. Como viveremos com 80 milhões de vizinhos?">
     
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -30,53 +31,34 @@
             }
         }
     </script>
-
-    <style>
-        /* Fundo Grid Futurista */
-        body {
-            background-color: #020617;
-            background-image: linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #cbd5e1;
-        }
-
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.05);
-        }
-
-        /* Barra de Progresso Animada */
-        .load-bar {
-            width: 0%;
-            animation: load 2s ease-out forwards;
-        }
-        @keyframes load { to { width: var(--width); } }
-
-        /* Efeito de Scanner na imagem */
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: #06b6d4;
-            opacity: 0.6;
-            box-shadow: 0 0 10px #06b6d4;
-            animation: scan 4s linear infinite;
-        }
-        @keyframes scan { 0% { top: 0%; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
-    </style>
 </head>
 <body class="font-sans antialiased selection:bg-neonCyan selection:text-black">
 
-    <nav class="fixed w-full z-40 top-0 border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="../../index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-neonCyan transition group font-mono">
-                <i class="ph-bold ph-caret-left group-hover:-translate-x-1 transition"></i> Retornar
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
             </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        </a>
+    </div>
+
             <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 <span class="text-xs font-mono text-slate-500">SYSTEM: ONLINE</span>
@@ -252,13 +234,18 @@
         </div>
     </main>
 
-    <footer class="py-12 text-center text-xs font-mono text-slate-600 border-t border-slate-900 mt-20">
-        <p>VITALE-GEO SYSTEM // VER 2.1.0</p>
-        <p class="mt-2">&copy; 2026 Agnaldo Vitale. All streams secured.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
     <script>
         function joinCity(e) {
@@ -279,3 +266,5 @@
     </script>
 </body>
 </html>
+
+

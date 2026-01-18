@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Missão Capital | Descubra as Capitais do Mundo | VitaleGeo</title>
+    <meta name="description" content="Descubra as capitais de cada país! Jogo geográfico interativo que desafia seu conhecimento sobre cidades-capital ao redor do mundo.">
+    <meta name="keywords" content="capitais, geografia, jogo, quiz, países, cidades, educativo">
+    <meta property="og:title" content="Missão Capital | VitaleGeo">
+    <meta property="og:description" content="Descubra as capitais de cada país com esse jogo educativo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/capitais">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/capitais">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar aos Jogos
+        </a>
+    </div>
+
+    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-blue-900/30 border border-blue-500/30 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-6">
+                <i class="ph-fill ph-map-pin"></i> Jogo Educativo
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Missão Capital
+            </h1>
+
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+                Você conhece as capitais do mundo? Identifique qual é a capital de cada país e teste seus conhecimentos geográficos neste desafio interativo!
+            </p>
+
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-6 py-3 rounded font-bold hover:bg-white transition shadow-lg">
+                    <i class="ph-fill ph-play"></i> Jogar Agora
+                </a>
+                <a href="../index.html" class="inline-flex items-center gap-2 border border-slate-500 text-slate-300 px-6 py-3 rounded font-bold hover:border-white hover:text-white transition">
+                    <i class="ph-fill ph-list"></i> Todos os Jogos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-20">
+        <article class="prose prose-invert max-w-none">
+            <h2>Como Jogar</h2>
+            <p>O jogo exibe a bandeira de um país e você deve identificar qual é sua capital. São 4 opções e você precisa acertar para ganhar pontos. Quanto mais acertos consecutivos, melhor sua pontuação!</p>
+
+            <h2>Por Que Aprender Capitais?</h2>
+            <ul>
+                <li><strong>Conhecimento Geopolítico:</strong> As capitais são centros políticos, econômicos e culturais dos países</li>
+                <li><strong>Compreensão Global:</strong> Entender a geografia política ajuda a compreender as relações internacionais</li>
+                <li><strong>Memória Aprimorada:</strong> Memorizar capitais exercita seu cérebro de forma divertida</li>
+                <li><strong>Cultura Geral:</strong> Aumento do conhecimento sobre a diversidade cultural mundial</li>
+            </ul>
+
+            <h2>Curiosidades sobre Capitais</h2>
+            <p>Nem sempre a maior cidade de um país é sua capital! Exemplo: São Paulo é a maior cidade do Brasil, mas Brasília é a capital. Outros casos curiosos incluem países que mudaram suas capitais ao longo da história por razões políticas ou estratégicas.</p>
+
+            <blockquote>
+                <p>"Conhecer as capitais é conhecer os corações políticos do mundo." - VitaleGeo</p>
+            </blockquote>
+
+            <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 mt-12 text-center">
+                <h3 class="text-white mb-2">Você consegue acertar todas?</h3>
+                <p class="text-slate-300 mb-4">Descubra seu nível geográfico agora!</p>
+                <a href="./index.html" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy px-6 py-3 rounded font-bold hover:bg-white transition shadow-lg">
+                    <i class="ph-fill ph-play"></i> Iniciar Jogo
+                </a>
+            </div>
+        </article>
+    </main>
+
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+

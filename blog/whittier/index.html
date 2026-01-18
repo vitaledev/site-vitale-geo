@@ -7,6 +7,7 @@
     <title>Whittier: A Cidade de Um Prédio Só | Blog VitaleGeo</title>
     <meta name="description" content="Bem-vindo a Begich Towers, onde a delegacia, o correio e sua casa ficam no mesmo elevador.">
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
@@ -29,64 +30,33 @@
             }
         }
     </script>
-
-    <style>
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        /* EFEITO DE MONITOR ANTIGO (Scanlines) */
-        body::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-            background-size: 100% 4px;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        /* Animação de Luz Piscando (Frio Extremo) */
-        .flicker {
-            animation: flickerAnimation 3s infinite;
-        }
-        @keyframes flickerAnimation {
-            0%   { opacity: 1; }
-            3%   { opacity: 0.4; }
-            6%   { opacity: 1; }
-            7%   { opacity: 0.4; }
-            8%   { opacity: 1; }
-            9%   { opacity: 1; }
-            10%  { opacity: 0.1; }
-            11%  { opacity: 1; }
-            100% { opacity: 1; }
-        }
-
-        /* Botão do Elevador */
-        .elevator-btn {
-            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
-            transition: all 0.2s;
-        }
-        .elevator-btn:hover {
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
-            transform: scale(1.05);
-        }
-        .elevator-btn.active {
-            background-color: #0ea5e9;
-            color: #0f172a;
-            box-shadow: 0 0 15px #0ea5e9;
-        }
-    </style>
 </head>
 <body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-led selection:text-white">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="/blog" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
-                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
             </a>
-            <a href="https://vitalegeo.com.br/" class="text-led font-mono text-lg tracking-widest">SYS.VITALE.GEO</a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
         </div>
     </nav>
+
+    <div class="fixed top-24 left-6 z-30">
+        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
+        </a>
+    </div>
 
     <div class="fixed top-16 left-0 w-full bg-slate-800/90 border-b border-white/5 z-30 backdrop-blur font-mono text-xs md:text-sm py-2 px-4 flex justify-between items-center text-slate-400 shadow-lg">
         <div class="flex gap-4">
@@ -183,13 +153,18 @@
 
     </main>
 
-    <footer class="bg-slate-950 py-10 text-center text-xs text-slate-600 font-mono border-t border-white/5">
-        <p class="uppercase tracking-widest mb-2">SYSTEM.END_OF_FILE</p>
-        <p>&copy; 2026 Begich Towers Management.</p>
-        <a href="/politica/" class="hover:text-white transition underline">Pol?tica de Privacidade</a>
-        <a href="/sobre/" class="hover:text-geoGold transition uppercase tracking-wider">Sobre o Projeto</a>
-        <span class="text-slate-700">?</span>
-</footer>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 
     <script>
         function scrollToId(id) {
@@ -212,3 +187,5 @@
     </script>
 </body>
 </html>
+
+

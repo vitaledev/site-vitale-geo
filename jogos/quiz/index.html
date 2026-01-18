@@ -3,13 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Geopolítico</title>
+    <title>Quiz Geopolítico | VitaleGeo</title>
+    <meta name="description" content="Desafio geopolítico! Responda perguntas sobre geografia, história e política global. Teste seus conhecimentos de inteligência geopolítica.">
+    <meta name="keywords" content="quiz, geopolítica, geografia, história, inteligência, jogo">
+    <meta property="og:title" content="Quiz Geopolítico | VitaleGeo">
+    <meta property="og:description" content="Desafio geopolítico! Responda perguntas sobre geografia, história e política global.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/quiz">
+    <meta name="canonical" href="https://vitalegeo.com.br/jogos/quiz">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 selection:bg-yellow-500 selection:text-black">
 
-    <div class="max-w-lg w-full bg-slate-800 border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="../../index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition">Home</a>
+                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
+                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
+                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <div class="absolute top-24 right-6 z-30">
+        <a href="../../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
+
+    <div class="max-w-lg w-full bg-slate-800 border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden mt-24">
         <div class="absolute top-0 left-0 w-full h-1 bg-slate-700">
             <div id="progress" class="h-full bg-yellow-500 w-0 transition-all duration-300"></div>
         </div>
@@ -105,5 +138,20 @@
 
         loadQuestion();
     </script>
+                <footer class="site-footer">
+        <div class="site-footer__social">
+            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
+            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
+        </div>
+        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p>&copy; 2026 Todos os direitos reservados.</p>
+        <div class="site-footer__links">
+            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/sobre/">Sobre o Projeto</a>
+        </div>
+    </footer>
 </body>
 </html>
+
+
+
