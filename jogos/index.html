@@ -23,7 +23,7 @@
         }
     </script>
 </head>
-<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy page-shell">
 
 
 
@@ -46,6 +46,7 @@
         </div>
     </nav>
 
+    <main class="page-content">
     <header class="pt-48 pb-24 px-6 text-center border-b border-white/5 relative overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-geoBlue/10 blur-[120px] -z-10 rounded-full pointer-events-none"></div>
         <div class="max-w-4xl mx-auto relative z-10">
@@ -66,6 +67,7 @@
             <div class="col-span-full text-center text-slate-500 animate-pulse">Carregando Arcade...</div>
         </div>
     </section>
+    </main>
 
                 <footer class="site-footer">
         <div class="site-footer__social">
@@ -109,13 +111,20 @@
                     // É um ícone do Phosphor
                     iconHTML = `<i class="${game.icon} text-8xl text-slate-700 group-hover:text-geoGold/20 transition duration-500"></i>`;
                 }
+                                const coverHTML = game.cover
+                    ? `<img src="${game.cover}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-105">`
+                    : iconHTML;
+                const coverOverlay = game.cover
+                    ? `<div class="absolute inset-0 bg-gradient-to-t from-geoNavy/80 via-geoNavy/20 to-transparent"></div>`
+                    : '';
                 // -----------------------------
 
                 container.innerHTML += `
                     <a href="${cleanLink}" class="group cursor-pointer relative bg-geoPaper border border-white/5 p-4 rounded-2xl hover:border-geoGold transition duration-300 shadow-2xl hover:-translate-y-2">
                         <div class="aspect-[4/3] bg-slate-800 rounded-xl overflow-hidden relative mb-4 flex items-center justify-center">
                             
-                            ${iconHTML}
+                            ${coverHTML}
+                            ${coverOverlay}
 
                             <div class="absolute bottom-4 left-4">
                                 <h3 class="text-2xl font-bold text-white group-hover:text-geoGold transition drop-shadow-md">${game.titulo}</h3>
@@ -134,7 +143,28 @@
             container.innerHTML = '<p class="text-center text-red-500 col-span-full">Erro: Crie o arquivo assets/js/game.js</p>';
         }
     </script>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
 </body>
 </html>
+
+
 
 

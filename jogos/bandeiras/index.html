@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body class="text-white font-sans flex flex-col items-center justify-center min-h-screen p-4 select-none bg-slate-900">
+<body class="text-white font-sans min-h-screen page-shell p-4 select-none bg-slate-900">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -42,6 +42,7 @@
         </a>
     </div>
 
+    <main class="page-content flex flex-col items-center justify-center w-full">
     <div class="text-center w-full max-w-md relative z-0 pt-28">
         <div class="mb-8 relative flex flex-col items-center">
             <span class="text-yellow-500 font-bold tracking-widest text-xs uppercase mb-4">Identifique o País</span>
@@ -63,6 +64,7 @@
 
         <p id="feedback" class="h-8 mt-6 text-sm font-bold uppercase tracking-widest text-slate-500"></p>
     </div>
+    </main>
 
     <script>
         // BANCO DE DADOS (Nome + Código ISO para buscar a imagem)
@@ -189,8 +191,28 @@
             <a href="/sobre/">Sobre o Projeto</a>
         </div>
     </footer>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
 </body>
 </html>
+
 
 
 

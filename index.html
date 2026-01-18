@@ -24,7 +24,7 @@
         }
     </script>
 </head>
-<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy page-shell">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -113,7 +113,7 @@
             </a>
         </div>
 
-        <div id="home-tools-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div id="home-tools-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
             </div>
     </section>
 
@@ -129,12 +129,12 @@
                 </a>
             </div>
 
-            <div id="home-games-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div id="home-games-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 </div>
         </div>
     </section>
 
-                <footer class="site-footer">
+    <footer class="site-footer">
         <div class="site-footer__social">
             <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
             <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
@@ -146,6 +146,26 @@
             <a href="/sobre/">Sobre o Projeto</a>
         </div>
     </footer>
+
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <script src="assets/js/posts.js"></script>
     <script src="assets/js/videos.js"></script>
@@ -205,11 +225,17 @@
         // --- 3. RENDERIZAR FERRAMENTAS (Top 4 de toolsDB) ---
         const toolsContainer = document.getElementById('home-tools-grid');
         if (typeof toolsDB !== 'undefined' && toolsDB.length > 0) {
-            toolsDB.slice(0, 4).forEach(item => {
+            toolsDB.slice(0, 3).forEach(item => {
                 let link = item.link.includes('ferramentas/') ? item.link : `/ferramentas/${item.link}`;
+                const coverHTML = item.cover
+                    ? `<div class="w-full h-48 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60">
+                            <img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-80">
+                       </div>`
+                    : '';
                 toolsContainer.innerHTML += `
                     <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-blue-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
-                        <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-blue-400 transition shrink-0">
+                        ${coverHTML}
+                        <div class="hidden">
                             ${getIconHTML(item.icon)}
                         </div>
                         <div><h4 class="font-bold text-white text-sm group-hover:text-blue-400 transition leading-tight">${item.titulo}</h4></div>
@@ -220,11 +246,17 @@
         // --- 4. RENDERIZAR JOGOS (Top 4 de gamesDB) ---
         const gamesContainer = document.getElementById('home-games-grid');
         if (typeof gamesDB !== 'undefined' && gamesDB.length > 0) {
-            gamesDB.slice(0, 4).forEach(item => {
+            gamesDB.slice(0, 3).forEach(item => {
                 let link = item.link.includes('jogos/') ? item.link : `/jogos/${item.link}`;
+                const coverHTML = item.cover
+                    ? `<div class="w-full h-48 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60">
+                            <img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-80">
+                       </div>`
+                    : '';
                 gamesContainer.innerHTML += `
                     <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-green-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
-                        <div class="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-400 transition shrink-0">
+                        ${coverHTML}
+                        <div class="hidden">
                             ${getIconHTML(item.icon)}
                         </div>
                         <div><h4 class="font-bold text-white text-sm group-hover:text-green-400 transition leading-tight">${item.titulo}</h4></div>
@@ -232,8 +264,25 @@
             });
         }
     </script>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
 </body>
 </html>
-
-
 

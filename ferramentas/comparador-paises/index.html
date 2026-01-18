@@ -44,7 +44,7 @@
         body, html {
             margin: 0; padding: 0; height: 100%; width: 100%;
             font-family: var(--font); background: #1a1a1a; color: var(--primary);
-            overflow: hidden; overscroll-behavior: none;
+            overflow-x: hidden; overflow-y: auto; overscroll-behavior: none;
         }
 
         #map { height: 100%; width: 100%; z-index: 1; background: #cdcfcd; outline: none; }
@@ -186,7 +186,7 @@
         .modal-close-btn { float: right; background: var(--primary); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; margin-top: 15px; font-weight: 600; }
     </style>
 </head>
-<body>
+<body class="page-shell">
 
     <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -213,6 +213,7 @@
         </a>
     </div>
 
+    <main class="page-content">
     <div id="map"></div>
 
     <div class="ui-container" id="ui-container">
@@ -284,6 +285,7 @@
             <button class="modal-close-btn" id="modal-close">Fechar</button>
         </div>
     </div>
+    </main>
 
     <!-- Script -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -653,7 +655,27 @@
             <a href="/sobre/">Sobre o Projeto</a>
         </div>
     </footer>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
 </body>
 </html>
+
 
 
