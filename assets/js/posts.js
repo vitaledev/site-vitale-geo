@@ -3,6 +3,14 @@
 
 const blogPosts = [
     {
+        titulo: "O Círculo de Valeriepieris: Onde Vive Metade da Humanidade",
+        categoria: "Demografia",
+        data: "14 Fev 2026",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Valeriepieris_Circle.jpg",
+        link: "circulo-valeriepieris/",
+        resumo: "Um círculo de 4.000 km no Sudeste Asiático concentra mais gente do que todo o resto do planeta. Entenda por quê."
+    },
+    {
         titulo: "Fusos Horários da Rússia: 11 Relógios em um País",
         categoria: "Cartografia",
         data: "18 Jan 2026",
