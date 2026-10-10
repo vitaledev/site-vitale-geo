@@ -6,7 +6,7 @@ const blogPosts = [
         titulo: "O Gigante Encurralado: Por que a Etiópia Busca Desesperadamente o Mar?",
         categoria: "Geopolítica",
         data: "10 Out 2026",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Horn_of_Africa_map.png/800px-Horn_of_Africa_map.png",
+        img: "/assets/img/blog/etiopia-sem-mar.jpg",
         link: "etiopia-sem-mar/",
         resumo: "Com mais de 125 milhões de habitantes, a Etiópia é o país sem litoral mais populoso do mundo. Entenda a crise que ameaça o Chifre da África."
     },
