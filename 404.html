@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/404.html/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Território Não Mapeado | VitaleGeo</title>
+    <meta name="description" content="Coordenadas não encontradas. Esta página não existe em nossos registros cartográficos.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#0f172a',
+                        geoBlue: '#3b82f6',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+
+</head>
+<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy min-h-screen flex flex-col justify-between">
+
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
+                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
+                <a href="/" class="hover:text-white transition">Home</a>
+                <a href="/jogos" class="hover:text-white transition">Jogos</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/blog" class="hover:text-white transition">Blog</a>
+            </div>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center px-6 pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute w-[500px] h-[500px] bg-geoGold/5 blur-[140px] -z-10 rounded-full pointer-events-none"></div>
+
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-400 text-xs font-mono font-bold uppercase tracking-widest mb-6">
+                <i class="ph-bold ph-compass"></i> Anomalia Cartográfica // Erro 404
+            </div>
+
+            <h1 class="text-7xl md:text-9xl font-serif font-bold text-white mb-4 tracking-tighter">
+                4<span class="text-geoGold">0</span>4
+            </h1>
+
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-4">
+                Território Não Mapeado
+            </h2>
+
+            <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-lg mx-auto">
+                As coordenadas solicitadas não constam em nossos arquivos. O local pode ter sido movido, renomeado ou simplesmente nunca existiu.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/" class="inline-flex items-center gap-2 bg-geoGold text-geoNavy font-bold px-6 py-3 rounded-lg hover:bg-white transition shadow-lg text-sm uppercase tracking-wider">
+                    <i class="ph-bold ph-arrow-left"></i> Retornar à Base
+                </a>
+                <a href="/blog" class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 text-white font-bold px-6 py-3 rounded-lg hover:bg-slate-700 transition text-sm uppercase tracking-wider">
+                    <i class="ph-bold ph-newspaper"></i> Explorar o Blog
+                </a>
+                <a href="/jogos" class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 text-white font-bold px-6 py-3 rounded-lg hover:bg-slate-700 transition text-sm uppercase tracking-wider">
+                    <i class="ph-bold ph-game-controller"></i> Jogar no Arcade
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 py-8 text-center text-xs text-slate-500 font-mono">
+        VitaleGeo // Arquivo de Inteligência Geográfica
+    </footer>
+
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
+

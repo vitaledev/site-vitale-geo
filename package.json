@@ -1,0 +1,19 @@
+{
+  "name": "vitale-geo",
+  "version": "1.0.0",
+  "description": "Portal VitaleGeo - Inteligência Geográfica",
+  "main": "gerar_sitemap.js",
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "sitemap": "node gerar_sitemap.js",
+    "check": "node -e \"console.log('Validando sitemap...'); require('./gerar_sitemap.js');\""
+  },
+  "keywords": [
+    "geografia",
+    "geopolitica",
+    "jogos",
+    "vitalegeo"
+  ],
+  "author": "Agnaldo Batista (vitaledev)",
+  "license": "MIT"
+}
