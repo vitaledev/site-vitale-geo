@@ -442,3 +442,67 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* ===================================================================
+   COMPONENTES E ELEMENTOS DOS ARTIGOS DE BLOG
+   =================================================================== */
+
+.lead-card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.fact-grid, .info-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.fact-card, .info-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+}
+
+.section-rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.6), transparent);
+    margin: 3rem 0;
+}
+
+.figure-frame, .inline-figure {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(2, 6, 23, 0.6);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.image-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.callout, .pull-quote {
+    border-left: 4px solid var(--accent-gold);
+    background: rgba(245, 158, 11, 0.08);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+}
+
+.confidencial {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+

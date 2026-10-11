@@ -18,13 +18,30 @@ interface Props {
 export default function HomeBlogFilter({ posts }: Props) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
-  const categories = [
-    { id: 'all', label: 'Todos', icon: 'ph-bold ph-squares-four' },
-    { id: 'Fronteiras', label: 'Fronteiras', icon: 'ph-bold ph-compass' },
-    { id: 'Geopolítica', label: 'Geopolítica', icon: 'ph-bold ph-globe' },
-    { id: 'Curiosidades', label: 'Curiosidades', icon: 'ph-bold ph-lightbulb' },
-    { id: 'Anomalias', label: 'Anomalias', icon: 'ph-bold ph-warning-circle' },
-  ];
+  const categoryIcons: Record<string, string> = {
+    all: 'ph-bold ph-squares-four',
+    fronteiras: 'ph-bold ph-compass',
+    'geopolítica': 'ph-bold ph-globe',
+    curiosidades: 'ph-bold ph-lightbulb',
+    cartografia: 'ph-bold ph-map-trifold',
+    urbanismo: 'ph-bold ph-buildings',
+  };
+
+  const categories = React.useMemo(() => {
+    const counts: Record<string, number> = {};
+    posts.forEach(p => {
+      counts[p.categoria] = (counts[p.categoria] || 0) + 1;
+    });
+    const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]).slice(0, 5);
+    return [
+      { id: 'all', label: 'Todos', icon: 'ph-bold ph-squares-four' },
+      ...sorted.map(cat => ({
+        id: cat,
+        label: cat,
+        icon: categoryIcons[cat.toLowerCase()] || 'ph-bold ph-tag'
+      }))
+    ];
+  }, [posts]);
 
   const filtered = activeCategory === 'all'
     ? posts.slice(0, 6)
