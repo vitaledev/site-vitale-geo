@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -20,7 +20,7 @@
                 extend: {
                     fontFamily: { 
                         sans: ['Inter', 'sans-serif'], 
-                        serif: ['Playfair Display', 'serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
                     },
                     colors: { geoBg: '#090a0f', geoCard: '#11131a', geoGold: '#f59e0b' }
@@ -31,12 +31,25 @@
 </head>
 <body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
 
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-4xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group text-sm font-medium text-slate-400 hover:text-white transition">
-                <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Início
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
-            <span class="text-white font-serif font-bold text-lg">Vitale<span class="text-amber-400">Geo</span></span>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-white transition">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="text-white">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            </a>
         </div>
     </nav>
 
@@ -44,7 +57,7 @@
         <div class="max-w-3xl mx-auto">
             
             <header class="mb-16">
-                <h1 class="text-4xl sm:text-6xl font-serif font-normal text-white leading-tight mb-6">
+                <h1 class="text-4xl sm:text-6xl font-heading font-normal text-white leading-tight mb-6">
                     Decodificando as fronteiras invisíveis do planeta.
                 </h1>
                 <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
@@ -54,7 +67,7 @@
 
             <div class="space-y-12 text-slate-300 text-base sm:text-lg leading-relaxed border-t border-white/5 pt-12">
                 <div>
-                    <h2 class="text-2xl font-serif text-white mb-3">O Propósito</h2>
+                    <h2 class="text-2xl font-heading text-white mb-3">O Propósito</h2>
                     <p>
                         A maioria das pessoas cresceu olhando para mapas bidimensionais que distorcem continentes inteiros através da projeção de Mercator e simplificam disputas territoriais complexas em cores uniformes. Criamos o VitaleGeo para investigar anomalias cartográficas, enclaves soberanos, chokepoints navais e cidades divididas por tratados que os livros escolares costumam ignorar.
                     </p>
@@ -63,25 +76,25 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
                     <div class="minimal-card p-6">
                         <div class="text-amber-400 text-2xl mb-3"><i class="ph-duotone ph-globe-hemisphere-west"></i></div>
-                        <h3 class="text-lg font-serif text-white mb-2">Geopolítica</h3>
+                        <h3 class="text-lg font-heading text-white mb-2">Geopolítica</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Tratados históricos, fluxos de energia e disputas marítimas estratégicas.</p>
                     </div>
 
                     <div class="minimal-card p-6">
                         <div class="text-sky-400 text-2xl mb-3"><i class="ph-duotone ph-compass"></i></div>
-                        <h3 class="text-lg font-serif text-white mb-2">Escala Real</h3>
+                        <h3 class="text-lg font-heading text-white mb-2">Escala Real</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Instrumentos interativos para comparar a área fidedigna de territórios sem distorções.</p>
                     </div>
 
                     <div class="minimal-card p-6">
                         <div class="text-emerald-400 text-2xl mb-3"><i class="ph-duotone ph-game-controller"></i></div>
-                        <h3 class="text-lg font-serif text-white mb-2">Simulação</h3>
+                        <h3 class="text-lg font-heading text-white mb-2">Simulação</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">Desafios de reconhecimento territorial para aprender e testar limites geopolíticos.</p>
                     </div>
                 </div>
 
                 <div>
-                    <h2 class="text-2xl font-serif text-white mb-3">Ecossistema Multimídia</h2>
+                    <h2 class="text-2xl font-heading text-white mb-3">Ecossistema Multimídia</h2>
                     <p>
                         Além dos dossiês escritos e ferramentas de mapa disponíveis neste portal, produzimos documentários e análises visuais de alta fidelidade para o canal parceiro <strong>Já Imaginou Isso</strong> no YouTube, combinando animação cartográfica 4K com rigor factual.
                     </p>
@@ -103,11 +116,22 @@
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="max-w-4xl mx-auto">
-            <p class="site-footer__brand font-serif text-base text-white">VitaleGeo</p>
+        <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
             <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <p class="text-[11px] text-slate-600 mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 

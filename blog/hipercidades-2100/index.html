@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Mapa Urbano de 2100 | VitaleGeo</title> 
-    <meta name="description" content="O crepúsculo das nações e a alvorada das hipercidades. Como viveremos com 80 milhões de vizinhos?">
+    <meta name="description" content="O crep�sculo das na��es e a alvorada das hipercidades. Como viveremos com 80 milh�es de vizinhos?">
     
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -19,7 +19,7 @@
                 extend: {
                     fontFamily: { 
                         sans: ['Inter', 'sans-serif'], 
-                        serif: ['Playfair Display', 'serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Courier Prime', 'monospace']
                     },
                     colors: { 
@@ -37,21 +37,24 @@
 </head>
 <body class="font-sans antialiased selection:bg-neonCyan selection:text-black">
 
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="../../index.html" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
-                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
-            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
-                <a href="../../index.html" class="hover:text-white transition">Home</a>
-                <a href="../../jogos" class="hover:text-white transition">Jogos</a>
-                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
-                <a href="../../blog" class="text-white border-b border-geoGold pb-1">Blog</a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">In�cio</a>
+                <a href="/blog" class="text-white">Dossi�s</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-white transition">Simula��es</a>
+                <a href="/videos" class="hover:text-white transition">V�deos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
             </div>
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
-                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
             </a>
         </div>
     </nav>
@@ -62,60 +65,53 @@
         </a>
     </div>
 
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-xs font-mono text-slate-500">SYSTEM: ONLINE</span>
-            </div>
-        </div>
-    </nav>
-
     <main class="pt-28 pb-20 px-4 min-h-screen flex justify-center">
         
         <div class="w-full max-w-3xl">
             
             <header class="mb-12 border-l-4 border-neonCyan pl-6 py-2">
                 <div class="flex items-center gap-2 text-neonCyan font-mono text-xs tracking-[0.3em] mb-2 uppercase">
-                    <i class="ph-bold ph-globe"></i> Geopolítica 2100
+                    <i class="ph-bold ph-globe"></i> Geopol�tica 2100
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-none">
-                    O Crepúsculo <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonPurple">das Nações</span>
+                    O Crep�sculo <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonPurple">das Na��es</span>
                 </h1>
                 <p class="text-lg text-slate-400 font-light border-t border-white/10 pt-4 mt-4">
-                    Por que o futuro da humanidade não será desenhado por fronteiras nacionais, mas por aglomerados urbanos de proporções inimagináveis.
+                    Por que o futuro da humanidade n�o ser� desenhado por fronteiras nacionais, mas por aglomerados urbanos de propor��es inimagin�veis.
                 </p>
             </header>
 
             <article class="prose prose-invert prose-lg max-w-none prose-headings:font-mono prose-headings:text-neonCyan prose-p:text-justify prose-a:text-neonPurple hover:prose-a:text-neonCyan">
                 
                 <p class="lead text-xl text-slate-200">
-                    Se pudéssemos viajar no tempo para o ano de 2100 e olhar para a Terra a partir da órbita, a primeira coisa que notaríamos não seriam as muralhas ou as fronteiras políticas desenhadas nos mapas do século XX. O que veríamos seriam manchas luminosas colossais, vastas teias de aranha de luz elétrica e fluxo de dados que ignoram limites geográficos.
+                    Se pud�ssemos viajar no tempo para o ano de 2100 e olhar para a Terra a partir da �rbita, a primeira coisa que notar�amos n�o seriam as muralhas ou as fronteiras pol�ticas desenhadas nos mapas do s�culo XX. O que ver�amos seriam manchas luminosas colossais, vastas teias de aranha de luz el�trica e fluxo de dados que ignoram limites geogr�ficos.
                 </p>
                 <p>
-                    A era dos Estados-Nação, tal como foi concebida na Paz de Vestfália em 1648, está dando lugar à <strong>Era das Megacidades</strong>.
+                    A era dos Estados-Na��o, tal como foi concebida na Paz de Vestf�lia em 1648, est� dando lugar � <strong>Era das Megacidades</strong>.
                 </p>
                 <p>
-                    Mas estas não são as metrópoles que conhecemos hoje. Nova York, Londres e até mesmo Tóquio parecerão vilarejos pitorescos em comparação com os titãs demográficos que estão emergindo no Sul Global. Estamos falando de organismos urbanos com 80, 90, talvez 100 milhões de habitantes. Cidades que consomem mais energia que países inteiros hoje, que possuem seus próprios climas, suas próprias economias e, crucialmente, seus próprios problemas existenciais.
+                    Mas estas n�o s�o as metr�poles que conhecemos hoje. Nova York, Londres e at� mesmo T�quio parecer�o vilarejos pitorescos em compara��o com os tit�s demogr�ficos que est�o emergindo no Sul Global. Estamos falando de organismos urbanos com 80, 90, talvez 100 milh�es de habitantes. Cidades que consomem mais energia que pa�ses inteiros hoje, que possuem seus pr�prios climas, suas pr�prias economias e, crucialmente, seus pr�prios problemas existenciais.
                 </p>
                 <p>
-                    Neste artigo, vamos desvendar a anatomia dessas futuras megacidades, explorando como a demografia, a tecnologia e a crise climática irão forjar a geografia do próximo século.
+                    Neste artigo, vamos desvendar a anatomia dessas futuras megacidades, explorando como a demografia, a tecnologia e a crise clim�tica ir�o forjar a geografia do pr�ximo s�culo.
                 </p>
 
                 <hr class="border-white/10 my-8">
 
-                <h3>1. A Grande Virada Demográfica: O Eixo Afro-Asiático</h3>
+                <h3>1. A Grande Virada Demogr�fica: O Eixo Afro-Asi�tico</h3>
                 <p>
-                    Durante os séculos XIX e XX, a urbanização foi sinônimo de ocidentalização. O crescimento explosivo de Londres durante a Revolução Industrial ou a ascensão dos arranha-céus de Nova York definiram o modelo de "cidade moderna". No final do século XX, o bastão foi passado para a Ásia Oriental (Tóquio, Xangai, Seul). No entanto, o século XXI guarda uma mudança drástica de latitude e longitude.
+                    Durante os s�culos XIX e XX, a urbaniza��o foi sin�nimo de ocidentaliza��o. O crescimento explosivo de Londres durante a Revolu��o Industrial ou a ascens�o dos arranha-c�us de Nova York definiram o modelo de "cidade moderna". No final do s�culo XX, o bast�o foi passado para a �sia Oriental (T�quio, Xangai, Seul). No entanto, o s�culo XXI guarda uma mudan�a dr�stica de latitude e longitude.
                 </p>
                 <p>
-                    O futuro é africano e sul-asiático. De acordo com projeções do Global Cities Institute e da ONU, as maiores cidades de 2100 não estarão na China, nos EUA ou na Europa (regiões que enfrentarão um severo inverno demográfico e encolhimento populacional).
+                    O futuro � africano e sul-asi�tico. De acordo com proje��es do Global Cities Institute e da ONU, as maiores cidades de 2100 n�o estar�o na China, nos EUA ou na Europa (regi�es que enfrentar�o um severo inverno demogr�fico e encolhimento populacional).
                 </p>
 
                 <div class="glass-panel p-6 rounded my-8 not-prose">
-                    <h4 class="font-mono text-neonCyan text-sm uppercase mb-4 border-b border-white/10 pb-2">Top Megacidades (Projeção 2100)</h4>
+                    <h4 class="font-mono text-neonCyan text-sm uppercase mb-4 border-b border-white/10 pb-2">Top Megacidades (Proje��o 2100)</h4>
                     
                     <div class="space-y-4 font-mono text-xs md:text-sm">
                         <div>
-                            <div class="flex justify-between mb-1"><span>LAGOS (Nigéria)</span> <span class="text-neonCyan">88M</span></div>
+                            <div class="flex justify-between mb-1"><span>LAGOS (Nig�ria)</span> <span class="text-neonCyan">88M</span></div>
                             <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-neonCyan h-full load-bar" style="--width: 95%"></div></div>
                         </div>
                         <div>
@@ -123,7 +119,7 @@
                             <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-neonPurple h-full load-bar" style="--width: 90%"></div></div>
                         </div>
                         <div>
-                            <div class="flex justify-between mb-1"><span>DAR ES SALAAM (Tanzânia)</span> <span class="text-emerald-400">73M</span></div>
+                            <div class="flex justify-between mb-1"><span>DAR ES SALAAM (Tanz�nia)</span> <span class="text-emerald-400">73M</span></div>
                             <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full load-bar" style="--width: 75%"></div></div>
                         </div>
                     </div>
@@ -131,80 +127,80 @@
 
                 <h4>O Caso de Lagos: A Nova "Capital do Mundo"?</h4>
                 <p>
-                    Lagos, na Nigéria, é o exemplo perfeito dessa transformação. Hoje já caótica e vibrante, projeta-se que ela se torne a maior cidade do mundo até o final do século, com uma população que pode ultrapassar 88 milhões de pessoas. Para colocar isso em perspectiva, é como colocar quase toda a população da Alemanha dentro de uma única mancha urbana.
+                    Lagos, na Nig�ria, � o exemplo perfeito dessa transforma��o. Hoje j� ca�tica e vibrante, projeta-se que ela se torne a maior cidade do mundo at� o final do s�culo, com uma popula��o que pode ultrapassar 88 milh�es de pessoas. Para colocar isso em perspectiva, � como colocar quase toda a popula��o da Alemanha dentro de uma �nica mancha urbana.
                 </p>
                 <p>
-                    Lagos não crescerá isolada. Ela será a âncora de um corredor urbano maciço que se estenderá de Abidjan (Costa do Marfim) até Lagos, atravessando Gana, Togo e Benin. Essa megalópole transnacional funcionará como uma única entidade econômica, desafiando a capacidade de governança de cinco países diferentes.
+                    Lagos n�o crescer� isolada. Ela ser� a �ncora de um corredor urbano maci�o que se estender� de Abidjan (Costa do Marfim) at� Lagos, atravessando Gana, Togo e Benin. Essa megal�pole transnacional funcionar� como uma �nica entidade econ�mica, desafiando a capacidade de governan�a de cinco pa�ses diferentes.
                 </p>
-                <p>Este deslocamento do eixo urbano tem implicações geopolíticas profundas. O centro de gravidade da economia global, da cultura jovem e da inovação de "frugalidade" (fazer muito com poucos recursos) estará nestas regiões.</p>
+                <p>Este deslocamento do eixo urbano tem implica��es geopol�ticas profundas. O centro de gravidade da economia global, da cultura jovem e da inova��o de "frugalidade" (fazer muito com poucos recursos) estar� nestas regi�es.</p>
 
-                <h3>2. A Engenharia da Sobrevivência: Infraestrutura 4.0</h3>
+                <h3>2. A Engenharia da Sobreviv�ncia: Infraestrutura 4.0</h3>
                 <p>
-                    Como gerenciar o esgoto, a energia, o transporte e a alimentação de 80 milhões de pessoas em um espaço confinado? A resposta reside na fusão total entre a infraestrutura física e digital. A "Smart City" de hoje, com seus sensores de estacionamento e Wi-Fi público, é apenas um protótipo primitivo.
+                    Como gerenciar o esgoto, a energia, o transporte e a alimenta��o de 80 milh�es de pessoas em um espa�o confinado? A resposta reside na fus�o total entre a infraestrutura f�sica e digital. A "Smart City" de hoje, com seus sensores de estacionamento e Wi-Fi p�blico, � apenas um prot�tipo primitivo.
                 </p>
                 
                 <ul class="list-none pl-0 space-y-4">
                     <li class="pl-4 border-l-2 border-neonCyan">
-                        <strong class="text-neonCyan block font-mono uppercase text-sm">O Gêmeo Digital (Digital Twin)</strong>
-                        As megacidades do futuro serão governadas através de Gêmeos Digitais. Um modelo virtual exato da cidade, atualizado em tempo real por trilhões de sensores IoT. Se um cano estourar no subsolo do distrito 9, o Gêmeo Digital detectará a anomalia, enviará drones de reparo e desviará o tráfego antes que a água toque o asfalto.
+                        <strong class="text-neonCyan block font-mono uppercase text-sm">O G�meo Digital (Digital Twin)</strong>
+                        As megacidades do futuro ser�o governadas atrav�s de G�meos Digitais. Um modelo virtual exato da cidade, atualizado em tempo real por trilh�es de sensores IoT. Se um cano estourar no subsolo do distrito 9, o G�meo Digital detectar� a anomalia, enviar� drones de reparo e desviar� o tr�fego antes que a �gua toque o asfalto.
                     </li>
                     <li class="pl-4 border-l-2 border-neonPurple">
-                        <strong class="text-neonPurple block font-mono uppercase text-sm">Mobilidade como Serviço (MaaS)</strong>
-                        A propriedade de carros particulares será um conceito obsoleto. O espaço urbano será precioso demais. Pods Autônomos circularão 24 horas por dia, enquanto a logística subirá para os céus (drones) ou descerá para tubos pneumáticos subterrâneos.
+                        <strong class="text-neonPurple block font-mono uppercase text-sm">Mobilidade como Servi�o (MaaS)</strong>
+                        A propriedade de carros particulares ser� um conceito obsoleto. O espa�o urbano ser� precioso demais. Pods Aut�nomos circular�o 24 horas por dia, enquanto a log�stica subir� para os c�us (drones) ou descer� para tubos pneum�ticos subterr�neos.
                     </li>
                     <li class="pl-4 border-l-2 border-emerald-400">
                         <strong class="text-emerald-400 block font-mono uppercase text-sm">Energia Descentralizada</strong>
-                        A ideia de grandes usinas distantes acabará. Cada arranha-céu será uma usina. Vidros fotovoltaicos e sistemas de biogás que convertem o lixo do prédio em energia tornarão os bairros autossuficientes.
+                        A ideia de grandes usinas distantes acabar�. Cada arranha-c�u ser� uma usina. Vidros fotovoltaicos e sistemas de biog�s que convertem o lixo do pr�dio em energia tornar�o os bairros autossuficientes.
                     </li>
                 </ul>
 
                 <h3>3. O Desafio Vertical: Arcologias e Agricultura Urbana</h3>
                 <p>
-                    A expansão horizontal (espalhamento urbano) é inimiga da eficiência e destruidora de ecossistemas naturais. A megacidade do futuro precisará crescer para cima, mas de uma forma radicalmente diferente dos condomínios atuais.
+                    A expans�o horizontal (espalhamento urbano) � inimiga da efici�ncia e destruidora de ecossistemas naturais. A megacidade do futuro precisar� crescer para cima, mas de uma forma radicalmente diferente dos condom�nios atuais.
                 </p>
                 <p>
-                    Estamos caminhando para o conceito de <strong>Arcologia</strong> (Arquitetura + Ecologia). Estes não são apenas prédios, são cidades verticais contidas. Imagine uma torre de 150 andares onde os primeiros 20 são comerciais, os próximos 40 são residenciais, seguidos por 20 andares de escolas e hospitais, e coroados por 30 andares de fazendas verticais.
+                    Estamos caminhando para o conceito de <strong>Arcologia</strong> (Arquitetura + Ecologia). Estes n�o s�o apenas pr�dios, s�o cidades verticais contidas. Imagine uma torre de 150 andares onde os primeiros 20 s�o comerciais, os pr�ximos 40 s�o residenciais, seguidos por 20 andares de escolas e hospitais, e coroados por 30 andares de fazendas verticais.
                 </p>
                 <p>
-                    Para alimentar 80 milhões de pessoas, não podemos depender de caminhões trazendo comida de longe. A agricultura será urbana: Hidroponia com luzes LED e fábricas de proteína sintética nos distritos industriais liberarão terras rurais para o reflorestamento.
+                    Para alimentar 80 milh�es de pessoas, n�o podemos depender de caminh�es trazendo comida de longe. A agricultura ser� urbana: Hidroponia com luzes LED e f�bricas de prote�na sint�tica nos distritos industriais liberar�o terras rurais para o reflorestamento.
                 </p>
 
                 <h3>4. O Clima como Inimigo: Cidades-Esponja</h3>
                 <p>
-                    A geografia física imporá os maiores desafios. Muitas dessas futuras megacidades (Lagos, Mumbai, Daca, Xangai) são costeiras e extremamente vulneráveis à elevação do nível do mar.
+                    A geografia f�sica impor� os maiores desafios. Muitas dessas futuras megacidades (Lagos, Mumbai, Daca, Xangai) s�o costeiras e extremamente vulner�veis � eleva��o do n�vel do mar.
                 </p>
                 <p>
-                    O asfalto e o concreto tradicionais criam enchentes e ilhas de calor. O futuro pertence às <strong>Cidades-Esponja</strong>. Parques alagáveis, calçadas permeáveis e telhados verdes que absorvem a chuva monçônica e a armazenam. Em regiões de calor mortal, partes da cidade terão que ser climatizadas sob domos parciais ou ruas subterrâneas.
+                    O asfalto e o concreto tradicionais criam enchentes e ilhas de calor. O futuro pertence �s <strong>Cidades-Esponja</strong>. Parques alag�veis, cal�adas perme�veis e telhados verdes que absorvem a chuva mon��nica e a armazenam. Em regi�es de calor mortal, partes da cidade ter�o que ser climatizadas sob domos parciais ou ruas subterr�neas.
                 </p>
 
                 <div class="bg-red-950/30 border border-alertRed/50 p-6 rounded my-8 not-prose relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-alertRed/10 text-9xl"><i class="ph-fill ph-warning-octagon"></i></div>
                     <h3 class="text-alertRed font-mono uppercase text-lg mb-2 z-10 relative">5. A Geografia da Desigualdade</h3>
                     <p class="text-slate-300 z-10 relative text-sm font-mono">
-                        Este é o ponto mais crítico. O risco real é a consolidação do "Urbanismo Fragmentado". Podemos ver o surgimento de <strong>Cidadelas Premium</strong>: enclaves fortificados com ar purificado e segurança biométrica para a elite, cercados por vastas "Slums Digitais".
+                        Este � o ponto mais cr�tico. O risco real � a consolida��o do "Urbanismo Fragmentado". Podemos ver o surgimento de <strong>Cidadelas Premium</strong>: enclaves fortificados com ar purificado e seguran�a biom�trica para a elite, cercados por vastas "Slums Digitais".
                     </p>
                     <p class="text-slate-300 z-10 relative text-sm font-mono mt-2">
-                        O maior desafio geopolítico não será a guerra entre países, mas a tensão interna nessas megacidades. Como manter a coesão social quando a expectativa de vida no bairro A é 100 anos e no bairro B é 60?
+                        O maior desafio geopol�tico n�o ser� a guerra entre pa�ses, mas a tens�o interna nessas megacidades. Como manter a coes�o social quando a expectativa de vida no bairro A � 100 anos e no bairro B � 60?
                     </p>
                 </div>
 
-                <h3>6. Conclusão: O Novo Papel do Geógrafo</h3>
+                <h3>6. Conclus�o: O Novo Papel do Ge�grafo</h3>
                 <p>
-                    Para nós, estudantes e amantes da geografia e das relações internacionais, as megacidades do futuro oferecem um campo de estudo fascinante e aterrorizante. Elas representam o triunfo da espécie humana como "moldadora de mundos", mas também nossa fragilidade.
+                    Para n�s, estudantes e amantes da geografia e das rela��es internacionais, as megacidades do futuro oferecem um campo de estudo fascinante e aterrorizante. Elas representam o triunfo da esp�cie humana como "moldadora de mundos", mas tamb�m nossa fragilidade.
                 </p>
                 <p>
-                    O futuro não será rural. O futuro será denso, vertical, conectado e intensamente humano. Resta saber se conseguiremos projetar essas colmeias de concreto para serem lares dignos, ou se elas se tornarão apenas gaiolas eficientes para a força de trabalho global.
+                    O futuro n�o ser� rural. O futuro ser� denso, vertical, conectado e intensamente humano. Resta saber se conseguiremos projetar essas colmeias de concreto para serem lares dignos, ou se elas se tornar�o apenas gaiolas eficientes para a for�a de trabalho global.
                 </p>
                 <p>
-                    A geografia do futuro não é sobre desenhar mapas de territórios, mas sobre entender os fluxos — de pessoas, energia, dados e capital — que correm pelas veias dessas bestas urbanas.
+                    A geografia do futuro n�o � sobre desenhar mapas de territ�rios, mas sobre entender os fluxos � de pessoas, energia, dados e capital � que correm pelas veias dessas bestas urbanas.
                 </p>
 
                 <div class="bg-slate-900 p-4 border-l-2 border-slate-600 text-sm font-mono text-slate-400 mt-12">
-                    <strong class="text-white block mb-2 uppercase">Dados & Referências</strong>
+                    <strong class="text-white block mb-2 uppercase">Dados & Refer�ncias</strong>
                     <ul class="space-y-1 list-disc pl-4">
                         <li><strong>Leitura:</strong> "Planet of Slums" de Mike Davis.</li>
-                        <li><strong>Conceito:</strong> Ecumenópole (Constantinos Doxiadis) - a cidade planetária.</li>
-                        <li><strong>Dado:</strong> Segundo a OCDE, em 2050, 70% da população mundial será urbana.</li>
+                        <li><strong>Conceito:</strong> Ecumen�pole (Constantinos Doxiadis) - a cidade planet�ria.</li>
+                        <li><strong>Dado:</strong> Segundo a OCDE, em 2050, 70% da popula��o mundial ser� urbana.</li>
                     </ul>
                 </div>
 
@@ -214,16 +210,16 @@
                 <div class="glass-panel p-8 text-center relative overflow-hidden group">
                     <div class="scan-line pointer-events-none"></div>
 
-                    <h3 class="font-mono text-neonCyan text-xl mb-2 uppercase tracking-widest">Migração 2100</h3>
-                    <p class="text-xs text-slate-500 font-mono mb-6">Selecione seu destino na Ecumenópole.</p>
+                    <h3 class="font-mono text-neonCyan text-xl mb-2 uppercase tracking-widest">Migra��o 2100</h3>
+                    <p class="text-xs text-slate-500 font-mono mb-6">Selecione seu destino na Ecumen�pole.</p>
                     
                     <form onsubmit="joinCity(event)" class="max-w-md mx-auto space-y-4">
-                        <input type="text" placeholder="ID CIDADÃO (NOME)" class="w-full bg-slate-950 border border-slate-700 text-white p-3 font-mono text-sm focus:border-neonCyan outline-none uppercase">
+                        <input type="text" placeholder="ID CIDAD�O (NOME)" class="w-full bg-slate-950 border border-slate-700 text-white p-3 font-mono text-sm focus:border-neonCyan outline-none uppercase">
                         
                         <select class="w-full bg-slate-950 border border-slate-700 text-white p-3 font-mono text-sm focus:border-neonCyan outline-none">
                             <option>LAGOS PRIME (Setor A)</option>
                             <option>NOVA MUMBAI (Arcologia 7)</option>
-                            <option>SÃO PAULO (Distrito Sul)</option>
+                            <option>S�O PAULO (Distrito Sul)</option>
                             <option>KINSHASA (Zona Franca)</option>
                         </select>
 
@@ -237,16 +233,22 @@
         </div>
     </main>
 
-                <footer class="site-footer">
-        <div class="site-footer__social">
-            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
-            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
-        </div>
-        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
-        <p>&copy; 2026 Todos os direitos reservados.</p>
-        <div class="site-footer__links">
-            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
-            <a href="/sobre/">Sobre o Projeto</a>
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopol�tica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">�</span>
+                <a href="/politica/">Pol�tica de Privacidade</a>
+                <span class="text-slate-700">�</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -263,13 +265,13 @@
                 btn.innerText = "ACESSO PERMITIDO";
                 btn.classList.remove('bg-neonCyan/10', 'text-neonCyan', 'border-neonCyan');
                 btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-500');
-                alert("Bem-vindo à Hipercidade. Prepare seu Gêmeo Digital. 🏙️");
+                alert("Bem-vindo � Hipercidade. Prepare seu G�meo Digital. ???");
             }, 1500);
         }
     </script>
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-house text-xl text-geoGold"></i> Home

@@ -11,14 +11,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], mono: ['Space Mono', 'monospace'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] },
                     colors: { geoBg: '#090a0f', geoCard: '#11131a', geoGold: '#f59e0b' }
                 }
             }
@@ -27,11 +27,11 @@
 </head>
 <body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
 
-    <nav class="glass-nav fixed w-full z-40 top-0">
+        <nav class="glass-nav fixed w-full z-40 top-0">
         <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
             <a href="/" class="flex items-center gap-2 group">
                 <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
@@ -52,7 +52,7 @@
     <main class="page-content">
         <header class="pt-40 pb-16 px-6 text-center">
             <div class="max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-serif font-normal text-white leading-tight">
+                <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
                     Ferramentas de Escala & Projeção
                 </h1>
                 <p class="text-base sm:text-lg text-slate-300 mt-4 max-w-2xl mx-auto font-normal leading-relaxed">
@@ -68,13 +68,13 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
                 <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <p class="site-footer__brand font-serif text-base text-white">VitaleGeo</p>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
             <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
             <div class="site-footer__links text-xs mt-4">
                 <a href="/sobre/">Sobre o Projeto</a>
@@ -119,7 +119,7 @@
                         <div>
                             ${coverHTML}
                             <div class="p-6">
-                                <h2 class="text-xl font-serif text-white group-hover:text-sky-400 transition mb-2 leading-snug">${tool.titulo}</h2>
+                                <h2 class="text-xl font-heading text-white group-hover:text-sky-400 transition mb-2 leading-snug">${tool.titulo}</h2>
                                 <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">${tool.desc || 'Simulador cartográfico interativo.'}</p>
                             </div>
                         </div>

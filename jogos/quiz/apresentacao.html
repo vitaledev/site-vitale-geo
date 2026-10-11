@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/quiz/apresentacao.html/">
@@ -17,7 +17,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -25,15 +25,15 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
                     typography: (theme) => ({
                         DEFAULT: {
                             css: {
                                 color: theme('colors.slate.300'),
-                                h1: { color: '#fff', fontFamily: 'Playfair Display' },
-                                h2: { color: '#fff', fontFamily: 'Playfair Display', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
-                                h3: { color: '#fff', fontFamily: 'Playfair Display' },
+                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
                                 strong: { color: theme('colors.geoGold') },
                                 a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
                                 blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
@@ -46,31 +46,32 @@
     </script>
 
 </head>
-<body class="bg-geoNavy text-slate-300 font-sans antialiased selection:bg-geoGold selection:text-geoNavy">
+<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="../../index.html" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
-                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
-            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
-                <a href="../../index.html" class="hover:text-white transition">Home</a>
-                <a href="../../jogos" class="text-white border-b border-geoGold pb-1">Jogos</a>
-                <a href="../../ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="../../videos" class="hover:text-white transition">Vídeos</a>
-                <a href="../../blog" class="hover:text-white transition">Blog</a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/jogos" class="text-white">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
             </div>
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
-                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
             </a>
         </div>
     </nav>
 
     <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar aos Jogos
-        </a>
+        <a href="/jogos" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/5"><i class="ph-bold ph-arrow-left"></i> Central de Simulações</a>
     </div>
 
     <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
@@ -80,7 +81,7 @@
                 <i class="ph-fill ph-brain"></i> Desafio Geopolítico
             </div>
             
-            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
                 Quiz Geopolítico
             </h1>
 
@@ -138,22 +139,28 @@
         </article>
     </main>
 
-                <footer class="site-footer">
-        <div class="site-footer__social">
-            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
-            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
-        </div>
-        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
-        <p>&copy; 2026 Todos os direitos reservados.</p>
-        <div class="site-footer__links">
-            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
-            <a href="/sobre/">Sobre o Projeto</a>
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
