@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg/1280px-Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg" alt="Fotografia documental das obras de conclusão do quebra-mar e cais do Megaporto de Chancay no Peru" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 A cerca de oitenta quilômetros ao norte da capital peruana, uma enseada pesqueira pacata deu lugar ao empreendimento de engenharia marítima mais transformador da América Latina neste século.
 </p>

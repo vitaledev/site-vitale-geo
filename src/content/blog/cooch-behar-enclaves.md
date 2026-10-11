@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_Bangladesh_border_%28enclaves%29.svg/1280px-India_Bangladesh_border_%28enclaves%29.svg.png" alt="Mapa dos complexos enclaves de Cooch Behar entre Índia e Bangladesh" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Até 2015, a fronteira entre a <strong>Índia e Bangladesh</strong> abrigava o arranjo territorial mais absurdo do planeta: um arquipélago terrestre de <strong>162 enclaves</strong>, com pedaços indianos espalhados dentro do território bengali e pedaços de Bangladesh encravados na Índia.
 </p>

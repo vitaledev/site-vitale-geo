@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Suwalki_Gap_in_Europe.svg/1280px-Suwalki_Gap_in_Europe.svg.png" alt="Mapa destacando o Corredor de Suwalki entre Kaliningrado, Polônia, Lituânia e Bielorrússia" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Se você traçar uma linha reta entre o enclave russo fortemente militarizado de <strong>Kaliningrado</strong> e o território da <strong>Bielorrússia</strong>, a distância percorrida é de apenas <strong>65 quilômetros em linha reta</strong> (cerca de 104 km pela linha de fronteira). Essa faixa estreita que separa a Polônia da Lituânia é conhecida pelos estrategistas como o <strong>Corredor de Suwalki</strong>.
 </p>

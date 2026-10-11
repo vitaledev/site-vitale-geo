@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png" alt="Mapa oficial da disputa territorial do Essequibo destacando a região reivindicada pela Venezuela a oeste do Rio Essequibo na Guiana" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Até meados de 2015, a República Cooperativa da Guiana era um dos países mais pobres e esquecidos do continente sul-americano, com uma população menor que a cidade de Campinas (cerca de 800 mil habitantes).
 </p>

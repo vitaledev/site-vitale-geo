@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="../../assets/img/blog/etiopia-sem-mar.jpg" alt="Mapa tático de satélite do Chifre da África mostrando Etiópia sem saída para o mar" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Cento e vinte e cinco milhões de habitantes. Nenhuma praia, nenhum cais, nenhum porto próprio. 
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg" alt="Rel&oacute;gios indicando fusos hor&aacute;rios da R&uacute;ssia" class="inline-figure w-full h-auto mb-10 rounded-2xl">
-
 <div class="lead-card p-6 rounded-2xl mb-10">
 <p class="lead text-xl text-slate-200 mb-0">
 A R&uacute;ssia &eacute; o maior pa&iacute;s do planeta em extens&atilde;o longitudinal. Isso se traduz em 11 fusos hor&aacute;rios oficiais, do B&aacute;ltico ao Pac&iacute;fico, um recorde global que afeta tudo: log&iacute;stica, m&iacute;dia, governo e o cotidiano de quem vive de Kaliningrado a Kamchatka.

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Thai_Canal_map-de.jpg/1280px-Thai_Canal_map-de.jpg" alt="Mapa esquemático oficial da rota projetada para o Canal de Kra através do Istmo de Kra na Tailândia" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Poucos países transformaram um acidente geográfico em tanto poder e riqueza quanto a cidade-estado de Cingapura.
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Kaliningrad_Oblast_within_Europe.svg/1280px-Kaliningrad_Oblast_within_Europe.svg.png" alt="Mapa geopolítico oficial destacando o enclave de Kaliningrado no Mar Báltico entre Polônia e Lituânia" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Se você olhar o mapa do Mar Báltico, verá um pedaço de território de 15.000 km² prensado entre a Polônia ao sul e a Lituânia ao norte. 
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/US-Canada_Border_The_Slash.jpg/1280px-US-Canada_Border_The_Slash.jpg" alt="A clareira contínua desmatada que divide Estados Unidos e Canadá vista de satélite" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 A fronteira entre os <strong>Estados Unidos e o Canadá</strong> é a mais longa fronteira internacional desmilitarizada do planeta Terra, estendendo-se por <strong>8.891 quilômetros</strong> (incluindo os limites com o Alasca).
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Baarle-Hertog_and_Baarle-Nassau_border.jpg/1280px-Baarle-Hertog_and_Baarle-Nassau_border.jpg" alt="Marcação oficial da linha de fronteira com cruzes brancas no piso entre Bélgica (B) e Holanda (NL) na cidade de Baarle" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Imagine tomar café na Holanda, levantar-se para pegar o açúcar e, com dois passos no mesmo cômodo, entrar na Bélgica.
 </p>

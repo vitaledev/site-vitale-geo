@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg/1280px-Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg.png" alt="Mapa das cidades autônomas e enclaves espanhóis no norte da África" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Se você pegar uma balsa rápida em Algeciras, no sul da Espanha, em pouco mais de uma hora desembarcará em uma cidade de calçadas de cerâmica andaluza, polícia da Guardia Civil e comércio em euros. No entanto, o solo sob os seus pés é o continente africano: você está em <strong>Ceuta</strong>.
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Strait_of_hormuz_full.jpg/1280px-Strait_of_hormuz_full.jpg" alt="Imagem de satélite do Estreito de Ormuz conectando o Golfo Pérsico ao Golfo de Omã" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Se você olhar o mapa do Oriente Médio, verá uma artéria que dita o pulso financeiro de toda a civilização industrial. Entre as montanhas áridas do sul do Irã e a ponta recortada da península de Musandam, em Omã, existe um canal de apenas <strong>39 quilômetros de largura</strong> no seu ponto mais estreito: o <strong>Estreito de Ormuz</strong>.
 </p>

@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Campione_d%27Italia_view_from_Lugano.jpg/1280px-Campione_d%27Italia_view_from_Lugano.jpg" alt="Vista panorâmica de Campione d'Italia às margens do Lago de Lugano na Suíça" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Localizada às margens do pitoresco Lago de Lugano, a cidade de <strong>Campione d'Italia</strong> é um município soberano da República Italiana pertencente à província de Como, na Lombardia.
 </p>

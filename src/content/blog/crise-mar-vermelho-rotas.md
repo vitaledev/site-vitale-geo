@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Suez_Canal_and_Cape_Route.png/1280px-Suez_Canal_and_Cape_Route.png" alt="Comparativo cartográfico da rota via Canal de Suez contra o contorno do Cabo da Boa Esperança" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Por mais de 150 anos, desde a inauguração do <strong>Canal de Suez</strong> em 1869, o comércio entre a Ásia e a Europa operava sob uma certeza geográfica inabalável: cruzar o Mar Vermelho e o estreito de <strong>Bab el-Mandeb</strong> para poupar semanas de navegação e milhões em combustível.
 </p>

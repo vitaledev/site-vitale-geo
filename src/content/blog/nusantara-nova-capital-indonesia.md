@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/IKN_Nusantara_aerial_view_2024.jpg/1280px-IKN_Nusantara_aerial_view_2024.jpg" alt="Visão aérea do canteiro de obras da nova capital da Indonésia Nusantara na ilha de Bornéu" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 A Indonésia está realizando o maior projeto de realocação urbana da história contemporânea: abandonar sua histórica e caótica capital, <strong>Jacarta</strong>, na densamente povoada ilha de Java, e erguer do zero uma megalópole futurista de US$ 35 bilhões no meio das florestas tropicais de Kalimantan Oriental, na ilha de <strong>Bornéu</strong>: <strong>Nusantara</strong>.
 </p>

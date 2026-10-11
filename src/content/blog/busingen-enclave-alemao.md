@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Buesingen_am_Hochrhein_aerial.jpg/1280px-Buesingen_am_Hochrhein_aerial.jpg" alt="Visão aérea de Büsingen am Hochrhein cercada pelo território suíço" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Se você enviar uma carta para um morador da cidade de <strong>Büsingen am Hochrhein</strong>, você pode usar tanto o CEP alemão <code>D-78266</code> quanto o código postal suíço <code>CH-8238</code>. Ambas as cartas chegarão à mesma caixa de correio.
 </p>

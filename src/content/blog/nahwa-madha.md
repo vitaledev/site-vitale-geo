@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Nahwa_-_Map.png/1280px-Nahwa_-_Map.png" alt="Mapa esquemático oficial do enclave de segunda ordem de Nahwa dentro do enclave de Madha na Península Arábica" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Na geografia política, um <strong>enclave</strong> é um território inteiramente rodeado por outra nação soberana. Mas o que acontece quando existe um enclave dentro de outro enclave?
 </p>

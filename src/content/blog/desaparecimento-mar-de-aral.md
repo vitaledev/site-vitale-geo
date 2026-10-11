@@ -8,8 +8,6 @@ tempoLeitura: "5 min"
 destaque: false
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Aral_Sea_1989-2014.jpg/1280px-Aral_Sea_1989-2014.jpg" alt="Comparativo de satélite do encolhimento do Mar de Aral entre 1989 e 2014" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
-
 <p class="lead text-xl text-slate-200">
 Até 1960, o <strong>Mar de Aral</strong>, dividido entre o Cazaquistão e o Uzbequistão, era o **quarto maior lago do planeta**, estendendo-se por impressionantes <strong>68.000 quilômetros quadrados</strong> — uma massa de água salobra maior do que todo o território da Irlanda ou da Suíça.
 </p>
