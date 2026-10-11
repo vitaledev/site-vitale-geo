@@ -14,7 +14,7 @@ interface Props {
 const {
   title = 'VitaleGeo | Geopolítica, Fronteiras & Cartografia',
   description = 'Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores de escala real.',
-  image = '/assets/icons/favicon.svg',
+  image = '/favicon.svg',
   canonical = Astro.url.href,
   type = 'website'
 } = Astro.props;
@@ -47,7 +47,7 @@ const {
   <!-- Tipografia Oficial: Plus Jakarta Sans, Inter & Space Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
   <!-- Ícones Phosphor -->
   <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
@@ -56,10 +56,6 @@ const {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 </head>
 <body class="page-shell bg-[#07090e] text-slate-300 selection:bg-amber-400 selection:text-black antialiased relative overflow-x-hidden">
-  <!-- Camadas de Iluminação Ambiente e Profundidade Agradável -->
-  <div class="fixed top-[-100px] left-[5%] ambient-glow-amber animate-pulse-glow" aria-hidden="true"></div>
-  <div class="fixed top-[25%] right-[-80px] ambient-glow-blue animate-pulse-glow" style="animation-delay: -4s;" aria-hidden="true"></div>
-
   <Header />
   
   <slot />

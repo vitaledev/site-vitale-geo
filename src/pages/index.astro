@@ -25,149 +25,96 @@ const postsData = allPosts.map(p => ({
   description="Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores de escala real."
 >
   <main class="page-content">
-    <!-- Hero Editorial com Curvas Topográficas Vetoriais e Identidade Cartográfica -->
-    <header class="relative pt-40 sm:pt-48 pb-20 px-6 text-center overflow-hidden">
+    <!-- Hero Editorial Minimalista e Arejado -->
+    <header class="relative pt-36 sm:pt-44 pb-16 px-6 text-center overflow-hidden">
       <TopoLines strokeColor="#f59e0b" />
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <!-- Badge Cartográfico / Telemetria -->
-        <div class="carto-badge mb-6">
-          <span class="carto-badge-dot"></span>
-          <span>Atlas Cartográfico & Geopolítica</span>
-          <span class="text-amber-400/40">|</span>
-          <span class="text-slate-400">Edição 2026</span>
+        <!-- Telemetria Cartográfica Discreta -->
+        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-amber-400/90 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Atlas Territorial & Cartografia</span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-normal text-white max-w-4xl mx-auto leading-[1.14] tracking-tight">
-          Geopolítica, anomalias de fronteira e a verdadeira escala do mundo.
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-medium text-white max-w-4xl mx-auto leading-[1.12] tracking-tight">
+          Geopolítica, fronteiras e a verdadeira escala do mundo.
         </h1>
         
-        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed mt-6 mb-10">
-          Um arquivo independente de investigações territoriais, rotas marítimas estratégicas e simulações cartográficas que os mapas convencionais omitem.
+        <p class="text-base sm:text-lg text-slate-300 max-w-xl mx-auto font-normal leading-relaxed mt-5 mb-8">
+          Investigações territoriais, rotas marítimas estratégicas e as anomalias geográficas que os mapas convencionais omitem.
         </p>
         
-        <div class="flex flex-wrap items-center justify-center gap-4">
+        <div class="flex items-center justify-center gap-3">
           <a href="/blog" class="btn-clean-primary">
-            Explorar Dossiês <i class="ph-bold ph-arrow-right"></i>
+            Explorar Dossiês <i class="ph-bold ph-arrow-right text-xs"></i>
           </a>
           <a href="/ferramentas" class="btn-clean-secondary">
-            <i class="ph-bold ph-compass text-sky-400"></i> Simuladores de Escala
-          </a>
-        </div>
-
-        <!-- Ribbon Cartográfico: Acervo em Números Reais -->
-        <div class="mt-12 inline-flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400 font-mono py-2.5 px-6 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-sm">
-          <div class="flex items-center gap-2"><i class="ph-fill ph-book-open text-amber-400"></i> <span>{postsData.length} Dossiês</span></div>
-          <span class="text-slate-700 hidden sm:inline">◆</span>
-          <div class="flex items-center gap-2"><i class="ph-fill ph-compass text-sky-400"></i> <span>4 Simuladores</span></div>
-          <span class="text-slate-700 hidden sm:inline">◆</span>
-          <div class="flex items-center gap-2"><i class="ph-fill ph-game-controller text-emerald-400"></i> <span>4 Desafios</span></div>
-          <span class="text-slate-700 hidden sm:inline">◆</span>
-          <div class="flex items-center gap-2"><i class="ph-fill ph-youtube-logo text-red-500"></i> <span>Vídeos 4K</span></div>
-        </div>
-
-        <!-- Acesso Rápido às 4 Áreas com Cantos Marcadores e Efeito Tátil -->
-        <div class="mt-16 pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-          <a href="/blog" class="carto-corner-frame p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-amber-400/30 transition-all duration-300 group shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
-              <i class="ph-duotone ph-article"></i>
-            </div>
-            <div class="text-sm font-semibold text-white group-hover:text-amber-400 transition">Dossiês</div>
-            <div class="text-xs text-slate-400 mt-0.5">Artigos documentais</div>
-          </a>
-          <a href="/ferramentas" class="carto-corner-frame carto-corner-frame-cyan p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-sky-400/30 transition-all duration-300 group shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
-              <i class="ph-duotone ph-compass"></i>
-            </div>
-            <div class="text-sm font-semibold text-white group-hover:text-sky-400 transition">Ferramentas</div>
-            <div class="text-xs text-slate-400 mt-0.5">Projeções em escala real</div>
-          </a>
-          <a href="/jogos" class="carto-corner-frame p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-emerald-400/30 transition-all duration-300 group shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
-              <i class="ph-duotone ph-game-controller"></i>
-            </div>
-            <div class="text-sm font-semibold text-white group-hover:text-emerald-400 transition">Simulações</div>
-            <div class="text-xs text-slate-400 mt-0.5">Desafios de limites</div>
-          </a>
-          <a href="/videos" class="carto-corner-frame p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/10 hover:border-red-400/30 transition-all duration-300 group shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-red-400/10 border border-red-400/20 flex items-center justify-center text-red-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
-              <i class="ph-duotone ph-play-circle"></i>
-            </div>
-            <div class="text-sm font-semibold text-white group-hover:text-red-400 transition">Vídeos</div>
-            <div class="text-xs text-slate-400 mt-0.5">Já Imaginou Isso em 4K</div>
+            <i class="ph-bold ph-compass text-sky-400"></i> Simuladores
           </a>
         </div>
       </div>
     </header>
 
-    <!-- Divisor Geodésico -->
-    <div class="max-w-6xl mx-auto px-6">
+    <!-- Divisor Cartográfico com Régua de Escala -->
+    <div class="max-w-6xl mx-auto px-6 my-6">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-compass text-amber-400"></i>
-          <span>ARQUIVO INVESTIGATIVO // 2026</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line"></span>
+          <span>500 km</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
-    <!-- Seção: Dossiês Recentes com Abas de Filtro Interativo React -->
-    <section class="py-20 px-6 max-w-6xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+    <!-- Seção: Dossiês Recentes (Ilha React) -->
+    <section class="py-12 px-6 max-w-6xl mx-auto">
+      <div class="flex items-baseline justify-between mb-6">
         <div>
-          <div class="carto-badge mb-3">
-            <span class="carto-badge-dot"></span>
-            <span>Acervo Investigativo</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white">Dossiês em Destaque</h2>
-          <p class="text-sm text-slate-400 mt-1">Investigações aprofundadas com dados cartográficos, geopolíticos e históricos.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Dossiês em Destaque</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Investigações sobre limites soberanos e disputas territoriais.</p>
         </div>
-        <a href="/blog" class="text-sm font-medium text-amber-400 hover:text-white transition flex items-center gap-1 self-start md:self-auto">
-          Ver todos os {postsData.length} dossiês <i class="ph-bold ph-arrow-right text-xs"></i>
+        <a href="/blog" class="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1">
+          Ver acervo ({postsData.length}) <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
 
-      <!-- Ilha de React: Filtro Dinâmico -->
+      <!-- Ilha de React: Filtro Dinâmico com Cards Limpos -->
       <HomeBlogFilter client:load posts={postsData} />
     </section>
 
-    <!-- Divisor Geodésico -->
-    <div class="max-w-6xl mx-auto px-6">
+    <!-- Divisor Cartográfico -->
+    <div class="max-w-6xl mx-auto px-6 my-6">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-crosshair text-sky-400"></i>
-          <span>INSTRUMENTOS DE PROJEÇÃO CARTOGRÁFICA</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line"></span>
+          <span>1:50.000.000</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
     <!-- Seção: Ferramentas de Escala -->
-    <section class="py-20 px-6 max-w-6xl mx-auto">
-      <div class="flex items-baseline justify-between mb-12">
+    <section class="py-12 px-6 max-w-6xl mx-auto">
+      <div class="flex items-baseline justify-between mb-8">
         <div>
-          <div class="carto-badge mb-3">
-            <span class="carto-badge-dot" style="background-color: #38bdf8; box-shadow: 0 0 8px #38bdf8;"></span>
-            <span style="color: #38bdf8;">Instrumentos Geoespaciais</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white">Ferramentas de Escala & Projeção</h2>
-          <p class="text-sm text-slate-400 mt-1">Simulações para visualizar a verdadeira dimensão e geometria de territórios.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Instrumentos de Escala</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Comparação de projeções e dimensões territoriais reais.</p>
         </div>
-        <a href="/ferramentas" class="text-sm font-medium text-sky-400 hover:text-white transition flex items-center gap-1">
-          Ver ferramentas <i class="ph-bold ph-arrow-right text-xs"></i>
+        <a href="/ferramentas" class="text-xs font-semibold text-sky-400 hover:text-white transition flex items-center gap-1">
+          Ver todas <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {toolsDB.slice(0, 3).map(tool => (
           <a href={tool.link} class="minimal-card carto-corner-frame carto-corner-frame-cyan group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {tool.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img src={tool.cover} alt={tool.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
                     <span class="category-pill text-sky-300 border-sky-400/20 bg-sky-950/70">
                       <i class="ph-bold ph-compass"></i> SIMULADOR
@@ -175,12 +122,12 @@ const postsData = allPosts.map(p => ({
                   </div>
                 </div>
               ) : null}
-              <div class="p-6">
-                <h3 class="text-lg font-heading text-white group-hover:text-sky-400 transition mb-2 leading-snug font-semibold">{tool.titulo}</h3>
-                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{tool.desc}</p>
+              <div class="p-5">
+                <h3 class="text-base sm:text-lg font-heading text-white group-hover:text-sky-400 transition mb-1.5 leading-snug font-semibold">{tool.titulo}</h3>
+                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{tool.desc}</p>
               </div>
             </div>
-            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
               Acessar simulador <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -188,42 +135,38 @@ const postsData = allPosts.map(p => ({
       </div>
     </section>
 
-    <!-- Divisor Geodésico -->
-    <div class="max-w-6xl mx-auto px-6">
+    <!-- Divisor Cartográfico -->
+    <div class="max-w-6xl mx-auto px-6 my-6">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-globe text-emerald-400"></i>
-          <span>LIMITES E SOBERANIAS EM DISPUTA</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line"></span>
+          <span>COORDENADAS</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
     <!-- Seção: Simulações & Desafios -->
-    <section class="py-20 px-6 max-w-6xl mx-auto">
-      <div class="flex items-baseline justify-between mb-12">
+    <section class="py-12 px-6 max-w-6xl mx-auto">
+      <div class="flex items-baseline justify-between mb-8">
         <div>
-          <div class="carto-badge mb-3">
-            <span class="carto-badge-dot" style="background-color: #10b981; box-shadow: 0 0 8px #10b981;"></span>
-            <span style="color: #10b981;">Desafios Cartográficos</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white">Simulações de Território</h2>
-          <p class="text-sm text-slate-400 mt-1">Desafios interativos para testar o conhecimento de fronteiras e soberania.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Desafios de Fronteira</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Módulos interativos de reconhecimento territorial e soberania.</p>
         </div>
-        <a href="/jogos" class="text-sm font-medium text-emerald-400 hover:text-white transition flex items-center gap-1">
-          Abrir todas <i class="ph-bold ph-arrow-right text-xs"></i>
+        <a href="/jogos" class="text-xs font-semibold text-emerald-400 hover:text-white transition flex items-center gap-1">
+          Ver todos <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {gamesDB.slice(0, 3).map(game => (
           <a href={game.link} class="minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
                     <span class="category-pill text-emerald-300 border-emerald-400/20 bg-emerald-950/70">
                       <i class="ph-bold ph-game-controller"></i> DESAFIO
@@ -231,12 +174,12 @@ const postsData = allPosts.map(p => ({
                   </div>
                 </div>
               ) : null}
-              <div class="p-6">
-                <h3 class="text-lg font-heading text-white group-hover:text-emerald-400 transition mb-2 leading-snug font-semibold">{game.titulo}</h3>
-                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{game.desc}</p>
+              <div class="p-5">
+                <h3 class="text-base sm:text-lg font-heading text-white group-hover:text-emerald-400 transition mb-1.5 leading-snug font-semibold">{game.titulo}</h3>
+                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{game.desc}</p>
               </div>
             </div>
-            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
               Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -244,30 +187,26 @@ const postsData = allPosts.map(p => ({
       </div>
     </section>
 
-    <!-- Divisor Geodésico -->
-    <div class="max-w-6xl mx-auto px-6">
+    <!-- Divisor Cartográfico -->
+    <div class="max-w-6xl mx-auto px-6 my-6">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-play-circle text-red-500"></i>
-          <span>PRODUÇÃO CINEMATOGRÁFICA 4K // YOUTUBE</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line"></span>
+          <span>4K UHD</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
     <!-- Seção: Vídeos do Canal -->
-    <section class="py-20 px-6 max-w-6xl mx-auto pb-28">
-      <div class="flex items-baseline justify-between mb-12">
+    <section class="py-12 px-6 max-w-6xl mx-auto pb-24">
+      <div class="flex items-baseline justify-between mb-8">
         <div>
-          <div class="carto-badge mb-3">
-            <span class="carto-badge-dot" style="background-color: #ef4444; box-shadow: 0 0 8px #ef4444;"></span>
-            <span style="color: #ef4444;">Produção Audiovisual</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white">Vídeos em Destaque</h2>
-          <p class="text-sm text-slate-400 mt-1">Narrativas visuais produzidas em 4K para o canal Já Imaginou Isso.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Vídeos & Documentários</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">Análises cartográficas produzidas para o canal Já Imaginou Isso.</p>
         </div>
-        <a href="/videos" class="text-sm font-medium text-red-400 hover:text-white transition flex items-center gap-1">
+        <a href="/videos" class="text-xs font-semibold text-red-400 hover:text-white transition flex items-center gap-1">
           Ver galeria <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
@@ -281,14 +220,14 @@ const postsData = allPosts.map(p => ({
                 alt={video.titulo}
                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
               />
-              <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition">
-                <div class="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
-                  <i class="ph-fill ph-play text-xl ml-0.5 text-red-600"></i>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                <div class="w-10 h-10 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
+                  <i class="ph-fill ph-play text-lg ml-0.5 text-red-600"></i>
                 </div>
               </div>
             </div>
-            <div class="p-5">
-              <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug font-semibold">
+            <div class="p-4">
+              <h3 class="text-sm sm:text-base font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug font-semibold">
                 {video.titulo}
               </h3>
             </div>

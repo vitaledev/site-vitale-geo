@@ -5,47 +5,46 @@ interface Props {
 }
 const { strokeColor = '#f59e0b', className = '' } = Astro.props;
 ---
-<div class={`topo-lines-svg ${className}`}>
-  <svg class="w-full h-full" viewBox="0 0 1440 850" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<div class={`topo-lines-svg ${className}`} aria-hidden="true">
+  <svg class="w-full h-full" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <defs>
-      <linearGradient id="topo-amber" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
-        <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.12"/>
+      <linearGradient id="topo-amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
+        <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.1"/>
         <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
       </linearGradient>
-      <linearGradient id="topo-blue" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
-        <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.08"/>
+      <linearGradient id="topo-blue-grad" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+        <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.08"/>
         <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.01"/>
       </linearGradient>
     </defs>
 
-    <!-- Curvas de Nível Conducentes e de Relevo Geográfico -->
-    <path d="M-80 90 C 280 220, 620 -40, 1080 140 C 1280 220, 1440 90, 1550 150" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="8 8" opacity="0.6"/>
-    <path d="M-80 180 C 240 320, 710 50, 1030 260 C 1320 350, 1420 190, 1550 250" stroke={strokeColor} stroke-width="1.6" opacity="0.8"/>
-    <path d="M-80 290 C 320 440, 760 140, 1140 380 C 1350 450, 1480 320, 1550 370" stroke="url(#topo-blue)" stroke-width="1.4" opacity="0.7"/>
-    <path d="M-80 420 C 360 580, 820 260, 1180 500 C 1370 570, 1500 440, 1550 490" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="6 6" opacity="0.6"/>
-    <path d="M-80 560 C 290 700, 780 430, 1160 670 C 1390 750, 1490 620, 1550 680" stroke={strokeColor} stroke-width="1.5" opacity="0.75"/>
-    <path d="M-80 710 C 460 840, 890 560, 1280 810 C 1430 860, 1520 780, 1550 830" stroke="url(#topo-blue)" stroke-width="1.2" opacity="0.5"/>
+    <!-- Curvas de Nível Geográficas Principais -->
+    <path d="M-100 80 C 250 200, 580 -20, 1020 120 C 1220 190, 1420 80, 1540 130" stroke={strokeColor} stroke-width="1" stroke-dasharray="6 6" opacity="0.6"/>
+    <path d="M-100 160 C 220 280, 680 40, 980 230 C 1260 310, 1400 170, 1540 220" stroke={strokeColor} stroke-width="1.2" opacity="0.75"/>
+    <path d="M-100 260 C 300 390, 720 120, 1080 340 C 1300 400, 1440 280, 1540 330" stroke="url(#topo-blue-grad)" stroke-width="1" opacity="0.7"/>
+    <path d="M-100 380 C 340 520, 780 230, 1120 450 C 1320 510, 1460 390, 1540 430" stroke={strokeColor} stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+    <path d="M-100 500 C 270 630, 740 380, 1100 590 C 1340 660, 1450 540, 1540 600" stroke={strokeColor} stroke-width="1.2" opacity="0.7"/>
 
-    <!-- Anéis Concêntricos de Pico / Relevo Insular -->
-    <ellipse cx="1120" cy="220" rx="90" ry="40" stroke={strokeColor} stroke-width="1" stroke-dasharray="4 4" opacity="0.5" transform="rotate(-15 1120 220)" />
-    <ellipse cx="1120" cy="220" rx="55" ry="24" stroke={strokeColor} stroke-width="1.2" opacity="0.7" transform="rotate(-15 1120 220)" />
-    <ellipse cx="1120" cy="220" rx="25" ry="10" stroke={strokeColor} stroke-width="1.4" opacity="0.9" transform="rotate(-15 1120 220)" />
+    <!-- Anéis de Relevo Altimétrico -->
+    <ellipse cx="1100" cy="180" rx="70" ry="32" stroke={strokeColor} stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" transform="rotate(-12 1100 180)" />
+    <ellipse cx="1100" cy="180" rx="42" ry="18" stroke={strokeColor} stroke-width="1" opacity="0.7" transform="rotate(-12 1100 180)" />
+    <ellipse cx="1100" cy="180" rx="18" ry="8" stroke={strokeColor} stroke-width="1.2" opacity="0.85" transform="rotate(-12 1100 180)" />
 
-    <!-- Pontos de Agrimensura & Coordenadas Geodésicas -->
-    <g opacity="0.55" font-family="'Space Mono', monospace" font-size="9" fill={strokeColor} letter-spacing="0.1em">
-      <text x="280" y="210">+ 1.450m</text>
-      <text x="730" y="70">+ 820m</text>
-      <text x="1220" y="240">⌖ COTA 2.100m</text>
-      <text x="960" y="520">+ 640m</text>
+    <!-- Cotas e Telemetria Cartográfica em Mono -->
+    <g opacity="0.5" font-family="'Space Mono', monospace" font-size="8" fill={strokeColor} letter-spacing="0.1em">
+      <text x="240" y="180">+1.450m</text>
+      <text x="680" y="60">+820m</text>
+      <text x="1190" y="200">⌖ 2.100m</text>
+      <text x="920" y="470">+640m</text>
     </g>
 
-    <!-- Marcadores de Mira Náutica / Surveyor Crosshairs -->
-    <g stroke="rgba(255,255,255,0.18)" stroke-width="1">
-      <path d="M200 480 L200 500 M190 490 L210 490" />
-      <path d="M850 320 L850 340 M840 330 L860 330" />
-      <path d="M1300 600 L1300 620 M1290 610 L1310 610" />
+    <!-- Miras Náuticas Discretas -->
+    <g stroke="rgba(255,255,255,0.15)" stroke-width="0.8">
+      <path d="M180 430 L180 446 M172 438 L188 438" />
+      <path d="M820 280 L820 296 M812 288 L828 288" />
+      <path d="M1260 540 L1260 556 M1252 548 L1268 548" />
     </g>
   </svg>
 </div>

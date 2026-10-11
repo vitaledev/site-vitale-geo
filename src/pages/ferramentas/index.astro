@@ -5,48 +5,48 @@ import { toolsDB } from '../../data/tools';
 ---
 
 <Layout
-  title="Ferramentas Cartográficas & Simuladores | VitaleGeo"
+  title="Instrumentos de Escala & Projeção | VitaleGeo"
   description="Simuladores de projeção, comparadores de escala territorial e métricas geoespaciais interativas."
 >
   <main class="page-content">
-    <header class="relative pt-40 pb-16 px-6 text-center overflow-hidden">
+    <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
       <TopoLines strokeColor="#38bdf8" />
 
       <div class="max-w-3xl mx-auto relative z-10">
-        <div class="carto-badge mb-4">
-          <span class="carto-badge-dot" style="background-color: #38bdf8; box-shadow: 0 0 8px #38bdf8;"></span>
-          <span style="color: #38bdf8;">Instrumentação Cartográfica</span>
+        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-sky-400 mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+          <span>Projeções & Geometria</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
-          Ferramentas de Escala & Projeção
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-medium text-white tracking-tight leading-tight">
+          Instrumentos de Escala
         </h1>
-        <p class="text-base sm:text-lg text-slate-300 mt-4 max-w-2xl mx-auto font-normal leading-relaxed">
-          Instrumentos interativos para comparar a área real de países, analisar a distorção da projeção de Mercator e calcular distâncias geodésicas.
+        <p class="text-sm sm:text-base text-slate-300 mt-3 max-w-xl mx-auto font-normal leading-relaxed">
+          Simuladores interativos para comparar a área real de países, analisar a distorção de Mercator e calcular distâncias geodésicas.
         </p>
       </div>
     </header>
 
-    <!-- Divisor Cartográfico -->
-    <div class="max-w-6xl mx-auto px-6 mb-12">
+    <!-- Divisor Cartográfico com Escala -->
+    <div class="max-w-6xl mx-auto px-6 mb-8">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-crosshair text-sky-400"></i>
-          <span>PROJEÇÕES VETORIAIS // ESCALA 1:1</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line" style="border-color: #38bdf8;"></span>
+          <span style="color: #38bdf8;">Escala 1:1</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
-    <section class="py-6 px-6 max-w-6xl mx-auto pb-28">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section class="py-4 px-6 max-w-6xl mx-auto pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {toolsDB.map(tool => (
           <a href={tool.link} class="minimal-card carto-corner-frame carto-corner-frame-cyan group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {tool.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img src={tool.cover} alt={tool.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
                     <span class="category-pill text-sky-300 border-sky-400/20 bg-sky-950/70">
                       <i class="ph-bold ph-compass"></i> SIMULADOR
@@ -54,13 +54,13 @@ import { toolsDB } from '../../data/tools';
                   </div>
                 </div>
               ) : null}
-              <div class="p-6">
-                <h2 class="text-xl font-heading text-white group-hover:text-sky-400 transition mb-2 leading-snug font-semibold">{tool.titulo}</h2>
-                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{tool.desc}</p>
+              <div class="p-5">
+                <h2 class="text-base sm:text-lg font-heading text-white group-hover:text-sky-400 transition mb-1.5 leading-snug font-semibold">{tool.titulo}</h2>
+                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{tool.desc}</p>
               </div>
             </div>
-            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
-              Acessar ferramenta <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
+              Acessar simulador <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
         ))}

@@ -5,48 +5,48 @@ import { gamesDB } from '../../data/games';
 ---
 
 <Layout
-  title="Simulações & Desafios de Território | VitaleGeo"
+  title="Desafios de Fronteira & Território | VitaleGeo"
   description="Módulos interativos para testar o conhecimento sobre fronteiras, enclaves e geografia política mundial."
 >
   <main class="page-content">
-    <header class="relative pt-40 pb-16 px-6 text-center overflow-hidden">
+    <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
       <TopoLines strokeColor="#10b981" />
 
       <div class="max-w-3xl mx-auto relative z-10">
-        <div class="carto-badge mb-4">
-          <span class="carto-badge-dot" style="background-color: #10b981; box-shadow: 0 0 8px #10b981;"></span>
-          <span style="color: #10b981;">Simulações Cartográficas</span>
+        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Reconhecimento Geográfico</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
-          Simulações & Desafios de Território
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-medium text-white tracking-tight leading-tight">
+          Desafios de Fronteira
         </h1>
-        <p class="text-base sm:text-lg text-slate-300 mt-4 max-w-2xl mx-auto font-normal leading-relaxed">
-          Módulos interativos para identificar fronteiras, enclaves soberanos e limites geopolíticos no mapa.
+        <p class="text-sm sm:text-base text-slate-300 mt-3 max-w-xl mx-auto font-normal leading-relaxed">
+          Módulos interativos para identificar limites soberanos, enclaves fascinantes e capitais estratégicas no mapa.
         </p>
       </div>
     </header>
 
-    <!-- Divisor Cartográfico -->
-    <div class="max-w-6xl mx-auto px-6 mb-12">
+    <!-- Divisor Cartográfico com Escala -->
+    <div class="max-w-6xl mx-auto px-6 mb-8">
       <div class="carto-divider">
         <div class="carto-divider-line"></div>
-        <div class="carto-divider-mark">
-          <i class="ph-bold ph-globe text-emerald-400"></i>
-          <span>LIMITES, ENCLAVES E SOBERANIA</span>
+        <div class="carto-scale-bar">
+          <span class="carto-scale-bar-line" style="border-color: #10b981;"></span>
+          <span style="color: #10b981;">Interativo</span>
         </div>
         <div class="carto-divider-line"></div>
       </div>
     </div>
 
-    <section class="py-6 px-6 max-w-6xl mx-auto pb-28">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section class="py-4 px-6 max-w-6xl mx-auto pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {gamesDB.map(game => (
           <a href={game.link} class="minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
                     <span class="category-pill text-emerald-300 border-emerald-400/20 bg-emerald-950/70">
                       <i class="ph-bold ph-game-controller"></i> DESAFIO
@@ -54,12 +54,12 @@ import { gamesDB } from '../../data/games';
                   </div>
                 </div>
               ) : null}
-              <div class="p-6">
-                <h2 class="text-xl font-heading text-white group-hover:text-emerald-400 transition mb-2 leading-snug font-semibold">{game.titulo}</h2>
-                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{game.desc}</p>
+              <div class="p-5">
+                <h2 class="text-base sm:text-lg font-heading text-white group-hover:text-emerald-400 transition mb-1.5 leading-snug font-semibold">{game.titulo}</h2>
+                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{game.desc}</p>
               </div>
             </div>
-            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
               Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>

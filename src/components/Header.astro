@@ -4,48 +4,58 @@ interface Props {
 }
 const pathname = Astro.url.pathname;
 ---
-<nav class="floating-pill-nav">
-  <div class="px-6 h-16 flex justify-between items-center w-full">
-    <a href="/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
-        <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+<header>
+  <!-- Floating Glass Pill Navbar para Desktop & Tablet -->
+  <nav class="floating-pill-nav" aria-label="Navegação Principal">
+    <div class="px-5 sm:px-6 h-14 sm:h-16 flex justify-between items-center w-full">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition duration-300">
+          <i class="ph-bold ph-compass text-base group-hover:rotate-45 transition duration-500"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-base sm:text-lg font-heading font-bold text-white tracking-tight leading-none">
+            Vitale<span class="text-amber-400">Geo</span>
+          </span>
+          <span class="text-[9px] font-mono text-slate-500 uppercase tracking-widest hidden sm:inline leading-none mt-1">
+            0°00′ · Atlas
+          </span>
+        </div>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+        <a href="/" class={`px-3.5 py-1.5 rounded-full transition ${pathname === '/' ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Início</a>
+        <a href="/blog" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/blog') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Dossiês</a>
+        <a href="/ferramentas" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/ferramentas') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Ferramentas</a>
+        <a href="/jogos" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/jogos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Simulações</a>
+        <a href="/videos" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/videos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Vídeos</a>
+        <a href="/sobre" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/sobre') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Sobre</a>
       </div>
-      <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
-    </a>
-    
-    <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
-      <a href="/" class={`px-3.5 py-1.5 rounded-full transition ${pathname === '/' ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Início</a>
-      <a href="/blog" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/blog') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Dossiês</a>
-      <a href="/ferramentas" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/ferramentas') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Ferramentas</a>
-      <a href="/jogos" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/jogos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Simulações</a>
-      <a href="/videos" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/videos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Vídeos</a>
-      <a href="/sobre" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/sobre') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Sobre</a>
+
+      <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-3.5 py-1.5 rounded-full transition" aria-label="Canal no YouTube">
+        <i class="ph-fill ph-youtube-logo text-sm text-red-500"></i> YouTube
+      </a>
     </div>
+  </nav>
 
-    <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
-      <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
-    </a>
-  </div>
-</nav>
-
-<!-- Mobile Navigation Bar -->
-<div class="h-20 md:hidden"></div>
-<nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#090a0f]/95 backdrop-blur-md border-t border-white/10 py-2.5 px-4">
-  <div class="flex justify-around items-center text-[11px] font-medium text-slate-400">
-    <a href="/" class={`flex flex-col items-center gap-1 ${pathname === '/' ? 'text-white' : 'hover:text-white transition'}`}>
-      <i class="ph-fill ph-house text-lg text-amber-400"></i> Início
-    </a>
-    <a href="/blog" class={`flex flex-col items-center gap-1 ${pathname.startsWith('/blog') ? 'text-white' : 'hover:text-white transition'}`}>
-      <i class="ph-fill ph-newspaper text-lg"></i> Dossiês
-    </a>
-    <a href="/ferramentas" class={`flex flex-col items-center gap-1 ${pathname.startsWith('/ferramentas') ? 'text-white' : 'hover:text-white transition'}`}>
-      <i class="ph-fill ph-wrench text-lg"></i> Ferramentas
-    </a>
-    <a href="/jogos" class={`flex flex-col items-center gap-1 ${pathname.startsWith('/jogos') ? 'text-white' : 'hover:text-white transition'}`}>
-      <i class="ph-fill ph-game-controller text-lg"></i> Simulações
-    </a>
-    <a href="/videos" class={`flex flex-col items-center gap-1 ${pathname.startsWith('/videos') ? 'text-white' : 'hover:text-white transition'}`}>
-      <i class="ph-fill ph-play-circle text-lg"></i> Vídeos
-    </a>
-  </div>
-</nav>
+  <!-- Mobile Bottom Navigation Bar -->
+  <div class="h-16 md:hidden"></div>
+  <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#07090e]/95 backdrop-blur-lg border-t border-white/10 py-2 px-3" aria-label="Navegação Mobile">
+    <div class="flex justify-around items-center text-[11px] font-medium text-slate-400">
+      <a href="/" class={`flex flex-col items-center gap-0.5 ${pathname === '/' ? 'text-amber-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-house text-base"></i> Início
+      </a>
+      <a href="/blog" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/blog') ? 'text-amber-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-newspaper text-base"></i> Dossiês
+      </a>
+      <a href="/ferramentas" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/ferramentas') ? 'text-sky-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-compass text-base"></i> Escala
+      </a>
+      <a href="/jogos" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/jogos') ? 'text-emerald-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-game-controller text-base"></i> Jogos
+      </a>
+      <a href="/videos" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/videos') ? 'text-red-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-play-circle text-base"></i> Vídeos
+      </a>
+    </div>
+  </nav>
+</header>
