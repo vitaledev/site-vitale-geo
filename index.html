@@ -1,27 +1,27 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-geoNavy">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitaleGeo | Inteligência Geográfica</title>
-    <meta name="description" content="Anomalias cartográficas, geopolítica, curiosidades mundiais, ferramentas e jogos interativos.">
+    <title>VitaleGeo | Inteligência Geográfica & Geopolítica</title>
+    <meta name="description" content="Investigações territoriais, anomalias de fronteira, chokepoints navais estratégicos e instrumentos interativos de escala real.">
 
     <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/">
-    <meta property="og:title" content="VitaleGeo | Inteligência Geográfica">
-    <meta property="og:description" content="Anomalias cartográficas, geopolítica, curiosidades mundiais, ferramentas e jogos interativos.">
+    <meta property="og:title" content="VitaleGeo | Inteligência Geográfica & Geopolítica">
+    <meta property="og:description" content="Investigações territoriais, anomalias de fronteira, chokepoints navais estratégicos e instrumentos interativos de escala real.">
     <meta property="og:image" content="https://www.vitalegeo.com.br/assets/icons/favicon.svg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VitaleGeo | Inteligência Geográfica">
-    <meta name="twitter:description" content="Anomalias cartográficas, geopolítica, curiosidades mundiais, ferramentas e jogos interativos.">
+    <meta name="twitter:title" content="VitaleGeo | Inteligência Geográfica & Geopolítica">
+    <meta name="twitter:description" content="Investigações territoriais, anomalias de fronteira, chokepoints navais estratégicos e instrumentos interativos de escala real.">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -29,13 +29,12 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], mono: ['Space Mono', 'monospace'] },
                     colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
                 }
             }
         }
     </script>
-
 </head>
 <body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy page-shell">
 
@@ -58,92 +57,116 @@
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 text-center border-b border-white/5 bg-slate-900/50">
-        <div class="max-w-4xl mx-auto">
+    <header class="pt-36 sm:pt-44 pb-16 px-6 text-center border-b border-white/5 bg-gradient-to-b from-slate-950 via-slate-900/60 to-geoNavy relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
             
-            <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-geoGold mb-6 animate-pulse">
-                <i class="ph-fill ph-binoculars"></i> Área de Exploração
-            </span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-slate-800/90 border border-white/10 font-mono text-[11px] tracking-widest text-slate-300 mb-6 uppercase shadow-inner">
+                <span class="telemetry-live-dot"></span> DOSSIÊ CARTOGRÁFICO // ACERVO ABERTO
+            </div>
             
-            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-                O Mundo é Mais Estranho <br> 
-                do Que <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold to-yellow-200">Parece</span>.
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                Geopolítica Real, <br class="hidden sm:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold via-yellow-200 to-amber-400">Anomalias de Fronteira</span> & Escala.
             </h1>
             
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
-                 Descubra as anomalias e curiosidades geográficas que desafiam a lógica.
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
+                Investigações territoriais aprofundadas, gargalos marítimos estratégicos e simulações cartográficas baseadas em dados documentais que os mapas convencionais omitem.
             </p>
             
-            <div class="flex justify-center gap-4">
-                <a href="/blog" class="bg-geoGold text-geoNavy px-8 py-3 rounded font-bold uppercase tracking-widest hover:bg-white transition shadow-lg flex items-center gap-2">
-                    Explorar Agora <i class="ph-bold ph-compass"></i>
+            <div class="flex flex-wrap justify-center items-center gap-4">
+                <a href="/blog" class="bg-geoGold text-geoNavy px-7 py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-lg shadow-geoGold/10 flex items-center gap-2">
+                    <i class="ph-bold ph-folder-open text-base"></i> Consultar Dossiês
                 </a>
+                <a href="/ferramentas" class="bg-slate-800/80 border border-white/15 text-slate-200 px-7 py-3 rounded font-bold text-xs uppercase tracking-widest hover:border-geoGold hover:text-white transition-all duration-300 flex items-center gap-2">
+                    <i class="ph-bold ph-compass text-base"></i> Instrumentos Interativos
+                </a>
+            </div>
+
+            <!-- BARRA DE TELEMETRIA / ESTATÍSTICAS CARTOGRÁFICAS -->
+            <div class="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left">
+                <div class="p-3.5 border-l-2 border-geoGold bg-white/[0.02] rounded-r">
+                    <div class="stat-metric text-2xl font-bold text-white">+190</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Territórios Analisados</div>
+                </div>
+                <div class="p-3.5 border-l-2 border-geoBlue bg-white/[0.02] rounded-r">
+                    <div class="stat-metric text-2xl font-bold text-white">7</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Chokepoints Navais</div>
+                </div>
+                <div class="p-3.5 border-l-2 border-emerald-500 bg-white/[0.02] rounded-r">
+                    <div class="stat-metric text-2xl font-bold text-white">Escala Fiel</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Sem Vício Mercator</div>
+                </div>
+                <div class="p-3.5 border-l-2 border-amber-400 bg-white/[0.02] rounded-r">
+                    <div class="stat-metric text-2xl font-bold text-white">100% Aberto</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Imagens & Tratados</div>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
-            <div class="flex items-center gap-3">
-                <i class="ph-duotone ph-newspaper-clipping text-geoGold text-2xl"></i>
-                <h2 class="text-2xl font-serif font-bold text-white">Últimos Posts</h2>
+    <section class="py-16 sm:py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-white/10 pb-4 gap-3">
+            <div>
+                <span class="telemetry-tag text-geoGold bg-geoGold/10 border border-geoGold/20 mb-2">ARQUIVO INVESTIGATIVO</span>
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white">Dossiês Territoriais Recentes</h2>
             </div>
-            <a href="/blog" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
-                Ver Tudo <i class="ph-bold ph-arrow-right"></i>
+            <a href="/blog" class="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 hover:text-geoGold transition flex items-center gap-1.5 self-start sm:self-auto">
+                Consultar Todos os Arquivos <i class="ph-bold ph-arrow-right"></i>
             </a>
         </div>
 
         <div id="home-blog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="col-span-full text-center text-slate-600 animate-pulse">Carregando posts...</div>
+            <div class="col-span-full text-center text-slate-600 animate-pulse font-mono text-sm">Carregando dossiês...</div>
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-slate-900/30 border-y border-white/5">
+    <section class="py-16 sm:py-20 px-6 bg-slate-900/40 border-y border-white/5">
         <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between mb-10">
-                <div class="flex items-center gap-3">
-                    <i class="ph-duotone ph-film-strip text-red-500 text-2xl"></i>
-                    <h2 class="text-2xl font-serif font-bold text-white">Vídeos Recentes</h2>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-white/10 pb-4 gap-3">
+                <div>
+                    <span class="telemetry-tag text-red-400 bg-red-500/10 border border-red-500/20 mb-2">CANAL JÁ IMAGINOU ISSO</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white">Inteligência Cartográfica em Vídeo</h2>
                 </div>
-                <a href="/videos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
-                    Ver Canal <i class="ph-bold ph-arrow-right"></i>
+                <a href="/videos" class="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 hover:text-red-400 transition flex items-center gap-1.5 self-start sm:self-auto">
+                    Ver Grade do Canal <i class="ph-bold ph-arrow-right"></i>
                 </a>
             </div>
 
             <div id="home-videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
+            </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
-            <div class="flex items-center gap-3">
-                <i class="ph-duotone ph-wrench text-blue-400 text-2xl"></i>
-                <h2 class="text-2xl font-serif font-bold text-white">Ferramentas de Inteligência</h2>
+    <section class="py-16 sm:py-20 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-white/10 pb-4 gap-3">
+            <div>
+                <span class="telemetry-tag text-geoBlue bg-geoBlue/10 border border-geoBlue/20 mb-2">INSTRUMENTOS INTERATIVOS</span>
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white">Comparadores & Projeções de Escala</h2>
             </div>
-            <a href="/ferramentas" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
-                Acessar Todas <i class="ph-bold ph-arrow-right"></i>
+            <a href="/ferramentas" class="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 hover:text-geoBlue transition flex items-center gap-1.5 self-start sm:self-auto">
+                Acessar Todos os Instrumentos <i class="ph-bold ph-arrow-right"></i>
             </a>
         </div>
 
         <div id="home-tools-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            </div>
+        </div>
     </section>
 
-    <section class="py-20 px-6 bg-slate-900/30 border-t border-white/5">
+    <section class="py-16 sm:py-20 px-6 bg-slate-900/40 border-t border-white/5">
         <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between mb-10">
-                <div class="flex items-center gap-3">
-                    <i class="ph-duotone ph-game-controller text-green-400 text-2xl"></i>
-                    <h2 class="text-2xl font-serif font-bold text-white">Simulações & Jogos</h2>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-white/10 pb-4 gap-3">
+                <div>
+                    <span class="telemetry-tag text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 mb-2">TREINAMENTO CARTOGRÁFICO</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white">Simulações & Reconhecimento de Território</h2>
                 </div>
-                <a href="/jogos" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition flex items-center gap-1">
-                    Ver Arcade <i class="ph-bold ph-arrow-right"></i>
+                <a href="/jogos" class="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 hover:text-emerald-400 transition flex items-center gap-1.5 self-start sm:self-auto">
+                    Abrir Módulos de Simulação <i class="ph-bold ph-arrow-right"></i>
                 </a>
             </div>
 
             <div id="home-games-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -152,10 +175,10 @@
             <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
             <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
         </div>
-        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
+        <p class="site-footer__brand">VitaleGeo - Inteligência Geográfica</p>
         <p>&copy; 2026 Todos os direitos reservados.</p>
         <div class="site-footer__links">
-            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
+            <a href="/politica/">Política de Privacidade</a>
             <a href="/sobre/">Sobre o Projeto</a>
         </div>
     </footer>
@@ -166,25 +189,29 @@
     <script src="assets/js/game.js"></script>
 
     <script>
-        // --- 1. RENDERIZAR POSTS (Top 3) ---
-        const blogContainer = document.getElementById('home-blog-grid');
-        if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
-            blogContainer.innerHTML = '';
+        // --- 1. RENDERIZAR POSTS (Top 3) COM CARD EDITORIAL ---
+        const blogContainer = document.getElementById("home-blog-grid");
+        if (typeof blogPosts !== "undefined" && blogPosts.length > 0) {
+            blogContainer.innerHTML = "";
             blogPosts.slice(0, 3).forEach(post => {
-                let link = post.link.includes('blog/') ? post.link : `/blog/${post.link}`;
+                let link = post.link.includes("blog/") ? post.link : `/blog/${post.link}`;
                 blogContainer.innerHTML += `
-                    <article class="group bg-geoPaper border border-white/5 rounded-xl overflow-hidden hover:border-geoGold/50 transition duration-300 shadow-lg flex flex-col h-full card-hover">
+                    <article class="editorial-card rounded-xl overflow-hidden shadow-xl flex flex-col h-full group">
                         <a href="${link}" class="block flex-grow flex flex-col">
-                            <div class="h-48 overflow-hidden relative">
-                                <img src="${post.img}" alt="${post.titulo}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-105">
+                            <div class="h-48 overflow-hidden relative bg-slate-900">
+                                <img src="${post.img}" alt="${post.titulo}" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition duration-700 group-hover:scale-105">
                                 <div class="absolute top-3 left-3">
-                                    <span class="bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded border border-white/10 uppercase tracking-wide">${post.categoria}</span>
+                                    <span class="telemetry-tag bg-black/75 backdrop-blur-md text-amber-300 border border-amber-300/30">${post.categoria}</span>
                                 </div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <div class="flex items-center gap-2 text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-2"><i class="ph-fill ph-calendar text-geoGold"></i> ${post.data}</div>
-                                <h3 class="text-lg font-bold text-white mb-2 leading-snug group-hover:text-geoGold transition">${post.titulo}</h3>
+                                <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2.5"><i class="ph-fill ph-calendar text-geoGold"></i> ${post.data}</div>
+                                <h3 class="text-lg font-serif font-bold text-white mb-2.5 leading-snug group-hover:text-geoGold transition">${post.titulo}</h3>
                                 <p class="text-sm text-slate-400 line-clamp-2 leading-relaxed">${post.resumo}</p>
+                                <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500 group-hover:text-geoGold transition">
+                                    <span>ACESSAR DOSSIÊ</span>
+                                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+                                </div>
                             </div>
                         </a>
                     </article>`;
@@ -192,67 +219,78 @@
         }
 
         // --- 2. RENDERIZAR VÍDEOS (Top 3) ---
-        const videoContainer = document.getElementById('home-videos-grid');
-        if (typeof videosLongos !== 'undefined' && videosLongos.length > 0) {
+        const videoContainer = document.getElementById("home-videos-grid");
+        if (typeof videosLongos !== "undefined" && videosLongos.length > 0) {
+            videoContainer.innerHTML = "";
             videosLongos.slice(0, 3).forEach(video => {
                 videoContainer.innerHTML += `
-                    <div class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative" onclick="window.location.href='/videos'">
-                        <div class="aspect-video relative">
-                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/0 transition"><i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl group-hover:scale-110"></i></div>
+                    <div class="editorial-card group block rounded-xl overflow-hidden shadow-xl cursor-pointer relative" onclick="window.location.href='/videos'">
+                        <div class="aspect-video relative bg-slate-900">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition"><i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl group-hover:scale-110"></i></div>
                         </div>
-                        <div class="p-4"><h3 class="font-bold text-white text-sm leading-snug group-hover:text-geoGold transition line-clamp-2">${video.titulo}</h3></div>
+                        <div class="p-5"><h3 class="font-serif font-bold text-white text-sm leading-snug group-hover:text-geoGold transition line-clamp-2">${video.titulo}</h3></div>
                     </div>`;
             });
         }
 
         // --- FUNÇÃO AUXILIAR PARA ÍCONES ---
         function getIconHTML(iconClassOrUrl) {
-            if (iconClassOrUrl.includes('/') || iconClassOrUrl.includes('.')) {
+            if (iconClassOrUrl.includes("/") || iconClassOrUrl.includes(".")) {
                 return `<img src="${iconClassOrUrl}" class="w-8 h-8 object-contain">`;
             } else {
                 return `<i class="${iconClassOrUrl} text-2xl text-geoGold"></i>`;
             }
         }
 
-        // --- 3. RENDERIZAR FERRAMENTAS (Top 4 de toolsDB) ---
-        const toolsContainer = document.getElementById('home-tools-grid');
-        if (typeof toolsDB !== 'undefined' && toolsDB.length > 0) {
+        // --- 3. RENDERIZAR FERRAMENTAS ---
+        const toolsContainer = document.getElementById("home-tools-grid");
+        if (typeof toolsDB !== "undefined" && toolsDB.length > 0) {
+            toolsContainer.innerHTML = "";
             toolsDB.slice(0, 3).forEach(item => {
-                let link = item.link.includes('ferramentas/') ? item.link : `/ferramentas/${item.link}`;
+                let link = item.link.includes("ferramentas/") ? item.link : `/ferramentas/${item.link}`;
                 const coverHTML = item.cover
-                    ? `<div class="w-full h-48 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60">
-                            <img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-80">
-                       </div>`
-                    : '';
+                    ? `<div class="w-full h-44 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60 mb-3"><img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition duration-500 group-hover:scale-105"></div>`
+                    : "";
                 toolsContainer.innerHTML += `
-                    <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-blue-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
-                        ${coverHTML}
-                        <div class="hidden">
-                            ${getIconHTML(item.icon)}
+                    <a href="${link}" class="editorial-card group p-5 rounded-xl transition flex flex-col justify-between h-full">
+                        <div>
+                            ${coverHTML}
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="telemetry-tag text-geoBlue bg-geoBlue/10 border border-geoBlue/20">INSTRUMENTO</span>
+                            </div>
+                            <h4 class="font-serif font-bold text-white text-base group-hover:text-geoBlue transition leading-snug">${item.titulo}</h4>
                         </div>
-                        <div><h4 class="font-bold text-white text-sm group-hover:text-blue-400 transition leading-tight">${item.titulo}</h4></div>
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400 group-hover:text-geoBlue transition">
+                            <span>INICIAR SIMULAÇÃO</span>
+                            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
                     </a>`;
             });
         }
 
-        // --- 4. RENDERIZAR JOGOS (Top 4 de gamesDB) ---
-        const gamesContainer = document.getElementById('home-games-grid');
-        if (typeof gamesDB !== 'undefined' && gamesDB.length > 0) {
+        // --- 4. RENDERIZAR JOGOS ---
+        const gamesContainer = document.getElementById("home-games-grid");
+        if (typeof gamesDB !== "undefined" && gamesDB.length > 0) {
+            gamesContainer.innerHTML = "";
             gamesDB.slice(0, 3).forEach(item => {
-                let link = item.link.includes('jogos/') ? item.link : `/jogos/${item.link}`;
+                let link = item.link.includes("jogos/") ? item.link : `/jogos/${item.link}`;
                 const coverHTML = item.cover
-                    ? `<div class="w-full h-48 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60">
-                            <img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-80">
-                       </div>`
-                    : '';
+                    ? `<div class="w-full h-44 rounded-lg overflow-hidden border border-white/5 bg-slate-900/60 mb-3"><img src="${item.cover}" alt="${item.titulo}" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition duration-500 group-hover:scale-105"></div>`
+                    : "";
                 gamesContainer.innerHTML += `
-                    <a href="${link}" class="group bg-slate-800 border border-white/5 hover:bg-slate-700 hover:border-green-400/50 p-4 rounded-xl transition flex flex-col items-center text-center gap-3 h-full justify-center">
-                        ${coverHTML}
-                        <div class="hidden">
-                            ${getIconHTML(item.icon)}
+                    <a href="${link}" class="editorial-card group p-5 rounded-xl transition flex flex-col justify-between h-full">
+                        <div>
+                            ${coverHTML}
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="telemetry-tag text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">MÓDULO</span>
+                            </div>
+                            <h4 class="font-serif font-bold text-white text-base group-hover:text-emerald-400 transition leading-snug">${item.titulo}</h4>
                         </div>
-                        <div><h4 class="font-bold text-white text-sm group-hover:text-green-400 transition leading-tight">${item.titulo}</h4></div>
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400 group-hover:text-emerald-400 transition">
+                            <span>ENTRAR NO DESAFIO</span>
+                            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
                     </a>`;
             });
         }
@@ -288,5 +326,3 @@
 </script>
 </body>
 </html>
-
-
