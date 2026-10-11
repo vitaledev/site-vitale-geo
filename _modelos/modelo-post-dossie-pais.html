@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{{TITULO}} | Dossiê {{NOME_PAIS}} | VitaleGeo</title>
+    <meta name="description" content="{{DESCRICAO}}">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/{{SLUG}}/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/{{SLUG}}/">
+    <meta property="og:title" content="{{TITULO}} | Dossiê {{NOME_PAIS}} | VitaleGeo">
+    <meta property="og:description" content="{{DESCRICAO}}">
+    <meta property="og:image" content="{{IMAGEM_DESTAQUE}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITULO}} | Dossiê {{NOME_PAIS}} | VitaleGeo">
+    <meta name="twitter:description" content="{{DESCRICAO}}">
+    <meta name="twitter:image" content="{{IMAGEM_DESTAQUE}}">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#0f172a',
+                        geoBlue: '#3b82f6',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#1e293b'
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: theme('colors.amber.400'), backgroundColor: 'rgba(245, 158, 11, 0.05)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
+
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <!-- Breadcrumb -->
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400/90">{{NOME_PAIS}}</span>
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[11px] font-mono tracking-wider uppercase mb-6">
+                <span>Dossiê Territorial</span>
+                <span class="text-slate-600">·</span>
+                <span>{{CATEGORIA}}</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-heading font-normal text-white mb-6 leading-tight">
+                {{TITULO}}
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> {{DATA}}</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> {{TEMPO_LEITURA}}</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegador em Abas do Dossiê do País -->
+    <section class="max-w-2xl mx-auto px-6 -mt-7 relative z-20">
+        <div class="p-1.5 bg-[#0f172a]/95 border border-white/10 rounded-2xl shadow-2xl backdrop-blur flex items-center justify-between text-xs font-mono">
+            <!-- Aba 1: História -->
+            <a href="/blog/{{SLUG_HISTORIA}}/" class="flex-1 py-2.5 px-3 text-center rounded-xl transition flex items-center justify-center gap-1.5 {{TAB_ACTIVE_HISTORIA}}">
+                <i class="ph-bold ph-scroll"></i> História
+            </a>
+            <!-- Aba 2: Geopolítica -->
+            <a href="/blog/{{SLUG_GEOPOLITICA}}/" class="flex-1 py-2.5 px-3 text-center rounded-xl transition flex items-center justify-center gap-1.5 {{TAB_ACTIVE_GEOPOLITICA}}">
+                <i class="ph-bold ph-globe-hemisphere-west"></i> Geopolítica
+            </a>
+            <!-- Aba 3: Geografia -->
+            <a href="/blog/{{SLUG_GEOGRAFIA}}/" class="flex-1 py-2.5 px-3 text-center rounded-xl transition flex items-center justify-center gap-1.5 {{TAB_ACTIVE_GEOGRAFIA}}">
+                <i class="ph-bold ph-mountains"></i> Geografia
+            </a>
+        </div>
+    </section>
+
+    <!-- Corpo do Artigo -->
+    <article class="py-16 px-6">
+        <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+            
+            <img src="{{IMAGEM_DESTAQUE}}" alt="{{TITULO}}" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
+            {{CONTEUDO}}
+
+            <!-- Bloco de Continuação do Dossiê do País -->
+            <div class="not-prose my-14 p-6 sm:p-8 bg-slate-900/60 border border-white/10 rounded-2xl text-center">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold block mb-1">Dossiê Completo // {{NOME_PAIS}}</span>
+                <h4 class="text-xl font-heading text-white font-bold mb-2">Explore as Outras Dimensões de {{NOME_PAIS}}</h4>
+                <p class="text-xs text-slate-400 mb-6 max-w-md mx-auto">Navegue pelas investigações complementares deste território em nosso arquivo cartográfico.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto font-mono text-xs">
+                    {{CARDS_OUTRAS_ABAS}}
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Chamada para Ação / Canal -->
+    <section class="pb-20 px-6">
+        <div class="max-w-3xl mx-auto bg-slate-800/40 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden">
+            <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou desse dossiê?</h3>
+            <p class="text-slate-400 mb-6 text-sm">Inscreva-se no canal oficial para acompanhar análises de geopolítica em vídeo e mapas interativos.</p>
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full hover:bg-red-700 transition text-xs shadow-lg">
+                <i class="ph-fill ph-youtube-logo text-lg"></i> Assistir no YouTube
+            </a>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="autorelaxed"
+         data-ad-client="ca-pub-6879770260785828"
+         data-ad-slot="5140105675"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
