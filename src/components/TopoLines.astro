@@ -1,0 +1,13 @@
+---
+interface Props {
+  strokeColor?: string;
+}
+const { strokeColor = '#f59e0b' } = Astro.props;
+---
+<svg class="topo-lines-svg" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M-100 120 C 300 280, 600 -50, 1100 180 C 1300 270, 1500 140, 1600 200" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="6 6"/>
+  <path d="M-100 220 C 250 380, 700 80, 1050 320 C 1350 420, 1450 250, 1600 310" stroke={strokeColor} stroke-width="1.5"/>
+  <path d="M-100 350 C 400 520, 800 220, 1200 480 C 1400 550, 1550 420, 1600 470" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <path d="M-100 500 C 300 650, 750 390, 1150 620 C 1380 710, 1500 590, 1600 650" stroke={strokeColor} stroke-width="1.2"/>
+  <path d="M-100 680 C 500 820, 900 540, 1300 780 C 1450 830, 1550 750, 1600 800" stroke="#ffffff" stroke-width="1"/>
+</svg>

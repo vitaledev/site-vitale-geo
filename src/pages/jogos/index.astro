@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopoLines from '../../components/TopoLines.astro';
+import { gamesDB } from '../../data/games';
+---
+
+<Layout
+  title="Simulações de Território | VitaleGeo"
+  description="Módulos interativos para testar o conhecimento sobre fronteiras, enclaves e geografia política mundial."
+>
+  <main class="page-content">
+    <header class="relative pt-40 pb-16 px-6 text-center overflow-hidden">
+      <TopoLines strokeColor="#10b981" />
+
+      <div class="max-w-3xl mx-auto relative z-10">
+        <div class="carto-badge mb-4">
+          <span class="carto-badge-dot" style="background-color: #10b981;"></span>
+          <span style="color: #10b981;">Simulações Cartográficas</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
+          Simulações & Desafios de Território
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 mt-4 max-w-2xl mx-auto font-normal leading-relaxed">
+          Módulos interativos para identificar fronteiras, enclaves soberanos e limites geopolíticos no mapa.
+        </p>
+      </div>
+    </header>
+
+    <section class="py-12 px-6 max-w-6xl mx-auto pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {gamesDB.map(game => (
+          <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
+            <div>
+              {game.cover ? (
+                <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                  <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
+                </div>
+              ) : null}
+              <div class="p-6">
+                <h2 class="text-xl font-heading text-white group-hover:text-emerald-400 transition mb-2 leading-snug font-semibold">{game.titulo}</h2>
+                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{game.desc}</p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1">
+              Iniciar desafio <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

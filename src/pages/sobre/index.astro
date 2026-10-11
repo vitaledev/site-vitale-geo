@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopoLines from '../../components/TopoLines.astro';
+---
+
+<Layout
+  title="Sobre o VitaleGeo | Geopolítica, Fronteiras & Cartografia"
+  description="Conheça o propósito, a metodologia editorial e as origens do projeto VitaleGeo."
+>
+  <main class="page-content pt-40 pb-24 px-6 relative overflow-hidden">
+    <TopoLines strokeColor="#f59e0b" />
+
+    <div class="max-w-3xl mx-auto relative z-10">
+      <header class="mb-14">
+        <div class="carto-badge mb-4">
+          <span class="carto-badge-dot"></span>
+          <span>Manifesto Editorial</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-heading font-normal text-white leading-tight mb-6">
+          Decodificando as fronteiras invisíveis do planeta.
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
+          As linhas traçadas num mapa mundi não são limites naturais: são cicatrizes de guerras, tratados esquecidos e negociações de poder. O VitaleGeo é um arquivo aberto dedicado a investigar o lado oculto da geografia.
+        </p>
+      </header>
+
+      <article class="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-amber-400">
+        <h2>O Propósito</h2>
+        <p>
+          A maioria dos mapas que você consultou na escola mente sobre as proporções reais da Terra. A projeção de Mercator infla as nações do hemisfério norte e encolhe o continente africano e a América do Sul. Além disso, as fronteiras oficiais escondem aberrações fascinantes: enclaves dentro de enclaves, pedaços de terra que nenhum país reivindica e cidades que vivem sob duas leis simultâneas.
+        </p>
+        <p>
+          O <strong>VitaleGeo</strong> nasceu para documentar essas anomalias com precisão cirúrgica, dados históricos verificáveis e simulações cartográficas que devolvem a verdadeira escala ao mundo.
+        </p>
+
+        <h2>Três Pilares Metodológicos</h2>
+        <ul>
+          <li><strong>Rigor Documental:</strong> Cada dossiê é embasado em tratados internacionais, imagens de satélite e dados geodésicos oficiais.</li>
+          <li><strong>Design sem Ruído:</strong> Uma experiência de leitura limpa, minimalista e arejada, sem poluição visual ou clichês gerados por inteligência artificial.</li>
+          <li><strong>Acesso Livre e Gratuito:</strong> Todas as ferramentas, calculadoras e simulações de escala são abertas para estudantes, pesquisadores e curiosos.</li>
+        </ul>
+
+        <h2>Canal Já Imaginou Isso</h2>
+        <p>
+          O VitaleGeo é o braço de inteligência editorial e pesquisa do canal <strong>Já Imaginou Isso</strong> no YouTube, onde investigações geopolíticas ganham vida em animações 4K e narrativas cinematográficas acompanhadas por centenas de milhares de entusiastas da cartografia.
+        </p>
+      </article>
+
+      <div class="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <p class="text-xs font-mono text-slate-400 uppercase tracking-wider">DIREÇÃO EDITORIAL</p>
+          <p class="text-base font-heading font-semibold text-white mt-1">Agnaldo Batista (vitaledev)</p>
+          <p class="text-xs text-slate-400">Pesquisa cartográfica, geopolítica e desenvolvimento web.</p>
+        </div>
+        <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" class="btn-clean-primary flex-shrink-0">
+          <i class="ph-fill ph-youtube-logo text-red-500 text-lg"></i> Conhecer o Canal
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

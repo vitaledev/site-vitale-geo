@@ -1,0 +1,240 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import TopoLines from '../components/TopoLines.astro';
+import HomeBlogFilter from '../components/react/HomeBlogFilter';
+import { toolsDB } from '../data/tools';
+import { gamesDB } from '../data/games';
+import { videosLongos } from '../data/videos';
+
+const allPosts = await getCollection('blog');
+const postsData = allPosts.map(p => ({
+  id: p.id,
+  slug: p.id,
+  titulo: p.data.titulo,
+  resumo: p.data.resumo,
+  categoria: p.data.categoria,
+  data: p.data.data,
+  img: p.data.img,
+  tempoLeitura: p.data.tempoLeitura,
+}));
+---
+
+<Layout
+  title="VitaleGeo | Geopolítica, Fronteiras & Cartografia"
+  description="Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores de escala real."
+>
+  <main class="page-content">
+    <!-- Hero Editorial com Curvas Topográficas Vetoriais e Identidade Cartográfica -->
+    <header class="relative pt-40 sm:pt-48 pb-20 px-6 text-center overflow-hidden">
+      <TopoLines strokeColor="#f59e0b" />
+
+      <div class="max-w-4xl mx-auto relative z-10">
+        <!-- Badge Cartográfico / Telemetria -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-amber-400 text-xs font-mono tracking-wider uppercase mb-6 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Atlas Cartográfico & Geopolítica</span>
+          <span class="text-amber-400/40">|</span>
+          <span class="text-slate-400">Edição 2026</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-normal text-white max-w-4xl mx-auto leading-[1.12] tracking-tight">
+          Geopolítica, anomalias de fronteira e a verdadeira escala do mundo.
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed mt-6 mb-10">
+          Um arquivo independente de investigações territoriais, rotas marítimas estratégicas e simulações cartográficas que os mapas convencionais omitem.
+        </p>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="/blog" class="btn-clean-primary">
+            Explorar Dossiês <i class="ph-bold ph-arrow-right"></i>
+          </a>
+          <a href="/ferramentas" class="btn-clean-secondary">
+            <i class="ph-bold ph-compass text-sky-400"></i> Simuladores de Escala
+          </a>
+        </div>
+
+        <!-- Ribbon Cartográfico: Acervo em Números Reais -->
+        <div class="mt-12 inline-flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400 font-mono py-2.5 px-6 rounded-full bg-white/[0.02] border border-white/5 backdrop-blur-sm">
+          <div class="flex items-center gap-2"><i class="ph-fill ph-book-open text-amber-400"></i> <span>{postsData.length} Dossiês</span></div>
+          <span class="text-slate-700 hidden sm:inline">◆</span>
+          <div class="flex items-center gap-2"><i class="ph-fill ph-compass text-sky-400"></i> <span>4 Simuladores</span></div>
+          <span class="text-slate-700 hidden sm:inline">◆</span>
+          <div class="flex items-center gap-2"><i class="ph-fill ph-game-controller text-emerald-400"></i> <span>4 Desafios</span></div>
+          <span class="text-slate-700 hidden sm:inline">◆</span>
+          <div class="flex items-center gap-2"><i class="ph-fill ph-youtube-logo text-red-500"></i> <span>Vídeos 4K</span></div>
+        </div>
+
+        <!-- Acesso Rápido às 4 Áreas com Acabamento Refinado -->
+        <div class="mt-16 pt-10 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          <a href="/blog" class="p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-amber-400/30 transition-all duration-300 group shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
+              <i class="ph-duotone ph-article"></i>
+            </div>
+            <div class="text-sm font-semibold text-white group-hover:text-amber-400 transition">Dossiês</div>
+            <div class="text-xs text-slate-400 mt-0.5">Artigos documentais</div>
+          </a>
+          <a href="/ferramentas" class="p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-sky-400/30 transition-all duration-300 group shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-sky-400/10 flex items-center justify-center text-sky-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
+              <i class="ph-duotone ph-compass"></i>
+            </div>
+            <div class="text-sm font-semibold text-white group-hover:text-sky-400 transition">Ferramentas</div>
+            <div class="text-xs text-slate-400 mt-0.5">Projeções em escala real</div>
+          </a>
+          <a href="/jogos" class="p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-emerald-400/30 transition-all duration-300 group shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
+              <i class="ph-duotone ph-game-controller"></i>
+            </div>
+            <div class="text-sm font-semibold text-white group-hover:text-emerald-400 transition">Simulações</div>
+            <div class="text-xs text-slate-400 mt-0.5">Desafios de limites</div>
+          </a>
+          <a href="/videos" class="p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-red-400/30 transition-all duration-300 group shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-red-400/10 flex items-center justify-center text-red-400 text-lg mb-3 group-hover:scale-110 transition duration-300">
+              <i class="ph-duotone ph-play-circle"></i>
+            </div>
+            <div class="text-sm font-semibold text-white group-hover:text-red-400 transition">Vídeos</div>
+            <div class="text-xs text-slate-400 mt-0.5">Já Imaginou Isso em 4K</div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Seção: Dossiês Recentes com Abas de Filtro Interativo React -->
+    <section class="py-20 px-6 max-w-6xl mx-auto border-t border-white/5">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+        <div>
+          <div class="carto-badge mb-3">
+            <span class="carto-badge-dot"></span>
+            <span>Acervo Investigativo</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white">Dossiês em Destaque</h2>
+          <p class="text-sm text-slate-400 mt-1">Investigações aprofundadas com dados cartográficos, geopolíticos e históricos.</p>
+        </div>
+        <a href="/blog" class="text-sm font-medium text-amber-400 hover:text-white transition flex items-center gap-1 self-start md:self-auto">
+          Ver todos os {postsData.length} dossiês <i class="ph-bold ph-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Ilha de React: Filtro Dinâmico -->
+      <HomeBlogFilter client:load posts={postsData} />
+    </section>
+
+    <!-- Seção: Ferramentas de Escala -->
+    <section class="py-20 px-6 max-w-6xl mx-auto border-t border-white/5">
+      <div class="flex items-baseline justify-between mb-12">
+        <div>
+          <div class="carto-badge mb-3">
+            <span class="carto-badge-dot" style="background-color: #38bdf8;"></span>
+            <span style="color: #38bdf8;">Instrumentos Geoespaciais</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white">Ferramentas de Escala</h2>
+          <p class="text-sm text-slate-400 mt-1">Simulações para visualizar a verdadeira dimensão e geometria de territórios.</p>
+        </div>
+        <a href="/ferramentas" class="text-sm font-medium text-sky-400 hover:text-white transition flex items-center gap-1">
+          Ver ferramentas <i class="ph-bold ph-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {toolsDB.slice(0, 3).map(tool => (
+          <a href={tool.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
+            <div>
+              {tool.cover ? (
+                <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                  <img src={tool.cover} alt={tool.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
+                </div>
+              ) : null}
+              <div class="p-6">
+                <h3 class="text-lg font-heading text-white group-hover:text-sky-400 transition mb-2 leading-snug font-semibold">{tool.titulo}</h3>
+                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{tool.desc}</p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1">
+              Acessar ferramenta <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção: Simulações & Desafios -->
+    <section class="py-20 px-6 max-w-6xl mx-auto border-t border-white/5">
+      <div class="flex items-baseline justify-between mb-12">
+        <div>
+          <div class="carto-badge mb-3">
+            <span class="carto-badge-dot" style="background-color: #10b981;"></span>
+            <span style="color: #10b981;">Desafios Cartográficos</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white">Simulações de Território</h2>
+          <p class="text-sm text-slate-400 mt-1">Desafios interativos para testar o conhecimento de fronteiras e soberania.</p>
+        </div>
+        <a href="/jogos" class="text-sm font-medium text-emerald-400 hover:text-white transition flex items-center gap-1">
+          Abrir todas <i class="ph-bold ph-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {gamesDB.slice(0, 3).map(game => (
+          <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
+            <div>
+              {game.cover ? (
+                <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                  <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
+                </div>
+              ) : null}
+              <div class="p-6">
+                <h3 class="text-lg font-heading text-white group-hover:text-emerald-400 transition mb-2 leading-snug font-semibold">{game.titulo}</h3>
+                <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{game.desc}</p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1">
+              Iniciar desafio <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Seção: Vídeos do Canal -->
+    <section class="py-20 px-6 max-w-6xl mx-auto border-t border-white/5">
+      <div class="flex items-baseline justify-between mb-12">
+        <div>
+          <div class="carto-badge mb-3">
+            <span class="carto-badge-dot" style="background-color: #ef4444;"></span>
+            <span style="color: #ef4444;">Produção Audiovisual</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white">Vídeos em Destaque</h2>
+          <p class="text-sm text-slate-400 mt-1">Narrativas visuais produzidas em 4K para o canal Já Imaginou Isso.</p>
+        </div>
+        <a href="/videos" class="text-sm font-medium text-red-400 hover:text-white transition flex items-center gap-1">
+          Ver galeria <i class="ph-bold ph-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {videosLongos.slice(0, 3).map(video => (
+          <a href={video.link} target="_blank" rel="noopener noreferrer" class="minimal-card group overflow-hidden block">
+            <div class="aspect-video relative bg-slate-900 overflow-hidden">
+              <img
+                src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                alt={video.titulo}
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
+              />
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                <div class="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                  <i class="ph-fill ph-play text-xl ml-0.5"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug font-semibold">
+                {video.titulo}
+              </h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

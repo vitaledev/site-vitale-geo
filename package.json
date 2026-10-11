@@ -4,9 +4,11 @@
   "description": "Portal VitaleGeo - Inteligência Geográfica",
   "main": "gerar_sitemap.js",
   "scripts": {
-    "dev": "npx serve -l 3000 .",
-    "sitemap": "node gerar_sitemap.js",
-    "check": "node -e \"console.log('Validando sitemap...'); require('./gerar_sitemap.js');\""
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sitemap": "node gerar_sitemap.js"
   },
   "keywords": [
     "geografia",
@@ -15,5 +17,15 @@
     "vitalegeo"
   ],
   "author": "Agnaldo Batista (vitaledev)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/react": "^7.0.1",
+    "@astrojs/tailwind": "^6.0.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^7.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwindcss": "^3.4.19"
+  }
 }

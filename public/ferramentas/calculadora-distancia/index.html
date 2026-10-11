@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/calculadora-distancia/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Rotas | VitaleGeo</title>
+    <meta name="description" content="Calcule a distancia entre dois pontos no globo.">
+    <meta property="og:title" content="Medidor de Rotas | VitaleGeo">
+    <meta property="og:description" content="Calcule a distancia entre dois pontos no globo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/calculadora-distancia">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black page-shell">
+
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="text-white">Ferramentas</a>
+                <a href="/jogos" class="hover:text-white transition">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 right-6 z-30">
+        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
+
+    <main class="page-content pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
+                <i class="ph-bold ph-path"></i> Ferramenta
+            </div>
+            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Medidor de Rotas</h1>
+            <p class="text-slate-400 max-w-2xl mb-10">
+                Calcule a distancia entre dois pontos usando coordenadas geograficas.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-heading text-white">Coordenadas</h2>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest">Haversine</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lat">Lat inicio</label>
+                            <input id="start-lat" type="number" step="0.0001" placeholder="-23.5505" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lng">Lon inicio</label>
+                            <input id="start-lng" type="number" step="0.0001" placeholder="-46.6333" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lat">Lat destino</label>
+                            <input id="end-lat" type="number" step="0.0001" placeholder="40.7128" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lng">Lon destino</label>
+                            <input id="end-lng" type="number" step="0.0001" placeholder="-74.0060" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                    </div>
+
+                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="speed">Velocidade media (km/h)</label>
+                    <input id="speed" type="number" step="1" placeholder="800" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6">
+
+                    <button id="btn-calc" class="bg-geoGold text-geoNavy text-xs font-bold px-4 py-2 rounded uppercase hover:bg-white transition shadow-lg">
+                        Calcular
+                    </button>
+                </div>
+
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <h2 class="text-xl font-heading text-white mb-4">Resultado</h2>
+                    <div class="space-y-3" id="result-box"></div>
+                    <p id="result-empty" class="text-sm text-slate-500">Informe os pontos para calcular.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const startLat = document.getElementById('start-lat');
+        const startLng = document.getElementById('start-lng');
+        const endLat = document.getElementById('end-lat');
+        const endLng = document.getElementById('end-lng');
+        const speed = document.getElementById('speed');
+        const resultBox = document.getElementById('result-box');
+        const resultEmpty = document.getElementById('result-empty');
+
+        const toRad = (deg) => deg * Math.PI / 180;
+
+        const haversineKm = (lat1, lon1, lat2, lon2) => {
+            const R = 6371;
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon / 2) ** 2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        };
+
+        const formatTime = (hours) => {
+            if (!isFinite(hours)) return 'n/a';
+            const h = Math.floor(hours);
+            const m = Math.round((hours - h) * 60);
+            if (h <= 0) return `${m} min`;
+            return `${h} h ${m} min`;
+        };
+
+        const buildResult = () => {
+            const lat1 = parseFloat(startLat.value);
+            const lon1 = parseFloat(startLng.value);
+            const lat2 = parseFloat(endLat.value);
+            const lon2 = parseFloat(endLng.value);
+            if ([lat1, lon1, lat2, lon2].some(n => Number.isNaN(n))) return;
+
+            const km = haversineKm(lat1, lon1, lat2, lon2);
+            const mi = km * 0.621371;
+            const nm = km * 0.539957;
+            const spd = parseFloat(speed.value);
+            const eta = spd && spd > 0 ? formatTime(km / spd) : 'n/a';
+
+            resultEmpty.classList.add('hidden');
+            resultBox.innerHTML = `
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Distancia</div>
+                    <div class="text-lg font-bold text-white">${km.toFixed(2)} km</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas</div>
+                    <div class="text-lg font-bold text-white">${mi.toFixed(2)} mi</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas nauticas</div>
+                    <div class="text-lg font-bold text-white">${nm.toFixed(2)} nm</div>
+                </div>
+                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="text-sm text-slate-500 uppercase tracking-widest">Tempo estimado</div>
+                    <div class="text-lg font-bold text-geoGold">${eta}</div>
+                </div>
+            `;
+        };
+
+        document.getElementById('btn-calc').addEventListener('click', buildResult);
+    </script>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-6879770260785828"
+     data-ad-slot="5140105675"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
+
+
+
+
+
+

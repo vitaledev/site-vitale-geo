@@ -1,0 +1,71 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: string;
+}
+
+const {
+  title = 'VitaleGeo | Geopolítica, Fronteiras & Cartografia',
+  description = 'Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores de escala real.',
+  image = '/assets/icons/favicon.svg',
+  canonical = Astro.url.href,
+  type = 'website'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href={canonical} />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+
+  <!-- Tipografia Oficial: Plus Jakarta Sans, Inter & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Phosphor -->
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+  <!-- Google AdSense Oficial -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+</head>
+<body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
+  <Header />
+  
+  <slot />
+
+  <Footer />
+
+  <!-- Bloco Auto AdSense -->
+  <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6879770260785828" data-ad-slot="5140105675"></ins>
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</body>
+</html>

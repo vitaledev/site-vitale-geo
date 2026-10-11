@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TopoLines from '../../components/TopoLines.astro';
+import BlogArchive from '../../components/react/BlogArchive';
+
+const allPosts = await getCollection('blog');
+const postsData = allPosts.map(p => ({
+  id: p.id,
+  slug: p.id,
+  titulo: p.data.titulo,
+  resumo: p.data.resumo,
+  categoria: p.data.categoria,
+  data: p.data.data,
+  img: p.data.img,
+  tempoLeitura: p.data.tempoLeitura,
+}));
+---
+
+<Layout
+  title="Dossiês Territoriais | VitaleGeo"
+  description="Investigações documentais sobre enclaves soberanos, rotas navais estratégicas e disputas de fronteira que moldam o equilíbrio geopolítico global."
+>
+  <main class="page-content">
+    <header class="relative pt-40 pb-12 px-6 overflow-hidden">
+      <TopoLines strokeColor="#f59e0b" />
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="max-w-3xl mb-8">
+          <div class="carto-badge mb-4">
+            <span class="carto-badge-dot"></span>
+            <span>Arquivo Investigativo</span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-heading font-normal text-white leading-tight">
+            Dossiês Territoriais
+          </h1>
+          <p class="text-base sm:text-lg text-slate-300 mt-4 font-normal leading-relaxed">
+            Investigações documentais sobre enclaves soberanos, rotas navais estratégicas e disputas de fronteira que moldam o equilíbrio geopolítico global.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="pb-24 px-6 max-w-6xl mx-auto min-h-[50vh]">
+      <BlogArchive client:load posts={postsData} />
+    </section>
+  </main>
+</Layout>

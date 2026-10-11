@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopoLines from '../../components/TopoLines.astro';
+import { videosLongos, videosShorts } from '../../data/videos';
+
+const featuredVideo = videosLongos[0];
+---
+
+<Layout
+  title="Vídeos & Documentários | VitaleGeo"
+  description="Análises cartográficas e narrativas geopolíticas produzidas em 4K para o canal Já Imaginou Isso."
+>
+  <main class="page-content">
+    <header class="relative pt-40 pb-16 px-6 overflow-hidden">
+      <TopoLines strokeColor="#ef4444" />
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="carto-badge mb-4">
+          <span class="carto-badge-dot" style="background-color: #ef4444;"></span>
+          <span style="color: #ef4444;">Produção Audiovisual // Já Imaginou Isso</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight mb-4">
+          Vídeos & Documentários em 4K
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed mb-12">
+          Análises aprofundadas sobre rotas navais, anomalias de fronteira e o xadrez geopolítico que move as nações.
+        </p>
+
+        <!-- Vídeo em Destaque Principal -->
+        {featuredVideo && (
+          <div class="aspect-video max-w-4xl rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black">
+            <iframe
+              class="w-full h-full"
+              src={`https://www.youtube.com/embed/${featuredVideo.id}`}
+              title={featuredVideo.titulo}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <!-- Galeria de Documentários Longos -->
+    <section class="py-16 px-6 max-w-6xl mx-auto border-t border-white/5">
+      <div class="mb-10">
+        <h2 class="text-2xl sm:text-3xl font-heading text-white">Análises & Documentários</h2>
+        <p class="text-sm text-slate-400 mt-1">Investigações aprofundadas sobre disputas de fronteira e geopolítica global.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {videosLongos.slice(1).map(video => (
+          <a href={video.link} target="_blank" rel="noopener noreferrer" class="minimal-card group overflow-hidden block">
+            <div class="aspect-video relative bg-slate-900 overflow-hidden">
+              <img
+                src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                alt={video.titulo}
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
+              />
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                <div class="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                  <i class="ph-fill ph-play text-xl ml-0.5"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug font-semibold">
+                {video.titulo}
+              </h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Galeria de Shorts -->
+    <section class="py-16 px-6 max-w-6xl mx-auto border-t border-white/5 pb-24">
+      <div class="mb-10">
+        <h2 class="text-2xl sm:text-3xl font-heading text-white">Shorts & Curiosidades Rápidas</h2>
+        <p class="text-sm text-slate-400 mt-1">Fatos geopolíticos verticais de 60 segundos.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {videosShorts.slice(0, 15).map(short => (
+          <a href={short.link} target="_blank" rel="noopener noreferrer" class="minimal-card group overflow-hidden block">
+            <div class="aspect-[9/16] relative bg-slate-900 overflow-hidden">
+              <img
+                src={`https://img.youtube.com/vi/${short.id}/hqdefault.jpg`}
+                alt={short.titulo}
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
+              />
+              <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                <div class="w-10 h-10 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                  <i class="ph-fill ph-play text-lg ml-0.5"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-3">
+              <h4 class="text-xs font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug">
+                {short.titulo}
+              </h4>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

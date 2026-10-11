@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/quiz/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Geopolítico | VitaleGeo</title>
+    <meta name="description" content="Desafio geopolítico! Responda perguntas sobre geografia, história e política global. Teste seus conhecimentos de inteligência geopolítica.">
+    <meta name="keywords" content="quiz, geopolítica, geografia, história, inteligência, jogo">
+    <meta property="og:title" content="Quiz Geopolítico | VitaleGeo">
+    <meta property="og:description" content="Desafio geopolítico! Responda perguntas sobre geografia, história e política global.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/quiz">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+<body class="text-white font-sans min-h-screen page-shell p-4 selection:bg-yellow-500 selection:text-black">
+
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/jogos" class="text-white">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            </a>
+        </div>
+    </nav>
+
+    <div class="absolute top-24 right-6 z-30">
+        <a href="/jogos" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/5"><i class="ph-bold ph-arrow-left"></i> Central de Simulações</a>
+    </div>
+
+    <main class="page-content flex flex-col items-center justify-center w-full">
+        <div class="max-w-lg w-full bg-slate-800 border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden mt-24">
+        <div class="absolute top-0 left-0 w-full h-1 bg-slate-700">
+            <div id="progress" class="h-full bg-yellow-500 w-0 transition-all duration-300"></div>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Missão: Quiz</span>
+            <span id="score" class="text-yellow-500 font-bold">Pts: 0</span>
+        </div>
+
+        <div id="quiz-container">
+            <h2 id="question" class="text-2xl font-bold mb-8 text-center min-h-[80px] flex items-center justify-center">
+                Carregando dados de inteligência...
+            </h2>
+            <div id="options" class="grid gap-3">
+                </div>
+        </div>
+
+        <div id="end-screen" class="hidden text-center">
+            <i class="ph-duotone ph-medal text-6xl text-yellow-500 mb-4"></i>
+            <h2 class="text-3xl font-bold mb-2">Missão Cumprida!</h2>
+            <p class="text-slate-400 mb-6">Sua pontuação final:</p>
+            <div class="text-5xl font-bold text-white mb-8" id="final-score">0</div>
+            <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg transition w-full">
+                Jogar Novamente
+            </button>
+        </div>
+    </div>
+    </main>
+
+    <script>
+        // BANCO DE PERGUNTAS (Edite aqui para adicionar mais)
+        const questions = [
+            { q: "Qual é a capital da Austrália?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], a: 2 },
+            { q: "Qual país tem a maior população do mundo (2025)?", options: ["China", "Índia", "EUA", "Indonésia"], a: 1 },
+            { q: "Qual país NÃO faz parte da OTAN?", options: ["Turquia", "Brasil", "Alemanha", "França"], a: 1 },
+            { q: "Qual é a moeda oficial do Reino Unido?", options: ["Euro", "Dólar", "Libra Esterlina", "Franco"], a: 2 },
+            { q: "Onde fica a sede da ONU?", options: ["Genebra", "Bruxelas", "Nova York", "Paris"], a: 2 },
+            { q: "Qual país tem o maior território do mundo?", options: ["China", "EUA", "Canadá", "Rússia"], a: 3 }
+        ];
+
+        let current = 0;
+        let score = 0;
+        const qEl = document.getElementById("question");
+        const optEl = document.getElementById("options");
+        const scoreEl = document.getElementById("score");
+        const progressEl = document.getElementById("progress");
+
+        function loadQuestion() {
+            if (current >= questions.length) return showEnd();
+            
+            const data = questions[current];
+            qEl.textContent = data.q;
+            optEl.innerHTML = "";
+            
+            // Atualiza barra
+            progressEl.style.width = `${(current / questions.length) * 100}%`;
+
+            data.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "w-full text-left bg-slate-700/50 hover:bg-slate-700 border border-white/5 hover:border-yellow-500 p-4 rounded-lg transition font-bold";
+                btn.textContent = opt;
+                btn.onclick = () => check(index, btn);
+                optEl.appendChild(btn);
+            });
+        }
+
+        function check(selected, btn) {
+            const correct = questions[current].a;
+            // Bloqueia cliques
+            const allBtns = optEl.querySelectorAll("button");
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                btn.classList.add("bg-green-600", "border-green-400");
+                score += 100;
+                scoreEl.textContent = "Pts: " + score;
+            } else {
+                btn.classList.add("bg-red-600", "border-red-400");
+                // Mostra a correta
+                allBtns[correct].classList.add("bg-green-600", "border-green-400");
+            }
+
+            setTimeout(() => {
+                current++;
+                loadQuestion();
+            }, 1000);
+        }
+
+        function showEnd() {
+            document.getElementById("quiz-container").classList.add("hidden");
+            document.getElementById("end-screen").classList.remove("hidden");
+            document.getElementById("final-score").textContent = score;
+        }
+
+        loadQuestion();
+    </script>
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-6879770260785828"
+     data-ad-slot="5140105675"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
+
+
+
+
+
+

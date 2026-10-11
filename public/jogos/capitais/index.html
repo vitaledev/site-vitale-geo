@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="bg-slate-900">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/capitais/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Capital | VitaleGeo</title>
+    <meta name="description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos sobre capitais de países.">
+    <meta name="keywords" content="capitais, geografia, jogo, quiz, países, cidades">
+    <meta property="og:title" content="Missão Capital | VitaleGeo">
+    <meta property="og:description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/capitais">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+<body class="text-white font-sans min-h-screen page-shell p-4 select-none overflow-hidden bg-slate-900">
+
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
+                <a href="/jogos" class="text-white">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            </a>
+        </div>
+    </nav>
+
+    <div class="absolute top-24 right-6 z-30">
+        <a href="/jogos" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/5"><i class="ph-bold ph-arrow-left"></i> Central de Simulações</a>
+    </div>
+
+    <main class="page-content flex flex-col items-center justify-center w-full">
+    <div class="w-full max-w-lg relative z-10 pt-28">
+        
+        <div class="text-center mb-8">
+            <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4 animate-pulse">
+                <i class="ph-fill ph-target"></i> Localizar Alvo
+            </span>
+            <div class="flex justify-between items-end px-4">
+                <div class="text-left">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Pontuação</p>
+                    <p class="text-2xl font-mono font-bold text-yellow-500" id="score">0</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Rodada</p>
+                    <p class="text-2xl font-mono font-bold" id="round">1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-800 border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center">
+                
+                <div class="w-24 h-16 md:w-32 md:h-20 rounded-lg overflow-hidden flag-shadow mb-4 border border-white/20">
+                    <img id="flag-img" src="" class="w-full h-full object-cover" alt="Bandeira">
+                </div>
+
+                <h2 class="text-xl md:text-2xl font-bold text-white mb-1" id="country-name">Carregando...</h2>
+                <p class="text-slate-400 text-xs uppercase tracking-widest mb-6">Qual é a capital?</p>
+
+                <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+                    </div>
+            </div>
+
+            <div id="feedback-overlay" class="absolute inset-0 bg-slate-900/90 z-20 hidden flex-col items-center justify-center backdrop-blur-sm">
+                <i id="feedback-icon" class="text-6xl mb-4"></i>
+                <h3 id="feedback-text" class="text-2xl font-bold uppercase tracking-widest mb-1"></h3>
+                <p id="feedback-sub" class="text-slate-400 text-sm"></p>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <script>
+        // BANCO DE DADOS (País, Código ISO, Capital)
+        const countryData = [
+            { name: "Brasil", code: "br", capital: "Brasília" },
+            { name: "Estados Unidos", code: "us", capital: "Washington, D.C." },
+            { name: "Reino Unido", code: "gb", capital: "Londres" },
+            { name: "França", code: "fr", capital: "Paris" },
+            { name: "Alemanha", code: "de", capital: "Berlim" },
+            { name: "Itália", code: "it", capital: "Roma" },
+            { name: "Japão", code: "jp", capital: "Tóquio" },
+            { name: "China", code: "cn", capital: "Pequim" },
+            { name: "Rússia", code: "ru", capital: "Moscou" },
+            { name: "Canadá", code: "ca", capital: "Ottawa" },
+            { name: "Austrália", code: "au", capital: "Canberra" },
+            { name: "Espanha", code: "es", capital: "Madri" },
+            { name: "Argentina", code: "ar", capital: "Buenos Aires" },
+            { name: "Coreia do Sul", code: "kr", capital: "Seul" },
+            { name: "Índia", code: "in", capital: "Nova Delhi" },
+            { name: "Egito", code: "eg", capital: "Cairo" },
+            { name: "Turquia", code: "tr", capital: "Ancara" },
+            { name: "México", code: "mx", capital: "Cidade do México" },
+            { name: "Portugal", code: "pt", capital: "Lisboa" },
+            { name: "Suíça", code: "ch", capital: "Berna" },
+            { name: "Suécia", code: "se", capital: "Estocolmo" },
+            { name: "Holanda", code: "nl", capital: "Amsterdã" },
+            { name: "Bélgica", code: "be", capital: "Bruxelas" },
+            { name: "Noruega", code: "no", capital: "Oslo" },
+            { name: "Grécia", code: "gr", capital: "Atenas" },
+            { name: "Chile", code: "cl", capital: "Santiago" },
+            { name: "Colômbia", code: "co", capital: "Bogotá" },
+            { name: "Peru", code: "pe", capital: "Lima" },
+            { name: "África do Sul", code: "za", capital: "Pretória" }, // Uma das capitais
+            { name: "Nova Zelândia", code: "nz", capital: "Wellington" },
+            { name: "Ucrânia", code: "ua", capital: "Kiev" },
+            { name: "Polônia", code: "pl", capital: "Varsóvia" },
+            { name: "Tailândia", code: "th", capital: "Bangkok" },
+            { name: "Vietnã", code: "vn", capital: "Hanói" },
+            { name: "Indonésia", code: "id", capital: "Jacarta" }, // Em transição, mas oficial por enquanto
+            { name: "Arábia Saudita", code: "sa", capital: "Riade" },
+            { name: "Israel", code: "il", capital: "Jerusalém" }
+        ];
+
+        let currentRound = 1;
+        let score = 0;
+        let correctTarget;
+
+        function startGame() {
+            pickQuestion();
+        }
+
+        function pickQuestion() {
+            // Escolhe um país alvo
+            correctTarget = countryData[Math.floor(Math.random() * countryData.length)];
+            
+            // Escolhe 3 capitais erradas
+            let options = [correctTarget];
+            while (options.length < 4) {
+                let random = countryData[Math.floor(Math.random() * countryData.length)];
+                // Garante que não é o mesmo país e não repete opção
+                if (!options.some(o => o.code === random.code)) {
+                    options.push(random);
+                }
+            }
+
+            // Embaralha
+            options.sort(() => Math.random() - 0.5);
+
+            render(options);
+        }
+
+        function render(options) {
+            // Renderiza Dados
+            document.getElementById("flag-img").src = `https://flagcdn.com/w640/${correctTarget.code}.png`;
+            document.getElementById("country-name").innerText = correctTarget.name;
+            document.getElementById("round").innerText = currentRound;
+
+            // Esconde Feedback
+            document.getElementById("feedback-overlay").classList.add("hidden");
+            document.getElementById("feedback-overlay").classList.remove("flex");
+
+            // Renderiza Botões
+            const grid = document.getElementById("options-grid");
+            grid.innerHTML = "";
+
+            options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "bg-slate-700/50 hover:bg-slate-700 border border-white/5 hover:border-blue-400 py-3 px-4 rounded-xl font-bold transition text-sm md:text-base text-left flex items-center gap-3 group slide-in";
+                btn.style.animationDelay = `${index * 0.1}s`; // Efeito cascata
+                
+                // Letra da opção (A, B, C, D)
+                const letter = ["A", "B", "C", "D"][index];
+                
+                btn.innerHTML = `
+                    <span class="bg-slate-900 text-slate-500 group-hover:text-blue-400 w-6 h-6 flex items-center justify-center rounded text-xs font-bold border border-white/10 transition">${letter}</span>
+                    <span class="flex-1">${opt.capital}</span>
+                `;
+                
+                btn.onclick = () => checkAnswer(opt);
+                grid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const overlay = document.getElementById("feedback-overlay");
+            const icon = document.getElementById("feedback-icon");
+            const text = document.getElementById("feedback-text");
+            const sub = document.getElementById("feedback-sub");
+
+            overlay.classList.remove("hidden");
+            overlay.classList.add("flex");
+
+            if (selected.code === correctTarget.code) {
+                // CORRETO
+                score += 100;
+                document.getElementById("score").innerText = score;
+                
+                icon.className = "ph-duotone ph-check-circle text-6xl mb-4 text-green-500";
+                text.innerText = "LOCALIZADO!";
+                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-green-400";
+                sub.innerText = `Capital confirmada: ${correctTarget.capital}`;
+                
+                setTimeout(() => {
+                    currentRound++;
+                    pickQuestion();
+                }, 1200);
+
+            } else {
+                // ERRO
+                score = Math.max(0, score - 50); // Perde pontos mas não fica negativo
+                document.getElementById("score").innerText = score;
+
+                icon.className = "ph-duotone ph-x-circle text-6xl mb-4 text-red-500";
+                text.innerText = "FALHA NA MISSÃO";
+                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-red-500";
+                sub.innerText = `A capital correta era: ${correctTarget.capital}`;
+
+                setTimeout(() => {
+                    currentRound++;
+                    pickQuestion();
+                }, 2000); // Demora um pouco mais pra ler a resposta certa
+            }
+        }
+
+        startGame();
+    </script>
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-6879770260785828"
+     data-ad-slot="5140105675"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
+
+
+
+
+
+

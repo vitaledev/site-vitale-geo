@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/calculadora-fuso/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fuso Horario | VitaleGeo</title>
+    <meta name="description" content="Compare horarios entre cidades e fusos do mundo.">
+    <meta property="og:title" content="Calculadora de Fuso Horario | VitaleGeo">
+    <meta property="og:description" content="Compare horarios entre cidades e fusos do mundo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/calculadora-fuso">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black page-shell">
+
+        <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="text-white">Ferramentas</a>
+                <a href="/jogos" class="hover:text-white transition">Simulações</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            </a>
+        </div>
+    </nav>
+
+    <div class="fixed top-24 right-6 z-30">
+        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
+            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
+        </a>
+    </div>
+
+    <main class="page-content pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
+                <i class="ph-bold ph-clock"></i> Ferramenta
+            </div>
+            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Calculadora de Fuso Horario</h1>
+            <p class="text-slate-400 max-w-2xl mb-10">
+                Compare horarios entre cidades do mundo usando um fuso base. Ideal para planejar reunioes e viagens.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-heading text-white">Base</h2>
+                        <a href="/ferramentas" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition">Voltar</a>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-date">Data</label>
+                            <input id="base-date" type="date" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-time">Hora</label>
+                            <input id="base-time" type="time" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                        </div>
+                    </div>
+
+                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-zone">Fuso base</label>
+                    <select id="base-zone" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6"></select>
+
+                    <div>
+                        <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-slate-500 mb-3">
+                            <i class="ph-bold ph-map-trifold"></i> Cidades para comparar
+                        </div>
+                        <div id="zones-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    </div>
+                </div>
+
+                <div class="glass-container p-6 border border-white/5 rounded-2xl">
+                    <h2 class="text-xl font-heading text-white mb-4">Resultados</h2>
+                    <div id="results" class="space-y-3"></div>
+                    <p id="empty" class="text-slate-500 text-sm hidden">Selecione ao menos uma cidade para comparar.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+                    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const ZONES = [
+            { id: 'America/Sao_Paulo', label: 'Sao Paulo' },
+            { id: 'America/Buenos_Aires', label: 'Buenos Aires' },
+            { id: 'America/New_York', label: 'Nova York' },
+            { id: 'America/Chicago', label: 'Chicago' },
+            { id: 'America/Los_Angeles', label: 'Los Angeles' },
+            { id: 'Europe/Lisbon', label: 'Lisboa' },
+            { id: 'Europe/London', label: 'Londres' },
+            { id: 'Europe/Paris', label: 'Paris' },
+            { id: 'Europe/Berlin', label: 'Berlim' },
+            { id: 'Africa/Johannesburg', label: 'Joanesburgo' },
+            { id: 'Asia/Dubai', label: 'Dubai' },
+            { id: 'Asia/Kolkata', label: 'Nova Delhi' },
+            { id: 'Asia/Shanghai', label: 'Xangai' },
+            { id: 'Asia/Tokyo', label: 'Toquio' },
+            { id: 'Australia/Sydney', label: 'Sydney' },
+            { id: 'Pacific/Auckland', label: 'Auckland' }
+        ];
+
+        const baseDate = document.getElementById('base-date');
+        const baseTime = document.getElementById('base-time');
+        const baseZone = document.getElementById('base-zone');
+        const zonesList = document.getElementById('zones-list');
+        const results = document.getElementById('results');
+        const empty = document.getElementById('empty');
+
+        const formatParts = (dateUtc, timeZone) => {
+            const fmt = new Intl.DateTimeFormat('pt-BR', {
+                timeZone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                weekday: 'short',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            const parts = {};
+            fmt.formatToParts(dateUtc).forEach(p => { parts[p.type] = p.value; });
+            return parts;
+        };
+
+        const offsetMinutes = (dateUtc, timeZone) => {
+            const parts = formatParts(dateUtc, timeZone);
+            const localAsUtc = Date.UTC(
+                Number(parts.year),
+                Number(parts.month) - 1,
+                Number(parts.day),
+                Number(parts.hour),
+                Number(parts.minute),
+                0
+            );
+            return (localAsUtc - dateUtc.getTime()) / 60000;
+        };
+
+        const zonedTimeToUtc = (dateStr, timeStr, timeZone) => {
+            const [year, month, day] = dateStr.split('-').map(Number);
+            const [hour, minute] = timeStr.split(':').map(Number);
+            const baseUtc = new Date(Date.UTC(year, month - 1, day, hour, minute, 0));
+            const off = offsetMinutes(baseUtc, timeZone);
+            return new Date(baseUtc.getTime() - off * 60000);
+        };
+
+        const buildResults = () => {
+            if (!baseDate.value || !baseTime.value) return;
+            const selected = [...zonesList.querySelectorAll('input:checked')].map(i => i.value);
+            const baseTz = baseZone.value;
+            const all = [baseTz, ...selected.filter(z => z !== baseTz)];
+
+            results.innerHTML = '';
+            if (!all.length) {
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            const utcDate = zonedTimeToUtc(baseDate.value, baseTime.value, baseTz);
+            const baseOffset = offsetMinutes(utcDate, baseTz);
+            const baseParts = formatParts(utcDate, baseTz);
+            const baseYmd = `${baseParts.year}-${baseParts.month}-${baseParts.day}`;
+
+            all.forEach(id => {
+                const z = ZONES.find(x => x.id === id);
+                const parts = formatParts(utcDate, id);
+                const ymd = `${parts.year}-${parts.month}-${parts.day}`;
+                const dayDiff = ymd > baseYmd ? '+1' : (ymd < baseYmd ? '-1' : '0');
+                const diffHours = (offsetMinutes(utcDate, id) - baseOffset) / 60;
+                const diffLabel = diffHours === 0 ? '0h' : `${diffHours > 0 ? '+' : ''}${diffHours}h`;
+
+                results.innerHTML += `
+                    <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                        <div>
+                            <div class="text-sm text-slate-500 uppercase tracking-widest">${z ? z.label : id}</div>
+                            <div class="text-lg font-bold text-white">${parts.hour}:${parts.minute}</div>
+                            <div class="text-xs text-slate-400">${parts.weekday} ${parts.day}/${parts.month}/${parts.year}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs text-slate-500 uppercase tracking-widest">Delta</div>
+                            <div class="text-lg font-bold text-geoGold">${diffLabel}</div>
+                            <div class="text-xs text-slate-400">Dia ${dayDiff}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+
+        const buildZoneOptions = () => {
+            const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            baseZone.innerHTML = ZONES.map(z => `<option value="${z.id}">${z.label}</option>`).join('');
+            if (ZONES.some(z => z.id === localTz)) baseZone.value = localTz;
+            else baseZone.value = 'America/Sao_Paulo';
+
+            const defaults = new Set([
+                'America/Sao_Paulo',
+                'America/New_York',
+                'Europe/London',
+                'Europe/Paris',
+                'Asia/Tokyo',
+                'Australia/Sydney'
+            ]);
+
+            zonesList.innerHTML = ZONES.map(z => `
+                <label class="flex items-center gap-3 bg-slate-900/60 border border-white/5 rounded-xl px-3 py-2 cursor-pointer">
+                    <input type="checkbox" value="${z.id}" class="accent-yellow-400" ${defaults.has(z.id) ? 'checked' : ''}>
+                    <span class="text-sm text-slate-200">${z.label}</span>
+                </label>
+            `).join('');
+        };
+
+        const setDefaults = () => {
+            const now = new Date();
+            baseDate.value = now.toISOString().slice(0, 10);
+            baseTime.value = now.toTimeString().slice(0, 5);
+        };
+
+        baseDate.addEventListener('input', buildResults);
+        baseTime.addEventListener('input', buildResults);
+        baseZone.addEventListener('change', buildResults);
+        zonesList.addEventListener('change', buildResults);
+
+        buildZoneOptions();
+        setDefaults();
+        buildResults();
+    </script>
+    <div class="h-20 md:hidden"></div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
+        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
+            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                </a>
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-6879770260785828"
+     data-ad-slot="5140105675"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
+
+
+
+
+
+
