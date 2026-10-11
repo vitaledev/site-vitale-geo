@@ -3,7 +3,7 @@ titulo: "Ponto Nemo: O lugar mais solitário da Terra"
 resumo: "No Ponto Nemo, os humanos mais próximos de você não estão na Terra, mas no espaço. Conheça o cemitério de naves."
 categoria: "Oceanografia"
 data: "22 Jan 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png"
+img: "/assets/img/blog/ponto-nemo.png"
 tempoLeitura: "5 min"
 destaque: false
 ---

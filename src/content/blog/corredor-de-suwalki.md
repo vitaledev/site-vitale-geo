@@ -3,7 +3,7 @@ titulo: "O Corredor de Suwalki: A Faixa de 65 km que Tira o Sono da OTAN"
 resumo: "Prensada entre Kaliningrado e a Bielorrússia, essa fronteira polaco-lituana é considerada o calcanhar de Aquiles militar da Europa."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 09:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Suwalki_Gap_in_Europe.svg/1280px-Suwalki_Gap_in_Europe.svg.png"
+img: "/assets/img/blog/corredor-de-suwalki.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

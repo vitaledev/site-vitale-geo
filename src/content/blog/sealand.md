@@ -3,7 +3,7 @@ titulo: "Principado de Sealand: A Menor Nação"
 resumo: "Conheça a plataforma de petróleo que virou um país, emitiu passaportes e travou uma guerra contra helicópteros."
 categoria: "Curiosidades"
 data: "15 Fev 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg"
+img: "/assets/img/blog/sealand.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

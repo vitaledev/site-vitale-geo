@@ -5,7 +5,7 @@ import { gamesDB } from '../../data/games';
 ---
 
 <Layout
-  title="Simulações de Território | VitaleGeo"
+  title="Simulações & Desafios de Território | VitaleGeo"
   description="Módulos interativos para testar o conhecimento sobre fronteiras, enclaves e geografia política mundial."
 >
   <main class="page-content">
@@ -14,7 +14,7 @@ import { gamesDB } from '../../data/games';
 
       <div class="max-w-3xl mx-auto relative z-10">
         <div class="carto-badge mb-4">
-          <span class="carto-badge-dot" style="background-color: #10b981;"></span>
+          <span class="carto-badge-dot" style="background-color: #10b981; box-shadow: 0 0 8px #10b981;"></span>
           <span style="color: #10b981;">Simulações Cartográficas</span>
         </div>
         <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
@@ -26,14 +26,32 @@ import { gamesDB } from '../../data/games';
       </div>
     </header>
 
-    <section class="py-12 px-6 max-w-6xl mx-auto pb-24">
+    <!-- Divisor Cartográfico -->
+    <div class="max-w-6xl mx-auto px-6 mb-12">
+      <div class="carto-divider">
+        <div class="carto-divider-line"></div>
+        <div class="carto-divider-mark">
+          <i class="ph-bold ph-globe text-emerald-400"></i>
+          <span>LIMITES, ENCLAVES E SOBERANIA</span>
+        </div>
+        <div class="carto-divider-line"></div>
+      </div>
+    </div>
+
+    <section class="py-6 px-6 max-w-6xl mx-auto pb-28">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {gamesDB.map(game => (
-          <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
+          <a href={game.link} class="minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900">
+                <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute top-3 left-3">
+                    <span class="category-pill text-emerald-300 border-emerald-400/20 bg-emerald-950/70">
+                      <i class="ph-bold ph-game-controller"></i> DESAFIO
+                    </span>
+                  </div>
                 </div>
               ) : null}
               <div class="p-6">
@@ -41,8 +59,8 @@ import { gamesDB } from '../../data/games';
                 <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">{game.desc}</p>
               </div>
             </div>
-            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1">
-              Iniciar desafio <i class="ph-bold ph-arrow-right"></i>
+            <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
+              Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
         ))}

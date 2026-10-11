@@ -3,7 +3,7 @@ titulo: "Cabo da Boa Esperança vs Suez: Como o Mar Vermelho Redesenhou o Comér
 resumo: "Desviar dos mísseis no Estreito de Bab el-Mandeb adiciona 6.000 km e duas semanas contornando a África. Entenda o impacto nos fretes mundiais."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 18:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Suez_Canal_and_Cape_Route.png/1280px-Suez_Canal_and_Cape_Route.png"
+img: "/assets/img/blog/crise-mar-vermelho-rotas.svg"
 tempoLeitura: "5 min"
 destaque: false
 ---

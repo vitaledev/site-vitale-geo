@@ -3,7 +3,7 @@ titulo: "Büsingen am Hochrhein: A Cidade Alemã Que Vive Sob as Leis da Suíça
 resumo: "Cercada pelo cantão suíço de Schaffhausen, Büsingen tem dois códigos postais, polícia mista e votou 96% para se juntar à Suíça em 1918."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 21:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Buesingen_am_Hochrhein_aerial.jpg/1280px-Buesingen_am_Hochrhein_aerial.jpg"
+img: "/assets/img/blog/busingen-enclave-alemao.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

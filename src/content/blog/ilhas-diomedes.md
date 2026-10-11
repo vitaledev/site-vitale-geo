@@ -3,7 +3,7 @@ titulo: "Ilhas Diomedes: A Fronteira do Tempo"
 resumo: "A apenas 3,8 km de distância, estas ilhas separam os EUA da Rússia e o Hoje do Amanhã. Uma viagem onde é possível ver o futuro a olho nu."
 categoria: "Curiosidades"
 data: "28 Jan 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg"
+img: "/assets/img/blog/ilhas-diomedes.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

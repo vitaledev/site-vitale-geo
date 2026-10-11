@@ -3,7 +3,7 @@ titulo: "The Slash: A Clareira de 6 Metros que Corta 8.891 km Entre os EUA e o C
 resumo: "A maior fronteira desmilitarizada do planeta é mantida à base de motosserras: uma linha desmatada que rasga montanhas e florestas de costa a costa."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 22:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/US-Canada_Border_The_Slash.jpg/1280px-US-Canada_Border_The_Slash.jpg"
+img: "/assets/img/blog/fronteira-eua-canada-the-slash.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

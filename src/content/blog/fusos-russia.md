@@ -3,7 +3,7 @@ titulo: "Fusos Horários da Rússia: 11 Relógios em um País"
 resumo: "Entenda por que a Rússia tem 11 fusos horários e como isso impacta política, logística e o cotidiano."
 categoria: "Cartografia"
 data: "18 Jan 2026"
-img: "https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg"
+img: "/assets/img/blog/fusos-russia.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

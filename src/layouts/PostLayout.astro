@@ -28,12 +28,12 @@ const {
   type="article"
 >
   <main class="page-content">
-    <!-- Header do Artigo com Curvas Topográficas -->
+    <!-- Header do Artigo com Curvas Topográficas Vetoriais -->
     <header class="relative pt-36 sm:pt-44 pb-14 px-6 border-b border-white/5 overflow-hidden">
       <TopoLines strokeColor="#f59e0b" />
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <div class="flex items-center gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
           <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono tracking-wider text-slate-400 hover:text-white transition">
             <i class="ph-bold ph-arrow-left"></i> VOLTAR AOS DOSSIÊS
           </a>
@@ -43,7 +43,7 @@ const {
           <span class="text-xs font-mono text-slate-400">{tempoLeitura.toUpperCase()} LEITURA</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-normal text-white leading-[1.15] tracking-tight mb-6">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-normal text-white leading-[1.16] tracking-tight mb-6">
           {titulo}
         </h1>
 
@@ -52,23 +52,28 @@ const {
         </p>
 
         <div class="flex items-center gap-4 text-xs font-mono text-slate-400 border-t border-white/5 pt-6">
-          <span>⌖ PUBLICADO EM: {data}</span>
+          <span class="text-amber-400 font-semibold">⌖ PUBLICADO EM: {data}</span>
           <span class="text-slate-700">·</span>
-          <span>ARQUIVO VITALEGEO</span>
+          <span>ARQUIVO INVESTIGATIVO VITALEGEO</span>
         </div>
       </div>
     </header>
 
-    <!-- Imagem de Capa em Destaque -->
+    <!-- Imagem de Capa em Destaque com Moldura Cartográfica -->
     {img && (
       <div class="max-w-4xl mx-auto px-6 -mt-6 sm:-mt-8 mb-12 relative z-20">
-        <div class="aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-slate-900">
-          <img src={img} alt={titulo} class="w-full h-full object-cover" />
+        <div class="aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-slate-900 carto-corner-frame">
+          <img
+            src={img}
+            alt={titulo}
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover"
+          />
         </div>
       </div>
     )}
 
-    <!-- Corpo do Artigo em Tipografia Editorial -->
+    <!-- Corpo do Artigo em Tipografia Editorial Confortável -->
     <article class="px-6 pb-20 max-w-3xl mx-auto">
       <div class="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-strong:text-white prose-code:font-mono">
         <slot />
@@ -88,7 +93,7 @@ const {
       </div>
 
       <!-- Rodapé do Artigo / Chamada para o YouTube -->
-      <div class="mt-12 p-8 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="mt-12 p-8 rounded-2xl bg-white/[0.02] border border-white/10 carto-corner-frame flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
         <div>
           <h3 class="text-base font-heading font-semibold text-white">Gostou desta investigação?</h3>
           <p class="text-sm text-slate-400 mt-1">Inscreva-se no canal Já Imaginou Isso para análises cartográficas em 4K.</p>

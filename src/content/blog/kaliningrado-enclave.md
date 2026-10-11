@@ -3,7 +3,7 @@ titulo: "Kaliningrado: O Enclave Armado da Rússia Cravado no Coração da OTAN"
 resumo: "Cercado por Polônia e Lituânia, o enclave russo de 15.000 km² abriga a Frota do Báltico e mísseis Iskander. Entenda o perigo do Corredor de Suwalki."
 categoria: "Geopolítica"
 data: "10 Out 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Kaliningrad_Oblast_within_Europe.svg/1280px-Kaliningrad_Oblast_within_Europe.svg.png"
+img: "/assets/img/blog/kaliningrado-enclave.png"
 tempoLeitura: "5 min"
 destaque: false
 ---

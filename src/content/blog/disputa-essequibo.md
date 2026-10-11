@@ -3,7 +3,7 @@ titulo: "A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da 
 resumo: "A descoberta de 11 bilhões de barris de petróleo transformou a Guiana e reacendeu a ambição da Venezuela pelo Essequibo. Entenda o alerta na fronteira com o Brasil."
 categoria: "Geopolítica"
 data: "10 Out 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png"
+img: "/assets/img/blog/disputa-essequibo.png"
 tempoLeitura: "5 min"
 destaque: false
 ---

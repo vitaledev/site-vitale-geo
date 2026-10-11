@@ -55,7 +55,11 @@ const {
   <!-- Google AdSense Oficial -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 </head>
-<body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
+<body class="page-shell bg-[#07090e] text-slate-300 selection:bg-amber-400 selection:text-black antialiased relative overflow-x-hidden">
+  <!-- Camadas de Iluminação Ambiente e Profundidade Agradável -->
+  <div class="fixed top-[-100px] left-[5%] ambient-glow-amber animate-pulse-glow" aria-hidden="true"></div>
+  <div class="fixed top-[25%] right-[-80px] ambient-glow-blue animate-pulse-glow" style="animation-delay: -4s;" aria-hidden="true"></div>
+
   <Header />
   
   <slot />

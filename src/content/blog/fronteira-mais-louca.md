@@ -3,7 +3,7 @@ titulo: "A Fronteira Mais Louca do Mundo"
 resumo: "Em Baarle, você pode dormir na Bélgica e tomar café na Holanda sem sair de casa. Conheça a cidade com a fronteira mais complexa do planeta."
 categoria: "Fronteiras"
 data: "25 Jan 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/7/7b/LocatieBaarle.jpg"
+img: "/assets/img/blog/fronteira-mais-louca.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

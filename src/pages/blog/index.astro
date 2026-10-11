@@ -41,7 +41,19 @@ const postsData = allPosts.map(p => ({
       </div>
     </header>
 
-    <section class="pb-24 px-6 max-w-6xl mx-auto min-h-[50vh]">
+    <!-- Divisor Cartográfico -->
+    <div class="max-w-6xl mx-auto px-6 mb-10">
+      <div class="carto-divider">
+        <div class="carto-divider-line"></div>
+        <div class="carto-divider-mark">
+          <i class="ph-bold ph-newspaper text-amber-400"></i>
+          <span>{postsData.length} INVESTIGAÇÕES DOCUMENTAIS DISPONÍVEIS</span>
+        </div>
+        <div class="carto-divider-line"></div>
+      </div>
+    </div>
+
+    <section class="pb-28 px-6 max-w-6xl mx-auto min-h-[50vh]">
       <BlogArchive client:load posts={postsData} />
     </section>
   </main>

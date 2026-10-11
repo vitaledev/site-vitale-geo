@@ -3,7 +3,7 @@ titulo: "Arquivo Confidencial: Área 51"
 resumo: "Relatório desclassificado sobre a base militar mais secreta do mundo. [DADOS EXPURGADOS]"
 categoria: "Conspiração"
 data: "01 Fev 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg"
+img: "/assets/img/blog/area-51.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

@@ -3,7 +3,7 @@ titulo: "O Canal de Kra na Tailândia: O Megaprojeto de US$ 28 Bilhões que Pode
 resumo: "Cortar 100 km de terra na Tailândia encurtaria 1.200 km de mar, desviando navios do Estreito de Malaca e desafiando o império econômico de Cingapura."
 categoria: "Geopolítica"
 data: "10 Out 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Thai_Canal_map-de.jpg/1280px-Thai_Canal_map-de.jpg"
+img: "/assets/img/blog/canal-de-kra.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

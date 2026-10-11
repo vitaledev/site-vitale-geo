@@ -3,7 +3,7 @@ titulo: "O Estreito de Ormuz: Por que 20% do Petróleo Mundial Passa por um Garg
 resumo: "Com apenas 39 km de largura navegável entre o Irã e Omã, o Estreito de Ormuz é o chokepoint naval mais crítico do planeta."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 07:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Strait_of_hormuz_full.jpg/1280px-Strait_of_hormuz_full.jpg"
+img: "/assets/img/blog/estreito-de-ormuz.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

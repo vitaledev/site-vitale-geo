@@ -3,7 +3,7 @@ titulo: "Baarle: A Cidade Onde a Fronteira Corta a Sua Sala de Estar"
 resumo: "Com 22 enclaves belgas e 8 contra-enclaves holandeses, Baarle é o quebra-cabeça cartográfico mais surreal do planeta. Entenda a Regra da Porta da Frente."
 categoria: "Fronteiras"
 data: "10 Out 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Baarle-Hertog_and_Baarle-Nassau_border.jpg/1280px-Baarle-Hertog_and_Baarle-Nassau_border.jpg"
+img: "/assets/img/blog/baarle-fronteira.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---

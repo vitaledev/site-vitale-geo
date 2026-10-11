@@ -1,13 +1,51 @@
 ---
 interface Props {
   strokeColor?: string;
+  className?: string;
 }
-const { strokeColor = '#f59e0b' } = Astro.props;
+const { strokeColor = '#f59e0b', className = '' } = Astro.props;
 ---
-<svg class="topo-lines-svg" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M-100 120 C 300 280, 600 -50, 1100 180 C 1300 270, 1500 140, 1600 200" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="6 6"/>
-  <path d="M-100 220 C 250 380, 700 80, 1050 320 C 1350 420, 1450 250, 1600 310" stroke={strokeColor} stroke-width="1.5"/>
-  <path d="M-100 350 C 400 520, 800 220, 1200 480 C 1400 550, 1550 420, 1600 470" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4"/>
-  <path d="M-100 500 C 300 650, 750 390, 1150 620 C 1380 710, 1500 590, 1600 650" stroke={strokeColor} stroke-width="1.2"/>
-  <path d="M-100 680 C 500 820, 900 540, 1300 780 C 1450 830, 1550 750, 1600 800" stroke="#ffffff" stroke-width="1"/>
-</svg>
+<div class={`topo-lines-svg ${className}`}>
+  <svg class="w-full h-full" viewBox="0 0 1440 850" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="topo-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+        <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
+      </linearGradient>
+      <linearGradient id="topo-blue" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
+        <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.01"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Curvas de Nível Conducentes e de Relevo Geográfico -->
+    <path d="M-80 90 C 280 220, 620 -40, 1080 140 C 1280 220, 1440 90, 1550 150" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="8 8" opacity="0.6"/>
+    <path d="M-80 180 C 240 320, 710 50, 1030 260 C 1320 350, 1420 190, 1550 250" stroke={strokeColor} stroke-width="1.6" opacity="0.8"/>
+    <path d="M-80 290 C 320 440, 760 140, 1140 380 C 1350 450, 1480 320, 1550 370" stroke="url(#topo-blue)" stroke-width="1.4" opacity="0.7"/>
+    <path d="M-80 420 C 360 580, 820 260, 1180 500 C 1370 570, 1500 440, 1550 490" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="6 6" opacity="0.6"/>
+    <path d="M-80 560 C 290 700, 780 430, 1160 670 C 1390 750, 1490 620, 1550 680" stroke={strokeColor} stroke-width="1.5" opacity="0.75"/>
+    <path d="M-80 710 C 460 840, 890 560, 1280 810 C 1430 860, 1520 780, 1550 830" stroke="url(#topo-blue)" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- Anéis Concêntricos de Pico / Relevo Insular -->
+    <ellipse cx="1120" cy="220" rx="90" ry="40" stroke={strokeColor} stroke-width="1" stroke-dasharray="4 4" opacity="0.5" transform="rotate(-15 1120 220)" />
+    <ellipse cx="1120" cy="220" rx="55" ry="24" stroke={strokeColor} stroke-width="1.2" opacity="0.7" transform="rotate(-15 1120 220)" />
+    <ellipse cx="1120" cy="220" rx="25" ry="10" stroke={strokeColor} stroke-width="1.4" opacity="0.9" transform="rotate(-15 1120 220)" />
+
+    <!-- Pontos de Agrimensura & Coordenadas Geodésicas -->
+    <g opacity="0.55" font-family="'Space Mono', monospace" font-size="9" fill={strokeColor} letter-spacing="0.1em">
+      <text x="280" y="210">+ 1.450m</text>
+      <text x="730" y="70">+ 820m</text>
+      <text x="1220" y="240">⌖ COTA 2.100m</text>
+      <text x="960" y="520">+ 640m</text>
+    </g>
+
+    <!-- Marcadores de Mira Náutica / Surveyor Crosshairs -->
+    <g stroke="rgba(255,255,255,0.18)" stroke-width="1">
+      <path d="M200 480 L200 500 M190 490 L210 490" />
+      <path d="M850 320 L850 340 M840 330 L860 330" />
+      <path d="M1300 600 L1300 620 M1290 610 L1310 610" />
+    </g>
+  </svg>
+</div>

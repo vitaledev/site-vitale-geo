@@ -3,7 +3,7 @@ titulo: "Whittier: A Cidade de Um Prédio Só"
 resumo: "Conheça a cidade no Alasca onde toda a população mora no mesmo edifício e o único acesso é um túnel que fecha à noite."
 categoria: "Urbanismo"
 data: "20 Fev 2026"
-img: "https://upload.wikimedia.org/wikipedia/commons/7/71/Back_to_Whittier...Sun_is_out...Water_is_Rough_%282571032531%29.jpg"
+img: "/assets/img/blog/whittier.jpg"
 tempoLeitura: "5 min"
 destaque: false
 ---
