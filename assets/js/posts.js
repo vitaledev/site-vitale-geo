@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "The Slash: A Clareira de 6 Metros que Corta 8.891 km Entre os EUA e o Canadá",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/US-Canada_Border_The_Slash.jpg/1280px-US-Canada_Border_The_Slash.jpg",
+        link: "fronteira-eua-canada-the-slash/",
+        resumo: "A maior fronteira desmilitarizada do planeta é mantida à base de motosserras: uma linha desmatada que rasga montanhas e florestas de costa a costa."
+    },
+    {
+        titulo: "Büsingen am Hochrhein: A Cidade Alemã Que Vive Sob as Leis da Suíça",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Buesingen_am_Hochrhein_aerial.jpg/1280px-Buesingen_am_Hochrhein_aerial.jpg",
+        link: "busingen-enclave-alemao/",
+        resumo: "Cercada pelo cantão suíço de Schaffhausen, Büsingen tem dois códigos postais, polícia mista e votou 96% para se juntar à Suíça em 1918."
+    },
+    {
+        titulo: "Nusantara: Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/IKN_Nusantara_aerial_view_2024.jpg/1280px-IKN_Nusantara_aerial_view_2024.jpg",
+        link: "nusantara-nova-capital-indonesia/",
+        resumo: "Afundando até 25 cm por ano sob o peso de 10 milhões de habitantes, Jacarta está sendo substituída por uma megalópole planejada no meio da selva de Bornéu."
+    },
+    {
+        titulo: "Cabo da Boa Esperança vs Suez: Como o Mar Vermelho Redesenhou o Comércio Global",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Suez_Canal_and_Cape_Route.png/1280px-Suez_Canal_and_Cape_Route.png",
+        link: "crise-mar-vermelho-rotas/",
+        resumo: "Desviar dos mísseis no Estreito de Bab el-Mandeb adiciona 6.000 km e duas semanas contornando a África. Entenda o impacto nos fretes mundiais."
+    },
+    {
+        titulo: "O Mar de Aral: A Catástrofe Cartográfica do 4º Maior Lago que Virou Deserto",
+        categoria: "Curiosidades",
+        data: "11 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Aral_Sea_1989-2014.jpg/1280px-Aral_Sea_1989-2014.jpg",
+        link: "desaparecimento-mar-de-aral/",
+        resumo: "Em menos de quatro décadas, o desvio soviético dos rios encolheu um mar interior de 68.000 km² em 90%, deixando navios enferrujados na areia."
+    },
+    {
+        titulo: "Campione d'Italia: O Enclave Italiano Onde Quase Tudo Funciona na Suíça",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Campione_d%27Italia_view_from_Lugano.jpg/1280px-Campione_d%27Italia_view_from_Lugano.jpg",
+        link: "campione-d-italia/",
+        resumo: "À beira do Lago de Lugano, uma cidade soberana italiana usa franco suíço, rede telefônica suíça e placas do cantão de Ticino."
+    },
+    {
+        titulo: "Ceuta e Melilla: Os Dois Pedaços da Europa Cravados no Norte da África",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg/1280px-Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg.png",
+        link: "ceuta-e-melilla/",
+        resumo: "Cercadas por muralhas triplas e pelo território do Marrocos, Ceuta e Melilla são as únicas fronteiras terrestres diretas da UE na África."
+    },
+    {
+        titulo: "Cooch Behar: Onde Existiu o Único Enclave de 3ª Ordem da História Humana",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_Bangladesh_border_%28enclaves%29.svg/1280px-India_Bangladesh_border_%28enclaves%29.svg.png",
+        link: "cooch-behar-enclaves/",
+        resumo: "Um pedaço da Índia dentro de Bangladesh, dentro da Índia, dentro de Bangladesh: conheça o quebra-cabeça de Dahala Khagrabari."
+    },
+    {
+        titulo: "O Corredor de Suwalki: A Faixa de 65 km que Tira o Sono da OTAN",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Suwalki_Gap_in_Europe.svg/1280px-Suwalki_Gap_in_Europe.svg.png",
+        link: "corredor-de-suwalki/",
+        resumo: "Prensada entre Kaliningrado e a Bielorrússia, essa fronteira polaco-lituana é considerada o calcanhar de Aquiles militar da Europa."
+    },
+    {
+        titulo: "O Estreito de Ormuz: Por que 20% do Petróleo Mundial Passa por um Gargalo de 39 km?",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Strait_of_hormuz_full.jpg/1280px-Strait_of_hormuz_full.jpg",
+        link: "estreito-de-ormuz/",
+        resumo: "Com apenas 39 km de largura navegável entre o Irã e Omã, o Estreito de Ormuz é o chokepoint naval mais crítico do planeta."
+    },
+    {
         titulo: "A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela?",
         categoria: "Geopolítica",
         data: "10 Out 2026",

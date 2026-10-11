@@ -25,6 +25,10 @@ body {
     font-family: var(--font-sans);
     color: var(--text-secondary);
     background-color: var(--bg-base);
+    background-image: 
+        radial-gradient(ellipse 70% 45% at 50% -10%, rgba(245, 158, 11, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 30% at 85% 25%, rgba(56, 189, 248, 0.04) 0%, transparent 60%);
+    background-attachment: fixed;
     overflow-x: hidden;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
@@ -69,7 +73,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Navegação Minimalista */
+/* Navegação Flutuante em Pílula (Glass Pill) */
 .glass-nav {
     background: rgba(9, 10, 15, 0.85);
     backdrop-filter: blur(16px);
@@ -77,18 +81,125 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Cards Minimalistas */
+.floating-pill-nav {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 68rem;
+    z-index: 50;
+    border-radius: 9999px;
+    background: rgba(9, 10, 15, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Cards Táteis & Editoriais Enriquecidos */
 .minimal-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
-    border-radius: 1rem;
-    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    border-radius: 1.125rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease;
+    position: relative;
 }
 
 .minimal-card:hover {
     background-color: var(--bg-surface-hover);
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
+    border-color: rgba(245, 158, 11, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(245, 158, 11, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Elementos Cartográficos e de Instrumentação */
+.carto-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.carto-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-gold);
+}
+
+/* Filtros de Categoria em Abas */
+.filter-tab {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.45rem 1.1rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.filter-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.filter-tab.active {
+    color: #090a0f;
+    background: #ffffff;
+    border-color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+
+/* Animação Suave de Entrada para Cards */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-card-fade {
+    animation: cardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Curvas Topográficas Vetoriais */
+.topo-lines-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.07;
+    overflow: hidden;
 }
 
 /* Botões Limpos e Humanizados */
@@ -102,17 +213,18 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .btn-clean-primary:hover {
     background-color: #f1f5f9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 .btn-clean-secondary {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.03);
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
     font-weight: 500;
@@ -122,13 +234,14 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-clean-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.07);
     border-color: rgba(255, 255, 255, 0.25);
     color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* Pills de Categoria */
@@ -137,9 +250,10 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     font-weight: 500;
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
-    background-color: rgba(255, 255, 255, 0.06);
-    color: var(--text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(9, 10, 15, 0.75);
+    backdrop-filter: blur(8px);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;

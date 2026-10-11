@@ -27,31 +27,45 @@
 </head>
 <body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula (Glass Pill) -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
     <main class="page-content">
-        <header class="pt-40 pb-16 px-6 text-center">
-            <div class="max-w-3xl mx-auto">
+        <header class="relative pt-40 pb-16 px-6 text-center overflow-hidden">
+            <!-- Curvas de Nível Topográficas -->
+            <svg class="topo-lines-svg" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M-100 120 C 300 260, 700 -20, 1100 160 C 1300 230, 1500 130, 1600 180" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="6 6"/>
+                <path d="M-100 260 C 250 400, 750 110, 1150 310 C 1350 400, 1450 250, 1600 300" stroke="#38bdf8" stroke-width="1.5"/>
+                <path d="M-100 420 C 400 530, 800 280, 1200 480 C 1400 540, 1550 420, 1600 460" stroke="#ffffff" stroke-width="1"/>
+            </svg>
+
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot" style="background-color: #38bdf8;"></span>
+                    <span style="color: #38bdf8;">Instrumentação Cartográfica</span>
+                </div>
                 <h1 class="text-4xl md:text-6xl font-heading font-normal text-white leading-tight">
                     Ferramentas de Escala & Projeção
                 </h1>
