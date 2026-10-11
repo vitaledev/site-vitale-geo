@@ -1,256 +1,223 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/videos/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitaleGeo TV | Galeria Tática</title>
+    <title>Vídeos & Documentários | VitaleGeo</title>
+    <meta name="description" content="Análises cartográficas e narrativas geopolíticas produzidas em 4K para o canal Já Imaginou Isso.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'], mono: ['Space Mono', 'monospace'] },
+                    colors: { geoBg: '#090a0f', geoCard: '#11131a', geoGold: '#f59e0b' }
                 }
             }
         }
     </script>
-
 </head>
-<body class="text-slate-300 font-sans antialiased bg-grid-pattern selection:bg-geoGold selection:text-geoNavy">
+<body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
 
-    <div id="video-modal" class="hidden-modal fixed inset-0 z-[100] bg-geoNavy/95 flex flex-col justify-center items-center backdrop-blur-md modal-grid-bg p-4">
-        
-        <div id="modal-container" class="w-full max-w-5xl bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300">
-            
-            <div class="flex justify-between items-center px-4 py-2 bg-black/40 border-b border-white/10">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_red]"></span>
-                    <span class="text-[10px] font-bold tracking-widest uppercase text-white font-mono">Transmissão Segura</span>
-                </div>
-                <button onclick="closeVideo()" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white flex items-center gap-2 px-3 py-1 hover:bg-white/10 rounded transition">
-                    Fechar <i class="ph-bold ph-x text-base"></i>
+    <!-- Modal de Vídeo -->
+    <div id="video-modal" class="hidden-modal fixed inset-0 z-[100] bg-black/90 flex flex-col justify-center items-center backdrop-blur-md p-4">
+        <div id="modal-container" class="w-full max-w-4xl bg-[#11131a] border border-white/10 shadow-2xl relative flex flex-col rounded-xl overflow-hidden transition-all duration-300">
+            <div class="flex justify-between items-center px-4 py-3 bg-black/40 border-b border-white/10">
+                <span class="text-xs font-semibold tracking-wider text-slate-300">VitaleGeo TV</span>
+                <button onclick="closeVideo()" class="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-1 rounded transition">
+                    Fechar <i class="ph-bold ph-x text-sm"></i>
                 </button>
             </div>
-
-            <div id="video-wrapper" class="relative bg-black group aspect-video">
-                <div class="absolute inset-0 pointer-events-none z-10 border border-white/5 m-1">
-                    <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-geoBlue/50"></div>
-                    <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-geoBlue/50"></div>
-                    <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-geoBlue/50"></div>
-                    <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-geoBlue/50"></div>
-                </div>
-                <iframe id="video-frame" class="w-full h-full relative z-0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div id="video-wrapper" class="relative bg-black aspect-video">
+                <iframe id="video-frame" class="w-full h-full" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
-
         <div class="absolute inset-0 -z-10" onclick="closeVideo()"></div>
     </div>
 
-
     <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="https://vitalegeo.com.br/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-3xl text-geoGold group-hover:rotate-180 transition duration-700"></i>
-                <span class="text-2xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-geoGold">Geo</span></span>
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-serif font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
-            <div class="hidden md:flex gap-8 text-sm font-bold tracking-wide text-slate-400">
-                <a href="https://vitalegeo.com.br/" class="hover:text-white transition">Home</a>
-                <a href="/jogos" class="hover:text-white transition">Jogos</a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
                 <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/videos" class="text-white border-b border-geoGold pb-1">Vídeos</a>
-                <a href="/blog" class="hover:text-white transition">Blog</a>
+                <a href="/jogos" class="hover:text-white transition">Simulações</a>
+                <a href="/videos" class="text-white">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
             </div>
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-geoNavy bg-geoGold px-5 py-2.5 rounded hover:bg-white transition shadow-lg">
-                <i class="ph-fill ph-youtube-logo text-lg"></i> Inscreva-se
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
             </a>
         </div>
     </nav>
 
-    <header class="pt-32 pb-10 px-6 relative overflow-hidden border-b border-white/5">
-        <div id="hero-video-container" class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row gap-10 items-center">
-            <div class="w-full h-96 bg-slate-800/50 animate-pulse rounded-xl flex items-center justify-center">
-                <span class="text-slate-500 font-mono">CARREGANDO SATÉLITE...</span>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-12 px-6 max-w-7xl mx-auto">
-        <div class="flex items-center gap-3 mb-8">
-            <i class="ph-duotone ph-film-strip text-geoGold text-2xl"></i>
-            <h2 class="text-2xl font-serif font-bold text-white">Análises & Documentários</h2>
-        </div>
-        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
-    </section>
-
-    <section class="py-16 px-6 bg-slate-900/30 border-t border-white/5">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center gap-3 mb-8">
-                <i class="ph-duotone ph-lightning text-red-500 text-2xl"></i>
-                <h2 class="text-2xl font-serif font-bold text-white">Shorts & Curiosidades</h2>
-            </div>
-            
-            <div id="shorts-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <main class="page-content">
+        <!-- Vídeo em Destaque Principal -->
+        <header class="pt-40 pb-16 px-6">
+            <div id="hero-video-container" class="max-w-6xl mx-auto">
+                <div class="w-full h-96 bg-white/[0.02] rounded-2xl flex items-center justify-center text-slate-500 text-sm">
+                    Carregando vídeo em destaque...
                 </div>
-        </div>
-    </section>
+            </div>
+        </header>
 
-                <footer class="site-footer">
-        <div class="site-footer__social">
-            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
-            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
-        </div>
-        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
-        <p>&copy; 2026 Todos os direitos reservados.</p>
-        <div class="site-footer__links">
-            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
-            <a href="/sobre/">Sobre o Projeto</a>
+        <!-- Grade de Documentários Longos -->
+        <section class="py-12 px-6 max-w-6xl mx-auto border-t border-white/5">
+            <div class="mb-8">
+                <h2 class="text-2xl sm:text-3xl font-serif text-white">Análises & Documentários</h2>
+                <p class="text-sm text-slate-400 mt-1">Investigações aprofundadas sobre disputas de fronteira e anomalias territoriais.</p>
+            </div>
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- Grade de Shorts -->
+        <section class="py-16 px-6 max-w-6xl mx-auto border-t border-white/5">
+            <div class="mb-8">
+                <h2 class="text-2xl sm:text-3xl font-serif text-white">Shorts & Curiosidades Rápidas</h2>
+                <p class="text-sm text-slate-400 mt-1">Fatos geográficos em formato vertical de 60 segundos.</p>
+            </div>
+            <div id="shorts-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="max-w-6xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand font-serif text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <div class="site-footer__links text-xs mt-4">
+                <a href="/sobre/">Sobre o Projeto</a>
+                <span class="text-slate-700">·</span>
+                <a href="/politica/">Política de Privacidade</a>
+                <span class="text-slate-700">·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script src="/assets/js/videos.js"></script>
 
     <script>
-        // Elementos do DOM
         const heroContainer = document.getElementById('hero-video-container');
         const galleryContainer = document.getElementById('gallery-grid');
         const shortsContainer = document.getElementById('shorts-grid');
         
-        // Elementos do Modal
         const modal = document.getElementById('video-modal');
         const modalContainer = document.getElementById('modal-container');
-        const videoWrapper = document.getElementById('video-wrapper');
         const iframe = document.getElementById('video-frame');
 
-        // --- 1. RENDERIZAR LONGOS ---
         if (typeof videosLongos !== 'undefined' && videosLongos.length > 0) {
-            
-            // A. Hero Section (Primeiro vídeo da lista)
             const heroVid = videosLongos[0];
             heroContainer.innerHTML = `
-                <div onclick="playVideo('${heroVid.id}', 'long')" class="w-full md:w-2/3 aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10 group relative video-glow transition duration-500 cursor-pointer">
-                    <img src="https://img.youtube.com/vi/${heroVid.id}/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition">
-                        <i class="ph-fill ph-play-circle text-7xl text-white drop-shadow-lg group-hover:text-geoGold group-hover:scale-110 transition duration-300"></i>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div onclick="playVideo('${heroVid.id}', 'long')" class="lg:col-span-8 aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer">
+                        <img src="https://img.youtube.com/vi/${heroVid.id}/maxresdefault.jpg" alt="${heroVid.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition">
+                            <div class="w-16 h-16 rounded-full bg-white/90 text-black flex items-center justify-center shadow-2xl group-hover:scale-110 transition">
+                                <i class="ph-fill ph-play text-2xl ml-1 text-slate-900"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="w-full md:w-1/3 text-left">
-                    <span class="inline-block px-3 py-1 bg-geoGold text-geoNavy text-xs font-bold uppercase tracking-widest rounded mb-4">Em Destaque</span>
-                    <h1 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6 leading-tight">${heroVid.titulo}</h1>
-                    <button onclick="playVideo('${heroVid.id}', 'long')" class="w-full md:w-auto bg-white text-geoNavy font-bold uppercase tracking-widest px-8 py-4 rounded hover:bg-slate-200 transition flex items-center justify-center gap-2">
-                        <i class="ph-fill ph-play"></i> Assistir Agora
-                    </button>
+                    <div class="lg:col-span-4">
+                        <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2 block">Destaque em Vídeo</span>
+                        <h1 class="text-2xl sm:text-3xl font-serif text-white mb-6 leading-tight">${heroVid.titulo}</h1>
+                        <button onclick="playVideo('${heroVid.id}', 'long')" class="btn-clean-primary">
+                            <i class="ph-fill ph-play"></i> Assistir agora
+                        </button>
+                    </div>
                 </div>
             `;
 
-            // B. Galeria (Do segundo vídeo em diante)
             videosLongos.slice(1).forEach(video => {
                 galleryContainer.innerHTML += `
-                    <div onclick="playVideo('${video.id}', 'long')" class="group block bg-geoPaper border border-white/5 hover:border-geoGold/50 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer">
-                        <div class="aspect-video relative">
-                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="ph-fill ph-play-circle text-5xl text-white/90 group-hover:text-geoGold transition shadow-xl"></i>
+                    <div onclick="playVideo('${video.id}', 'long')" class="minimal-card group overflow-hidden cursor-pointer flex flex-col h-full">
+                        <div class="aspect-video relative bg-slate-900">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" alt="${video.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition">
+                                <div class="w-10 h-10 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                    <i class="ph-fill ph-play text-base ml-0.5"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-white text-lg leading-snug group-hover:text-geoGold transition line-clamp-2">${video.titulo}</h3>
+                        <div class="p-5 flex-grow">
+                            <h3 class="font-serif text-white text-base leading-snug group-hover:text-amber-400 transition line-clamp-2">${video.titulo}</h3>
                         </div>
                     </div>`;
             });
         }
 
-        // --- 2. RENDERIZAR SHORTS ---
         if (typeof videosShorts !== 'undefined' && videosShorts.length > 0) {
             videosShorts.forEach(short => {
-                // Shorts usam 'hqdefault' pois 'maxresdefault' as vezes falha em vídeos verticais
                 shortsContainer.innerHTML += `
-                    <div onclick="playVideo('${short.id}', 'short')" class="group block bg-geoPaper border border-white/5 hover:border-red-500 transition rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 cursor-pointer relative aspect-[9/16]">
-                        <img src="https://img.youtube.com/vi/${short.id}/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div onclick="playVideo('${short.id}', 'short')" class="minimal-card group overflow-hidden cursor-pointer relative aspect-[9/16]">
+                        <img src="https://img.youtube.com/vi/${short.id}/hqdefault.jpg" alt="${short.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-0 p-3 w-full">
-                            <h3 class="font-bold text-white text-xs leading-tight group-hover:text-red-400 transition line-clamp-3">${short.titulo}</h3>
+                            <h3 class="font-medium text-white text-xs leading-snug line-clamp-3">${short.titulo}</h3>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                            <i class="ph-fill ph-play-circle text-4xl text-white drop-shadow-md"></i>
-                        </div>
-                        <div class="absolute top-2 right-2 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-white uppercase tracking-wider backdrop-blur-sm">Shorts</div>
                     </div>`;
             });
         }
 
-        // --- 3. LÓGICA DO PLAYER (Muda formato da janela) ---
         function playVideo(videoId, type) {
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&modestbranding=1&theme=dark`;
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
             iframe.src = embedUrl;
 
             if (type === 'short') {
-                // MODO VERTICAL (Celular)
-                // Altura de 80% da tela, aspecto 9/16
-                modalContainer.className = "h-[85vh] aspect-[9/16] bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300";
-                videoWrapper.className = "relative h-full bg-black group"; 
+                modalContainer.className = "h-[85vh] aspect-[9/16] bg-[#11131a] border border-white/10 shadow-2xl relative flex flex-col rounded-xl overflow-hidden transition-all duration-300";
             } else {
-                // MODO HORIZONTAL (Cinema)
-                // Largura máxima, aspecto 16/9
-                modalContainer.className = "w-full max-w-5xl bg-geoNavy border border-white/10 shadow-2xl relative flex flex-col rounded-lg overflow-hidden transition-all duration-300";
-                videoWrapper.className = "relative aspect-video bg-black group";
+                modalContainer.className = "w-full max-w-4xl bg-[#11131a] border border-white/10 shadow-2xl relative flex flex-col rounded-xl overflow-hidden transition-all duration-300";
             }
 
             modal.classList.remove('hidden-modal');
             modal.classList.add('visible-modal');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeVideo() {
             modal.classList.remove('visible-modal');
             modal.classList.add('hidden-modal');
-            setTimeout(() => { iframe.src = ''; }, 300);
-            document.body.style.overflow = 'auto';
+            iframe.src = '';
         }
     </script>
+
+    <!-- Mobile Nav -->
     <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
+    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-geoBg/95 backdrop-blur-md border-t border-white/10 py-2.5 px-4">
+        <div class="flex justify-around items-center text-[11px] font-medium text-slate-400">
+            <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-fill ph-house text-lg"></i> Início
+            </a>
+            <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-fill ph-newspaper text-lg"></i> Dossiês
+            </a>
+            <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-fill ph-wrench text-lg"></i> Ferramentas
+            </a>
+            <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                <i class="ph-fill ph-game-controller text-lg"></i> Simulações
+            </a>
+            <a href="/videos" class="flex flex-col items-center gap-1 text-white">
+                <i class="ph-fill ph-play-circle text-lg text-red-500"></i> Vídeos
+            </a>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

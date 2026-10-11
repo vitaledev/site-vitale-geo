@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-geoNavy">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/sobre/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre o Projeto | VitaleGeo</title>
+    <meta name="description" content="O VitaleGeo é um arquivo digital independente dedicado a decodificar anomalias territoriais e fronteiras geopolíticas.">
     
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -20,140 +21,95 @@
                     fontFamily: { 
                         sans: ['Inter', 'sans-serif'], 
                         serif: ['Playfair Display', 'serif'],
-                        mono: ['Courier Prime', 'monospace']
+                        mono: ['Space Mono', 'monospace']
                     },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoRed: '#dc2626' }
+                    colors: { geoBg: '#090a0f', geoCard: '#11131a', geoGold: '#f59e0b' }
                 }
             }
         }
     </script>
-
 </head>
-<body class="bg-geoNavy text-slate-300 font-sans antialiased bg-map-pattern selection:bg-geoGold selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 selection:bg-amber-400 selection:text-black antialiased">
 
-    <nav class="fixed w-full z-40 top-0 bg-geoNavy/95 backdrop-blur border-b border-white/5">
-        <div class="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-slate-400 hover:text-white transition group">
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-4xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group text-sm font-medium text-slate-400 hover:text-white transition">
                 <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Início
             </a>
-            <span class="text-geoGold font-serif italic text-lg">VitaleGeo</span>
+            <span class="text-white font-serif font-bold text-lg">Vitale<span class="text-amber-400">Geo</span></span>
         </div>
     </nav>
 
-    <main class="pt-32 pb-20 px-4 min-h-screen">
-        
-        <div class="max-w-3xl mx-auto text-center mb-16">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-slate-800/90 border border-white/10 font-mono text-[11px] tracking-widest text-slate-300 mb-6 uppercase shadow-inner">
-                <span class="telemetry-live-dot"></span> MANIFESTO DO ARQUIVO // INTELIGÊNCIA CARTOGRÁFICA
-            </div>
-            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-                Decodificando Fronteiras &amp; <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-geoGold via-yellow-200 to-amber-400">Anomalias de Soberania</span>
-            </h1>
-            <p class="text-base sm:text-lg text-slate-400 font-normal leading-relaxed max-w-2xl mx-auto">
-                As fronteiras de um mapa não são linhas naturais: são cicatrizes de guerras, tratados esquecidos e negociações geopolíticas. O VitaleGeo é um arquivo aberto e independente dedicado a investigar enclaves, chokepoints navais e distorções territoriais que o ensino tradicional ignora.
-            </p>
-        </div>
-
-        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mb-20">
+    <main class="page-content pt-40 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
             
-            <div class="editorial-card p-8 rounded-xl transition duration-300 group">
-                <div class="w-12 h-12 bg-slate-800 border border-white/10 rounded flex items-center justify-center mb-6 group-hover:bg-geoGold group-hover:text-black transition text-geoGold">
-                    <i class="ph-fill ph-globe-stand text-2xl"></i>
-                </div>
-                <h3 class="text-white font-bold text-lg mb-2 font-serif">Geopolítica &amp; Poder</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Como tratados históricos, estreitos marítimos estratégicos e fluxos logísticos determinam o equilíbrio de poder entre nações.
+            <header class="mb-16">
+                <h1 class="text-4xl sm:text-6xl font-serif font-normal text-white leading-tight mb-6">
+                    Decodificando as fronteiras invisíveis do planeta.
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed">
+                    As linhas traçadas num mapa mundi não são limites naturais: são cicatrizes de guerras, tratados esquecidos e negociações de poder. O VitaleGeo é um arquivo aberto dedicado a investigar o lado oculto da geografia.
                 </p>
-            </div>
+            </header>
 
-            <div class="editorial-card p-8 rounded-xl transition duration-300 group">
-                <div class="w-12 h-12 bg-slate-800 border border-white/10 rounded flex items-center justify-center mb-6 group-hover:bg-geoBlue group-hover:text-white transition text-geoBlue">
-                    <i class="ph-fill ph-magnifying-glass text-2xl"></i>
+            <div class="space-y-12 text-slate-300 text-base sm:text-lg leading-relaxed border-t border-white/5 pt-12">
+                <div>
+                    <h2 class="text-2xl font-serif text-white mb-3">O Propósito</h2>
+                    <p>
+                        A maioria das pessoas cresceu olhando para mapas bidimensionais que distorcem continentes inteiros através da projeção de Mercator e simplificam disputas territoriais complexas em cores uniformes. Criamos o VitaleGeo para investigar anomalias cartográficas, enclaves soberanos, chokepoints navais e cidades divididas por tratados que os livros escolares costumam ignorar.
+                    </p>
                 </div>
-                <h3 class="text-white font-bold text-lg mb-2 font-serif">Anomalias &amp; Enclaves</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Condomínios territoriais neutros, cidades retalhadas por acordos coloniais e fronteiras que desafiam a lógica cartográfica.
-                </p>
-            </div>
 
-            <div class="editorial-card p-8 rounded-xl transition duration-300 group">
-                <div class="w-12 h-12 bg-slate-800 border border-white/10 rounded flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition text-emerald-500">
-                    <i class="ph-fill ph-compass text-2xl"></i>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
+                    <div class="minimal-card p-6">
+                        <div class="text-amber-400 text-2xl mb-3"><i class="ph-duotone ph-globe-hemisphere-west"></i></div>
+                        <h3 class="text-lg font-serif text-white mb-2">Geopolítica</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Tratados históricos, fluxos de energia e disputas marítimas estratégicas.</p>
+                    </div>
+
+                    <div class="minimal-card p-6">
+                        <div class="text-sky-400 text-2xl mb-3"><i class="ph-duotone ph-compass"></i></div>
+                        <h3 class="text-lg font-serif text-white mb-2">Escala Real</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Instrumentos interativos para comparar a área fidedigna de territórios sem distorções.</p>
+                    </div>
+
+                    <div class="minimal-card p-6">
+                        <div class="text-emerald-400 text-2xl mb-3"><i class="ph-duotone ph-game-controller"></i></div>
+                        <h3 class="text-lg font-serif text-white mb-2">Simulação</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Desafios de reconhecimento territorial para aprender e testar limites geopolíticos.</p>
+                    </div>
                 </div>
-                <h3 class="text-white font-bold text-lg mb-2 font-serif">Escala Real &amp; Métrica</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Instrumentos interativos e comparadores de área fiéis para desmistificar as ilusões de tamanho causadas pela projeção de Mercator.
-                </p>
+
+                <div>
+                    <h2 class="text-2xl font-serif text-white mb-3">Ecossistema Multimídia</h2>
+                    <p>
+                        Além dos dossiês escritos e ferramentas de mapa disponíveis neste portal, produzimos documentários e análises visuais de alta fidelidade para o canal parceiro <strong>Já Imaginou Isso</strong> no YouTube, combinando animação cartográfica 4K com rigor factual.
+                    </p>
+                </div>
+
+                <div class="border-t border-white/5 pt-8 flex items-center justify-between text-sm text-slate-400">
+                    <div>
+                        Contato: <a href="mailto:contato@vitalegeo.com.br" class="text-amber-400 hover:underline">contato@vitalegeo.com.br</a>
+                    </div>
+                    <div>
+                        <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-white transition flex items-center gap-1.5">
+                            <i class="ph-fill ph-youtube-logo text-red-500 text-lg"></i> YouTube
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
         </div>
-
-        <div class="max-w-3xl mx-auto border-t border-b border-white/10 py-12 my-12 text-center">
-            <i class="ph-fill ph-quotes text-4xl text-slate-700 mb-4 block"></i>
-            <p class="font-serif text-2xl text-slate-300 italic mb-6">
-                "Mapas são a representação visual de nossos preconceitos, desejos e medos. Compreender o mapa é compreender a nós mesmos."
-            </p>
-            <span class="font-mono text-xs uppercase tracking-widest text-geoGold">— Filosofia do Arquivo</span>
-        </div>
-
-        <div class="text-center max-w-xl mx-auto">
-            <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Entre em Contato</h4>
-            <p class="text-slate-500 text-sm mb-6">
-                Tem uma sugestão de pauta, encontrou um erro no mapa ou quer colaborar com o arquivo?
-            </p>
-            <a href="mailto:contato@vitalegeo.com.br" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-geoNavy font-bold rounded hover:bg-geoGold transition">
-                <i class="ph-bold ph-paper-plane-right"></i> Enviar Mensagem
-            </a>
-        </div>
-
     </main>
 
-                <footer class="site-footer">
-        <div class="site-footer__social">
-            <a href="https://github.com/vitaledev" class="hover:text-white transition"><i class="ph-fill ph-github-logo"></i></a>
-            <a href="https://www.youtube.com/@vitalegeo" class="hover:text-red-500 transition"><i class="ph-fill ph-youtube-logo"></i></a>
-        </div>
-        <p class="site-footer__brand">VitaleGeo - Intelig&ecirc;ncia Geogr&aacute;fica</p>
-        <p>&copy; 2026 Todos os direitos reservados.</p>
-        <div class="site-footer__links">
-            <a href="/politica/">Pol&iacute;tica de Privacidade</a>
-            <a href="/sobre/">Sobre o Projeto</a>
+    <footer class="site-footer">
+        <div class="max-w-4xl mx-auto">
+            <p class="site-footer__brand font-serif text-base text-white">VitaleGeo</p>
+            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
+            <p class="text-[11px] text-slate-600 mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-geoNavy/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
