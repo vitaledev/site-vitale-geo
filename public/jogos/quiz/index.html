@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#07080d]">
+<html lang="pt-br" class="bg-[#090a0f]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/quiz/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Quiz de Inteligência Geopolítica | Arcade VitaleGeo</title>
+    <title>Quiz de Inteligência Geopolítica | Acervo de 1.000+ Perguntas | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Teste seus conhecimentos em fronteiras, enclaves, estreitos estratégicos e geopolítica mundial. Desafio completo com dezenas de perguntas investigativas!">
-    <meta name="keywords" content="quiz geopolítica, teste de geografia, anomalias de fronteira, chokepoints, vitalegeo">
+    <meta name="description" content="Desafio mestre de geopolítica mundial com mais de 1.050 perguntas investigativas sobre tratados, chokepoints, enclaves, bacias e extremos físicos sem repetição.">
+    <meta name="keywords" content="quiz geopolítica, teste de geografia, anomalias de fronteira, chokepoints, vitalegeo arcade, trivia geografia">
 
+    <!-- Open Graph -->
     <meta property="og:title" content="Quiz de Inteligência Geopolítica | VitaleGeo">
-    <meta property="og:description" content="Você realmente entende como o mundo funciona? Teste seus conhecimentos e tente zerar o Quiz Geopolítico!">
+    <meta property="og:description" content="Você realmente entende como o mundo funciona? Mais de 1.000 perguntas exclusivas com motor anti-repetição!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/quiz/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/quiz-geopolitico.jpg">
 
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 1.050 perguntas) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
 
     <script>
         tailwind.config = {
@@ -33,6 +40,13 @@
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
                     }
                 }
             }
@@ -40,477 +54,488 @@
     </script>
 
     <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
         .option-btn {
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .option-btn:hover {
+        .option-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
         }
-        .option-btn:active {
+        .option-btn:active:not(:disabled) {
             transform: scale(0.98);
+        }
+        /* Anti-CLS para Slots do AdSense */
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between">
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <!-- BARRA DEDICADA DO ARCADE -->
-    <header class="arcade-header">
-        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
-            <i class="ph-bold ph-arrow-left"></i>
-            <span>Central de Jogos</span>
-        </a>
+    <!-- HEADER DO JOGO -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todos os Jogos</span>
+            </a>
 
-        <div class="flex items-center gap-2">
-            <i class="ph-fill ph-brain text-amber-400 text-lg"></i>
-            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
-                Quiz de <span class="text-amber-400">Inteligência Geopolítica</span>
-            </span>
-        </div>
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-brain text-amber-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    Quiz de Inteligência <span class="text-amber-400">Geopolítica</span>
+                    <span class="hidden md:inline text-xs text-slate-500 font-mono font-normal">// 1.050 Dossiês</span>
+                </h1>
+            </div>
 
-        <div class="arcade-header__actions">
-            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
-                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
-                <span class="hidden sm:inline">Tela Cheia</span>
-            </button>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ligar/Desligar Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- PALCO CENTRAL AMPLIADO (The Grand Stage) -->
-    <main class="arcade-stage-wrapper w-full max-w-4xl px-4 py-4 sm:py-6 flex-1 flex flex-col justify-center" id="game-stage-container">
-        
-        <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO -->
-        <div class="w-full mb-3 flex flex-col gap-2">
-            <div class="flex items-center justify-between text-xs font-mono">
-                <!-- Vidas -->
-                <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
-                    <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
-                    </span>
-                </div>
+    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
 
-                <!-- Questões Acertadas -->
-                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-bold ph-check-circle text-amber-400"></i>
-                    <span class="text-slate-300">Questão: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">40</span></span>
-                </div>
-
-                <!-- Recorde Máximo -->
-                <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-fill ph-trophy text-emerald-400"></i>
-                    <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
-                </div>
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
             </div>
+        </aside>
 
-            <!-- Barra de Progresso Visual -->
-            <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
-                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
-            </div>
-        </div>
-
-        <!-- O PALCO DO JOGO (TELA DEDICADA AMPLIADA) -->
-        <div id="stage-active" class="arcade-stage p-6 sm:p-10 w-full flex flex-col items-center justify-between text-center min-h-[540px] relative">
+        <!-- PALCO CENTRAL DO JOGO (100% RESPONSIVO MOBILE E DESKTOP) -->
+        <main class="w-full flex-1 max-w-4xl flex flex-col gap-2.5 sm:gap-3" id="game-stage-container">
             
-            <div class="my-auto flex flex-col items-center w-full max-w-2xl">
-                <!-- Badge de Categoria da Pergunta -->
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-mono uppercase tracking-widest mb-4">
-                    <i class="ph-bold ph-compass"></i>
-                    <span id="question-category">Dossiê Estratégico</span>
+            <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO -->
+            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-xl">
+                <div class="flex items-center justify-between gap-2 text-xs font-mono mb-2.5 flex-wrap">
+                    <!-- Vidas -->
+                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                        </span>
+                    </div>
+
+                    <!-- Questões da Partida -->
+                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-bold ph-check-circle text-amber-400"></i>
+                        <span class="text-slate-300">Questão: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">20</span></span>
+                    </div>
+
+                    <!-- Badge do Acervo Anti-Repetição -->
+                    <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Perguntas respondidas sem repetição. Clique para reiniciar o ciclo se desejar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de 1.050 perguntas?')) reiniciarHistoricoCache();">
+                        <i class="ph-bold ph-database"></i>
+                        <span id="catalog-progress-text">Carregando acervo...</span>
+                    </div>
+
+                    <!-- Recorde Máximo -->
+                    <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-trophy text-emerald-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                    </div>
                 </div>
 
-                <!-- Texto da Pergunta em Destaque -->
-                <h2 class="text-xl sm:text-3xl font-heading font-extrabold text-white leading-snug mb-6 min-h-[70px] flex items-center justify-center" id="question-text">
-                    Carregando dados de inteligência geopolítica...
-                </h2>
-
-                <!-- Feedback de Acerto/Erro -->
-                <div id="feedback-msg" class="h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center">
-                    Selecione a resposta correta:
-                </div>
-            </div>
-
-            <!-- Grade de Opções (4 Alternativas Confortáveis) -->
-            <div id="options-grid" class="grid grid-cols-1 gap-3 w-full max-w-2xl mt-4">
-                <!-- Preenchido via JavaScript -->
-            </div>
-
-        </div>
-
-        <!-- TELA DE FIM DE RODADA / GAME OVER -->
-        <div id="stage-gameover" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in fade-in duration-300">
-            <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
-                <i class="ph-bold ph-shield-warning"></i>
-            </div>
-            
-            <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Missão Comprometida!</span>
-            <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
-            
-            <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
-                A resposta correta era: <strong id="last-correct-answer" class="text-amber-400">--</strong>.
-            </p>
-
-            <!-- Placar de Conquista -->
-            <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-6 max-w-md w-full mb-8 shadow-xl">
-                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Questões Respondidas com Sucesso</span>
-                <div class="text-5xl sm:text-6xl font-heading font-black text-amber-400 mb-2">
-                    <span id="final-score">0</span> <span class="text-xl text-slate-400 font-normal">/ 40</span>
-                </div>
-                <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-3">0% do quiz dominado</p>
-                <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300" id="final-rank">
-                    Rank: Recruta em Treinamento
+                <!-- Barra de Progresso Visual da Rodada -->
+                <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
                 </div>
             </div>
 
-            <!-- Botões de Ação e Compartilhamento Viral -->
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
-                </button>
-                <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition flex items-center gap-2">
-                    <i class="ph-bold ph-copy text-base"></i> Copiar
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-2 shadow-lg shadow-amber-400/20">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
-                </button>
+            <!-- PALCO DA PERGUNTA ATIVA -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-4 sm:p-8 flex flex-col items-center justify-between text-center min-h-[500px] relative shadow-2xl">
+                
+                <div class="my-auto flex flex-col items-center w-full max-w-2xl">
+                    <!-- Badges de Metadados da Pergunta -->
+                    <div class="flex items-center gap-2 mb-3 flex-wrap justify-center">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-mono uppercase tracking-wider">
+                            <i class="ph-bold ph-compass"></i>
+                            <span id="question-category">Dossiê Estratégico</span>
+                        </div>
+                        <div id="question-difficulty-badge" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-800 border border-white/10 text-[10px] font-mono uppercase text-slate-300">
+                            Médio
+                        </div>
+                    </div>
+
+                    <!-- Texto da Pergunta -->
+                    <h2 class="text-lg sm:text-2xl font-heading font-bold text-white leading-snug mb-5 min-h-[64px] flex items-center justify-center px-2" id="question-text">
+                        Carregando dossiê de inteligência geopolítica...
+                    </h2>
+
+                    <!-- Feedback Visual & Explicação Didática -->
+                    <div id="feedback-msg" class="min-h-[32px] text-xs sm:text-sm font-mono font-bold tracking-wide text-slate-400 flex flex-col items-center justify-center px-3 mb-2">
+                        <span>Selecione a resposta correta:</span>
+                    </div>
+                </div>
+
+                <!-- Grade de Opções (4 Alternativas) -->
+                <div id="options-grid" class="grid grid-cols-1 gap-2.5 w-full max-w-2xl mt-3">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+
             </div>
-        </div>
 
-        <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR ZERA TODAS AS 40 PERGUNTAS) -->
-        <div id="stage-victory" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in zoom-in duration-500">
-            <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
-                <i class="ph-fill ph-crown"></i>
+            <!-- TELA DE GAME OVER (VIDAS ESGOTADAS) -->
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 hidden flex-col items-center justify-center text-center min-h-[500px] shadow-2xl">
+                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
+                    <i class="ph-bold ph-shield-warning"></i>
+                </div>
+                
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Missão Comprometida!</span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
+                
+                <div class="bg-slate-900/80 border border-white/10 rounded-xl p-3.5 max-w-lg mx-auto mb-6 text-left">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-amber-400 block mb-1">Dossiê da Última Pergunta:</span>
+                    <p class="text-xs sm:text-sm text-slate-300 mb-2" id="gameover-explicacao">--</p>
+                    <span class="text-xs font-mono text-emerald-400">Resposta correta: <strong id="last-correct-answer">--</strong></span>
+                </div>
+
+                <!-- Placar da Partida -->
+                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
+                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Dossiês Respondidos Corretamente</span>
+                    <div class="text-4xl sm:text-5xl font-heading font-black text-amber-400 mb-1">
+                        <span id="final-score">0</span> <span class="text-lg text-slate-400 font-normal">/ 20</span>
+                    </div>
+                    <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-2">0% de precisão nesta missão</p>
+                    <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 mb-2" id="final-rank">
+                        Rank: Recruta em Treinamento
+                    </div>
+                    <p class="text-[11px] font-mono text-slate-400" id="final-acervo-text">
+                        Avançando no acervo global de 1.050 perguntas.
+                    </p>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
+                    </button>
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3 px-4 rounded-xl transition flex items-center gap-2">
+                        <i class="ph-bold ph-copy text-base"></i> Copiar
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-amber-400/20">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente (Novas Perguntas)
+                    </button>
+                </div>
             </div>
 
-            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA SUPREMA!</span>
-            <h2 class="text-3xl sm:text-6xl font-heading font-black text-white mb-3">MESTRE DA GEOPOLÍTICA!</h2>
-            
-            <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
-                Espetacular! Você acertou <strong class="text-amber-400">todas as 40 perguntas</strong> de fronteiras, enclaves, rotas navais e tratados globais! Seu nível de inteligência estratégica é lendário!
-            </p>
+            <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR COMPLETA TODAS AS 20 PERGUNTAS) -->
+            <div id="stage-victory" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 hidden flex-col items-center justify-center text-center min-h-[500px] shadow-2xl">
+                <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+                    <i class="ph-fill ph-crown"></i>
+                </div>
 
-            <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-8 shadow-2xl">
-                <span class="text-xs font-mono uppercase text-slate-400">Score de Inteligência</span>
-                <div class="text-5xl font-black text-amber-400 my-1">40 / 40 (100%)</div>
-                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">★ Estrategista Geopolítico Supremo ★</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA SUPREMA!</span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2">MESTRE DA GEOPOLÍTICA!</h2>
+                
+                <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto mb-5">
+                    Espetacular! Você completou com sucesso todos os <strong class="text-amber-400">20 dossiês estratégicos</strong> desta missão sem esgotar suas vidas!
+                </p>
+
+                <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-5 max-w-md w-full mb-6 shadow-2xl">
+                    <span class="text-xs font-mono uppercase text-slate-400">Score de Inteligência</span>
+                    <div class="text-4xl sm:text-5xl font-black text-amber-400 my-1">20 / 20 (100%)</div>
+                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest block mb-2">★ Estrategista Geopolítico Supremo ★</span>
+                    <p class="text-[11px] font-mono text-slate-300" id="victory-acervo-text">
+                        Você continua desbloqueando novos dossiês no acervo de 1.050 perguntas!
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Próxima Missão (20 Dossiês Inéditos)
+                    </button>
+                </div>
             </div>
 
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
-                </button>
+            <!-- BANNER DE ANÚNCIO INFERIOR (RESPONSIVO PARA MOBILE E DESKTOP) -->
+            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
             </div>
-        </div>
+        </aside>
 
-        <!-- ZONA SEGURA DE PUBLICIDADE -->
-        <div class="arcade-ad-zone">
-            <span>PUBLICIDADE RESERVADA · VITALEGEO ARCADE</span>
-        </div>
+    </div>
 
-    </main>
-
-    <!-- Rodapé Minimalista do Arcade -->
-    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Inteligência Geopolítica & Cartográfica
+    <!-- RODAPÉ COMPACTO DO ARCADE -->
+    <footer class="w-full border-t border-white/10 py-3 text-center text-xs text-slate-500 font-mono">
+        VitaleGeo Arcade &copy; 2026 &mdash; Banco Mestre com 1.050 Dossiês Geopolíticos. Motor Anti-Repetição Integrado.
     </footer>
 
-    <!-- Catálogo de 40 Perguntas Geopolíticas e Lógica do Jogo -->
+    <!-- LÓGICA DO JOGO & MOTOR ANTI-REPETIÇÃO -->
     <script>
-        const catalogoPerguntas = [
+        // CONFIGURAÇÕES DA PARTIDA
+        const QUANTIDADE_POR_PARTIDA = 20;
+        const STORAGE_KEY_VISTAS = 'vitalegeo_quiz_vistas';
+        const STORAGE_KEY_CICLO = 'vitalegeo_quiz_vistas_ciclo';
+        const STORAGE_KEY_RECORDE = 'vg_recorde_quiz_geopolitica';
+
+        // BASE DE DADOS FALLBACK OFFLINE (Garante robustez caso CerebroGeo demore a carregar)
+        const FALLBACK_PERGUNTAS = [
             {
-                q: "Qual país possui o maior número de fusos horários no mundo (somando territórios ultramarinos)?",
-                cat: "Fusos Horários",
-                options: ["Rússia", "França", "Estados Unidos", "China"],
-                a: 1, // França tem 12 fusos
-                exp: "A França tem 12 fusos horários devido aos seus territórios espalhados pelos oceanos Atlântico, Índico e Pacífico."
+                id: 1,
+                pergunta: "Por qual estreito marítimo passa cerca de 20% a 25% de todo o petróleo consumido no mundo?",
+                categoria: "Chokepoints Estratégicos",
+                opcoes: ["Estreito de Malaca", "Canal de Suez", "Estreito de Ormuz", "Estreito de Gibraltar"],
+                resposta: 2,
+                explicacao: "O Estreito de Ormuz, entre o Irã e Omã, é o gargalo energético mais crítico e vigiado do planeta.",
+                dificuldade: "facil"
             },
             {
-                q: "Qual destes países é duplamente encravado (cercado apenas por vizinhos que também não têm saída para o mar)?",
-                cat: "Fronteiras & Enclaves",
-                options: ["Bolívia", "Liechtenstein", "Paraguai", "Suíça"],
-                a: 1,
-                exp: "Os dois únicos países duplamente encravados do mundo são Liechtenstein e Uzbequistão."
+                id: 2,
+                pergunta: "Qual estreito conecta o Mar da China Meridional ao Oceano Índico e canaliza mais de 100.000 navios cargueiros anualmente?",
+                categoria: "Chokepoints Estratégicos",
+                opcoes: ["Estreito de Sunda", "Estreito de Malaca", "Estreito de Taiwan", "Estreito de Lombok"],
+                resposta: 1,
+                explicacao: "O Estreito de Malaca, entre a Malásia, Cingapura e a Indonésia, é a via marítima mais movimentada da Ásia.",
+                dificuldade: "facil"
             },
             {
-                q: "Por qual estreito marítimo passa aproximadamente 20% a 25% de todo o petróleo consumido no mundo?",
-                cat: "Chokepoints Estratégicos",
-                options: ["Estreito de Malaca", "Canal de Suez", "Estreito de Ormuz", "Estreito de Gibraltar"],
-                a: 2,
-                exp: "O Estreito de Ormuz, entre o Irã e Omã, é o gargalo energético mais crítico do planeta."
+                id: 3,
+                pergunta: "Qual país possui o maior número de fusos horários no mundo (somando territórios ultramarinos)?",
+                categoria: "Geopolítica dos Fusos",
+                opcoes: ["Rússia", "França", "Estados Unidos", "China"],
+                resposta: 1,
+                explicacao: "A França possui 12 fusos horários oficiais devido aos seus territórios espalhados pelos oceanos Atlântico, Índico e Pacífico.",
+                dificuldade: "facil"
             },
             {
-                q: "Qual destes países da América do Sul NÃO faz fronteira terrestre com o Brasil?",
-                cat: "Geografia Brasileira",
-                options: ["Suriname", "Guiana", "Equador", "Paraguai"],
-                a: 2,
-                exp: "Apenas Equador e Chile não possuem fronteira com o Brasil na América do Sul."
+                id: 4,
+                pergunta: "Qual destes países é duplamente encravado (cercado apenas por vizinhos que também não têm saída para o mar)?",
+                categoria: "Fronteiras & Enclaves",
+                opcoes: ["Bolívia", "Liechtenstein", "Paraguai", "Suíça"],
+                resposta: 1,
+                explicacao: "Os dois únicos países duplamente encravados do mundo são Liechtenstein (na Europa) e o Uzbequistão (na Ásia Central).",
+                dificuldade: "medio"
             },
             {
-                q: "Qual país possui a maior linha de costa (extensão de litoral) do mundo?",
-                cat: "Cartografia & Costas",
-                options: ["Austrália", "Canadá", "Indonésia", "Rússia"],
-                a: 1,
-                exp: "O Canadá tem mais de 202.000 km de litoral devido às milhares de ilhas no Ártico."
-            },
-            {
-                q: "A Ilha dos Faisões, um condomínio territorial único, troca de soberania a cada 6 meses entre quais dois países?",
-                cat: "Curiosidades Territoriais",
-                options: ["Espanha e França", "Reino Unido e Irlanda", "Bélgica e Holanda", "Itália e Suíça"],
-                a: 0,
-                exp: "A Ilha dos Faisões no rio Bidasoa pertence à Espanha por 6 meses e à França pelos outros 6 meses desde 1659."
-            },
-            {
-                q: "O Ponto Nemo é conhecido por ser o local mais isolado da Terra. Onde ele fica localizado?",
-                cat: "Polos de Inacessibilidade",
-                options: ["No Oceano Índico Sul", "No Oceano Pacífico Sul", "No interior da Antártida", "No Polo Norte"],
-                a: 1,
-                exp: "O Ponto Nemo fica no Pacífico Sul; os humanos mais próximos dele costumam ser os astronautas na Estação Espacial!"
-            },
-            {
-                q: "Qual é o menor país do mundo em área territorial e população?",
-                cat: "Microestados",
-                options: ["Mônaco", "Nauru", "Vaticano", "Tuvalu"],
-                a: 2,
-                exp: "O Vaticano tem apenas 0,49 km² e cerca de 800 habitantes no coração de Roma."
-            },
-            {
-                q: "Qual país africano recentemente perdeu o mar e tenta construir uma base naval na Somalilândia?",
-                cat: "Geopolítica Contemporânea",
-                options: ["Chade", "Etiópia", "Sudão do Sul", "Níger"],
-                a: 1,
-                exp: "A Etiópia perdeu o litoral em 1993 com a independência da Eritreia e hoje busca acesso ao Mar Vermelho."
-            },
-            {
-                q: "Qual é o único país do mundo que ocupa um continente inteiro?",
-                cat: "Geografia Física",
-                options: ["Rússia", "Groenlândia", "Austrália", "Antártida"],
-                a: 2,
-                exp: "A Austrália é o único país-continente do planeta."
-            },
-            {
-                q: "A cidade de Baarle é famosa por ter uma das fronteiras mais complexas do mundo, dividida entre quais países?",
-                cat: "Enclaves Bizarros",
-                options: ["França e Alemanha", "Holanda e Bélgica", "Suíça e Liechtenstein", "Espanha e Portugal"],
-                a: 1,
-                exp: "Baarle-Hertog (Bélgica) e Baarle-Nassau (Holanda) têm 22 enclaves belgas e 8 holandeses cruzando cafés e casas."
-            },
-            {
-                q: "Qual é a capital da Austrália?",
-                cat: "Pegadinhas de Capitais",
-                options: ["Sydney", "Melbourne", "Camberra", "Brisbane"],
-                a: 2,
-                exp: "Camberra foi construída em 1913 como compromisso para encerrar a rivalidade entre Sydney e Melbourne."
-            },
-            {
-                q: "Por que a China inteira tem apenas UM único fuso horário oficial (UTC+8), apesar de ser tão larga quanto os EUA?",
-                cat: "Geopolítica dos Fusos",
-                options: ["Por razões astronômicas", "Para promover unidade nacional centralizada", "Para facilitar o comércio marítimo", "Por causa das monções"],
-                a: 1,
-                exp: "Mao Tsé-Tung unificou os 5 fusos da China em 1949 no horário de Pequim para consolidar o controle político."
-            },
-            {
-                q: "Qual canal artificial liga o Mar Mediterrâneo ao Mar Vermelho, encurtando a rota marítima Europa-Ásia?",
-                cat: "Rotas Marítimas",
-                options: ["Canal do Panamá", "Canal de Suez", "Canal de Corinto", "Canal de Kiel"],
-                a: 1,
-                exp: "Inaugurado em 1869, o Canal de Suez no Egito evita ter que contornar toda a África pelo Cabo da Boa Esperança."
-            },
-            {
-                q: "Qual é a cidade habitada mais alta do mundo, localizada a mais de 5.100 metros de altitude?",
-                cat: "Extremos da Terra",
-                options: ["La Paz (Bolívia)", "Lhasa (Tibet)", "La Rinconada (Peru)", "Quito (Equador)"],
-                a: 2,
-                exp: "La Rinconada no Peru abriga mais de 30.000 mineradores de ouro em condições extremas de altitude."
-            },
-            {
-                q: "Kaliningrado é um enclave militar estratégico no Mar Báltico pertencente a qual país?",
-                cat: "Enclaves Estratégicos",
-                options: ["Polônia", "Lituânia", "Rússia", "Alemanha"],
-                a: 2,
-                exp: "Antiga Königsberg prussiana, Kaliningrado foi anexada pela União Soviética após a Segunda Guerra Mundial."
-            },
-            {
-                q: "Qual destes países NÃO faz parte do bloco original do Mercosul?",
-                cat: "Blocos Econômicos",
-                options: ["Brasil", "Argentina", "Chile", "Uruguai"],
-                a: 2,
-                exp: "O Chile é apenas país associado, não membro pleno fundador do Mercosul."
-            },
-            {
-                q: "O Corredor de Suwalki é considerado um dos pontos mais vulneráveis da OTAN. Ele fica entre quais territórios?",
-                cat: "Geopolítica Militar",
-                options: ["Polônia e Lituânia", "Turquia e Grécia", "Noruega e Rússia", "Romênia e Moldávia"],
-                a: 0,
-                exp: "Suwalki é a faixa que separa o enclave russo de Kaliningrado da aliada Bielorrússia."
-            },
-            {
-                q: "Qual é o maior país do mundo em área que não possui rios permanentes em seu território?",
-                cat: "Hidrografia Mundial",
-                options: ["Egito", "Arábia Saudita", "Líbia", "Austrália"],
-                a: 1,
-                exp: "A Arábia Saudita depende quase que exclusivamente de dessalinização e aquíferos fósseis subterrâneos."
-            },
-            {
-                q: "A Terra de Bir Tawil, entre o Egito e o Sudão, é famosa por qual motivo peculiar?",
-                cat: "Anomalias de Fronteira",
-                options: ["Tem a maior mina de diamantes", "Nenhum país a reivindica (Terra Nullius)", "Muda de fuso todo mês", "É uma monarquia privada"],
-                a: 1,
-                exp: "Devido a disputas pelo Triângulo de Hala'ib, nem Egito nem Sudão querem Bir Tawil para não abrir mão do outro território."
-            },
-            {
-                q: "Qual país sul-americano possui a maior reserva comprovada de petróleo do planeta?",
-                cat: "Recursos Naturais",
-                options: ["Brasil", "Venezuela", "Colômbia", "Argentina"],
-                a: 1,
-                exp: "A Faixa do Orinoco na Venezuela concentra mais de 300 bilhões de barris de petróleo bruto pesado."
-            },
-            {
-                q: "Qual país europeu não possui exército regular permanente desde 1868?",
-                cat: "Defesa e Soberania",
-                options: ["Suíça", "Liechtenstein", "Islândia", "Áustria"],
-                a: 1,
-                exp: "Liechtenstein dissolveu seu exército de 80 soldados em 1868 e nunca mais o recriou."
-            },
-            {
-                q: "A cidade de Ceuta, localizada no norte da África com fronteira terrestre com o Marrocos, pertence a qual país?",
-                cat: "Enclaves e Soberania",
-                options: ["Portugal", "Espanha", "Reino Unido", "França"],
-                a: 1,
-                exp: "Ceuta e Melilla são cidades autônomas espanholas encravadas na costa mediterrânea do Marrocos."
-            },
-            {
-                q: "Qual país está construindo uma nova capital planejada chamada Nusantara para substituir sua atual sede que está afundando?",
-                cat: "Megaprojetos",
-                options: ["Indonésia", "Egito", "Tailândia", "Filipinas"],
-                a: 0,
-                exp: "Jacarta afunda até 25 cm por ano; por isso a Indonésia está mudando sua capital para a ilha de Bornéu."
-            },
-            {
-                q: "Qual é a moeda oficial do Equador desde o colapso econômico do ano 2000?",
-                cat: "Economia Global",
-                options: ["Sucre", "Peso Equatoriano", "Dólar Americano", "Euro"],
-                a: 2,
-                exp: "O Equador adotou o Dólar dos EUA (USD) em 2000 para estancar a hiperinflação."
-            },
-            {
-                q: "Qual país tem o formato geográfico mais estreito e comprido do mundo, estendendo-se por mais de 4.300 km de norte a sul?",
-                cat: "Formas Territoriais",
-                options: ["Noruega", "Vietnã", "Chile", "Itália"],
-                a: 2,
-                exp: "O Chile tem em média apenas 177 km de largura, mas cruza do Deserto do Atacama até os fiordes da Patagônia."
-            },
-            {
-                q: "Qual destes países faz fronteira terrestre com o maior número de vizinhos (14 países no total)?",
-                cat: "Fronteiras Mundiais",
-                options: ["Brasil", "Alemanha", "China", "Índia"],
-                a: 2,
-                exp: "A China e a Rússia estão empatadas com 14 vizinhos terrestres cada uma."
-            },
-            {
-                q: "A Linha Internacional de Data corta o Oceano Pacífico. Ao cruzá-la de leste para oeste (da América para a Ásia), o que acontece com o relógio?",
-                cat: "Astronomia e Fusos",
-                options: ["Atrasa 1 dia", "Avança 1 dia", "O horário não muda", "Volta 12 horas"],
-                a: 1,
-                exp: "Ao cruzar a Linha de Data rumo à Ásia, você entra no 'amanhã', adiantando 24 horas no calendário."
-            },
-            {
-                q: "Qual vulcão equatoriano tem o pico mais distante do centro da Terra devido ao formato elipsoidal do planeta?",
-                cat: "Ciência da Terra",
-                options: ["Cotopaxi", "Chimborazo", "Pichincha", "Kilimanjaro"],
-                a: 1,
-                exp: "Embora o Everest seja mais alto em relação ao mar, o cume do Chimborazo está mais próximo do espaço sideral!"
-            },
-            {
-                q: "Qual país da América Central não possui litoral no Oceano Atlântico (Mar do Caribe), apenas no Oceano Pacífico?",
-                cat: "Geografia Centro-Americana",
-                options: ["Honduras", "Nicarágua", "El Salvador", "Guatemala"],
-                a: 2,
-                exp: "El Salvador é o único país da América Central banhado exclusivamente pelo Oceano Pacífico."
-            },
-            {
-                q: "Qual tratado de 1494 dividiu as terras descobertas fora da Europa entre Portugal e a Coroa de Castela?",
-                cat: "História e Cartografia",
-                options: ["Tratado de Madri", "Tratado de Tordesilhas", "Tratado de Utrecht", "Bula Inter Coetera"],
-                a: 1,
-                exp: "O Tratado de Tordesilhas traçou um meridiano a 370 léguas a oeste de Cabo Verde."
-            },
-            {
-                q: "Qual estreito separa a Península Arábica do Chifre da África e conecta o Mar Vermelho ao Golfo de Áden?",
-                cat: "Chokepoints Navais",
-                options: ["Bab el-Mandeb", "Estreito de Malaca", "Bósforo", "Dardanelos"],
-                a: 0,
-                exp: "Bab el-Mandeb ('Portão das Lamentações') é o estreito patrulhado devido a ataques marítimos no Iêmen."
-            },
-            {
-                q: "Qual país é o maior produtor de café do planeta há mais de 150 anos consecutivos?",
-                cat: "Agronegócio Global",
-                options: ["Colômbia", "Vietnã", "Etiópia", "Brasil"],
-                a: 3,
-                exp: "O Brasil produz cerca de um terço de todo o café consumido no planeta Terra."
-            },
-            {
-                q: "Qual país europeu realizou o Brexit e deixou oficialmente a União Europeia em 2020?",
-                cat: "Geopolítica Europeia",
-                options: ["Suíça", "Noruega", "Reino Unido", "Islândia"],
-                a: 2,
-                exp: "O Reino Unido votou em referendo em 2016 e concluiu sua saída da UE no início de 2020."
-            },
-            {
-                q: "O Mar de Aral, que já foi o 4º maior lago do mundo, quase desapareceu devido a qual intervenção humana?",
-                cat: "Desastres Ecológicos",
-                options: ["Poluição industrial pesada", "Desvio de rios para plantações de algodão na URSS", "Construção de usinas nucleares", "Aquecimento global precoce"],
-                a: 1,
-                exp: "Os rios Amu Darya e Syr Darya foram desviados pelos soviéticos para irrigar o deserto no Uzbequistão e Cazaquistão."
-            },
-            {
-                q: "Qual é o país mais populoso da África, com mais de 220 milhões de habitantes?",
-                cat: "Demografia Africana",
-                options: ["Egito", "Nigéria", "Etiópia", "África do Sul"],
-                a: 1,
-                exp: "A Nigéria abriga a maior população do continente africano e sua capital econômica é Lagos."
-            },
-            {
-                q: "Em qual cidade fica localizada a sede do Tribunal Penal Internacional (TPI) e da Corte Internacional de Justiça?",
-                cat: "Direito Internacional",
-                options: ["Genebra", "Haia", "Estrasburgo", "Bruxelas"],
-                a: 1,
-                exp: "Haia, na Holanda, é considerada a capital jurídica internacional do planeta."
-            },
-            {
-                q: "Qual estado brasileiro possui a maior área territorial, superando o tamanho de países como a França e a Alemanha juntos?",
-                cat: "Brasil Territorial",
-                options: ["Pará", "Mato Grosso", "Amazonas", "Minas Gerais"],
-                a: 2,
-                exp: "O estado do Amazonas tem 1,5 milhão de km², sendo o 9º maior ente subnacional do planeta."
-            },
-            {
-                q: "Qual é a cidade que fica exatamente na foz de dois continentes (Europa e Ásia), cortada pelo Estreito de Bósforo?",
-                cat: "Cidades Estratégicas",
-                options: ["Atenas", "Istambul", "Alexandria", "Tbilisi"],
-                a: 1,
-                exp: "Istambul (antiga Constantinopla e Bizâncio) é a única grande metrópole transcontinental do mundo."
-            },
-            {
-                q: "A Groenlândia, a maior ilha não continental do mundo, é um território autônomo sob soberania de qual país?",
-                cat: "Soberania Ártica",
-                options: ["Noruega", "Canadá", "Dinamarca", "Islândia"],
-                a: 2,
-                exp: "A Groenlândia faz parte do Reino da Dinamarca, embora geograficamente integre o continente norte-americano."
+                id: 5,
+                pergunta: "A Ilha dos Faisões troca de soberania a cada 6 meses entre quais dois países desde o Tratado dos Pirenéus de 1659?",
+                categoria: "Condomínios Territoriais",
+                opcoes: ["Espanha e França", "Reino Unido e Irlanda", "Bélgica e Holanda", "Itália e Suíça"],
+                resposta: 0,
+                explicacao: "A Ilha dos Faisões no rio Bidasoa pertence à Espanha por 6 meses e à França pelos outros 6 meses do ano.",
+                dificuldade: "medio"
             }
         ];
 
-        let perguntasRestantes = [];
+        // NORMALIZAÇÃO DE PERGUNTAS (Compatível com múltiplos formatos de banco)
+        function normalizarItem(p) {
+            return {
+                id: p.id || Math.floor(Math.random() * 100000),
+                q: p.pergunta || p.q || "Pergunta indisponível",
+                cat: p.categoria || p.cat || "Geopolítica Geral",
+                options: p.opcoes || p.options || [],
+                a: (p.resposta !== undefined ? p.resposta : (p.a !== undefined ? p.a : 0)),
+                exp: p.explicacao || p.exp || "Análise geopolítica confirmada pelas fontes oficiais.",
+                dificuldade: p.dificuldade || "medio"
+            };
+        }
+
+        // MOTOR ANTI-REPETIÇÃO COM MEMÓRIA PERSISTENTE NO LOCALSTORAGE
+        function obterPerguntasParaPartida(quantidade = QUANTIDADE_POR_PARTIDA) {
+            // Se CerebroGeo estiver disponível globalmente com método anti-repetição
+            if (window.CerebroGeo && typeof window.CerebroGeo.obterPerguntasSemRepeticao === 'function') {
+                const res = window.CerebroGeo.obterPerguntasSemRepeticao(quantidade, STORAGE_KEY_VISTAS);
+                return {
+                    perguntas: res.perguntas.map(normalizarItem),
+                    vistosTotal: res.vistosTotal,
+                    acervoTotal: res.acervoTotal,
+                    ciclo: res.ciclo,
+                    cicloRenovado: res.cicloRenovado
+                };
+            }
+
+            // Fallback: se CerebroGeo tiver apenas array PERGUNTAS
+            let baseBruta = [];
+            if (window.CerebroGeo && window.CerebroGeo.perguntas && window.CerebroGeo.perguntas.length > 0) {
+                baseBruta = window.CerebroGeo.perguntas;
+            } else {
+                baseBruta = FALLBACK_PERGUNTAS;
+            }
+
+            const base = baseBruta.map(normalizarItem);
+            let vistas = [];
+            let ciclo = 1;
+            try {
+                vistas = JSON.parse(localStorage.getItem(STORAGE_KEY_VISTAS) || '[]');
+                if (!Array.isArray(vistas)) vistas = [];
+                ciclo = parseInt(localStorage.getItem(STORAGE_KEY_CICLO) || '1', 10);
+            } catch (e) {
+                vistas = [];
+                ciclo = 1;
+            }
+
+            let naoVistas = base.filter(p => !vistas.includes(p.id));
+            let cicloRenovado = false;
+
+            if (naoVistas.length < quantidade) {
+                ciclo += 1;
+                vistas = [];
+                naoVistas = [...base];
+                cicloRenovado = true;
+                try { localStorage.setItem(STORAGE_KEY_CICLO, ciclo.toString()); } catch(e) {}
+            }
+
+            // Fisher-Yates shuffle
+            const copia = [...naoVistas];
+            for (let i = copia.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+
+            const selecionadas = copia.slice(0, quantidade);
+            selecionadas.forEach(s => {
+                if (!vistas.includes(s.id)) vistas.push(s.id);
+            });
+
+            try { localStorage.setItem(STORAGE_KEY_VISTAS, JSON.stringify(vistas)); } catch(e) {}
+
+            return {
+                perguntas: selecionadas,
+                vistosTotal: vistas.length,
+                acervoTotal: base.length,
+                ciclo: ciclo,
+                cicloRenovado: cicloRenovado
+            };
+        }
+
+        function reiniciarHistoricoCache() {
+            try {
+                localStorage.removeItem(STORAGE_KEY_VISTAS);
+                localStorage.removeItem(STORAGE_KEY_CICLO);
+            } catch (e) {}
+            reiniciarJogo();
+        }
+
+        // SISTEMA DE ÁUDIO SINTETIZADO (Web Audio API - Zero arquivos externos)
+        let somAtivo = true;
+        let audioCtx = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function tocarSom(tipo) {
+            if (!somAtivo) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+
+                if (tipo === 'correto') {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (tipo === 'erro') {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now); // A3
+                    osc.frequency.exponentialRampToValueAtTime(146.83, now + 0.25); // D3
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (tipo === 'vitoria') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.15, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.3);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.3);
+                    });
+                }
+            } catch(e) {}
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            if (icon) {
+                icon.className = somAtivo ? "ph-bold ph-speaker-high" : "ph-bold ph-speaker-slash text-slate-500";
+            }
+        }
+
+        // ESTADO GLOBAL DA PARTIDA
+        let filaPerguntas = [];
         let perguntaAtual = null;
         let acertos = 0;
         let vidas = 3;
-        const totalPerguntas = catalogoPerguntas.length;
-        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_quiz_geopolitica') || '0');
+        let respondendo = false;
+        let dadosPartidaAtual = null;
+        let recordeMaximo = parseInt(localStorage.getItem(STORAGE_KEY_RECORDE) || '0', 10);
 
+        // ELEMENTOS DOM
         const stageActive = document.getElementById('stage-active');
         const stageGameOver = document.getElementById('stage-gameover');
         const stageVictory = document.getElementById('stage-victory');
@@ -522,17 +547,27 @@
         const vidasContainer = document.getElementById('vidas-container');
 
         const questionCategory = document.getElementById('question-category');
+        const questionDifficultyBadge = document.getElementById('question-difficulty-badge');
         const questionText = document.getElementById('question-text');
         const feedbackMsg = document.getElementById('feedback-msg');
         const optionsGrid = document.getElementById('options-grid');
+        const catalogProgressText = document.getElementById('catalog-progress-text');
 
-        totalVal.innerText = totalPerguntas;
-        bestScoreVal.innerText = recordeMaximo;
-
+        // INICIALIZAR OU REINICIAR PARTIDA
         function reiniciarJogo() {
             acertos = 0;
             vidas = 3;
-            perguntasRestantes = [...catalogoPerguntas].sort(() => Math.random() - 0.5);
+            respondendo = false;
+
+            dadosPartidaAtual = obterPerguntasParaPartida(QUANTIDADE_POR_PARTIDA);
+            filaPerguntas = [...dadosPartidaAtual.perguntas];
+
+            totalVal.innerText = filaPerguntas.length;
+            bestScoreVal.innerText = recordeMaximo;
+
+            if (catalogProgressText) {
+                catalogProgressText.innerText = `${dadosPartidaAtual.vistosTotal} / ${dadosPartidaAtual.acervoTotal} exploradas (Ciclo ${dadosPartidaAtual.ciclo})`;
+            }
 
             stageActive.classList.remove('hidden');
             stageActive.classList.add('flex');
@@ -547,7 +582,8 @@
 
         function atualizarStatusUI() {
             scoreVal.innerText = acertos;
-            const perc = ((acertos / totalPerguntas) * 100).toFixed(1);
+            const total = dadosPartidaAtual ? dadosPartidaAtual.perguntas.length : QUANTIDADE_POR_PARTIDA;
+            const perc = ((acertos / total) * 100).toFixed(1);
             progressBar.style.width = `${perc}%`;
 
             let coracoesHTML = '';
@@ -562,27 +598,38 @@
         }
 
         function proximaPergunta() {
-            if (perguntasRestantes.length === 0) {
+            if (filaPerguntas.length === 0) {
                 concluirZeramento();
                 return;
             }
 
-            perguntaAtual = perguntasRestantes.pop();
+            respondendo = false;
+            perguntaAtual = filaPerguntas.pop();
 
             questionCategory.innerText = perguntaAtual.cat;
             questionText.innerText = perguntaAtual.q;
 
-            feedbackMsg.innerText = "Selecione a resposta correta:";
-            feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center";
+            // Dificuldade
+            const difMap = {
+                'facil': { label: 'Fácil', cor: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
+                'medio': { label: 'Médio', cor: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
+                'dificil': { label: 'Difícil', cor: 'text-rose-400 border-rose-500/30 bg-rose-500/10' }
+            };
+            const difConfig = difMap[perguntaAtual.dificuldade] || difMap['medio'];
+            questionDifficultyBadge.className = `inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase border ${difConfig.cor}`;
+            questionDifficultyBadge.innerText = difConfig.label;
+
+            feedbackMsg.innerHTML = "<span>Selecione a resposta correta:</span>";
+            feedbackMsg.className = "min-h-[32px] text-xs sm:text-sm font-mono font-bold tracking-wide text-slate-400 flex flex-col items-center justify-center px-3 mb-2";
 
             optionsGrid.innerHTML = '';
             perguntaAtual.options.forEach((optTexto, index) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl font-heading font-semibold text-slate-200 text-xs sm:text-sm text-left flex items-center justify-between group shadow-md";
                 btn.innerHTML = `
                     <div class="flex items-center gap-3">
                         <span class="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-xs font-mono text-slate-400 group-hover:text-amber-400 group-hover:border-amber-400/40">${String.fromCharCode(65 + index)}</span>
-                        <span class="truncate">${optTexto}</span>
+                        <span>${optTexto}</span>
                     </div>
                     <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
                 `;
@@ -592,50 +639,57 @@
         }
 
         function verificarResposta(indexEscolhido, btnClicado) {
+            if (respondendo) return;
+            respondendo = true;
+
             const allBtns = optionsGrid.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
             if (indexEscolhido === perguntaAtual.a) {
+                tocarSom('correto');
+
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
 
-                feedbackMsg.innerText = "✓ Correto! Análise confirmada!";
-                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse flex items-center justify-center";
+                feedbackMsg.innerHTML = `<span class="text-emerald-400">✓ Correto! ${perguntaAtual.exp}</span>`;
+                feedbackMsg.className = "min-h-[32px] text-xs sm:text-sm font-mono tracking-normal text-emerald-400 flex flex-col items-center justify-center px-3 mb-2 text-center";
 
                 acertos++;
                 if (acertos > recordeMaximo) {
                     recordeMaximo = acertos;
-                    localStorage.setItem('vg_recorde_quiz_geopolitica', recordeMaximo);
+                    try { localStorage.setItem(STORAGE_KEY_RECORDE, recordeMaximo.toString()); } catch(e) {}
                     bestScoreVal.innerText = recordeMaximo;
                 }
 
                 atualizarStatusUI();
 
                 if (acertos % 5 === 0 && typeof confetti === 'function') {
-                    confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+                    confetti({ particleCount: 45, spread: 60, origin: { y: 0.6 } });
                 }
 
-                setTimeout(proximaPergunta, 700);
+                setTimeout(proximaPergunta, 1100);
             } else {
+                tocarSom('erro');
+
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
 
                 const respostaCertaTexto = perguntaAtual.options[perguntaAtual.a];
-                feedbackMsg.innerText = `✗ Errado! A resposta certa era: ${respostaCertaTexto}`;
-                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center";
+                feedbackMsg.innerHTML = `<span class="text-rose-400 font-bold block mb-1">✗ Incorreto! A resposta certa era: ${respostaCertaTexto}</span><span class="text-slate-300 font-normal text-xs block">${perguntaAtual.exp}</span>`;
+                feedbackMsg.className = "min-h-[32px] text-xs sm:text-sm font-mono tracking-normal text-slate-300 flex flex-col items-center justify-center px-3 mb-2 text-center";
 
                 // Destaca o botão correto
                 if (allBtns[perguntaAtual.a]) {
-                    allBtns[perguntaAtual.a].classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
+                    allBtns[perguntaAtual.a].classList.add('border-emerald-500', 'text-emerald-400', 'border-2', 'bg-emerald-500/10');
                 }
 
                 vidas--;
                 atualizarStatusUI();
 
                 if (vidas <= 0) {
-                    setTimeout(finalizarGameOver, 2000);
+                    setTimeout(finalizarGameOver, 2400);
                 } else {
-                    setTimeout(proximaPergunta, 2000);
+                    setTimeout(proximaPergunta, 2400);
                 }
             }
         }
@@ -647,45 +701,62 @@
             stageGameOver.classList.add('flex');
 
             document.getElementById('last-correct-answer').innerText = perguntaAtual.options[perguntaAtual.a];
+            document.getElementById('gameover-explicacao').innerText = perguntaAtual.exp;
             document.getElementById('final-score').innerText = acertos;
 
-            const perc = ((acertos / totalPerguntas) * 100).toFixed(1);
-            document.getElementById('final-porcentagem').innerText = `${perc}% dos dossiês geopolíticos dominados!`;
+            const total = dadosPartidaAtual ? dadosPartidaAtual.perguntas.length : QUANTIDADE_POR_PARTIDA;
+            const perc = ((acertos / total) * 100).toFixed(0);
+            document.getElementById('final-porcentagem').innerText = `${perc}% de aproveitamento tático`;
 
             let rank = "Recruta Curioso";
-            if (acertos >= 35) rank = "Estrategista Geopolítico Supremo";
-            else if (acertos >= 25) rank = "Diplomata de Inteligência";
-            else if (acertos >= 15) rank = "Analista Internacional";
+            if (acertos >= 18) rank = "Estrategista Geopolítico Supremo";
+            else if (acertos >= 14) rank = "Diplomata de Inteligência";
+            else if (acertos >= 10) rank = "Analista Internacional Sênior";
             else if (acertos >= 5) rank = "Observador em Campo";
             document.getElementById('final-rank').innerText = `Rank: ${rank}`;
+
+            const finalAcervoText = document.getElementById('final-acervo-text');
+            if (finalAcervoText && dadosPartidaAtual) {
+                finalAcervoText.innerHTML = `🌍 Você já explorou <strong>${dadosPartidaAtual.vistosTotal} de ${dadosPartidaAtual.acervoTotal}</strong> dossiês sem repetição (Ciclo ${dadosPartidaAtual.ciclo})!`;
+            }
         }
 
         function concluirZeramento() {
+            tocarSom('vitoria');
+
             stageActive.classList.add('hidden');
             stageActive.classList.remove('flex');
             stageVictory.classList.remove('hidden');
             stageVictory.classList.add('flex');
 
+            const victoryAcervoText = document.getElementById('victory-acervo-text');
+            if (victoryAcervoText && dadosPartidaAtual) {
+                victoryAcervoText.innerHTML = `🌟 Você já dominou <strong>${dadosPartidaAtual.vistosTotal} de ${dadosPartidaAtual.acervoTotal}</strong> perguntas do acervo sem repetição (Ciclo ${dadosPartidaAtual.ciclo})!`;
+            }
+
             if (typeof confetti === 'function') {
                 confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
+                setTimeout(() => confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } }), 600);
             }
         }
 
         function compartilharResultadoWhatsApp() {
-            const perc = ((acertos / totalPerguntas) * 100).toFixed(0);
-            const texto = `Acertei ${acertos} de 40 perguntas geopolíticas (${perc}% de acerto) no Quiz de Inteligência do VitaleGeo! 🌍♟️\nConsegue me superar? Jogue também:\nhttps://www.vitalegeo.com.br/jogos/quiz/`;
+            const total = dadosPartidaAtual ? dadosPartidaAtual.perguntas.length : QUANTIDADE_POR_PARTIDA;
+            const perc = ((acertos / total) * 100).toFixed(0);
+            const texto = `Acertei ${acertos} de ${total} perguntas geopolíticas (${perc}% de acerto) no Quiz de Inteligência do VitaleGeo! 🌍♟️\nO jogo possui mais de 1.000 perguntas e nunca repete. Consegue me superar?\nhttps://www.vitalegeo.com.br/jogos/quiz/`;
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
         }
 
         function compartilharVitoriaWhatsApp() {
-            const texto = `🏆 EU ZEREI O QUIZ GEOPOLÍTICO DO VITALEGEO! Acertei todas as 40 perguntas sobre fronteiras, enclaves e tratados do mundo! 🌍✨\nDuvido você conseguir: https://www.vitalegeo.com.br/jogos/quiz/`;
+            const texto = `🏆 EU ZEREI A MISSÃO GEOPOLÍTICA DO VITALEGEO! Acertei todas as 20 perguntas sobre fronteiras, enclaves, tratados e rotas navais! 🌍✨\nSão mais de 1.000 perguntas no acervo. Duvido você conseguir:\nhttps://www.vitalegeo.com.br/jogos/quiz/`;
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
         }
 
         function copiarResultado() {
-            const texto = `Acertei ${acertos} de 40 perguntas no Quiz Geopolítico do VitaleGeo! 🌍♟️ Jogue também: https://www.vitalegeo.com.br/jogos/quiz/`;
+            const total = dadosPartidaAtual ? dadosPartidaAtual.perguntas.length : QUANTIDADE_POR_PARTIDA;
+            const texto = `Acertei ${acertos} de ${total} perguntas no Quiz Geopolítico do VitaleGeo! 🌍♟️ Jogue também no acervo de 1.000+ perguntas: https://www.vitalegeo.com.br/jogos/quiz/`;
             const btn = document.getElementById('btn-copiar');
             navigator.clipboard.writeText(texto).then(() => {
                 btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
@@ -702,7 +773,28 @@
             }
         }
 
-        reiniciarJogo();
+        // ATALHOS DE TECLADO (A, B, C, D ou 1, 2, 3, 4)
+        window.addEventListener('keydown', (e) => {
+            if (respondendo) return;
+            const key = e.key.toUpperCase();
+            let index = -1;
+            if (['A', '1'].includes(key)) index = 0;
+            else if (['B', '2'].includes(key)) index = 1;
+            else if (['C', '3'].includes(key)) index = 2;
+            else if (['D', '4'].includes(key)) index = 3;
+
+            if (index >= 0) {
+                const btns = optionsGrid.querySelectorAll('button');
+                if (btns[index]) btns[index].click();
+            }
+        });
+
+        // INICIA O JOGO ASSIM QUE A PÁGINA OU O CEREBROGEO CARREGAR
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', reiniciarJogo);
+        } else {
+            reiniciarJogo();
+        }
     </script>
 </body>
 </html>
