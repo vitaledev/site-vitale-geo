@@ -1,168 +1,380 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-slate-900">
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/cidades-esponja/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidades-Esponja | VitaleGeo</title>
-    <meta name="description" content="Por que o concreto precisa dar lugar à natureza. Entenda a revolução das Sponge Cities.">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cidades-Esponja: A Revolução do Urbanismo Ecológico Contra as Enchentes | Dossiê VitaleGeo</title>
+    <meta name="description" content="Por que o concreto armado falhou e a natureza está sendo chamada para salvar as metrópoles. Conheça a tecnologia e o urbanismo das Sponge Cities no mundo.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/cidades-esponja/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/cidades-esponja/">
+    <meta property="og:title" content="Cidades-Esponja: A Revolução do Urbanismo Ecológico Contra as Enchentes | Dossiê VitaleGeo">
+    <meta property="og:description" content="Por que o concreto armado falhou e a natureza está sendo chamada para salvar as metrópoles. Conheça a tecnologia e o urbanismo das Sponge Cities no mundo.">
+    <meta property="og:image" content="https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cidades-Esponja: A Revolução do Urbanismo Ecológico Contra as Enchentes | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="Por que o concreto armado falhou e a natureza está sendo chamada para salvar as metrópoles. Conheça a tecnologia e o urbanismo das Sponge Cities no mundo.">
+    <meta name="twitter:image" content="https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cidades-Esponja: A Revolução do Urbanismo Ecológico Contra as Enchentes",
+      "description": "Por que o concreto armado falhou e a natureza está sendo chamada para salvar as metrópoles. Conheça a tecnologia e o urbanismo das Sponge Cities no mundo.",
+      "image": "https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-01-15",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/cidades-esponja/"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { 
-                        sans: ['Inter', 'sans-serif'], 
-                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
                     },
-                    colors: { 
-                        geoNavy: '#0f172a', 
-                        waterBlue: '#06b6d4', 
-                        natureGreen: '#10b981' 
-                    }
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
+                            }
+                        }
+                    })
                 }
             }
         }
     </script>
-
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-waterBlue selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
-
-    <header class="pt-32 pb-12 px-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1515266591878-5a1477d2a125?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10"></div>
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-geoNavy to-transparent"></div>
-        
-        <div class="max-w-3xl mx-auto relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-waterBlue/10 border border-waterBlue/30 text-xs font-bold text-waterBlue mb-6 uppercase tracking-widest">
-                <i class="ph-fill ph-drop"></i> Tecnologia Sustentável
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Urbanismo</span>
             </div>
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                Cidades-Esponja: <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-waterBlue to-natureGreen">Contra o Afogamento Urbano</span>
+
+            <div class="carto-badge mb-6">
+                <span>Urbanismo Resiliente · Gestão de Bacias</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Cidades-Esponja: A Revolução do Urbanismo Ecológico Contra as Enchentes
             </h1>
-            <p class="text-lg text-slate-400 font-light leading-relaxed">
-                Por que a engenharia moderna decidiu parar de lutar contra a água e começou a aprender com ela.
-            </p>
+
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 15 Jan 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
+            </div>
         </div>
     </header>
 
-    <main class="px-6 py-10 max-w-3xl mx-auto">
-        
-        <article class="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-headings:text-white prose-a:text-waterBlue hover:prose-a:text-natureGreen prose-img:rounded-xl prose-img:border prose-img:border-white/10">
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg" alt="Cidade moderna com chuva e infraestrutura de água integrada" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        Urbanismo contemporâneo: integrando lagoas de retenção, pavimentos permeáveis e várzeas alagáveis no tecido das metrópoles.
+                    </figcaption>
+                </figure>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-user-circle text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Criador do Conceito</span>
+                        <strong class="text-sm font-mono text-white">Prof. Kongjian Yu</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-tree text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Paradigma</span>
+                        <strong class="text-sm font-mono text-white">Infraestrutura Verde</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-buildings text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Cidades Piloto</span>
+                        <strong class="text-sm font-mono text-white">+30 Metrópoles Globais</strong>
+                    </div>
+                </div>
 
-            <p class="lead text-xl text-slate-200">
-                Toda vez que o verão chega ao Brasil, o noticiário se repete: chuvas torrenciais, ruas que viram rios e prejuízos incalculáveis. A culpa costuma cair sobre "a chuva", mas a verdadeira culpada está debaixo dos nossos pés: <strong>a impermeabilização</strong>.
-            </p>
-
-            <p>
-                Durante o século XX, a lógica era simples: tirar a água da cidade o mais rápido possível através de canos e concreto. Com as mudanças climáticas, esse sistema colapsou. É aqui que entra o conceito revolucionário das <strong>Cidades-Esponja (Sponge Cities)</strong>.
-            </p>
-
-            <div class="bg-slate-800/50 p-6 rounded-lg border-l-4 border-waterBlue my-8">
-                <h3 class="text-white mt-0 mb-2 font-bold flex items-center gap-2">
-                    <i class="ph-duotone ph-waves text-2xl text-waterBlue"></i> O que é uma Cidade-Esponja?
-                </h3>
-                <p class="m-0 text-sm text-slate-400">
-                    Ao contrário da "cidade de concreto" (que repele a água), a Cidade-Esponja é projetada para <strong>absorver, limpar e armazenar</strong> a água da chuva, imitando o ciclo hidrológico natural. Em vez de jogar a água no rio (causando enchentes), a cidade bebe a água.
+                <p class="lead text-xl text-slate-200">
+                    A cada temporada de chuvas torrenciais no Brasil, nos Estados Unidos, na Europa ou na Ásia, o espetáculo catastrófico se repete com precisão milimétrica: avenidas convertidas em corredeiras violentas, carros arrastados para córregos, linhas de metrô inundadas e prejuízos que ultrapassam dezenas de bilhões de dólares. A reação pública quase sempre culpa "a intensidade anômala das tempestades", mas a causa primária reside no desenho sob nossos pés: <strong>a impermeabilização artificial maciça do solo urbano</strong>.
                 </p>
+
+                <p>
+                    Durante o último século, a engenharia civil clássica operou sob um dogma rígido baseado na chamada <strong>"infraestrutura cinza"</strong>: canalizar rios em valas retilíneas de concreto armado, enterrar córregos sob avenidas asfaltadas e instalar galerias pluviais tubuladas gigantescas para expulsar a água da chuva o mais rápido possível para fora da cidade.
+                </p>
+
+                <p>
+                    O colapso desse modelo diante da crise climática gerou uma revolução conceitual que está redesenhando cidades de Pequim a Berlim, de Cingapura a Roterdã: o conceito das <strong>Cidades-Esponja (Sponge Cities)</strong>. Em vez de declarar guerra à água e tentar contê-la à força, a nova engenharia propõe que as metrópoles aprendam a <strong>respirar, absorver, infiltrar, reter e reutilizar a água da chuva localmente através da própria natureza</strong>.
+                </p>
+
+                <h2>O colapso da engenharia cinza: a matemática do asfalto</h2>
+
+                <p>
+                    Para compreender por que o concreto falhou, basta comparar o ciclo hidrológico de uma floresta natural com o de um centro metropolitano contemporâneo:
+                </p>
+
+                <ul>
+                    <li><strong>Em uma bacia hidrográfica preservada com cobertura vegetal:</strong> Cerca de <strong>50% da água da chuva infiltra-se no solo</strong> (abastecendo os aquíferos profundos), 40% evapora ou é transpirada pelas árvores e apenas <strong>10% a 15% escorre pela superfície</strong> na forma de enxurrada superficial suave.</li>
+                    <li><strong>Em uma metrópole pavimentada com asfalto e lajes de concreto:</strong> A taxa de infiltração cai para menos de <strong>5%</strong>. A evapotranspiração é quase nula. O resultado é que <strong>mais de 80% a 90% do volume colossal de tempestade é obrigado a escorrer instantaneamente pelo chão</strong>.</li>
+                </ul>
+
+                <p>
+                    Nenhum sistema de tubulações pluviais do mundo, por mais caro e superdimensionado que seja, possui capacidade física de transportar simultaneamente 90% da água de uma chuva extrema de 100 mm em poucas horas. As galerias entram em carga máxima, os rios canalizados transbordam e as cidades se afogam em suas próprias bacias hidrográficas.
+                </p>
+
+                <blockquote>
+                    "Construir muros de concreto mais altos e enterrar rios em tubos subterrâneos é como tentar tratar um paciente cardíaco aumentando a pressão de suas artérias: uma hora o sistema explode. Devemos devolver espaço ao rio e fazer da cidade uma esponja viva."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Prof. Kongjian Yu, decano da Escola de Arquitetura Paisagística da Universidade de Pequim e pioneiro das Cidades-Esponja.</footer>
+                </blockquote>
+
+                <h2>Os cinco pilares tecnológicos da Cidade-Esponja</h2>
+
+                <p>
+                    Transformar uma selva de pedra em um ecossistema permeável não significa demolir edifícios, mas reconectar a malha urbana com técnicas integradas de <strong>infraestrutura verde e azul</strong>:
+                </p>
+
+                <h3>1. Pavimentos permeáveis e asfalto poroso</h3>
+                <p>
+                    Substituição de calçadas de concreto maciço e estacionamentos por pisos intertravados ecológicos com juntas de brita, concreto drenante e asfalto poroso. Em vez de poças imediatas, a água da chuva atravessa os microporos do pavimento a taxas superiores a 1.000 litros por metro quadrado por hora, recarregando a umidade do solo.
+                </p>
+
+                <h3>2. Jardins de chuva (Rain Gardens) e biovaletas</h3>
+                <p>
+                    Canteiros rebaixados nas calçadas e divisores de pistas de avenidas preenchidos com camadas de areia, composto orgânico e plantas nativas com raízes profundas. A enxurrada que desce das ruas é direcionada para esses jardins, onde é desacelerada, filtrada de poluentes de óleo e absorvida naturalmente em menos de 24 horas.
+                </p>
+
+                <h3>3. Telhados verdes (Green Roofs)</h3>
+                <p>
+                    Cobertura de lajes e telhados com substrato vegetal e gramíneas. Os telhados verdes funcionam como retentores primários de tempestades, retendo entre <strong>60% e 80% do volume inicial de chuva</strong> diretamente no topo dos edifícios, além de reduzir em até 5°C a temperatura interna das edificações, mitigando as perigosas ilhas de calor urbanas.
+                </p>
+
+                <h3>4. Parques alagáveis e bacias multifuncionais</h3>
+                <p>
+                    Criação de parques públicos escalonados em cotas altimétricas que cumprem dupla função social e hidrológica. Em dias de sol, são campos de futebol, praças, ciclovias e áreas de piquenique comunitárias; em tempestades extremas, são projetados deliberadamente para receber e reter temporariamente milhões de metros cúbicos de água sem sofrer danos estruturais, liberando o fluxo lentamente para os rios dias depois.
+                </p>
+
+                <!-- Tabela Comparativa: Engenharia Cinza vs Modelo Cidade-Esponja -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Dimensão Urbana</th>
+                                <th class="p-3">Infraestrutura Cinza Tradicional</th>
+                                <th class="p-3">Modelo Cidade-Esponja (Infraestrutura Verde)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Destino da Água Pluvial</td>
+                                <td class="p-3">Expulsar rapidamente para córregos por tubos</td>
+                                <td class="p-3 text-amber-400">Reter, infiltrar, filtrar e reutilizar localmente</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Escoamento Superficial</td>
+                                <td class="p-3">80% a 90% (Enxurradas torrenciais imediatas)</td>
+                                <td class="p-3 text-amber-400">Reduzido para 20% a 30% através de absorção</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Tratamento de Rios</td>
+                                <td class="p-3">Retificação, dragagem e canalização em calhas</td>
+                                <td class="p-3">Restauração de meandros, matas ciliares e várzeas</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Impacto na Ilha de Calor</td>
+                                <td class="p-3">Nenhum (concreto e asfalto irradiam calor)</td>
+                                <td class="p-3">Queda de 2°C a 4°C por evapotranspiração vegetal</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Uso Público da Estrutura</td>
+                                <td class="p-3">Piscinões fechados de concreto sem utilidade cívica</td>
+                                <td class="p-3">Parques verdes, praças, lagos urbanos e ciclovias</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Casos de sucesso global: de Cingapura aos Países Baixos</h2>
+
+                <p>
+                    A implementação em larga escala de Cidades-Esponja deixou de ser teoria acadêmica e transformou-se em política de Estado em várias partes do mundo:
+                </p>
+
+                <ul>
+                    <li><strong>China e o Programa Nacional de 2014:</strong> Após inundações devastadoras em Pequim em 2012, o governo chinês elegeu mais de 30 cidades-piloto (como Wuhan, Shenzhen e Xiamen), investindo centenas de bilhões de iuanes para garantir que 80% das áreas urbanas consigam absorver e reciclar pelo menos 70% das chuvas anuais até 2030.</li>
+                    <li><strong>Cingapura e o Programa ABC Waters:</strong> A cidade-estado asiática transformou o célebre canal retilíneo de concreto do <em>Kallang River</em> no Bishan-Ang Mo Kio Park em um rio sinuoso e natural com pedras, vegetação e planícies alagáveis, que absorve enxurradas gigantescas e serve como cartão-postal de lazer para milhões de cidadãos.</li>
+                    <li><strong>Países Baixos e o 'Room for the River':</strong> Reconhecendo que erguer diques mais altos no Reno e no Meuse era uma batalha perdida a longo prazo, os holandeses investiram mais de 2,3 bilhões de euros em 30 projetos ao redor do país para recuar diques, rebaixar várzeas e literalmente "dar mais espaço ao rio" para se espalhar com segurança durante cheias históricas.</li>
+                </ul>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Ferramenta Interativa // Geografia Urbana</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Quer medir a escala das maiores bacias fluviais do mundo?</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Utilize a calculadora cartográfica do VitaleGeo para traçar distâncias entre capitais e explorar as coordenadas dos grandes rios globais.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-compass text-base"></i> Abrir Calculadora Geodésica
+                        </a>
+                        <a href="/jogos/quiz-capitais/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-game-controller text-base"></i> Quiz de Capitais Mundiais
+                        </a>
+                    </div>
+                </div>
+
+                <h2>Perguntas Frequentes sobre Cidades-Esponja (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Uma Cidade-Esponja é capaz de impedir 100% de qualquer enchente?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não existe sistema de drenagem no mundo capaz de anular tempestades de retorno milenar com precipitações catastróficas acima de 300 mm em poucas horas (como ocorrido em Zhengzhou em 2021 ou no Rio Grande do Sul em 2024). No entanto, o modelo de esponja amortece drasticamente o pico da enchente, retarda o tempo de inundação para que a população evacue com segurança e elimina completamente os alagamentos crônicos de tempestades de verão médias e fortes.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>A água acumulada nos parques alagáveis não atrai mosquitos como a dengue?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não, quando o projeto é executado com rigor biológico. Parques-esponja e biovaletas são projetados para drenar e infiltrar toda a lâmina d'água superficial em no máximo 24 a 48 horas (tempo muito inferior ao ciclo de reprodução das larvas do Aedes aegypti, que exige de 7 a 10 dias de água parada). Além disso, lagoas permanentes abrigam peixes e libélulas predadores naturais de larvas.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Cidades brasileiras como São Paulo podem aplicar o conceito?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Sim, e é uma necessidade urgente de sobrevivência urbana. Cidades brasileiras já começaram a implantar pilotos de biovaletas, jardins de chuva comunitários e desentubamento de riachos pontuais. O desafio principal é a adaptação da malha urbana consolidada (retrofit verde) e a substituição da mentalidade tradicional dos piscinões fechados por parques lineares multifuncionais abertos.
+                        </p>
+                    </details>
+                </div>
+
             </div>
-
-            <h2>A Tecnologia da Absorção</h2>
-            <p>Não basta plantar árvores. Uma Cidade-Esponja usa engenharia de ponta:</p>
-
-            <div class="grid md:grid-cols-2 gap-4 not-prose my-8">
-                <div class="bg-slate-800 p-5 rounded border border-white/5 hover:border-natureGreen/50 transition group">
-                    <i class="ph-duotone ph-road-horizon text-3xl text-natureGreen mb-3 group-hover:scale-110 transition block"></i>
-                    <h4 class="text-white font-bold mb-1">Pavimentos Permeáveis</h4>
-                    <p class="text-xs text-slate-400">Asfalto poroso que deixa a água atravessar a rua e chegar ao solo, sem criar poças.</p>
-                </div>
-                <div class="bg-slate-800 p-5 rounded border border-white/5 hover:border-natureGreen/50 transition group">
-                    <i class="ph-duotone ph-house-line text-3xl text-natureGreen mb-3 group-hover:scale-110 transition block"></i>
-                    <h4 class="text-white font-bold mb-1">Telhados Verdes</h4>
-                    <p class="text-xs text-slate-400">Jardins no topo de prédios que retêm a chuva e diminuem a temperatura interna.</p>
-                </div>
-                <div class="bg-slate-800 p-5 rounded border border-white/5 hover:border-natureGreen/50 transition group">
-                    <i class="ph-duotone ph-park text-3xl text-natureGreen mb-3 group-hover:scale-110 transition block"></i>
-                    <h4 class="text-white font-bold mb-1">Parques Alagáveis</h4>
-                    <p class="text-xs text-slate-400">Quadras e parques feitos em desnível. No sol, lazer. Na chuva, viram piscinas de retenção.</p>
-                </div>
-                <div class="bg-slate-800 p-5 rounded border border-white/5 hover:border-natureGreen/50 transition group">
-                    <i class="ph-duotone ph-flower-tulip text-3xl text-natureGreen mb-3 group-hover:scale-110 transition block"></i>
-                    <h4 class="text-white font-bold mb-1">Jardins de Chuva</h4>
-                    <p class="text-xs text-slate-400">Canteiros (Bioswales) com camadas de terra e cascalho para filtrar a enxurrada.</p>
-                </div>
-            </div>
-
-            <h2>Geopolítica da Água: O Caso da China</h2>
-            <p>
-                Embora técnicas sustentáveis existam na Europa (como em Berlim), o termo ganhou força política com a China. Em 2013, <strong>Xi Jinping</strong> transformou isso em política de Estado.
-            </p>
-            <p>
-                A urbanização chinesa foi tão rápida que impermeabilizou cidades inteiras como Wuhan e Pequim. A meta agora é ambiciosa: até 2030, 80% das áreas urbanas das cidades-piloto devem reciclar 70% da chuva. A China hoje exporta essa tecnologia de infraestrutura para o mundo.
-            </p>
-
-            <h2>E o Brasil?</h2>
-            <p>
-                O Brasil é o candidato perfeito. Temos chuvas tropicais violentas e um histórico de ocupação de várzeas. Já temos iniciativas como a "Lei das Piscininhas" em SP e parques lineares em Curitiba.
-            </p>
-            <p>
-                Porém, nosso desafio é <strong>social</strong>: como levar cidades-esponja para periferias que nem saneamento básico têm? A geografia da desigualdade torna a solução complexa, mas urgente, já que os mais pobres são os que mais sofrem com a água invadindo a sala.
-            </p>
-
-            <hr class="border-white/10 my-10">
-
-            <h3>Conclusão: O Futuro é Azul</h3>
-            <p>
-                A era de lutar contra a água com muros de concreto acabou. O futuro do urbanismo é aprender a conviver com ela. Cidades-esponja não só evitam enchentes, mas reabastecem lençóis freáticos e reduzem o calor. O futuro não é cinza, é permeável.
-            </p>
-
         </article>
 
-        <div class="mt-12 p-6 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-xl border border-white/10 text-center">
-            <p class="text-sm font-bold text-white mb-2">Gostou desse tema?</p>
-            <p class="text-xs text-slate-400 mb-4">Estou produzindo um vídeo detalhado mostrando essas tecnologias em ação.</p>
-            <button class="bg-white text-black text-xs font-bold py-2 px-6 rounded-full hover:bg-waterBlue hover:text-white transition">
-                Em breve no YouTube
-            </button>
-        </div>
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê sobre urbanismo?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas urbanos, desafios climáticos e geopolítica das cidades com animações gráficas detalhadas.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
 
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
     </main>
 
-                    <footer class="site-footer">
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -181,12 +393,13 @@
         </div>
     </footer>
 
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -194,26 +407,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

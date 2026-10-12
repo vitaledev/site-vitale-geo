@@ -1,35 +1,86 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/ponto-nemo/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Ponto Nemo: O lugar mais solitário da Terra | Blog VitaleGeo</title>
-    <meta name="description" content="Você sabia que no Ponto Nemo os humanos mais próximos de você estão no espaço? Conheça o cemitério de naves espaciais no meio do Pacífico.">
+    <title>Ponto Nemo: O Lugar Mais Solitário da Terra e o Cemitério das Naves Espaciais | Dossiê VitaleGeo</title>
+    <meta name="description" content="A 2.688 km da terra mais próxima no Pacífico, os humanos mais perto do Ponto Nemo estão no espaço. Conheça a tumba submarina da Estação Mir e da futura ISS.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/ponto-nemo/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/ponto-nemo/">
+    <meta property="og:title" content="Ponto Nemo: O Lugar Mais Solitário da Terra e o Cemitério das Naves Espaciais | Dossiê VitaleGeo">
+    <meta property="og:description" content="A 2.688 km da terra mais próxima no Pacífico, os humanos mais perto do Ponto Nemo estão no espaço. Conheça a tumba submarina da Estação Mir e da futura ISS.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ponto Nemo: O Lugar Mais Solitário da Terra e o Cemitério das Naves Espaciais | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="A 2.688 km da terra mais próxima no Pacífico, os humanos mais perto do Ponto Nemo estão no espaço. Conheça a tumba submarina da Estação Mir e da futura ISS.">
+    <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Ponto Nemo: O Lugar Mais Solitário da Terra e o Cemitério das Naves Espaciais",
+      "description": "A 2.688 km da terra mais próxima no Pacífico, os humanos mais perto do Ponto Nemo estão no espaço. Conheça a tumba submarina da Estação Mir e da futura ISS.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-01-22",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/ponto-nemo/"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
                     typography: (theme) => ({
                         DEFAULT: {
                             css: {
                                 color: theme('colors.slate.300'),
-                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
-                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em' },
-                                strong: { color: theme('colors.geoBlue') },
-                                a: { color: theme('colors.geoGold'), '&:hover': { color: '#fff' } },
-                                blockquote: { borderLeftColor: theme('colors.geoBlue'), color: '#fff', fontStyle: 'italic' }
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
                             }
                         }
                     })
@@ -37,152 +88,306 @@
             }
         }
     </script>
-
-    <script>
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-    </script>
-
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-[#090a0f]">
-        <div id="progressBar" class="h-1 bg-blue-500 w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(59,130,246,0.7)]"></div>
-    </div>
-
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Oceanografia</span>
+            </div>
 
-    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
-        <div class="max-w-3xl mx-auto text-center">
-            
-            <div class="inline-flex items-center gap-2 bg-blue-900/30 border border-blue-500/30 text-blue-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
-                <i class="ph-fill ph-waves"></i> Oceanografia
+            <div class="carto-badge mb-6">
+                <span>Geodésia Extrema · Polos de Inacessibilidade</span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                Ponto Nemo: O lugar onde os humanos mais próximos estão no espaço
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Ponto Nemo: O Lugar Mais Solitário da Terra e o Cemitério das Naves Espaciais
             </h1>
 
-            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <span><i class="ph-bold ph-calendar"></i> 22 JAN 2026</span>
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 22 Jan 2026</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-clock"></i> 4 min leitura</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
                 <span>•</span>
-                <span>Por VitaleGeo</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
             </div>
         </div>
     </header>
 
-    <article class="py-16 px-6">
-        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
-            
-            <p class="lead text-xl text-slate-200">
-                Se você viajasse para o <strong>Ponto Nemo</strong> e seu barco afundasse, não adiantaria gritar por socorro. A terra firme mais próxima estaria a 2.688 km de distância. Na verdade, é provável que os humanos mais próximos de você não estivessem na Terra, mas orbitando acima dela.
-            </p>
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png" alt="Localização exata do Ponto Nemo no Oceano Pacífico Sul" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        O Polo Oceânico de Inacessibilidade (Ponto Nemo) no Pacífico Sul, a 2.688 km de qualquer faixa de terra firme.
+                    </figcaption>
+                </figure>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-rocket text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Humanos Mais Perto</span>
+                        <strong class="text-sm font-mono text-white">Astronautas da ISS (~415 km)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-calculator text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Cálculo Geodésico</span>
+                        <strong class="text-sm font-mono text-white">Hrvoje Lukatela (1992)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-skull text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Cemitério Espacial</span>
+                        <strong class="text-sm font-mono text-white">+260 Espaçonaves</strong>
+                    </div>
+                </div>
 
-            <figure>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png" alt="Localização do Ponto Nemo no Pacífico Sul" class="rounded-xl shadow-2xl border border-white/10 w-full">
-                <figcaption class="text-center text-sm text-slate-500 mt-2">O ponto vermelho é o local mais distante de qualquer continente.</figcaption>
-            </figure>
-
-            <h2>O Polo de Inacessibilidade</h2>
-            <p>
-                Oficialmente conhecido como "Polo Oceânico de Inacessibilidade", o Ponto Nemo fica no Pacífico Sul. O nome vem do Capitão Nemo, do livro <em>Vinte Mil Léguas Submarinas</em> de Júlio Verne (e também significa "Ninguém" em latim).
-            </p>
-            <p>
-                Para você ter uma ideia do isolamento:
-            </p>
-            <ul>
-                <li><strong>Terra firme mais próxima:</strong> Ilha Ducie (norte), Motu Nui (nordeste) ou Ilha Maher (sul). Todas estão a quase 2.700 km.</li>
-                <li><strong>Estação Espacial Internacional (ISS):</strong> Orbita a terra a cerca de <strong>400 km de altura</strong>.</li>
-            </ul>
-
-            <blockquote>
-                "Quando a ISS passa sobre o Pacífico Sul, os astronautas estão 7 vezes mais perto de você do que qualquer outra pessoa no planeta."
-            </blockquote>
-
-            <h2>O Cemitério de Espaçonaves</h2>
-            <p>
-                Por ser tão remoto e vazio (a vida marinha lá é escassa devido à falta de nutrientes na água), as agências espaciais como a NASA e a Roscosmos usam essa área como um "lixão espacial".
-            </p>
-            <p>
-                Quando um satélite ou estação espacial chega ao fim da vida, eles são derrubados propositalmente no Ponto Nemo para evitar que caiam em áreas habitadas.
-            </p>
-            <p>
-                Lá no fundo do oceano, repousam os restos da estação espacial russa <strong>Mir</strong> e, no futuro, será o local de descanso final da própria Estação Espacial Internacional.
-            </p>
-
-            <figure>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Mir_Space_Station_viewed_from_Endeavour_during_STS-89.jpg" alt="Estação Espacial Mir" class="rounded-xl shadow-2xl border border-white/10 w-full">
-                <figcaption class="text-center text-sm text-slate-500 mt-2">A lendária estação Mir foi desorbitada e caiu no Ponto Nemo em 2001.</figcaption>
-            </figure>
-
-            <h2>Monstros nas profundezas?</h2>
-            <p>
-                Em 1997, oceanógrafos captaram um som ultra-baixo e extremamente potente vindo perto dessa região. O som foi apelidado de <strong>"The Bloop"</strong>.
-            </p>
-            <p>
-                Imediatamente, teorias da conspiração surgiram. Coincidentemente, o escritor H.P. Lovecraft localizou sua cidade fictícia de <em>R'lyeh</em> (onde vive o monstro Cthulhu) assustadoramente perto do Ponto Nemo, décadas antes do ponto ser calculado por computadores.
-            </p>
-            <p>
-                Mas, para a tristeza dos fãs de ficção científica, a NOAA (Administração Oceânica dos EUA) confirmou anos depois: o som era apenas um gigantesco iceberg se partindo na Antártica.
-            </p>
-
-            <h3>Conclusão</h3>
-            <p>
-                O Ponto Nemo é um lembrete de quão vasto nosso planeta é. Um lugar de silêncio absoluto, onde a história da exploração espacial humana vai para dormir.
-            </p>
-        </div>
-    </article>
-
-    <section class="pb-20 px-6">
-        <div class="max-w-3xl mx-auto bg-slate-800 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
-            <div class="bg-blue-500/10 p-4 rounded-full text-blue-400">
-                <i class="ph-duotone ph-ruler text-4xl"></i>
-            </div>
-            <div class="text-center md:text-left flex-1">
-                <h3 class="text-xl font-bold text-white mb-2">Quer calcular distâncias reais?</h3>
-                <p class="text-slate-400 text-sm">
-                    Use nossa calculadora para medir a distância entre sua cidade e qualquer lugar do mundo (até o Ponto Nemo).
+                <p class="lead text-xl text-slate-200">
+                    Se você navegar até as coordenadas geográficas <strong>48°52.6′ Sul e 123°23.6′ Oeste</strong>, no coração abissal do Oceano Pacífico Sul, você estará no ponto exato mais distante de qualquer pedaço de terra firme existente na superfície da Terra.
                 </p>
-            </div>
-            <a href="/ferramentas/calculadora-distancia/" class="bg-blue-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-blue-500 transition whitespace-nowrap shadow-lg">
-                Calcular Agora
-            </a>
-        </div>
-    </section>
 
-                    <footer class="site-footer">
+                <p>
+                    Esse vórtice oceânico é oficialmente denominado <strong>Polo Oceânico de Inacessibilidade</strong>, mundialmente imortalizado como <strong>Ponto Nemo</strong> (homenagem direta ao Capitão Nemo, personagem do clássico <em>Vinte Mil Léguas Submarinas</em> de Júlio Verne, cujo nome em latim significa simplesmente "Ninguém").
+                </p>
+
+                <p>
+                    Para compreender o que significa o isolamento do Ponto Nemo: a faixa de terra emersa mais próxima — seja um continente, ilha ou atol — está situada a <strong>2.688 quilômetros de distância (1.451 milhas náuticas)</strong> em qualquer direção. Um navio mercante navegando em velocidade máxima levaria quase duas semanas ininterruptas de mar aberto para resgatar uma pessoa no local.
+                </p>
+
+                <p>
+                    A consequência astronômica mais fascinante dessa coordenada é que, quando a <strong>Estação Espacial Internacional (ISS)</strong> sobrevoa o Pacífico Sul em sua órbita a <strong>415 quilômetros de altitude</strong>, os humanos mais próximos de você no Ponto Nemo não estão no planeta Terra: são os astronautas e cosmonautas em órbita espacial, situados seis vezes mais perto do que qualquer habitante em solo terrestre.
+                </p>
+
+                <h2>A matemática da solidão: o cálculo de Lukatela em 1992</h2>
+
+                <p>
+                    Ao contrário do que muitos imaginam, o Ponto Nemo não foi descoberto por marinheiros heroicos ou exploradores do século XVIII; ele foi calculado matematicamente em <strong>1992</strong> pelo engenheiro geodésico croata-canadense <strong>Hrvoje Lukatela</strong>.
+                </p>
+
+                <p>
+                    Utilizando um software geodésico pioneiro chamado <em>Hipparchus</em> que simulava a forma exata do elipsoide terrestre (e não uma esfera plana simplificada), Lukatela programou computadores para varrer todas as linhas de costa do globo e identificar o círculo de águas abertas de maior raio possível que não contivesse nenhum ponto de terra firme:
+                </p>
+
+                <ul>
+                    <li>Ao norte: A <strong>Ilha Ducie</strong> (um atol desabitado pertencente ao território britânico das Ilhas Pitcairn), a 2.688 km.</li>
+                    <li>A nordeste: O rochedo de <strong>Motu Nui</strong> (uma ilhota deserta ao sul da Ilha de Páscoa, Chile), a 2.688 km.</li>
+                    <li>Ao sul: A <strong>Ilha Maher</strong> (na costa congelada da Terra de Marie Byrd, Antártica), a 2.688 km.</li>
+                </ul>
+
+                <p>
+                    Esses três pontos costeiros equidistantes desenham uma circunferência oceânica colossal de <strong>mais de 22 milhões de quilômetros quadrados</strong> — uma área maior do que a antiga União Soviética inteira — onde não há um único grão de areia emerso.
+                </p>
+
+                <blockquote>
+                    "O Ponto Nemo é o centro de gravidade da solidão planetária. No meio daquela imensidão, a Terra deixa de parecer um planeta de cidades e pessoas e revela-se como uma gota de água suspensa no cosmos."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Hrvoje Lukatela, engenheiro geodésico e criador do cálculo do Ponto Nemo.</footer>
+                </blockquote>
+
+                <h2>O cemitério espacial: o descanso final da Estação Mir e da ISS</h2>
+
+                <p>
+                    Por ser uma imensidão líquida desprovida de rotas marítimas comerciais, linhas aéreas e população humana, as agências espaciais do planeta — NASA (EUA), Roscosmos (Rússia), ESA (Europa) e JAXA (Japão) — transformaram as redondezas do Ponto Nemo no <strong>maior cemitério espacial do mundo</strong> (oficialmente designado como <em>South Pacific Oceanic Uninhabited Area - SPOUA</em>).
+                </p>
+
+                <p>
+                    Quando satélites pesados e estações espaciais chegam ao fim de sua vida útil em órbita baixa, suas estruturas maciças de titânio e tanques de combustível não se vaporizam completamente durante a queima ardente de reentrada atmosférica: fragmentos incandescentes de várias toneladas sobrevivem ao atrito do ar e atingem a superfície com energia cinética devastadora.
+                </p>
+
+                <p>
+                    Para evitar catástrofes em áreas urbanas, engenheiros realizam queimas de frenagem milimetricamente calculadas para arremessar as carcaças orbitais diretamente dentro da zona deserta do Ponto Nemo:
+                </p>
+
+                <ul>
+                    <li>Desde 1971, <strong>mais de 263 espaçonaves, laboratórios e foguetes</strong> foram sepultados no fundo do oceano na região.</li>
+                    <li>Em <strong>março de 2001</strong>, a lendária estação espacial soviética <strong>Mir</strong> (pesando mais de 130 toneladas) realizou sua reentrada controlada, espalhando dezenas de toneladas de destroços fumegantes nas águas do Ponto Nemo.</li>
+                    <li>Centenas de cargueiros automatizados russos <em>Progress</em>, europeus <em>ATV</em> e japoneses <em>HTV</em> que abasteceram a Estação Espacial Internacional repousam a 4.000 metros de profundidade no leito marinho.</li>
+                    <li>O momento mais aguardado ocorrerá entre <strong>2030 e 2031</strong>: a <strong>Estação Espacial Internacional (ISS)</strong>, a maior estrutura já construída pela humanidade no espaço (pesando mais de 420 toneladas), será oficialmente deorbitada e terá seu túmulo final nas coordenadas do Ponto Nemo.</li>
+                </ul>
+
+                <!-- Tabela Comparativa dos Polos de Inacessibilidade da Terra -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Polo de Inacessibilidade</th>
+                                <th class="p-3">Localização Geográfica</th>
+                                <th class="p-3">Distância da Margem / Costa</th>
+                                <th class="p-3">Natureza do Ambiente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Polo Oceânico (Ponto Nemo)</td>
+                                <td class="p-3 text-amber-400">Pacífico Sul (48°52.6′S 123°23.6′W)</td>
+                                <td class="p-3">2.688 km da terra firme</td>
+                                <td class="p-3">Oceano aberto abissal (deserto biológico)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Polo Terrestre da Eurásia</td>
+                                <td class="p-3">Deserto de Dzoosotoyn Elisen (China)</td>
+                                <td class="p-3">2.645 km do mar aberto</td>
+                                <td class="p-3">Dunas de areia áridas em Xinjiang</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Polo da Antártica</td>
+                                <td class="p-3">Planalto Antártico (82°08′S 54°58′E)</td>
+                                <td class="p-3">878 km do Polo Sul geográfico</td>
+                                <td class="p-3">Gelo continental a 3.718m de altitude (-60°C)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Polo do Oceano Ártico</td>
+                                <td class="p-3">Banquisa do Norte (85°48′N 176°09′W)</td>
+                                <td class="p-3">1.008 km das costas continentais</td>
+                                <td class="p-3">Gelo marinho flutuante à deriva</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>O deserto biológico do Pacífico Sul e o mito de Cthulhu</h2>
+
+                <p>
+                    Além de isolado geograficamente, o Ponto Nemo é um dos ambientes marinhos biologicamente mais estéreis do globo:
+                </p>
+
+                <p>
+                    Ele repousa no coração do <strong>Giro do Pacífico Sul (South Pacific Gyre)</strong>, uma gigantesca corrente oceânica circular que bloqueia a entrada de correntes ricas em nutrientes e sedimentos costeiros. As águas são tão cristalinas e pobres em nitrogênio e fósforo que a quantidade de fitoplâncton é mínima. Como não há algas microscópicas, praticamente não existem cardumes de peixes ou predadores de topo nadando naquelas águas. As únicas formas de vida registradas são bactérias resistentes e caranguejos-fantasma habitando fontes hidrotermais a milhares de metros de profundidade.
+                </p>
+
+                <h3>A assombrosa coincidência de Lovecraft e o som 'Bloop'</h3>
+                <p>
+                    Em <strong>1928</strong> — 64 anos antes de Hrvoje Lukatela calcular o Ponto Nemo com supercomputadores —, o célebre escritor de horror cósmico <strong>H.P. Lovecraft</strong> publicou seu conto <em>O Chamado de Cthulhu</em>.
+                </p>
+                <p>
+                    No livro, Lovecraft situou a lendária cidade submarina de <strong>R'lyeh</strong> — onde o monstruoso semideus cósmico Cthulhu dormia encarcerado nas profundezas abissais — nas coordenadas fictícias <strong>47°9′S e 126°43′W</strong>. A coordenada inventada por Lovecraft ficava a meros centenas de quilômetros de distância do exato Polo de Inacessibilidade da Terra, um acaso estatístico que assombrou gerações de geógrafos e entusiastas da ficção.
+                </p>
+                <p>
+                    A mística aumentou ainda mais no verão de <strong>1997</strong>, quando hidrofones submarinos ultra-sensíveis da Administração Nacional Oceânica e Atmosférica dos EUA (NOAA) captaram no sul do Pacífico um som aquático misterioso de altíssima intensidade batizado de <strong>"The Bloop"</strong>. Décadas depois, cientistas esclareceram que o som não vinha de monstros marítimos, mas do colapso e fratura titânica de imensos icebergs se partindo nas plataformas de gelo da Antártica.
+                </p>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Exploração de Coordenadas Globais</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Quer medir a distância do Brasil até o Ponto Nemo?</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Utilize a calculadora geodésica do VitaleGeo para traçar distâncias em milhas náuticas e explorar as coordenadas mais remotas dos oceanos.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-compass text-base"></i> Medir Coordenadas Geodésicas
+                        </a>
+                        <a href="/jogos/quiz-capitais/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-game-controller text-base"></i> Jogar Quiz de Capitais
+                        </a>
+                    </div>
+                </div>
+
+                <h2>Perguntas Frequentes sobre o Ponto Nemo (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Algum ser humano já navegou pessoalmente até o Ponto Nemo?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Sim, veleiros de competição oceânica extrema — como os participantes da The Ocean Race (antiga Volvo Ocean Race) e da regata solo Vendée Globe — navegam com frequência pelas imediações do Ponto Nemo durante a perna de circunavegação do Pacífico Sul entre a Nova Zelândia e o Cabo Horn, registrando a ausência absoluta de embarcações comerciais e poluição sonora.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Os destroços das naves espaciais poluem o oceano no Ponto Nemo?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            As agências espaciais realizam manobras prévias de queima total de combustíveis tóxicos (como hidrazina) antes do impacto. Os componentes metálicos de ligas de titânio, alumínio e aço inoxidável afundam para profundidades de 3.500 a 4.000 metros e, com o tempo, são colonizados por anêmonas e micro-organismos marinhos profundos como recifes artificiais inertes.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Existe alguma boia ou marco fixo de navegação no local?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não. O Ponto Nemo não é uma ilha nem possui qualquer estrutura física flutuante permanente. Trata-se de uma coordenada abstrata de navegação no meio do oceano aberto com profundidade de quase 4.000 metros. Quem atinge o Ponto Nemo encontra apenas a imensidão azul das ondas do Pacífico se estendendo até onde a vista alcança.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê sobre o Ponto Nemo?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos os pontos mais extremos do planeta, mistérios oceânicos e fronteiras fascinantes com animações em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -201,12 +406,13 @@
         </div>
     </footer>
 
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -214,26 +420,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

@@ -1,158 +1,437 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/fusos-russia/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Fusos Hor&aacute;rios da R&uacute;ssia: 11 Rel&oacute;gios em um Pa&iacute;s | Blog VitaleGeo</title>
-    <meta name="description" content="Entenda por que a R&uacute;ssia tem 11 fusos hor&aacute;rios, como isso mudou ao longo do tempo e o impacto no cotidiano e na estrat&eacute;gia do pa&iacute;s.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Fusos Horários da Rússia: Por Que o Maior País do Mundo Tem 11 Relógios Diferentes | Dossiê VitaleGeo</title>
+    <meta name="description" content="Com 11 fusos horários oficiais de Kaliningrado a Kamchatka, a Rússia abrange quase metade do globo terrestre. Entenda o Horário de Moscou e as reformas de Medvedev.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/fusos-russia/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/fusos-russia/">
+    <meta property="og:title" content="Fusos Horários da Rússia: Por Que o Maior País do Mundo Tem 11 Relógios Diferentes | Dossiê VitaleGeo">
+    <meta property="og:description" content="Com 11 fusos horários oficiais de Kaliningrado a Kamchatka, a Rússia abrange quase metade do globo terrestre. Entenda o Horário de Moscou e as reformas de Medvedev.">
+    <meta property="og:image" content="https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fusos Horários da Rússia: Por Que o Maior País do Mundo Tem 11 Relógios Diferentes | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="Com 11 fusos horários oficiais de Kaliningrado a Kamchatka, a Rússia abrange quase metade do globo terrestre. Entenda o Horário de Moscou e as reformas de Medvedev.">
+    <meta name="twitter:image" content="https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Fusos Horários da Rússia: Por Que o Maior País do Mundo Tem 11 Relógios Diferentes",
+      "description": "Com 11 fusos horários oficiais de Kaliningrado a Kamchatka, a Rússia abrange quase metade do globo terrestre. Entenda o Horário de Moscou e as reformas de Medvedev.",
+      "image": "https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-01-18",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/fusos-russia/"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
+                            }
+                        }
+                    })
                 }
             }
         }
     </script>
-    <style>
-        . { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .hero-frame { background: radial-gradient(circle at top, rgba(59,130,246,0.18), transparent 55%); }
-        .hero-title { letter-spacing: -0.02em; }
-        .meta-chip { background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.08); }
-        .lead-card { background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.08); }
-        .inline-figure { border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 60px rgba(0,0,0,0.35); }
-        .pull-quote { border-left: 4px solid #f59e0b; background: rgba(245,158,11,0.08); padding: 1.25rem 1.5rem; border-radius: 0.75rem; }
-        .info-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-        .info-card { background: rgba(30,41,59,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 1rem; }
-    </style>
-
 </head>
-<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50 hero-frame">
-        <div class="max-w-3xl mx-auto text-center">
-            <span class="meta-chip text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">
-                Cartografia
-            </span>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Cartografia</span>
+            </div>
+
+            <div class="carto-badge mb-6">
+                <span>Análise Cartográfica · Fusos Horários Globais</span>
+            </div>
             
-            <h1 class="hero-title text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                Fusos Hor&aacute;rios da R&uacute;ssia: 11 Rel&oacute;gios em um Pa&iacute;s
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Fusos Horários da Rússia: Por Que o Maior País do Mundo Tem 11 Relógios Diferentes
             </h1>
 
-            <div class="flex items-center justify-center gap-4 text-sm text-slate-500 font-bold uppercase tracking-wider">
-                <span><i class="ph-bold ph-calendar"></i> 18 Jan 2026</span>
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 18 Jan 2026</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-clock"></i> 6 min leitura</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
             </div>
         </div>
     </header>
 
-    <article class="py-16 px-6">
-        <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-geoGold hover:prose-a:text-white prose-img:rounded-xl">
-            
-            <img src="https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg" alt="Rel&oacute;gios indicando fusos hor&aacute;rios da R&uacute;ssia" class="inline-figure w-full h-auto mb-10 rounded-2xl">
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg" alt="Relógios marcando fusos horários da Rússia em uma estação" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        Painel de relógios analógicos com os diferentes fusos horários em vigor em toda a extensão continental da Federação Russa.
+                    </figcaption>
+                </figure>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-arrows-out-line-horizontal text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Extensão Longitudinal</span>
+                        <strong class="text-sm font-mono text-white">171° de Longitude</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-map-pin text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Fuso de Referência</span>
+                        <strong class="text-sm font-mono text-white">Horário de Moscou (MSK)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-hourglass-simple text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Amplitude Máxima</span>
+                        <strong class="text-sm font-mono text-white">10 Horas de Diferença</strong>
+                    </div>
+                </div>
 
-            <div class="lead-card p-6 rounded-2xl mb-10">
-                <p class="lead text-xl text-slate-200 mb-0">
-                A R&uacute;ssia &eacute; o maior pa&iacute;s do planeta em extens&atilde;o longitudinal. Isso se traduz em 11 fusos hor&aacute;rios oficiais, do B&aacute;ltico ao Pac&iacute;fico, um recorde global que afeta tudo: log&iacute;stica, m&iacute;dia, governo e o cotidiano de quem vive de Kaliningrado a Kamchatka.
+                <p class="lead text-xl text-slate-200">
+                    Quando uma família de pescadores em <strong>Petropavlovsk-Kamchatsky</strong>, na Península de Kamchatka, no extremo leste da Sibéria, senta-se à mesa para assistir ao jornal das 21h e preparar-se para dormir, um burocrata em <strong>Kaliningrado</strong>, o enclave russo situado às margens do Mar Báltico, está apenas terminando seu café da manhã e abrindo a janela de seu escritório às 11h da manhã do mesmo dia.
                 </p>
-            </div>
 
-            <h2>Por que s&atilde;o 11 fusos?</h2>
-            <p>
-                Em termos geogr&aacute;ficos, a Terra &eacute; dividida em 24 fusos de 15 graus de longitude cada. A R&uacute;ssia atravessa quase metade do hemisf&eacute;rio norte, o que naturalmente cria uma cascata de hor&aacute;rios. O resultado &eacute; uma diferen&ccedil;a de at&eacute; 10 horas entre o extremo oeste e o extremo leste.
-            </p>
+                <p>
+                    Essa distância temporal interna de dez horas cheias não ocorre entre dois países de continentes diferentes: desenrola-se dentro das fronteiras de um único Estado soberano. Com <strong>17,1 milhões de quilômetros quadrados de território</strong> — cobrindo um oitavo de toda a massa de terra habitada do globo —, a Federação Russa estende-se por impressionantes <strong>171 graus de longitude</strong>, abrangendo formalmente <strong>11 fusos horários oficiais</strong>.
+                </p>
 
-            <div class="info-grid my-10">
-                <div class="info-card">
-                    <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">Fuso de Moscou</p>
-                    <p class="text-white text-lg font-bold">UTC+3</p>
-                    <p class="text-sm text-slate-400">Refer&ecirc;ncia para governo e m&iacute;dia.</p>
+                <p>
+                    É o maior número de fusos horários territoriais terrestres contíguos de todo o planeta. Embora a França possua 12 fusos nominais, eles encontram-se fragmentados em pequenas ilhas ultramarinas espalhadas pela Polinésia, Oceano Índico e Caribe. A massa continental russa, por sua vez, é contínua e ininterrupta da Europa Oriental até o Oceano Pacífico.
+                </p>
+
+                <h2>O 'Horário de Moscou' e a centralização do poder czarista e soviético</h2>
+
+                <p>
+                    Em um império de proporções continentais, administrar trens militares, transmissões estatais de rádio e decretos presidenciais exigiu a criação de um centro de gravidade temporal: o <strong>Horário de Moscou (MSK / UTC+3)</strong>.
+                </p>
+
+                <p>
+                    Ao contrário de países federativos como os Estados Unidos ou o Brasil, onde os fusos operam de forma descentralizada pelo fuso padrão internacional (UTC), na Rússia todas as 11 zonas temporais são oficialmente indexadas e codificadas pela sua distância em relação ao relógio da torre Spasskaya do Kremlin, em Moscou:
+                </p>
+
+                <ul>
+                    <li><strong>MSK-1 (UTC+2):</strong> O enclave ocidental de Kaliningrado.</li>
+                    <li><strong>MSK (UTC+3):</strong> Moscou, São Petersburgo e quase toda a porção europeia da Rússia.</li>
+                    <li><strong>MSK+1 a MSK+8:</strong> Os Urais, a Sibéria Ocidental, Central e Oriental.</li>
+                    <li><strong>MSK+9 (UTC+12):</strong> Kamchatka e o Distrito Autônomo de Chukotka, no Estreito de Bering.</li>
+                </ul>
+
+                <h3>A lendária aberração da Ferrovia Transiberiana</h3>
+                <p>
+                    Durante mais de um século — desde a era dos czares nos anos 1890, passando por toda a União Soviética até agosto de 2018 —, a estatal ferroviária russa (RZD) aplicou uma regra surreal: <strong>todos os bilhetes de trem, horários de estações e relógios públicos nas plataformas da Ferrovia Transiberiana marcavam rigorosamente o Horário de Moscou</strong>.
+                </p>
+                <p>
+                    Se um passageiro comprasse uma passagem na estação de Vladivostok (a mais de 9.000 km a leste de Moscou), o bilhete impresso dizia "partida às 09h00", mas no horário local da cidade eram 16h00! Os viajantes precisavam carregar tabelas de conversão mental para não perder embarques ou saber se o trem partiria no meio da madrugada escura ou sob sol escaldante. Foi apenas em <strong>1º de agosto de 2018</strong> que a ferrovia finalmente aboliu a exigência e adotou horários locais nas plataformas.
+                </p>
+
+                <blockquote>
+                    "Na Rússia, o tempo não é apenas uma coordenada astronômica de rotação planetária; é um instrumento de centralização política e controle de Estado exercido a partir de Moscou."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Arkady Shishkin, geógrafo e pesquisador do Instituto de Geografia da Academia Russa de Ciências.</footer>
+                </blockquote>
+
+                <!-- Tabela dos 11 Fusos Horários da Rússia -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Designação Russa</th>
+                                <th class="p-3">Código UTC</th>
+                                <th class="p-3">Relação MSK</th>
+                                <th class="p-3">Principais Cidades e Regiões</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 1 (Kaliningrado)</td>
+                                <td class="p-3">UTC+2</td>
+                                <td class="p-3">MSK-1</td>
+                                <td class="p-3">Kaliningrado (enclave no Báltico)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 2 (Moscou)</td>
+                                <td class="p-3 text-amber-400">UTC+3</td>
+                                <td class="p-3 text-amber-400">MSK (Padrão)</td>
+                                <td class="p-3">Moscou, São Petersburgo, Cazã, Rostov</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 3 (Samara)</td>
+                                <td class="p-3">UTC+4</td>
+                                <td class="p-3">MSK+1</td>
+                                <td class="p-3">Samara, Saratov, Udmúrtia</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 4 (Ecaterimburgo)</td>
+                                <td class="p-3">UTC+5</td>
+                                <td class="p-3">MSK+2</td>
+                                <td class="p-3">Montes Urais, Chelyabinsk, Perm</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 5 (Omsk)</td>
+                                <td class="p-3">UTC+6</td>
+                                <td class="p-3">MSK+3</td>
+                                <td class="p-3">Omsk (Sibéria Ocidental)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 6 (Krasnoyarsk)</td>
+                                <td class="p-3">UTC+7</td>
+                                <td class="p-3">MSK+4</td>
+                                <td class="p-3">Novosibirsk, Krasnoyarsk, Tomsk</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 7 (Irkutsk)</td>
+                                <td class="p-3">UTC+8</td>
+                                <td class="p-3">MSK+5</td>
+                                <td class="p-3">Irkutsk, Lago Baikal, Buriátia</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 8 (Yakutsk)</td>
+                                <td class="p-3">UTC+9</td>
+                                <td class="p-3">MSK+6</td>
+                                <td class="p-3">Yakutsk, Chita, Amur</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 9 (Vladivostok)</td>
+                                <td class="p-3">UTC+10</td>
+                                <td class="p-3">MSK+7</td>
+                                <td class="p-3">Vladivostok, Khabarovsk, Primorsky</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 10 (Magadan)</td>
+                                <td class="p-3">UTC+11</td>
+                                <td class="p-3">MSK+8</td>
+                                <td class="p-3">Magadan, Sakhalina, Ilhas Curilas</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Zona 11 (Kamchatka)</td>
+                                <td class="p-3">UTC+12</td>
+                                <td class="p-3">MSK+9</td>
+                                <td class="p-3">Petropavlovsk-Kamchatsky, Chukotka</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="info-card">
-                    <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">Fuso mais oeste</p>
-                    <p class="text-white text-lg font-bold">Kaliningrado</p>
-                    <p class="text-sm text-slate-400">UTC+2 no enclave do B&aacute;ltico.</p>
+
+                <h2>O experimento caótico de Medvedev em 2010 e a volta aos 11 fusos</h2>
+
+                <p>
+                    A vasta extensão dos fusos horários foi historicamente vista pelo Kremlin como uma barreira crônica à governança administrativa: quando funcionários em Moscou iniciavam o expediente às 09h00, os gabinetes ministeriais em Vladivostok e Kamchatka já estavam fechando suas portas às 17h00 ou 18h00.
+                </p>
+
+                <p>
+                    Em <strong>março de 2010</strong>, o então presidente <strong>Dmitry Medvedev</strong> tentou resolver o problema com uma canetada radical:
+                </p>
+
+                <ul>
+                    <li>Medvedev assinou um decreto <strong>reduzindo o número de fusos horários de 11 para 9</strong>, extinguindo os fusos de Samara e Kamchatka e anexando essas regiões a zonas vizinhas.</li>
+                    <li>Em 2011, ele deu um passo além e aboliu o horário de inverno, fixando a Rússia em <strong>horário de verão permanente (DST)</strong> o ano inteiro.</li>
+                </ul>
+
+                <p>
+                    O resultado na prática foi uma onda massiva de insatisfação popular e distúrbios de saúde pública: durante os invernos da Sibéria e do norte europeu, o sol só nascia perto das 10h da manhã. Crianças pequenas iam para a escola na escuridão congelante, enquanto médicos registraram aumento nos índices de depressão estacional e fadiga crônica.
+                </p>
+
+                <p>
+                    Diante dos protestos, o parlamento russo revogou a reforma em <strong>outubro de 2014</strong> sob o presidente Vladimir Putin: a Rússia cancelou o horário de verão permanente, adotou o horário de inverno padrão o ano todo e <strong>restaurou os 11 fusos horários tradicionais</strong>, que permanecem estáveis desde então.
+                </p>
+
+                <h2>O discurso de Ano Novo que dura 11 horas consecutivas</h2>
+
+                <p>
+                    A consequência mais curiosa e celebrada dos 11 fusos horários russos ocorre todo dia <strong>31 de dezembro</strong>:
+                </p>
+
+                <p>
+                    O tradicional discurso de Ano Novo do presidente russo é gravado previamente em Moscou e retransmitido em cadeia nacional pela televisão aberta russa exatamente às <strong>23h55 em cada um dos 11 fusos horários</strong>.
+                </p>
+
+                <h2>A Rotina dos Mercados Financeiros: Da Alvorada de Vladivostok ao Crepúsculo do Báltico</h2>
+
+                <p>
+                    A dispersão por 11 fusos horários impõe uma ginástica permanente ao sistema financeiro e ao Banco Central da Rússia. Quando os operadores de câmbio e pregões abrem em Moscou às 10h da manhã (UTC+3), os bancos comerciais e mineradoras em Khabarovsk e Vladivostok já estão encerrando o dia de trabalho às 17h (UTC+10).
+                </p>
+
+                <p>
+                    Para viabilizar transações entre empresas de exploração de gás natural no Ártico siberiano e sedes corporativas na capital, o sistema bancário russo desenvolveu plataformas de liquidação financeira contínua de 24 horas. Operadores de commodities em Sakhalina precisam sincronizar seus relógios com os fechamentos das bolsas de Tóquio e Xangai durante a manhã local e aguardar o início do pregão da Bolsa de Moscou (*MOEX*) no final da tarde, vivendo em um perpétuo estado de sobreposição horária entre a Ásia-Pacífico e a Europa Oriental.
+                </p>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Ferramenta Interativa // Coordenadas e Fusos</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Quer medir a extensão transversal da Rússia no mapa?</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Utilize a calculadora cartográfica do VitaleGeo para traçar distâncias geodésicas reais entre Kaliningrado, Moscou e Kamchatka em segundos.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-compass text-base"></i> Abrir Calculadora
+                        </a>
+                        <a href="/jogos/quiz-capitais/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-game-controller text-base"></i> Jogar Quiz de Capitais
+                        </a>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <p class="text-xs uppercase tracking-widest text-slate-400 mb-2">Fuso mais leste</p>
-                    <p class="text-white text-lg font-bold">Kamchatka</p>
-                    <p class="text-sm text-slate-400">UTC+12 no Pac&iacute;fico russo.</p>
+
+                <h2>Perguntas Frequentes sobre os Fusos da Rússia (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>A Rússia ainda utiliza horário de verão nos dias de hoje?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não. A Rússia aboliu permanentemente o horário de verão em 2014. Desde então, o país adota o horário padrão de inverno durante os 365 dias do ano em todas as suas 11 zonas temporais, sem que os relógios sejam adiantados ou atrasados na primavera ou no outono.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Qual é a diferença entre o fuso da China e o da Rússia?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            A China vizinha tem uma extensão territorial leste-oeste semelhante a vários fusos da Rússia, mas adota por lei política um único fuso horário para todo o seu território (Horário de Pequim, UTC+8). Por isso, ao cruzar a fronteira entre a China e certas regiões da Sibéria e do Afeganistão, ocorrem os maiores saltos bruscos de relógio de uma fronteira terrestre no mundo (de até 3 horas e meia de diferença em um único passo).
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Por que a França é considerada o país com mais fusos do mundo se a Rússia tem 11?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            A República Francesa soma 12 fusos horários oficiais distintos (13 se contada sua reivindicação antártica da Terra Adélia) devido aos seus territórios ultramarinos espalhados pelo mundo (Guiana Francesa, Martinica, Reunião, Mayotte, Nova Caledônia, Polinésia Francesa, etc.). A França metropolitana na Europa possui apenas um fuso. A Rússia, contudo, é a recordista absoluta mundial em massa de terra física contígua com 11 fusos contínuos.
+                        </p>
+                    </details>
                 </div>
-            </div>
-
-            <h2>Nem sempre foi assim</h2>
-            <p>
-                O n&uacute;mero de fusos russos mudou ao longo das d&eacute;cadas. Em 2010, por exemplo, o governo reduziu de 11 para 9 fusos na tentativa de simplificar a administra&ccedil;&atilde;o. A medida gerou cr&iacute;ticas, pois algumas regi&otilde;es passaram a ter dias mais escuros no inverno. Em 2014, parte da mudan&ccedil;a foi revertida e o pa&iacute;s voltou a ter 11 fusos.
-            </p>
-
-            <h2>Os extremos do tempo russo</h2>
-            <ul>
-                <li><strong>Kaliningrado</strong>: o enclave russo no B&aacute;ltico, separado do resto do pa&iacute;s, usa UTC+2.</li>
-                <li><strong>Moscou</strong>: o fuso central de refer&ecirc;ncia para governo e m&iacute;dia, UTC+3.</li>
-                <li><strong>Kamchatka</strong>: no Pac&iacute;fico, UTC+12, com o sol nascendo quase meio dia antes de Moscou.</li>
-            </ul>
-
-            <blockquote class="pull-quote">
-                "Na R&uacute;ssia, o prime time nacional precisa escolher entre atender o leste ou o oeste. Sempre existe algu&eacute;m acordando ou indo dormir."
-            </blockquote>
-
-            <h2>Impacto no cotidiano e na estrat&eacute;gia</h2>
-            <p>
-                Empresas de transporte, militares e m&iacute;dia trabalham com fusos sobrepostos. Grandes eventos nacionais precisam considerar as diferen&ccedil;as hor&aacute;rias para n&atilde;o excluir regi&otilde;es inteiras. Al&eacute;m disso, a pr&oacute;pria ideia de "hor&aacute;rio de Moscou" &eacute; uma ferramenta de integra&ccedil;&atilde;o: muitos servi&ccedil;os e transmiss&otilde;es usam o hor&aacute;rio da capital como padr&atilde;o.
-            </p>
-
-            <h3>Conclus&atilde;o</h3>
-            <p>
-                Os fusos hor&aacute;rios russos s&atilde;o um lembrete de que a geografia imp&otilde;e custos e escolhas pol&iacute;ticas. Em um pa&iacute;s que atravessa continentes, o tempo tamb&eacute;m &eacute; uma fronteira.
-            </p>
 
             </div>
-    </article>
+        </article>
 
-    <section class="pb-20 px-6">
-        <div class="max-w-3xl mx-auto bg-slate-800/50 border border-white/10 rounded-2xl p-8 text-center">
-            <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou desse artigo?</h3>
-            <p class="text-slate-400 mb-6">Inscreva-se no canal para ver as an&aacute;lises em v&iacute;deo.</p>
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-red-700 transition">
-                <i class="ph-fill ph-youtube-logo text-xl"></i> Ver Canal no YouTube
-            </a>
-        </div>
-    </section>
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou desta análise cartográfica?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas fascinantes, fusos horários complexos e geografia política com animações em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
 
-                    <footer class="site-footer">
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -171,12 +450,13 @@
         </div>
     </footer>
 
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -184,23 +464,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-

@@ -1,165 +1,384 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/sealand/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Principado de Sealand: A Menor Nação do Mundo | Blog VitaleGeo</title>
-    <meta name="description" content="Conheça a história da plataforma antiaérea que virou um país independente (pelo menos eles dizem que sim).">
+    <title>Principado de Sealand: A Fortaleza no Mar Que Virou a Menor Nação do Mundo | Dossiê VitaleGeo</title>
+    <meta name="description" content="Conheça a história de Sealand: a plataforma antiaérea da Segunda Guerra Mundial que declarou independência, resistiu a um golpe armado e vende títulos de nobreza.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/sealand/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/sealand/">
+    <meta property="og:title" content="Principado de Sealand: A Fortaleza no Mar Que Virou a Menor Nação do Mundo | Dossiê VitaleGeo">
+    <meta property="og:description" content="Conheça a história de Sealand: a plataforma antiaérea da Segunda Guerra Mundial que declarou independência, resistiu a um golpe armado e vende títulos de nobreza.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Principado de Sealand: A Fortaleza no Mar Que Virou a Menor Nação do Mundo | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="Conheça a história de Sealand: a plataforma antiaérea da Segunda Guerra Mundial que declarou independência, resistiu a um golpe armado e vende títulos de nobreza.">
+    <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Principado de Sealand: A Fortaleza no Mar Que Virou a Menor Nação do Mundo",
+      "description": "Conheça a história de Sealand: a plataforma antiaérea da Segunda Guerra Mundial que declarou independência, resistiu a um golpe armado e vende títulos de nobreza.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-02-15",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/sealand/"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { 
-                        sans: ['Inter', 'sans-serif'], 
-                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Courier Prime', 'monospace'] // Fonte de máquina de escrever
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
                     },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoRed: '#dc2626' }
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
+                            }
+                        }
+                    })
                 }
             }
         }
     </script>
-
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-geoRed selection:text-white">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
-
-    <main class="pt-28 pb-20 px-4 min-h-screen flex justify-center">
-        
-        <div class="official-paper max-w-3xl w-full p-8 md:p-16 rounded-sm relative">
-            
-            <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
-                <i class="ph-fill ph-anchor text-[400px]"></i>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Curiosidades</span>
             </div>
 
-            <header class="text-center border-b-2 border-slate-800 pb-8 mb-8">
-                <div class="w-20 h-20 bg-slate-900 text-white rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-double border-geoGold">
-                    <i class="ph-fill ph-crown text-4xl text-geoGold"></i>
-                </div>
-                <h1 class="font-heading text-4xl md:text-5xl font-bold text-slate-900 mb-2">Principado de Sealand</h1>
-                <p class="font-mono text-sm uppercase tracking-[0.3em] text-slate-500">E Mare Libertas • Desde 1967</p>
+            <div class="carto-badge mb-6">
+                <span>Anomalia Geopolítica · Micronações</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Principado de Sealand: A Fortaleza no Mar Que Virou a Menor Nação do Mundo
+            </h1>
+
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 15 Fev 2026</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
                 
-                <div class="mt-6 flex justify-between items-end font-mono text-xs text-slate-600 border-t border-slate-300 pt-2">
-                    <span>DOC. REF: #VG-2026-SL</span>
-                    <span>CLASSIFICAÇÃO: PÚBLICA</span>
-                </div>
-            </header>
-
-            <article class="prose prose-slate max-w-none prose-headings:font-heading prose-p:text-justify prose-img:rounded-sm prose-img:shadow-lg prose-img:border prose-img:border-slate-300">
-                
-                <p class="lead font-bold">
-                    A cerca de 12 km da costa da Inglaterra, existe uma estrutura de concreto e ferro enferrujado no meio do mar. Para a Marinha Real, é apenas o "HM Fort Roughs", uma relíquia abandonada da Segunda Guerra Mundial. Mas para a família Bates, é um país soberano.
-                </p>
-
-                <h3>O Golpe de Estado no Mar</h3>
-                <p>
-                    Em 1967, o ex-major britânico <strong>Paddy Roy Bates</strong> ocupou a plataforma com a intenção de transmitir sua rádio pirata. Como a estrutura estava em águas internacionais (na época), ele percebeu uma brecha legal: a lei britânica não se aplicava ali.
-                </p>
-                <p>
-                    Em vez de apenas tocar música, ele declarou independência, hasteou uma bandeira e se autoproclamou <strong>Príncipe Roy de Sealand</strong>.
-                </p>
-
-                <figure>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg" alt="A Plataforma de Sealand">
-                    <figcaption class="text-center font-mono text-xs">Território Nacional de Sealand (População: Variavel)</figcaption>
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg" alt="Plataforma de Sealand (Roughs Tower) no Mar do Norte" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        A plataforma antiaérea fortificada HM Fort Roughs, no Mar do Norte, autoproclamada como o independente Principado de Sealand.
+                    </figcaption>
                 </figure>
-
-                <h3>Guerra e Passaportes</h3>
-                <p>
-                    Sealand tem uma história digna de filme:
-                </p>
-                <ul class="font-mono text-sm bg-slate-100 p-4 border-l-4 border-slate-800">
-                    <li><strong>1978:</strong> Foi invadida por mercenários contratados por um advogado alemão. O Príncipe Roy retomou a plataforma com armas e manteve os invasores como "prisioneiros de guerra".</li>
-                    <li><strong>Passaportes:</strong> Eles emitiram tantos passaportes que criminosos internacionais começaram a usá-los, forçando o "país" a revogar todos em 1997.</li>
-                    <li><strong>Economia:</strong> Hoje, eles vendem títulos de nobreza (Lorde, Barão, Conde) pela internet para financiar a manutenção da ferrugem.</li>
-                </ul>
-
-                <h3>É um país de verdade?</h3>
-                <p>
-                    Embora nenhum país da ONU reconheça Sealand, eles cumprem os critérios da Convenção de Montevidéu para ser um estado: têm território, população, governo e capacidade de se relacionar com outros estados (mesmo que ninguém responda aos seus e-mails).
-                </p>
-
-            </article>
-
-            <section class="mt-16 border-t-2 border-dashed border-slate-400 pt-8 relative">
-                <div class="bg-slate-100 p-6 border border-slate-300 shadow-inner">
-                    <h3 class="font-mono font-bold text-lg uppercase mb-4 flex items-center gap-2">
-                        <i class="ph-bold ph-stamp text-slate-500"></i> Solicitação de Cidadania Honorária
-                    </h3>
-                    
-                    <form id="visa-form" onsubmit="applyVisa(event)" class="space-y-4 font-mono text-sm">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs uppercase text-slate-500 mb-1">Nome Completo</label>
-                                <input type="text" required class="w-full bg-white border border-slate-300 p-2 focus:border-geoBlue outline-none uppercase" placeholder="SEU NOME">
-                            </div>
-                            <div>
-                                <label class="block text-xs uppercase text-slate-500 mb-1">Título Desejado</label>
-                                <select class="w-full bg-white border border-slate-300 p-2 outline-none">
-                                    <option>LORDE / LADY</option>
-                                    <option>BARÃO / BARONESA</option>
-                                    <option>CONDE / CONDESSA</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-2 text-xs text-slate-600 mt-2">
-                            <input type="checkbox" required id="oath">
-                            <label for="oath">Juro solenemente defender a plataforma contra gaivotas e a Marinha Britânica.</label>
-                        </div>
-
-                        <button type="submit" class="bg-slate-900 text-white font-bold uppercase px-6 py-3 hover:bg-geoRed transition w-full md:w-auto">
-                            Submeter Requerimento
-                        </button>
-                    </form>
-
-                    <div id="stamp-area" class="absolute bottom-10 right-10 md:right-20 pointer-events-none">
-                        <div id="stamp-mark" class="stamp">APROVADO<br><span class="text-xs">Roy of Sealand</span></div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-crown text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Proclamação</span>
+                        <strong class="text-sm font-mono text-white">2 de Setembro de 1967</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-navigation-arrow text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Distância da Costa</span>
+                        <strong class="text-sm font-mono text-white">12 km (Mar do Norte)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-shield-check text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Status Internacional</span>
+                        <strong class="text-sm font-mono text-white">Micronação Autoproclamada</strong>
                     </div>
                 </div>
-            </section>
 
-        </div>
+                <p class="lead text-xl text-slate-200">
+                    A cerca de 12 quilômetros da costa de Suffolk, no sudeste da Inglaterra, repousa sobre as águas agitadas do Mar do Norte uma das estruturas mais surreais da história jurídica moderna: duas colossais colunas ocas de concreto armado de 20 metros de altura, sustentando um convés de aço de 550 metros quadrados enferrujado pelas marés salgadas.
+                </p>
+
+                <p>
+                    Para o Almirantado Britânico, a estrutura é apenas o <strong>HM Fort Roughs (ou Roughs Tower)</strong>, uma plataforma marítima antiaérea naval construída em 1942 para abater bombardeiros alemães da Luftwaffe durante a Segunda Guerra Mundial e abandonada na década de 1950.
+                </p>
+
+                <p>
+                    Para a família Bates e seus milhares de simpatizantes ao redor do mundo, contudo, esse pedaço de aço e concreto é o <strong>Principado de Sealand</strong>: um Estado soberano independente dotado de bandeira tricolor (vermelha, branca e preta), constituição escrita, hino nacional, passaportes emitidos, brasão de armas, moeda oficial cunhada (o Dólar de Sealand) e até o lema em latim <em>E Mare Libertas</em> ("Do Mar, a Liberdade").
+                </p>
+
+                <h2>A brecha jurídica de 1967: a proclamação em águas internacionais</h2>
+
+                <p>
+                    A história de Sealand nasceu de uma conjunção entre a era rebelde do rádio pirata dos anos 1960 e um vácuo no direito marítimo internacional:
+                </p>
+
+                <p>
+                    Em <strong>setembro de 1967</strong>, o major aposentado do Exército Britânico <strong>Paddy Roy Bates</strong> estava frustrado com as leis do Reino Unido que haviam fechado sua estação transmissora clandestina de rádio (Radio Essex). Bates percebeu que a plataforma abandonada de Roughs Tower ficava situada a <strong>cerca de 7 milhas náuticas da costa inglesa</strong>.
+                </p>
+
+                <p>
+                    Naquela época, sob o direito marítimo tradicional herdado do século XVIII, o limite das águas territoriais do Reino Unido era de apenas <strong>3 milhas náuticas (cerca de 5,5 km)</strong>. Portanto, Roughs Tower localizava-se legalmente em <strong>águas internacionais de alto-mar</strong> — uma <em>res nullius</em> fora da jurisdição territorial da Coroa Britânica.
+                </p>
+
+                <p>
+                    Em <strong>2 de setembro de 1967</strong>, Bates ocupou a plataforma com sua família, expulsou ocupantes rivais de outra rádio pirata e, em vez de apenas transmitir música, tomou uma decisão audaciosa: proclamou a soberania do <strong>Principado de Sealand</strong>, declarando-se Príncipe Roy e sua esposa Joan como Princesa Joan.
+                </p>
+
+                <blockquote>
+                    "Sealand não foi criada para ser uma piada ou um truque publicitário; foi fundada como um experimento vivo de soberania individual fora do alcance da burocracia dos governos continentais."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Príncipe Michael Bates, chefe de Estado do Principado de Sealand.</footer>
+                </blockquote>
+
+                <h2>Tiros na água e a decisão judicial histórica de 1968</h2>
+
+                <p>
+                    Em <strong>1968</strong>, um barco de serviço britânico aproximou-se da plataforma para realizar manutenções em boias marítimas vizinhas. Michael Bates, filho adolescente de Roy Bates, temendo uma invasão iminente, pegou um fuzil e disparou vários tiros de advertência na água ao lado da embarcação.
+                </p>
+
+                <p>
+                    Ao desembarcarem em solo britânico semanas depois, Roy e Michael Bates foram detidos e indiciados pela polícia por posse ilegal de armas de fogo e disparo de projéteis contra súditos da rainha perante o Tribunal da Coroa de Chelmsford (<em>Chelmsford Crown Court</em>).
+                </p>
+
+                <p>
+                    Em <strong>25 de outubro de 1968</strong>, o juiz Justice Chapman emitiu uma sentença que se tornaria a pedra angular de todas as alegações de legitimidade de Sealand: o tribunal declarou formalmente que <strong>não possuía jurisdição criminal ou civil sobre o caso</strong>, uma vez que o incidente havia ocorrido a mais de três milhas da costa, fora das fronteiras territoriais do Reino Unido. Os Bates saíram livres do tribunal, e a família interpretou a recusa de jurisdição britânica como o primeiro reconhecimento judicial tácito (<em>de facto</em>) de sua soberania.
+                </p>
+
+                <!-- Tabela Comparativa de Soberania de Sealand -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Dimensão do Conflito</th>
+                                <th class="p-3">Argumento do Principado de Sealand</th>
+                                <th class="p-3">Posição Oficial do Reino Unido / ONU</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Localização Territorial</td>
+                                <td class="p-3">Fundado em alto-mar internacional em 1967 (fora de 3 milhas)</td>
+                                <td class="p-3">Águas britânicas desde a extensão para 12 milhas em 1987</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Natureza da Estrutura</td>
+                                <td class="p-3">Ilha artificial autônoma e assentamento permanente</td>
+                                <td class="p-3">Instalação militar artificial sem estatuto de ilha (UNCLOS Art. 60)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Incidente Alemão de 1978</td>
+                                <td class="p-3">Negociação direta com diplomata é reconhecimento de fato</td>
+                                <td class="p-3">Apenas assistência consular a cidadão detido por civis</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Reconhecimento Internacional</td>
+                                <td class="p-3">Alega soberania declarativa pela Convenção de Montevidéu</td>
+                                <td class="p-3">Zero reconhecimento por qualquer Estado-membro da ONU</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>O golpe de Estado de 1978 e a invasão de mercenários</h2>
+
+                <p>
+                    O capítulo mais cinematográfico de Sealand ocorreu em <strong>agosto de 1978</strong>:
+                </p>
+
+                <p>
+                    Alexander Achenbach, um advogado alemão que havia sido nomeado "primeiro-ministro" de Sealand por Roy Bates para atrair investimentos em cassinos e turismo, aproveitou uma viagem de Roy à Áustria para encenar um <strong>golpe de Estado armado</strong>.
+                </p>
+
+                <ul>
+                    <li>Achenbach contratou um helicóptero e vários mercenários alemães e holandeses que pousaram na plataforma, renderam Michael Bates e o trancaram em uma cela improvisada por três dias antes de expulsá-lo em um barco pesqueiro para a Holanda.</li>
+                    <li>Ao saber da invasão, Roy Bates reuniu um grupo de veteranos militares britânicos, fretou um helicóptero de ataque e lançou uma contraofensiva espetacular na madrugada: desceram por cordas no heliporto de Sealand armados com escopetas, renderam os mercenários e retomaram o controle da fortaleza.</li>
+                    <li>Enquanto os cidadãos holandeses foram libertados como prisioneiros de guerra, Achenbach (que possuía passaporte de Sealand) foi acusado de <strong>alta traição contra o Principado</strong> e mantido em cativeiro até pagar uma fiança de 75.000 marcos alemães.</li>
+                </ul>
+
+                <p>
+                    O governo da República Federal da Alemanha pediu ajuda ao Ministério das Relações Exteriores britânico, que respondeu que nada podia fazer fora de suas águas. Diante do impasse, Bonn enviou um diplomata oficial de sua embaixada em Londres para viajar diretamente até a plataforma de Sealand e negociar face a face a libertação do prisioneiro com o Príncipe Roy Bates. Mais uma vez, Sealand alardeou a visita do embaixador alemão como a consagração diplomática definitiva de seu Estado.
+                </p>
+
+                <h2>De paraíso de dados de internet a títulos de nobreza digitais</h2>
+
+                <p>
+                    Na virada do milênio, com o boom da internet, Sealand atraiu empresas de tecnologia criando a <strong>HavenCo (2000)</strong>, uma provedora de servidores offshore que prometia hospedar dados digitais imunes a mandados judiciais, leis de direitos autorais e vigilância estatal. O negócio operou por alguns anos antes de encerrar as atividades em meio a disputas regulatórias e restrições de telecomunicações britânicas.
+                </p>
+
+                <p>
+                    Hoje, Sealand sustenta-se como um império de cultura pop e merchandising digital: qualquer pessoa pode acessar o site oficial do principado e comprar títulos de nobreza oficiais (como Lord, Lady, Barão ou Conde de Sealand), carteiras de identidade, camisetas e moedas comemorativas, mantendo acesa a lenda da plataforma que ousou desafiar os impérios do continente.
+                </p>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Desafio de Geografia Política</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Conhece todas as micronações e curiosidades do mapa?</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Explore as anomalias cartográficas mais intrigantes do planeta e teste seus conhecimentos nos simuladores e quizzes oficiais do VitaleGeo.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/jogos/quiz-capitais/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-game-controller text-base"></i> Jogar Quiz de Capitais
+                        </a>
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-compass text-base"></i> Medir Coordenadas Náuticas
+                        </a>
+                    </div>
+                </div>
+
+                <h2>Perguntas Frequentes sobre Sealand (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Sealand é reconhecida por algum país ou pela ONU?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não. Nenhum país soberano reconhecido internacionalmente nem as Nações Unidas reconhecem o Principado de Sealand como um Estado legítimo. Pela Convenção das Nações Unidas sobre o Direito do Mar (UNCLOS, Artigo 60), estruturas e ilhas artificiais construídas no mar não possuem o estatuto de ilhas naturais, não têm mar territorial próprio e sua presença não afeta a delimitação das fronteiras marítimas.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Por que a Marinha britânica simplesmente não expulsa a família Bates?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            O governo do Reino Unido adota há décadas uma política deliberada de "negligência benigna". Uma invasão militar para desalojar uma família pacífica geraria um espetáculo midiático global constrangedor e desgastante, dando mais notoriedade à causa de Sealand. Como a plataforma não representa ameaça militar nem interfere nas rotas de navegação comercial, Londres simplesmente a ignora.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Alguém mora permanentemente na plataforma hoje em dia?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            A família Bates reside na costa leste da Inglaterra, administrando os negócios de Sealand a partir de solo britânico. A plataforma em si é mantida por zeladores e guardas de segurança contratados que se revezam em turnos de permanência, acompanhados por sistemas automatizados de vigilância por câmeras, estações meteorológicas e antenas de internet via satélite.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou da história de Sealand?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas fascinantes, micronações insólitas e anomalias de soberania com animações detalhadas em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
     </main>
 
-                    <footer class="site-footer">
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -178,36 +397,13 @@
         </div>
     </footer>
 
-    <script>
-        function applyVisa(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const stamp = document.getElementById('stamp-mark');
-            
-            // Simula processamento
-            btn.innerText = "Processando...";
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            setTimeout(() => {
-                // Toca som de carimbo (opcional, aqui é só visual)
-                stamp.classList.add('stamp-visible');
-                btn.innerText = "Cidadania Concedida";
-                btn.classList.remove('bg-slate-900');
-                btn.classList.add('bg-green-600');
-                
-                // Confete ou alerta simples
-                setTimeout(() => {
-                    alert("Bem-vindo à nobreza, Vossa Excelência! 🎖️");
-                }, 500);
-            }, 1000);
-        }
-    </script>
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -215,26 +411,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

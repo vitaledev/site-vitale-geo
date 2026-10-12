@@ -21,7 +21,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -30,7 +30,8 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                         mono: ['Space Mono', 'monospace']
                     },
                     colors: {
@@ -73,22 +74,19 @@
     <main class="page-content">
         <!-- Hero Editorial com Curvas Topográficas Vetoriais e Identidade Cartográfica -->
         <header class="relative pt-40 sm:pt-48 pb-20 px-6 text-center overflow-hidden">
-            <!-- Curvas de Nível Topográficas (Topographic Isolines) -->
+            <!-- Curvas de Nível Topográficas Suaves -->
             <svg class="topo-lines-svg" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M-100 120 C 300 280, 600 -50, 1100 180 C 1300 270, 1500 140, 1600 200" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="6 6"/>
-                <path d="M-100 220 C 250 380, 700 80, 1050 320 C 1350 420, 1450 250, 1600 310" stroke="#f59e0b" stroke-width="1.5"/>
-                <path d="M-100 350 C 400 520, 800 220, 1200 480 C 1400 550, 1550 420, 1600 470" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4"/>
-                <path d="M-100 500 C 300 650, 750 390, 1150 620 C 1380 710, 1500 590, 1600 650" stroke="#f59e0b" stroke-width="1.2"/>
-                <path d="M-100 680 C 500 820, 900 540, 1300 780 C 1450 830, 1550 750, 1600 800" stroke="#ffffff" stroke-width="1"/>
+                <path d="M-100 120 C 300 280, 600 -50, 1100 180 C 1300 270, 1500 140, 1600 200" stroke="#f59e0b" stroke-width="1"/>
+                <path d="M-100 220 C 250 380, 700 80, 1050 320 C 1350 420, 1450 250, 1600 310" stroke="#f59e0b" stroke-width="1.2"/>
+                <path d="M-100 350 C 400 520, 800 220, 1200 480 C 1400 550, 1550 420, 1600 470" stroke="#38bdf8" stroke-width="1"/>
+                <path d="M-100 500 C 300 650, 750 390, 1150 620 C 1380 710, 1500 590, 1600 650" stroke="#f59e0b" stroke-width="1"/>
+                <path d="M-100 680 C 500 820, 900 540, 1300 780 C 1450 830, 1550 750, 1600 800" stroke="#ffffff" stroke-width="0.8"/>
             </svg>
 
             <div class="max-w-4xl mx-auto relative z-10">
                 <!-- Badge Cartográfico / Telemetria -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-amber-400 text-xs font-mono tracking-wider uppercase mb-6 shadow-sm">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span>Atlas Cartográfico & Geopolítica</span>
-                    <span class="text-amber-400/40">|</span>
-                    <span class="text-slate-400">Edição 2026</span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/5 border border-amber-400/20 text-amber-400 text-xs font-mono tracking-wider uppercase mb-6">
+                    <span>Atlas Cartográfico & Geopolítica · Edição 2026</span>
                 </div>
 
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-normal text-white max-w-4xl mx-auto leading-[1.12] tracking-tight">
@@ -110,7 +108,7 @@
 
                 <!-- Ribbon Cartográfico: Acervo em Números Reais -->
                 <div class="mt-12 inline-flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400 font-mono py-2.5 px-6 rounded-full bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-                    <div class="flex items-center gap-2"><i class="ph-fill ph-book-open text-amber-400"></i> <span>25 Dossiês</span></div>
+                    <div class="flex items-center gap-2"><i class="ph-fill ph-book-open text-amber-400"></i> <span>33 Dossiês</span></div>
                     <span class="text-slate-700 hidden sm:inline">◆</span>
                     <div class="flex items-center gap-2"><i class="ph-fill ph-compass text-sky-400"></i> <span>4 Simuladores</span></div>
                     <span class="text-slate-700 hidden sm:inline">◆</span>
@@ -158,14 +156,13 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                 <div>
                     <div class="carto-badge mb-3">
-                        <span class="carto-badge-dot"></span>
                         <span>Acervo Investigativo</span>
                     </div>
                     <h2 class="text-2xl sm:text-3xl font-heading text-white">Dossiês em Destaque</h2>
                     <p class="text-sm text-slate-400 mt-1">Investigações aprofundadas com dados cartográficos, geopolíticos e históricos.</p>
                 </div>
                 <a href="/blog" class="text-sm font-medium text-amber-400 hover:text-white transition flex items-center gap-1 self-start md:self-auto">
-                    Ver todos os 25 dossiês <i class="ph-bold ph-arrow-right text-xs"></i>
+                    Ver todos os 33 dossiês <i class="ph-bold ph-arrow-right text-xs"></i>
                 </a>
             </div>
 

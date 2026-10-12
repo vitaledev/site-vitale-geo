@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Blog VitaleGeo</title>
+    <title>A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Dossiê VitaleGeo</title>
     <meta name="description" content="A descoberta de 11 bilhões de barris de petróleo transformou a Guiana e reacendeu a ambição da Venezuela pelo Essequibo. Entenda o alerta na fronteira com o Brasil.">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/blog/disputa-essequibo/">
@@ -12,11 +12,11 @@
     <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.vitalegeo.com.br/blog/disputa-essequibo/">
-    <meta property="og:title" content="A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Blog VitaleGeo">
+    <meta property="og:title" content="A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Dossiê VitaleGeo">
     <meta property="og:description" content="A descoberta de 11 bilhões de barris de petróleo transformou a Guiana e reacendeu a ambição da Venezuela pelo Essequibo. Entenda o alerta na fronteira com o Brasil.">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Blog VitaleGeo">
+    <meta name="twitter:title" content="A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela? | Dossiê VitaleGeo">
     <meta name="twitter:description" content="A descoberta de 11 bilhões de barris de petróleo transformou a Guiana e reacendeu a ambição da Venezuela pelo Essequibo. Entenda o alerta na fronteira com o Brasil.">
     <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png">
 
@@ -41,7 +41,7 @@
           "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
         }
       },
-      "datePublished": "2026-10-10",
+      "datePublished": "2026-10-10T12:00:00-03:00",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://www.vitalegeo.com.br/blog/disputa-essequibo/"
@@ -51,7 +51,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -60,25 +60,27 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                         mono: ['Space Mono', 'monospace']
                     },
                     colors: {
-                        geoNavy: '#0f172a',
-                        geoBlue: '#3b82f6',
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
                         geoGold: '#f59e0b',
-                        geoPaper: '#1e293b'
+                        geoPaper: '#11131a'
                     },
                     typography: (theme) => ({
                         DEFAULT: {
                             css: {
                                 color: theme('colors.slate.300'),
-                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
-                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
-                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
                                 strong: { color: theme('colors.geoGold') },
-                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
-                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff', textDecoration: 'underline' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
                             }
                         }
                     })
@@ -86,154 +88,321 @@
             }
         }
     </script>
-    <style>
-        . {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-    </style>
 </head>
-<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black ">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-    <!-- Navegação Superior -->
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <!-- Botão Voltar -->
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group bg-slate-900/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Geopolítica</span>
+            </div>
 
-    <!-- Header do Post -->
-    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40">
-        <div class="max-w-3xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-geoGold/10 border border-geoGold/20 text-geoGold text-xs font-mono font-bold tracking-widest uppercase mb-6">
-                Geopolítica da América do Sul & Petróleo
+            <div class="carto-badge mb-6">
+                <span>Dossiê Sul-Americano · Petróleo & Soberania</span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white leading-tight mb-6">
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
                 A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela?
             </h1>
 
             <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
-                <span><i class="ph-bold ph-calendar text-geoGold"></i> 10 Out 2026</span>
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 10 Out 2026</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-clock text-geoGold"></i> 6 min leitura</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min leitura (Dossiê Completo)</span>
             </div>
         </div>
     </header>
 
     <!-- Corpo do Artigo -->
-    <article class="py-16 px-6">
-        <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-geoGold hover:prose-a:text-white prose-img:rounded-xl">
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png" alt="Mapa oficial da disputa territorial do Essequibo destacando a região reivindicada pela Venezuela a oeste do Rio Essequibo na Guiana" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png" alt="Mapa oficial da disputa territorial do Essequibo destacando a região a oeste do Rio Essequibo reivindicada pela Venezuela na Guiana" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        FIG 01 // Mapa da disputa territorial do Essequibo: uma região de 160.000 km² que representa quase 74% de todo o território soberano da Guiana.
+                    </figcaption>
+                </figure>
 
-            <p class="lead text-xl text-slate-200">
-                Até meados de 2015, a República Cooperativa da Guiana era um dos países mais pobres e esquecidos do continente sul-americano, com uma população menor que a cidade de Campinas (cerca de 800 mil habitantes).
-            </p>
+                <!-- Dossiê Tático // Ficha Técnica Rápida -->
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-drop text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Reservas Petróleo</span>
+                        <strong class="text-sm font-mono text-white">11,6 Bilhões Barris</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-scroll text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Tratado Base</span>
+                        <strong class="text-sm font-mono text-white">Laudo de Paris (1899)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-warning-circle text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Fronteira Crítica</span>
+                        <strong class="text-sm font-mono text-white">Roraima (Brasil)</strong>
+                    </div>
+                </div>
 
-            <p>
-                Tudo mudou quando a gigante norte-americana <em>ExxonMobil</em> descobriu no bloco offshore Stabroek nada menos que <strong>11 bilhões de barris de petróleo bruto recuperável</strong> de altíssima qualidade. De uma hora para outra, a Guiana passou a registrar crescimentos anuais de PIB superiores a 30% — a economia de expansão mais acelerada do planeta Terra.
-            </p>
-
-            <p>
-                A riqueza súbita, no entanto, despertou um fantasma territorial adormecido no vizinho a oeste: o regime de Nicolás Maduro, na Venezuela, intensificou suas reivindicações e ameaças de anexação sobre a região do <strong>Essequibo</strong>.
-            </p>
-
-            <h2>Um país inteiro sob disputa: 74% da Guiana</h2>
-            
-            <p>
-                A disputa não envolve uma pequena faixa de fronteira. A região do Essequibo compreende <strong>160.000 quilômetros quadrados</strong> de selvas densas, rios navegáveis e reservas imensas de ouro, diamantes e bauxita, estendendo-se do rio Essequibo até a fronteira venezuelana.
-            </p>
-
-            <p>
-                Para se ter dimensão da escala cartográfica, essa área equivale a <strong>74% de todo o território soberano da Guiana</strong>. Se a Venezuela anexasse o Essequibo, a Guiana deixaria de existir como país viável, ficando reduzida a uma estreita faixa litorânea oriental ao redor de Georgetown.
-            </p>
-
-            <blockquote>
-                "Perder o Essequibo significaria desmembrar três quartos de uma nação soberana em pleno século XXI."
-            </blockquote>
-
-            <h2>Arbitragem de 1899 vs. o Acordo de Genebra de 1966</h2>
-
-            <p>
-                A raiz do confronto remonta ao século XIX, quando o Reino Unido colonizou a então Guiana Inglesa. Em 1899, um tribunal arbitral internacional em Paris estabeleceu as fronteiras que vigoram até hoje, concedendo a região aos britânicos.
-            </p>
-
-            <p>
-                A Venezuela alega que o laudo arbitral foi fraudado por um conluio entre britânicos e russos, e se apoia no Acordo de Genebra de 1966 para defender uma solução negociada. Georgetown, respaldada pela Corte Internacional de Justiça (CIJ) em Haia, sustenta que o laudo de 1899 é vinculante e definitivo.
-            </p>
-
-            <div class="my-8 p-6 bg-slate-800/60 border border-geoGold/20 rounded-xl not-prose">
-                <h4 class="text-geoGold font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">
-                    <i class="ph-bold ph-scales"></i> Geopolítica Sul-Americana
-                </h4>
-                <p class="text-sm text-slate-300 mb-4">
-                    Compare os dados demográficos, áreas territoriais e poder econômico entre Venezuela e Guiana no nosso comparador:
+                <p class="lead text-xl text-slate-200">
+                    Até meados de 2015, a <strong>República Cooperativa da Guiana</strong> era um dos países mais pobres e esquecidos de todo o continente sul-americano. Com uma população modesta de cerca de <strong>800 mil habitantes</strong> — menor que a cidade de Campinas ou São Gonçalo — e densas selvas inexploradas, o país sobrevivia da agricultura de arroz, cana-de-açúcar e mineração artesanal de bauxita.
                 </p>
-                <a href="/ferramentas/comparador-paises/" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-geoNavy bg-geoGold px-4 py-2 rounded hover:bg-white transition">
-                    <i class="ph-bold ph-globe"></i> Acessar Comparador de Países
+
+                <p>
+                    Tudo mudou dramaticamente quando a gigante petrolífera norte-americana <em>ExxonMobil</em>, em consórcio com a Hess e a chinesa CNOOC, descobriu no bloco marítimo offshore <em>Stabroek</em> nada menos que <strong>11,6 bilhões de barris de petróleo bruto recuperável de altíssima qualidade</strong>. Da noite para o dia, a Guiana passou a registrar crescimentos anuais de PIB superiores a 35% e 40% ao ano, tornando-se a economia de expansão mais acelerada do planeta Terra.
+                </p>
+
+                <p>
+                    A riqueza oceânica súbita, no entanto, despertou um fantasma territorial dormente há mais de meio século: o regime de Nicolás Maduro, na vizinha Venezuela, intensificou manobras militares, ameaças de anexação armada e criou um estado fictício sobre a região do <strong>Essequibo</strong>, colocando o Exército Brasileiro em alerta máximo na fronteira de Roraima.
+                </p>
+
+                <h2>Um país inteiro sob disputa: o que a Venezuela exige tomar?</h2>
+
+                <p>
+                    A reivindicação venezuelana não é uma discussão sobre marcos limítrofes pontuais ou ilhotas fluviais. A região do Essequibo compreende monumentais <strong>159.500 quilômetros quadrados</strong> estendendo-se do Rio Essequibo até a fronteira atual com a Venezuela.
+                </p>
+
+                <p>
+                    Para se compreender a escala cartográfica dessa agressão, essa área representa nada menos que <strong>74% de todo o território soberano da Guiana</strong>. Se a Venezuela anexasse o Essequibo:
+                </p>
+
+                <ul>
+                    <li>A Guiana deixaria de ser um país viável, ficando reduzida a uma minúscula faixa litorânea oriental ao redor da capital Georgetown.</li>
+                    <li>A Venezuela controlaria bacias com reservas gigantescas de ouro, diamantes, bauxita, urânio e os imensos mananciais da bacia hidrográfica do Essequibo.</li>
+                    <li>E mais importante: Caracas assumiria a projeção da Zona Econômica Exclusiva (ZEE) marítima de 200 milhas náuticas, abocanhando os campos multibilionários de petróleo offshore operados pelas multinacionais ocidentais.</li>
+                </ul>
+
+                <blockquote>
+                    "Nós não vamos ceder nem um único centímetro de nossa pátria soberana à agressão estrangeira. O Essequibo pertence à Guiana por lei internacional indiscutível e pelos tratados assinados há 125 anos."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Irfaan Ali, Presidente da República Cooperativa da Guiana, em pronunciamento perante a ONU.</footer>
+                </blockquote>
+
+                <h2>O Laudo de Paris de 1899 vs. o Acordo de Genebra de 1966</h2>
+
+                <p>
+                    O confronto diplomático é travado através de duas interpretações jurídicas mutuamente excludentes:
+                </p>
+
+                <p>
+                    <strong>A posição da Guiana (O Laudo Arbitral de Paris de 1899):</strong> No final do século XIX, a Venezuela e a Grã-Bretanha (que administrava a então Guiana Inglesa) concordaram em submeter a disputa de fronteira a um tribunal arbitral internacional independente em Paris. O tribunal, presidido pelo jurista russo Friedrich Martens e composto por juízes britânicos e norte-americanos (representando a Venezuela), concedeu 90% do Essequibo aos britânicos e entregou a foz estratégica do Rio Orinoco à Venezuela. Ambas as partes aceitaram o laudo por escrito como uma "solução completa, perfeita e definitiva".
+                </p>
+
+                <p>
+                    <strong>A tese da Venezuela (O Memorando Mallet-Prevost e o Acordo de 1966):</strong> Décadas depois, em 1949, veio a público um memorando póstumo do advogado norte-americano Severo Mallet-Prevost (que representara a Venezuela em Paris), alegando que o juiz russo e os britânicos haviam feito um conluio político de bastidores para fraudar o laudo. Com base nisso, a Venezuela contestou o laudo na ONU nos anos 1960. Às vésperas da independência da Guiana, foi firmado o <strong>Acordo de Genebra de 1966</strong>, no qual as partes concordaram em buscar uma solução negociada satisfatória. Caracas sustenta que esse acordo anulou de fato a decisão de 1899.
+                </p>
+
+                <p>
+                    Georgetown, por sua vez, acionou a <strong>Corte Internacional de Justiça (CIJ) em Haia</strong>, que já declarou ter jurisdição sobre o litígio. O regime venezuelano, porém, recusa-se a acatar as decisões da corte da ONU, promovendo um referendo unilateral em dezembro de 2023 no qual aprovou a criação do estado da *Guayana Esequiba*.
+                </p>
+
+                <!-- Tabela Comparativa de Forças Guiana vs. Venezuela -->
+                <div class="my-10 overflow-x-auto not-prose">
+                    <table class="w-full text-left text-sm border border-white/10 rounded-xl overflow-hidden bg-slate-900/60 font-mono">
+                        <thead class="bg-slate-800 text-amber-400 text-xs uppercase tracking-wider">
+                            <tr>
+                                <th class="p-3.5">Indicador Estratégico</th>
+                                <th class="p-3.5">Guiana (Defensora)</th>
+                                <th class="p-3.5">Venezuela (Reivindicante)</th>
+                                <th class="p-3.5">Assimetria de Poder</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3.5 font-bold text-white">População Total</td>
+                                <td class="p-3.5 text-amber-400">~815.000 hab.</td>
+                                <td class="p-3.5 text-slate-300">~29.000.000 hab.</td>
+                                <td class="p-3.5 font-bold text-rose-400">35 vezes maior</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white">Efetivo Militar Ativo</td>
+                                <td class="p-3.5 text-amber-400">~4.500 soldados (GDF)</td>
+                                <td class="p-3.5 text-slate-300">~125.000 soldados + Milícias</td>
+                                <td class="p-3.5 font-bold text-rose-400">28 vezes maior</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white">Blindados e Tanques</td>
+                                <td class="p-3.5 text-amber-400">0 Tanques pesados (Apenas viaturas leves)</td>
+                                <td class="p-3.5 text-slate-300">Tanques T-72B1 e blindados BMP-3</td>
+                                <td class="p-3.5 font-bold text-rose-400">Monopólio blindado venezuelano</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white">Aviação de Combate</td>
+                                <td class="p-3.5 text-amber-400">0 Caças de combate</td>
+                                <td class="p-3.5 text-slate-300">Caças Sukhoi Su-30MK2 e F-16</td>
+                                <td class="p-3.5 font-bold text-rose-400">Supremacia aérea total</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white">Alianças de Dissuasão</td>
+                                <td class="p-3.5 text-emerald-400">EUA (SOUTHCOM), Reino Unido e Brasil</td>
+                                <td class="p-3.5 text-slate-300">Apoio retórico de Rússia e Cuba</td>
+                                <td class="p-3.5 font-bold text-emerald-400">Escudo diplomático e naval ocidental</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>O gargalo de Roraima: o Brasil no olho do furacão</h2>
+
+                <p>
+                    A geografia física da América do Sul colocou o <strong>Brasil</strong> no centro obrigatório de qualquer cálculo de guerra.
+                </p>
+
+                <p>
+                    A fronteira natural entre a Venezuela e o Essequibo é dominada pelo maciço de Pacaraima, pelo imponente Monte Roraima e por centenas de quilômetros de selvas tropicais pantanosas densíssimas. Não existem estradas asfaltadas, pontes ou passagens capazes de sustentar o avanço de colunas de tanques russos T-72 e caminhões de suprimentos venezuelanos diretamente para a Guiana.
+                </p>
+
+                <p>
+                    A única rota terrestre logisticamente viável para uma invasão mecanizada exige descer pela rodovia asfaltada <strong>BR-174 no estado brasileiro de Roraima</strong>, cruzando por Pacaraima, descendo até Boa Vista e depois tomando a rota leste até Bonfim para cruzar a ponte sobre o Rio Tacutu até Lethem, já no coração do Essequibo.
+                </p>
+
+                <p>
+                    Para garantir que o território brasileiro jamais seja violado ou utilizado como trampolim de guerra por tropas estrangeiras, o Ministério da Defesa do Brasil reagiu prontamente:
+                </p>
+
+                <ul>
+                    <li>Elevou o Esquadrão de Cavalaria Mecanizada de Boa Vista ao patamar de <strong>18º Regimento de Cavalaria Mecanizado</strong>.</li>
+                    <li>Despachou comboios de veículos blindados <strong>Guaicurus (Iveco LMV 4x4)</strong> armados com metralhadoras automatizadas e blindados <strong>Cascavel (6x6)</strong> com canhões de 90 mm para patrulhar a linha de fronteira.</li>
+                    <li>Sinalizou diplomaticamente a Caracas e a Georgetown que qualquer tentativa de cruzar a fronteira soberana brasileira receberá resposta armada imediata das Forças Armadas.</li>
+                </ul>
+
+                <!-- Box de Curiosidade Tática // Presença Militar Americana -->
+                <div class="my-10 bg-slate-900/90 border border-white/10 rounded-2xl p-6 not-prose shadow-xl">
+                    <div class="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest mb-3">
+                        <i class="ph-bold ph-airplane text-base"></i> Dissuasão Aeronaval Norte-Americana
+                    </div>
+                    <h4 class="text-lg font-heading font-bold text-white mb-2">Exercícios Conjuntos do Comando Sul (SOUTHCOM)</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        Diante da desproporção militar terrestre da Guiana, os Estados Unidos posicionaram-se como fiadores da integridade territorial de Georgetown. Aeronaves de combate F/A-18 da Marinha dos EUA realizam sobrevoos frequentes sobre o espaço aéreo guianense em exercícios combinados com a Guyana Defence Force (GDF), enquanto navios da Guarda Costeira americana realizam patrulhas conjuntas para proteger as plataformas flutuantes de produção de petróleo da ExxonMobil.
+                    </p>
+                    <p class="text-xs text-slate-400 font-mono">
+                        US SOUTHCOM // COOPERAÇÃO BILATERAL DE DEFESA EUA-GUIANA
+                    </p>
+                </div>
+
+                <h2>A Declaração de Argyle e o futuro do barril de pólvora sul-americano</h2>
+
+                <p>
+                    Em dezembro de 2023, sob mediação direta do Brasil e da Comunidade dos Estados Latino-Americanos e Caribenhos (CELAC) em São Vicente e Granadinas, os presidentes Irfaan Ali e Nicolás Maduro assinaram a <strong>Declaração de Argyle</strong>. No acordo, ambos os líderes comprometeram-se formalmente a não utilizar a força militar direta nem recorrer a ameaças armadas para resolver a controvérsia.
+                </p>
+
+                <p>
+                    Apesar do aperto de mãos, o impasse estrutural permanece sem trégua. Enquanto a Venezuela enfrenta pressões econômicas e sanções internacionais, a Guiana continua extraindo centenas de milhares de barris diários do leito marinho, consolidando uma transformação econômica irreversível.
+                </p>
+
+                <p>
+                    O Essequibo não é mais apenas uma linha esquecida na floresta amazônica: tornou-se a trincheira onde a soberania do direito internacional, a riqueza energética do petróleo e a paz no continente sul-americano serão testadas nas próximas décadas.
+                </p>
+
+                <!-- Box de Retenção Interativa // Ferramenta do VitaleGeo -->
+                <div class="my-10 bg-slate-900/80 border border-amber-400/30 rounded-2xl p-6 not-prose shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span class="text-xs font-mono font-bold uppercase text-amber-400 tracking-wider inline-flex items-center gap-1.5 mb-2">
+                            <i class="ph-bold ph-globe-stand text-sm"></i> Ferramenta Interativa
+                        </span>
+                        <h4 class="text-lg font-bold text-white mb-1">Qual o tamanho real do Essequibo comparado aos estados do Brasil?</h4>
+                        <p class="text-sm text-slate-400">Com 160.000 km², o Essequibo é maior que o estado do Ceará ou Inglaterra e Escócia somadas. Compare as áreas sem distorção cartográfica no comparador do VitaleGeo.</p>
+                    </div>
+                    <a href="/ferramentas/comparador-paises/" class="whitespace-nowrap bg-amber-400 hover:bg-amber-300 text-black font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-xl transition shadow-lg shadow-amber-400/20 inline-flex items-center gap-2 font-mono">
+                        <i class="ph-bold ph-arrows-out-cardinal"></i> Comparar Países
+                    </a>
+                </div>
+
+                <!-- FAQ Cartográfico -->
+                <div class="my-12 not-prose">
+                    <h3 class="text-xl font-heading font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="ph-bold ph-question text-amber-400"></i> Perguntas Frequentes sobre a Disputa do Essequibo
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/70 border border-white/10 rounded-xl p-5">
+                            <h4 class="text-sm font-bold text-white mb-2 font-heading">Que língua as pessoas falam no Essequibo?</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                A língua oficial e falada pela população do Essequibo é o <strong>inglês</strong> (a Guiana é o único país de língua inglesa da América do Sul), além de dialetos crioulos anglófonos e línguas indígenas nativas como o Macuxi e Wapichana. Quase ninguém fala espanhol na região.
+                            </p>
+                        </div>
+                        <div class="bg-slate-900/70 border border-white/10 rounded-xl p-5">
+                            <h4 class="text-sm font-bold text-white mb-2 font-heading">Por que o petróleo descoberto na Guiana é tão cobiçado?</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Porque o petróleo do bloco Stabroek é petróleo leve e doce (<em>light sweet crude</em>), que possui baixo teor de enxofre e é muito mais barato e fácil de refinar em gasolina e diesel do que o petróleo extrapesado e betuminoso da Faixa do Orinoco na Venezuela.
+                            </p>
+                        </div>
+                        <div class="bg-slate-900/70 border border-white/10 rounded-xl p-5">
+                            <h4 class="text-sm font-bold text-white mb-2 font-heading">Qual a posição oficial do governo brasileiro no conflito?</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                O Brasil defende estritamente a resolução pacífica através do direito internacional e do diálogo diplomático, respeita os laudos e tratados históricos e já declarou categoricamente que não permitirá que seu território em Roraima seja utilizado por qualquer força estrangeira para operações bélicas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê sobre o Essequibo?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas táticos, conflitos de fronteira e análises de petróleo com animações em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
                 </a>
             </div>
+        </section>
 
-            <h2>O Brasil no meio do fogo cruzado em Roraima</h2>
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+    </main>
 
-            <p>
-                A geografia física sul-americana impôs um dilema direto a Brasília. A fronteira entre Venezuela e Essequibo é dominada pelo maciço de Pacaraima e por selvas tropicais impenetráveis para veículos blindados e comboios logísticos.
-            </p>
-
-            <p>
-                A única rota viável por terra para uma eventual incursão terrestre de tropas venezuelanas até o coração do Essequibo exige cruzar a rodovia BR-174 no estado brasileiro de <strong>Roraima</strong>, passando por Pacaraima e Boa Vista. 
-            </p>
-
-            <p>
-                Para defender a integridade de suas fronteiras e evitar que o território nacional seja utilizado como trampolim de guerra, o Exército Brasileiro reforçou o Comando Militar da Amazônia, enviando esquadrões de veículos blindados Guaicurus e Cascavel para Roraima. Com os Estados Unidos promovendo exercícios de defesa naval conjunta com Georgetown, o Essequibo tornou-se o ponto de maior tensão armada do continente sul-americano.
-            </p>
-
-        </div>
-    </article>
-
-    <!-- Chamada para Ação -->
-    <section class="pb-20 px-6">
-        <div class="max-w-3xl mx-auto bg-slate-800/50 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-geoGold/5 blur-3xl pointer-events-none rounded-full"></div>
-            <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou desse dossiê?</h3>
-            <p class="text-slate-400 mb-6 text-sm">Acompanhe nossas análises diárias em vídeo, rotas marítimas e rankings no canal oficial.</p>
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-red-700 transition text-xs shadow-lg">
-                <i class="ph-fill ph-youtube-logo text-lg"></i> Assistir no YouTube
-            </a>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-        <footer class="site-footer">
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -258,7 +427,7 @@
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -267,21 +436,10 @@
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
                 <a href="/blog" class="flex flex-col items-center gap-1 text-white">
-                    <i class="ph-fill ph-newspaper text-xl text-geoGold"></i> Blog
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-format="autorelaxed"
-         data-ad-client="ca-pub-6879770260785828"
-         data-ad-slot="5140105675"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </body>
 </html>

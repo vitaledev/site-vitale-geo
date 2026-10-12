@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "O Dilema de Malaca: O Chokepoint Onde 80% do Petróleo da Ásia Pode Ser Bloqueado",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 23:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Strait_of_Malacca_%2836759635615%29.jpg/1280px-Strait_of_Malacca_%2836759635615%29.jpg",
+        link: "dilema-de-malaca/",
+        resumo: "Com apenas 2,8 km de largura no seu ponto mais crítico, o Estreito de Malaca concentra 100 mil navios por ano e é o maior gargalo energético de Pequim."
+    },
+    {
+        titulo: "A Linha dos Nove Traços: A Disputa por US$ 3 Trilhões no Mar do Sul da China",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 22:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Mar_de_China_Meridional_-_BM_WMS_2004.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "mar-do-sul-da-china/",
+        resumo: "Pequim reivindica 90% de um mar estratégico por onde passa um terço do comércio marítimo global, construindo ilhas artificiais militarizadas."
+    },
+    {
+        titulo: "O Corredor de Zangezur: A Faixa de 43 km que Pode Incendiar o Cáucaso",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 20:30",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg/960px-Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        link: "corredor-de-zangezur/",
+        resumo: "Uma faixa de 43 km no sul da Armênia separa o Azerbaijão de seu enclave de Nakhchivan e pode unir o mundo túrquico de Istambul ao Mar Cáspio."
+    },
+    {
+        titulo: "O Canal do Panamá Sem Água: A Seca no Lago Gatún que Travou o Comércio Mundial",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 19:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Panama_Canal_Map_EN.svg/500px-Panama_Canal_Map_EN.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        link: "crise-canal-do-panama/",
+        resumo: "Cada navio que cruza o Canal do Panamá consome 200 milhões de litros de água doce. A pior seca do Lago Gatún provocou leilões de US$ 4 milhões por vaga."
+    },
+    {
+        titulo: "A Primeira Cadeia de Ilhas: Por que o Estreito de Taiwan é o Lugar Mais Perigoso da Terra",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 17:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Bathymetry_and_ocean_currents_of_the_Taiwan_Strait_and_nearby_areas.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "estreito-de-taiwan/",
+        resumo: "Separando Taiwan da China continental por 160 km, o estreito concentra a produção dos chips mais avançados do mundo e a maior frota naval do planeta."
+    },
+    {
+        titulo: "O Triângulo do Lítio: A Batalha Geopolítica pelo Ouro Branco nos Andes",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 16:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Triangulo_del_lito.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "triangulo-do-litio/",
+        resumo: "Na fronteira entre Bolívia, Argentina e Chile estão mais de 50% das reservas mundiais de lítio, atraindo a disputa entre EUA, China e União Europeia."
+    },
+    {
+        titulo: "A Convenção de Montreux: Como a Turquia Controla a Entrada do Mar Negro desde 1936",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 14:30",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Turkish_Strait_disambig.svg/500px-Turkish_Strait_disambig.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        link: "estreito-de-bosforo/",
+        resumo: "Com apenas 700 metros no ponto mais estreito em Istambul, os Estreitos Turcos são a única chave naval para o Mar Negro sob a Convenção de Montreux."
+    },
+    {
+        titulo: "A Rota do Ártico: O Degelo Polar e a Corrida pelo Atalho de 40% Entre Ásia e Europa",
+        categoria: "Geopolítica",
+        data: "11 Out 2026 - 13:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_of_the_Arctic_region_showing_the_Northeast_Passage%2C_the_Northern_Sea_Route_and_Northwest_Passage%2C_and_bathymetry.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "rota-maritima-do-artico/",
+        resumo: "Com o derretimento do gelo marinho, a Rota Marítima do Norte encurta em 15 dias a viagem entre China e Europa, criando uma nova frente de disputa militar."
+    },
+    {
+        titulo: "A Linha de Controle Real: A Fronteira Nuclear Mais Alta do Mundo Onde Não se Disparam Tiros",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 11:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/8/82/China_India_CIA_map_border_disputes.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "disputa-fronteira-himalaia/",
+        resumo: "A 4.500 metros de altitude entre Índia e China, soldados de duas potências nucleares patrulham uma fronteira não demarcada de 3.488 km usando porretes."
+    },
+    {
+        titulo: "Nicósia: A Última Capital Dividida da Europa e a Linha Verde da ONU Congelada no Tempo",
+        categoria: "Fronteiras",
+        data: "11 Out 2026 - 09:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Cyprus_districts_named.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        link: "nicosia-cidade-dividida/",
+        resumo: "Desde 1974, a capital do Chipre é cortada ao meio por muros, sacos de areia e uma zona tampão da ONU, separando gregos e turcos após a Operação Átila."
+    },
+    {
         titulo: "The Slash: A Clareira de 6 Metros que Corta 8.891 km Entre os EUA e o Canadá",
         categoria: "Fronteiras",
         data: "11 Out 2026 - 22:30",
@@ -191,7 +271,7 @@ const blogPosts = [
         categoria: "Fronteiras",
         data: "10 Mar 2026",
         img: "https://conteudo.imguol.com.br/blogsbol/2/2022/12/ilha-2-300x225.png",
-        link: "ilha-faisoes",
+        link: "ilha-faisoes/",
         resumo: "Seis meses é da França, seis meses é da Espanha. Conheça o condomínio internacional mais antigo do mundo."
     },
     {
@@ -206,16 +286,16 @@ const blogPosts = [
         titulo: "Cidades-Esponja: O Fim das Enchentes?",
         categoria: "Urbanismo",
         data: "15 Jan 2026",
-        img: "https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg", // Imagem de uma cidade com chuva/água
-        link: "cidades-esponja",
+        img: "https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg",
+        link: "cidades-esponja/",
         resumo: "Por que o concreto precisa dar lugar à natureza. Entenda a tecnologia e a geopolítica por trás das Sponge Cities."
     },
     {
         titulo: "O Crepúsculo das Nações e as Hipercidades de 2100",
         categoria: "Futurologia",
         data: "05 Fev 2026",
-        img: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop", // Imagem placeholder de cidade futurista/densa
-        link: "hipercidades-2100",
+        img: "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg",
+        link: "hipercidades-2100/",
         resumo: "Por que o futuro não será desenhado por fronteiras, mas por cidades com 80 milhões de habitantes. Bem-vindo à era das Megacidades Africanas."
     },
     
@@ -224,7 +304,7 @@ const blogPosts = [
         categoria: "Curiosidades",
         data: "15 Fev 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg",
-        link: "sealand",
+        link: "sealand/",
         resumo: "Conheça a plataforma de petróleo que virou um país, emitiu passaportes e travou uma guerra contra helicópteros."
     },  
     {
@@ -232,7 +312,7 @@ const blogPosts = [
         categoria: "Urbanismo",
         data: "20 Fev 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/7/71/Back_to_Whittier...Sun_is_out...Water_is_Rough_%282571032531%29.jpg",
-        link: "whittier",
+        link: "whittier/",
         resumo: "Conheça a cidade no Alasca onde toda a população mora no mesmo edifício e o único acesso é um túnel que fecha à noite."
     },
     {
@@ -240,7 +320,7 @@ const blogPosts = [
         categoria: "Cartografia",
         data: "20 Jan 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mercator_projection_SW.jpg/640px-Mercator_projection_SW.jpg",
-        link: "farsa-mercator",
+        link: "farsa-mercator/",
         resumo: "Por que a Groenlândia parece maior que a África? Entenda a distorção matemática dos mapas."
     },
     {
@@ -248,23 +328,15 @@ const blogPosts = [
     categoria: "Oceanografia",
     data: "22 Jan 2026",
     img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png",
-    link: "ponto-nemo",
+    link: "ponto-nemo/",
     resumo: "No Ponto Nemo, os humanos mais próximos de você não estão na Terra, mas no espaço. Conheça o cemitério de naves."
-},
-{
-    titulo: "A Fronteira Mais Louca do Mundo",
-    categoria: "Fronteiras",
-    data: "25 Jan 2026",
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7b/LocatieBaarle.jpg",
-    link: "fronteira-mais-louca",
-    resumo: "Em Baarle, você pode dormir na Bélgica e tomar café na Holanda sem sair de casa. Conheça a cidade com a fronteira mais complexa do planeta."
-},
-{
+    },
+    {
         titulo: "Ilhas Diomedes: A Fronteira do Tempo",
         categoria: "Curiosidades",
         data: "28 Jan 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg",
-        link: "ilhas-diomedes", 
+        link: "ilhas-diomedes/", 
         resumo: "A apenas 3,8 km de distância, estas ilhas separam os EUA da Rússia e o Hoje do Amanhã. Uma viagem onde é possível ver o futuro a olho nu."
     },
     {
@@ -272,7 +344,7 @@ const blogPosts = [
         categoria: "Conspiração",
         data: "01 Fev 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg",
-        link: "area-51",
+        link: "area-51/",
         resumo: "Relatório desclassificado sobre a base militar mais secreta do mundo. [DADOS EXPURGADOS]"
     },
     

@@ -1,35 +1,86 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/ilhas-diomedes/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Ilhas Diomedes: A Fronteira do Tempo | Blog VitaleGeo</title>
-    <meta name="description" content="A apenas 3,8 km de distância, estas ilhas separam os EUA da Rússia e o Hoje do Amanhã. Conheça a fronteira mais curiosa do mundo.">
+    <title>Ilhas Diomedes: A Fronteira do Tempo Onde 3,8 km Separam o Ontem do Amanhã | Dossiê VitaleGeo</title>
+    <meta name="description" content="A apenas 3,8 km de distância no Estreito de Bering, as Ilhas Diomedes separam os EUA da Rússia e têm 21 horas de fuso horário. Conheça a 'Cortina de Gelo'.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/ilhas-diomedes/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/ilhas-diomedes/">
+    <meta property="og:title" content="Ilhas Diomedes: A Fronteira do Tempo Onde 3,8 km Separam o Ontem do Amanhã | Dossiê VitaleGeo">
+    <meta property="og:description" content="A apenas 3,8 km de distância no Estreito de Bering, as Ilhas Diomedes separam os EUA da Rússia e têm 21 horas de fuso horário. Conheça a 'Cortina de Gelo'.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ilhas Diomedes: A Fronteira do Tempo Onde 3,8 km Separam o Ontem do Amanhã | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="A apenas 3,8 km de distância no Estreito de Bering, as Ilhas Diomedes separam os EUA da Rússia e têm 21 horas de fuso horário. Conheça a 'Cortina de Gelo'.">
+    <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Ilhas Diomedes: A Fronteira do Tempo Onde 3,8 km Separam o Ontem do Amanhã",
+      "description": "A apenas 3,8 km de distância no Estreito de Bering, as Ilhas Diomedes separam os EUA da Rússia e têm 21 horas de fuso horário. Conheça a 'Cortina de Gelo'.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-01-28",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/ilhas-diomedes/"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
                     typography: (theme) => ({
                         DEFAULT: {
                             css: {
                                 color: theme('colors.slate.300'),
-                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
-                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em' },
-                                strong: { color: theme('colors.geoBlue') },
-                                a: { color: theme('colors.geoGold'), '&:hover': { color: '#fff' } },
-                                blockquote: { borderLeftColor: theme('colors.geoBlue'), color: '#fff', fontStyle: 'italic', backgroundColor: 'rgba(59, 130, 246, 0.1)', padding: '1em' }
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
+                                strong: { color: theme('colors.geoGold') },
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
                             }
                         }
                     })
@@ -37,150 +88,308 @@
             }
         }
     </script>
-
-    <script>
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-    </script>
-
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-    <div class="fixed top-0 left-0 z-50 w-full h-1 bg-[#090a0f]">
-        <div id="progressBar" class="h-1 bg-cyan-400 w-0 transition-all duration-100 ease-out shadow-[0_0_10px_rgba(34,211,238,0.7)]"></div>
-    </div>
-
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Curiosidades</span>
+            </div>
 
-    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
-        <div class="max-w-3xl mx-auto text-center">
-            
-            <div class="inline-flex items-center gap-2 bg-cyan-900/30 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
-                <i class="ph-fill ph-clock"></i> Fusos Horários
+            <div class="carto-badge mb-6">
+                <span>Anomalia Temporal · Linha de Mudança de Data</span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                Ilhas Diomedes: O único lugar onde você pode ver o "amanhã"
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Ilhas Diomedes: A Fronteira do Tempo Onde 3,8 km Separam o Ontem do Amanhã
             </h1>
 
-            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <span><i class="ph-bold ph-calendar"></i> 28 JAN 2026</span>
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 28 Jan 2026</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-clock"></i> 4 min leitura</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
                 <span>•</span>
-                <span>Por VitaleGeo</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
             </div>
         </div>
     </header>
 
-    <article class="py-16 px-6">
-        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
-            
-            <p class="lead text-xl text-slate-200">
-                Imagine estar em uma praia olhando para uma ilha a apenas 3,8 km de distância. Você consegue ver as pedras, a neve e talvez até alguma construção. Só tem um detalhe: o que você está vendo lá <strong>já aconteceu 21 horas no futuro</strong>.
-            </p>
-
-            <figure>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Flag-map_of_Diomede_Islands_%28Russia_and_USA%29.png" alt="Vista da Pequena Diomedes para a Grande Diomedes" class="rounded-xl shadow-2xl border border-white/10 w-full">
-                <figcaption class="text-center text-sm text-slate-500 mt-2">Vista da ilha americana (Pequena Diomedes) olhando para a ilha russa (Grande Diomedes).</figcaption>
-            </figure>
-
-            <h2>A Cortina de Gelo</h2>
-            <p>
-                As Ilhas Diomedes ficam no Estreito de Bering, exatamente entre o Alasca (EUA) e a Sibéria (Rússia).
-            </p>
-            <ul>
-                <li><strong>Grande Diomedes:</strong> Pertence à Rússia. É uma base militar, sem população civil.</li>
-                <li><strong>Pequena Diomedes:</strong> Pertence aos EUA. Tem uma pequena vila com cerca de 100 habitantes inuítes.</li>
-            </ul>
-            <p>
-                Durante a Guerra Fria, essa pequena faixa de água era conhecida como "A Cortina de Gelo". Famílias que viviam nas duas ilhas foram separadas por décadas, olhando umas para as outras sem poder atravessar.
-            </p>
-
-            <h2>A Viagem no Tempo</h2>
-            <p>
-                O mais fascinante não é a política, mas a geografia. A <strong>Linha Internacional da Data</strong> passa exatamente entre as duas ilhas.
-            </p>
-            <p>
-                Isso cria uma situação bizarra:
-            </p>
-            <blockquote>
-                "Se for <strong>meio-dia de terça-feira</strong> na ilha americana, já é <strong>9h da manhã de quarta-feira</strong> na ilha russa, a apenas 3 km de distância."
-            </blockquote>
-            <p>
-                No inverno, a água entre as ilhas congela, formando uma ponte de gelo. Teoricamente, você poderia caminhar dos EUA para a Rússia (e avançar um dia inteiro no tempo) em menos de uma hora. Porém, é estritamente proibido e ilegal fazer essa travessia.
-            </p>
-
-            <figure>
-                <div class="bg-white p-2 rounded-xl">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg" alt="Foto de Satélite da NASA" class="rounded w-full">
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg" alt="Foto de satélite das Ilhas Diomedes no Estreito de Bering" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        Imagem de satélite das Ilhas Diomedes no Estreito de Bering: Grande Diomede (Rússia, esquerda) e Pequena Diomede (EUA, direita).
+                    </figcaption>
+                </figure>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-clock-afternoon text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Diferença de Horário</span>
+                        <strong class="text-sm font-mono text-white">21 Horas de Salto</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-flag-banner text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Superpotências</span>
+                        <strong class="text-sm font-mono text-white">EUA 🇺🇸 vs Rússia 🇷🇺</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-snowflake text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Inverno Polar</span>
+                        <strong class="text-sm font-mono text-white">Ponte de Gelo Sólido</strong>
+                    </div>
                 </div>
-                <figcaption class="text-center text-sm text-slate-500 mt-2">Foto da NASA. A linha imaginária do tempo passa exatamente no meio do canal.</figcaption>
-            </figure>
 
-            <h3>Lynne Cox: A mulher que nadou através do tempo</h3>
-            <p>
-                Em 1987, no auge das tensões finais da Guerra Fria, a nadadora americana Lynne Cox fez o impensável: ela nadou da Pequena Diomedes para a Grande Diomedes.
-            </p>
-            <p>
-                A água estava a 3°C (quase congelando). Ela nadou por 2 horas, não apenas cruzando uma fronteira geopolítica tensa, mas literalmente "nadando para o amanhã". Seu feito foi elogiado tanto por Ronald Reagan quanto por Mikhail Gorbachev como um sinal de paz.
-            </p>
-
-            <h3>Conclusão</h3>
-            <p>
-                As Ilhas Diomedes nos lembram que o tempo é uma invenção humana. O sol nasce e se põe ao mesmo tempo para as duas ilhas, mas nossos relógios e mapas insistem que elas estão em dias diferentes.
-            </p>
-        </div>
-    </article>
-
-    <section class="pb-20 px-6">
-        <div class="max-w-3xl mx-auto bg-slate-800 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
-            <div class="bg-cyan-500/10 p-4 rounded-full text-cyan-400">
-                <i class="ph-duotone ph-globe-hemisphere-west text-4xl"></i>
-            </div>
-            <div class="text-center md:text-left flex-1">
-                <h3 class="text-xl font-bold text-white mb-2">Confuso com os horários?</h3>
-                <p class="text-slate-400 text-sm">
-                    Use nossa calculadora de fuso horário para entender a diferença entre qualquer lugar do mundo.
+                <p class="lead text-xl text-slate-200">
+                    Se você ficar de pé nas encostas rochosas da aldeia de Ignaluk, na <strong>Pequena Diomede</strong> (pertencente ao estado norte-americano do Alasca), e olhar em direção ao horizonte ocidental através de um par de binóculos comuns, você verá a apenas <strong>3,8 quilômetros de distância</strong> os penhascos imponentes da <strong>Grande Diomede</strong> (pertencente à Federação Russa).
                 </p>
-            </div>
-            <a href="../ferramentas/calculadora-fuso/" class="bg-cyan-600 text-white font-bold uppercase tracking-widest px-6 py-3 rounded hover:bg-cyan-500 transition whitespace-nowrap shadow-lg">
-                Abrir Calculadora
-            </a>
-        </div>
-    </section>
 
-                    <footer class="site-footer">
+                <p>
+                    Mas o aspecto mais impressionante dessa paisagem desolada do <strong>Estreito de Bering</strong> não é o fato de você estar observando o território russo da janela da sua casa nos Estados Unidos. É o fato de que você está literalmente <strong>olhando para o dia de amanhã com os seus próprios olhos</strong>.
+                </p>
+
+                <p>
+                    Entre essas duas pequenas ilhas rochosas passa a <strong>Linha Internacional de Mudança de Data (IDL)</strong>, além da fronteira marítima militarizada mais vigiada da Guerra Fria. Por conta da convenção dos fusos horários globais, a Grande Diomede está <strong>21 horas à frente</strong> no verão (e 23 horas no inverno) em relação à Pequena Diomede. Quando são 15h de uma terça-feira na ilha americana, na ilha russa já são 12h do meio-dia de quarta-feira.
+                </p>
+
+                <h2>A compra do Alasca de 1867: como o mapa traçou a linha</h2>
+
+                <p>
+                    Durante milênios, as duas ilhas formavam um único ecossistema cultural e humano habitado pelo povo indígena <strong>Iñupiat</strong>, que cruzava as águas em canoas de couro de morsa (<em>umiaks</em>) para caçar baleias e casar entre famílias.
+                </p>
+
+                <p>
+                    A divisão arbitrária ocorreu em <strong>30 de março de 1867</strong>, quando o czar Alexandre II da Rússia vendeu o Território do Alasca aos Estados Unidos por <strong>US$ 7,2 milhões</strong> (o célebre acordo articulado pelo Secretário de Estado William H. Seward).
+                </p>
+
+                <p>
+                    O Artigo 1 do Tratado de Cessão de 1867 definiu a nova fronteira russo-americana no Estreito de Bering traçando uma linha geodésica reta que passava exatamente a meia distância entre a ilha de <em>Krusenstern</em> (Pequena Diomede) e a ilha de <em>Ratmanov</em> (Grande Diomede). A partir daquele instante, o canal de 3,8 km de água gelada converteu-se na fenda geopolítica definitiva entre o Novo Mundo e a Eurásia.
+                </p>
+
+                <blockquote>
+                    "As Ilhas Diomedes são o ponto onde o relógio da humanidade dá a volta completa sobre si mesmo: um passo de barco em direção ao oeste não é apenas cruzar para a Rússia; é viajar 21 horas para o futuro."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Documentário Cartográfico 'Bering Strait Chronicles', National Geographic Society.</footer>
+                </blockquote>
+
+                <h2>A 'Cortina de Gelo' da Guerra Fria e a evacuação forçada</h2>
+
+                <p>
+                    Após a Segunda Guerra Mundial e a eclosão da Guerra Fria, a fronteira pacífica transformou-se na temida <strong>Ice Curtain (Cortina de Gelo)</strong>:
+                </p>
+
+                <ul>
+                    <li>Em <strong>1948</strong>, temendo espionagem americana e infiltrações através do gelo, o governo soviético de Josef Stalin ordenou a <strong>desocupação forçada de toda a população civil inuíte da Grande Diomede</strong>, transferindo dezenas de famílias contra a sua vontade para aldeias coletivas na Península de Chukotka.</li>
+                    <li>A Grande Diomede foi totalmente militarizada pela Guarda de Fronteira Soviética (KGB), sendo guarnecida com radares de longo alcance, postos de artilharia, helipontos e estações meteorológicas de espionagem.</li>
+                    <li>Qualquer travessia de pesca ou contato familiar entre parentes separados pela fronteira foi proibido sob pena de prisão imediata por traição militar.</li>
+                </ul>
+
+                <!-- Tabela Comparativa entre as Duas Ilhas Diomedes -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Característica</th>
+                                <th class="p-3">Pequena Diomede (EUA 🇺🇸)</th>
+                                <th class="p-3">Grande Diomede (Rússia 🇷🇺)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Apelido Global</td>
+                                <td class="p-3 text-amber-400">"Ilha do Ontem" (Yesterday Island)</td>
+                                <td class="p-3 text-amber-400">"Ilha do Amanhã" (Tomorrow Island)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Fuso Horário Oficial</td>
+                                <td class="p-3">UTC-9 (Alaska Standard Time)</td>
+                                <td class="p-3">UTC+12 (Kamchatka Time)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Área Territorial</td>
+                                <td class="p-3">7,3 km²</td>
+                                <td class="p-3">29,0 km²</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">População Humana</td>
+                                <td class="p-3">~80 a 100 nativos Iñupiat (Vila de Diomede)</td>
+                                <td class="p-3">Zero civis (apenas militares do FSB russo)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Pista de Pouso</td>
+                                <td class="p-3">Pista de gelo no mar congelado (no inverno)</td>
+                                <td class="p-3">Heliponto militar fortificado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>O nado histórico de Lynne Cox de 1987</h2>
+
+                <p>
+                    Em <strong>7 de agosto de 1987</strong>, quando as tensões da Guerra Fria começavam a arrefecer sob a política de <em>Glasnost</em> de Mikhail Gorbachev, a atleta norte-americana de maratona aquática <strong>Lynne Cox</strong> realizou um dos feitos mais heroicos e simbólicos do século XX:
+                </p>
+
+                <p>
+                    Sem utilizar roupa de neoprene, vestindo apenas um maiô comum, óculos e touca de natação, Lynne Cox saltou nas águas glaciais da Pequena Diomede (com temperatura entre 3°C e 4°C, capaz de matar um humano comum por hipotermia em menos de 10 minutos) e nadou braçada a braçada através do Estreito de Bering durante <strong>2 horas e 5 minutos</strong> até alcançar as pedras da Grande Diomede.
+                </p>
+
+                <p>
+                    Ao tocar a costa russa, foi recebida calorosamente por soldados soviéticos que a enrolaram em cobertores de lã quente. Quatro meses depois, durante a histórica Cúpula de Desarmamento Nuclear de Washington, o líder soviético Mikhail Gorbachev e o presidente Ronald Reagan ergueram suas taças e citaram nominalmente Lynne Cox como a mulher que "provou que a coragem humana pode derreter a Cortina de Gelo".
+                </p>
+
+                <h2>A ponte de gelo de inverno e o isolamento extremo</h2>
+
+                <p>
+                    Entre os meses de dezembro e maio, as temperaturas na região despencam com frequência para -40°C com tempestades de neve cegantes. O mar aberto congela completamente, formando uma <strong>ponte de blocos de gelo marinho compactado</strong> que une fisicamente as duas ilhas.
+                </p>
+
+                <p>
+                    Em teoria física pura, seria possível caminhar a pé ou em motos de neve dos Estados Unidos até a Rússia em menos de 45 minutos. Na prática, no entanto, a fronteira permanece estritamente lacrada: tropas da Guarda Costeira americana e do Serviço Federal de Segurança da Rússia (FSB) monitoram o canal dia e noite com radares térmicos e sensores de movimento.
+                </p>
+
+                <p>
+                    Na Pequena Diomede, a vida dos cerca de 80 moradores da tribo Iñupiat é de pura resiliência: não há aeroporto ou estrada. Durante o inverno, pilotos fretados pousam pequenos bimotores sobre a pista alisada na banquisa de gelo marinho na frente da aldeia. Quando o gelo derrete no verão, o único meio de abastecimento é um helicóptero postal que pousa uma vez por semana se as rajadas de vento permitirem.
+                </p>
+
+                <h2>O sonho de engenharia: a ponte intercontinental e o túnel do Estreito de Bering</h2>
+
+                <p>
+                    Desde o final do século XIX, visionários e engenheiros sonham em transformar as Ilhas Diomedes nos pilares de sustentação da maior obra de infraestrutura da história humana: a <strong>conexão física direta entre a América do Norte e a Eurásia</strong> através do Estreito de Bering.
+                </p>
+
+                <p>
+                    Em 1905, o czar Nicolau II da Rússia chegou a aprovar preliminarmente uma proposta para uma ferrovia transcontinental conectando a Sibéria ao Alasca. Mais recentemente, projetos de engenharia propuseram um túnel submarino triplo de aproximadamente <strong>103 quilômetros de comprimento</strong> (o dobro da extensão do Eurotúnel sob o Canal da Mancha), que utilizaria justamente a Pequena e a Grande Diomede como poços intermediários de ventilação, suporte logístico e estações de bombeamento de ar.
+                </p>
+
+                <p>
+                    Se construído, o projeto permitiria embarcar em um trem de alta velocidade em Londres ou Pequim e viajar diretamente até Nova York ou São Paulo sem sair dos trilhos. No entanto, o custo astronômico estimado em <strong>mais de US$ 100 bilhões</strong>, combinado com o isolamento extremo das milhares de milhas de tundra congelada que separam as ferrovias russas e norte-americanas do estreito, e a atual paralisia geopolítica entre Washington e Moscou, mantêm o plano trancado em gavetas como uma das maiores utopias cartográficas da humanidade.
+                </p>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Ferramenta Interativa // Fusos e Coordenadas</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Descubra as distâncias geodésicas do Estreito de Bering</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Utilize a calculadora cartográfica do VitaleGeo para medir trajetos náuticos e coordenadas polares em tempo real.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-compass text-base"></i> Abrir Calculadora Geodésica
+                        </a>
+                        <a href="/jogos/quiz-bandeiras/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-flag text-base"></i> Quiz de Bandeiras do Ártico
+                        </a>
+                    </div>
+                </div>
+
+                <h2>Perguntas Frequentes sobre as Ilhas Diomedes (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>É permitido atravessar a pé de uma ilha para outra quando o mar congela?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Não. A travessia sobre a ponte de gelo é estritamente ilegal sob as leis de segurança nacional de ambos os países. Como não há postos alfandegários ou de controle de imigração nas ilhas, qualquer pessoa que tente cruzar a pé a Linha Internacional de Data será imediatamente interceptada e detida por forças militares e policiais russas ou americanas por violação clandestina de fronteira internacional.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Por que a diferença de horário é de 21 horas e não de 24 horas exatas?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            A diferença depende do horário de verão no hemisfério norte. O estado do Alasca adota horário de verão (UTC-8), reduzindo a diferença horária para 20 ou 21 horas em relação ao fuso horário de Kamchatka/Chukotka na Rússia (UTC+12 fixo, sem horário de verão). No inverno norte-americano, a defasagem atinge 21 horas completas.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>Como os moradores da Pequena Diomede sobrevivem economicamente?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            A comunidade sobrevive essencialmente da caça e pesca de subsistência tradicional inuíte (focas, morsas, caranguejos-azuis e aves marinhas), complementada por empregos públicos na escola comunitária, na clínica médica local, no correio e na cooperativa tribal de artesanato em marfim fóssil e esculturas tradicionais.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste mistério cartográfico?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos fusos horários absurdos, fronteiras extremas e anomalias geográficas com gráficos e animações em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -199,12 +408,13 @@
         </div>
     </footer>
 
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -212,26 +422,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

@@ -6,9 +6,11 @@ import HomeBlogFilter from '../components/react/HomeBlogFilter';
 import { toolsDB } from '../data/tools';
 import { gamesDB } from '../data/games';
 import { videosLongos } from '../data/videos';
+import { parsePostDate } from '../utils/dates';
 
 const allPosts = await getCollection('blog');
-const postsData = allPosts.map(p => ({
+const sortedPosts = allPosts.sort((a, b) => parsePostDate(b.data.data) - parsePostDate(a.data.data));
+const postsData = sortedPosts.map(p => ({
   id: p.id,
   slug: p.id,
   titulo: p.data.titulo,

@@ -1,36 +1,86 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/area-51/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Arquivo Confidencial: O que escondem na Área 51? | Blog VitaleGeo</title>
-    <meta name="description" content="Relatório desclassificado sobre a base militar mais secreta do mundo. Passe o mouse para revelar os segredos.">
+    <title>Área 51: A Verdade Cartográfica e Militar Por Trás da Base Mais Secreta do Planeta | Dossiê VitaleGeo</title>
+    <meta name="description" content="Muito além dos mitos de OVNIs, a Área 51 em Groom Lake desenvolveu os aviões U-2, SR-71 e F-117 Stealth. Entenda a zona R-4808N e a desclassificação oficial da CIA.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/blog/area-51/">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/blog/area-51/">
+    <meta property="og:title" content="Área 51: A Verdade Cartográfica e Militar Por Trás da Base Mais Secreta do Planeta | Dossiê VitaleGeo">
+    <meta property="og:description" content="Muito além dos mitos de OVNIs, a Área 51 em Groom Lake desenvolveu os aviões U-2, SR-71 e F-117 Stealth. Entenda a zona R-4808N e a desclassificação oficial da CIA.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Área 51: A Verdade Cartográfica e Militar Por Trás da Base Mais Secreta do Planeta | Dossiê VitaleGeo">
+    <meta name="twitter:description" content="Muito além dos mitos de OVNIs, a Área 51 em Groom Lake desenvolveu os aviões U-2, SR-71 e F-117 Stealth. Entenda a zona R-4808N e a desclassificação oficial da CIA.">
+    <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Área 51: A Verdade Cartográfica e Militar Por Trás da Base Mais Secreta do Planeta",
+      "description": "Muito além dos mitos de OVNIs, a Área 51 em Groom Lake desenvolveu os aviões U-2, SR-71 e F-117 Stealth. Entenda a zona R-4808N e a desclassificação oficial da CIA.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Agnaldo Batista",
+        "url": "https://www.vitalegeo.com.br/sobre/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
+        }
+      },
+      "datePublished": "2026-02-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vitalegeo.com.br/blog/area-51/"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoNavy: '#090a0f',
+                        geoBlue: '#38bdf8',
+                        geoGold: '#f59e0b',
+                        geoPaper: '#11131a'
+                    },
                     typography: (theme) => ({
                         DEFAULT: {
                             css: {
                                 color: theme('colors.slate.300'),
-                                h1: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
-                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2em', borderLeft: '4px solid #f59e0b', paddingLeft: '1rem' },
-                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans' },
+                                h1: { color: '#fff', fontFamily: 'Playfair Display', fontWeight: '700' },
+                                h2: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '2.5em', marginBottom: '0.8em', fontWeight: '700' },
+                                h3: { color: '#fff', fontFamily: 'Plus Jakarta Sans', marginTop: '1.8em', fontWeight: '600' },
                                 strong: { color: theme('colors.geoGold') },
-                                a: { color: theme('colors.geoBlue'), '&:hover': { color: '#fff' } },
-                                blockquote: { borderLeftColor: theme('colors.red.600'), backgroundColor: 'rgba(220, 38, 38, 0.1)', color: '#fff', fontStyle: 'italic', padding: '1em' }
+                                a: { color: theme('colors.geoBlue'), textDecoration: 'none', '&:hover': { color: '#fff' } },
+                                blockquote: { borderLeftColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.04)', color: '#f1f5f9', fontStyle: 'italic', padding: '1.25rem 1.5rem', borderRadius: '0.5rem' },
+                                code: { color: theme('colors.geoGold'), backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '0.25rem' }
                             }
                         }
                     })
@@ -38,143 +88,292 @@
             }
         }
     </script>
-
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
+<body class="page-shell bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="text-white">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 left-6 z-30">
-        <a href="../index.html" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-left group-hover:-translate-x-1 transition"></i> Voltar ao Blog
-        </a>
-    </div>
+    <!-- Header do Artigo -->
+    <header class="pt-36 pb-12 px-6 border-b border-white/5 bg-slate-900/40 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
+                <a href="/" class="hover:text-amber-400 transition">Home</a>
+                <span>/</span>
+                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <span>/</span>
+                <span class="text-amber-400">Cartografia</span>
+            </div>
 
-    <header class="pt-32 pb-12 px-6 border-b border-white/5 bg-slate-900/50">
-        <div class="max-w-3xl mx-auto text-center">
-            
-            <div class="inline-flex items-center gap-2 bg-red-900/30 border border-red-500/30 text-red-400 text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-6 animate-pulse">
-                <i class="ph-fill ph-warning-octagon"></i> Nível de Acesso: 5
+            <div class="carto-badge mb-6">
+                <span>Dossiê Militar · Zonas de Exclusão Aérea</span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight">
-                Dossiê Área 51: O que o governo não quer que você veja?
+            <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Área 51: A Verdade Cartográfica e Militar Por Trás da Base Mais Secreta do Planeta
             </h1>
 
-            <p class="text-sm text-slate-400 max-w-lg mx-auto mb-6 italic border-l-2 border-red-500 pl-4 text-left">
-                <strong>AVISO:</strong> Este documento contém informações sensíveis desclassificadas. Passe o cursor sobre as <span class="bg-black px-2 py-0.5 text-xs text-gray-600 rounded inline-block mx-1 border border-gray-800">TARJAS PRETAS</span> para descriptografar o conteúdo.
-            </p>
-
-            <div class="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <span><i class="ph-bold ph-calendar"></i> 01 FEV 2026</span>
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                <span><i class="ph-bold ph-calendar text-amber-400"></i> 01 Fev 2026</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-user-focus"></i> Agente Vitale</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span>•</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> 8 min de leitura (Completo)</span>
             </div>
         </div>
     </header>
 
-    <article class="py-16 px-6">
-        <div class="max-w-3xl mx-auto prose prose-lg prose-invert">
-            
-            <p class="lead text-xl text-slate-200">
-                Durante décadas, o governo dos Estados Unidos negou a existência da base militar localizada no lago seco de Groom Lake, em Nevada. Hoje sabemos que ela existe, mas o que acontece lá dentro ainda é <span class="confidencial">EXTREMAMENTE PERIGOSO</span>.
-            </p>
-
-            <figure>
-                <div class="relative group">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Area51_Aerial_photograph.jpg" alt="Imagem de Satélite da Área 51" class="rounded border border-white/10 w-full grayscale contrast-125 hover:grayscale-0 transition duration-700">
-                    
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-red-500/50 rounded-full flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="w-1 h-1 bg-red-500 rounded-full animate-ping"></div>
+    <!-- Corpo do Artigo -->
+    <main class="page-content">
+        <article class="py-16 px-6">
+            <div class="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-heading prose-headings:text-white prose-a:text-amber-400 hover:prose-a:text-white prose-img:rounded-xl">
+                
+                <!-- Imagem Principal Documental -->
+                <figure class="mb-10 not-prose">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg" alt="Portão de advertência de uso de força letal na fronteira da Área 51 em Nevada" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+                    <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+                        Placas de advertência na estrada de terra que leva ao perímetro da Área 51, no deserto de Nevada: autorização expressa para uso de força letal.
+                    </figcaption>
+                </figure>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-file-text text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Admissão Oficial</span>
+                        <strong class="text-sm font-mono text-white">Ano de 2013 (CIA)</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-airplane text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Aviões Nascidos Lá</span>
+                        <strong class="text-sm font-mono text-white">U-2, SR-71, F-117 Stealth</strong>
+                    </div>
+                    <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
+                        <i class="ph-bold ph-users text-amber-400 text-lg mb-1 inline-block"></i>
+                        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400">Ponte Aérea Secreta</span>
+                        <strong class="text-sm font-mono text-white">Companhia 'Janet'</strong>
                     </div>
                 </div>
-                <figcaption class="text-center text-sm text-slate-500 mt-2 font-mono">IMG_SAT_V2 // COORD: 37°14′0″N 115°48′30″W</figcaption>
-            </figure>
 
-            <h2>A Companhia Aérea Fantasma</h2>
-            <p>
-                Como centenas de funcionários chegam a um lugar que "não existe"? Eles usam a <span class="confidencial">JANET Airlines</span>.
-            </p>
-            <p>
-                Operando a partir de um terminal privado e vigiado no Aeroporto Internacional Harry Reid, em Las Vegas, esses aviões Boeing 737 são completamente brancos, exceto por uma única <span class="confidencial">listra vermelha</span> na lateral. Eles não têm logotipo, nem nome.
-            </p>
-            <p>
-                O indicativo de chamada "JANET" é muitas vezes piadisticamente traduzido pelos pilotos como <em>"Just Another Non-Existent Terminal"</em> (Apenas Outro Terminal Inexistente).
-            </p>
+                <p class="lead text-xl text-slate-200">
+                    Durante mais de meio século, os mapas rodoviários oficiais do governo dos Estados Unidos exibiam uma colossal mancha em branco no sul do estado de Nevada. Nenhuma estrada pública constava no papel, nenhuma cidade era listada e o espaço aéreo acima dela era rigidamente bloqueado para qualquer piloto civil ou comercial sob pena de interceptação imediata por caças armados com mísseis ar-ar.
+                </p>
 
-            <h2>O Projeto OXCART e OVNIs</h2>
-            <p>
-                A maioria das pessoas acredita que a Área 51 abriga <span class="confidencial">naves alienígenas</span>. No entanto, documentos liberados pela CIA revelam que o local foi usado principalmente para testar o avião espião <span class="confidencial">Lockheed A-12</span> e o famoso U-2.
-            </p>
-            <p>
-                Esses aviões voavam tão alto e eram tão rápidos que pilotos comerciais frequentemente os confundiam com OVNIs. A CIA preferiu deixar o público acreditar em <span class="confidencial">marcianos</span> do que admitir que possuía tecnologia avançada de espionagem contra a <span class="confidencial">União Soviética</span>.
-            </p>
+                <p>
+                    Para a cultura popular e para as teorias conspiratórias mundiais, o local tornou-se o sinônimo definitivo de discos voadores capturados, autópsias alienígenas e hangares subterrâneos abrigando seres de outras galáxias. Seu codinome público: <strong>Área 51</strong>.
+                </p>
 
-            <h2>O Setor 4 (S-4) e Bob Lazar</h2>
-            <p>
-                Bob Lazar, um suposto ex-funcionário, afirmou nos anos 80 que trabalhava no "Setor 4" (S-4), localizado <span class="confidencial">ao sul da base principal</span>, embutido na montanha Papoose.
-            </p>
-            <p>
-                Segundo ele, sua função era fazer engenharia reversa em nove discos voadores recuperados. Ele descreveu que os propulsores usavam o elemento <span class="confidencial">Moscóvio (Elemento 115)</span> como combustível para dobrar o espaço-tempo. Na época, o elemento 115 nem havia sido descoberto pela ciência oficial.
-            </p>
+                <p>
+                    Contudo, quando documentos ultrassecretos da CIA foram finalmente <strong>desclassificados em agosto de 2013</strong> em resposta a pedidos da Lei de Liberdade de Informação (FOIA), a verdadeira história revelou-se ainda mais fascinante do que a ficção científica: a instalação militar de <strong>Groom Lake</strong> não escondia naves extraterrestres, mas sim o nascimento das mais revolucionárias tecnologias aeronáuticas, de espionagem e invisibilidade ao radar que decidiram a Guerra Fria.
+                </p>
 
-            <blockquote>
-                "A tecnologia que vi lá não foi feita por mãos humanas. Não havia fios, não havia junções. Parecia ter sido <span class="confidencial">cultivada</span>, não construída." — Relato do arquivo #8921.
-            </blockquote>
+                <h2>A escolha de Groom Lake em 1955: o leito de sal da Skunk Works</h2>
 
-            <h2>Vigilância Extrema: Eles sabem seu cheiro</h2>
-            <p>
-                Tente chegar perto da base hoje e você será parado pelos "Cammo Dudes", seguranças privados em picapes brancas que têm permissão para usar <span class="confidencial">força letal</span> se você cruzar a linha.
-            </p>
-            <p>
-                Mas eles sabem que você está lá muito antes de você ver a cerca. A estrada de terra que leva à base é cercada por sensores sísmicos (que detectam vibração de passos e pneus) e, segundo rumores, sensores de <span class="confidencial">amônia</span>, projetados para detectar o cheiro de suor humano no deserto.
-            </p>
+                <p>
+                    A história da Área 51 começou em <strong>abril de 1955</strong>, no auge do pânico nuclear americano após a União Soviética detonar sua primeira bomba de hidrogênio e testar bombardeiros estratégicos de longo alcance:
+                </p>
 
-            <h3>O que existe no subsolo?</h3>
-            <p>
-                Imagens de satélite mostram poucas construções na superfície, mas a quantidade de terra removida sugere algo maior. Ex-funcionários relatam a existência de até <span class="confidencial">40 andares subterrâneos</span> conectados por trens de alta velocidade que podem ligar a Área 51 a outras bases em outros estados.
-            </p>
+                <p>
+                    O lendário projetista aeronáutico da Lockheed, <strong>Clarence "Kelly" Johnson</strong> (chefe da mítica divisão secreta <em>Skunk Works</em>), sobrevoou o deserto de Nevada em um avião monomotor acompanhado pelo oficial da CIA Richard Bissell. Eles procuravam uma pista de pouso ultrassecreta e remota para testar um avião-espião experimental que voaria a altitudes estratosféricas jamais atingidas por nenhum ser humano: o <strong>U-2 Dragon Lady</strong>.
+                </p>
 
-        </div>
-    </article>
+                <p>
+                    Eles avistaram o lago salgado seco de <strong>Groom Lake</strong>, uma planície de sal perfeitamente nivelada e dura como concreto localizada ao lado do local de testes nucleares subterrâneos de Nevada (Nevada Test Site). O lago seco funcionava como uma pista de pouso natural infinita caso os protótipos sofressem falhas nos motores.
+                </p>
 
-    <section class="pb-20 px-6">
-        <div class="max-w-3xl mx-auto bg-slate-900 border border-red-500/20 rounded-lg p-8 text-center shadow-[0_0_30px_rgba(239,68,68,0.1)] relative overflow-hidden group">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-transparent blur-2xl rounded-full animate-spin-slow"></div>
+                <p>
+                    Para convencer cientistas e pilotos civis da Lockheed a mudarem-se para aquele ermo escaldante e inóspito no meio do deserto, Kelly Johnson apelidou jocosamente a base de <em>"Paradise Ranch"</em> (O Rancho do Paraíso). O governo denominou o lote cadastral no mapa militar de <strong>Área 51</strong>.
+                </p>
 
-            <i class="ph-duotone ph-detective text-5xl text-red-500 mb-4 relative z-10"></i>
-            <h3 class="text-2xl font-heading font-bold text-white mb-2 relative z-10">Quer investigar por conta própria?</h3>
-            <p class="text-slate-400 mb-6 font-mono text-sm relative z-10">
-                Use nossas ferramentas de satélite para explorar coordenadas restritas e calcular distâncias seguras.
-            </p>
-            
-            <a href="/ferramentas" class="relative z-10 inline-flex items-center gap-3 bg-red-600 text-white font-bold uppercase tracking-widest px-8 py-3 rounded hover:bg-red-700 transition shadow-lg text-xs border border-red-400/30 hover:border-white/50">
-                Acessar Terminal de Ferramentas <i class="ph-bold ph-terminal-window"></i>
-            </a>
-        </div>
-    </section>
+                <blockquote>
+                    "O mito dos discos voadores foi o melhor escudo de camuflagem que a inteligência americana poderia ter sonhado: enquanto os jornais discutiam homenzinhos verdes, nós testávamos aviões de titânio voando a três vezes a velocidade do som."
+                    <footer class="text-xs text-slate-400 not-italic mt-2 font-mono">— Relatório Histórico Desclassificado da CIA sobre o Programa U-2 e A-12 (1954–1974).</footer>
+                </blockquote>
 
-                    <footer class="site-footer">
+                <h2>Por que a Área 51 criou o mito dos OVNIs?</h2>
+
+                <p>
+                    A explosão de relatos de "objetos voadores não identificados" nas décadas de 1950 e 1960 em Nevada e na Califórnia teve uma explicação física e ótica documentada oficialmente no relatório da CIA:
+                </p>
+
+                <ul>
+                    <li>Na década de 1950, a maioria dos aviões comerciais civis a pistão voava entre 10.000 e 20.000 pés de altitude, enquanto caças militares a jato mal ultrapassavam os 40.000 pés.</li>
+                    <li>O U-2 voava a estonteantes <strong>70.000 pés de altitude (mais de 21 km de altura)</strong>, na estratosfera.</li>
+                    <li>Ao entardecer, quando o sol já havia se posto completamente para quem estava no solo ou voando em aviões comerciais nas altitudes normais, as asas prateadas do U-2 no topo da atmosfera ainda recebiam a luz solar direta, brilhando intensamente como uma chama incandescente veloz no céu escuro.</li>
+                </ul>
+
+                <p>
+                    Pilotos civis de companhias aéreas avistavam esses reflexos dourados e comunicavam às torres de controle a presença de "esferas brilhantes impossíveis voando muito acima de qualquer avião conhecido". Como o projeto do U-2 e mais tarde do <strong>SR-71 Blackbird</strong> (que voava a Mach 3.2 e 85.000 pés) eram segredos de segurança nacional absoluta, a Força Aérea americana preferia deixar o público acreditar em teorias de discos voadores do que admitir para os espiões da KGB que Washington possuía aviões de espionagem sobrevoando a União Soviética impunemente.
+                </p>
+
+                <!-- Tabela dos Projetos Aeronáuticos Revolucionários da Área 51 -->
+                <div class="overflow-x-auto my-8 border border-white/10 rounded-xl bg-slate-950/60 not-prose">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm font-mono">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-white/5 text-amber-400">
+                                <th class="p-3">Aeronave / Projeto</th>
+                                <th class="p-3">Período de Testes</th>
+                                <th class="p-3">Inovação Tecnológica</th>
+                                <th class="p-3">Impacto na Guerra Fria</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300">
+                            <tr>
+                                <td class="p-3 font-semibold text-white">U-2 Dragon Lady</td>
+                                <td class="p-3">1955–1956</td>
+                                <td class="p-3">Planador a jato estratosférico (70.000 pés)</td>
+                                <td class="p-3">Descobriu os mísseis soviéticos na Crise de Cuba (1962)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">A-12 / SR-71 Blackbird</td>
+                                <td class="p-3">1962–1964</td>
+                                <td class="p-3">Estrutura 93% de titânio a Mach 3.3 (3.500 km/h)</td>
+                                <td class="p-3">Inviolável: nenhum míssil antiaéreo jamais conseguiu derrubá-lo</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Have Doughnut / Constant Peg</td>
+                                <td class="p-3">1968–1988</td>
+                                <td class="p-3">Testes secretos com caças MiG soviéticos capturados</td>
+                                <td class="p-3">Treinou pilotos norte-americanos nas táticas dos adversários</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Have Blue / F-117 Stealth</td>
+                                <td class="p-3">1977–1981</td>
+                                <td class="p-3">Primeiro avião invisível a radares com superfícies facetadas</td>
+                                <td class="p-3">Destruiu as defesas aéreas de Bagdá na Guerra do Golfo (1991)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-white">Tacit Blue & Drones B-21</td>
+                                <td class="p-3">1982–Presente</td>
+                                <td class="p-3">Furtividade com curvas suaves e drones autônomos NGAD</td>
+                                <td class="p-3">Base dos modernos bombardeiros furtivos B-2 e B-21 Raider</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>A segurança implacável: os 'Cammo Dudes' e os voos Janet</h2>
+
+                <p>
+                    Embora hoje a existência da base em Groom Lake seja um fato oficial reconhecido pelo Pentágono, o perímetro em terra e no ar permanece o mais impenetrável dos Estados Unidos:
+                </p>
+
+                <ul>
+                    <li><strong>A Zona Proibida R-4808N ("The Box"):</strong> Uma caixa de espaço aéreo militar de aproximadamente 40 km por 40 km onde o voo é terminantemente proibido do nível do solo até o espaço infinito. Nem mesmo pilotos da Força Aérea americana que treinam na base vizinha de Nellis podem cruzar a fronteira da "Box" sem autorização de código especial, sob pena de corte imediato de asas militares.</li>
+                    <li><strong>Os 'Cammo Dudes':</strong> O perímetro terrestre no deserto é patrulhado 24 horas por seguranças armados em caminhonetes brancas sem placas oficiais ou insígnias governamentais. Sensores magnéticos enterrados na terra detectam o peso de pedestres a centenas de metros de distância, enquanto câmeras térmicas de alta definição monitoram qualquer turista nas colinas vizinhas. As placas de aviso alertam explicitamente: <em>"Uso de força letal autorizado sob a Lei de Segurança Interna de 1950"</em>.</li>
+                    <li><strong>A Companhia Aérea Fantasma 'Janet':</strong> Diariamente, uma frota misteriosa de aviões Boeing 737 brancos com apenas uma faixa vermelha horizontal na fuselagem e sem qualquer logotipo de companhia aérea (conhecida pela sigla informal <em>JANET - Just Another Non-Existent Terminal</em>) decola de um terminal privado no aeroporto internacional Harry Reid, em Las Vegas, transportando milhares de engenheiros, físicos e cientistas civis credenciados até as pistas de Groom Lake para o expediente diário de trabalho.</li>
+                </ul>
+
+                <!-- Box de Retenção Cartográfica / Ferramentas -->
+                <div class="my-12 p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950/20 to-slate-900 border border-amber-500/20 not-prose text-center">
+                    <div class="carto-badge mb-3">
+                        <span class="carto-badge-dot"></span>
+                        <span>Ferramenta Interativa // Coordenadas no Mapa</span>
+                    </div>
+                    <h4 class="text-xl font-heading font-bold text-white mb-2">Quer explorar as coordenadas de Groom Lake?</h4>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto mb-5">
+                        Utilize a calculadora cartográfica do VitaleGeo para traçar distâncias geodésicas e analisar as zonas restritas mais curiosas do globo.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="/ferramentas/distancia-coordenadas/" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition uppercase tracking-wider">
+                            <i class="ph-bold ph-compass text-base"></i> Abrir Calculadora
+                        </a>
+                        <a href="/jogos/quiz-capitais/" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition border border-white/10">
+                            <i class="ph-bold ph-game-controller text-base"></i> Quiz de Capitais Mundiais
+                        </a>
+                    </div>
+                </div>
+
+                <h2>Perguntas Frequentes sobre a Área 51 (FAQ)</h2>
+
+                <div class="space-y-4 my-8 not-prose">
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>A Área 51 ainda continua ativa e funcionando hoje em dia?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Sim, e mais ativa do que nunca. Imagens comerciais recentes de satélite mostram hangares gigantescos recém-construídos, novas pistas de taxiamento e expansão de infraestrutura em Groom Lake. A base continua sendo o principal centro de testes da Força Aérea dos EUA para novas aeronaves de sexta geração (como o programa NGAD), drones furtivos autônomos de combate e tecnologias aeroespaciais hipersônicas classificadas.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>É verdade que quem ultrapassar a linha da cerca pode ser alvejado?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Juridicamente, as placas avisam que o uso de força letal é autorizado sob a lei de segurança interna. Na prática, turistas ou curiosos que ultrapassam a linha de demarcação são rapidamente detidos sob mira de fuzis pelos agentes de segurança privados, entregues ao xerife do Condado de Lincoln e multados em milhares de dólares com abertura de processo federal criminal por invasão de instalação militar sensível.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-white/10 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-heading font-semibold text-white">
+                            <span>O que significa a sigla dos voos 'JANET'?</span>
+                            <i class="ph-bold ph-caret-down group-open:rotate-180 transition text-amber-400"></i>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                            Oficialmente, 'Janet' é o indicativo de rádio e chamada militar utilizado pela frota de jatos operada pela empreiteira de defesa militar AECOM para a Força Aérea. No folclore dos veteranos da base, o termo virou a piada interna que significa 'Just Another Non-Existent Terminal' (Apenas Outro Terminal Inexistente) ou 'Joint Air Network for Employee Transportation'.
+                        </p>
+                    </details>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Chamada para Ação / Canal YouTube -->
+        <section class="pb-16 px-6">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 border border-white/10 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-400/5 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="carto-badge mb-4">
+                    <span class="carto-badge-dot"></span>
+                    <span>Análises Cartográficas em Vídeo</span>
+                </div>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê sobre a Área 51?</h3>
+                <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas militares, bases secretas e geopolítica estratégica com animações em alta definição.</p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
+                    <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- Bloco Google AdSense Oficial -->
+        <section class="pb-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="autorelaxed"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -193,12 +392,13 @@
         </div>
     </footer>
 
+    <!-- Barra Mobile Inferior -->
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
             <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
+                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
                 </a>
                 <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-game-controller text-xl"></i> Jogos
@@ -206,26 +406,11 @@
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                     <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
+                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
                 </a>
             </div>
         </div>
     </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-

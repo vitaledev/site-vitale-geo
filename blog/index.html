@@ -11,14 +11,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
                     colors: { geoBg: '#090a0f', geoCard: '#11131a', geoGold: '#f59e0b' }
                 }
             }
@@ -54,17 +59,16 @@
 
     <main class="page-content">
         <header class="relative pt-40 pb-12 px-6 overflow-hidden">
-            <!-- Curvas de Nível Topográficas -->
+            <!-- Curvas de Nível Topográficas Suaves -->
             <svg class="topo-lines-svg" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M-100 100 C 300 240, 700 -30, 1100 150 C 1300 220, 1500 120, 1600 170" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="6 6"/>
-                <path d="M-100 220 C 250 360, 750 90, 1150 290 C 1350 380, 1450 230, 1600 280" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4"/>
+                <path d="M-100 100 C 300 240, 700 -30, 1100 150 C 1300 220, 1500 120, 1600 170" stroke="#f59e0b" stroke-width="1"/>
+                <path d="M-100 220 C 250 360, 750 90, 1150 290 C 1350 380, 1450 230, 1600 280" stroke="#38bdf8" stroke-width="1.2"/>
                 <path d="M-100 380 C 400 490, 800 260, 1200 450 C 1400 510, 1550 400, 1600 440" stroke="#f59e0b" stroke-width="1"/>
             </svg>
 
             <div class="max-w-6xl mx-auto relative z-10">
                 <div class="max-w-3xl mb-12">
                     <div class="carto-badge mb-4">
-                        <span class="carto-badge-dot"></span>
                         <span>Arquivo Investigativo</span>
                     </div>
                     <h1 class="text-4xl sm:text-6xl font-heading font-normal text-white leading-tight">
