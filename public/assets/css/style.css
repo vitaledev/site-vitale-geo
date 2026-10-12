@@ -3,7 +3,7 @@
    Tipografia: Plus Jakarta Sans (Títulos limpos e arejados) + Inter (Corpo)
    =================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
     --bg-base: #090a0f;
@@ -18,6 +18,7 @@
     --accent-blue: #38bdf8;
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
     --font-mono: 'Space Mono', monospace;
 }
 
@@ -26,11 +27,11 @@ body {
     color: var(--text-secondary);
     background-color: var(--bg-base);
     background-image: 
-        radial-gradient(ellipse 70% 45% at 50% -10%, rgba(245, 158, 11, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 30% at 85% 25%, rgba(56, 189, 248, 0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 45% at 50% -10%, rgba(245, 158, 11, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 30% at 85% 25%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
     background-attachment: fixed;
     overflow-x: hidden;
-    line-height: 1.7;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -44,12 +45,13 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
     color: var(--text-primary);
     font-weight: 600;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     line-height: 1.25;
 }
 
-.text-serif, .font-serif { 
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important; 
+.text-serif, .font-serif, .editorial-title { 
+    font-family: var(--font-serif) !important;
+    letter-spacing: -0.015em;
 }
 .text-mono, .font-mono { font-family: var(--font-mono); }
 
@@ -124,23 +126,24 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .carto-badge {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent-gold);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
+    padding: 0.3rem 0.8rem;
     border-radius: 9999px;
-    background: rgba(245, 158, 11, 0.08);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.18);
 }
 
 .carto-badge-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background-color: var(--accent-gold);
+    opacity: 0.85;
 }
 
 /* Filtros de Categoria em Abas */
@@ -198,7 +201,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    opacity: 0.07;
+    opacity: 0.045;
     overflow: hidden;
 }
 
@@ -333,3 +336,261 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* ===================================================================
+   VITALE GEO - LEITURA EDITORIAL DE DOSSIÊS (ANTI-SLOP)
+   =================================================================== */
+.prose {
+    font-size: 1.125rem !important; /* 18px */
+    line-height: 1.82 !important;
+    color: #cbd5e1 !important;
+    max-width: 100% !important;
+}
+
+.prose p {
+    margin-top: 1.5em !important;
+    margin-bottom: 1.5em !important;
+    color: #cbd5e1;
+}
+
+.prose p.lead {
+    font-size: 1.25rem !important;
+    line-height: 1.75 !important;
+    color: #f8fafc !important;
+    font-weight: 400;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+    font-family: var(--font-heading) !important;
+    color: #ffffff !important;
+    letter-spacing: -0.02em;
+}
+
+.prose h2 {
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+    margin-top: 2.75em !important;
+    margin-bottom: 1em !important;
+    font-weight: 700 !important;
+    border-left: none !important; /* Elimina bordas duras artificiais de IA */
+    padding-left: 0 !important;
+}
+
+.prose h3 {
+    font-size: 1.35rem !important;
+    line-height: 1.35 !important;
+    margin-top: 2.2em !important;
+    margin-bottom: 0.75em !important;
+    font-weight: 600 !important;
+}
+
+.prose blockquote {
+    border-left: 2px solid var(--accent-gold) !important;
+    background: rgba(245, 158, 11, 0.03) !important;
+    color: #e2e8f0 !important;
+    font-style: italic;
+    padding: 1.25rem 1.5rem !important;
+    border-radius: 0.5rem;
+    margin: 2.25em 0 !important;
+}
+
+.prose table {
+    width: 100%;
+    margin: 2.5em 0 !important;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.prose th {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold) !important;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 0.85rem 1rem !important;
+    text-align: left;
+}
+
+.prose td {
+    padding: 0.85rem 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #cbd5e1 !important;
+}
+
+.prose ul, .prose ol {
+    margin: 1.5em 0 !important;
+    padding-left: 1.5em !important;
+}
+
+.prose li {
+    margin: 0.5em 0 !important;
+}
+
+.prose li::marker {
+    color: var(--accent-gold) !important;
+}
+
+.prose hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: 3.5em 0 !important;
+}
+
+/* ===================================================================
+   VITALEGEO ARCADE & STUDIO SHELL (AMBIENTE ISOLADO DE JOGOS E FERRAMENTAS)
+   Isola o palco de jogo, remove interferência de anúncios e garante modo foco
+   =================================================================== */
+
+.arcade-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #07080d;
+    background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245, 158, 11, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 110%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Barra de topo dedicada e limpa para jogos */
+.arcade-header {
+    height: 64px;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(11, 13, 20, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 50;
+    width: 100%;
+}
+
+.arcade-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.arcade-header__exit {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.arcade-header__exit:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.arcade-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arcade-btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    height: 34px;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.arcade-btn-action:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* O Palco Central Protegido (The Stage) - Imune a interferências de Auto Ads */
+.arcade-stage-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    width: 100%;
+    max-width: 58rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.arcade-stage {
+    width: 100%;
+    background: #10121a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Modo Tela Cheia Imersivo */
+.arcade-stage:fullscreen,
+.arcade-shell:fullscreen {
+    background: #07080d;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+/* Área Segura de Anúncios (Totalmente fora da mecânica do jogo) */
+.arcade-ad-zone {
+    width: 100%;
+    max-width: 58rem;
+    margin: 1.5rem auto 0 auto;
+    padding: 1rem;
+    min-height: 100px;
+    background: rgba(11, 13, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 0.75rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #475569;
+}
+
+/* Bloqueio estrito de injeção automática de anúncios dentro do palco do jogo */
+.arcade-stage,
+.arcade-stage * {
+    /* Impede que o Google Auto Ads insira quebras de anúncio dentro de botões e cards de jogo */
+    contain: layout style;
+}
+

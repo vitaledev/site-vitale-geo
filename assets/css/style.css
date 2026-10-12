@@ -441,3 +441,156 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     margin: 3.5em 0 !important;
 }
+
+/* ===================================================================
+   VITALEGEO ARCADE & STUDIO SHELL (AMBIENTE ISOLADO DE JOGOS E FERRAMENTAS)
+   Isola o palco de jogo, remove interferência de anúncios e garante modo foco
+   =================================================================== */
+
+.arcade-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #07080d;
+    background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245, 158, 11, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 110%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Barra de topo dedicada e limpa para jogos */
+.arcade-header {
+    height: 64px;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(11, 13, 20, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 50;
+    width: 100%;
+}
+
+.arcade-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.arcade-header__exit {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.arcade-header__exit:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.arcade-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arcade-btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    height: 34px;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.arcade-btn-action:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* O Palco Central Protegido (The Stage) - Imune a interferências de Auto Ads */
+.arcade-stage-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    width: 100%;
+    max-width: 58rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.arcade-stage {
+    width: 100%;
+    background: #10121a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Modo Tela Cheia Imersivo */
+.arcade-stage:fullscreen,
+.arcade-shell:fullscreen {
+    background: #07080d;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+/* Área Segura de Anúncios (Totalmente fora da mecânica do jogo) */
+.arcade-ad-zone {
+    width: 100%;
+    max-width: 58rem;
+    margin: 1.5rem auto 0 auto;
+    padding: 1rem;
+    min-height: 100px;
+    background: rgba(11, 13, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 0.75rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #475569;
+}
+
+/* Bloqueio estrito de injeção automática de anúncios dentro do palco do jogo */
+.arcade-stage,
+.arcade-stage * {
+    /* Impede que o Google Auto Ads insira quebras de anúncio dentro de botões e cards de jogo */
+    contain: layout style;
+}
+

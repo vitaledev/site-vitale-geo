@@ -1,109 +1,149 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="bg-slate-900">
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-[#07080d]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/maior-menor/">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guerra de Números | VitaleGeo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guerra de PIB (Maior ou Menor) | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Compare o PIB de países e descubra qual é o mais rico! Jogo educativo que ensina economia global e comparação de dados econômicos.">
-    <meta name="keywords" content="PIB, economia, países, jogo, quiz, comparação, geografia econômica">
-    <meta property="og:title" content="Guerra de Números | VitaleGeo">
-    <meta property="og:description" content="Compare o PIB de países e descubra qual é o mais rico!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vitalegeo.com.br/jogos/maior-menor">
+    <meta name="description" content="Compare o PIB das maiores economias globais! Descubra quem é mais rico em um jogo estilo Higher or Lower geopolítico.">
+    <meta name="keywords" content="PIB, economia, países, jogo, quiz, comparação, geografia econômica, vitalegeo">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-</head>
-<body class="text-white font-sans min-h-screen page-shell p-4 overflow-hidden selection:bg-yellow-500 selection:text-black">
-
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="text-white">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
-            </div>
-
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
-            </a>
-        </div>
-    </nav>
-
-    <div class="absolute top-24 right-6 z-30">
-        <a href="/jogos" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/5"><i class="ph-bold ph-arrow-left"></i> Central de Simulações</a>
-    </div>
-
-    <main class="page-content flex flex-col items-center justify-center w-full">
-    <div class="text-center mb-8 relative z-10">
-        <h1 class="text-2xl font-bold uppercase tracking-tighter text-white">Quem é mais rico?</h1>
-        <p class="text-slate-400 text-xs tracking-widest uppercase mt-1">Comparando PIB (Produto Interno Bruto)</p>
-        <div class="mt-4 bg-slate-800 border border-white/10 inline-block px-4 py-1 rounded-full text-green-400 font-bold text-sm shadow-lg">
-            Acertos: <span id="score">0</span>
-        </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row w-full max-w-5xl h-[60vh] md:h-[500px] relative pt-28">
-        
-        <div class="game-card w-full md:w-1/2 h-full relative overflow-hidden bg-slate-800 border-b-2 md:border-b-0 md:border-r-2 border-slate-900 group">
-            <img id="left-img" src="" class="card-bg absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-            
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg" id="left-name">Carregando...</h2>
-                <div class="text-2xl md:text-3xl text-yellow-400 font-mono font-bold drop-shadow-md" id="left-value">---</div>
-                <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mt-2">Trilhões (USD)</p>
-            </div>
-        </div>
-
-        <div class="vs-badge absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white text-slate-900 font-black rounded-full w-12 h-12 flex items-center justify-center text-sm md:text-base">
-            VS
-        </div>
-
-        <div class="game-card w-full md:w-1/2 h-full relative overflow-hidden bg-slate-800 group">
-            <img id="right-img" src="" class="card-bg absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-            
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg" id="right-name">Carregando...</h2>
-                
-                <div id="game-controls" class="flex flex-col gap-3 w-48">
-                    <button onclick="guess('higher')" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition shadow-lg border border-green-400/30 hover:scale-105 active:scale-95">
-                        <i class="ph-bold ph-caret-up"></i> MAIOR
-                    </button>
-                    <button onclick="guess('lower')" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition shadow-lg border border-red-400/30 hover:scale-105 active:scale-95">
-                        <i class="ph-bold ph-caret-down"></i> MENOR
-                    </button>
-                </div>
-
-                <div id="result-overlay" class="hidden flex-col items-center animate-in fade-in zoom-in duration-300">
-                    <div class="text-3xl text-yellow-400 font-mono font-bold drop-shadow-md mb-1" id="right-value-reveal">---</div>
-                    <div id="result-message" class="font-bold uppercase tracking-widest text-sm mb-4"></div>
-                    <button onclick="nextRound()" class="bg-white text-slate-900 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded hover:bg-slate-200 transition shadow-xl">
-                        Próxima Rodada <i class="ph-bold ph-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </main>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
-        // DADOS "HARDCODED" (PIB Aproximado em Trilhões USD - Dados 2024/25)
-        // Code: Código ISO de 2 letras (usado para pegar a bandeira)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="arcade-shell text-slate-200 select-none">
+
+    <!-- BARRA DEDICADA DO ARCADE (Ambiente isolado do site) -->
+    <header class="arcade-header">
+        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
+            <i class="ph-bold ph-arrow-left"></i>
+            <span>Central de Jogos</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
+                Guerra de <span class="text-amber-400">Números</span> (PIB)
+            </span>
+        </div>
+
+        <div class="arcade-header__actions">
+            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
+                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
+                <span class="hidden sm:inline">Tela Cheia</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PALCO CENTRAL PROTEGIDO (The Stage - Sem invasão de anúncios) -->
+    <main class="arcade-stage-wrapper" id="game-stage-container">
+        
+        <!-- Placar e Status -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-2 mb-3">
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                <i class="ph-fill ph-flame text-amber-400 text-sm"></i>
+                <span>Sequência: <strong id="score" class="text-amber-400 text-sm">0</strong></span>
+            </div>
+            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest hidden sm:block">
+                Quem tem o maior PIB? (Trilhões USD)
+            </div>
+            <div class="text-xs font-mono text-slate-400">
+                <span>Recorde: <strong id="best-score" class="text-emerald-400 text-sm">0</strong></span>
+            </div>
+        </div>
+
+        <div class="arcade-stage p-0 max-w-4xl w-full flex flex-col md:flex-row min-h-[460px] relative overflow-hidden">
+            
+            <!-- CARTA DA ESQUERDA (País de Referência Conhecido) -->
+            <div class="w-full md:w-1/2 min-h-[220px] md:min-h-full relative overflow-hidden bg-slate-900 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center p-6 text-center">
+                <img id="left-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
+                
+                <div class="relative z-10">
+                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 block">País de Referência</span>
+                    <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-white mb-2" id="left-name">Carregando...</h2>
+                    <div class="text-3xl sm:text-4xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
+                    <p class="text-xs font-mono text-slate-400 mt-1">Trilhões USD (PIB Nominal)</p>
+                </div>
+            </div>
+
+            <!-- DISTINTIVO VS CENTRAL -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-black font-black font-mono rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-xs sm:text-sm shadow-xl border-2 border-white/20 pointer-events-none">
+                VS
+            </div>
+
+            <!-- CARTA DA DIREITA (O Desafio) -->
+            <div class="w-full md:w-1/2 min-h-[240px] md:min-h-full relative overflow-hidden bg-slate-900 flex flex-col items-center justify-center p-6 text-center">
+                <img id="right-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
+                
+                <div class="relative z-10 w-full max-w-xs flex flex-col items-center">
+                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 block">O PIB deste país é...</span>
+                    <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-white mb-4" id="right-name">Carregando...</h2>
+                    
+                    <!-- Botões de Ação -->
+                    <div id="game-controls" class="flex flex-col gap-2.5 w-full">
+                        <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
+                            <i class="ph-bold ph-caret-up text-lg text-emerald-400"></i> MAIOR
+                        </button>
+                        <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
+                            <i class="ph-bold ph-caret-down text-lg text-rose-400"></i> MENOR
+                        </button>
+                    </div>
+
+                    <!-- Overlay de Revelação do Resultado -->
+                    <div id="result-overlay" class="hidden flex-col items-center animate-in fade-in zoom-in duration-300 w-full">
+                        <div class="text-3xl sm:text-4xl text-amber-400 font-mono font-bold mb-1" id="right-value-reveal">---</div>
+                        <p class="text-xs font-mono text-slate-400 mb-2">Trilhões USD</p>
+                        <div id="result-message" class="font-heading font-bold uppercase tracking-wider text-sm mb-4"></div>
+                        <button onclick="nextRound()" class="w-full bg-white text-slate-950 font-heading font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl hover:bg-slate-200 transition shadow-xl flex items-center justify-center gap-2 hover:scale-[1.02]">
+                            Próxima Rodada <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ZONA SEGURA DE ANÚNCIOS (Abaixo do Palco - Não quebra os cliques do jogo) -->
+        <div class="arcade-ad-zone">
+            <span>PUBLICIDADE RESERVADA · VITALEGEO ARCADE</span>
+            <!-- Bloco AdSense aqui, sem tocar na mecânica do jogo -->
+        </div>
+
+    </main>
+
+    <!-- Rodapé Minimalista do Arcade -->
+    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
+        VitaleGeo Arcade &copy; 2026 · Ambiente Otimizado de Jogo
+    </footer>
+
+    <!-- Lógica do Jogo -->
+    <script>
         const countryData = [
             { name: "Estados Unidos", code: "us", gdp: 27.36 },
             { name: "China", code: "cn", gdp: 17.79 },
@@ -115,7 +155,7 @@
             { name: "Itália", code: "it", gdp: 2.25 },
             { name: "Brasil", code: "br", gdp: 2.17 },
             { name: "Canadá", code: "ca", gdp: 2.14 },
-            { name: "Rússia", code: "ru", gdp: 1.99 }, // Variável devido a sanções
+            { name: "Rússia", code: "ru", gdp: 1.99 },
             { name: "México", code: "mx", gdp: 1.78 },
             { name: "Austrália", code: "au", gdp: 1.72 },
             { name: "Coreia do Sul", code: "kr", gdp: 1.71 },
@@ -139,36 +179,35 @@
 
         let leftItem, rightItem;
         let score = 0;
+        let bestScore = parseInt(localStorage.getItem('vg_best_pib') || '0');
+        document.getElementById('best-score').innerText = bestScore;
 
         function initGame() {
             score = 0;
             document.getElementById("score").innerText = score;
-            
-            // Escolhe o primeiro item aleatório
             leftItem = countryData[Math.floor(Math.random() * countryData.length)];
             pickNextItem();
         }
 
         function pickNextItem() {
-            // Garante que o item da direita não seja igual ao da esquerda
             do {
                 rightItem = countryData[Math.floor(Math.random() * countryData.length)];
             } while (rightItem.code === leftItem.code);
-            
             render();
         }
 
         function render() {
-            // Configura Esquerda
             document.getElementById("left-name").innerText = leftItem.name;
             document.getElementById("left-value").innerText = `$ ${leftItem.gdp.toFixed(2)}`;
-            document.getElementById("left-img").src = `https://flagcdn.com/w640/${leftItem.code}.png`;
+            const leftImg = document.getElementById("left-img");
+            leftImg.src = `/assets/flags/${leftItem.code}.svg`;
+            leftImg.onerror = () => { leftImg.src = `https://flagcdn.com/w640/${leftItem.code}.png`; };
 
-            // Configura Direita
             document.getElementById("right-name").innerText = rightItem.name;
-            document.getElementById("right-img").src = `https://flagcdn.com/w640/${rightItem.code}.png`;
+            const rightImg = document.getElementById("right-img");
+            rightImg.src = `/assets/flags/${rightItem.code}.svg`;
+            rightImg.onerror = () => { rightImg.src = `https://flagcdn.com/w640/${rightItem.code}.png`; };
 
-            // Reseta Estado
             document.getElementById("game-controls").classList.remove("hidden");
             document.getElementById("game-controls").classList.add("flex");
             document.getElementById("result-overlay").classList.add("hidden");
@@ -190,7 +229,6 @@
             const message = document.getElementById("result-message");
             const valueReveal = document.getElementById("right-value-reveal");
 
-            // Esconde botões, mostra resultado
             document.getElementById("game-controls").classList.add("hidden");
             document.getElementById("game-controls").classList.remove("flex");
             
@@ -201,88 +239,51 @@
 
             if (win) {
                 score++;
-                message.innerText = "CORRETO!";
-                message.className = "font-bold uppercase tracking-widest text-sm text-green-400";
+                message.innerText = "✓ CORRETO! VOCÊ ACERTOU!";
+                message.className = "font-heading font-bold uppercase tracking-wider text-sm text-emerald-400";
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    localStorage.setItem('vg_best_pib', bestScore);
+                    document.getElementById('best-score').innerText = bestScore;
+                }
+
+                if (score % 3 === 0 && typeof confetti === 'function') {
+                    confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
+                }
             } else {
-                score = 0; // Game Over
-                message.innerText = "GAME OVER!";
-                message.className = "font-bold uppercase tracking-widest text-sm text-red-500";
-                
-                // Em caso de derrota, escolhemos um novo par totalmente aleatório no próximo round
-                // Para não ficar preso num loop se o jogador perder
+                score = 0;
+                message.innerText = "✗ GAME OVER! ERA DIFERENTE!";
+                message.className = "font-heading font-bold uppercase tracking-wider text-sm text-rose-500";
             }
             document.getElementById("score").innerText = score;
         }
 
         function nextRound() {
-            // O item da direita vira o da esquerda (progressão do jogo)
-            // Se o jogador perdeu, o score zerou, mas a lógica continua ou reseta
-            if (document.getElementById("result-message").innerText === "GAME OVER!") {
-                // Se perdeu, reinicia tudo aleatório
+            if (document.getElementById("result-message").innerText.includes("GAME OVER")) {
                 leftItem = countryData[Math.floor(Math.random() * countryData.length)];
             } else {
-                // Se ganhou, o vencedor da direita vai para a esquerda desafiar o próximo
                 leftItem = rightItem;
             }
-            
             pickNextItem();
         }
 
-        // Inicia o jogo
+        function alternarTelaCheia() {
+            const container = document.getElementById("game-stage-container") || document.documentElement;
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
         initGame();
     </script>
-                    <footer class="site-footer">
-        <div class="max-w-6xl mx-auto">
-            <div class="site-footer__social">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
-            </div>
-            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
-            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <div class="site-footer__links text-xs mt-4">
-                <a href="/sobre/">Sobre o Projeto</a>
-                <span class="text-slate-700">·</span>
-                <a href="/politica/">Política de Privacidade</a>
-                <span class="text-slate-700">·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
-            </div>
-            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
-
