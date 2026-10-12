@@ -151,6 +151,18 @@
             animation: screen-shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
 
+        /* Efeito de impacto quando perde vida (Flash e Tremor Vermelho) */
+        @keyframes screen-shake-damage {
+            0%, 100% { transform: translate(0, 0); box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+            20% { transform: translate(-6px, 4px); box-shadow: 0 0 35px rgba(239, 68, 68, 0.7); }
+            40% { transform: translate(6px, -4px); box-shadow: 0 0 45px rgba(239, 68, 68, 0.9); }
+            60% { transform: translate(-4px, -3px); box-shadow: 0 0 35px rgba(239, 68, 68, 0.7); }
+            80% { transform: translate(4px, 3px); }
+        }
+        .shake-damage {
+            animation: screen-shake-damage 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
         /* Animação do Pulso de Combo */
         @keyframes combo-pulse {
             0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4)); }
@@ -158,6 +170,22 @@
         }
         .combo-active {
             animation: combo-pulse 1.4s ease-in-out infinite;
+        }
+
+        /* Card de Destaque da Bandeira */
+        .flag-glow-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(17, 19, 26, 0.98) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Corações de Vida Arcade */
+        @keyframes heart-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .heart-active {
+            animation: heart-pulse 1.8s ease-in-out infinite;
         }
     </style>
 </head>
@@ -179,6 +207,10 @@
             </div>
 
             <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="abrirModalConfig()" id="btn-config" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Configurar Modo e Tipos de Perguntas">
+                    <i class="ph-bold ph-faders"></i>
+                    <span class="hidden sm:inline">Modos</span>
+                </button>
                 <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ligar/Desligar Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
@@ -217,14 +249,25 @@
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-1 flex-wrap">
                             <span class="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-amber-400 uppercase px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20" id="round-indicator">
-                                RODADA 1 DE 5
+                                RODADA 1 DE 10
                             </span>
+
+                            <!-- Vidas Arcade (Visível no Modo Arcade) -->
+                            <div class="hidden items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-xs font-mono font-bold text-red-400" id="arcade-lives-badge">
+                                <span class="text-[9px] text-slate-400 uppercase tracking-wider">Vidas:</span>
+                                <span id="lives-display">❤️❤️❤️</span>
+                            </div>
+
+                            <span class="text-[10px] sm:text-xs font-mono text-slate-300 uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10" id="game-mode-badge">
+                                🏆 Clássico
+                            </span>
+
                             <span class="text-xs font-mono text-slate-400" id="target-category">
                                 Chokepoint Estratégico
                             </span>
                             
                             <!-- Indicador Anti-Repetição no Cache -->
-                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição no seu navegador. Clique para reiniciar o ciclo." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
+                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais e bandeiras explorados sem repetição. Clique para reiniciar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais e bandeiras?')) reiniciarHistoricoCache();">
                                 <i class="ph-bold ph-compass text-xs"></i>
                                 <span id="catalog-progress-text">Carregando acervo...</span>
                             </div>
@@ -241,6 +284,15 @@
                                     <span class="font-semibold text-amber-400 block mb-0.5">Dica Pedagógica:</span>
                                     <span id="target-hint">Aguardando local...</span>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Box de Destaque para Desafio de Bandeiras -->
+                        <div id="flag-challenge-box" class="hidden my-2 flex items-center gap-3 flag-glow-box p-2.5 rounded-xl border border-amber-400/30 animate-fade-in">
+                            <img id="flag-challenge-img" src="" alt="Bandeira do País" class="w-16 h-11 object-cover rounded shadow-md border border-white/20 shrink-0">
+                            <div>
+                                <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">Desafio de Vexilologia</span>
+                                <span class="text-xs sm:text-sm font-heading font-semibold text-white" id="flag-challenge-prompt">Onde fica o território deste país no mapa?</span>
                             </div>
                         </div>
 
@@ -467,6 +519,137 @@
         </div>
     </div>
 
+    <!-- MODAL DE CONFIGURAÇÃO DE MODOS & QUESTÕES (GAME LAUNCHER) -->
+    <div id="modal-config" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1100] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative overflow-hidden text-left animate-fade-in my-auto">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                        <i class="ph-bold ph-faders text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-extrabold text-base sm:text-lg text-white">Configurar Partida</h3>
+                        <p class="text-[10px] sm:text-xs font-mono text-slate-400">Escolha o modo de jogo e os tipos de desafios</p>
+                    </div>
+                </div>
+                <button onclick="fecharModalConfig()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- SELETOR DE MODO DE JOGO -->
+            <div class="mb-4">
+                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-game-controller"></i> Modo de Jogo
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <!-- Opção 1: Clássico -->
+                    <div onclick="selecionarModoJogo('classico')" id="card-modo-classico" class="mode-option-card p-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 cursor-pointer transition relative">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                                🏆 Modo Clássico
+                            </span>
+                            <span class="w-4 h-4 rounded-full border border-amber-400 bg-amber-400 text-slate-950 flex items-center justify-center text-[10px]" id="check-modo-classico">
+                                <i class="ph-bold ph-check"></i>
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 leading-snug">
+                            Rodadas fixas com pontuação acumulada, combos e ranking de precisão (SSS/S/A/B/C/D).
+                        </p>
+                    </div>
+
+                    <!-- Opção 2: Arcade de Vidas -->
+                    <div onclick="selecionarModoJogo('arcade')" id="card-modo-arcade" class="mode-option-card p-3 rounded-2xl border border-white/15 bg-[#171a24] cursor-pointer hover:border-amber-400/50 transition relative">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                                🕹️ Arcade Sobrevivência
+                            </span>
+                            <span class="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center text-[10px] text-amber-400" id="check-modo-arcade">
+                                <i class="ph-bold ph-check hidden"></i>
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 leading-snug">
+                            3 Vidas ❤️❤️❤️! Erros graves custam vidas; tiros precisos recuperam vidas! Jogue até onde aguentar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUANTIDADE DE RODADAS (APENAS MODO CLÁSSICO) -->
+            <div id="secao-qtd-rodadas" class="mb-4">
+                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-hourglass-high"></i> Quantidade de Rodadas
+                </label>
+                <div class="grid grid-cols-4 gap-2">
+                    <button type="button" onclick="selecionarQtdRodadas(5)" id="btn-rodadas-5" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                        5 Rodadas
+                    </button>
+                    <button type="button" onclick="selecionarQtdRodadas(10)" id="btn-rodadas-10" class="py-2 rounded-xl border border-amber-400/50 bg-amber-400/10 text-xs font-mono font-bold text-amber-300 transition">
+                        10 Rodadas ⭐
+                    </button>
+                    <button type="button" onclick="selecionarQtdRodadas(15)" id="btn-rodadas-15" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                        15 Rodadas
+                    </button>
+                    <button type="button" onclick="selecionarQtdRodadas(20)" id="btn-rodadas-20" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                        20 Rodadas
+                    </button>
+                </div>
+            </div>
+
+            <!-- TIPOS DE PERGUNTAS / CATEGORIAS ATIVAS -->
+            <div class="mb-5">
+                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-list-checks"></i> Tipos de Perguntas no Mapa
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                    
+                    <!-- 1. Bandeiras -->
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
+                        <input type="checkbox" id="filtro-bandeiras" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                        <div class="flex-1">
+                            <span class="text-white font-bold block">🚩 Bandeiras do Mundo</span>
+                            <span class="text-[10px] text-slate-400 block">Identifique o país da bandeira</span>
+                        </div>
+                    </label>
+
+                    <!-- 2. Chokepoints e Rotas -->
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
+                        <input type="checkbox" id="filtro-chokepoints" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                        <div class="flex-1">
+                            <span class="text-white font-bold block">⚓ Chokepoints & Canais</span>
+                            <span class="text-[10px] text-slate-400 block">Ormuz, Suez, Malaca, Bósforo...</span>
+                        </div>
+                    </label>
+
+                    <!-- 3. Capitais Mundiais -->
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
+                        <input type="checkbox" id="filtro-capitais" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                        <div class="flex-1">
+                            <span class="text-white font-bold block">🏛️ Capitais Globais</span>
+                            <span class="text-[10px] text-slate-400 block">Camberra, Ottawa, Ancara...</span>
+                        </div>
+                    </label>
+
+                    <!-- 4. Extremos Físicos -->
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
+                        <input type="checkbox" id="filtro-extremos" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                        <div class="flex-1">
+                            <span class="text-white font-bold block">🏔️ Extremos & Maravilhas</span>
+                            <span class="text-[10px] text-slate-400 block">Ponto Nemo, Atacama, Everest...</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- BOTÃO SALVAR E JOGAR -->
+            <button onclick="salvarConfigEIniciar()" class="w-full py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
+                <i class="ph-bold ph-play text-lg"></i>
+                <span>COMEÇAR COM ESSA CONFIGURAÇÃO</span>
+            </button>
+        </div>
+    </div>
+
     <!-- RODAPÉ COMPACTO -->
     <footer class="w-full border-t border-white/10 py-3 text-center text-xs text-slate-500 font-mono">
         VitaleGeo Arcade &copy; 2026 &mdash; Mapas abertos via Esri Canvas & OpenStreetMap. Zero API Keys.
@@ -518,23 +701,258 @@
             }
         ];
 
-        // BASE DE DADOS CONSOLIDADA
-        function obterBaseLocais() {
-            if (window.CerebroGeo && window.CerebroGeo.locais && window.CerebroGeo.locais.length > 0) {
-                return window.CerebroGeo.locais;
-            }
-            if (typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) {
-                return LOCAIS_ONDE_FICA;
-            }
-            return LOCAIS_FALLBACK;
-        }
-
-        // MOTOR ANTI-REPETIÇÃO COM MEMÓRIA NO LOCALSTORAGE
+        // CONFIGURAÇÃO DINÂMICA DE PARTIDA & MODOS ARCADE
+        const STORAGE_KEY_CONFIG = 'vitalegeo_onde_fica_config';
         const STORAGE_KEY_VISTOS = 'vitalegeo_onde_fica_historico_vistos';
         const STORAGE_KEY_CICLO = 'vitalegeo_onde_fica_ciclo';
 
-        function sortearLocaisSemRepeticao(quantidade = 5) {
-            const baseCompleta = obterBaseLocais();
+        let configJogo = {
+            modo: 'classico', // 'classico' | 'arcade'
+            rodadas: 10,      // 5, 10, 15, 20
+            categorias: {
+                bandeiras: true,
+                chokepoints: true,
+                capitais: true,
+                extremos: true
+            }
+        };
+
+        function carregarConfiguracaoSalva() {
+            try {
+                const salva = localStorage.getItem(STORAGE_KEY_CONFIG);
+                if (salva) {
+                    const parsed = JSON.parse(salva);
+                    if (parsed && typeof parsed === 'object') {
+                        if (parsed.modo) configJogo.modo = parsed.modo;
+                        if (parsed.rodadas) configJogo.rodadas = parseInt(parsed.rodadas, 10);
+                        if (parsed.categorias) configJogo.categorias = Object.assign(configJogo.categorias, parsed.categorias);
+                    }
+                }
+            } catch(e) {}
+            atualizarUIModalConfig();
+        }
+
+        function salvarConfiguracao() {
+            try {
+                localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(configJogo));
+            } catch(e) {}
+        }
+
+        function abrirModalConfig() {
+            atualizarUIModalConfig();
+            const modal = document.getElementById('modal-config');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function fecharModalConfig() {
+            const modal = document.getElementById('modal-config');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function selecionarModoJogo(modo) {
+            configJogo.modo = modo;
+            atualizarUIModalConfig();
+        }
+
+        function selecionarQtdRodadas(qtd) {
+            configJogo.rodadas = qtd;
+            atualizarUIModalConfig();
+        }
+
+        function atualizarUIModalConfig() {
+            const cardClassico = document.getElementById('card-modo-classico');
+            const cardArcade = document.getElementById('card-modo-arcade');
+            const checkClassico = document.getElementById('check-modo-classico');
+            const checkArcade = document.getElementById('check-modo-arcade');
+            const secaoRodadas = document.getElementById('secao-qtd-rodadas');
+
+            if (configJogo.modo === 'classico') {
+                if (cardClassico) cardClassico.className = "mode-option-card p-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 cursor-pointer transition relative";
+                if (checkClassico) {
+                    checkClassico.className = "w-4 h-4 rounded-full border border-amber-400 bg-amber-400 text-slate-950 flex items-center justify-center text-[10px]";
+                    checkClassico.innerHTML = '<i class="ph-bold ph-check"></i>';
+                }
+                if (cardArcade) cardArcade.className = "mode-option-card p-3 rounded-2xl border border-white/15 bg-[#171a24] cursor-pointer hover:border-amber-400/50 transition relative";
+                if (checkArcade) {
+                    checkArcade.className = "w-4 h-4 rounded-full border border-white/30 flex items-center justify-center text-[10px] text-amber-400";
+                    checkArcade.innerHTML = '<i class="ph-bold ph-check hidden"></i>';
+                }
+                if (secaoRodadas) secaoRodadas.classList.remove('hidden');
+            } else {
+                if (cardClassico) cardClassico.className = "mode-option-card p-3 rounded-2xl border border-white/15 bg-[#171a24] cursor-pointer hover:border-amber-400/50 transition relative";
+                if (checkClassico) {
+                    checkClassico.className = "w-4 h-4 rounded-full border border-white/30 flex items-center justify-center text-[10px] text-amber-400";
+                    checkClassico.innerHTML = '<i class="ph-bold ph-check hidden"></i>';
+                }
+                if (cardArcade) cardArcade.className = "mode-option-card p-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 cursor-pointer transition relative";
+                if (checkArcade) {
+                    checkArcade.className = "w-4 h-4 rounded-full border border-amber-400 bg-amber-400 text-slate-950 flex items-center justify-center text-[10px]";
+                    checkArcade.innerHTML = '<i class="ph-bold ph-check"></i>';
+                }
+                if (secaoRodadas) secaoRodadas.classList.add('hidden');
+            }
+
+            [5, 10, 15, 20].forEach(r => {
+                const btn = document.getElementById(`btn-rodadas-${r}`);
+                if (btn) {
+                    if (configJogo.rodadas === r) {
+                        btn.className = "py-2 rounded-xl border border-amber-400/50 bg-amber-400/10 text-xs font-mono font-bold text-amber-300 transition";
+                        btn.innerText = `${r} Rodadas ⭐`;
+                    } else {
+                        btn.className = "py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition";
+                        btn.innerText = `${r} Rodadas`;
+                    }
+                }
+            });
+
+            const chkBandeiras = document.getElementById('filtro-bandeiras');
+            const chkChokepoints = document.getElementById('filtro-chokepoints');
+            const chkCapitais = document.getElementById('filtro-capitais');
+            const chkExtremos = document.getElementById('filtro-extremos');
+
+            if (chkBandeiras) chkBandeiras.checked = !!configJogo.categorias.bandeiras;
+            if (chkChokepoints) chkChokepoints.checked = !!configJogo.categorias.chokepoints;
+            if (chkCapitais) chkCapitais.checked = !!configJogo.categorias.capitais;
+            if (chkExtremos) chkExtremos.checked = !!configJogo.categorias.extremos;
+        }
+
+        function salvarConfigEIniciar() {
+            const chkBandeiras = document.getElementById('filtro-bandeiras');
+            const chkChokepoints = document.getElementById('filtro-chokepoints');
+            const chkCapitais = document.getElementById('filtro-capitais');
+            const chkExtremos = document.getElementById('filtro-extremos');
+
+            configJogo.categorias.bandeiras = chkBandeiras ? chkBandeiras.checked : true;
+            configJogo.categorias.chokepoints = chkChokepoints ? chkChokepoints.checked : true;
+            configJogo.categorias.capitais = chkCapitais ? chkCapitais.checked : true;
+            configJogo.categorias.extremos = chkExtremos ? chkExtremos.checked : true;
+
+            if (!configJogo.categorias.bandeiras && !configJogo.categorias.chokepoints && !configJogo.categorias.capitais && !configJogo.categorias.extremos) {
+                configJogo.categorias.bandeiras = true;
+                configJogo.categorias.chokepoints = true;
+            }
+
+            salvarConfiguracao();
+            fecharModalConfig();
+            iniciarJogo();
+        }
+
+        // CATÁLOGO UNIFICADO DE DESAFIOS (BANDEIRAS, CHOKEPOINTS, CAPITAIS E EXTREMOS)
+        function obterCatalogoDesafios(config) {
+            const lista = [];
+            const paises = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const locais = (window.CerebroGeo && window.CerebroGeo.locais && window.CerebroGeo.locais.length > 0)
+                ? window.CerebroGeo.locais
+                : (typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0 ? LOCAIS_ONDE_FICA : LOCAIS_FALLBACK);
+
+            // 1. BANDEIRAS DO MUNDO (198 nações com imagens em alta definição via FlagCDN)
+            if (config.categorias.bandeiras && paises.length > 0) {
+                paises.forEach(p => {
+                    if (p.iso2 && typeof p.lat === 'number' && typeof p.lng === 'number') {
+                        lista.push({
+                            id: `bandeira_${p.iso2.toLowerCase()}`,
+                            tipo: 'bandeira',
+                            nome: p.nome,
+                            iso2: p.iso2.toLowerCase(),
+                            categoria: "🚩 Bandeira do Mundo",
+                            lat: p.lat,
+                            lng: p.lng,
+                            dica: `País soberano situado em ${p.continente}. Capital política: ${p.capital}.`,
+                            fato: p.fato || `Território de ${p.nome}, capital ${p.capital} (${p.continente}).`
+                        });
+                    }
+                });
+            }
+
+            // 2. CHOKEPOINTS & ROTAS MARÍTIMAS
+            if (config.categorias.chokepoints) {
+                const chokes = locais.filter(l => {
+                    const cat = (l.categoria || '').toLowerCase();
+                    const nome = (l.nome || '').toLowerCase();
+                    return cat.includes('chokepoint') || cat.includes('estreito') || cat.includes('canal') ||
+                           cat.includes('porta') || cat.includes('passagem') || cat.includes('rota') ||
+                           cat.includes('corredor') || nome.includes('estreito') || nome.includes('canal');
+                });
+                const alvo = chokes.length > 0 ? chokes : locais.slice(0, 40);
+                alvo.forEach(l => {
+                    lista.push({
+                        id: `choke_${l.nome}`,
+                        tipo: 'chokepoint',
+                        nome: l.nome,
+                        categoria: `⚓ ${l.categoria || 'Chokepoint Estratégico'}`,
+                        lat: l.lat,
+                        lng: l.lng,
+                        dica: l.dica,
+                        fato: l.fato
+                    });
+                });
+            }
+
+            // 3. CAPITAIS MUNDIAIS
+            if (config.categorias.capitais && paises.length > 0) {
+                paises.forEach(p => {
+                    if (p.capital && typeof p.lat === 'number' && typeof p.lng === 'number') {
+                        lista.push({
+                            id: `capital_${p.iso2 ? p.iso2.toLowerCase() : p.nome}`,
+                            tipo: 'capital',
+                            nome: `${p.capital} (${p.nome})`,
+                            categoria: "🏛️ Capital Mundial",
+                            lat: p.lat,
+                            lng: p.lng,
+                            dica: `Capital administrativa de ${p.nome}, no continente ${p.continente}.`,
+                            fato: p.fato || `Capital nacional de ${p.nome}, sede dos poderes da nação.`
+                        });
+                    }
+                });
+            }
+
+            // 4. EXTREMOS & MARAVILHAS GEOGRÁFICAS
+            if (config.categorias.extremos) {
+                const ext = locais.filter(l => {
+                    const cat = (l.categoria || '').toLowerCase();
+                    const nome = (l.nome || '').toLowerCase();
+                    return cat.includes('pólo') || cat.includes('polo') || cat.includes('extremo') || cat.includes('fossa') ||
+                           cat.includes('deserto') || cat.includes('vulcão') || cat.includes('cume') ||
+                           cat.includes('ponto') || cat.includes('arquipélago') || cat.includes('porto') ||
+                           nome.includes('ponto') || nome.includes('fossa') || nome.includes('cabo');
+                });
+                const alvoExt = ext.length > 0 ? ext : locais.slice(40, 80);
+                alvoExt.forEach(l => {
+                    lista.push({
+                        id: `extremo_${l.nome}`,
+                        tipo: 'extremo',
+                        nome: l.nome,
+                        categoria: `🏔️ ${l.categoria || 'Extremo Geográfico'}`,
+                        lat: l.lat,
+                        lng: l.lng,
+                        dica: l.dica,
+                        fato: l.fato
+                    });
+                });
+            }
+
+            // Fallback de segurança caso nenhum filtro retorne itens
+            if (lista.length === 0) {
+                LOCAIS_FALLBACK.forEach(l => {
+                    lista.push({
+                        id: `fallback_${l.nome}`,
+                        tipo: 'chokepoint',
+                        nome: l.nome,
+                        categoria: l.categoria,
+                        lat: l.lat,
+                        lng: l.lng,
+                        dica: l.dica,
+                        fato: l.fato
+                    });
+                });
+            }
+
+            return lista;
+        }
+
+        // MOTOR ANTI-REPETIÇÃO COM MEMÓRIA NO LOCALSTORAGE
+        function sortearDesafiosSemRepeticao(quantidade = 10, config = configJogo) {
+            const baseCompleta = obterCatalogoDesafios(config);
             let vistos = [];
             let ciclo = 1;
             try {
@@ -546,7 +964,7 @@
                 ciclo = 1;
             }
 
-            let naoVistos = baseCompleta.filter(l => !vistos.includes(l.nome));
+            let naoVistos = baseCompleta.filter(l => !vistos.includes(l.id || l.nome));
             let cicloRenovado = false;
 
             if (naoVistos.length < quantidade) {
@@ -568,7 +986,8 @@
 
             const selecionados = copia.slice(0, quantidade);
             selecionados.forEach(s => {
-                if (!vistos.includes(s.nome)) vistos.push(s.nome);
+                const key = s.id || s.nome;
+                if (!vistos.includes(key)) vistos.push(key);
             });
 
             try {
@@ -576,7 +995,7 @@
             } catch (e) {}
 
             return {
-                locais: selecionados,
+                desafios: selecionados,
                 vistosTotal: vistos.length,
                 acervoTotal: baseCompleta.length,
                 ciclo: ciclo,
@@ -593,12 +1012,16 @@
         }
 
         // ESTADO GLOBAL DO JOGO & ELEMENTOS ARCADE
-        let partidaLocais = [];
+        let partidaDesafios = [];
         let rodadaAtualIndex = 0;
         let pontuacaoTotal = 0;
         let palpiteAtualLatLng = null;
         let somHabilitado = true;
         let historicoRodadas = [];
+
+        // SISTEMA DE VIDAS ARCADE (MODO SOBREVIVÊNCIA)
+        let vidasArcade = 3;
+        const MAX_VIDAS_ARCADE = 3;
 
         // SISTEMA DE COMBO STREAK & AGILIDADE
         let comboStreak = 0;
@@ -624,24 +1047,64 @@
 
         // INICIALIZAÇÃO DO JOGO
         function iniciarJogo() {
-            const selecao = sortearLocaisSemRepeticao(5);
-            partidaLocais = selecao.locais;
+            carregarConfiguracaoSalva();
+
+            const qtdInicial = configJogo.modo === 'arcade' ? 10 : configJogo.rodadas;
+            const selecao = sortearDesafiosSemRepeticao(qtdInicial, configJogo);
+            partidaDesafios = selecao.desafios;
             rodadaAtualIndex = 0;
             pontuacaoTotal = 0;
             comboStreak = 0;
             maxStreakPartida = 0;
             comboMultiplier = 1.0;
             historicoRodadas = [];
+            vidasArcade = 3;
 
             atualizarPlacarInterface();
             atualizarBadgeProgresso(selecao);
             atualizarStreakUI();
+            atualizarVidasUI();
+
+            // Atualiza Badge do Modo no Topo
+            const modeBadge = document.getElementById('game-mode-badge');
+            if (modeBadge) {
+                if (configJogo.modo === 'arcade') {
+                    modeBadge.innerHTML = '🕹️ Sobrevivência';
+                    modeBadge.className = 'text-[10px] sm:text-xs font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400';
+                } else {
+                    modeBadge.innerHTML = `🏆 Clássico (${configJogo.rodadas}R)`;
+                    modeBadge.className = 'text-[10px] sm:text-xs font-mono text-slate-300 uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10';
+                }
+            }
 
             if (!map) {
                 inicializarMapa();
             }
 
             carregarRodada(rodadaAtualIndex);
+        }
+
+        function atualizarVidasUI() {
+            const badge = document.getElementById('arcade-lives-badge');
+            const display = document.getElementById('lives-display');
+            if (!badge || !display) return;
+
+            if (configJogo.modo === 'arcade') {
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+                let coracoes = '';
+                for (let i = 0; i < MAX_VIDAS_ARCADE; i++) {
+                    if (i < vidasArcade) {
+                        coracoes += '<span class="inline-block transition-transform hover:scale-125">❤️</span>';
+                    } else {
+                        coracoes += '<span class="inline-block opacity-40 grayscale">🖤</span>';
+                    }
+                }
+                display.innerHTML = coracoes;
+            } else {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
         }
 
         function atualizarBadgeProgresso(dados) {
@@ -753,8 +1216,8 @@
 
         // CARREGAR RODADA
         function carregarRodada(index) {
-            const local = partidaLocais[index];
-            if (!local) return;
+            const desafio = partidaDesafios[index];
+            if (!desafio) return;
 
             // Reset de marcadores visuais
             if (guessMarker) { map.removeLayer(guessMarker); guessMarker = null; }
@@ -763,11 +1226,43 @@
             if (radarCircle) { map.removeLayer(radarCircle); radarCircle = null; }
             palpiteAtualLatLng = null;
 
-            // Interface
-            document.getElementById('round-indicator').innerText = `RODADA ${index + 1} DE 5`;
-            document.getElementById('target-category').innerText = local.categoria;
-            document.getElementById('target-title').innerHTML = `Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">${local.nome}</span>?`;
-            document.getElementById('target-hint').innerText = local.dica;
+            // Interface do Cabeçalho da Rodada
+            const roundIndicator = document.getElementById('round-indicator');
+            if (roundIndicator) {
+                if (configJogo.modo === 'arcade') {
+                    roundIndicator.innerText = `SOBREVIVÊNCIA // ONDA ${index + 1}`;
+                } else {
+                    roundIndicator.innerText = `RODADA ${index + 1} DE ${configJogo.rodadas}`;
+                }
+            }
+
+            document.getElementById('target-category').innerText = desafio.categoria;
+            document.getElementById('target-hint').innerText = desafio.dica;
+
+            // Tratamento especial para DESAFIO DE BANDEIRAS
+            const flagBox = document.getElementById('flag-challenge-box');
+            const flagImg = document.getElementById('flag-challenge-img');
+            const flagPrompt = document.getElementById('flag-challenge-prompt');
+            const targetTitle = document.getElementById('target-title');
+
+            if (desafio.tipo === 'bandeira' && desafio.iso2) {
+                if (flagBox) flagBox.classList.remove('hidden');
+                if (flagImg) {
+                    flagImg.src = `https://flagcdn.com/w160/${desafio.iso2}.png`;
+                    flagImg.alt = `Bandeira de ${desafio.nome}`;
+                }
+                if (flagPrompt) {
+                    flagPrompt.innerText = `De qual país é esta bandeira? Aponte ${desafio.nome} no mapa!`;
+                }
+                targetTitle.innerHTML = `Onde fica o território de <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">${desafio.nome}</span>?`;
+            } else {
+                if (flagBox) flagBox.classList.add('hidden');
+                if (desafio.tipo === 'capital') {
+                    targetTitle.innerHTML = `Onde fica a <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">${desafio.nome}</span>?`;
+                } else {
+                    targetTitle.innerHTML = `Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">${desafio.nome}</span>?`;
+                }
+            }
 
             document.getElementById('round-result-card').classList.add('hidden');
             const actionBar = document.getElementById('action-bar');
@@ -800,8 +1295,8 @@
             }
 
             const tempoGasto = Math.max(0.5, (Date.now() - tempoInicioRodada) / 1000);
-            const local = partidaLocais[rodadaAtualIndex];
-            const targetLatLng = L.latLng(local.lat, local.lng);
+            const desafio = partidaDesafios[rodadaAtualIndex];
+            const targetLatLng = L.latLng(desafio.lat, desafio.lng);
 
             // Cálculo da distância em km (Haversine)
             const distKm = Math.round(calcularHaversineKm(
@@ -819,13 +1314,17 @@
 
             // 2. Atualiza Combo Streak
             let streakGanho = false;
+            let streakHeal = false;
             if (distKm <= 300) {
                 comboStreak++;
                 if (comboStreak > maxStreakPartida) maxStreakPartida = comboStreak;
                 streakGanho = true;
 
                 if (comboStreak === 2) comboMultiplier = 1.2;
-                else if (comboStreak === 3) comboMultiplier = 1.5;
+                else if (comboStreak === 3) {
+                    comboMultiplier = 1.5;
+                    streakHeal = true;
+                }
                 else if (comboStreak >= 4) comboMultiplier = 2.0;
                 else comboMultiplier = 1.0;
             } else if (distKm > 1000) {
@@ -840,7 +1339,22 @@
                 else if (tempoGasto <= 15) speedBonus = Math.round(500 * (1 - (tempoGasto - 5) / 10));
             }
 
-            // 4. Pontuação Final da Rodada com Multiplicador
+            // 4. Efeito no MODO ARCADE (VIDAS)
+            let vidaPerdida = false;
+            let vidaRecuperada = false;
+
+            if (configJogo.modo === 'arcade') {
+                if (distKm > 1200) {
+                    vidasArcade = Math.max(0, vidasArcade - 1);
+                    vidaPerdida = true;
+                } else if ((distKm <= 150 || streakHeal) && vidasArcade < MAX_VIDAS_ARCADE) {
+                    vidasArcade = Math.min(MAX_VIDAS_ARCADE, vidasArcade + 1);
+                    vidaRecuperada = true;
+                }
+                atualizarVidasUI();
+            }
+
+            // 5. Pontuação Final da Rodada com Multiplicador
             const pontuacaoBaseComCombo = Math.round(baseScore * comboMultiplier);
             const roundScore = pontuacaoBaseComCombo + speedBonus;
 
@@ -851,14 +1365,18 @@
 
             // Salva no histórico da partida
             historicoRodadas.push({
-                local: local.nome,
-                categoria: local.categoria,
+                local: desafio.nome,
+                categoria: desafio.categoria,
+                tipo: desafio.tipo,
                 distKm: distKm,
                 baseScore: baseScore,
                 comboMultiplier: comboMultiplier,
                 speedBonus: speedBonus,
                 score: roundScore,
-                tempoGasto: tempoGasto
+                tempoGasto: tempoGasto,
+                vidasRestantes: vidasArcade,
+                vidaPerdida: vidaPerdida,
+                vidaRecuperada: vidaRecuperada
             });
 
             // Revela Alvo Real no Mapa
@@ -870,7 +1388,7 @@
             });
             targetMarker = L.marker(targetLatLng, { icon: targetIcon }).addTo(map);
 
-            // Círculo de Radar Militar no Alvo
+            // Círculo de Radar no Alvo
             radarCircle = L.circle(targetLatLng, {
                 radius: Math.max(50000, Math.min(250000, distKm * 1000 * 0.5)),
                 color: '#10b981',
@@ -897,15 +1415,26 @@
             actionBar.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
 
             // Feedback Visual e Dopamina de Impacto
-            if (distKm <= 50) {
-                // Bullseye!
-                const mapWrapper = document.getElementById('map-wrapper');
+            const mapWrapper = document.getElementById('map-wrapper');
+
+            if (vidaPerdida) {
+                if (mapWrapper) {
+                    mapWrapper.classList.add('shake-damage');
+                    setTimeout(() => mapWrapper.classList.remove('shake-damage'), 500);
+                }
+                tocarSomDanoVida();
+            } else if (distKm <= 50) {
                 if (mapWrapper) {
                     mapWrapper.classList.add('shake-impact');
                     setTimeout(() => mapWrapper.classList.remove('shake-impact'), 350);
                 }
                 tocarSomBullseye();
                 dispararConfetes();
+                if (vidaRecuperada) {
+                    setTimeout(tocarSomVidaRecuperada, 250);
+                }
+            } else if (vidaRecuperada) {
+                tocarSomVidaRecuperada();
             } else if (streakGanho && comboStreak >= 2) {
                 tocarSomCombo();
             } else if (roundScore >= 3500) {
@@ -915,21 +1444,29 @@
             }
 
             // Exibe Card de Resultado com Count-Up Animado
-            exibirResultadoRodada(distKm, roundScore, baseScore, comboMultiplier, speedBonus, local, pontuacaoAnterior);
+            exibirResultadoRodada(distKm, roundScore, baseScore, comboMultiplier, speedBonus, desafio, pontuacaoAnterior, vidaPerdida, vidaRecuperada);
         }
 
         // EXIBIR CARD DE RESULTADO DA RODADA
-        function exibirResultadoRodada(distKm, totalRound, baseScore, multiplier, speedBonus, local, pontuacaoAnterior) {
+        function exibirResultadoRodada(distKm, totalRound, baseScore, multiplier, speedBonus, desafio, pontuacaoAnterior, vidaPerdida, vidaRecuperada) {
             let label = "Boa tentativa";
             if (distKm <= 50) label = "🎯 NA MOSCA! CIRÚRGICO!";
             else if (distKm <= 200) label = "⚡ EXCELENTE! RADAR PRECISO!";
             else if (distKm <= 600) label = "👍 MUITO PERTO!";
-            else if (distKm <= 1800) label = "🧭 NA MESMA REGIÃO";
-            else label = "🗺️ FORA DE ALCANCE";
+            else if (distKm <= 1200) label = "🧭 NA MESMA REGIÃO";
+            else label = "🗺️ FORA DE ALCANCE (>1.200 km)";
+
+            if (configJogo.modo === 'arcade') {
+                if (vidaPerdida) {
+                    label = `💔 PERDEU 1 VIDA! (${vidasArcade} restantes)`;
+                } else if (vidaRecuperada) {
+                    label = `💚 +1 VIDA RECUPERADA! (${vidasArcade}/3)`;
+                }
+            }
 
             document.getElementById('result-grade-label').innerText = label;
             document.getElementById('result-distance').innerText = `${distKm.toLocaleString('pt-BR')} km de distância`;
-            document.getElementById('result-fact').innerText = local.fato;
+            document.getElementById('result-fact').innerText = desafio.fato;
 
             document.getElementById('breakdown-base').innerText = `+${baseScore.toLocaleString('pt-BR')}`;
             document.getElementById('breakdown-combo').innerText = `x${multiplier.toFixed(1)}${multiplier > 1 ? ' 🔥' : ''}`;
@@ -942,10 +1479,19 @@
             animarContadorDeAte('total-score', pontuacaoAnterior, pontuacaoTotal, '', ' pts', 800);
 
             const btnNext = document.getElementById('btn-next-round');
-            if (rodadaAtualIndex >= 4) {
-                btnNext.innerHTML = `<span>Ver Resultado Final</span> <i class="ph-bold ph-trophy"></i>`;
+
+            if (configJogo.modo === 'arcade') {
+                if (vidasArcade <= 0) {
+                    btnNext.innerHTML = `<span>Ver Resultado Final (Sem Vidas)</span> <i class="ph-bold ph-skull"></i>`;
+                } else {
+                    btnNext.innerHTML = `<span>Sobreviver à Onda ${rodadaAtualIndex + 2}</span> <i class="ph-bold ph-arrow-right"></i>`;
+                }
             } else {
-                btnNext.innerHTML = `<span>Próxima Rodada (${rodadaAtualIndex + 2}/5)</span> <i class="ph-bold ph-arrow-right"></i>`;
+                if (rodadaAtualIndex >= configJogo.rodadas - 1) {
+                    btnNext.innerHTML = `<span>Ver Resultado Final</span> <i class="ph-bold ph-trophy"></i>`;
+                } else {
+                    btnNext.innerHTML = `<span>Próxima Rodada (${rodadaAtualIndex + 2}/${configJogo.rodadas})</span> <i class="ph-bold ph-arrow-right"></i>`;
+                }
             }
 
             const resultCard = document.getElementById('round-result-card');
@@ -954,55 +1500,109 @@
 
         // AVANÇAR PARA A PRÓXIMA RODADA
         function proximaRodada() {
-            rodadaAtualIndex++;
-            if (rodadaAtualIndex < 5) {
+            if (configJogo.modo === 'arcade') {
+                if (vidasArcade <= 0) {
+                    finalizarPartida();
+                    return;
+                }
+                rodadaAtualIndex++;
+                if (rodadaAtualIndex >= partidaDesafios.length) {
+                    // Sorteia mais 5 desafios sem repetição para sobrevivência infinita
+                    const extra = sortearDesafiosSemRepeticao(5, configJogo);
+                    partidaDesafios = partidaDesafios.concat(extra.desafios);
+                }
                 carregarRodada(rodadaAtualIndex);
             } else {
-                finalizarPartida();
+                rodadaAtualIndex++;
+                if (rodadaAtualIndex < configJogo.rodadas) {
+                    carregarRodada(rodadaAtualIndex);
+                } else {
+                    finalizarPartida();
+                }
             }
         }
 
         // FINALIZAR PARTIDA & ABRIR MODAL ARCADE
         function finalizarPartida() {
-            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+            const totalJogadas = Math.max(1, historicoRodadas.length);
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / totalJogadas);
 
             let rankLetra = "C";
             let rankPill = "RANK C // VIAJANTE";
-            let rankTitle = "Viajante com Bússola";
+            let rankTitle = "Viajante com Bússola 🧭";
             let rankDesc = "Identificou o continente correto, mas ainda precisa calibrar a mira nos gargalos menores.";
 
-            if (pontuacaoTotal >= 24000) {
-                rankLetra = "SSS";
-                rankPill = "RANK SSS // SATÉLITE MILITAR";
-                rankTitle = "Satélite Militar de Espionagem 🛰️";
-                rankDesc = "Precisão absurda de nível militar! Você conhece cada gargalo marítimo e ponto cego da Terra.";
-                dispararConfetesGrandes();
-                tocarSomGameOver('SSS');
-            } else if (pontuacaoTotal >= 20000) {
-                rankLetra = "S";
-                rankPill = "RANK S // INTELIGÊNCIA MESTRE";
-                rankTitle = "General de Inteligência Geoespacial 🎖️";
-                rankDesc = "Excelente visão espacial e cartográfica. Seus palpites cruzaram com maestria os limites soberanos.";
-                dispararConfetes();
-                tocarSomGameOver('S');
-            } else if (pontuacaoTotal >= 16000) {
-                rankLetra = "A";
-                rankPill = "RANK A // RECONHECIMENTO TÁTICO";
-                rankTitle = "Piloto de Reconhecimento Tático ✈️";
-                rankDesc = "Excelente intuição e reflexos de localização. Você cruza oceanos sem hesitar!";
-                tocarSomGameOver('A');
-            } else if (pontuacaoTotal >= 11000) {
-                rankLetra = "B";
-                rankPill = "RANK B // CARTÓGRAFO";
-                rankTitle = "Cartógrafo Expedicionário 🧭";
-                rankDesc = "Boa noção geral dos continentes e mares, acertando a vizinhança dos alvos mais conhecidos.";
-                tocarSomGameOver('B');
+            if (configJogo.modo === 'arcade') {
+                // Ranks de sobrevivência Arcade
+                if (totalJogadas >= 15) {
+                    rankLetra = "SSS";
+                    rankPill = `RANK SSS // LENDA DA SOBREVIVÊNCIA (${totalJogadas} ONDAS)`;
+                    rankTitle = "Lenda da Sobrevivência Geoespacial 🛰️";
+                    rankDesc = `Você resistiu a impressionantes ${totalJogadas} ondas seguidas de alvos e bandeiras sem esgotar suas 3 vidas!`;
+                    dispararConfetesGrandes();
+                    tocarSomGameOver('SSS');
+                } else if (totalJogadas >= 10) {
+                    rankLetra = "S";
+                    rankPill = `RANK S // MESTRE DO RADAR (${totalJogadas} ONDAS)`;
+                    rankTitle = "Mestre de Precisão Tática 🎖️";
+                    rankDesc = `Excelente intuição e reflexos de localização sobrevivendo a ${totalJogadas} desafios do globo!`;
+                    dispararConfetes();
+                    tocarSomGameOver('S');
+                } else if (totalJogadas >= 6) {
+                    rankLetra = "A";
+                    rankPill = `RANK A // PILOTO EXPERIENTE (${totalJogadas} ONDAS)`;
+                    rankTitle = "Piloto de Reconhecimento ✈️";
+                    rankDesc = `Boa agilidade e visão de mapa, aguentando ${totalJogadas} rodadas sob a pressão das 3 vidas.`;
+                    tocarSomGameOver('A');
+                } else if (totalJogadas >= 3) {
+                    rankLetra = "B";
+                    rankPill = `RANK B // CARTÓGRAFO (${totalJogadas} ONDAS)`;
+                    rankTitle = "Cartógrafo Expedicionário 🗺️";
+                    rankDesc = `Resistiu a ${totalJogadas} ondas. Na próxima, mantenha combos de precisão para recuperar vidas!`;
+                    tocarSomGameOver('B');
+                } else {
+                    rankLetra = "D";
+                    rankPill = "RANK D // ABATIDO PRECOCE";
+                    rankTitle = "Abatido em Combate 🕳️";
+                    rankDesc = "As 3 vidas foram esgotadas rapidamente por erros acima de 1.200 km. Tente novamente!";
+                    tocarSomGameOver('D');
+                }
             } else {
-                rankLetra = "D";
-                rankPill = "RANK D // PERDIDO";
-                rankTitle = "Perdido no Triângulo das Bermudas 🕳️";
-                rankDesc = "O radar falhou e você caiu no meio do oceano. Jogue outra rodada para calibrar a bússola!";
-                tocarSomGameOver('D');
+                // Ranks do Modo Clássico escalados por rodada
+                const avgPtsPorRodada = pontuacaoTotal / totalJogadas;
+                if (avgPtsPorRodada >= 4800) {
+                    rankLetra = "SSS";
+                    rankPill = "RANK SSS // SATÉLITE MILITAR";
+                    rankTitle = "Satélite Militar de Espionagem 🛰️";
+                    rankDesc = "Precisão absurda de nível militar! Você conhece cada gargalo marítimo, capital e bandeira da Terra.";
+                    dispararConfetesGrandes();
+                    tocarSomGameOver('SSS');
+                } else if (avgPtsPorRodada >= 4000) {
+                    rankLetra = "S";
+                    rankPill = "RANK S // INTELIGÊNCIA MESTRE";
+                    rankTitle = "General de Inteligência Geoespacial 🎖️";
+                    rankDesc = "Excelente visão espacial e cartográfica. Seus palpites cruzaram com maestria os limites soberanos.";
+                    dispararConfetes();
+                    tocarSomGameOver('S');
+                } else if (avgPtsPorRodada >= 3000) {
+                    rankLetra = "A";
+                    rankPill = "RANK A // RECONHECIMENTO TÁTICO";
+                    rankTitle = "Piloto de Reconhecimento Tático ✈️";
+                    rankDesc = "Excelente intuição e reflexos de localização. Você cruza oceanos sem hesitar!";
+                    tocarSomGameOver('A');
+                } else if (avgPtsPorRodada >= 2000) {
+                    rankLetra = "B";
+                    rankPill = "RANK B // CARTÓGRAFO";
+                    rankTitle = "Cartógrafo Expedicionário 🧭";
+                    rankDesc = "Boa noção geral dos continentes e mares, acertando a vizinhança dos alvos mais conhecidos.";
+                    tocarSomGameOver('B');
+                } else {
+                    rankLetra = "D";
+                    rankPill = "RANK D // PERDIDO";
+                    rankTitle = "Perdido no Triângulo das Bermudas 🕳️";
+                    rankDesc = "O radar falhou e você caiu no meio do oceano. Jogue outra rodada para calibrar a bússola!";
+                    tocarSomGameOver('D');
+                }
             }
 
             document.getElementById('final-rank-pill').innerText = rankPill;
@@ -1016,15 +1616,19 @@
             const badgesContainer = document.getElementById('final-badges-container');
             const badges = [];
 
+            if (configJogo.modo === 'arcade') {
+                badges.push({ icone: "ph-bold ph-heart", texto: `Sobreviveu ${totalJogadas} Ondas`, cor: "text-red-400 border-red-500/30 bg-red-500/10" });
+            }
+
             const temSniper = historicoRodadas.some(r => r.distKm <= 50);
             if (temSniper) badges.push({ icone: "ph-bold ph-crosshair", texto: "Sniper (< 50 km)", cor: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10" });
 
             if (maxStreakPartida >= 2) badges.push({ icone: "ph-bold ph-fire", texto: `Streak ${maxStreakPartida}x`, cor: "text-amber-400 border-amber-500/30 bg-amber-500/10" });
 
-            const tempoMedio = historicoRodadas.reduce((acc, r) => acc + (r.tempoGasto || 0), 0) / 5;
+            const tempoMedio = historicoRodadas.reduce((acc, r) => acc + (r.tempoGasto || 0), 0) / totalJogadas;
             if (tempoMedio <= 6) badges.push({ icone: "ph-bold ph-lightning", texto: `Reflexo Rápido (${tempoMedio.toFixed(1)}s)`, cor: "text-sky-400 border-sky-500/30 bg-sky-500/10" });
 
-            if (pontuacaoTotal >= 20000) badges.push({ icone: "ph-bold ph-trophy", texto: "Mestre de Precisão", cor: "text-yellow-300 border-yellow-400/30 bg-yellow-400/10" });
+            if (pontuacaoTotal >= 35000) badges.push({ icone: "ph-bold ph-trophy", texto: "Super Pontuação", cor: "text-yellow-300 border-yellow-400/30 bg-yellow-400/10" });
 
             badgesContainer.innerHTML = badges.map(b => `
                 <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-[10px] font-mono ${b.cor}">
@@ -1037,12 +1641,14 @@
             const roundsList = document.getElementById('final-rounds-list');
             roundsList.innerHTML = historicoRodadas.map((r, i) => {
                 let badgeEmoji = r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'));
+                let extraTag = r.vidaPerdida ? '<span class="text-red-400 text-[10px]">💔-1</span>' : (r.vidaRecuperada ? '<span class="text-emerald-400 text-[10px]">💚+1</span>' : '');
                 return `
                 <div class="flex items-center justify-between p-2 rounded-xl bg-[#090a0f] border border-white/5 text-xs font-mono">
                     <div class="flex items-center gap-2">
                         <span class="text-slate-500 text-[10px]">#${i + 1}</span>
                         <span>${badgeEmoji}</span>
                         <strong class="text-slate-200 truncate max-w-[170px] sm:max-w-[220px]">${r.local}</strong>
+                        ${extraTag}
                     </div>
                     <div class="text-right flex items-center gap-2">
                         <span class="text-amber-400 font-bold">${r.distKm.toLocaleString('pt-BR')} km</span>
@@ -1061,8 +1667,8 @@
                     vistos = JSON.parse(localStorage.getItem(STORAGE_KEY_VISTOS) || '[]');
                     ciclo = localStorage.getItem(STORAGE_KEY_CICLO) || '1';
                 } catch (e) {}
-                const total = obterBaseLocais().length;
-                finalCacheEl.innerHTML = `🌍 Você já explorou <strong>${vistos.length} de ${total}</strong> locais da Terra sem repetição (Ciclo ${ciclo})!`;
+                const total = obterCatalogoDesafios(configJogo).length;
+                finalCacheEl.innerHTML = `🌍 Você já explorou <strong>${vistos.length} de ${total}</strong> desafios da Terra sem repetição (Ciclo ${ciclo})!`;
             }
 
             document.getElementById('modal-game-over').classList.remove('hidden');
@@ -1075,24 +1681,42 @@
 
         // COMPARTILHAR DIRETAMENTE NO WHATSAPP COM FORMATO VIRAL
         function compartilharWhatsApp() {
-            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+            const totalJogadas = Math.max(1, historicoRodadas.length);
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / totalJogadas);
             let rankLetra = "C";
             let emojiRank = '🗺️';
-            if (pontuacaoTotal >= 24000) { rankLetra = "SSS"; emojiRank = '🛰️'; }
-            else if (pontuacaoTotal >= 20000) { rankLetra = "S"; emojiRank = '🎖️'; }
-            else if (pontuacaoTotal >= 16000) { rankLetra = "A"; emojiRank = '✈️'; }
-            else if (pontuacaoTotal >= 11000) { rankLetra = "B"; emojiRank = '🧭'; }
 
-            let texto = `🎯 Joguei "Onde Fica no Mapa?" no VitaleGeo Arcade!\n`;
-            texto += `🏆 Pontuação: ${pontuacaoTotal.toLocaleString('pt-BR')} pts (RANK ${rankLetra} ${emojiRank})\n`;
-            texto += `📏 Distância Média: ${avgDist.toLocaleString('pt-BR')} km | 🔥 Melhor Streak: ${maxStreakPartida}x\n\n`;
+            if (pontuacaoTotal >= 40000) { rankLetra = "SSS"; emojiRank = '🛰️'; }
+            else if (pontuacaoTotal >= 25000) { rankLetra = "S"; emojiRank = '🎖️'; }
+            else if (pontuacaoTotal >= 15000) { rankLetra = "A"; emojiRank = '✈️'; }
+            else if (pontuacaoTotal >= 8000) { rankLetra = "B"; emojiRank = '🧭'; }
 
-            historicoRodadas.forEach((r, i) => {
+            const nomeModo = configJogo.modo === 'arcade' ? `Modo Arcade de Vidas (${totalJogadas} Ondas)` : `Modo Clássico (${configJogo.rodadas} Rodadas)`;
+
+            let texto = `🎯 Joguei "Onde Fica no Mapa?" no VitaleGeo Arcade!
+`;
+            texto += `🕹️ Modo: ${nomeModo}
+`;
+            texto += `🏆 Pontuação: ${pontuacaoTotal.toLocaleString('pt-BR')} pts (RANK ${rankLetra} ${emojiRank})
+`;
+            texto += `📏 Distância Média: ${avgDist.toLocaleString('pt-BR')} km | 🔥 Melhor Streak: ${maxStreakPartida}x
+
+`;
+
+            historicoRodadas.slice(0, 8).forEach((r, i) => {
                 let icone = r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'));
-                texto += `${i + 1}. ${r.local} ${icone} ${r.distKm} km (+${r.score} pts)\n`;
+                texto += `${i + 1}. ${r.local} ${icone} ${r.distKm} km (+${r.score} pts)
+`;
             });
 
-            texto += `\nDuvido você chegar mais perto no mapa mudo! Jogue grátis:\n👉 https://www.vitalegeo.com.br/jogos/onde-fica/`;
+            if (historicoRodadas.length > 8) {
+                texto += `... e mais ${historicoRodadas.length - 8} rodadas!
+`;
+            }
+
+            texto += `
+Duvido você chegar mais perto no mapa mudo! Jogue grátis:
+👉 https://www.vitalegeo.com.br/jogos/onde-fica/`;
 
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
@@ -1100,12 +1724,18 @@
 
         // COPIAR RESULTADO PARA A ÁREA DE TRANSFERÊNCIA (GRADE EMOJI ESTILO WORDLE)
         function copiarResultado() {
-            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
-            let emojis = historicoRodadas.map(r => r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'))).join(' ');
+            const totalJogadas = Math.max(1, historicoRodadas.length);
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / totalJogadas);
+            let emojis = historicoRodadas.slice(0, 10).map(r => r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'))).join(' ');
 
-            let texto = `🌍 VitaleGeo // Onde Fica no Mapa?\n`;
-            texto += `🏆 ${pontuacaoTotal.toLocaleString('pt-BR')} pts | ${emojis}\n`;
-            texto += `📏 Média: ${avgDist} km | 🔥 Streak: ${maxStreakPartida}x\n`;
+            const nomeModo = configJogo.modo === 'arcade' ? `Arcade (${totalJogadas} Ondas)` : `Clássico (${configJogo.rodadas}R)`;
+
+            let texto = `🌍 VitaleGeo // Onde Fica no Mapa? [${nomeModo}]
+`;
+            texto += `🏆 ${pontuacaoTotal.toLocaleString('pt-BR')} pts | ${emojis}
+`;
+            texto += `📏 Média: ${avgDist} km | 🔥 Streak: ${maxStreakPartida}x
+`;
             texto += `Jogue também: https://www.vitalegeo.com.br/jogos/onde-fica/`;
 
             navigator.clipboard.writeText(texto).then(() => {
@@ -1118,7 +1748,7 @@
             });
         }
 
-        // GERAR E BAIXAR SCORECARD VISUAL EM PNG VIA HTML5 CANVAS (PARA STORIES & TWITTER)
+        // GERAR E BAIXAR SCORECARD VISUAL EM PNG VIA HTML5 CANVAS
         function baixarCardImagemPNG() {
             const btn = document.getElementById('btn-download-card');
             if (btn) btn.innerHTML = `<i class="ph-bold ph-spinner animate-spin"></i> Gerando...`;
@@ -1129,14 +1759,15 @@
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+            const totalJogadas = Math.max(1, historicoRodadas.length);
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / totalJogadas);
 
             let rankLetra = "C";
             let rankSub = "CARTÓGRAFO EM TREINAMENTO";
-            if (pontuacaoTotal >= 24000) { rankLetra = "SSS"; rankSub = "SATÉLITE MILITAR DE ESPIONAGEM"; }
-            else if (pontuacaoTotal >= 20000) { rankLetra = "S"; rankSub = "GENERAL DE INTELIGÊNCIA GEOESPACIAL"; }
-            else if (pontuacaoTotal >= 16000) { rankLetra = "A"; rankSub = "PILOTO DE RECONHECIMENTO TÁTICO"; }
-            else if (pontuacaoTotal >= 11000) { rankLetra = "B"; rankSub = "CARTÓGRAFO EXPEDICIONÁRIO"; }
+            if (pontuacaoTotal >= 40000) { rankLetra = "SSS"; rankSub = "SATÉLITE MILITAR DE ESPIONAGEM"; }
+            else if (pontuacaoTotal >= 25000) { rankLetra = "S"; rankSub = "GENERAL DE INTELIGÊNCIA GEOESPACIAL"; }
+            else if (pontuacaoTotal >= 15000) { rankLetra = "A"; rankSub = "PILOTO DE RECONHECIMENTO TÁTICO"; }
+            else if (pontuacaoTotal >= 8000) { rankLetra = "B"; rankSub = "CARTÓGRAFO EXPEDICIONÁRIO"; }
 
             // 1. Fundo Gradiente Escuro Sofisticado
             const bgGrad = ctx.createRadialGradient(450, 150, 40, 450, 450, 620);
@@ -1159,7 +1790,8 @@
 
             ctx.fillStyle = '#94a3b8';
             ctx.font = '14px "Space Mono", monospace';
-            ctx.fillText('DESAFIO DE PRECISÃO: ONDE FICA NO MAPA?', 450, 115);
+            const modoTexto = configJogo.modo === 'arcade' ? `MODO ARCADE SOBREVIVÊNCIA // ${totalJogadas} ONDAS` : `MODO CLÁSSICO // ${configJogo.rodadas} RODADAS`;
+            ctx.fillText(`DESAFIO DE PRECISÃO: ONDE FICA NO MAPA? (${modoTexto})`, 450, 115);
 
             // 3. Card do Rank Central
             ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
@@ -1186,37 +1818,34 @@
             ctx.font = 'bold 20px "Space Mono", monospace';
             ctx.fillText(`MÉDIA: ${avgDist} KM`, 580, 298);
 
-            // 4. As 5 Rodadas em Linhas Visuais
+            // 4. Rodadas em Linhas Visuais (até 6 amostras)
             ctx.textAlign = 'left';
             const startY = 350;
-            historicoRodadas.forEach((r, i) => {
-                const y = startY + (i * 78);
+            const amostra = historicoRodadas.slice(0, 6);
+            amostra.forEach((r, i) => {
+                const y = startY + (i * 74);
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-                ctx.fillRect(75, y, 750, 62);
+                ctx.fillRect(75, y, 750, 60);
                 ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
-                ctx.strokeRect(75, y, 750, 62);
+                ctx.strokeRect(75, y, 750, 60);
 
-                // Número
                 ctx.fillStyle = '#64748b';
                 ctx.font = 'bold 16px "Space Mono", monospace';
-                ctx.fillText(`#${i + 1}`, 98, y + 38);
+                ctx.fillText(`#${i + 1}`, 98, y + 36);
 
-                // Nome do Local
                 ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+                ctx.font = 'bold 19px "Plus Jakarta Sans", sans-serif';
                 let nome = r.local;
                 if (nome.length > 25) nome = nome.substring(0, 23) + '...';
-                ctx.fillText(nome, 150, y + 38);
+                ctx.fillText(nome, 150, y + 36);
 
-                // Distância
                 ctx.textAlign = 'right';
                 ctx.fillStyle = r.distKm <= 50 ? '#10b981' : (r.distKm <= 250 ? '#f59e0b' : '#ef4444');
                 ctx.font = 'bold 18px "Space Mono", monospace';
-                ctx.fillText(`${r.distKm.toLocaleString('pt-BR')} km`, 670, y + 38);
+                ctx.fillText(`${r.distKm.toLocaleString('pt-BR')} km`, 670, y + 36);
 
-                // Pontos
                 ctx.fillStyle = '#10b981';
-                ctx.fillText(`+${r.score}`, 795, y + 38);
+                ctx.fillText(`+${r.score}`, 795, y + 36);
                 ctx.textAlign = 'left';
             });
 
@@ -1226,7 +1855,6 @@
             ctx.font = '15px "Space Mono", monospace';
             ctx.fillText('JOGUE GRÁTIS EM WWW.VITALEGEO.COM.BR/JOGOS/ONDE-FICA/', 450, 840);
 
-            // Download automático
             try {
                 const link = document.createElement('a');
                 link.download = `vitalegeo-onde-fica-${pontuacaoTotal}pts.png`;
@@ -1240,7 +1868,7 @@
             }, 1500);
         }
 
-        // ANIMAÇÕES DE NÚMEROS / CONTADORES DE PONTOS (DOPAMINA)
+        // ANIMAÇÕES DE CONTADORES DE PONTOS
         function animarContador(id, valorFinal, prefixo = '', sufixo = '', duracao = 700) {
             const el = document.getElementById(id);
             if (!el) return;
@@ -1423,6 +2051,47 @@
             } catch(e) {}
         }
 
+        function tocarSomDanoVida() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(160, now);
+                osc.frequency.exponentialRampToValueAtTime(70, now + 0.35);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } catch(e) {}
+        }
+
+        function tocarSomVidaRecuperada() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                [440, 554.37, 659.25, 880, 1108.73].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.06);
+                    gain.gain.setValueAtTime(0.12, now + i * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + (i + 1) * 0.12);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.06);
+                    osc.stop(now + (i + 1) * 0.12);
+                });
+            } catch(e) {}
+        }
+
         function tocarSomGameOver(rank) {
             if (!somHabilitado) return;
             try {
@@ -1487,6 +2156,7 @@
 
         // INICIA AO CARREGAR A PÁGINA
         window.addEventListener('DOMContentLoaded', iniciarJogo);
+
     </script>
 </body>
 </html>
