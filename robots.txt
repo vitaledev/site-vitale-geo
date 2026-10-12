@@ -9,3 +9,4 @@ User-agent: AdsBot-Google
 Allow: /
 
 Sitemap: https://www.vitalegeo.com.br/sitemap.xml
+Sitemap: https://www.vitalegeo.com.br/rss.xml

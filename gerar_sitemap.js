@@ -6,8 +6,7 @@ const DOMINIO = 'https://www.vitalegeo.com.br';
 const PASTA_RAIZ = __dirname; // Onde o script está
 const ARQUIVO_SAIDA = 'sitemap.xml';
 
-// Pastas para ignorar (não queremos indexar assets ou arquivos de sistema)
-const IGNORAR = ['.git', '.vscode', 'assets', '_modelos', 'node_modules'];
+const IGNORAR = ['.git', '.vscode', '.github', '.astro', 'assets', '_modelos', 'node_modules', 'dist', 'public'];
 
 // Cabeçalho do XML
 let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>

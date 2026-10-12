@@ -8,7 +8,10 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sitemap": "node gerar_sitemap.js"
+    "sitemap": "node gerar_sitemap.js",
+    "rss": "node scripts/gerar-rss.js",
+    "indexnow": "node scripts/ping-indexnow.js",
+    "seo": "node gerar_sitemap.js && node scripts/gerar-rss.js && node scripts/ativar-discover-e-rss.js && node scripts/ping-indexnow.js"
   },
   "keywords": [
     "geografia",
