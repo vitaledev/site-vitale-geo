@@ -1,5 +1,12 @@
 const toolsDB = [
     {
+        titulo: "Quantos Cabem? (Comparador de Escala)",
+        desc: "Descubra quantas vezes um país ou estado cabe dentro de outro com preenchimento em blocos.",
+        icon: "ph-bold ph-squares-four",
+        cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
+        link: "/ferramentas/quantos-cabem/"
+    },
+    {
         titulo: "Qual o Real Tamanho dos Países?",
         desc: "Compare o tamanho real dos territórios de cada país no mapa",
         icon: "ph-bold ph-globe-stand",

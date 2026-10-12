@@ -8,6 +8,13 @@ export interface ToolItem {
 
 export const toolsDB: ToolItem[] = [
   {
+    titulo: "Quantos Cabem? (Comparador de Escala)",
+    desc: "Descubra visualmente quantas vezes um país ou estado cabe dentro de outro território com preenchimento em blocos.",
+    icon: "ph-bold ph-squares-four",
+    cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
+    link: "/ferramentas/quantos-cabem/"
+  },
+  {
     titulo: "Qual o Real Tamanho dos Países?",
     desc: "Compare o tamanho real dos territórios de cada país no mapa e descubra a distorção da projeção de Mercator.",
     icon: "ph-bold ph-globe-stand",

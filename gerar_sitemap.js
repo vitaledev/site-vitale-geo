@@ -1,9 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // CONFIGURAÇÕES
 const DOMINIO = 'https://www.vitalegeo.com.br';
-const PASTA_RAIZ = __dirname; // Onde o script está
+const __filename = fileURLToPath(import.meta.url);
+const PASTA_RAIZ = path.dirname(__filename); // Onde o script está
 const ARQUIVO_SAIDA = 'sitemap.xml';
 
 const IGNORAR = ['.git', '.vscode', '.github', '.astro', 'assets', '_modelos', 'node_modules', 'dist', 'public'];

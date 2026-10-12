@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/quantos-cabem/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantos Cabem? | Comparador de Escala Territorial — VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Descubra visualmente quantos países ou estados cabem dentro de outro território. Compare Japão no Brasil, Portugal em São Paulo, França em Minas Gerais e muito mais!">
+    <meta name="keywords" content="quantos países cabem no brasil, escala real dos países, distorção de mercator, comparador de área geográfica, tamanho dos países, vitalegeo">
+    
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Quantos Cabem? Comparador Territorial | VitaleGeo">
+    <meta property="og:description" content="Você sabia que cabem 92 Portugais dentro do Brasil e que a Bahia é maior que a França? Teste qualquer combinação!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/quantos-cabem/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <!-- Fontes Oficiais VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#1e293b',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .editorial-card {
+            background: #11131a;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+        }
+        .mini-block {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+        }
+        .mini-block:hover {
+            transform: scale(1.18);
+            z-index: 10;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black page-shell min-h-screen flex flex-col justify-between">
+
+    <!-- Navbar Flutuante em Pílula -->
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
+                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Dossiês</a>
+                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Ferramentas</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
+                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            </a>
+        </div>
+    </nav>
+
+    <!-- Botão de Retorno -->
+    <div class="fixed top-24 right-6 z-30">
+        <a href="/ferramentas" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+            <i class="ph-bold ph-arrow-left"></i> Todas as Ferramentas
+        </a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-32 pb-20 px-4 sm:px-6 flex-1">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Cabeçalho Editorial -->
+            <header class="text-center max-w-3xl mx-auto mb-10">
+                <div class="inline-flex items-center gap-2 text-xs font-mono font-medium text-amber-400 tracking-wider uppercase mb-3 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
+                    <i class="ph-bold ph-squares-four text-sm"></i> Proporção Cartográfica
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight mb-4">
+                    Quantos Cabem Dentro de Quem?
+                </h1>
+                <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Compare a escala real de países e estados sem a ilusão de Mercator. Descubra quantas vezes um território cabe dentro de outro com preenchimento visual em tempo real.
+                </p>
+            </header>
+
+            <!-- Duelos Rápidos Virais (Quick Picks) -->
+            <div class="mb-8">
+                <p class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-3 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5">
+                    <i class="ph-bold ph-lightning text-amber-400"></i> Duelos Clássicos Populares:
+                </p>
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs">
+                    <button onclick="setPreset('pt', 'br')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇵🇹 Portugal no 🇧🇷 Brasil (92x)
+                    </button>
+                    <button onclick="setPreset('jp', 'br_am')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇯🇵 Japão no 🇧🇷 Amazonas (4x)
+                    </button>
+                    <button onclick="setPreset('fr', 'br_ba')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇫🇷 França na 🇧🇷 Bahia (1x)
+                    </button>
+                    <button onclick="setPreset('de', 'br_ma')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇩🇪 Alemanha no 🇧🇷 Maranhão (1x)
+                    </button>
+                    <button onclick="setPreset('gb', 'br_sp')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇬🇧 Reino Unido em 🇧🇷 São Paulo (1x)
+                    </button>
+                    <button onclick="setPreset('it', 'br_rs')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇮🇹 Itália no 🇧🇷 Rio Grande do Sul (0.9x)
+                    </button>
+                    <button onclick="setPreset('ru', 'africa')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇷🇺 Rússia na 🌍 África (0.5x)
+                    </button>
+                    <button onclick="setPreset('br', 'europa')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
+                        🇧🇷 Brasil na 🇪🇺 Europa (0.8x)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel de Seleção Principal -->
+            <div class="editorial-card p-5 sm:p-7 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center relative">
+                    
+                    <!-- Lado A: O que vai caber -->
+                    <div class="relative">
+                        <label class="block text-xs font-mono uppercase tracking-wider text-amber-400 mb-2 flex items-center justify-between">
+                            <span>1. Território de Referência (O que entra)</span>
+                            <span id="label-area-a" class="text-slate-400 font-normal">-- km²</span>
+                        </label>
+                        <div class="relative">
+                            <select id="select-a" onchange="calcularProporcao()" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-4 py-3.5 text-white font-medium focus:outline-none focus:border-amber-400 appearance-none cursor-pointer pr-10 text-sm sm:text-base">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </select>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divisor com Ícone de Troca -->
+                    <button onclick="inverterSelecao()" title="Inverter posições" class="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 mx-auto w-10 h-10 rounded-full bg-slate-800 border border-white/15 text-amber-400 hover:bg-amber-400 hover:text-black transition flex items-center justify-center z-10 shadow-lg group">
+                        <i class="ph-bold ph-arrows-left-right group-hover:rotate-180 transition duration-300"></i>
+                    </button>
+
+                    <!-- Lado B: Onde vai caber -->
+                    <div class="relative">
+                        <label class="block text-xs font-mono uppercase tracking-wider text-sky-400 mb-2 flex items-center justify-between">
+                            <span>2. Território Alvo (Onde vai entrar)</span>
+                            <span id="label-area-b" class="text-slate-400 font-normal">-- km²</span>
+                        </label>
+                        <div class="relative">
+                            <select id="select-b" onchange="calcularProporcao()" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-4 py-3.5 text-white font-medium focus:outline-none focus:border-sky-400 appearance-none cursor-pointer pr-10 text-sm sm:text-base">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </select>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Placar de Destaque / Veredito -->
+            <div class="editorial-card p-6 sm:p-8 mb-8 text-center relative overflow-hidden bg-gradient-to-b from-[#161a26] to-[#11131a]">
+                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10">
+                    <p class="text-xs sm:text-sm font-mono uppercase tracking-widest text-slate-400 mb-2">Veredito da Proporção Territorial</p>
+                    
+                    <div class="flex items-baseline justify-center gap-2 mb-3">
+                        <span id="resultado-numero" class="text-5xl sm:text-7xl font-heading font-black text-white tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
+                            --
+                        </span>
+                        <span class="text-2xl sm:text-3xl font-heading font-bold text-amber-400">vezes</span>
+                    </div>
+
+                    <h2 id="resultado-frase" class="text-base sm:text-xl font-heading font-semibold text-slate-200 max-w-2xl mx-auto leading-snug mb-6">
+                        Carregando comparação...
+                    </h2>
+
+                    <!-- Botão de Ação Viral (Compartilhar no WhatsApp & Copiar) -->
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <button onclick="compartilharWhatsApp()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-semibold transition hover:scale-[1.02]">
+                            <i class="ph-fill ph-whatsapp-logo text-base"></i> Desafiar no WhatsApp
+                        </button>
+                        <button onclick="copiarLinkResultado()" id="btn-copiar" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs sm:text-sm font-semibold transition hover:scale-[1.02]">
+                            <i class="ph-bold ph-copy text-base"></i> Copiar Resultado
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade Visual de Preenchimento -->
+            <div class="editorial-card p-6 sm:p-8 mb-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/5">
+                    <div>
+                        <h3 class="text-lg font-heading font-bold text-white flex items-center gap-2">
+                            <i class="ph-bold ph-grid-nine text-amber-400"></i> Visualização da Proporção
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-400">Cada bloco abaixo representa 1 unidade inteira de área preenchida dentro do alvo.</p>
+                    </div>
+                    <div id="badge-contagem" class="text-xs font-mono text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+                        0 / 0 Blocos
+                    </div>
+                </div>
+
+                <!-- Container dos Blocos -->
+                <div id="grid-blocos" class="flex flex-wrap gap-2 sm:gap-2.5 max-h-96 overflow-y-auto p-3 bg-slate-950/60 rounded-xl border border-white/5 custom-scrollbar min-h-[140px] items-center justify-center">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+
+                <!-- Legenda do Grid -->
+                <div class="flex flex-wrap items-center justify-between gap-4 mt-4 pt-4 border-t border-white/5 text-xs text-slate-400">
+                    <div class="flex items-center gap-4">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-400 inline-block"></span> 1x Unidade Inteira</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-400/40 border border-dashed border-amber-300 inline-block"></span> Fração Residual</span>
+                    </div>
+                    <span id="legenda-extra" class="text-slate-500 font-mono">1 bloco = 1x escala</span>
+                </div>
+            </div>
+
+            <!-- Dados Comparativos Detalhados (Tabela de Métricas) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Área -->
+                <div class="editorial-card p-5">
+                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Área Territorial</span>
+                    <div class="space-y-3 mt-3">
+                        <div>
+                            <span class="text-xs text-amber-400 block font-mono" id="card-nome-a">Território A</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-area-a">-- km²</p>
+                        </div>
+                        <div class="h-px bg-white/5"></div>
+                        <div>
+                            <span class="text-xs text-sky-400 block font-mono" id="card-nome-b">Território B</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-area-b">-- km²</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- População Estimada -->
+                <div class="editorial-card p-5">
+                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">População Estimada</span>
+                    <div class="space-y-3 mt-3">
+                        <div>
+                            <span class="text-xs text-amber-400 block font-mono" id="card-pop-label-a">Território A</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-pop-a">--</p>
+                        </div>
+                        <div class="h-px bg-white/5"></div>
+                        <div>
+                            <span class="text-xs text-sky-400 block font-mono" id="card-pop-label-b">Território B</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-pop-b">--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Densidade Demográfica -->
+                <div class="editorial-card p-5">
+                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Densidade Demográfica</span>
+                    <div class="space-y-3 mt-3">
+                        <div>
+                            <span class="text-xs text-amber-400 block font-mono" id="card-dens-label-a">Território A</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-dens-a">-- hab/km²</p>
+                        </div>
+                        <div class="h-px bg-white/5"></div>
+                        <div>
+                            <span class="text-xs text-sky-400 block font-mono" id="card-dens-label-b">Território B</span>
+                            <p class="text-lg font-heading font-bold text-white" id="card-dens-b">-- hab/km²</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-10 mx-auto w-full max-w-4xl min-h-[280px] bg-[#0c0e14] border border-white/5 rounded-2xl flex flex-col items-center justify-center text-xs text-slate-600 font-mono p-4 text-center">
+                <span class="text-slate-500 mb-1">Espaço Publicitário</span>
+                <span class="text-[10px] text-slate-700">Google AdSense Responsivo</span>
+            </div>
+
+            <!-- Dossiê Investigativo / Curiosidade Explicativa -->
+            <section class="editorial-card p-6 sm:p-10 mb-12">
+                <div class="inline-flex items-center gap-2 text-xs font-mono text-sky-400 mb-3 uppercase tracking-wider">
+                    <i class="ph-bold ph-book-open text-base"></i> Entenda o Fenômeno
+                </div>
+                <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-4">
+                    Por que nossa percepção de tamanho é tão enganosa?
+                </h3>
+                <div class="text-sm sm:text-base text-slate-300 leading-relaxed space-y-4">
+                    <p>
+                        Por mais de 450 anos, a Projeção de Mercator (desenhada em 1569 para facilitar a navegação marítima em bússolas) tornou-se o padrão nas salas de aula e atlas escolares. O problema? Ao projetar uma esfera tridimensional em um plano cilíndrico reto, **as áreas próximas aos polos são esticadas monstruosamente**, enquanto as regiões tropicais e equatoriais são comprimidas.
+                    </p>
+                    <p>
+                        É por isso que a maioria das pessoas se surpreende ao descobrir que:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-300 pl-2">
+                        <li><strong class="text-white">O Brasil tem 8,5 milhões de km²</strong> e é maior que toda a Europa Ocidental somada (e cabe o território da França mais de 15 vezes).</li>
+                        <li><strong class="text-white">O estado da Bahia (564 mil km²)</strong> é maior que a França metropolitana inteira (551 mil km²).</li>
+                        <li><strong class="text-white">O estado de São Paulo (248 mil km²)</strong> é do tamanho exato de todo o Reino Unido (Inglaterra, Escócia, País de Gales e Irlanda do Norte somados).</li>
+                        <li><strong class="text-white">A Groenlândia</strong> parece do tamanho da África no mapa escolar, mas na realidade a África é **14 vezes maior** que a Groenlândia!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CTA Canal do YouTube -->
+            <div class="editorial-card p-6 sm:p-8 text-center bg-gradient-to-r from-red-950/20 via-slate-900 to-slate-950 border-red-500/20">
+                <i class="ph-fill ph-youtube-logo text-4xl text-red-500 mb-3 inline-block"></i>
+                <h4 class="text-lg sm:text-xl font-heading font-bold text-white mb-2">Quer ver mais curiosidades e geopolítica em vídeo?</h4>
+                <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto mb-5">
+                    No canal oficial do VitaleGeo você descobre anomalias territoriais, histórias de fronteiras bizarras e geopolítica sem enrolação.
+                </p>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-500 text-white font-heading font-semibold text-xs sm:text-sm transition hover:scale-105 shadow-lg shadow-red-600/25">
+                    Inscrever-se no Canal <i class="ph-bold ph-arrow-up-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="site-footer bg-[#07080c] border-t border-white/5 py-12 px-6 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-center gap-4 mb-4 text-base">
+                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="font-heading text-sm text-white font-bold">VitaleGeo</p>
+            <p class="text-slate-400 text-xs mt-1">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4 text-[11px] text-slate-400">
+                <a href="/sobre/" class="hover:text-white transition">Sobre o Projeto</a>
+                <span>·</span>
+                <a href="/politica/" class="hover:text-white transition">Política de Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/" class="hover:text-white transition">Todas as Ferramentas</a>
+                <span>·</span>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-white transition">Canal YouTube</a>
+            </div>
+            <p class="text-[11px] text-slate-600 mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Dados Territoriais e Lógica da Ferramenta -->
+    <script>
+        // Banco de Dados Consolidado (Países, Continentes e Estados Brasileiros)
+        const territorios = [
+            // Continentes / Blocos
+            { id: 'africa', nome: '🌍 Continente Africano', area: 30370000, pop: '1,4 bilhão', flag: '🌍', grupo: 'Continentes' },
+            { id: 'america_sul', nome: '🌎 América do Sul', area: 17840000, pop: '430 milhões', flag: '🌎', grupo: 'Continentes' },
+            { id: 'europa', nome: '🇪🇺 Europa (Continente)', area: 10180000, pop: '745 milhões', flag: '🇪🇺', grupo: 'Continentes' },
+            { id: 'ue', nome: '🇪🇺 União Europeia', area: 4233262, pop: '448 milhões', flag: '🇪🇺', grupo: 'Continentes' },
+
+            // Principais Países do Mundo
+            { id: 'ru', nome: '🇷🇺 Rússia', area: 17098246, pop: '144 milhões', flag: '🇷🇺', grupo: 'Países' },
+            { id: 'ca', nome: '🇨🇦 Canadá', area: 9984670, pop: '40 milhões', flag: '🇨🇦', grupo: 'Países' },
+            { id: 'cn', nome: '🇨🇳 China', area: 9596961, pop: '1,41 bilhão', flag: '🇨🇳', grupo: 'Países' },
+            { id: 'us', nome: '🇺🇸 Estados Unidos', area: 9833517, pop: '335 milhões', flag: '🇺🇸', grupo: 'Países' },
+            { id: 'br', nome: '🇧🇷 Brasil', area: 8515767, pop: '215 milhões', flag: '🇧🇷', grupo: 'Países' },
+            { id: 'au', nome: '🇦🇺 Austrália', area: 7692024, pop: '26 milhões', flag: '🇦🇺', grupo: 'Países' },
+            { id: 'in', nome: '🇮🇳 Índia', area: 3287263, pop: '1,43 bilhão', flag: '🇮🇳', grupo: 'Países' },
+            { id: 'ar', nome: '🇦🇷 Argentina', area: 2780400, pop: '46 milhões', flag: '🇦🇷', grupo: 'Países' },
+            { id: 'kz', nome: '🇰🇿 Cazaquistão', area: 2724900, pop: '20 milhões', flag: '🇰🇿', grupo: 'Países' },
+            { id: 'dz', nome: '🇩🇿 Argélia', area: 2381741, pop: '45 milhões', flag: '🇩🇿', grupo: 'Países' },
+            { id: 'gl', nome: '🇬🇱 Groenlândia (Dinamarca)', area: 2166086, pop: '56 mil', flag: '🇬🇱', grupo: 'Países' },
+            { id: 'mx', nome: '🇲🇽 México', area: 1964375, pop: '128 milhões', flag: '🇲🇽', grupo: 'Países' },
+            { id: 'id', nome: '🇮🇩 Indonésia', area: 1904569, pop: '278 milhões', flag: '🇮🇩', grupo: 'Países' },
+            { id: 'pe', nome: '🇵🇪 Peru', area: 1285216, pop: '34 milhões', flag: '🇵🇪', grupo: 'Países' },
+            { id: 'za', nome: '🇿🇦 África do Sul', area: 1221037, pop: '60 milhões', flag: '🇿🇦', grupo: 'Países' },
+            { id: 'co', nome: '🇨🇴 Colômbia', area: 1141748, pop: '52 milhões', flag: '🇨🇴', grupo: 'Países' },
+            { id: 'bo', nome: '🇧🇴 Bolívia', area: 1098581, pop: '12 milhões', flag: '🇧🇴', grupo: 'Países' },
+            { id: 'eg', nome: '🇪🇬 Egito', area: 1002450, pop: '110 milhões', flag: '🇪🇬', grupo: 'Países' },
+            { id: 'ng', nome: '🇳🇬 Nigéria', area: 923768, pop: '220 milhões', flag: '🇳🇬', grupo: 'Países' },
+            { id: 've', nome: '🇻🇪 Venezuela', area: 916445, pop: '29 milhões', flag: '🇻🇪', grupo: 'Países' },
+            { id: 'cl', nome: '🇨🇱 Chile', area: 756102, pop: '19 milhões', flag: '🇨🇱', grupo: 'Países' },
+            { id: 'ua', nome: '🇺🇦 Ucrânia', area: 603628, pop: '38 milhões', flag: '🇺🇦', grupo: 'Países' },
+            { id: 'fr', nome: '🇫🇷 França (Metropolitana)', area: 551695, pop: '68 milhões', flag: '🇫🇷', grupo: 'Países' },
+            { id: 'es', nome: '🇪🇸 Espanha', area: 505990, pop: '48 milhões', flag: '🇪🇸', grupo: 'Países' },
+            { id: 'se', nome: '🇸🇪 Suécia', area: 450295, pop: '10,5 milhões', flag: '🇸🇪', grupo: 'Países' },
+            { id: 'py', nome: '🇵🇾 Paraguai', area: 406752, pop: '7 milhões', flag: '🇵🇾', grupo: 'Países' },
+            { id: 'no', nome: '🇳🇴 Noruega', area: 385207, pop: '5,5 milhões', flag: '🇳🇴', grupo: 'Países' },
+            { id: 'jp', nome: '🇯🇵 Japão', area: 377975, pop: '125 milhões', flag: '🇯🇵', grupo: 'Países' },
+            { id: 'de', nome: '🇩🇪 Alemanha', area: 357588, pop: '84 milhões', flag: '🇩🇪', grupo: 'Países' },
+            { id: 'pl', nome: '🇵🇱 Polônia', area: 312696, pop: '38 milhões', flag: '🇵🇱', grupo: 'Países' },
+            { id: 'it', nome: '🇮🇹 Itália', area: 301340, pop: '59 milhões', flag: '🇮🇹', grupo: 'Países' },
+            { id: 'gb', nome: '🇬🇧 Reino Unido', area: 242495, pop: '67 milhões', flag: '🇬🇧', grupo: 'Países' },
+            { id: 'uy', nome: '🇺🇾 Uruguai', area: 176215, pop: '3,5 milhões', flag: '🇺🇾', grupo: 'Países' },
+            { id: 'kr', nome: '🇰🇷 Coreia do Sul', area: 100210, pop: '51 milhões', flag: '🇰🇷', grupo: 'Países' },
+            { id: 'pt', nome: '🇵🇹 Portugal', area: 92212, pop: '10,3 milhões', flag: '🇵🇹', grupo: 'Países' },
+            { id: 'ch', nome: '🇨🇭 Suíça', area: 41285, pop: '8,8 milhões', flag: '🇨🇭', grupo: 'Países' },
+            { id: 'nl', nome: '🇳🇱 Holanda (Países Baixos)', area: 41543, pop: '17,8 milhões', flag: '🇳🇱', grupo: 'Países' },
+            { id: 'be', nome: '🇧🇪 Bélgica', area: 30528, pop: '11,7 milhões', flag: '🇧🇪', grupo: 'Países' },
+            { id: 'il', nome: '🇮🇱 Israel', area: 20770, pop: '9,5 milhões', flag: '🇮🇱', grupo: 'Países' },
+
+            // Todos os Estados Brasileiros
+            { id: 'br_am', nome: '🇧🇷 Amazonas (AM)', area: 1559146, pop: '4,2 milhões', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_pa', nome: '🇧🇷 Pará (PA)', area: 1245870, pop: '8,6 milhões', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_mt', nome: '🇧🇷 Mato Grosso (MT)', area: 903208, pop: '3,6 milhões', flag: '🌱', grupo: 'Estados do Brasil' },
+            { id: 'br_mg', nome: '🇧🇷 Minas Gerais (MG)', area: 586522, pop: '20,5 milhões', flag: '⛰️', grupo: 'Estados do Brasil' },
+            { id: 'br_ba', nome: '🇧🇷 Bahia (BA)', area: 564733, pop: '14,1 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_ms', nome: '🇧🇷 Mato Grosso do Sul (MS)', area: 357145, pop: '2,8 milhões', flag: '🌾', grupo: 'Estados do Brasil' },
+            { id: 'br_go', nome: '🇧🇷 Goiás (GO)', area: 340111, pop: '7,1 milhões', flag: '🌾', grupo: 'Estados do Brasil' },
+            { id: 'br_ma', nome: '🇧🇷 Maranhão (MA)', area: 329642, pop: '6,8 milhões', flag: '🌴', grupo: 'Estados do Brasil' },
+            { id: 'br_rs', nome: '🇧🇷 Rio Grande do Sul (RS)', area: 281730, pop: '10,9 milhões', flag: '🧉', grupo: 'Estados do Brasil' },
+            { id: 'br_to', nome: '🇧🇷 Tocantins (TO)', area: 277621, pop: '1,5 milhão', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_pi', nome: '🇧🇷 Piauí (PI)', area: 251577, pop: '3,3 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_sp', nome: '🇧🇷 São Paulo (SP)', area: 248219, pop: '44,4 milhões', flag: '🏙️', grupo: 'Estados do Brasil' },
+            { id: 'br_ro', nome: '🇧🇷 Rondônia (RO)', area: 237590, pop: '1,6 milhão', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_rr', nome: '🇧🇷 Roraima (RR)', area: 224300, pop: '636 mil', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_pr', nome: '🇧🇷 Paraná (PR)', area: 199307, pop: '11,4 milhões', flag: '🌲', grupo: 'Estados do Brasil' },
+            { id: 'br_ac', nome: '🇧🇷 Acre (AC)', area: 164123, pop: '830 mil', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_ce', nome: '🇧🇷 Ceará (CE)', area: 148920, pop: '8,8 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_ap', nome: '🇧🇷 Amapá (AP)', area: 142828, pop: '733 mil', flag: '🌳', grupo: 'Estados do Brasil' },
+            { id: 'br_pe', nome: '🇧🇷 Pernambuco (PE)', area: 98311, pop: '9,0 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_sc', nome: '🇧🇷 Santa Catarina (SC)', area: 95736, pop: '7,6 milhões', flag: '🌊', grupo: 'Estados do Brasil' },
+            { id: 'br_pb', nome: '🇧🇷 Paraíba (PB)', area: 56469, pop: '4,0 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_rn', nome: '🇧🇷 Rio Grande do Norte (RN)', area: 52811, pop: '3,3 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_es', nome: '🇧🇷 Espírito Santo (ES)', area: 46095, pop: '3,8 milhões', flag: '🌊', grupo: 'Estados do Brasil' },
+            { id: 'br_rj', nome: '🇧🇷 Rio de Janeiro (RJ)', area: 43780, pop: '16,0 milhões', flag: '🏖️', grupo: 'Estados do Brasil' },
+            { id: 'br_al', nome: '🇧🇷 Alagoas (AL)', area: 27778, pop: '3,1 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_se', nome: '🇧🇷 Sergipe (SE)', area: 21915, pop: '2,2 milhões', flag: '☀️', grupo: 'Estados do Brasil' },
+            { id: 'br_df', nome: '🇧🇷 Distrito Federal (DF)', area: 5760, pop: '2,8 milhões', flag: '🏛️', grupo: 'Estados do Brasil' }
+        ];
+
+        // Elementos do DOM
+        const selectA = document.getElementById('select-a');
+        const selectB = document.getElementById('select-b');
+        const labelAreaA = document.getElementById('label-area-a');
+        const labelAreaB = document.getElementById('label-area-b');
+        const resultadoNumero = document.getElementById('resultado-numero');
+        const resultadoFrase = document.getElementById('resultado-frase');
+        const gridBlocos = document.getElementById('grid-blocos');
+        const badgeContagem = document.getElementById('badge-contagem');
+        const btnCopiar = document.getElementById('btn-copiar');
+
+        // Cards de detalhes
+        const cardNomeA = document.getElementById('card-nome-a');
+        const cardAreaA = document.getElementById('card-area-a');
+        const cardNomeB = document.getElementById('card-nome-b');
+        const cardAreaB = document.getElementById('card-area-b');
+
+        const cardPopA = document.getElementById('card-pop-a');
+        const cardPopB = document.getElementById('card-pop-b');
+        const cardPopLabelA = document.getElementById('card-pop-label-a');
+        const cardPopLabelB = document.getElementById('card-pop-label-b');
+
+        const cardDensA = document.getElementById('card-dens-a');
+        const cardDensB = document.getElementById('card-dens-b');
+        const cardDensLabelA = document.getElementById('card-dens-label-a');
+        const cardDensLabelB = document.getElementById('card-dens-label-b');
+
+        // Preenche os Selects agrupados
+        function popularSelects() {
+            const grupos = [...new Set(territorios.map(t => t.grupo))];
+            
+            [selectA, selectB].forEach(sel => {
+                sel.innerHTML = '';
+                grupos.forEach(grupo => {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = grupo;
+                    optgroup.className = 'bg-slate-900 text-amber-400 font-bold';
+
+                    territorios.filter(t => t.grupo === grupo).forEach(item => {
+                        const opt = document.createElement('option');
+                        opt.value = item.id;
+                        opt.textContent = `${item.nome}`;
+                        opt.className = 'text-white font-normal';
+                        optgroup.appendChild(opt);
+                    });
+                    sel.appendChild(optgroup);
+                });
+            });
+
+            // Seleção Padrão Viral Inicial: Portugal (PT) no Brasil (BR)
+            selectA.value = 'pt';
+            selectB.value = 'br';
+        }
+
+        // Formatação Numérica Padrão BR
+        function formatarNumero(num) {
+            return num.toLocaleString('pt-BR');
+        }
+
+        // Calcula a Densidade aproximada
+        function calcularDensidade(popStr, areaKm2) {
+            let numPessoas = 0;
+            if (popStr.includes('bilhão') || popStr.includes('bilhões')) {
+                const val = parseFloat(popStr.replace(',', '.'));
+                numPessoas = val * 1000000000;
+            } else if (popStr.includes('milhão') || popStr.includes('milhões')) {
+                const val = parseFloat(popStr.replace(',', '.'));
+                numPessoas = val * 1000000;
+            } else if (popStr.includes('mil')) {
+                const val = parseFloat(popStr.replace(',', '.'));
+                numPessoas = val * 1000;
+            } else {
+                numPessoas = parseFloat(popStr.replace(/\D/g, '')) || 0;
+            }
+            if (!areaKm2 || areaKm2 === 0) return '--';
+            const dens = (numPessoas / areaKm2).toFixed(1);
+            return formatarNumero(parseFloat(dens));
+        }
+
+        // Função de Cálculo e Atualização Visual
+        function calcularProporcao() {
+            const tA = territorios.find(t => t.id === selectA.value);
+            const tB = territorios.find(t => t.id === selectB.value);
+
+            if (!tA || !tB) return;
+
+            // Labels de Área nos inputs
+            labelAreaA.textContent = `${formatarNumero(tA.area)} km²`;
+            labelAreaB.textContent = `${formatarNumero(tB.area)} km²`;
+
+            // Proporção
+            const proporcao = tB.area / tA.area;
+            const proporcaoFormatada = proporcao >= 100 ? proporcao.toFixed(1) : proporcao >= 10 ? proporcao.toFixed(1) : proporcao.toFixed(2);
+            resultadoNumero.textContent = proporcaoFormatada.replace('.', ',');
+
+            // Frase do Veredito
+            if (proporcao >= 1) {
+                resultadoFrase.innerHTML = `<span class="text-amber-400 font-bold">${tA.nome}</span> cabe <strong class="text-white font-extrabold text-lg">${proporcaoFormatada.replace('.', ',')} vezes</strong> dentro de <span class="text-sky-400 font-bold">${tB.nome}</span>!`;
+            } else {
+                const inverso = (1 / proporcao).toFixed(1).replace('.', ',');
+                resultadoFrase.innerHTML = `<span class="text-amber-400 font-bold">${tA.nome}</span> é <strong class="text-white font-extrabold text-lg">${inverso} vezes maior</strong> que <span class="text-sky-400 font-bold">${tB.nome}</span> (ocupa ${(proporcao * 100).toFixed(1).replace('.', ',')}% dele).`;
+            }
+
+            // Atualiza os Cards Detalhados
+            cardNomeA.textContent = tA.nome;
+            cardAreaA.textContent = `${formatarNumero(tA.area)} km²`;
+            cardNomeB.textContent = tB.nome;
+            cardAreaB.textContent = `${formatarNumero(tB.area)} km²`;
+
+            cardPopLabelA.textContent = tA.nome;
+            cardPopA.textContent = `${tA.pop} hab.`;
+            cardPopLabelB.textContent = tB.nome;
+            cardPopB.textContent = `${tB.pop} hab.`;
+
+            cardDensLabelA.textContent = tA.nome;
+            cardDensA.textContent = `${calcularDensidade(tA.pop, tA.area)} hab/km²`;
+            cardDensLabelB.textContent = tB.nome;
+            cardDensB.textContent = `${calcularDensidade(tB.pop, tB.area)} hab/km²`;
+
+            // Renderizar os Blocos Visuais
+            renderizarGradeVisual(proporcao, tA, tB);
+        }
+
+        // Renderiza a grade de blocos gráficos
+        function renderizarGradeVisual(proporcao, tA, tB) {
+            gridBlocos.innerHTML = '';
+            const totalInteiro = Math.floor(proporcao);
+            const fracao = proporcao - totalInteiro;
+
+            badgeContagem.textContent = `${proporcao.toFixed(1).replace('.', ',')}x unidades de ${tA.flag || '📍'}`;
+
+            // Limite de segurança de renderização no DOM para não travar o browser
+            const maxBlocos = 150;
+            const blocosParaRenderizar = Math.min(totalInteiro, maxBlocos);
+
+            if (proporcao < 1) {
+                // Caso menor que 1: renderiza uma barra proporcional
+                const perc = Math.max(1, (proporcao * 100).toFixed(1));
+                gridBlocos.innerHTML = `
+                    <div class="w-full max-w-md my-6 text-center">
+                        <div class="h-6 w-full bg-slate-900 rounded-full border border-white/10 overflow-hidden relative">
+                            <div class="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full transition-all duration-700" style="width: ${perc}%"></div>
+                        </div>
+                        <p class="text-xs text-slate-400 font-mono mt-3">${tA.nome} preenche exatamente <strong class="text-amber-400 font-bold">${perc}%</strong> da área de ${tB.nome}.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Cria os blocos inteiros
+            for (let i = 0; i < blocosParaRenderizar; i++) {
+                const el = document.createElement('div');
+                el.className = 'mini-block w-8 h-8 sm:w-9 sm:h-9 bg-amber-400 text-black font-bold text-xs rounded-lg flex items-center justify-center shadow-md select-none border border-amber-300/40 cursor-default';
+                el.title = `${tA.nome} #${i + 1}`;
+                el.textContent = `${i + 1}`;
+                gridBlocos.appendChild(el);
+            }
+
+            // Bloco fracionado residual
+            if (fracao > 0.05 && totalInteiro < maxBlocos) {
+                const fracEl = document.createElement('div');
+                fracEl.className = 'mini-block w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-[10px] font-mono font-bold text-amber-300 border border-dashed border-amber-400 bg-amber-400/25 select-none';
+                fracEl.title = `Fração restante: ${(fracao * 100).toFixed(0)}%`;
+                fracEl.textContent = `+${(fracao * 100).toFixed(0)}%`;
+                gridBlocos.appendChild(fracEl);
+            }
+
+            // Aviso se ultrapassou o limite gráfico de 150 blocos
+            if (totalInteiro > maxBlocos) {
+                const extraEl = document.createElement('div');
+                extraEl.className = 'w-full text-center text-xs text-slate-500 font-mono pt-3';
+                extraEl.innerHTML = `... exibindo os primeiros 150 blocos de um total de <strong class="text-amber-400">${totalInteiro}</strong> unidades completas.`;
+                gridBlocos.appendChild(extraEl);
+            }
+        }
+
+        // Botões de Preset Rápido
+        function setPreset(idA, idB) {
+            selectA.value = idA;
+            selectB.value = idB;
+            calcularProporcao();
+            // Scroll suave até o placar
+            resultadoNumero.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Inverte seleção A com B
+        function inverterSelecao() {
+            const temp = selectA.value;
+            selectA.value = selectB.value;
+            selectB.value = temp;
+            calcularProporcao();
+        }
+
+        // Compartilhamento no WhatsApp
+        function compartilharWhatsApp() {
+            const tA = territorios.find(t => t.id === selectA.value);
+            const tB = territorios.find(t => t.id === selectB.value);
+            const proporcao = (tB.area / tA.area).toFixed(1).replace('.', ',');
+
+            const texto = `Você sabia que ${tA.nome} cabe ${proporcao} vezes dentro de ${tB.nome}? 🌍\nTeste agora no Comparador de Escala do VitaleGeo:\nhttps://www.vitalegeo.com.br/ferramentas/quantos-cabem/`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        // Copiar Link e Resultado
+        function copiarLinkResultado() {
+            const tA = territorios.find(t => t.id === selectA.value);
+            const tB = territorios.find(t => t.id === selectB.value);
+            const proporcao = (tB.area / tA.area).toFixed(1).replace('.', ',');
+
+            const texto = `${tA.nome} cabe ${proporcao} vezes dentro de ${tB.nome}! Veja no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/quantos-cabem/`;
+
+            navigator.clipboard.writeText(texto).then(() => {
+                btnCopiar.innerHTML = '<i class="ph-bold ph-check text-base text-emerald-400"></i> Copiado!';
+                btnCopiar.classList.add('border-emerald-500/50', 'text-emerald-400');
+                setTimeout(() => {
+                    btnCopiar.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar Resultado';
+                    btnCopiar.classList.remove('border-emerald-500/50', 'text-emerald-400');
+                }, 2500);
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            popularSelects();
+            calcularProporcao();
+        });
+    </script>
+</body>
+</html>
