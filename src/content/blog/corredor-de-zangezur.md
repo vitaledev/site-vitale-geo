@@ -1,5 +1,5 @@
 ---
-titulo: "O Corredor de Zangezur: A Faixa de 43 km que Pode Incendiar o Cáucaso"
+titulo: "Por que uma Faixa de 43 km no Cáucaso Pode Incendiar a Região?"
 resumo: "Uma faixa de 43 km no sul da Armênia separa o Azerbaijão de seu enclave de Nakhchivan e pode unir o mundo túrquico de Istambul ao Mar Cáspio."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 20:30"

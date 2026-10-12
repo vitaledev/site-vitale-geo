@@ -1,5 +1,5 @@
 ---
-titulo: "A Linha dos Nove Traços: A Disputa por US$ 3 Trilhões no Mar do Sul da China"
+titulo: "Como a Linha dos Nove Traços Criou uma Disputa de US$ 3 Trilhões no Mar do Sul da China"
 resumo: "Pequim reivindica 90% de um mar estratégico por onde passa um terço do comércio marítimo global, construindo ilhas artificiais militarizadas."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 22:00"

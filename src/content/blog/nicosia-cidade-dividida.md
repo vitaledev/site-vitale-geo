@@ -1,5 +1,5 @@
 ---
-titulo: "Nicósia: A Última Capital Dividida da Europa e a Linha Verde da ONU Congelada no Tempo"
+titulo: "Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?"
 resumo: "Desde 1974, a capital do Chipre é cortada ao meio por muros, sacos de areia e uma zona tampão da ONU, separando gregos e turcos após a Operação Átila."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 09:30"

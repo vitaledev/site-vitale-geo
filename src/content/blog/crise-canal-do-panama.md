@@ -1,5 +1,5 @@
 ---
-titulo: "O Canal do Panamá Sem Água: A Seca no Lago Gatún que Travou o Comércio Mundial"
+titulo: "Por que o Canal do Panamá Secou e Travou os Navios do Mundo?"
 resumo: "Cada navio que cruza o Canal do Panamá consome 200 milhões de litros de água doce. A pior seca do Lago Gatún provocou leilões de US$ 4 milhões por vaga."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 19:00"

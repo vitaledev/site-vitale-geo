@@ -1,5 +1,5 @@
 ---
-titulo: "A Convenção de Montreux: Como a Turquia Controla a Entrada do Mar Negro desde 1936"
+titulo: "Como a Turquia Trancou a Entrada do Mar Negro com a Convenção de Montreux"
 resumo: "Com apenas 700 metros no ponto mais estreito em Istambul, os Estreitos Turcos são a única chave naval para o Mar Negro sob a Convenção de Montreux."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 14:30"

@@ -1,5 +1,5 @@
 ---
-titulo: "O Triângulo do Lítio: A Batalha Geopolítica pelo Ouro Branco nos Andes"
+titulo: "Por que o Triângulo do Lítio Virou o Maior Alvo Geopolítico dos Andes?"
 resumo: "Na fronteira entre Bolívia, Argentina e Chile estão mais de 50% das reservas mundiais de lítio, atraindo a disputa entre EUA, China e União Europeia."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 16:00"

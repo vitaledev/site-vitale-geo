@@ -1,5 +1,5 @@
 ---
-titulo: "O Dilema de Malaca: O Chokepoint Onde 80% do Petróleo da Ásia Pode Ser Bloqueado"
+titulo: "Por que 80% do Petróleo da Ásia Pode Ser Bloqueado no Estreito de Malaca?"
 resumo: "Com apenas 2,8 km de largura no seu ponto mais crítico, o Estreito de Malaca concentra 100 mil navios por ano e é o maior gargalo energético de Pequim."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 23:00"

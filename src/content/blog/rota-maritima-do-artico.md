@@ -1,5 +1,5 @@
 ---
-titulo: "A Rota do Ártico: O Degelo Polar e a Corrida pelo Atalho de 40% Entre Ásia e Europa"
+titulo: "Por que o Ártico Virou o Atalho Naval Mais Disputado do Planeta?"
 resumo: "Com o derretimento do gelo marinho, a Rota Marítima do Norte encurta em 15 dias a viagem entre China e Europa, criando uma nova frente de disputa militar."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 13:00"

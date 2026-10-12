@@ -1,5 +1,5 @@
 ---
-titulo: "A Linha de Controle Real: A Fronteira Nuclear Mais Alta do Mundo Onde Não se Disparam Tiros"
+titulo: "Por que Soldados Lutam Sem Armas de Fogo na Fronteira Nuclear do Himalaia?"
 resumo: "A 4.500 metros de altitude entre Índia e China, soldados de duas potências nucleares patrulham uma fronteira não demarcada de 3.488 km usando porretes."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 11:30"

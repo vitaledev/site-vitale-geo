@@ -3,7 +3,7 @@
 
 const blogPosts = [
     {
-        titulo: "O Dilema de Malaca: O Chokepoint Onde 80% do Petróleo da Ásia Pode Ser Bloqueado",
+        titulo: "Por que 80% do Petróleo da Ásia Pode Ser Bloqueado no Estreito de Malaca?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 23:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Strait_of_Malacca_%2836759635615%29.jpg/1280px-Strait_of_Malacca_%2836759635615%29.jpg",
@@ -11,7 +11,7 @@ const blogPosts = [
         resumo: "Com apenas 2,8 km de largura no seu ponto mais crítico, o Estreito de Malaca concentra 100 mil navios por ano e é o maior gargalo energético de Pequim."
     },
     {
-        titulo: "A Linha dos Nove Traços: A Disputa por US$ 3 Trilhões no Mar do Sul da China",
+        titulo: "Como a Linha dos Nove Traços Criou uma Disputa de US$ 3 Trilhões no Mar do Sul da China",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 22:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Mar_de_China_Meridional_-_BM_WMS_2004.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -19,7 +19,7 @@ const blogPosts = [
         resumo: "Pequim reivindica 90% de um mar estratégico por onde passa um terço do comércio marítimo global, construindo ilhas artificiais militarizadas."
     },
     {
-        titulo: "O Corredor de Zangezur: A Faixa de 43 km que Pode Incendiar o Cáucaso",
+        titulo: "Por que uma Faixa de 43 km no Cáucaso Pode Incendiar a Região?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 20:30",
         img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg/960px-Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -27,7 +27,7 @@ const blogPosts = [
         resumo: "Uma faixa de 43 km no sul da Armênia separa o Azerbaijão de seu enclave de Nakhchivan e pode unir o mundo túrquico de Istambul ao Mar Cáspio."
     },
     {
-        titulo: "O Canal do Panamá Sem Água: A Seca no Lago Gatún que Travou o Comércio Mundial",
+        titulo: "Por que o Canal do Panamá Secou e Travou os Navios do Mundo?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 19:00",
         img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Panama_Canal_Map_EN.svg/500px-Panama_Canal_Map_EN.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -43,7 +43,7 @@ const blogPosts = [
         resumo: "Separando Taiwan da China continental por 160 km, o estreito concentra a produção dos chips mais avançados do mundo e a maior frota naval do planeta."
     },
     {
-        titulo: "O Triângulo do Lítio: A Batalha Geopolítica pelo Ouro Branco nos Andes",
+        titulo: "Por que o Triângulo do Lítio Virou o Maior Alvo Geopolítico dos Andes?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 16:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Triangulo_del_lito.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -51,7 +51,7 @@ const blogPosts = [
         resumo: "Na fronteira entre Bolívia, Argentina e Chile estão mais de 50% das reservas mundiais de lítio, atraindo a disputa entre EUA, China e União Europeia."
     },
     {
-        titulo: "A Convenção de Montreux: Como a Turquia Controla a Entrada do Mar Negro desde 1936",
+        titulo: "Como a Turquia Trancou a Entrada do Mar Negro com a Convenção de Montreux",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 14:30",
         img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Turkish_Strait_disambig.svg/500px-Turkish_Strait_disambig.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -59,7 +59,7 @@ const blogPosts = [
         resumo: "Com apenas 700 metros no ponto mais estreito em Istambul, os Estreitos Turcos são a única chave naval para o Mar Negro sob a Convenção de Montreux."
     },
     {
-        titulo: "A Rota do Ártico: O Degelo Polar e a Corrida pelo Atalho de 40% Entre Ásia e Europa",
+        titulo: "Por que o Ártico Virou o Atalho Naval Mais Disputado do Planeta?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 13:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_of_the_Arctic_region_showing_the_Northeast_Passage%2C_the_Northern_Sea_Route_and_Northwest_Passage%2C_and_bathymetry.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -67,7 +67,7 @@ const blogPosts = [
         resumo: "Com o derretimento do gelo marinho, a Rota Marítima do Norte encurta em 15 dias a viagem entre China e Europa, criando uma nova frente de disputa militar."
     },
     {
-        titulo: "A Linha de Controle Real: A Fronteira Nuclear Mais Alta do Mundo Onde Não se Disparam Tiros",
+        titulo: "Por que Soldados Lutam Sem Armas de Fogo na Fronteira Nuclear do Himalaia?",
         categoria: "Fronteiras",
         data: "11 Out 2026 - 11:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/8/82/China_India_CIA_map_border_disputes.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -75,7 +75,7 @@ const blogPosts = [
         resumo: "A 4.500 metros de altitude entre Índia e China, soldados de duas potências nucleares patrulham uma fronteira não demarcada de 3.488 km usando porretes."
     },
     {
-        titulo: "Nicósia: A Última Capital Dividida da Europa e a Linha Verde da ONU Congelada no Tempo",
+        titulo: "Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?",
         categoria: "Fronteiras",
         data: "11 Out 2026 - 09:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Cyprus_districts_named.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -99,7 +99,7 @@ const blogPosts = [
         resumo: "Cercada pelo cantão suíço de Schaffhausen, Büsingen tem dois códigos postais, polícia mista e votou 96% para se juntar à Suíça em 1918."
     },
     {
-        titulo: "Nusantara: Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?",
+        titulo: "Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 19:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/IKN_Nusantara_aerial_view_2024.jpg/1280px-IKN_Nusantara_aerial_view_2024.jpg",
