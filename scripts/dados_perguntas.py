@@ -4,7 +4,7 @@
 Consolidação modular dos lotes temáticos:
 - Lote 00: Perguntas 1 a 200 (Base Original CérebroGeo)
 - Lote 01: Perguntas 201 a 300 (Chokepoints, Canais & Rotas Estratégicas)
-- Lote 02: Perguntas 301 a 400 (Enclaves, Exclaves & Anomalias Territoriais)
+- Lote 02: Perguntas 301 a 400 (Bandeiras, Capitais, Onde Fica, Extensão & População)
 - Lote 03: Perguntas 401 a 500 (Hidrografia, Bacias Fluviais & Oceanografia)
 - Lote 04: Perguntas 501 a 600 (Relevo, Geologia, Vulcões & Extremos Naturais)
 - Lote 05: Perguntas 601 a 700 (Climatologia, Biomas & Biogeografia Fascinante)
@@ -24,7 +24,7 @@ if current_dir not in sys.path:
 
 from perguntas.lote_00_base_200 import PERGUNTAS_LOTE_00
 from perguntas.lote_01_chokepoints_rotas import PERGUNTAS_LOTE_01
-from perguntas.lote_02_enclaves_anomalias import PERGUNTAS_LOTE_02
+from perguntas.lote_02_bandeiras_superlativos import PERGUNTAS_LOTE_02
 from perguntas.lote_03_hidrografia_oceanos import PERGUNTAS_LOTE_03
 from perguntas.lote_04_relevo_extremos import PERGUNTAS_LOTE_04
 from perguntas.lote_05_clima_biogeografia import PERGUNTAS_LOTE_05

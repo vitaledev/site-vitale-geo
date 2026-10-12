@@ -141,22 +141,22 @@
   },
   {
     "id": 11,
-    "pergunta": "Quais são os dois únicos países duplamente encravados do mundo (cercados apenas por vizinhos que também não têm litoral)?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial da Argentina, metrópole autônoma às margens do Rio da Prata conhecida como a capital cultural e histórica do Cone Sul?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Liechtenstein e Uzbequistão",
-      "Bolívia e Paraguai",
-      "Suíça e Áustria",
-      "Lesoto e San Marino"
+      "Buenos Aires",
+      "Córdoba",
+      "Rosário",
+      "Mendoza"
     ],
     "resposta": 0,
-    "explicacao": "Liechtenstein (cercado por Suíça e Áustria) e Uzbequistão (cercado por Afeganistão, Cazaquistão, Quirguistão, Tadjiquistão e Turcomenistão) são os únicos duplamente encravados.",
-    "dificuldade": "dificil"
+    "explicacao": "Buenos Aires é a capital e maior cidade da Argentina, constituindo uma cidade autônoma separada da Província de Buenos Aires.",
+    "dificuldade": "facil"
   },
   {
     "id": 12,
     "pergunta": "Qual é a maior fronteira terrestre contínua e desmilitarizada do planeta Terra?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Rússia e China",
       "Estados Unidos e Canadá",
@@ -170,7 +170,7 @@
   {
     "id": 13,
     "pergunta": "Qual território de 2.060 km² entre o Egito e o Sudão é uma das raríssimas áreas de terra firme que nenhum país reivindica ('terra nullius')?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Triângulo de Hala'ib",
       "Bir Tawil",
@@ -183,36 +183,36 @@
   },
   {
     "id": 14,
-    "pergunta": "Qual cidade europeia possui um complexo labirinto de 30 enclaves e contra-enclaves onde a fronteira corta edifícios, cafés e calçadas?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América do Sul é o único de todo o continente a ter o inglês como sua língua oficial nacional?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Baarle (Baarle-Hertog / Baarle-Nassau)",
-      "Büsingen am Hochrhein",
-      "Campione d'Italia",
-      "Llívia"
+      "Guiana",
+      "Suriname",
+      "Trinidad e Tobago",
+      "Belize"
     ],
     "resposta": 0,
-    "explicacao": "Baarle-Hertog (enclaves belgas) e Baarle-Nassau (município holandês) formam um dos mosaicos de fronteira mais surreais da Europa desde tratados medievais de 1198.",
+    "explicacao": "A República Cooperativa da Guiana (antiga Guiana Inglesa) foi colônia britânica e preserva o inglês como língua oficial e de instrução.",
     "dificuldade": "facil"
   },
   {
     "id": 15,
-    "pergunta": "Quais são as duas cidades autônomas espanholas que formam as únicas fronteiras terrestres diretas da União Europeia em território continental africano?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Sudeste Asiático é o único da região que nunca foi colonizado por potências europeias durante a era do imperialismo moderno?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Ceuta e Melilla",
-      "Gibraltar e Tânger",
-      "Orã e Ceuta",
-      "Melilla e Tetuão"
+      "Tailândia (antigo Reino do Sião)",
+      "Vietnã",
+      "Malásia",
+      "Indonésia"
     ],
     "resposta": 0,
-    "explicacao": "Ceuta e Melilla são enclaves espanhóis na costa norte do Marrocos, protegidos por fortificações e tratados que remontam aos séculos XV e XVI.",
+    "explicacao": "O Reino do Sião (atual Tailândia) manteve sua soberania através de habilidade diplomática entre as esferas de influência britânica e francesa.",
     "dificuldade": "facil"
   },
   {
     "id": 16,
-    "pergunta": "Qual enclave russo no Mar Báltico está totalmente separado do restante da Rússia e prensado entre a Polônia e a Lituânia?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual base naval russa no Mar Báltico fica prensada estrategicamente entre a Polônia e a Lituânia com acesso marítimo durante todo o ano?",
+    "categoria": "Geopolítica Global",
     "opcoes": [
       "São Petersburgo",
       "Kaliningrado",
@@ -220,13 +220,13 @@
       "Murmansk"
     ],
     "resposta": 1,
-    "explicacao": "Kaliningrado (antiga Königsberg prussiana) foi anexada pela URSS após a 2ª Guerra Mundial e abriga a base naval da Frota Russa do Báltico.",
+    "explicacao": "Kaliningrado abriga a base naval da Frota Russa do Báltico em Baltiysk, com porto livre de gelo no inverno ao contrário de São Petersburgo.",
     "dificuldade": "facil"
   },
   {
     "id": 17,
     "pergunta": "Qual ilha fluvial na fronteira entre Espanha e França troca de soberania a cada seis meses num regime de condomínio binacional ininterrupto desde 1659?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Ilha dos Faisões",
       "Ilha de Santa Helena",
@@ -239,50 +239,50 @@
   },
   {
     "id": 18,
-    "pergunta": "Qual território descolado dos EUA fica ao sul do Paralelo 49 e só tem acesso rodoviário atravessando a província canadense da Colúmbia Britânica?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América Central aboliu suas Forças Armadas constitucionais em 1948, investindo os recursos de defesa em educação e preservação ambiental?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Point Roberts",
-      "Northwest Angle",
-      "Hyder",
-      "Elm Point"
+      "Costa Rica",
+      "Panamá",
+      "Belize",
+      "Honduras"
     ],
     "resposta": 0,
-    "explicacao": "Point Roberts é uma península no estado de Washington situada abaixo do Paralelo 49° Norte, isolada do território continental contíguo dos EUA.",
-    "dificuldade": "medio"
+    "explicacao": "O presidente José Figueres Ferrer aboliu o exército da Costa Rica após a guerra civil de 1948, tornando a nação um modelo global de estabilidade e ecoturismo.",
+    "dificuldade": "facil"
   },
   {
     "id": 19,
-    "pergunta": "Qual enclave da Itália fica inteiramente cercado pelo cantão suíço de Ticino e tem suas contas bancárias denominadas em Francos Suíços?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América do Sul possui duas línguas oficiais nacionais reconhecidas constitucionalmente em pé de igualdade: o espanhol e o guarani?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Campione d'Italia",
-      "Büsingen",
-      "Llívia",
-      "San Marino"
+      "Paraguai",
+      "Bolívia",
+      "Peru",
+      "Equador"
     ],
     "resposta": 0,
-    "explicacao": "Campione d'Italia fica na margem do Lago de Lugano, a apenas 14 km da fronteira italiana, operando no espaço aduaneiro suíço.",
-    "dificuldade": "medio"
+    "explicacao": "O Paraguai é a única nação das Américas onde a esmagadora maioria da população não indígena também fala uma língua indígena nativa (guarani).",
+    "dificuldade": "facil"
   },
   {
     "id": 20,
-    "pergunta": "Qual enclave espanhol fica situado inteiramente dentro do departamento francês dos Pirenéus Orientais desde o Tratado dos Pirenéus de 1659?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual nação do Oriente Médio não possui qualquer rio ou lago permanente natural de água doce em todo o seu imenso território?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Llívia",
-      "Andorra",
-      "Ceuta",
-      "Melilla"
+      "Arábia Saudita",
+      "Omã",
+      "Iêmen",
+      "Jordânia"
     ],
     "resposta": 0,
-    "explicacao": "O Tratado dos Pireneus cedeu todas as aldeias do vale à França, mas Llívia possuía foral de 'vila' (cidade) e permaneceu sob soberania da Espanha.",
-    "dificuldade": "dificil"
+    "explicacao": "A Arábia Saudita depende quase que exclusivamente de usinas de dessalinização de água do mar e aquíferos subterrâneos fósseis para seu abastecimento.",
+    "dificuldade": "facil"
   },
   {
     "id": 21,
-    "pergunta": "Qual estreita faixa de fronteira entre Polônia e Lituânia separa o enclave russo de Kaliningrado da aliada Bielorrússia?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual estreita faixa de fronteira entre Polônia e Lituânia separa o território de Kaliningrado da Bielorrússia, considerada o ponto mais crítico da OTAN?",
+    "categoria": "Geopolítica Global",
     "opcoes": [
       "Corredor de Suwałki",
       "Corredor de Zangezur",
@@ -295,50 +295,50 @@
   },
   {
     "id": 22,
-    "pergunta": "Qual enclave dos Emirados Árabes Unidos fica dentro do enclave omanense de Madha, formando um enclave de 2º nível (contra-enclave)?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Himalaia mede o sucesso e o progresso da nação através do índice oficial de 'Felicidade Interna Bruta' (FIB) em vez do Produto Interno Bruto?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Nahwa",
-      "Hatta",
-      "Dibba",
-      "Fujairah"
+      "Butão",
+      "Nepal",
+      "Tibete",
+      "Laos"
     ],
     "resposta": 0,
-    "explicacao": "Nahwa pertence ao Emirado de Sharjah (EAU), mas fica totalmente dentro de Madha (enclave de Omã cercado pelos EAU), um raro contra-enclave mundial.",
-    "dificuldade": "dificil"
+    "explicacao": "O Rei Jigme Singye Wangchuck instituiu a FIB em 1972 no Butão, priorizando conservação cultural, meio ambiente e bem-estar espiritual sobre o crescimento econômico puro.",
+    "dificuldade": "facil"
   },
   {
     "id": 23,
-    "pergunta": "Qual país africano possui o enclave petrolífero de Cabinda, separado de seu território principal pela foz do Rio Congo?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América Central possui um canal interoceânico artificial de 82 km inaugurado em 1914 que conecta o Oceano Atlântico ao Pacífico?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "República do Congo",
-      "Angola",
-      "República Democrática do Congo",
-      "Gabão"
+      "Panamá",
+      "Nicarágua",
+      "Costa Rica",
+      "Colômbia"
     ],
-    "resposta": 1,
-    "explicacao": "Cabinda é uma província e exclave de Angola separada por uma faixa costeira da República Democrática do Congo.",
+    "resposta": 0,
+    "explicacao": "O Canal do Panamá foi construído pelos Estados Unidos e devolvido à soberania total do Panamá em 31 de dezembro de 1999.",
     "dificuldade": "facil"
   },
   {
     "id": 24,
-    "pergunta": "Qual é a fronteira terrestre binacional mais curta do mundo reconhecida internacionalmente?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da Europa Central possui língua oficial que não pertence à família indo-europeia (é fino-úgrica) e utiliza o Florim (HUF) como sua moeda?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Espanha e Marrocos (Peñón de Vélez de la Gomera)",
-      "Vaticano e Itália",
-      "Botsuana e Zâmbia",
-      "Mônaco e França"
+      "Hungria",
+      "Áustria",
+      "República Tcheca",
+      "Polônia"
     ],
     "resposta": 0,
-    "explicacao": "O Peñón de Vélez de la Gomera é ligado ao continente marroquino por um istmo de areia de apenas 85 metros de largura, a menor fronteira terrestre do globo.",
-    "dificuldade": "dificil"
+    "explicacao": "O idioma húngaro (magiar) pertence ao ramo fino-úgrico da família urálica, aparentado remotamente ao finlandês e ao estoniano.",
+    "dificuldade": "medio"
   },
   {
     "id": 25,
     "pergunta": "Qual país sul-americano possui a maior fronteira terrestre contínua com a República Francesa?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Brasil",
       "Suriname",
@@ -1611,36 +1611,36 @@
   },
   {
     "id": 116,
-    "pergunta": "Qual país africano é um enclave geográfico absoluto, situado inteiramente dentro das fronteiras da República da África do Sul?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital da Suécia, famosa por sua arquitetura sobre 14 ilhas conectadas por mais de 50 pontes no Mar Báltico?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Essuatíni",
-      "Lesoto",
-      "Botsuana",
-      "Namíbia"
+      "Oslo",
+      "Estocolmo",
+      "Copenhague",
+      "Helsinque"
     ],
     "resposta": 1,
-    "explicacao": "O Reino do Lesoto é uma nação montanhosa totalmente cercada pela África do Sul, enquanto Essuatíni faz fronteira também com Moçambique.",
+    "explicacao": "Estocolmo espalha-se por 14 ilhas onde o Lago Mälaren encontra o Mar Báltico, sendo apelidada de 'Beleza sobre a Água'.",
     "dificuldade": "facil"
   },
   {
     "id": 117,
-    "pergunta": "Qual cidade no norte da Holanda/Bélgica possui fronteiras que cortam o meio de lojas e restaurantes demarcadas por cruzes brancas no piso?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Sudeste Asiático possui mais de 17.000 ilhas e abriga Java, a ilha mais povoada de todo o planeta Terra?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Büsingen",
-      "Baarle (Baarle-Hertog / Baarle-Nassau)",
-      "Campione",
-      "Llívia"
+      "Filipinas",
+      "Indonésia",
+      "Japão",
+      "Malásia"
     ],
     "resposta": 1,
-    "explicacao": "Se a linha divisória corta uma residência ao meio, a regra histórica determina que a localização da porta principal de entrada define qual país cobra os impostos.",
+    "explicacao": "A Indonésia é o maior estado arquipelágico do mundo; a ilha de Java concentra mais de 150 milhões de habitantes em sua extensão vulcânica fértil.",
     "dificuldade": "facil"
   },
   {
     "id": 118,
     "pergunta": "Qual território ultramarino da Austrália fica perto da Indonésia e é famoso pela migração anual em massa de dezenas de milhões de caranguejos-vermelhos?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Ilha Norfolk",
       "Ilha Christmas (Ilha do Natal)",
@@ -1653,92 +1653,92 @@
   },
   {
     "id": 119,
-    "pergunta": "Qual península canadense faz fronteira terrestre com o enclave americano de Point Roberts através do Paralelo 49° Norte?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial da Polônia, cujo centro histórico foi minuciosamente reconstruído após ser devastado na Segunda Guerra Mundial?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Península de Niágara",
-      "Península de Tsawwassen",
-      "Península de Bruce",
-      "Península de Nova Escócia"
+      "Cracóvia",
+      "Varsóvia",
+      "Gdansk",
+      "Wroclaw"
     ],
     "resposta": 1,
-    "explicacao": "Point Roberts fica no extremo sul da península de Tsawwassen; crianças americanas locais precisam cruzar a fronteira quatro vezes por dia de ônibus para ir à escola.",
-    "dificuldade": "dificil"
+    "explicacao": "Varsóvia teve mais de 85% de seu tecido urbano destruído em 1944; sua reconstrução histórica valeu a inclusão como Patrimônio Mundial da UNESCO.",
+    "dificuldade": "facil"
   },
   {
     "id": 120,
-    "pergunta": "Qual república autônoma é um exclave do Azerbaijão separado do restante do território nacional pela província armênia de Syunik?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da África Oriental possui seu próprio sistema de escrita milenar (Ge’ez) e foi um dos raríssimos do continente a nunca ser formalmente colonizado?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Nagorno-Karabakh",
-      "Nakhchivan",
-      "Abkházia",
-      "Ajária"
+      "Quênia",
+      "Etiópia",
+      "Uganda",
+      "Tanzânia"
     ],
     "resposta": 1,
-    "explicacao": "Nakhchivan faz fronteira com a Armênia, Irã e uma faixa de 15 km com a Turquia, sendo o motivo central da disputa pelo Corredor de Zangezur.",
+    "explicacao": "A Etiópia preservou sua independência derrotando invasores italianos na Batalha de Adwa (1896) e mantém um calendário próprio de 13 meses.",
     "dificuldade": "medio"
   },
   {
     "id": 121,
-    "pergunta": "Qual exclave de Angola no litoral da África Central é responsável por grande parte da produção de petróleo do país e fica cercado pelo Congo e pela RDC?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial da Colômbia, situada no altiplano andino a mais de 2.600 metros de altitude?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Bioko",
-      "Cabinda",
-      "Walvis Bay",
-      "Caprivi"
+      "Medellín",
+      "Bogotá",
+      "Cali",
+      "Barranquilla"
     ],
     "resposta": 1,
-    "explicacao": "Cabinda foi um protetorado português separado (Tratado de Simulambuco de 1885) anexado administrativamente a Angola antes da independência em 1975.",
+    "explicacao": "Bogotá é a terceira capital mais alta da América do Sul (atrás de Quito e Sucre/La Paz), centro político e cultural da nação colombiana.",
     "dificuldade": "facil"
   },
   {
     "id": 122,
-    "pergunta": "Qual enclave alemão fica totalmente cercado pelo território suíço do Cantão de Schaffhausen às margens do Rio Reno?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país nórdico é internacionalmente conhecido como a \"Terra dos Mil Lagos\", abrigando mais de 180.000 lagos naturais em seu território?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Campione d'Italia",
-      "Büsingen am Hochrhein",
-      "Llívia",
-      "Jungholz"
+      "Suécia",
+      "Finlândia",
+      "Noruega",
+      "Dinamarca"
     ],
     "resposta": 1,
-    "explicacao": "Büsingen faz parte do estado alemão de Baden-Württemberg, mas utiliza o franco suíço, tem postos de correio com CEPs de ambos os países e integra a alfândega suíça.",
-    "dificuldade": "medio"
+    "explicacao": "A Finlândia possui 187.888 lagos catalogados esculpidos pelo recuo das geleiras da última era glacial, cobrindo cerca de 10% da área do país.",
+    "dificuldade": "facil"
   },
   {
     "id": 123,
-    "pergunta": "Qual cidade no estado americano do Alasca funciona inteiramente integrada com o Canadá, utilizando dólares canadenses e fuso horário canadense?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial da Coreia do Sul, megacidade global cortada pelo Rio Han e sede de potências tecnológicas globais?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Skagway",
-      "Hyder",
-      "Haines",
-      "Ketchikan"
+      "Busan",
+      "Seul",
+      "Incheon",
+      "Daegu"
     ],
     "resposta": 1,
-    "explicacao": "Hyder é a comunidade mais a leste do Alasca; sem estrada que a ligue ao restante do estado americano, depende da cidade canadense vizinha de Stewart.",
-    "dificuldade": "dificil"
+    "explicacao": "Seul abriga quase metade da população de toda a Coreia do Sul quando considerada a sua região metropolitana (Sudogwon), com mais de 25 milhões de pessoas.",
+    "dificuldade": "facil"
   },
   {
     "id": 124,
-    "pergunta": "Qual país europeu cedeu pacificamente a cidade histórica de Llívia em 1659 no Tratado dos Pireneus, fazendo-a restar como um enclave cercado pela França?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Oriente Médio é a única nação de maioria judaica do planeta, tendo o hebraico e o árabe como idiomas de profunda raiz histórica?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Portugal",
-      "Espanha",
-      "Itália",
-      "Andorra"
+      "Líbano",
+      "Israel",
+      "Jordânia",
+      "Chipre"
     ],
     "resposta": 1,
-    "explicacao": "A Espanha cedeu as aldeias do vale de Cerdanya à França, mas Llívia argumentou que possuía título imperial de 'vila' e não de 'aldeia', permanecendo espanhola.",
-    "dificuldade": "medio"
+    "explicacao": "Israel foi estabelecido em 1948 no Levante Mediterrâneo, tendo ressuscitado o hebraico como língua cotidiana e moderna no século XX.",
+    "dificuldade": "facil"
   },
   {
     "id": 125,
-    "pergunta": "Qual arquipélago no Mar Báltico é uma região autônoma de língua sueca, mas sob soberania e integridade territorial da Finlândia?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual arquipélago no Mar Báltico é uma região autônoma desmilitarizada de língua sueca sob soberania da Finlândia?",
+    "categoria": "Localização & Fronteiras",
     "opcoes": [
       "Gotland",
       "Ilhas Åland",
@@ -1752,7 +1752,7 @@
   {
     "id": 126,
     "pergunta": "Qual país da América Central possui o menor território continental e é o único voltado exclusivamente para o Oceano Pacífico?",
-    "categoria": "Fronteiras & Enclaves",
+    "categoria": "Extensão & Superlativos",
     "opcoes": [
       "Belize",
       "El Salvador",
@@ -1765,59 +1765,59 @@
   },
   {
     "id": 127,
-    "pergunta": "Qual região histórica dividida entre a Índia e o Bangladesh continha até 2015 mais de 160 enclaves e contra-enclaves complexos herdados de marajás?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial do Peru, cidade fundada pelos espanhóis às margens do Oceano Pacífico conhecida historicamente como a \"Cidade dos Reis\"?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Caxemira",
-      "Cooch Behar",
-      "Assam",
-      "Bengala Ocidental"
+      "Cusco",
+      "Lima",
+      "Arequipa",
+      "Trujillo"
     ],
     "resposta": 1,
-    "explicacao": "O Acordo de Fronteira Terrestre de 2015 entre Índia e Bangladesh trocou os territórios amigavelmente, permitindo aos moradores escolher sua cidadania.",
-    "dificuldade": "dificil"
+    "explicacao": "Lima foi fundada por Francisco Pizarro em 1535 no vale do Rio Rímac, sendo a sede do rico Vice-Reinado do Peru colonial.",
+    "dificuldade": "facil"
   },
   {
     "id": 128,
-    "pergunta": "Qual cidade no norte de Marrocos é um território autônomo soberano da Espanha desde 1497, protegida por muralhas e fronteira vigiada?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América do Sul abriga o Deserto do Atacama, considerado o lugar não polar mais seco e árido de todo o planeta Terra?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Tânger",
-      "Melilla",
-      "Casablanca",
-      "Tetouan"
+      "Peru",
+      "Chile",
+      "Bolívia",
+      "Argentina"
     ],
     "resposta": 1,
-    "explicacao": "Melilla fica na costa do Cabo das Três Forcas; junto com Ceuta, constitui uma das duas fronteiras terrestres diretas da União Europeia na África.",
+    "explicacao": "O Atacama no norte do Chile é protegido por montanhas que bloqueiam a umidade da Amazônia e pela Corrente fria de Humboldt no Pacífico, passando séculos sem chuvas significativas.",
     "dificuldade": "facil"
   },
   {
     "id": 129,
-    "pergunta": "Qual enclave no Cáucaso foi dissolvido militarmente em 2023 após uma ofensiva relâmpago do Azerbaijão, forçando mais de 100 mil armênios a migrar?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual é a capital oficial da República da Irlanda, cidade fundada pelos vikings no Rio Liffey e polo europeu das maiores multinacionais de tecnologia?",
+    "categoria": "Capitais do Mundo",
     "opcoes": [
-      "Abkházia",
-      "Nagorno-Karabakh (Artsakh)",
-      "Ossétia do Sul",
-      "Ajária"
+      "Belfast",
+      "Dublin",
+      "Cork",
+      "Galway"
     ],
     "resposta": 1,
-    "explicacao": "A autodeclarada República de Nagorno-Karabakh existiu de facto por mais de 30 anos antes de capitular e reintegrar-se sob autoridade de Baku.",
+    "explicacao": "Dublin é a capital irlandesa, lar do Trinity College e do centro financeiro apelidado de Silicon Docks.",
     "dificuldade": "facil"
   },
   {
     "id": 130,
-    "pergunta": "Qual país do Sudeste Asiático abriga o exclave de Oecusse, separado de seu território principal por águas indonésias e terra da província de Nusa Tenggara?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país insular da Europa é famoso por suas termas, vulcões ativos e por abrigar o parlamento mais antigo do mundo em funcionamento contínuo (o Althing, criado em 930 d.C.)?",
+    "categoria": "Características Nacionais",
     "opcoes": [
-      "Brunei",
-      "Timor-Leste",
-      "Papua-Nova Guiné",
-      "Malásia"
+      "Irlanda",
+      "Islândia",
+      "Malta",
+      "Chipre"
     ],
     "resposta": 1,
-    "explicacao": "Oecusse-Ambeno é o berço histórico da colonização portuguesa em Timor, mantendo laços com a capital Díli por pontes aéreas e balsas marítimas.",
-    "dificuldade": "medio"
+    "explicacao": "A Islândia estabeleceu o Althing no Parque Nacional de Thingvellir em 930 d.C., a mais antiga instituição parlamentar representativa contínua do globo.",
+    "dificuldade": "facil"
   },
   {
     "id": 131,
@@ -4201,1402 +4201,1402 @@
   },
   {
     "id": 301,
-    "pergunta": "Qual cidade na fronteira belgo-holandesa é famosa por conter 22 exclaves belgas na Holanda e 8 contra-enclaves holandeses dentro dos enclaves belgas?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país possui a única bandeira nacional do mundo que não é retangular nem quadrada, sendo formada por dois triângulos sobrepostos?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Baarle-Hertog / Baarle-Nassau",
-      "Büsingen am Hochrhein",
-      "Campione d'Italia",
-      "Llívia"
+      "Nepal",
+      "Butão",
+      "Sri Lanka",
+      "Camboja"
     ],
     "resposta": 0,
-    "explicacao": "A fronteira em Baarle corta ruas, cafés e casas ao meio; a nacionalidade dos moradores é determinada pela localização da porta da frente.",
+    "explicacao": "A bandeira do Nepal é a única do mundo com formato não quadrilátero; os dois triângulos simbolizam os picos do Himalaia e as duas religiões predominantes: hinduísmo e budismo.",
     "dificuldade": "facil"
   },
   {
     "id": 302,
-    "pergunta": "O que é Nahwa, uma das anomalias geográficas mais raras do mundo no Oriente Médio?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país africano exibe em sua bandeira oficial a imagem de um fuzil AK-47 cruzado com uma enxada sobre um livro aberto e uma estrela amarela?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Um contra-enclave dos Emirados Árabes dentro do enclave omani de Madha",
-      "Um território neutro entre Arábia Saudita e Kuwait",
-      "Uma ilha artificial de Dubai",
-      "Uma cidade dividida entre Israel e Jordânia"
+      "Moçambique",
+      "Angola",
+      "Zimbábue",
+      "Etiópia"
     ],
     "resposta": 0,
-    "explicacao": "Nahwa pertence aos EAU, fica dentro do enclave de Madha (pertencente a Omã), que por sua vez está inteiramente cercado pelo território dos EAU (enclave de 2ª ordem).",
-    "dificuldade": "medio"
+    "explicacao": "A bandeira de Moçambique simboliza a luta armada pela independência (o fuzil), a agricultura (a enxada) e a educação/estudo (o livro aberto).",
+    "dificuldade": "facil"
   },
   {
     "id": 303,
-    "pergunta": "Qual município espanhol nos Pireneus é um enclave totalmente cercado pelo território francês da região dos Pireneus Orientais desde o Tratado dos Pireneus de 1659?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país europeu e qual microestado são os dois únicos membros soberanos da ONU que possuem bandeiras nacionais de proporção rigorosamente quadrada (1:1)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Llívia",
-      "Olivença",
-      "Roncesvalles",
-      "Vielha"
+      "Suíça e Vaticano",
+      "Mônaco e Liechtenstein",
+      "San Marino e Andorra",
+      "Malta e Luxemburgo"
     ],
     "resposta": 0,
-    "explicacao": "O tratado cedia à França todos os 'povoados' da região; a Espanha argumentou que Llívia tinha status histórico de 'cidade' conferido por Carlos V e manteve a soberania.",
+    "explicacao": "Apenas a Suíça e a Cidade do Vaticano adotam proporção oficial quadrada (1:1) em suas bandeiras soberanas de estado.",
     "dificuldade": "facil"
   },
   {
     "id": 304,
-    "pergunta": "Qual município alemão fica inteiramente encravado no cantão suíço de Schaffhausen, utilizando o franco suíço no dia a dia e tendo dois códigos postais?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "As bandeiras de quais dois países soberanos do mundo são quase idênticas (tricolor vertical azul, amarelo e vermelho), diferenciando-se apenas por um tom sutil de azul?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Büsingen am Hochrhein",
-      "Jungholz",
-      "Konstanz",
-      "Lörrach"
+      "Romênia e Chade",
+      "Mônaco e Polônia",
+      "Irlanda e Costa do Marfim",
+      "Indonésia e Cingapura"
     ],
     "resposta": 0,
-    "explicacao": "Büsingen faz parte da zona aduaneira da Suíça, mas seus cidadãos votam nas eleições federais da Alemanha e têm placas veiculares alemãs especiais (BÜS).",
-    "dificuldade": "medio"
+    "explicacao": "A Romênia e o Chade compartilham exatamente o mesmo padrão tricolor vertical (azul, amarelo, vermelho); a Romênia adotou as cores no século XIX e o Chade após a independência em 1960.",
+    "dificuldade": "facil"
   },
   {
     "id": 305,
-    "pergunta": "Qual município italiano às margens do Lago de Lugano é um enclave no cantão suíço de Ticino, famoso por seu cassino histórico e uso do franco suíço?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América do Sul tem a única bandeira nacional do mundo cujos lados da frente (anverso) e de trás (reverso) apresentam brasões oficiais diferentes?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Campione d'Italia",
-      "Livigno",
-      "Domodossola",
-      "Tirano"
+      "Paraguai",
+      "Uruguai",
+      "Bolívia",
+      "Suriname"
     ],
     "resposta": 0,
-    "explicacao": "Campione d'Italia dista apenas 1 km da Itália pelo lago, mas é completamente circundado por terra pela Suíça, tendo entrado na união aduaneira da UE em 2020.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 306,
-    "pergunta": "Qual vila austríaca é conectada ao resto do território da Áustria por um único ponto geométrico no topo da montanha Sorgschrofen, sendo quase um enclave na Baviera alemã?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Jungholz",
-      "Kleinwalsertal",
-      "Samnaun",
-      "Baarle"
-    ],
-    "resposta": 0,
-    "explicacao": "Em Jungholz, quatro linhas de fronteira se cruzam em um ponto no cume do Sorgschrofen (quadrifurcação), fazendo com que seu acesso rodoviário só exista pela Alemanha.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 307,
-    "pergunta": "Qual província rica em petróleo pertence a Angola, mas está separada do país por uma estreita faixa costeira da República Democrática do Congo?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Cabinda",
-      "Zaire",
-      "Benguela",
-      "Namibe"
-    ],
-    "resposta": 0,
-    "explicacao": "Cabinda é um exclave angolano que produz grande parte do petróleo do país, com movimentos separatistas históricos reivindicando independência.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 308,
-    "pergunta": "Qual exclave de Timor-Leste fica no litoral norte da parte indonésia da ilha de Timor (Timor Ocidental)?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Oecusse (Ambeno)",
-      "Atauro",
-      "Jaco",
-      "Kupang"
-    ],
-    "resposta": 0,
-    "explicacao": "Oecusse foi o primeiro local onde os frades e navegadores portugueses desembarcaram na ilha em 1515, mantendo sua identidade histórica ligada a Timor Leste.",
+    "explicacao": "A bandeira do Paraguai exibe no anverso o Brasão de Armas da República (com a estrela de maio) e no reverso o Selo da Fazenda (com um leão coroado sob o Barrete Frígio da Liberdade).",
     "dificuldade": "medio"
   },
   {
-    "id": 309,
-    "pergunta": "Qual é a menor fronteira terrestre internacional contínua do planeta, com apenas 85 metros de extensão em um istmo de areia que liga uma fortaleza espanhola ao Marrocos?",
-    "categoria": "Fronteiras & Enclaves",
+    "id": 306,
+    "pergunta": "Qual país do Sudeste Asiático exibe a silhueta do complexo arquitetônico de Angkor Wat em sua bandeira nacional?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Peñón de Vélez de la Gomera",
-      "Ceuta",
-      "Melilla",
-      "Gibraltar"
+      "Camboja",
+      "Laos",
+      "Tailândia",
+      "Vietnã"
     ],
     "resposta": 0,
-    "explicacao": "Originalmente uma ilha rochosa, uma tempestade em 1934 acumulou areia e conectou o rochedo militar espanhol ao litoral marroquino formando a minúscula fronteira de 85 m.",
+    "explicacao": "O templo de Angkor Wat, construído no século XII pela civilização Khmer, é o símbolo central e orgulho nacional estampado na bandeira do Camboja.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 307,
+    "pergunta": "Qual país insular do Caribe possui uma noz-moscada estilizada desenhada no triângulo vermelho esquerdo de sua bandeira nacional?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Granada",
+      "Barbados",
+      "Trinidad e Tobago",
+      "Santa Lúcia"
+    ],
+    "resposta": 0,
+    "explicacao": "Granada é conhecida historicamente como a Ilha das Especiarias e é uma das maiores produtoras globais de noz-moscada, destacando o fruto em sua bandeira.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 308,
+    "pergunta": "Qual país do Oriente Médio traz estampado no centro de sua faixa branca horizontal a silhueta de um cedro verde milenar?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Líbano",
+      "Jordânia",
+      "Síria",
+      "Kuwait"
+    ],
+    "resposta": 0,
+    "explicacao": "O Cedro-do-Líbano (Cedrus libani) é o símbolo de imortalidade, resistência e pureza do país, citado repetidas vezes em textos bíblicos e na história fenícia.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 309,
+    "pergunta": "Qual país da América Central tem a única bandeira nacional do mundo que exibe uma Bíblia aberta no centro do seu brasão de armas?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "República Dominicana",
+      "El Salvador",
+      "Honduras",
+      "Guatemala"
+    ],
+    "resposta": 0,
+    "explicacao": "O brasão da República Dominicana contém uma Bíblia aberta no Evangelho de São João (capítulo 8, versículo 32: \"E conhecereis a verdade, e a verdade vos libertará\").",
     "dificuldade": "medio"
   },
   {
     "id": 310,
-    "pergunta": "Qual ilha fluvial no Rio Bidasoa, entre Hendaia e Irún, é o mais antigo condomínio soberano do mundo, cuja administração alterna entre França e Espanha a cada 6 meses?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Cáucaso adotou em 2004 a famosa bandeira de cinco cruzes (uma grande cruz vermelha de São Jorge e quatro pequenas cruzes bolnisi nos quadrantes)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Ilha dos Faisões (Île des Faisans)",
-      "Ilha de Märket",
-      "Ilha de Hans",
-      "Ilha Martín García"
+      "Geórgia",
+      "Armênia",
+      "Azerbaijão",
+      "Grécia"
     ],
     "resposta": 0,
-    "explicacao": "Foi na Ilha dos Faisões que foi assinado o Tratado dos Pireneus em 1659. A França governa de 1º de agosto a 31 de janeiro, e a Espanha no restante do ano.",
-    "dificuldade": "medio"
+    "explicacao": "A bandeira de cinco cruzes da Geórgia remonta ao Reino Medieval da Geórgia (século XIV) e à tradição das cruzes de Jerusalém.",
+    "dificuldade": "facil"
   },
   {
     "id": 311,
-    "pergunta": "Qual território trapezoidal de 2.060 km² entre o Egito e o Sudão é a única terra não polar do mundo não reivindicada por nenhum Estado soberano ('terra nullius')?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Golfo Pérsico tem uma bandeira bordô e branca separada por uma linha em zigue-zague com exatamente nove pontas brancas?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Bir Tawil",
-      "Triângulo de Hala'ib",
-      "Faixa de Aouzou",
-      "Abyei"
+      "Catar",
+      "Bahrein",
+      "Emirados Árabes Unidos",
+      "Omã"
     ],
     "resposta": 0,
-    "explicacao": "Tanto o Egito quanto o Sudão preferem reivindicar a fronteira que lhes outorga o cobiçado Triângulo de Hala'ib na costa do Mar Vermelho, deixando Bir Tawil sem dono.",
-    "dificuldade": "facil"
+    "explicacao": "O Catar adota a cor bordô (castanho-avermelhado) e nove dentes brancos serrilhados, simbolizando que o país foi o nono membro dos emirados reconciliados em 1916.",
+    "dificuldade": "medio"
   },
   {
     "id": 312,
-    "pergunta": "Qual região fértil rica em petróleo na fronteira entre o Sudão e o Sudão do Sul possui status administrativo especial com soberania pendente de plebiscito?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país insular do Caribe possui em sua bandeira um tridente quebrado dourado sobre uma faixa vertical amarela ladeada por faixas azuis ultramar?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Abyei",
-      "Kordofan",
-      "Darfur",
-      "Nilo Azul"
+      "Barbados",
+      "Bahamas",
+      "Jamaica",
+      "Antígua e Barbuda"
     ],
     "resposta": 0,
-    "explicacao": "Abyei é disputada entre os povos Dinka Ngok (pró-Sudão do Sul) e os pastores nômades Misseriya (pró-Sudão), permanecendo monitorada pela Força Interina da ONU (UNISFA).",
-    "dificuldade": "medio"
+    "explicacao": "O tridente de Barbados representa a quebra do domínio colonial britânico (o cabo quebrado) e a ligação histórica e marítima da ilha com o oceano.",
+    "dificuldade": "facil"
   },
   {
     "id": 313,
-    "pergunta": "Em qual cume de montanha em formato de tepui plano se localiza o marco trifínio exato que divide as fronteiras do Brasil, Venezuela e Guiana?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país africano exibe em sua bandeira um falcão/pássaro esculpido em pedra-sabão conhecido como o \"Pássaro de Pedra\"?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Monte Roraima",
-      "Pico da Neblina",
-      "Serra do Imeri",
-      "Monte Caburaí"
+      "Zimbábue",
+      "Botsuana",
+      "Zâmbia",
+      "Namíbia"
     ],
     "resposta": 0,
-    "explicacao": "O marco de ferro no platô do Monte Roraima delimita o encontro das bacias do Amazonas, Orinoco e Essequibo entre as três nações sul-americanas.",
-    "dificuldade": "facil"
+    "explicacao": "O Pássaro do Zimbábue é uma ave emblemática cujas estátuas originais foram escavadas nas ruínas do Grande Zimbábue, reino pré-colonial do século XI.",
+    "dificuldade": "medio"
   },
   {
     "id": 314,
-    "pergunta": "Qual região do estado de Minnesota (EUA) é um enclave prático cercado pelo Canadá e pelo Lago dos Bosques, acessível por terra apenas passando pela alfândega canadense?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual nação da América Central possui na sua bandeira um pássaro Quetzal pousado sobre um pergaminho que traz a data da independência (15 de setembro de 1821)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Northwest Angle",
-      "Point Roberts",
-      "Alburgh",
-      "Isle Royale"
+      "Guatemala",
+      "Costa Rica",
+      "Nicarágua",
+      "Panamá"
     ],
     "resposta": 0,
-    "explicacao": "O Northwest Angle surgiu de um erro cartográfico no Tratado de Paris de 1783 com o mapa de Mitchell, que assumiu erroneamente a nascente do Rio Mississippi a noroeste.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 315,
-    "pergunta": "Qual península no estado americano de Washington fica ao sul do paralelo 49°N e não tem conexão terrestre com os EUA sem cruzar a província canadense de British Columbia?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Point Roberts",
-      "Northwest Angle",
-      "Blaine",
-      "San Juan"
-    ],
-    "resposta": 0,
-    "explicacao": "O Tratado de Oregon de 1846 fixou o paralelo 49 como fronteira reta até o mar, cortando inadvertidamente a ponta da península de Tsawwassen e criando Point Roberts.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 316,
-    "pergunta": "Qual oblast russo no Mar Báltico é um exclave cercado militarmente pela Polônia e pela Lituânia, sediando a Frota russa do Báltico e mísseis Iskander?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Kaliningrado (antiga Königsberg)",
-      "São Petersburgo",
-      "Pskov",
-      "Vyborg"
-    ],
-    "resposta": 0,
-    "explicacao": "Antiga capital da Prússia Oriental alemã, a cidade foi anexada pela URSS após a Segunda Guerra Mundial e perdeu conexão terrestre contígua com o colapso soviético em 1991.",
+    "explicacao": "O Quetzal-resplandecente é a ave nacional da Guatemala, símbolo supremo de liberdade e soberania, que também dá nome à moeda nacional.",
     "dificuldade": "facil"
   },
   {
-    "id": 317,
-    "pergunta": "Qual faixa estreita de 65 a 100 km ao longo da fronteira polaco-lituana é vista pela OTAN como seu calcanhar de Aquiles militar entre Kaliningrado e a Bielorrússia?",
-    "categoria": "Fronteiras & Enclaves",
+    "id": 315,
+    "pergunta": "A bandeira de qual país do Leste Asiático contém quatro trigramas do antigo I Ching (Geon, Ri, Gam, Gon) ao redor do círculo do Taegeuk (yin e yang)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Corredor de Suwałki",
-      "Brecha de Fulda",
-      "Corredor de Danzig",
-      "Corredor de Neum"
+      "Coreia do Sul",
+      "Japão",
+      "Mongólia",
+      "Taiwan"
     ],
     "resposta": 0,
-    "explicacao": "Se capturado em um conflito hipotético, o Corredor de Suwałki isolaria por terra as três repúblicas bálticas (Lituânia, Letônia e Estônia) do restante dos aliados da OTAN.",
+    "explicacao": "A bandeira da Coreia do Sul (Taegeukgi) expressa harmonia cósmica: o círculo central representa o equilíbrio dos opostos e os trigramas representam céu, fogo, água e terra.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 316,
+    "pergunta": "Qual país do Sudeste Asiático tem a bandeira bicolor vermelha e branca rigorosamente idêntica às proporções e cores da bandeira de Mônaco?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Indonésia",
+      "Singapura",
+      "Malásia",
+      "Filipinas"
+    ],
+    "resposta": 0,
+    "explicacao": "A bandeira da Indonésia é horizontalmente dividida em vermelho e branco, idêntica em cores à de Mônaco, mas com proporção ligeiramente mais alongada (2:3 contra 4:5 de Mônaco).",
     "dificuldade": "medio"
+  },
+  {
+    "id": 317,
+    "pergunta": "Qual país da África Oriental tem na sua bandeira um escudo guerreiro tradicional Masai acompanhado por duas lanças brancas cruzadas?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Quênia",
+      "Uganda",
+      "Tanzânia",
+      "Ruanda"
+    ],
+    "resposta": 0,
+    "explicacao": "O escudo Masai e as lanças na bandeira do Quênia simbolizam a determinação do povo queniano em defender a sua liberdade e soberania nacional.",
+    "dificuldade": "facil"
   },
   {
     "id": 318,
-    "pergunta": "Qual cidade costeira concede à Bósnia e Herzegovina sua única e minúscula saída de 20 km para o Mar Adriático, dividindo o território do sul da Croácia em duas partes?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país insular do Caribe possui a única bandeira nacional do mundo que não utiliza nem vermelho, nem branco e nem azul em sua composição?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Neum",
-      "Dubrovnik",
-      "Split",
-      "Kotor"
+      "Jamaica",
+      "Bahamas",
+      "São Vicente e Granadinas",
+      "Dominica"
     ],
     "resposta": 0,
-    "explicacao": "A República de Ragusa (Dubrovnik) cedeu o corredor de Neum ao Império Otomano em 1699 como zona tampão para evitar uma fronteira direta com seus rivais venezianos.",
-    "dificuldade": "medio"
+    "explicacao": "A bandeira da Jamaica consiste em uma cruz de Santo André amarela sobreposta a triângulos verdes e pretos; não contém qualquer traço de vermelho, branco ou azul.",
+    "dificuldade": "facil"
   },
   {
     "id": 319,
-    "pergunta": "Qual ponte estaiada de 2,4 km foi inaugurada pela Croácia em 2022 para permitir que veículos alcancem Dubrovnik sem passar pela alfândega bósnia do corredor de Neum?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Caribe tem um papagaio-imperial (Amazona imperialis) empoleirado sobre um ramo no centro de sua bandeira, incluindo detalhes em roxo?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Ponte de Pelješac",
-      "Ponte de Krk",
-      "Ponte de Čiovo",
-      "Ponte de Franjo Tuđman"
+      "Dominica",
+      "Santa Lúcia",
+      "São Cristóvão e Névis",
+      "Haiti"
     ],
     "resposta": 0,
-    "explicacao": "A ponte contorna o mar territorial bósnio ligando a Croácia continental à península de Pelješac, unificando o território croata dentro do Espaço Schengen.",
+    "explicacao": "Dominica é um dos raríssimos países que utilizam a cor roxa (púrpura) na bandeira oficial, presente nas penas do papagaio Sisserou, ave símbolo nacional.",
     "dificuldade": "medio"
   },
   {
     "id": 320,
-    "pergunta": "Qual estreito corredor montanhoso afegão, com cerca de 350 km de comprimento, foi criado no final do século XIX como zona tampão entre os impérios Russo e Britânico?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país nórdico foi o pioneiro a adotar o padrão da Cruz Nórdica (cruz descentralizada para a esquerda), que inspirou Dinamarca, Noruega, Suécia, Finlândia e Islândia?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Corredor de Wakhan",
-      "Passo de Khyber",
-      "Passo de Bolan",
-      "Vale de Panjshir"
+      "Dinamarca (Dannebrog)",
+      "Suécia",
+      "Noruega",
+      "Islândia"
     ],
     "resposta": 0,
-    "explicacao": "O Corredor de Wakhan faz fronteira com o Tajiquistão, Paquistão e termina em uma fronteira remota de alta altitude com a província chinesa de Xinjiang.",
-    "dificuldade": "medio"
+    "explicacao": "A Dannebrog da Dinamarca é reconhecida pelo Guinness como a bandeira nacional contínua mais antiga do mundo em uso, documentada desde o século XIII (Batalha de Lindanise, 1219).",
+    "dificuldade": "facil"
   },
   {
     "id": 321,
-    "pergunta": "Qual faixa estreita de apenas 20 a 22 km no estado de Bengala Ocidental conecta o restante da Índia aos seus sete estados montanhosos do nordeste ('Sete Irmãs')?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país insular do Pacífico Sul exibe na sua bandeira um pássaro fragata dourado voando sobre um sol nascente dourado que emerge de ondas azuis e brancas?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Corredor de Siliguri ('Pescoço de Galinha')",
-      "Passo de Nathu La",
-      "Garganta de Tawang",
-      "Corredor de Cox's Bazar"
+      "Kiribati",
+      "Fiji",
+      "Vanuatu",
+      "Palau"
     ],
     "resposta": 0,
-    "explicacao": "Com o Nepal a oeste, Bangladesh a sul e o Butão/Tibete a norte, o Corredor de Siliguri é o gargalo geopolítico mais vulnerável da segurança nacional indiana.",
+    "explicacao": "A bandeira de Kiribati retrata a fragata que simboliza o domínio dos mares e a liberdade, enquanto os 17 raios solares representam as 16 Ilhas Gilbert mais a Ilha Banaba.",
     "dificuldade": "medio"
   },
   {
     "id": 322,
-    "pergunta": "Qual faixa territorial estreita estende a fronteira da Namíbia por 450 km rumo ao leste até alcançar o Rio Zambeze e as Cataratas Vitória?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América Central tem na bandeira cinco vulcões que emergem do mar, iluminados por um gorro frígio vermelho com raios de luz?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Faixa de Caprivi (região de Zambezi)",
-      "Deserto da Namíbia",
-      "Triângulo de Hala'ib",
-      "Corredor de Okavango"
+      "Nicarágua",
+      "El Salvador",
+      "Costa Rica",
+      "Honduras"
     ],
     "resposta": 0,
-    "explicacao": "Adquirida pelo Império Alemão no Tratado de Heligoland-Zanzibar de 1890, a Alemanha esperava acessar o Oceano Índico pelo Zambeze, ignorando que o rio era intransponível por cataratas.",
+    "explicacao": "Tanto a Nicarágua quanto El Salvador herdam o brasão das Províncias Unidas da América Central, com cinco vulcões simbolizando os cinco estados originais da federação.",
     "dificuldade": "medio"
   },
   {
     "id": 323,
-    "pergunta": "Qual ilha no Mar Cárbico é a menor massa de terra habitada do mundo dividida pacificamente entre duas nações soberanas (França e Holanda)?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do norte da África e qual país do sudoeste da Europa utilizam como emblema central da bandeira o símbolo da Esfera Armilar manuelina?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "São Martinho (Saint-Martin / Sint Maarten)",
-      "Hispaniola",
-      "Santa Lúcia",
-      "Trinidad e Tobago"
+      "Portugal",
+      "Espanha",
+      "Marrocos",
+      "Cabo Verde"
     ],
     "resposta": 0,
-    "explicacao": "Dividida pelo Tratado de Concórdia em 1648, a parte norte é a coletividade francesa de Saint-Martin e a parte sul é o país constituinte holandês de Sint Maarten.",
+    "explicacao": "A Esfera Armilar na bandeira de Portugal representa o instrumento astronômico e náutico utilizado pelos navegadores durante a Era dos Descobrimentos marítimos.",
     "dificuldade": "facil"
   },
   {
     "id": 324,
-    "pergunta": "Qual ilha no Mar Báltico possui uma fronteira ziguezagueante e bizarra desenhada em 1985 para compensar a Finlândia pela construção inadvertida de um farol em território sueco?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da Ásia Central exibe na sua bandeira um sol dourado com 40 raios ao redor de uma \"tunduk\" (abóbada de madeira circular de uma tenda tradicional yurt)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Ilha de Märket",
-      "Ilha de Åland",
-      "Ilha de Gotland",
-      "Ilha de Bornholm"
+      "Quirguistão",
+      "Cazaquistão",
+      "Turcomenistão",
+      "Uzbequistão"
     ],
     "resposta": 0,
-    "explicacao": "Para não mudar a soberania do farol nem alterar a área total ou as cotas de pesca de cada nação, diplomatas suecos e finlandeses criaram uma fronteira em 'S' perfeita.",
+    "explicacao": "A bandeira do Quirguistão homenageia os 40 clãs unidos pelo lendário herói Manas e traz o teto da tenda yurt nômade no centro.",
     "dificuldade": "medio"
   },
   {
     "id": 325,
-    "pergunta": "Qual ilhota desabitada no Ártico entre o Canadá e a Groenlândia foi alvo da pacífica 'Guerra do Uísque' até ser oficialmente dividida na metade com uma fronteira terrestre em 2022?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da Ásia Central possui na sua bandeira azul clara uma águia-das-estepes dourada voando abaixo de um sol radiante de 32 raios?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Ilha Hans (Tartupaluk)",
-      "Ilha de Ellesmere",
-      "Ilha de Devon",
-      "Ilha de Baffin"
+      "Cazaquistão",
+      "Mongólia",
+      "Tajiquistão",
+      "Azerbaijão"
     ],
     "resposta": 0,
-    "explicacao": "Durante décadas, militares canadenses e dinamarqueses revezavam visitas à ilha deixando garrafas de uísque canadense ou schnapps dinamarquês ao lado de suas bandeiras.",
+    "explicacao": "A bandeira do Cazaquistão traz a águia-das-estepes (berkut), símbolo de liberdade, poder e visão de futuro do povo cazaque.",
     "dificuldade": "facil"
   },
   {
     "id": 326,
-    "pergunta": "Quais são as únicas duas nações soberanas do planeta classificadas como 'duplamente encravadas' (cercadas exclusivamente por outros países que também não têm litoral)?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da Ásia Central possui na sua bandeira verde uma faixa vertical com cinco desenhos tradicionais de tapetes artesanais (guls)?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Liechtenstein e Uzbequistão",
-      "Suíça e Mongólia",
-      "Bolívia e Paraguai",
-      "Áustria e Ruanda"
+      "Turcomenistão",
+      "Uzbequistão",
+      "Afeganistão",
+      "Paquistão"
     ],
     "resposta": 0,
-    "explicacao": "Liechtenstein é cercado por Suíça e Áustria (ambos sem litoral), e o Uzbequistão é cercado por Cazaquistão, Quirguistão, Tajiquistão, Afeganistão e Turcomenistão.",
-    "dificuldade": "facil"
+    "explicacao": "A bandeira do Turcomenistão homenageia as cinco tribos tradicionais do país através dos motivos de tapetes turcomanos mais famosos do mundo.",
+    "dificuldade": "medio"
   },
   {
     "id": 327,
-    "pergunta": "Qual país africano independente é uma monarquia montanhosa totalmente cercada pelas fronteiras de uma única outra nação (África do Sul)?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Sudeste Asiático tem na sua bandeira uma estrela branca de 14 pontas (Bintang Persekutuan) e 14 listras vermelhas e brancas horizontais?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Lesoto",
-      "Eswatini",
-      "Botswana",
-      "Zimbábue"
+      "Malásia",
+      "Indonésia",
+      "Filipinas",
+      "Brunei"
     ],
     "resposta": 0,
-    "explicacao": "Conhecido como o 'Reino do Céu', o Lesoto é o único Estado soberano do mundo cujo território inteiro fica acima de 1.000 metros de altitude.",
+    "explicacao": "A bandeira da Malásia (Jalur Gemilang) possui 14 listras e 14 pontas na estrela representando a união dos 13 estados federados com o território federal da capital.",
     "dificuldade": "facil"
   },
   {
     "id": 328,
-    "pergunta": "Qual pequeno sultanato no norte da ilha de Bornéu é dividido fisicamente em duas partes desconectadas pelo estado malaio de Sarawak?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do sul da Ásia possui uma bandeira onde um leão dourado segura uma espada (espada Kastane) sobre um fundo bordô?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Brunei",
-      "Singapura",
-      "Labuan",
-      "Sabah"
+      "Sri Lanka",
+      "Butão",
+      "Nepal",
+      "Maldivas"
     ],
     "resposta": 0,
-    "explicacao": "O distrito oriental de Temburong em Brunei era separado da capital Bandar Seri Begawan até a construção da megaponte Sultan Haji Omar Ali Saifuddien de 30 km.",
+    "explicacao": "A bandeira do Sri Lanka (Bandeira do Leão) homenageia a maioria cingalesa (leão), com faixas verticais verde e laranja representando as minorias muçulmana e tâmil.",
     "dificuldade": "facil"
   },
   {
     "id": 329,
-    "pergunta": "Qual ilha no sudeste asiático é a única do planeta cujo território é dividido entre três nações soberanas simultâneas?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país montanhoso do Himalaia tem como símbolo em sua bandeira um dragão do trovão branco (Druk) segurando joias cintilantes nas quatro garras?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Bornéu",
-      "Nova Guiné",
-      "Timor",
-      "Samatra"
+      "Butão",
+      "Nepal",
+      "Tibete",
+      "Mianmar"
     ],
     "resposta": 0,
-    "explicacao": "A Ilha de Bornéu abriga a Indonésia (Kalimantan, ocupando 73%), a Malásia (estados de Sabah e Sarawak, ~26%) e o sultanato de Brunei (~1%).",
+    "explicacao": "O Butão é conhecido nativamente como Druk Yul (Terra do Dragão do Trovão); o dragão branco na bandeira simboliza pureza e a riqueza do reino.",
     "dificuldade": "facil"
   },
   {
     "id": 330,
-    "pergunta": "Qual ilha ao norte da Austrália é dividida exatamente ao longo do meridiano 141°E entre a Indonésia e Papua-Nova Guiné?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da África Ocidental possui uma bandeira verde, amarela e vermelha com uma estrela preta de cinco pontas no centro da faixa amarela?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
-      "Nova Guiné",
-      "Bornéu",
-      "Timor",
-      "Tasmânia"
+      "Gana",
+      "Senegal",
+      "Camarões",
+      "Togo"
     ],
     "resposta": 0,
-    "explicacao": "A metade ocidental da ilha pertence à Indonésia (províncias da Papua) e a metade oriental é o Estado independente de Papua-Nova Guiné.",
+    "explicacao": "Gana foi pioneira na independência na África subsaariana (1957); a Estrela Negra de Marcus Garvey simboliza a emancipação e união de todo o continente africano.",
     "dificuldade": "facil"
   },
   {
     "id": 331,
-    "pergunta": "Qual ilha caribenha abriga dois países soberanos com histórias e idiomas completamente distintos: o Haiti a oeste e a República Dominicana a leste?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Hispaniola",
-      "Cuba",
-      "Porto Rico",
-      "Jamaica"
-    ],
-    "resposta": 0,
-    "explicacao": "Hispaniola foi o primeiro assentamento permanente europeu nas Américas fundado por Colombo em 1492, dividida entre colonização francesa e espanhola no século XVII.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 332,
-    "pergunta": "Qual ilha na costa leste de Bornéu tem sua metade norte governada pela Malásia (Sabah) e sua metade sul pela Indonésia (Kalimantan do Norte) ao longo da latitude 4°10'N?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilha Sebatik",
-      "Ilha Tarakan",
-      "Ilha Nunukan",
-      "Ilha Sipadan"
-    ],
-    "resposta": 0,
-    "explicacao": "Na Ilha Sebatik, a fronteira traçada por britânicos e holandeses corta residências familiares: existem casas onde a cozinha fica na Indonésia e a sala na Malásia.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 333,
-    "pergunta": "Qual ilha na foz do Rio da Prata pertencia à Argentina, mas se uniu fisicamente por deposição de sedimentos à ilha uruguaia de Timoteo Domínguez, criando a única fronteira seca entre os dois países?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilha Martín García",
-      "Ilha Gorriti",
-      "Ilha de Lobos",
-      "Ilha das Flores"
-    ],
-    "resposta": 0,
-    "explicacao": "O Tratado do Rio da Prata de 1973 deixou Martín García como soberania argentina; quando os sedimentos uniram as ilhas, estabeleceu-se a primeira divisa por terra entre Argentina e Uruguai.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 334,
-    "pergunta": "Qual capital nacional é a última capital dividida por um muro e zona desmilitarizada no continente europeu desde a invasão turca de 1974?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Nicósia (Lefkosia)",
-      "Sarajevo",
-      "Belfast",
-      "Berlim"
-    ],
-    "resposta": 0,
-    "explicacao": "Nicósia é dividida pela 'Linha Verde' patrulhada pela Força das Nações Unidas (UNFICYP), separando a República de Chipre do território de Chipre do Norte.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 335,
-    "pergunta": "Qual bairro litorâneo da cidade de Famagusta em Chipre permaneceu como uma cidade-fantasma lacrada pelo exército turco por quase 50 anos após o êxodo de seus moradores?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Varosha (Maraş)",
-      "Kyrenia",
-      "Morphou",
-      "Larnaca"
-    ],
-    "resposta": 0,
-    "explicacao": "Outrora o balneário de luxo favorito de celebridades de Hollywood, Varosha teve seus hotéis de praia congelados no tempo cercados por arame farpado.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 336,
-    "pergunta": "Quais são as duas áreas de bases militares soberanas britânicas retidas na ilha de Chipre após a independência da ilha em 1960?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Akrotiri e Dhekelia",
-      "Gibraltar e Bermudas",
-      "Limassol e Pafos",
-      "Troodos e Ayia Napa"
-    ],
-    "resposta": 0,
-    "explicacao": "Akrotiri e Dhekelia cobrem 254 km² e são Territórios Ultramarinos Britânicos mantidos como bases aéreas e estações de interceptação eletrônica militar de escuta (GCHQ).",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 337,
-    "pergunta": "Qual enclave no Quirguistão pertence ao Uzbequistão e abriga um lago sagrado nos pés das montanhas de Alay onde o transporte depende de trânsito em território estrangeiro?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Shohimardon",
-      "Sokh",
-      "Vorukh",
-      "Sarvan"
-    ],
-    "resposta": 0,
-    "explicacao": "O Vale de Fergana na Ásia Central tem um emaranhado de enclaves desenhados nos tempos de Stalin para evitar a coesão nacional de grupos étnicos específicos.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 338,
-    "pergunta": "Qual enclave do Uzbequistão dentro do Quirguistão é o maior do Vale de Fergana, com mais de 70.000 habitantes, quase todos de etnia tadjique?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Sokh",
-      "Vorukh",
-      "Shohimardon",
-      "Jani-Ayil"
-    ],
-    "resposta": 0,
-    "explicacao": "Sokh apresenta a complexa ironia de ser território uzbeque, cercado por quirguizes, mas habitado por tadjiques, gerando frequentes tensões por água e estradas.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 339,
-    "pergunta": "Qual enclave pertencente ao Tajiquistão, encravado na província quirguiz de Batken, é foco de conflitos fronteiriços recorrentes por acesso a canais de irrigação?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Vorukh",
-      "Sokh",
-      "Kayragach",
-      "Karakalpakstan"
-    ],
-    "resposta": 0,
-    "explicacao": "Vorukh tem cerca de 30.000 tadjiques e sua única estrada de conexão física com o Tajiquistão corta território soberano do Quirguistão.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 340,
-    "pergunta": "Qual triângulo de 20.580 km² no Mar Vermelho é reivindicado simultaneamente pelo Egito e pelo Sudão, administrado militarmente pelo Egito desde a década de 1990?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Triângulo de Hala'ib",
-      "Bir Tawil",
-      "Faixa de Gaza",
-      "Península do Sinai"
-    ],
-    "resposta": 0,
-    "explicacao": "O conflito decorre de duas linhas de fronteira britânicas: a reta política do paralelo 22°N de 1899 (favorável ao Egito) e a fronteira administrativa tribal de 1902 (favorável ao Sudão).",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 341,
-    "pergunta": "Qual marco de pedra marca o ponto exato de tríplice fronteira nórdica onde as fronteiras de Suécia, Noruega e Finlândia se encontram sobre um lago?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Treriksröset",
-      "Vaalserberg",
-      "Dreiländereck",
-      "Nordkapp"
-    ],
-    "resposta": 0,
-    "explicacao": "Erguido em 1926 sobre um pedestal de concreto no Lago Goldajärvi, é o ponto de três fronteiras mais setentrional do mundo.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 342,
-    "pergunta": "O cume de Vaalserberg (ponto mais alto da Holanda continental, com 322 metros) é famoso por ter sido no passado um ponto de quantas fronteiras (incluindo Moresnet Neutro)?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Quatro fronteiras (Quádrupla fronteira)",
-      "Três fronteiras",
-      "Duas fronteiras",
-      "Cinco fronteiras"
-    ],
-    "resposta": 0,
-    "explicacao": "Entre 1839 e 1919, o morro reunia as fronteiras da Holanda, Bélgica, Prússia (Alemanha) e do minúsculo condomínio de Moresnet Neutro.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 343,
-    "pergunta": "Qual micronação pioneira sobre uma antiga plataforma militar marítima antiaérea britânica (Fort Roughs) no Mar do Norte declarou sua independência em 1967?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Principado de Sealand",
-      "República de Minerva",
-      "Hutt River",
-      "Liberland"
-    ],
-    "resposta": 0,
-    "explicacao": "Fundado por Paddy Roy Bates fora das antigas 3 milhas náuticas britânicas, Sealand emite passaportes, moedas e selos próprios, embora não seja reconhecido pela ONU.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 344,
-    "pergunta": "Qual ilha no Golfo da Biscaia abriga duas cidades espanholas no continente africano que contam com cercas de segurança duplas de alta tecnologia contra imigração ilegal?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ceuta e Melilla",
-      "Gibraltar e La Línea",
-      "Tânger e Tetuão",
-      "Orã e Argel"
-    ],
-    "resposta": 0,
-    "explicacao": "Ceuta e Melilla são as únicas duas fronteiras terrestres contíguas da União Europeia em território continental africano.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 345,
-    "pergunta": "Qual lago dos Andes centrais tem suas águas e recursos biológicos compartilhados em condomínio indivisível de soberania conjunta entre Peru e Bolívia?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Lago Titicaca",
-      "Lago Poopó",
-      "Lago Junín",
-      "Lago Titicacita"
-    ],
-    "resposta": 0,
-    "explicacao": "A Autoridade Binacional Autônoma do Lago Titicaca (ALT) gerencia o lago navegável mais alto do mundo (3.812 m) com jurisdição mista paritária.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 346,
-    "pergunta": "Qual grande lago europeu nos Pré-Alpes é considerado um condomínio prático sem fronteira desenhada na água entre Alemanha, Suíça e Áustria?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Lago de Constança (Bodensee)",
-      "Lago Léman (Genebra)",
-      "Lago de Neuchâtel",
-      "Lago Maior"
-    ],
-    "resposta": 0,
-    "explicacao": "A Áustria defende que as águas profundas são de soberania comum, a Suíça prefere uma linha média teórica, e a Alemanha não tem posição formal, operando sob consenso.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 347,
-    "pergunta": "Qual região montanhosa histórica disputada entre Armênia e Azerbaijão viu a dissolução de sua autoproclamada república em 2023 após ofensiva militar azeri?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Nagorno-Karabakh (Artsakh)",
-      "Nakhchivan",
-      "Zangezur",
-      "Syunik"
-    ],
-    "resposta": 0,
-    "explicacao": "A vitória do Azerbaijão reintegrou a região, provocando a fuga de mais de 100.000 armênios étnicos e fechando o Corredor de Lachin.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 348,
-    "pergunta": "Qual república autônoma pertencente ao Azerbaijão é um exclave cercado pela Armênia, Irã e uma pequena fronteira de 17 km com a Turquia?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Nakhchivan",
-      "Nagorno-Karabakh",
-      "Adjara",
-      "Abecásia"
-    ],
-    "resposta": 0,
-    "explicacao": "Nakhchivan é a terra natal da dinastia política Aliyev e o Azerbaijão busca conectá-la ao resto do país pelo chamado 'Corredor de Zangezur' no sul da Armênia.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 349,
-    "pergunta": "Qual povoado na fronteira entre o Brasil (Roraima) e a Venezuela é a porta de entrada da rodovia BR-174 no país vizinho?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Pacaraima",
-      "Santa Elena de Uairén",
-      "Bonfim",
-      "Lethem"
-    ],
-    "resposta": 0,
-    "explicacao": "Pacaraima fica no Brasil e sua cidade-gêmea transfronteiriça é Santa Elena de Uairén, na Venezuela, polo do fluxo migratório e comercial regional.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 350,
-    "pergunta": "Qual cidade no estado do Acre é conurbada com Cobija (Bolívia), permitindo travessia internacional a pé pela Ponte Internacional da Amizade?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Brasiléia",
-      "Epitaciolândia",
-      "Assis Brasil",
-      "Cruzeiro do Sul"
-    ],
-    "resposta": 0,
-    "explicacao": "Brasiléia e Epitaciolândia formam um núcleo urbano binacional com Cobija (capital do departamento boliviano de Pando), separadas pelo Rio Acre.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 351,
-    "pergunta": "Qual ilha fluvial de 2.000 hectares no Rio Quaraí é objeto de contestação de limites territoriais entre o Brasil e o Uruguai desde o século XIX?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilha Brasileira",
-      "Ilha Martín García",
-      "Rincón de Artigas",
-      "Ilha Grande"
-    ],
-    "resposta": 0,
-    "explicacao": "O Uruguai argumenta que a ilha fica na foz do Rio Uruguai e não no Quaraí, constando como 'limite contestado' em seus mapas oficiais.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 352,
-    "pergunta": "Qual território triangular de 237 km² entre Santana do Livramento (Brasil) e Rivera (Uruguai) é reivindicado pelo Uruguai como território ocupado indevidamente?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Rincón de Artigas",
-      "Ilha Brasileira",
-      "Vila Plácido de Castro",
-      "Coxilha de Santana"
-    ],
-    "resposta": 0,
-    "explicacao": "O litígio do Rincón de Artigas gira em torno de qual arroio foi originalmente estipulado como marco divisor no Tratado de Limites de 1851.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 353,
-    "pergunta": "Qual cidade gaúcha forma com a cidade uruguaia de Rivera a famosa 'Fronteira da Paz', onde a divisa internacional é apenas uma praça e uma avenida comum?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Santana do Livramento",
-      "Jaguarão",
-      "Chuí",
-      "Uruguaiana"
-    ],
-    "resposta": 0,
-    "explicacao": "A Avenida Internacional e o Parque Internacional unem as duas cidades sem aduanas ou cercas físicas, com comércio em moeda dupla e língua mista ('portunhol').",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 354,
-    "pergunta": "Qual cidade rondoniense e qual cidade boliviana são separadas pelo Rio Mamoré e foram conectadas pela história do ciclo da borracha?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Guajará-Mirim e Guayaramerín",
-      "Corumbá e Puerto Quijarro",
-      "Cáceres e San Matías",
-      "Porto Velho e Riberalta"
-    ],
-    "resposta": 0,
-    "explicacao": "Guajará-Mirim era o terminal final da Ferrovia Madeira-Mamoré e mantém intenso transporte fluvial diário de 'voadeiras' com Guayaramerín.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 355,
-    "pergunta": "Qual município mato-grossense na fronteira com a Bolívia é a porta de entrada para a Chiquitania e o Pantanal boliviano?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Cáceres",
-      "Poconé",
-      "Barão de Melgaço",
-      "Mirassol d'Oeste"
-    ],
-    "resposta": 0,
-    "explicacao": "Cáceres dista cerca de 90 km do marco de fronteira de San Matías, sendo guarnecida pelo Comando de Fronteira do Exército Brasileiro.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 356,
-    "pergunta": "Qual região montanhosa no Himalaia é disputada entre Índia e China no leste, correspondendo a quase todo o estado indiano de Arunachal Pradesh?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Tíbet do Sul (Arunachal Pradesh)",
-      "Aksai Chin",
-      "Ladakh",
-      "Sikkim"
-    ],
-    "resposta": 0,
-    "explicacao": "A China rejeita a Linha McMahon traçada pela Grã-Bretanha em 1914 e chama a área de 'Zangnan' (Tibet do Sul), gerando confrontos periódicos de patrulhas.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 357,
-    "pergunta": "Qual planalto desértico desabitado e de alta altitude no Himalaia ocidental é controlado pela China, mas reivindicado pela Índia como parte de Ladakh?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Aksai Chin",
-      "Geleira de Siachen",
-      "Vale de Shaksgam",
-      "Caxemira Livre"
-    ],
-    "resposta": 0,
-    "explicacao": "A China construiu a Rodovia Xinjiang-Tibet (G219) através de Aksai Chin na década de 1950, o que desencadeou a Guerra Sino-Indiana de 1962.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 358,
-    "pergunta": "Qual geleira na cordilheira do Caracórum é conhecida como o campo de batalha mais alto do mundo (acima de 6.000 metros), disputada militarmente entre Índia e Paquistão?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Geleira de Siachen",
-      "Geleira Baltoro",
-      "Geleira Biafo",
-      "Geleira Hispar"
-    ],
-    "resposta": 0,
-    "explicacao": "Na Geleira de Siachen, mais soldados morreram por hipotermia, edema pulmonar de altitude e avalanches do que por tiros de artilharia desde a Operação Meghdoot em 1984.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 359,
-    "pergunta": "Qual arquipélago no Mar da China Meridional, composto por mais de 100 recifes e ilhotas desabitadas, é reivindicado total ou parcialmente por seis governos simultâneos?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilhas Spratly",
-      "Ilhas Paracel",
-      "Ilhas Natuna",
-      "Ilhas Pratas"
-    ],
-    "resposta": 0,
-    "explicacao": "China, Taiwan, Vietnã, Filipinas, Malásia e Brunei disputam as Spratly por causa das rotas de navegação, pesca e potenciais reservas de gás natural submarino.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 360,
-    "pergunta": "Qual linha de demarcação de 9 (ou 10) traços em formato de 'U' é utilizada por Pequim em seus mapas oficiais para reivindicar quase 90% do Mar da China Meridional?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha dos Nove Traços (Nine-Dash Line)",
-      "Linha McMahon",
-      "Linha Durand",
-      "Linha Radcliffe"
-    ],
-    "resposta": 0,
-    "explicacao": "Em 2016, o Tribunal Permanente de Arbitragem de Haia julgou que a Linha dos Nove Traços não possui base jurídica sob o direito marítimo da ONU (UNCLOS).",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 361,
-    "pergunta": "Qual atol em formato de anel próximo a Luzon foi ocupado de fato pela guarda costeira chinesa em 2012, sendo palco de repetidas colisões com navios filipinos?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Atol de Scarborough (Panatag Shoal)",
-      "Mischief Reef",
-      "Subi Reef",
-      "Fiery Cross Reef"
-    ],
-    "resposta": 0,
-    "explicacao": "Scarborough Shoal fica a apenas 120 milhas náuticas das Filipinas (bem dentro de sua Zona Econômica Exclusiva) e a mais de 500 milhas da China continental.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 362,
-    "pergunta": "Qual navio militar enferrujado da 2ª Guerra Mundial (BRP Sierra Madre) foi encalhado intencionalmente pelas Filipinas em 1999 para servir como base militar permanente em um recife?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Second Thomas Shoal (Ayungin Shoal)",
-      "Scarborough Shoal",
-      "Thitu Island",
-      "Johnson South Reef"
-    ],
-    "resposta": 0,
-    "explicacao": "Fuzileiros navais filipinos vivem a bordo do navio carcomido para manter a posse física do recife contra a marinha chinesa.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 363,
-    "pergunta": "Qual arquipélago no Mar da China Oriental é administrado pelo Japão com o nome de Senkaku, mas reivindicado pela China como Diaoyu e por Taiwan como Tiaoyutai?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilhas Senkaku / Diaoyu",
-      "Ilhas Ryukyu",
-      "Ilhas Yaeyama",
-      "Ilhas Daito"
-    ],
-    "resposta": 0,
-    "explicacao": "As ilhotas desabitadas ganharam importância geopolítica crucial em 1968, quando relatórios da ONU apontaram vastas reservas de petróleo sob o leito marinho adjacente.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 364,
-    "pergunta": "Qual par de ilhotas vulcânicas rochosas no Mar do Japão é administrado pela Coreia do Sul como Dokdo, mas reclamado pelo Japão com o nome de Takeshima?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Dokdo / Takeshima (Liancourt Rocks)",
-      "Ilha de Ulleungdo",
-      "Ilha de Jeju",
-      "Ilhas Oki"
-    ],
-    "resposta": 0,
-    "explicacao": "A disputa é marcada pelo ressentimento histórico da ocupação colonial japonesa da península coreana no início do século XX.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 365,
-    "pergunta": "Quais quatro ilhas do sul do arquipélago das Curilas (Iturup, Kunashir, Shikotan e Habomai) são controladas pela Rússia, mas reivindicadas pelo Japão como 'Territórios do Norte'?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilhas Curilas do Sul",
-      "Ilhas Aleutas",
-      "Ilhas Shantar",
-      "Ilhas Comandante"
-    ],
-    "resposta": 0,
-    "explicacao": "A disputa pelas quatro ilhas ocupadas pela URSS nos últimos dias da 2ª Guerra Mundial impediu Moscou e Tóquio de assinarem um tratado de paz formal até hoje.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 366,
-    "pergunta": "Qual antiga colônia portuguesa na Índia foi reintegrada à união indiana em 1961 pela ação militar da Operação Vijay após 451 anos de domínio europeu?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Goa, Damão e Diu",
-      "Pondicherry",
-      "Karikal",
-      "Cochim"
-    ],
-    "resposta": 0,
-    "explicacao": "Portugal sob o regime do Estado Novo de Salazar recusava-se a negociar a devolução dos territórios ultramarinos, forçando a intervenção armada indiana.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 367,
-    "pergunta": "Qual ex-posto colonial francês na costa sudeste da Índia é célebre por sua arquitetura colonial francesa, bulevares e a comunidade espiritual de Auroville?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Puducherry (antiga Pondicherry)",
-      "Goa",
-      "Mahe",
-      "Chandernagore"
-    ],
-    "resposta": 0,
-    "explicacao": "A França transferiu pacificamente seus estabelecimentos comerciais na Índia (Pondicherry, Karikal, Yanam e Mahe) por tratado diplomático em 1954.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 368,
-    "pergunta": "Qual território ultramarino britânico na Península Ibérica, capturado em 1704 e cedido pelo Tratado de Utrecht de 1713, é dominado por um monumental rochedo de calcário?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Gibraltar",
-      "Ceuta",
-      "Menorca",
-      "Malta"
-    ],
-    "resposta": 0,
-    "explicacao": "Com 6,8 km² e 34.000 habitantes, Gibraltar tem controle total sobre o tráfego do estreito e abriga a única população de macacos selvagens da Europa (macacos-de-gibraltar).",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 369,
-    "pergunta": "Qual vila espanhola adjacente a Gibraltar é separada da colônia britânica pela pista de pouso do Aeroporto de Gibraltar, que corta a avenida principal?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "La Línea de la Concepción",
-      "Algeciras",
-      "San Roque",
-      "Tarifa"
-    ],
-    "resposta": 0,
-    "explicacao": "A Winston Churchill Avenue cruza a pista do aeroporto ao nível do chão, exigindo cancelas de trânsito que fecham a rua a cada pouso ou decolagem de aviões.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 370,
-    "pergunta": "Qual cidade no norte do México é unida à cidade americana de El Paso por pontes sobre o Rio Bravo (Rio Grande), formando a maior conurbação fronteiriça das Américas?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ciudad Juárez",
-      "Tijuana",
-      "Matamoros",
-      "Nuevo Laredo"
-    ],
-    "resposta": 0,
-    "explicacao": "Juárez e El Paso somam mais de 2,7 milhões de pessoas e formam um polo gigantesco de indústrias manufatureiras de montagem ('maquiladoras').",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 371,
-    "pergunta": "Qual é a cidade mexicana que faz fronteira com San Diego na Califórnia, sendo uma das passagens terrestres mais movimentadas do mundo (San Ysidro)?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Tijuana",
-      "Mexicali",
-      "Nogales",
-      "Ensenada"
-    ],
-    "resposta": 0,
-    "explicacao": "O porto de entrada de San Ysidro processa diariamente dezenas de milhares de pedestres e veículos entre as duas economias conurbadas.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 372,
-    "pergunta": "Qual fronteira disputada no Oriente Médio divide a Península do Sinai e Israel, marcada pelo histórico posto de Taba na ponta norte do Golfo de Ácaba?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Fronteira Egito-Israel em Taba",
-      "Fronteira da Linha Azul",
-      "Fronteira de Rafah",
-      "Linha Verde"
-    ],
-    "resposta": 0,
-    "explicacao": "A disputa sobre o quilômetro quadrado de Taba só foi resolvida em 1989 por arbitragem internacional, que devolveu a praia e os resorts ao Egito.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 373,
-    "pergunta": "Qual colina estratégica ocupada por Israel na Guerra dos Seis Dias em 1967 é uma meseta que domina o Mar da Galileia e foi anexada unilateralmente da Síria em 1981?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Colinas de Golã",
-      "Cisjordânia",
-      "Montes da Judeia",
-      "Monte Hermon"
-    ],
-    "resposta": 0,
-    "explicacao": "As Colinas de Golã fornecem a Israel vantagem militar de altitude sobre Damasco e controlam importantes nascentes de água doce do Rio Jordão.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 374,
-    "pergunta": "Qual faixa litorânea de 365 km² densamente povoada no Mediterrâneo faz fronteira com Israel a leste e norte e com a Península do Sinai (Egito) ao sul?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Faixa de Gaza",
-      "Cisjordânia",
-      "Golã",
-      "Taba"
-    ],
-    "resposta": 0,
-    "explicacao": "A Faixa de Gaza tem a travessia de Rafah como sua única fronteira que não dá acesso direto a Israel.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 375,
-    "pergunta": "Qual demarcação temporária desenhada pela ONU após a retirada militar israelense do sul do Líbano em 2000 é conhecida como a linha de cessar-fogo oficial?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha Azul (Blue Line)",
-      "Linha Verde",
-      "Linha Púrpura",
-      "Linha de Armistício"
-    ],
-    "resposta": 0,
-    "explicacao": "A Linha Azul não é uma fronteira internacional reconhecida definitiva, mas uma linha técnica de retirada monitorada pela missão UNIFIL da ONU.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 376,
-    "pergunta": "Qual pequeno território disputado de 22 km² na junção entre Líbano, Síria e as Colinas de Golã é reivindicado por Beirute, mas ocupado por Israel?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Fazendas de Shebaa (Chebaa)",
-      "Vale de Bekaa",
-      "Monte Bental",
-      "Quneitra"
-    ],
-    "resposta": 0,
-    "explicacao": "Israel afirma que a área pertencia à Síria quando foi tomada em 1967, enquanto o governo libanês e o Hezbollah afirmam ser solo soberano libanês.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 377,
-    "pergunta": "Qual linha de fronteira de 2.670 km desenhada em 1893 por um diplomata britânico divide tribos pashtuns entre o Afeganistão e o Paquistão, nunca aceita por Cabul?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha Durand",
-      "Linha McMahon",
-      "Linha Radcliffe",
-      "Linha Curzon"
-    ],
-    "resposta": 0,
-    "explicacao": "Sir Mortimer Durand traçou a linha que dividiu famílias e clãs pashtuns; nenhum governo afegão (monárquico, comunista ou talibã) a reconheceu formalmente.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 378,
-    "pergunta": "Qual linha de demarcação traçada em apenas cinco semanas em 1947 por Sir Cyril Radcliffe dividiu a Índia Britânica na Índia e no Paquistão, gerando migração em massa de milhões?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha Radcliffe",
-      "Linha Durand",
-      "Linha Curzon",
-      "Linha Mason-Dixon"
-    ],
-    "resposta": 0,
-    "explicacao": "A partição dividiu as províncias do Punjab e de Bengala, resultando em tumultos comunais violentos e na morte de até um milhão de pessoas.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 379,
-    "pergunta": "Qual linha de controle de fato militar (LoC) divide a região histórica da Caxemira entre a Índia e o Paquistão desde os acordos de Simla de 1972?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha de Controle (LoC - Line of Control)",
-      "Linha de Controle Efetivo (LAC)",
-      "Linha Radcliffe",
-      "Linha McMahon"
-    ],
-    "resposta": 0,
-    "explicacao": "A LoC é uma das fronteiras mais militarizadas do planeta, cercada por arame farpado eletrificado, campos minados e postos de artilharia pesada.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 380,
-    "pergunta": "Qual linha de cessar-fogo separa as áreas controladas pela Índia e pela China na região montanhosa de Ladakh e Aksai Chin?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Linha de Controle Efetivo (LAC - Line of Actual Control)",
-      "Linha de Controle (LoC)",
-      "Linha Curzon",
-      "Linha Azul"
-    ],
-    "resposta": 0,
-    "explicacao": "A LAC não tem demarcação mútua precisa no terreno, levando as patrulhas chinesas e indianas a entrarem em atrito por percepções divergentes de fronteira.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 381,
-    "pergunta": "Qual é a largura da Zona Desmilitarizada da Coreia (DMZ), que corta a península coreana ao longo do paralelo 38°N desde o armistício de 1953?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "4 km de largura (2 km para cada lado da linha militar)",
-      "10 km de largura",
-      "1 km de largura",
-      "500 metros"
-    ],
-    "resposta": 0,
-    "explicacao": "A DMZ tem cerca de 250 km de comprimento e 4 km de largura, tendo se transformado involuntariamente em um refúgio ecológico intocado para espécies ameaçadas.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 382,
-    "pergunta": "Qual vila dentro da DMZ coreana abriga a Área de Segurança Conjunta (JSA), onde soldados do Norte e do Sul ficam frente a frente separados por blocos de concreto?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Panmunjom",
-      "Kaesong",
-      "Paju",
-      "Incheon"
-    ],
-    "resposta": 0,
-    "explicacao": "Em Panmunjom ficam as famosas salas de conferência azuis da ONU, onde a mesa de negociação é cortada exatamente ao meio pela linha de demarcação militar.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 383,
-    "pergunta": "Qual cidade alemã permaneceu dividida por um muro de concreto de 155 km construído em 1961 pela RDA para deter a fuga de cidadãos para o enclave ocidental?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Berlim (Muro de Berlim)",
-      "Bonn",
-      "Hamburgo",
-      "Munique"
-    ],
-    "resposta": 0,
-    "explicacao": "Berlim Ocidental era um enclave capitalista de mais de 2 milhões de pessoas inteiramente cercado pelo território da Alemanha Oriental comunista até a queda em 1989.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 384,
-    "pergunta": "Qual posto de controle militar na Friedrichstraße em Berlim era o ponto de travessia mais célebre entre os setores americano e soviético para estrangeiros e diplomatas?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Checkpoint Charlie",
-      "Checkpoint Alpha (Helmstedt)",
-      "Checkpoint Bravo (Dreilinden)",
-      "Portão de Brandemburgo"
-    ],
-    "resposta": 0,
-    "explicacao": "Em outubro de 1961, tanques americanos e soviéticos ficaram apontados cano a cano a poucos metros de distância no Checkpoint Charlie durante o auge da crise de Berlim.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 385,
-    "pergunta": "Qual enclave no norte de Marrocos possui muralhas renascentistas e o Monte Hacho, um dos lendários Pilares de Hércules?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ceuta",
-      "Melilla",
-      "Alhucemas",
-      "Tânger"
-    ],
-    "resposta": 0,
-    "explicacao": "Ceuta pertencia a Portugal desde a conquista de 1415, mas decidiu permanecer leal à coroa espanhola em 1640 após a Restauração da independência portuguesa.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 386,
-    "pergunta": "Qual cidade autônoma espanhola na costa africana foi conquistada pelos Reis Católicos em 1497 e abriga o segundo maior acervo de arquitetura modernista da Espanha após Barcelona?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Melilla",
-      "Ceuta",
-      "Chafarinas",
-      "Vélez"
-    ],
-    "resposta": 0,
-    "explicacao": "Melilla possui centenas de edifícios projetados por Enrique Nieto, discípulo de Antoni Gaudí, no estilo art nouveau e modernista floral.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 387,
-    "pergunta": "Qual arquipélago espanhol desabitado a 4 km da costa marrocosa de Ras Kebdana é guardado militarmente pelo exército espanhol e consiste em três ilhotas?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilhas Chafarinas",
-      "Ilhas Canárias",
-      "Ilhas Baleares",
-      "Ilhas Selvagens"
-    ],
-    "resposta": 0,
-    "explicacao": "As Ilhas Chafarinas (do Congresso, Isabel II e do Rei) foram ocupadas pela Espanha em 1848 para impedir que fossem tomadas pelos franceses na Argélia.",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 388,
-    "pergunta": "Qual ilhota rochosa desabitada no Estreito de Gibraltar causou um confronto militar entre Espanha e Marrocos em julho de 2002 quando soldados marroquinos hastearam sua bandeira?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilha de Perejil (Leila)",
-      "Ilha de Alborão",
-      "Peñón de Alhucemas",
-      "Ilha de Tarifa"
-    ],
-    "resposta": 0,
-    "explicacao": "Comandos espanhóis da Operação Romeo-Sierra desalojaram os soldados marroquinos sem baixas, restaurando o status quo por mediação dos Estados Unidos.",
-    "dificuldade": "medio"
-  },
-  {
-    "id": 389,
-    "pergunta": "Qual cidade no Alentejo/Extremadura foi conquistada pela Espanha em 1801 na Guerra das Laranjas e é mantida por Madri, embora Portugal nunca tenha renunciado formalmente ao seu direito?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Olivença (Olivenza)",
-      "Badajoz",
-      "Elvas",
-      "Campo Maior"
-    ],
-    "resposta": 0,
-    "explicacao": "Portugal invoca o Tratado de Viena de 1815, que estipulava a devolução de Olivença à coroa portuguesa, mas o assunto permanece congelado em 'amigável desacordo'.",
-    "dificuldade": "facil"
-  },
-  {
-    "id": 390,
-    "pergunta": "Qual ilha no Golfo de Omã é administrada por Omã como um posto avançado de telegrafia histórico britânico cercado por fiordes na Península de Musandam?",
-    "categoria": "Fronteiras & Enclaves",
-    "opcoes": [
-      "Ilha dos Telégrafos (Jazirat al-Maqlab)",
-      "Ilha Masirah",
-      "Ilhas Hallaniyat",
-      "Ilha de Qeshm"
-    ],
-    "resposta": 0,
-    "explicacao": "No século XIX, operadores ingleses de telégrafo viviam isolados no calor sufocante de 50°C da ilha, dando origem à expressão popular em inglês 'go round the bend' (enlouquecer).",
-    "dificuldade": "dificil"
-  },
-  {
-    "id": 391,
-    "pergunta": "Qual cidade-estado e nação soberana na Península Itálica é a república constitucional mais antiga do mundo ainda existente, fundada segundo a tradição em 301 d.C.?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "A bandeira de qual país do sul da Europa consiste em duas faixas horizontais (branca acima e azul claro abaixo) com o brasão das Três Torres sobre três cumes?",
+    "categoria": "Bandeiras do Mundo",
     "opcoes": [
       "San Marino",
-      "Vaticano",
+      "Liechtenstein",
       "Mônaco",
       "Andorra"
     ],
     "resposta": 0,
-    "explicacao": "San Marino é totalmente encravada na Itália (regiões da Emília-Romanha e Marcas), situada sobre os penhascos do Monte Titano.",
+    "explicacao": "A bandeira de San Marino homenageia as três fortalezas históricas no cume do Monte Titano (Guaita, Cesta e Montale) com o lema \"Libertas\".",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 332,
+    "pergunta": "Qual país do Cáucaso tem uma bandeira tricolor horizontal composta por vermelho, azul escuro e amarelo damasco (laranja)?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Armênia",
+      "Geórgia",
+      "Azerbaijão",
+      "Moldávia"
+    ],
+    "resposta": 0,
+    "explicacao": "O damasco (Prunus armeniaca) é a fruta nativa e símbolo da Armênia; a faixa inferior laranja-damasco representa a coragem e a fertilidade da terra.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 333,
+    "pergunta": "Qual país insular do Sudeste Asiático inverte a sua bandeira em tempos de guerra, colocando a faixa vermelha para cima e a azul para baixo?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Filipinas",
+      "Tailândia",
+      "Vietnã",
+      "Indonésia"
+    ],
+    "resposta": 0,
+    "explicacao": "A constituição das Filipinas prevê que em tempos de paz a faixa azul fique no topo (paz e justiça); em estado oficial de guerra, a faixa vermelha (coragem) é içada no topo.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 334,
+    "pergunta": "Qual país insular da Micronésia possui uma bandeira azul com um círculo amarelo descentralizado representando a lua cheia sobre o oceano?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Palau",
+      "Nauru",
+      "Tuvalu",
+      "Ilhas Marshall"
+    ],
+    "resposta": 0,
+    "explicacao": "A bandeira de Palau retrata a lua cheia dourada (símbolo de paz e amor à natureza) iluminando o azul profundo do Oceano Pacífico.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 335,
+    "pergunta": "Qual país da África Austral possui uma bandeira azul celeste com uma faixa preta central envolta por duas bordas brancas finas?",
+    "categoria": "Bandeiras do Mundo",
+    "opcoes": [
+      "Botsuana",
+      "Namíbia",
+      "Lesoto",
+      "Zâmbia"
+    ],
+    "resposta": 0,
+    "explicacao": "A bandeira de Botsuana simboliza a água e a chuva tão preciosas no deserto do Kalahari (\"Pula\", que também dá nome à moeda), e a harmonia entre povos brancos e negros.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 336,
+    "pergunta": "Qual é a capital oficial do Canadá, cidade escolhida estrategicamente pela Rainha Vitória em 1857 na divisa entre as províncias de Ontário e Quebec?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Ottawa",
+      "Toronto",
+      "Montreal",
+      "Vancouver"
+    ],
+    "resposta": 0,
+    "explicacao": "Embora Toronto seja a maior cidade e polo financeiro, a capital federal é Ottawa, situada estrategicamente na fronteira linguística anglo-francesa.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 337,
+    "pergunta": "Qual é a capital oficial da Austrália, construída de maneira planejada no início do século XX como um compromisso diplomático entre Sydney e Melbourne?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Camberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "resposta": 0,
+    "explicacao": "Camberra foi fundada em 1913 no Território da Capital Australiana como compromisso salomônico para resolver a feroz rivalidade entre Melbourne e Sydney.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 338,
+    "pergunta": "Qual é a capital oficial da Turquia, estabelecida por Mustafa Kemal Atatürk em 1923 no planalto da Anatólia em substituição a Istambul?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Ancara",
+      "Istambul",
+      "Esmirna",
+      "Bursa"
+    ],
+    "resposta": 0,
+    "explicacao": "Ancara tornou-se a capital da República da Turquia para romper com o legado imperial otomano de Istambul e situar o centro de poder no coração geográfico do país.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 339,
+    "pergunta": "Qual nação possui três capitais oficiais onde o Poder Executivo fica em Pretória, o Legislativo na Cidade do Cabo e o Judiciário em Bloemfontein?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "África do Sul",
+      "Nigéria",
+      "Quênia",
+      "Egito"
+    ],
+    "resposta": 0,
+    "explicacao": "A África do Sul divide a sede de seus três poderes republicanos entre Pretória (administrativa), Cidade do Cabo (legislativa) e Bloemfontein (judiciária).",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 340,
+    "pergunta": "Qual cidade suíça funciona como a capital de facto e sede do Conselho Federal e da Assembleia da Suíça, embora a constituição não declare capital oficial?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Berna",
+      "Zurique",
+      "Genebra",
+      "Basileia"
+    ],
+    "resposta": 0,
+    "explicacao": "A Suíça não possui uma capital de jure por respeito à autonomia dos cantões, mas Berna foi designada Cidade Federal (Bundesstadt) em 1848.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 341,
+    "pergunta": "Qual é a capital soberana mais meridional (situada mais ao sul) de todo o planeta Terra?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Wellington (Nova Zelândia)",
+      "Camberra (Austrália)",
+      "Buenos Aires (Argentina)",
+      "Santiago (Chile)"
+    ],
+    "resposta": 0,
+    "explicacao": "Wellington, na ilha norte da Nova Zelândia (latitude 41°17' S), é a capital nacional soberana localizada mais próxima do Polo Sul no globo.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 342,
+    "pergunta": "Qual é a capital soberana mais setentrional (situada mais ao norte) do planeta Terra, a apenas 250 km ao sul do Círculo Polar Ártico?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Reykjavik (Islândia)",
+      "Oslo (Noruega)",
+      "Helsinque (Finlândia)",
+      "Estocolmo (Suécia)"
+    ],
+    "resposta": 0,
+    "explicacao": "Reykjavik, na Islândia (latitude 64°08' N), é a capital de um estado soberano mais ao norte de todo o mundo.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 343,
+    "pergunta": "Qual é a capital oficial do Reino do Marrocos, frequentemente ofuscada em população pela metrópole econômica de Casablanca?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Rabat",
+      "Casablanca",
+      "Marrakech",
+      "Fez"
+    ],
+    "resposta": 0,
+    "explicacao": "Rabat é a capital política e administrativa do Marrocos e sede do Palácio Real, enquanto Casablanca é o maior porto e polo financeiro.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 344,
+    "pergunta": "Qual cidade é a capital oficial dos Países Baixos segundo a Constituição Nacional, embora o Parlamento, a Suprema Corte e a monarquia fiquem em Haia?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Amsterdã",
+      "Haia",
+      "Roterdã",
+      "Utrecht"
+    ],
+    "resposta": 0,
+    "explicacao": "Amsterdã é a capital constitucional oficial holandesa, mas Haia (Den Haag) é a sede real do governo, dos ministérios e dos tribunais internacionais.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 345,
+    "pergunta": "Qual é a capital oficial da República Federal da Nigéria, construída planejadamente no centro geográfico do país para substituir a litorânea Lagos em 1991?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Abuja",
+      "Lagos",
+      "Kano",
+      "Ibadan"
+    ],
+    "resposta": 0,
+    "explicacao": "Abuja foi erguida na década de 1980 em território federal neutro para promover a coesão entre as diversas etnias do norte e do sul nigeriano.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 346,
+    "pergunta": "Qual cidade é a capital constitucional e histórica da Bolívia (onde fica a Suprema Corte), embora a sede dos poderes Executivo e Legislativo fique em La Paz?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Sucre",
+      "La Paz",
+      "Santa Cruz de la Sierra",
+      "Cochabamba"
+    ],
+    "resposta": 0,
+    "explicacao": "Sucre é a capital histórica e de direito da Bolívia segundo a Constituição, enquanto La Paz abriga o Palácio Quemado e a Assembleia Legislativa.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 347,
+    "pergunta": "Qual é a capital oficial da Costa do Marfim desde 1983, famosa por abrigar a gigantesca Basílica de Nossa Senhora da Paz, substituindo a metrópole litorânea de Abidjan?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Yamoussoukro",
+      "Abidjan",
+      "Bouaké",
+      "San-Pédro"
+    ],
+    "resposta": 0,
+    "explicacao": "Yamoussoukro é a capital política da Costa do Marfim, cidade natal do primeiro presidente Félix Houphouët-Boigny, embora Abidjan retenha a maioria das embaixadas e empresas.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 348,
+    "pergunta": "Qual é a capital do Cazaquistão que foi fundada no século XIX, mudou de nome para Nur-Sultan em 2019 e teve seu nome restabelecido em 2022?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Astana",
+      "Almaty",
+      "Shymkent",
+      "Aktobe"
+    ],
+    "resposta": 0,
+    "explicacao": "Astana substituiu Almaty como capital do Cazaquistão em 1997, famosa por seus monumentos futuristas projetados por arquitetos como Norman Foster.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 349,
+    "pergunta": "Qual é a capital de Mianmar, megacidade planejada inaugurada sigilosamente no interior em 2005 para substituir Yangon?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Naypyidaw",
+      "Yangon (Rangum)",
+      "Mandalay",
+      "Bagan"
+    ],
+    "resposta": 0,
+    "explicacao": "Naypyidaw é quatro vezes maior em área que Londres, construída pela junta militar birmanesa com avenidas monumentais de até 20 pistas.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 350,
+    "pergunta": "Qual é a capital oficial do Paquistão, erguida nos anos 1960 aos pés das colinas de Margalla para substituir Karachi no sul?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Islamabad",
+      "Karachi",
+      "Lahore",
+      "Rawalpindi"
+    ],
+    "resposta": 0,
+    "explicacao": "Islamabad foi projetada pelo arquiteto grego Constantinos Doxiadis com layout em grelha modular dividida em setores funcionais.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 351,
+    "pergunta": "Qual é a capital oficial da Nova Zelândia, situada no extremo sul da Ilha do Norte, substituindo Auckland em 1865?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Wellington",
+      "Auckland",
+      "Christchurch",
+      "Hamilton"
+    ],
+    "resposta": 0,
+    "explicacao": "Wellington foi escolhida por sua posição geográfica central no Estreito de Cook para evitar que a Ilha do Sul se separasse da colônia.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 352,
+    "pergunta": "Qual é a capital dos Emirados Árabes Unidos (EAU), sede do governo federal e detentora de mais de 90% das reservas de petróleo da federação?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Abu Dhabi",
+      "Dubai",
+      "Sharjah",
+      "Ajman"
+    ],
+    "resposta": 0,
+    "explicacao": "Embora Dubai seja o polo comercial e turístico global mais famoso, a capital federal e centro político e petrolífero dos EAU é Abu Dhabi.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 353,
+    "pergunta": "Qual cidade histórica é a capital da Escócia, famosa pelo seu castelo sobre uma rocha vulcânica e sede do Parlamento Escocês reaberto em 1999?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Edimburgo",
+      "Glasgow",
+      "Aberdeen",
+      "Dundee"
+    ],
+    "resposta": 0,
+    "explicacao": "Edimburgo é a capital histórica da Escócia desde o século XV, enquanto Glasgow é a cidade mais populosa e centro industrial escocês.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 354,
+    "pergunta": "Qual é a capital do Equador, fundada a 2.850 metros de altitude, sendo a capital nacional mais próxima da Linha do Equador?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Quito",
+      "Guayaquil",
+      "Cuenca",
+      "Manta"
+    ],
+    "resposta": 0,
+    "explicacao": "Quito fica a apenas 25 km ao sul da Linha do Equador e seu centro colonial foi o primeiro patrimônio mundial urbano declarado pela UNESCO em 1978.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 355,
+    "pergunta": "Qual país do Sudeste Asiático transferiu formalmente sua capital governamental e palácio administrativo para a nova cidade planejada de Putrajaya em 1999?",
+    "categoria": "Capitais do Mundo",
+    "opcoes": [
+      "Malásia",
+      "Indonésia",
+      "Tailândia",
+      "Vietnã"
+    ],
+    "resposta": 0,
+    "explicacao": "Kuala Lumpur permanece como capital real e legislativa da Malásia, mas a sede executiva e ministerial foi realocada para Putrajaya.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 356,
+    "pergunta": "Onde fica a nação insular de Malta, antigo bastião dos Cavaleiros Hospitalários e ponto de interseção naval estratégico?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Mar Mediterrâneo central, a 80 km ao sul da Sicília (Itália) e a leste da Tunísia",
+      "No Mar Vermelho, próximo ao Golfo de Ácaba",
+      "No Oceano Atlântico Norte, a oeste de Portugal",
+      "No Mar Egeu, entre a Grécia continental e Creta"
+    ],
+    "resposta": 0,
+    "explicacao": "Malta ocupa o centro do Mar Mediterrâneo, controlando a passagem naval entre a bacia ocidental e oriental do mar.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 357,
+    "pergunta": "Onde fica o arquipélago das Seychelles, famoso mundialmente por suas ilhas de granito rosa e reservas de tartarugas-gigantes?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Oceano Índico Ocidental, a nordeste de Madagascar e a leste da costa da África",
+      "No Oceano Pacífico Sul, próximo à Polinésia Francesa",
+      "No Mar do Caribe, próximo à costa venezuelana",
+      "No Oceano Atlântico Sul, entre o Brasil e Angola"
+    ],
+    "resposta": 0,
+    "explicacao": "As Seychelles são compostas por 115 ilhas tropicais situadas no Oceano Índico Ocidental, a cerca de 1.500 km a leste da costa continental da África.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 358,
+    "pergunta": "Em qual sub-região e continente fica o Suriname, o único país do continente sul-americano a adotar o neerlandês (holandês) como língua oficial?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No norte da América do Sul, banhado pelo Oceano Atlântico entre a Guiana e a Guiana Francesa",
+      "Na América Central continental, entre a Nicarágua e a Costa Rica",
+      "No Caribe insular, na região das Antilhas Menores",
+      "No oeste da África, encravado no Golfo da Guiné"
+    ],
+    "resposta": 0,
+    "explicacao": "O Suriname localiza-se na costa norte do Escudo das Guianas, na América do Sul, fazendo fronteira ao sul com o estado brasileiro do Pará e do Amapá.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 359,
+    "pergunta": "Onde fica o pequeno reino montanhoso do Butão, conhecido por mensurar a \"Felicidade Interna Bruta\"?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "Na cordilheira do Himalaia, na Ásia Meridional, espremido entre a China (Tibete) e a Índia",
+      "Nas montanhas do Cáucaso, entre a Rússia e o Irã",
+      "No Sudeste Asiático, entre a Tailândia e o Camboja",
+      "Na Cordilheira dos Andes, entre o Peru e a Bolívia"
+    ],
+    "resposta": 0,
+    "explicacao": "O Butão é um reino budista do Himalaia Oriental, cercado ao norte pela Região Autônoma do Tibete (China) e ao sul, leste e oeste pela Índia.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 360,
+    "pergunta": "Onde fica a República de Djibuti, país estratégico que sedia simultaneamente bases militares dos EUA, China, França e Japão?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Chifre da África, na entrada sul do Mar Vermelho junto ao Estreito de Bab-el-Mandeb",
+      "No Golfo Pérsico, entre o Irã e o Iraque",
+      "Na costa ocidental da África, junto ao Rio Congo",
+      "No norte da África, no Estreito de Gibraltar"
+    ],
+    "resposta": 0,
+    "explicacao": "O Djibuti controla a entrada do Estreito de Bab-el-Mandeb no Chifre da África, rota por onde passa cerca de 30% do tráfego global de contêineres marítimos.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 361,
+    "pergunta": "Onde fica o Sultanato de Brunei, pequena nação petrolífera de altíssima renda per capita governada por uma monarquia absolutista islâmica?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Sudeste Asiático, na costa norte da ilha de Bornéu, inteiramente cercado pela Malásia e pelo Mar da China Meridional",
+      "No Golfo Pérsico, em uma península ao lado da Arábia Saudita",
+      "No Oceano Índico, próximo ao arquipélago das Maldivas",
+      "Na Península da Indochina, entre o Vietnã e o Laos"
+    ],
+    "resposta": 0,
+    "explicacao": "Brunei fica na ilha de Bornéu no Sudeste Asiático, dividido em duas partes desconexas cercadas pelo estado malaio de Sarawak.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 362,
+    "pergunta": "Em qual mar e região fica a nação insular de Chipre, terceira maior ilha do seu respectivo mar?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No leste do Mar Mediterrâneo, ao sul da Turquia e a oeste da Síria e Líbano",
+      "No centro do Mar Negro, a leste da Crimeia",
+      "No Mar Vermelho, próximo ao Canal de Suez",
+      "No Mar Adriático, em frente à costa da Croácia"
+    ],
+    "resposta": 0,
+    "explicacao": "Chipre fica na bacia oriental do Mediterrâneo Levou um papel estratégico na encruzilhada de três continentes (Europa, Ásia e África).",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 363,
+    "pergunta": "Onde fica o arquipélago de Cabo Verde, nação insular de língua portuguesa com dez ilhas vulcânicas?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Oceano Atlântico Norte, cerca de 570 km a oeste da costa do Senegal (África Ocidental)",
+      "No Golfo da Guiné, exatamente sobre a Linha do Equador",
+      "No Oceano Índico, próximo ao Canal de Moçambique",
+      "No Mar do Caribe, entre Cuba e a Flórida"
+    ],
+    "resposta": 0,
+    "explicacao": "Cabo Verde fica no Oceano Atlântico central, no Sahel oceânico, ponto de parada histórico crucial nas rotas entre Europa, África e Américas.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 364,
+    "pergunta": "Onde fica o Principado de Andorra, microestado montanhoso soberano governado por dois copríncipes (o Bispo de Urgell e o Presidente da França)?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "Na cordilheira dos Pireneus, na fronteira montanhosa entre Espanha e França",
+      "Na cordilheira dos Alpes, entre a Suíça e a Itália",
+      "Nas montanhas dos Bálcãs, entre a Bósnia e Montenegro",
+      "Nas montanhas dos Cárpatos, entre a Polônia e a Ucrânia"
+    ],
+    "resposta": 0,
+    "explicacao": "Andorra fica encravada nas altas montanhas dos Pireneus na Europa Ocidental, sem exército próprio e com o catalão como única língua oficial.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 365,
+    "pergunta": "Onde fica a República de Maurício, famosa por ter sido o único habitat do extinto pássaro dodô?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Oceano Índico Sudoeste, a leste de Madagascar e vizinha à ilha francesa de Reunião",
+      "No Oceano Pacífico, a oeste de Fiji",
+      "No Oceano Atlântico Sul, próximo à Namíbia",
+      "No Mar da Arábia, em frente ao Iêmen"
+    ],
+    "resposta": 0,
+    "explicacao": "Maurício faz parte das Ilhas Mascarenhas no Oceano Índico a cerca de 800 km a leste de Madagascar.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 366,
+    "pergunta": "Onde fica a nação insular de São Tomé e Príncipe, o segundo menor país da África em território?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Golfo da Guiné, no Oceano Atlântico equatorial, a cerca de 250 km da costa do Gabão",
+      "No Oceano Índico, próximo a Zanzibar",
+      "No Mar Vermelho, próximo ao Djibuti",
+      "No Oceano Atlântico Sul, ao sul de Angola"
+    ],
+    "resposta": 0,
+    "explicacao": "São Tomé e Príncipe é composto por duas ilhas vulcânicas no Golfo da Guiné; o Ilhéu das Rolas ao sul de São Tomé é cortado exatamente pela Linha do Equador.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 367,
+    "pergunta": "Onde fica a Ilha de Bornéu, a terceira maior ilha do mundo, cujo território é politicamente dividido entre três países soberanos?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Sudeste Asiático, dividida entre Indonésia, Malásia e Brunei",
+      "No Caribe, dividida entre Haiti, República Dominicana e Porto Rico",
+      "No Oceano Índico, dividida entre Índia, Sri Lanka e Maldivas",
+      "No Pacífico Sul, dividida entre Austrália e Papua-Nova Guiné"
+    ],
+    "resposta": 0,
+    "explicacao": "Bornéu é a terceira maior ilha do planeta, dividida entre o Kalimantan indonésio (73% da ilha), os estados malaios de Sabah e Sarawak (26%) e o sultanato de Brunei (1%).",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 368,
+    "pergunta": "Onde fica o arquipélago das Bermudas, território ultramarino britânico famoso no imaginário popular?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Oceano Atlântico Norte ocidental, a cerca de 1.050 km a leste do estado americano da Carolina do Norte",
+      "No meio do Mar do Caribe, ao sul de Cuba",
+      "No Golfo do México, próximo a Cancún",
+      "No Oceano Pacífico Norte, a oeste da Califórnia"
+    ],
+    "resposta": 0,
+    "explicacao": "Bermudas não fica no Mar do Caribe, mas sim isolada no Atlântico Norte, em águas aquecidas pela Corrente do Golfo que sustentam os recifes de corais mais setentrionais do planeta.",
+    "dificuldade": "medio"
+  },
+  {
+    "id": 369,
+    "pergunta": "Onde fica a nação insular de Tuvalu, um dos quatro países membros da ONU com menor altitude média e mais vulneráveis ao aquecimento global?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "No Oceano Pacífico Sul, na Polinésia, a meio caminho entre o Havaí e a Austrália",
+      "No Oceano Índico, próximo às Maldivas",
+      "No Mar do Caribe, nas Pequenas Antilhas",
+      "No Oceano Ártico, ao norte da Sibéria"
+    ],
+    "resposta": 0,
+    "explicacao": "Tuvalu é formado por nove atóis de coral no Pacífico Sul; o ponto mais alto de toda a nação atinge menos de 5 metros acima do nível do mar.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 370,
+    "pergunta": "Em qual continente e região fica a nação sem litoral do Quirguistão, dominada pelos picos nevados das montanhas Tian Shan?",
+    "categoria": "Localização & Fronteiras",
+    "opcoes": [
+      "Na Ásia Central, fazendo fronteira com Cazaquistão, Uzbequistão, Tajiquistão e China",
+      "No Cáucaso, entre a Rússia e a Turquia",
+      "No Sudeste Asiático, entre Mianmar e a Índia",
+      "Na Europa Oriental, entre a Ucrânia e a Romênia"
+    ],
+    "resposta": 0,
+    "explicacao": "O Quirguistão situa-se na Ásia Central, com mais de 90% do seu território acima dos 1.500 metros de altitude em meio à imponente cordilheira Tian Shan.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 371,
+    "pergunta": "Qual é o maior país do continente africano em extensão territorial desde a secessão do Sudão do Sul em 2011?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Argélia (2,38 milhões de km²)",
+      "República Democrática do Congo",
+      "Sudão",
+      "Líbia"
+    ],
+    "resposta": 0,
+    "explicacao": "A Argélia é o maior país da África e do mundo árabe em área (2.381.741 km²), dos quais cerca de 85% são ocupados pelo Deserto do Saara.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 372,
+    "pergunta": "Qual é o menor país independente da América do Sul tanto em extensão territorial quanto em número de habitantes?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Suriname (163.820 km²)",
+      "Uruguai",
+      "Guiana",
+      "Equador"
+    ],
+    "resposta": 0,
+    "explicacao": "O Suriname é o menor estado soberano da América do Sul em área (163.820 km²) e tem cerca de 600 mil habitantes, embora a Guiana Francesa seja menor, ela é um departamento ultramarino francês.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 373,
+    "pergunta": "Qual é o maior país do planeta Terra sem qualquer saída para o oceano (o maior país landlocked do mundo)?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Cazaquistão (2,72 milhões de km²)",
+      "Mongólia",
+      "Chade",
+      "Níger"
+    ],
+    "resposta": 0,
+    "explicacao": "O Cazaquistão é o 9º maior país do mundo no geral e o maior sem acesso ao mar aberto (ele margeia o Mar Cáspio, que é um mar fechado/lago endorreico).",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 374,
+    "pergunta": "Qual é o menor país soberano e membro das Nações Unidas de todo o continente africano em área territorial?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Seychelles (459 km²)",
+      "São Tomé e Príncipe",
+      "Maurício",
+      "Cabo Verde"
+    ],
+    "resposta": 0,
+    "explicacao": "Com apenas 459 km² distribuídos em 115 ilhas, as Seychelles são o menor país independente da África em área territorial.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 375,
+    "pergunta": "Qual é o maior país da América Central continental em área territorial?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Nicarágua (130.375 km²)",
+      "Guatemala",
+      "Honduras",
+      "Panamá"
+    ],
+    "resposta": 0,
+    "explicacao": "A Nicarágua é o maior país da América Central continental em extensão territorial, cobrindo cerca de 130 mil km².",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 376,
+    "pergunta": "Qual é o segundo maior país do mundo em área territorial total (terra e águas interiores), superado apenas pela Rússia?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Canadá (9,98 milhões de km²)",
+      "China",
+      "Estados Unidos",
+      "Brasil"
+    ],
+    "resposta": 0,
+    "explicacao": "O Canadá cobre 9.984.670 km² estendendo-se do Atlântico ao Pacífico e até o Oceano Ártico, contendo quase 9% do seu território formado por água doce.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 377,
+    "pergunta": "Qual é o maior país da Europa cujo território está 100% contido geograficamente dentro do continente europeu (excluindo a parte russa)?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Ucrânia (603.628 km²)",
+      "França",
+      "Espanha",
+      "Alemanha"
+    ],
+    "resposta": 0,
+    "explicacao": "A Ucrânia é o maior país totalmente localizado na Europa (603.628 km²); a França metropolitana cobre 543 mil km² e a Espanha 505 mil km².",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 378,
+    "pergunta": "Qual país do mundo possui a maior linha costeira (litoral) de todo o planeta Terra, superando 202.000 quilômetros de extensão?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Canadá",
+      "Noruega",
+      "Indonésia",
+      "Rússia"
+    ],
+    "resposta": 0,
+    "explicacao": "Devido ao seu vasto arquipélago ártico com milhares de fiordes e ilhas recortadas, o Canadá possui mais de 202.080 km de linha costeira.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 379,
+    "pergunta": "Qual é o menor país independente de todo o continente asiático em área territorial e população?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Maldivas (298 km²)",
+      "Bahrein",
+      "Singapura",
+      "Brunei"
+    ],
+    "resposta": 0,
+    "explicacao": "As Maldivas ocupam apenas 298 km² em cerca de 1.190 ilhas de coral no Oceano Índico, sendo o menor país da Ásia em extensão de terra firme.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 380,
+    "pergunta": "Qual é o maior país em extensão territorial localizado inteiramente dentro da região do Oriente Médio?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Arábia Saudita (2,15 milhões de km²)",
+      "Irã",
+      "Iraque",
+      "Iêmen"
+    ],
+    "resposta": 0,
+    "explicacao": "A Arábia Saudita cobre cerca de 2.149.690 km², ocupando aproximadamente 80% de toda a Península Arábica.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 381,
+    "pergunta": "Qual é o menor país independente de todas as Américas (América do Norte, Central e do Sul) em extensão territorial?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "São Cristóvão e Névis (261 km²)",
+      "Granada",
+      "Barbados",
+      "Antígua e Barbuda"
+    ],
+    "resposta": 0,
+    "explicacao": "A federação caribenha de São Cristóvão e Névis (Saint Kitts and Nevis) cobre 261 km², sendo o menor país soberano das Américas.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 382,
+    "pergunta": "Qual é o maior país insular (composto exclusivamente por ilhas) em extensão territorial do planeta Terra?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Indonésia (1,90 milhão de km²)",
+      "Madagascar",
+      "Papua-Nova Guiné",
+      "Japão"
+    ],
+    "resposta": 0,
+    "explicacao": "A Indonésia cobre 1.904.569 km² de terra distribuídos em mais de 17.500 ilhas no Sudeste Asiático, constituindo o maior estado-arquipélago do globo.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 383,
+    "pergunta": "Qual país do mundo faz fronteira terrestre com o maior número de vizinhos diferentes, empatado no topo com a China (ambos com 14 vizinhos)?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Rússia (14 países vizinhos)",
+      "Brasil",
+      "Alemanha",
+      "República Democrática do Congo"
+    ],
+    "resposta": 0,
+    "explicacao": "A Rússia e a China lideram o planeta fazendo fronteira com 14 estados soberanos reconhecidos cada uma.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 384,
+    "pergunta": "Qual é o menor país da América Central continental em área territorial e o único voltado exclusivamente para a costa do Pacífico?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "El Salvador (21.041 km²)",
+      "Belize",
+      "Costa Rica",
+      "Panamá"
+    ],
+    "resposta": 0,
+    "explicacao": "El Salvador tem 21.041 km² e é o único estado da América Central continental que não possui litoral banhado pelo Mar do Caribe.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 385,
+    "pergunta": "Qual é o maior país da América do Sul em área territorial e o quinto maior de todo o planeta Terra?",
+    "categoria": "Extensão & Superlativos",
+    "opcoes": [
+      "Brasil (8,51 milhões de km²)",
+      "Argentina",
+      "Peru",
+      "Colômbia"
+    ],
+    "resposta": 0,
+    "explicacao": "O Brasil possui 8.515.767 km² cobrindo quase metade (47,3%) de toda a massa territorial do continente sul-americano.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 386,
+    "pergunta": "Qual é o país mais populoso de todo o continente africano, ultrapassando 220 milhões de habitantes?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Nigéria",
+      "Etiópia",
+      "Egito",
+      "República Democrática do Congo"
+    ],
+    "resposta": 0,
+    "explicacao": "A Nigéria é o gigante demográfico da África (mais de 225 milhões de pessoas) e projeta-se que possa se tornar o terceiro país mais populoso do mundo até 2050.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 387,
+    "pergunta": "Qual é o país mais populoso da Europa (excluindo a Federação Russa), com mais de 84 milhões de habitantes?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Alemanha",
+      "Reino Unido",
+      "França",
+      "Itália"
+    ],
+    "resposta": 0,
+    "explicacao": "A Alemanha é o estado mais populoso da União Europeia e de todo o continente europeu a oeste da Rússia, com aproximadamente 84,4 milhões de pessoas.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 388,
+    "pergunta": "Qual nação da América do Sul possui a segunda maior população do continente, ultrapassando 52 milhões de habitantes?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Colômbia",
+      "Argentina",
+      "Peru",
+      "Venezuela"
+    ],
+    "resposta": 0,
+    "explicacao": "A Colômbia é o segundo país mais habitado da América do Sul, com cerca de 52,5 milhões de pessoas, superando a Argentina (aproximadamente 46 milhões).",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 389,
+    "pergunta": "Qual é o país insular mais populoso do planeta Terra, abrigando mais de 275 milhões de habitantes?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Indonésia",
+      "Japão",
+      "Filipinas",
+      "Reino Unido"
+    ],
+    "resposta": 0,
+    "explicacao": "A Indonésia é o quarto país mais populoso do mundo no geral e o país insular mais populoso, com mais de metade de sua população concentrada na ilha de Java.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 390,
+    "pergunta": "Qual país soberano do mundo possui a menor densidade demográfica do planeta, com apenas cerca de 2,1 habitantes por quilômetro quadrado?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Mongólia",
+      "Namíbia",
+      "Austrália",
+      "Islândia"
+    ],
+    "resposta": 0,
+    "explicacao": "A Mongólia cobre 1,56 milhão de km² para apenas 3,4 milhões de habitantes, tornando-se o estado soberano com menor densidade humana média da Terra.",
+    "dificuldade": "facil"
+  },
+  {
+    "id": 391,
+    "pergunta": "Qual país ultrapassou oficialmente a China em 2023, consolidando-se como a nação mais populosa de todo o planeta Terra com mais de 1,43 bilhão de habitantes?",
+    "categoria": "População & Demografia",
+    "opcoes": [
+      "Índia",
+      "Estados Unidos",
+      "Indonésia",
+      "Paquistão"
+    ],
+    "resposta": 0,
+    "explicacao": "Segundo dados oficiais do Fundo de População da ONU (UNFPA) em abril de 2023, a Índia ultrapassou a China continental e assumiu o primeiro lugar global.",
     "dificuldade": "facil"
   },
   {
     "id": 392,
-    "pergunta": "Qual é o menor Estado independente soberano internacionalmente reconhecido do planeta Terra em área (0,49 km²) e população?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do mundo árabe e do Oriente Médio/Norte da África ultrapassou 105 milhões de habitantes, concentrando mais de 95% do seu povo ao longo de uma estreita faixa fértil do Rio Nilo?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Cidade do Vaticano",
-      "Mônaco",
-      "Nauru",
-      "Tuvalu"
+      "Egito",
+      "Argélia",
+      "Iraque",
+      "Arábia Saudita"
     ],
     "resposta": 0,
-    "explicacao": "Criado pelo Tratado de Latrão de 1929 assinado entre a Santa Sé e o governo italiano de Mussolini, o Vaticano é murado e encravado no centro de Roma.",
+    "explicacao": "O Egito é o país mais populoso do mundo árabe; com um território quase todo desértico, sua população vive comprimida em menos de 5% da área total do país ao redor do Nilo.",
     "dificuldade": "facil"
   },
   {
     "id": 393,
-    "pergunta": "Qual principado soberano na Côte d'Azur é o segundo menor Estado do mundo (2,08 km²) e tem a maior densidade demográfica do planeta?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da América Central possui a maior população da região, ultrapassando 18 milhões de habitantes?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Mônaco",
-      "San Marino",
-      "Liechtenstein",
-      "Malta"
+      "Guatemala",
+      "Honduras",
+      "El Salvador",
+      "Nicarágua"
     ],
     "resposta": 0,
-    "explicacao": "Governado pela Casa de Grimaldi desde o século XIII, Mônaco expandiu seu território em mais de 20% com aterros marítimos sobre o Mediterrâneo (distrito de Fontvieille).",
+    "explicacao": "A Guatemala é o país mais populoso da América Central, com forte percentual de população descendente direta da civilização maia indígena.",
     "dificuldade": "facil"
   },
   {
     "id": 394,
-    "pergunta": "Qual principado pirenaico independente tem como chefes de Estado conjuntos ('copríncipes') o Bispo de Urgell (Espanha) e o Presidente da França?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do sul da Ásia abriga mais de 170 milhões de pessoas em um território menor que o estado brasileiro do Acre, gerando uma das maiores densidades demográficas do globo (>1.200 hab/km²)?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Andorra",
-      "Mônaco",
-      "Liechtenstein",
-      "San Marino"
+      "Bangladesh",
+      "Paquistão",
+      "Vietnã",
+      "Filipinas"
     ],
     "resposta": 0,
-    "explicacao": "Andorra existe como coprincipado parlamentar desde o tratado medieval de 'Paréage' de 1278, sendo o catalão sua única língua oficial de Estado.",
+    "explicacao": "Bangladesh localiza-se no delta extremamente fértil e plano dos rios Ganges e Brahmaputra, gerando uma das maiores concentrações humanas por km² do planeta.",
     "dificuldade": "facil"
   },
   {
     "id": 395,
-    "pergunta": "Qual principado alpino de língua alemã no Vale do Reno é governado por um príncipe soberano e não possui aeroporto nem moeda própria, usando o franco suíço?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Desconsiderando a Austrália, qual é o país soberano mais populoso de toda a Oceania, superando 10 milhões de habitantes?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Liechtenstein",
-      "Luxemburgo",
-      "Andorra",
-      "San Marino"
+      "Papua-Nova Guiné",
+      "Nova Zelândia",
+      "Fiji",
+      "Ilhas Salomão"
     ],
     "resposta": 0,
-    "explicacao": "Com capital em Vaduz, Liechtenstein aboliu seu exército em 1868 e delegou a representação consular e defesa externa à Suíça.",
+    "explicacao": "Papua-Nova Guiné ultrapassou os 10 milhões de habitantes, sendo muito mais populosa que a Nova Zelândia (que tem aproximadamente 5,2 milhões).",
     "dificuldade": "facil"
   },
   {
     "id": 396,
-    "pergunta": "Qual país africano tem seu litoral e 90% de suas fronteiras terrestres cercados pela África do Sul, e o restante pelo sul de Moçambique?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual nação de língua portuguesa na África possui a maior população entre os países africanos lusófonos (PALOP), superando 36 milhões de pessoas?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Eswatini (antiga Suazilândia)",
-      "Lesoto",
-      "Malawi",
-      "Botswana"
+      "Angola",
+      "Moçambique",
+      "Guiné-Bissau",
+      "Cabo Verde"
     ],
     "resposta": 0,
-    "explicacao": "Eswatini é a última monarquia absolutista tradicional da África, tendo mudado formalmente seu nome em 2018 para eliminar resquícios coloniais britânicos.",
+    "explicacao": "Angola ultrapassou 36 milhões de habitantes e lidera a taxa de crescimento demográfico entre os países de língua oficial portuguesa.",
     "dificuldade": "facil"
   },
   {
     "id": 397,
-    "pergunta": "Qual região montanhosa no nordeste da Somália declarou sua independência unilateral em 1991, possuindo moeda, exército, passaporte e eleições democráticas sem nenhum reconhecimento da ONU?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Sudeste Asiático ultrapassou 115 milhões de habitantes distribuídos em mais de 7.000 ilhas tropicais?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Somalilândia",
-      "Puntlândia",
-      "Galmudug",
-      "Jubalândia"
+      "Filipinas",
+      "Vietnã",
+      "Tailândia",
+      "Mianmar"
     ],
     "resposta": 0,
-    "explicacao": "A Somalilândia ocupa o território do antigo protetorado britânico da Somalilândia e mantém estabilidade muito superior ao restante da Somália assolada por guerras civis.",
-    "dificuldade": "medio"
+    "explicacao": "As Filipinas constituem o segundo país mais populoso do Sudeste Asiático, atrás apenas da Indonésia.",
+    "dificuldade": "facil"
   },
   {
     "id": 398,
-    "pergunta": "Qual república separatista não reconhecida internacionalmente é uma estreita faixa de terra entre o Rio Dniester e a fronteira ucraniana na Moldávia?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do mundo possui a maior proporção de idosos do planeta, onde mais de 29% de toda a sua população tem 65 anos ou mais?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Transnístria (Pridnestróvia)",
-      "Gagauzia",
-      "Donbass",
-      "Crimeia"
+      "Japão",
+      "Itália",
+      "Alemanha",
+      "Portugal"
     ],
     "resposta": 0,
-    "explicacao": "A Transnístria mantém tropas russas estacionadas, símbolos soviéticos (foice e martelo na bandeira) e sua própria moeda e controle de passaportes.",
-    "dificuldade": "medio"
+    "explicacao": "O Japão enfrenta o mais avançado processo de envelhecimento populacional do mundo, associado a uma das maiores expectativas de vida globais (>84 anos) e baixa taxa de fecundidade.",
+    "dificuldade": "facil"
   },
   {
     "id": 399,
-    "pergunta": "Quais duas regiões separatistas no norte da Geórgia declararam independência com apoio de Moscou após a guerra russo-georgiana de 2008?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país do Oriente Médio continental (localizado na Ásia Ocidental) possui a maior população de língua árabe da Ásia, superando 45 milhões de habitantes?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Abecásia e Ossétia do Sul",
-      "Adjara e Suvanécia",
-      "Chechênia e Daguestão",
-      "Inguchétia e Carachai"
+      "Iraque",
+      "Arábia Saudita",
+      "Iêmen",
+      "Síria"
     ],
     "resposta": 0,
-    "explicacao": "Tbilisi e a grande maioria da comunidade internacional consideram a Abecásia e a Ossétia do Sul como territórios georgianos sob ocupação militar russa.",
+    "explicacao": "O Iraque conta com mais de 45 milhões de pessoas nos vales dos rios Tigre e Eufrates, superando a Arábia Saudita (aproximadamente 36 milhões, incluindo estrangeiros).",
     "dificuldade": "facil"
   },
   {
     "id": 400,
-    "pergunta": "Qual território desértico no noroeste da África foi abandonado pela Espanha em 1975 e teve cerca de 80% de sua área anexada e murada pelo Marrocos com o 'Muro das Areias'?",
-    "categoria": "Fronteiras & Enclaves",
+    "pergunta": "Qual país da África Oriental é o segundo mais populoso de todo o continente africano, ultrapassando 125 milhões de habitantes e sem qualquer saída para o mar?",
+    "categoria": "População & Demografia",
     "opcoes": [
-      "Saara Ocidental (República Árabe Saaraui)",
-      "Mauritânia",
-      "Mali",
-      "Arquipélago de Cabo Verde"
+      "Etiópia",
+      "República Democrática do Congo",
+      "Tanzânia",
+      "Quênia"
     ],
     "resposta": 0,
-    "explicacao": "A Frente Polisário reivindica a independência da área e controla uma estreita faixa a leste da berma de areia de 2.700 km fortificada com campos minados pelo exército marroquino.",
+    "explicacao": "A Etiópia é a nação sem litoral mais populosa de todo o planeta Terra e a segunda nação mais populosa da África, atrás apenas da Nigéria.",
     "dificuldade": "facil"
   },
   {

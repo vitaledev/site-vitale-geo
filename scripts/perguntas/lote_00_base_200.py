@@ -92,17 +92,17 @@ PERGUNTAS_LOTE_00 = [   {   'id': 1,
                       'fundamental para operar as eclusas do canal.',
         'dificuldade': 'medio'},
     {   'id': 11,
-        'pergunta': 'Quais são os dois únicos países duplamente encravados do mundo (cercados apenas por vizinhos que '
-                    'também não têm litoral)?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Liechtenstein e Uzbequistão', 'Bolívia e Paraguai', 'Suíça e Áustria', 'Lesoto e San Marino'],
+        'pergunta': 'Qual é a capital oficial da Argentina, metrópole autônoma às margens do Rio da Prata conhecida '
+                    'como a capital cultural e histórica do Cone Sul?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Buenos Aires', 'Córdoba', 'Rosário', 'Mendoza'],
         'resposta': 0,
-        'explicacao': 'Liechtenstein (cercado por Suíça e Áustria) e Uzbequistão (cercado por Afeganistão, '
-                      'Cazaquistão, Quirguistão, Tadjiquistão e Turcomenistão) são os únicos duplamente encravados.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'Buenos Aires é a capital e maior cidade da Argentina, constituindo uma cidade autônoma separada '
+                      'da Província de Buenos Aires.',
+        'dificuldade': 'facil'},
     {   'id': 12,
         'pergunta': 'Qual é a maior fronteira terrestre contínua e desmilitarizada do planeta Terra?',
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ['Rússia e China', 'Estados Unidos e Canadá', 'Brasil e Bolívia', 'Argentina e Chile'],
         'resposta': 1,
         'explicacao': 'A fronteira EUA-Canadá tem 8.891 km de extensão, demarcada por uma faixa desmatada contínua de '
@@ -111,116 +111,114 @@ PERGUNTAS_LOTE_00 = [   {   'id': 1,
     {   'id': 13,
         'pergunta': 'Qual território de 2.060 km² entre o Egito e o Sudão é uma das raríssimas áreas de terra firme '
                     "que nenhum país reivindica ('terra nullius')?",
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ["Triângulo de Hala'ib", 'Bir Tawil', 'Faixa de Aouzou', 'Península de Bakassi'],
         'resposta': 1,
         'explicacao': 'Devido a tratados divergentes de 1899 e 1902, se o Egito ou o Sudão reivindicarem Bir Tawil, '
                       "perdem o direito ao fértil e estratégico Triângulo de Hala'ib.",
         'dificuldade': 'dificil'},
     {   'id': 14,
-        'pergunta': 'Qual cidade europeia possui um complexo labirinto de 30 enclaves e contra-enclaves onde a '
-                    'fronteira corta edifícios, cafés e calçadas?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Baarle (Baarle-Hertog / Baarle-Nassau)', 'Büsingen am Hochrhein', "Campione d'Italia", 'Llívia'],
+        'pergunta': 'Qual país da América do Sul é o único de todo o continente a ter o inglês como sua língua '
+                    'oficial nacional?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Guiana', 'Suriname', 'Trinidad e Tobago', 'Belize'],
         'resposta': 0,
-        'explicacao': 'Baarle-Hertog (enclaves belgas) e Baarle-Nassau (município holandês) formam um dos mosaicos de '
-                      'fronteira mais surreais da Europa desde tratados medievais de 1198.',
+        'explicacao': 'A República Cooperativa da Guiana (antiga Guiana Inglesa) foi colônia britânica e preserva o '
+                      'inglês como língua oficial e de instrução.',
         'dificuldade': 'facil'},
     {   'id': 15,
-        'pergunta': 'Quais são as duas cidades autônomas espanholas que formam as únicas fronteiras terrestres diretas '
-                    'da União Europeia em território continental africano?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Ceuta e Melilla', 'Gibraltar e Tânger', 'Orã e Ceuta', 'Melilla e Tetuão'],
+        'pergunta': 'Qual país do Sudeste Asiático é o único da região que nunca foi colonizado por potências europeias '
+                    'durante a era do imperialismo moderno?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Tailândia (antigo Reino do Sião)', 'Vietnã', 'Malásia', 'Indonésia'],
         'resposta': 0,
-        'explicacao': 'Ceuta e Melilla são enclaves espanhóis na costa norte do Marrocos, protegidos por fortificações '
-                      'e tratados que remontam aos séculos XV e XVI.',
+        'explicacao': 'O Reino do Sião (atual Tailândia) manteve sua soberania através de habilidade diplomática entre '
+                      'as esferas de influência britânica e francesa.',
         'dificuldade': 'facil'},
     {   'id': 16,
-        'pergunta': 'Qual enclave russo no Mar Báltico está totalmente separado do restante da Rússia e prensado entre '
-                    'a Polônia e a Lituânia?',
-        'categoria': 'Fronteiras & Enclaves',
+        'pergunta': 'Qual base naval russa no Mar Báltico fica prensada estrategicamente entre a Polônia e a Lituânia '
+                    'com acesso marítimo durante todo o ano?',
+        'categoria': 'Geopolítica Global',
         'opcoes': ['São Petersburgo', 'Kaliningrado', 'Sebastopol', 'Murmansk'],
         'resposta': 1,
-        'explicacao': 'Kaliningrado (antiga Königsberg prussiana) foi anexada pela URSS após a 2ª Guerra Mundial e '
-                      'abriga a base naval da Frota Russa do Báltico.',
+        'explicacao': 'Kaliningrado abriga a base naval da Frota Russa do Báltico em Baltiysk, com porto livre de gelo no '
+                      'inverno ao contrário de São Petersburgo.',
         'dificuldade': 'facil'},
     {   'id': 17,
         'pergunta': 'Qual ilha fluvial na fronteira entre Espanha e França troca de soberania a cada seis meses num '
                     'regime de condomínio binacional ininterrupto desde 1659?',
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ['Ilha dos Faisões', 'Ilha de Santa Helena', 'Ilha de Alborão', 'Ilha de Trindade'],
         'resposta': 0,
         'explicacao': 'A Ilha dos Faisões, no Rio Bidasoa, pertence à Espanha de 1º de fevereiro a 31 de julho, e à '
                       'França de 1º de agosto a 31 de janeiro (Tratado dos Pireneus).',
         'dificuldade': 'dificil'},
     {   'id': 18,
-        'pergunta': 'Qual território descolado dos EUA fica ao sul do Paralelo 49 e só tem acesso rodoviário '
-                    'atravessando a província canadense da Colúmbia Britânica?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Point Roberts', 'Northwest Angle', 'Hyder', 'Elm Point'],
+        'pergunta': 'Qual país da América Central aboliu suas Forças Armadas constitucionais em 1948, investindo os '
+                    'recursos de defesa em educação e preservação ambiental?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Costa Rica', 'Panamá', 'Belize', 'Honduras'],
         'resposta': 0,
-        'explicacao': 'Point Roberts é uma península no estado de Washington situada abaixo do Paralelo 49° Norte, '
-                      'isolada do território continental contíguo dos EUA.',
-        'dificuldade': 'medio'},
+        'explicacao': 'O presidente José Figueres Ferrer aboliu o exército da Costa Rica após a guerra civil de 1948, '
+                      'tornando a nação um modelo global de estabilidade e ecoturismo.',
+        'dificuldade': 'facil'},
     {   'id': 19,
-        'pergunta': 'Qual enclave da Itália fica inteiramente cercado pelo cantão suíço de Ticino e tem suas contas '
-                    'bancárias denominadas em Francos Suíços?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ["Campione d'Italia", 'Büsingen', 'Llívia', 'San Marino'],
+        'pergunta': 'Qual país da América do Sul possui duas línguas oficiais nacionais reconhecidas constitucionalmente '
+                    'em pé de igualdade: o espanhol e o guarani?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Paraguai', 'Bolívia', 'Peru', 'Equador'],
         'resposta': 0,
-        'explicacao': "Campione d'Italia fica na margem do Lago de Lugano, a apenas 14 km da fronteira italiana, "
-                      'operando no espaço aduaneiro suíço.',
-        'dificuldade': 'medio'},
+        'explicacao': 'O Paraguai é a única nação das Américas onde a esmagadora maioria da população não indígena '
+                      'também fala uma língua indígena nativa (guarani).',
+        'dificuldade': 'facil'},
     {   'id': 20,
-        'pergunta': 'Qual enclave espanhol fica situado inteiramente dentro do departamento francês dos Pirenéus '
-                    'Orientais desde o Tratado dos Pirenéus de 1659?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Llívia', 'Andorra', 'Ceuta', 'Melilla'],
+        'pergunta': 'Qual nação do Oriente Médio não possui qualquer rio ou lago permanente natural de água doce em '
+                    'todo o seu imenso território?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Arábia Saudita', 'Omã', 'Iêmen', 'Jordânia'],
         'resposta': 0,
-        'explicacao': 'O Tratado dos Pireneus cedeu todas as aldeias do vale à França, mas Llívia possuía foral de '
-                      "'vila' (cidade) e permaneceu sob soberania da Espanha.",
-        'dificuldade': 'dificil'},
+        'explicacao': 'A Arábia Saudita depende quase que exclusivamente de usinas de dessalinização de água do mar e '
+                      'aquíferos subterrâneos fósseis para seu abastecimento.',
+        'dificuldade': 'facil'},
     {   'id': 21,
-        'pergunta': 'Qual estreita faixa de fronteira entre Polônia e Lituânia separa o enclave russo de Kaliningrado '
-                    'da aliada Bielorrússia?',
-        'categoria': 'Fronteiras & Enclaves',
+        'pergunta': 'Qual estreita faixa de fronteira entre Polônia e Lituânia separa o território de Kaliningrado da '
+                    'Bielorrússia, considerada o ponto mais crítico da OTAN?',
+        'categoria': 'Geopolítica Global',
         'opcoes': ['Corredor de Suwałki', 'Corredor de Zangezur', 'Corredor de Danzig', 'Corredor de Wakhan'],
         'resposta': 0,
         'explicacao': 'O Corredor de Suwałki (Suwalki Gap) tem cerca de 65 km e é considerado o ponto mais vulnerável '
                       'da OTAN em caso de conflito com a Rússia.',
         'dificuldade': 'medio'},
     {   'id': 22,
-        'pergunta': 'Qual enclave dos Emirados Árabes Unidos fica dentro do enclave omanense de Madha, formando um '
-                    'enclave de 2º nível (contra-enclave)?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Nahwa', 'Hatta', 'Dibba', 'Fujairah'],
+        'pergunta': 'Qual país do Himalaia mede o sucesso e o progresso da nação através do índice oficial de '
+                    "'Felicidade Interna Bruta' (FIB) em vez do Produto Interno Bruto?",
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Butão', 'Nepal', 'Tibete', 'Laos'],
         'resposta': 0,
-        'explicacao': 'Nahwa pertence ao Emirado de Sharjah (EAU), mas fica totalmente dentro de Madha (enclave de Omã '
-                      'cercado pelos EAU), um raro contra-enclave mundial.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'O Rei Jigme Singye Wangchuck instituiu a FIB em 1972 no Butão, priorizando conservação cultural, '
+                      'meio ambiente e bem-estar espiritual sobre o crescimento econômico puro.',
+        'dificuldade': 'facil'},
     {   'id': 23,
-        'pergunta': 'Qual país africano possui o enclave petrolífero de Cabinda, separado de seu território principal '
-                    'pela foz do Rio Congo?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['República do Congo', 'Angola', 'República Democrática do Congo', 'Gabão'],
-        'resposta': 1,
-        'explicacao': 'Cabinda é uma província e exclave de Angola separada por uma faixa costeira da República '
-                      'Democrática do Congo.',
+        'pergunta': 'Qual país da América Central possui um canal interoceânico artificial de 82 km inaugurado em 1914 '
+                    'que conecta o Oceano Atlântico ao Pacífico?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Panamá', 'Nicarágua', 'Costa Rica', 'Colômbia'],
+        'resposta': 0,
+        'explicacao': 'O Canal do Panamá foi construído pelos Estados Unidos e devolvido à soberania total do Panamá em '
+                      '31 de dezembro de 1999.',
         'dificuldade': 'facil'},
     {   'id': 24,
-        'pergunta': 'Qual é a fronteira terrestre binacional mais curta do mundo reconhecida internacionalmente?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': [   'Espanha e Marrocos (Peñón de Vélez de la Gomera)',
-                      'Vaticano e Itália',
-                      'Botsuana e Zâmbia',
-                      'Mônaco e França'],
+        'pergunta': 'Qual país da Europa Central possui língua oficial que não pertence à família indo-europeia (é fino-úgrica) '
+                    'e utiliza o Florim (HUF) como sua moeda?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Hungria', 'Áustria', 'República Tcheca', 'Polônia'],
         'resposta': 0,
-        'explicacao': 'O Peñón de Vélez de la Gomera é ligado ao continente marroquino por um istmo de areia de apenas '
-                      '85 metros de largura, a menor fronteira terrestre do globo.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'O idioma húngaro (magiar) pertence ao ramo fino-úgrico da família urálica, aparentado remotamente '
+                      'ao finlandês e ao estoniano.',
+        'dificuldade': 'medio'},
     {   'id': 25,
         'pergunta': 'Qual país sul-americano possui a maior fronteira terrestre contínua com a República Francesa?',
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ['Brasil', 'Suriname', 'Guiana', 'Venezuela'],
         'resposta': 0,
         'explicacao': 'A fronteira entre o estado do Amapá (Brasil) e a Guiana Francesa (departamento ultramarino da '
@@ -1071,93 +1069,88 @@ PERGUNTAS_LOTE_00 = [   {   'id': 1,
                       'como Área Marinha Particularmente Sensível pela IMO.',
         'dificuldade': 'dificil'},
     {   'id': 116,
-        'pergunta': 'Qual país africano é um enclave geográfico absoluto, situado inteiramente dentro das fronteiras '
-                    'da República da África do Sul?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Essuatíni', 'Lesoto', 'Botsuana', 'Namíbia'],
+        'pergunta': 'Qual é a capital da Suécia, famosa por sua arquitetura sobre 14 ilhas conectadas por mais de '
+                    '50 pontes no Mar Báltico?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Oslo', 'Estocolmo', 'Copenhague', 'Helsinque'],
         'resposta': 1,
-        'explicacao': 'O Reino do Lesoto é uma nação montanhosa totalmente cercada pela África do Sul, enquanto '
-                      'Essuatíni faz fronteira também com Moçambique.',
+        'explicacao': 'Estocolmo espalha-se por 14 ilhas onde o Lago Mälaren encontra o Mar Báltico, sendo apelidada '
+                      "de 'Beleza sobre a Água'.",
         'dificuldade': 'facil'},
     {   'id': 117,
-        'pergunta': 'Qual cidade no norte da Holanda/Bélgica possui fronteiras que cortam o meio de lojas e '
-                    'restaurantes demarcadas por cruzes brancas no piso?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Büsingen', 'Baarle (Baarle-Hertog / Baarle-Nassau)', 'Campione', 'Llívia'],
+        'pergunta': 'Qual país do Sudeste Asiático possui mais de 17.000 ilhas e abriga Java, a ilha mais povoada de todo '
+                    'o planeta Terra?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Filipinas', 'Indonésia', 'Japão', 'Malásia'],
         'resposta': 1,
-        'explicacao': 'Se a linha divisória corta uma residência ao meio, a regra histórica determina que a '
-                      'localização da porta principal de entrada define qual país cobra os impostos.',
+        'explicacao': 'A Indonésia é o maior estado arquipelágico do mundo; a ilha de Java concentra mais de 150 milhões '
+                      'de habitantes em sua extensão vulcânica fértil.',
         'dificuldade': 'facil'},
     {   'id': 118,
         'pergunta': 'Qual território ultramarino da Austrália fica perto da Indonésia e é famoso pela migração anual '
                     'em massa de dezenas de milhões de caranguejos-vermelhos?',
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ['Ilha Norfolk', 'Ilha Christmas (Ilha do Natal)', 'Ilhas Cocos (Keeling)', 'Ilha Lord Howe'],
         'resposta': 1,
         'explicacao': 'A Ilha Christmas fica a 350 km ao sul de Java; durante as primeiras chuvas de monção, milhões '
                       'de caranguejos cobrem estradas rumo ao mar para desovar.',
         'dificuldade': 'medio'},
     {   'id': 119,
-        'pergunta': 'Qual península canadense faz fronteira terrestre com o enclave americano de Point Roberts através '
-                    'do Paralelo 49° Norte?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': [   'Península de Niágara',
-                      'Península de Tsawwassen',
-                      'Península de Bruce',
-                      'Península de Nova Escócia'],
+        'pergunta': 'Qual é a capital oficial da Polônia, cujo centro histórico foi minuciosamente reconstruído após '
+                    'ser devastado na Segunda Guerra Mundial?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Cracóvia', 'Varsóvia', 'Gdansk', 'Wroclaw'],
         'resposta': 1,
-        'explicacao': 'Point Roberts fica no extremo sul da península de Tsawwassen; crianças americanas locais '
-                      'precisam cruzar a fronteira quatro vezes por dia de ônibus para ir à escola.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'Varsóvia teve mais de 85% de seu tecido urbano destruído em 1944; sua reconstrução histórica valeu '
+                      'a inclusão como Patrimônio Mundial da UNESCO.',
+        'dificuldade': 'facil'},
     {   'id': 120,
-        'pergunta': 'Qual república autônoma é um exclave do Azerbaijão separado do restante do território nacional '
-                    'pela província armênia de Syunik?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Nagorno-Karabakh', 'Nakhchivan', 'Abkházia', 'Ajária'],
+        'pergunta': 'Qual país da África Oriental possui seu próprio sistema de escrita milenar (Ge’ez) e foi um dos '
+                    'raríssimos do continente a nunca ser formalmente colonizado?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Quênia', 'Etiópia', 'Uganda', 'Tanzânia'],
         'resposta': 1,
-        'explicacao': 'Nakhchivan faz fronteira com a Armênia, Irã e uma faixa de 15 km com a Turquia, sendo o motivo '
-                      'central da disputa pelo Corredor de Zangezur.',
+        'explicacao': 'A Etiópia preservou sua independência derrotando invasores italianos na Batalha de Adwa (1896) e '
+                      'mantém um calendário próprio de 13 meses.',
         'dificuldade': 'medio'},
     {   'id': 121,
-        'pergunta': 'Qual exclave de Angola no litoral da África Central é responsável por grande parte da produção de '
-                    'petróleo do país e fica cercado pelo Congo e pela RDC?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Bioko', 'Cabinda', 'Walvis Bay', 'Caprivi'],
+        'pergunta': 'Qual é a capital oficial da Colômbia, situada no altiplano andino a mais de 2.600 metros de altitude?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Medellín', 'Bogotá', 'Cali', 'Barranquilla'],
         'resposta': 1,
-        'explicacao': 'Cabinda foi um protetorado português separado (Tratado de Simulambuco de 1885) anexado '
-                      'administrativamente a Angola antes da independência em 1975.',
+        'explicacao': 'Bogotá é a terceira capital mais alta da América do Sul (atrás de Quito e Sucre/La Paz), centro '
+                      'político e cultural da nação colombiana.',
         'dificuldade': 'facil'},
     {   'id': 122,
-        'pergunta': 'Qual enclave alemão fica totalmente cercado pelo território suíço do Cantão de Schaffhausen às '
-                    'margens do Rio Reno?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ["Campione d'Italia", 'Büsingen am Hochrhein', 'Llívia', 'Jungholz'],
+        'pergunta': 'Qual país nórdico é internacionalmente conhecido como a "Terra dos Mil Lagos", abrigando mais de '
+                    '180.000 lagos naturais em seu território?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Suécia', 'Finlândia', 'Noruega', 'Dinamarca'],
         'resposta': 1,
-        'explicacao': 'Büsingen faz parte do estado alemão de Baden-Württemberg, mas utiliza o franco suíço, tem '
-                      'postos de correio com CEPs de ambos os países e integra a alfândega suíça.',
-        'dificuldade': 'medio'},
+        'explicacao': 'A Finlândia possui 187.888 lagos catalogados esculpidos pelo recuo das geleiras da última era glacial, '
+                      'cobrindo cerca de 10% da área do país.',
+        'dificuldade': 'facil'},
     {   'id': 123,
-        'pergunta': 'Qual cidade no estado americano do Alasca funciona inteiramente integrada com o Canadá, '
-                    'utilizando dólares canadenses e fuso horário canadense?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Skagway', 'Hyder', 'Haines', 'Ketchikan'],
+        'pergunta': 'Qual é a capital oficial da Coreia do Sul, megacidade global cortada pelo Rio Han e sede de potências '
+                    'tecnológicas globais?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Busan', 'Seul', 'Incheon', 'Daegu'],
         'resposta': 1,
-        'explicacao': 'Hyder é a comunidade mais a leste do Alasca; sem estrada que a ligue ao restante do estado '
-                      'americano, depende da cidade canadense vizinha de Stewart.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'Seul abriga quase metade da população de toda a Coreia do Sul quando considerada a sua região metropolitana '
+                      '(Sudogwon), com mais de 25 milhões de pessoas.',
+        'dificuldade': 'facil'},
     {   'id': 124,
-        'pergunta': 'Qual país europeu cedeu pacificamente a cidade histórica de Llívia em 1659 no Tratado dos '
-                    'Pireneus, fazendo-a restar como um enclave cercado pela França?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Portugal', 'Espanha', 'Itália', 'Andorra'],
+        'pergunta': 'Qual país do Oriente Médio é a única nação de maioria judaica do planeta, tendo o hebraico e o árabe '
+                    'como idiomas de profunda raiz histórica?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Líbano', 'Israel', 'Jordânia', 'Chipre'],
         'resposta': 1,
-        'explicacao': 'A Espanha cedeu as aldeias do vale de Cerdanya à França, mas Llívia argumentou que possuía '
-                      "título imperial de 'vila' e não de 'aldeia', permanecendo espanhola.",
-        'dificuldade': 'medio'},
+        'explicacao': 'Israel foi estabelecido em 1948 no Levante Mediterrâneo, tendo ressuscitado o hebraico como língua '
+                      'cotidiana e moderna no século XX.',
+        'dificuldade': 'facil'},
     {   'id': 125,
-        'pergunta': 'Qual arquipélago no Mar Báltico é uma região autônoma de língua sueca, mas sob soberania e '
-                    'integridade territorial da Finlândia?',
-        'categoria': 'Fronteiras & Enclaves',
+        'pergunta': 'Qual arquipélago no Mar Báltico é uma região autônoma desmilitarizada de língua sueca sob soberania da Finlândia?',
+        'categoria': 'Localização & Fronteiras',
         'opcoes': ['Gotland', 'Ilhas Åland', 'Bornholm', 'Öland'],
         'resposta': 1,
         'explicacao': 'As Ilhas Åland são desmilitarizadas e têm status garantido pela Liga das Nações em 1921, '
@@ -1166,48 +1159,47 @@ PERGUNTAS_LOTE_00 = [   {   'id': 1,
     {   'id': 126,
         'pergunta': 'Qual país da América Central possui o menor território continental e é o único voltado '
                     'exclusivamente para o Oceano Pacífico?',
-        'categoria': 'Fronteiras & Enclaves',
+        'categoria': 'Extensão & Superlativos',
         'opcoes': ['Belize', 'El Salvador', 'Honduras', 'Costa Rica'],
         'resposta': 1,
         'explicacao': 'El Salvador tem 21.041 km² e é o único país da América Central continental sem costa voltada '
                       'para o Mar do Caribe.',
         'dificuldade': 'facil'},
     {   'id': 127,
-        'pergunta': 'Qual região histórica dividida entre a Índia e o Bangladesh continha até 2015 mais de 160 '
-                    'enclaves e contra-enclaves complexos herdados de marajás?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Caxemira', 'Cooch Behar', 'Assam', 'Bengala Ocidental'],
+        'pergunta': 'Qual é a capital oficial do Peru, cidade fundada pelos espanhóis às margens do Oceano Pacífico '
+                    'conhecida historicamente como a "Cidade dos Reis"?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Cusco', 'Lima', 'Arequipa', 'Trujillo'],
         'resposta': 1,
-        'explicacao': 'O Acordo de Fronteira Terrestre de 2015 entre Índia e Bangladesh trocou os territórios '
-                      'amigavelmente, permitindo aos moradores escolher sua cidadania.',
-        'dificuldade': 'dificil'},
+        'explicacao': 'Lima foi fundada por Francisco Pizarro em 1535 no vale do Rio Rímac, sendo a sede do rico '
+                      'Vice-Reinado do Peru colonial.',
+        'dificuldade': 'facil'},
     {   'id': 128,
-        'pergunta': 'Qual cidade no norte de Marrocos é um território autônomo soberano da Espanha desde 1497, '
-                    'protegida por muralhas e fronteira vigiada?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Tânger', 'Melilla', 'Casablanca', 'Tetouan'],
+        'pergunta': 'Qual país da América do Sul abriga o Deserto do Atacama, considerado o lugar não polar mais seco e árido '
+                    'de todo o planeta Terra?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Peru', 'Chile', 'Bolívia', 'Argentina'],
         'resposta': 1,
-        'explicacao': 'Melilla fica na costa do Cabo das Três Forcas; junto com Ceuta, constitui uma das duas '
-                      'fronteiras terrestres diretas da União Europeia na África.',
+        'explicacao': 'O Atacama no norte do Chile é protegido por montanhas que bloqueiam a umidade da Amazônia e pela '
+                      'Corrente fria de Humboldt no Pacífico, passando séculos sem chuvas significativas.',
         'dificuldade': 'facil'},
     {   'id': 129,
-        'pergunta': 'Qual enclave no Cáucaso foi dissolvido militarmente em 2023 após uma ofensiva relâmpago do '
-                    'Azerbaijão, forçando mais de 100 mil armênios a migrar?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Abkházia', 'Nagorno-Karabakh (Artsakh)', 'Ossétia do Sul', 'Ajária'],
+        'pergunta': 'Qual é a capital oficial da República da Irlanda, cidade fundada pelos vikings no Rio Liffey e '
+                    'polo europeu das maiores multinacionais de tecnologia?',
+        'categoria': 'Capitais do Mundo',
+        'opcoes': ['Belfast', 'Dublin', 'Cork', 'Galway'],
         'resposta': 1,
-        'explicacao': 'A autodeclarada República de Nagorno-Karabakh existiu de facto por mais de 30 anos antes de '
-                      'capitular e reintegrar-se sob autoridade de Baku.',
+        'explicacao': 'Dublin é a capital irlandesa, lar do Trinity College e do centro financeiro apelidado de Silicon Docks.',
         'dificuldade': 'facil'},
     {   'id': 130,
-        'pergunta': 'Qual país do Sudeste Asiático abriga o exclave de Oecusse, separado de seu território principal '
-                    'por águas indonésias e terra da província de Nusa Tenggara?',
-        'categoria': 'Fronteiras & Enclaves',
-        'opcoes': ['Brunei', 'Timor-Leste', 'Papua-Nova Guiné', 'Malásia'],
+        'pergunta': 'Qual país insular da Europa é famoso por suas termas, vulcões ativos e por abrigar o parlamento '
+                    'mais antigo do mundo em funcionamento contínuo (o Althing, criado em 930 d.C.)?',
+        'categoria': 'Características Nacionais',
+        'opcoes': ['Irlanda', 'Islândia', 'Malta', 'Chipre'],
         'resposta': 1,
-        'explicacao': 'Oecusse-Ambeno é o berço histórico da colonização portuguesa em Timor, mantendo laços com a '
-                      'capital Díli por pontes aéreas e balsas marítimas.',
-        'dificuldade': 'medio'},
+        'explicacao': 'A Islândia estabeleceu o Althing no Parque Nacional de Thingvellir em 930 d.C., a mais antiga '
+                      'instituição parlamentar representativa contínua do globo.',
+        'dificuldade': 'facil'},
     {   'id': 131,
         'pergunta': 'Quantos fusos horários oficiais contínuos existem no território continental da Rússia, cobrindo '
                     'de Kaliningrado a Kamchatka?',

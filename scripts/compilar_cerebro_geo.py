@@ -389,10 +389,10 @@ Cada país contém dados completos e validados:
 - `fato`: Curiosidade geopolítica/geográfica de alto valor cultural.
 
 ### 2. Locais Estratégicos (`locais.json`)
-Abrange chokepoints vitais (Ormuz, Malaca, Bab el-Mandeb, Suez), enclaves fascinantes (Baarle, Kaliningrado, Ceuta, Llívia, Nahwa), zonas de litígio (Essequibo, Caxemira, Ilhas Spratly, Golã), extremos físicos (Ponto Nemo, Chimborazo, Mar Morto, Baikal) e megaprojetos (Três Gargantas, NEOM, Grande Muralha Verde).
+Abrange chokepoints vitais (Ormuz, Malaca, Bab el-Mandeb, Suez), estreitos estratégicos, zonas de litígio geopolítico (Essequibo, Caxemira, Ilhas Spratly, Golã), extremos físicos (Ponto Nemo, Chimborazo, Mar Morto, Baikal) e megaprojetos de infraestrutura (Três Gargantas, NEOM, Grande Muralha Verde).
 
 ### 3. Perguntas de Trivia (`perguntas.json`)
-100 perguntas aprofundadas com 4 alternativas, índice da resposta certa (0 a 3), categoria e justificativa explicativa detalhada.
+{len(PERGUNTAS)} perguntas de alto nível com 4 alternativas, índice da resposta certa (0 a 3), categoria e justificativa explicativa detalhada, cobrindo Bandeiras do Mundo, Capitais Globais, Localização Geográfica, Extensão Territorial, População & Demografia e Características Nacionais.
 
 ---
 
