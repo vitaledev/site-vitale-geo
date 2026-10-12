@@ -8,6 +8,13 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    titulo: "Onde Fica no Mapa? (Desafio Geopolítico)",
+    desc: "Clique no mapa mudo e descubra quão perto você chega dos enclaves, estreitos e locais mais estratégicos do planeta em 5 rodadas.",
+    icon: "https://img.icons8.com/?size=100&id=36839&format=png&color=000000",
+    cover: "/assets/img/jogos/onde-fica.jpg",
+    link: "/jogos/onde-fica/"
+  },
+  {
     titulo: "Acerte a Bandeira (Todas as 196)",
     desc: "Desafio global com todas as 196 bandeiras do mundo! Acerte em sequência sem perder as 3 vidas e tente zerar o planeta.",
     icon: "https://img.icons8.com/?size=100&id=o6oNyiaQhfex&format=png&color=000000",
