@@ -2,6 +2,7 @@
   "name": "vitale-geo",
   "version": "1.0.0",
   "description": "Portal VitaleGeo - Inteligência Geográfica",
+  "type": "module",
   "main": "gerar_sitemap.js",
   "scripts": {
     "dev": "astro dev",
