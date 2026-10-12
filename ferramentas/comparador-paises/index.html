@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -319,7 +319,11 @@
 
     function initMap() {
         map = L.map('map', { center: CONFIG.DEFAULT_COORDS, zoom: CONFIG.DEFAULT_ZOOM, zoomControl: false, worldCopyJump: true });
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+        // Camada 100% Gratuita e Livre do OpenStreetMap Oficial (Sem chaves de API)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+        }).addTo(map);
         L.control.zoom({ position: 'topright' }).addTo(map);
         map.on('mousemove', onMapMouseMove);
         map.on('mouseup', onMapMouseUp);
