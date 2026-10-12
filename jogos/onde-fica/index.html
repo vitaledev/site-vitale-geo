@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Banco de Dados Completo com 110+ Locais Geopolíticos -->
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
     <script src="/assets/js/locais-onde-fica.js"></script>
 
     <script>
@@ -429,10 +430,10 @@
             }
         ];
 
-        // Base consolidada
-        const LOCAIS_ATIVOS = (typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) 
-            ? LOCAIS_ONDE_FICA 
-            : LOCAIS_FALLBACK;
+        // Base consolidada a partir do CerebroGeo Mestre
+        const LOCAIS_ATIVOS = (window.CerebroGeo && window.CerebroGeo.locais && window.CerebroGeo.locais.length > 0)
+            ? window.CerebroGeo.locais
+            : ((typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) ? LOCAIS_ONDE_FICA : LOCAIS_FALLBACK);
 
         // ESTADO GLOBAL DO JOGO
         let partidaLocais = [];

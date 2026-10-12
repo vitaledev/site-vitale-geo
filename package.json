@@ -8,6 +8,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "cerebro": "node scripts/sync-cerebro-geo.js",
     "preview": "astro preview",
     "sitemap": "node gerar_sitemap.js",
     "rss": "node scripts/gerar-rss.js",
