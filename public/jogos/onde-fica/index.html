@@ -18,6 +18,9 @@
     <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/onde-fica/">
     <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/onde-fica.jpg">
 
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
     <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +32,9 @@
     <!-- Leaflet CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Banco de Dados Completo com 110+ Locais Geopolíticos -->
+    <script src="/assets/js/locais-onde-fica.js"></script>
 
     <script>
         tailwind.config = {
@@ -56,6 +62,7 @@
         #map {
             cursor: crosshair !important;
             background-color: #0b0d13;
+            touch-action: pan-x pan-y;
         }
         .leaflet-container {
             font-family: 'Inter', sans-serif;
@@ -124,26 +131,32 @@
         .arcade-shell {
             background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
         }
+
+        /* Anti-CLS para Slots do AdSense */
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- HEADER DO JOGO -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-4 py-3 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2.5 rounded-lg hover:bg-white/5">
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
                 <i class="ph-bold ph-arrow-left"></i>
                 <span class="hidden sm:inline">Todos os Jogos</span>
             </a>
 
             <div class="flex items-center gap-2">
                 <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                <h1 class="font-heading font-bold text-sm sm:text-base text-white tracking-tight">
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
                     Onde Fica no Mapa? <span class="hidden md:inline text-xs text-amber-400/90 font-mono font-normal">// Desafio Geopolítico</span>
                 </h1>
             </div>
 
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 sm:gap-2">
                 <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ligar/Desligar Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
@@ -154,163 +167,211 @@
         </div>
     </header>
 
-    <!-- ÁREA PRINCIPAL DO JOGO -->
-    <main class="w-full max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex-1 flex flex-col gap-3">
-        
-        <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA -->
-        <div class="bg-[#11131a] border border-white/10 rounded-2xl p-4 sm:p-5 shadow-2xl relative overflow-hidden">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
-                
-                <!-- Alvo Atual -->
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-amber-400 uppercase px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20" id="round-indicator">
-                            RODADA 1 DE 5
-                        </span>
-                        <span class="text-xs font-mono text-slate-400" id="target-category">
-                            Chokepoint Estratégico
-                        </span>
-                        
-                        <!-- Dica em Hover -->
-                        <div class="relative group cursor-pointer inline-flex">
-                            <i class="ph-bold ph-info text-slate-400 hover:text-amber-400 text-sm"></i>
-                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2.5 bg-slate-900 border border-white/15 rounded-lg text-xs text-slate-300 shadow-xl pointer-events-none z-50 leading-relaxed font-normal">
-                                <span class="font-semibold text-amber-400 block mb-0.5">Dica Pedagógica:</span>
-                                <span id="target-hint">Aguardando local...</span>
+    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
+
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- ÁREA CENTRAL DO JOGO (100% RESPONSIVA PARA MOBILE E DESKTOP) -->
+        <main class="w-full flex-1 max-w-5xl flex flex-col gap-2.5 sm:gap-3">
+            
+            <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA -->
+            <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3.5 sm:p-5 shadow-2xl relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
+                    
+                    <!-- Alvo Atual -->
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1 flex-wrap">
+                            <span class="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-amber-400 uppercase px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20" id="round-indicator">
+                                RODADA 1 DE 5
+                            </span>
+                            <span class="text-xs font-mono text-slate-400" id="target-category">
+                                Chokepoint Estratégico
+                            </span>
+                            
+                            <!-- Dica em Hover / Toque -->
+                            <div class="relative group cursor-pointer inline-flex">
+                                <i class="ph-bold ph-info text-slate-400 hover:text-amber-400 text-sm"></i>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2.5 bg-slate-900 border border-white/15 rounded-lg text-xs text-slate-300 shadow-xl pointer-events-none z-50 leading-relaxed font-normal">
+                                    <span class="font-semibold text-amber-400 block mb-0.5">Dica Pedagógica:</span>
+                                    <span id="target-hint">Aguardando local...</span>
+                                </div>
                             </div>
+                        </div>
+
+                        <h2 class="text-lg sm:text-2xl md:text-3xl font-heading font-extrabold text-white tracking-tight flex items-center gap-1.5 sm:gap-2" id="target-title">
+                            Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">Estreito de Ormuz</span>?
+                        </h2>
+                    </div>
+
+                    <!-- Placar e Controles Rápidos -->
+                    <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-4 border-t md:border-t-0 pt-2 md:pt-0 border-white/5">
+                        <div class="text-left md:text-right">
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Pontuação</span>
+                            <span class="text-lg sm:text-2xl font-mono font-bold text-emerald-400" id="total-score">0 pts</span>
+                        </div>
+
+                        <!-- Seletor Discreto de Camadas do Mapa -->
+                        <div class="flex items-center bg-[#171a24] p-1 rounded-xl border border-white/10 text-xs font-mono">
+                            <button onclick="mudarCamada('canvas')" id="btn-layer-canvas" class="px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition">
+                                Atlas
+                            </button>
+                            <button onclick="mudarCamada('sat')" id="btn-layer-sat" class="px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition">
+                                Satélite
+                            </button>
+                            <button onclick="mudarCamada('osm')" id="btn-layer-osm" class="px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition">
+                                Ruas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTAINER DO MAPA -->
+            <div class="relative w-full h-[54vh] min-h-[380px] sm:min-h-[540px] sm:h-[62vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
+                <div id="map" class="w-full flex-1"></div>
+
+                <!-- Instrução Flutuante Quando Nenhum Ponto Foi Marcado -->
+                <div id="hint-click-banner" class="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md border border-white/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-medium text-slate-200 pointer-events-none shadow-xl flex items-center gap-2 z-[400] text-center max-w-[90%]">
+                    <i class="ph-bold ph-crosshair text-amber-400 text-base shrink-0"></i>
+                    <span>Navegue pelo mapa e clique onde você acha que fica o alvo</span>
+                </div>
+
+                <!-- BARRA DE AÇÃO FLUTUANTE INFERIOR -->
+                <div id="action-bar" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[400] flex items-center gap-2 sm:gap-3 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-4">
+                    <button onclick="confirmarPalpite()" class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-base shadow-2xl flex items-center gap-2 hover:scale-105 active:scale-95 transition">
+                        <i class="ph-bold ph-check-circle text-base sm:text-lg"></i>
+                        <span>Confirmar Palpite</span>
+                    </button>
+                    <button onclick="limparPalpite()" class="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-mono border border-white/15 backdrop-blur-md transition">
+                        Mudar
+                    </button>
+                </div>
+
+                <!-- CARD DE RESULTADO DA RODADA (Aparece após confirmar) -->
+                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[300px] sm:min-w-[360px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-4 sm:p-5 rounded-2xl shadow-2xl z-[500] hidden transition-all">
+                    <div class="flex items-center justify-between mb-2.5 border-b border-white/10 pb-2">
+                        <span class="text-xs font-mono font-bold uppercase text-amber-400" id="result-grade-label">
+                            Excelente Aproximação!
+                        </span>
+                        <span class="text-base sm:text-lg font-mono font-bold text-emerald-400" id="result-round-score">
+                            +4.820 pts
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-lg sm:text-xl font-bold shrink-0">
+                            <i class="ph-bold ph-ruler"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono text-slate-400 block uppercase">Distância do Alvo Real</span>
+                            <span class="text-sm sm:text-base font-heading font-bold text-white" id="result-distance">
+                                142 km de distância
+                            </span>
                         </div>
                     </div>
 
-                    <h2 class="text-xl sm:text-2xl md:text-3xl font-heading font-extrabold text-white tracking-tight flex items-center gap-2" id="target-title">
-                        Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">Estreito de Ormuz</span>?
-                    </h2>
-                </div>
+                    <!-- Mini Fato Pedagógico -->
+                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2.5 sm:p-3 rounded-xl border border-white/5 mb-3" id="result-fact">
+                        Carregando fato sobre este local...
+                    </p>
 
-                <!-- Placar e Controles Rápidos -->
-                <div class="flex items-center gap-4 border-t md:border-t-0 pt-2 md:pt-0 border-white/5">
-                    <div class="text-right">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Pontuação Total</span>
-                        <span class="text-xl sm:text-2xl font-mono font-bold text-emerald-400" id="total-score">0 pts</span>
-                    </div>
-
-                    <!-- Seletor Discreto de Camadas do Mapa -->
-                    <div class="flex items-center bg-[#171a24] p-1 rounded-xl border border-white/10 text-xs font-mono">
-                        <button onclick="mudarCamada('canvas')" id="btn-layer-canvas" class="px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">
-                            Atlas
-                        </button>
-                        <button onclick="mudarCamada('sat')" id="btn-layer-sat" class="px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition">
-                            Satélite
-                        </button>
-                        <button onclick="mudarCamada('osm')" id="btn-layer-osm" class="px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition">
-                            Ruas
-                        </button>
-                    </div>
+                    <button onclick="proximaRodada()" id="btn-next-round" class="w-full py-2.5 sm:py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
+                        <span>Próxima Rodada</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- CONTAINER DO MAPA -->
-        <div class="relative flex-1 min-h-[460px] sm:min-h-[560px] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
-            <div id="map" class="w-full flex-1"></div>
-
-            <!-- Instrução Flutuante Quando Nenhum Ponto Foi Marcado -->
-            <div id="hint-click-banner" class="absolute top-4 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md border border-white/15 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-200 pointer-events-none shadow-xl flex items-center gap-2 z-[400]">
-                <i class="ph-bold ph-crosshair text-amber-400 text-base"></i>
-                <span>Navegue pelo mapa e clique no local onde você acha que fica o alvo</span>
-            </div>
-
-            <!-- BARRA DE AÇÃO FLUTUANTE INFERIOR -->
-            <div id="action-bar" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-[400] flex items-center gap-3 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-4">
-                <button onclick="confirmarPalpite()" class="px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm sm:text-base shadow-2xl flex items-center gap-2 hover:scale-105 active:scale-95 transition">
-                    <i class="ph-bold ph-check-circle text-lg"></i>
-                    <span>Confirmar Palpite</span>
-                </button>
-                <button onclick="limparPalpite()" class="px-4 py-3 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-mono border border-white/15 backdrop-blur-md transition">
-                    Mudar Ponto
-                </button>
-            </div>
-
-            <!-- CARD DE RESULTADO DA RODADA (Aparece após confirmar) -->
-            <div id="round-result-card" class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[92%] sm:w-auto min-w-[320px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-2xl z-[500] hidden transition-all">
-                <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-                    <span class="text-xs font-mono font-bold uppercase text-amber-400" id="result-grade-label">
-                        Excelente Aproximação!
-                    </span>
-                    <span class="text-lg font-mono font-bold text-emerald-400" id="result-round-score">
-                        +4.820 pts
-                    </span>
+            <!-- ANÚNCIO INFERIOR (VISÍVEL TANTO NO MOBILE QUANTO NO DESKTOP ABAIXO DO JOGO) -->
+            <section class="w-full my-3 sm:my-5 p-3 sm:p-4 bg-[#0c0e14]/70 border border-white/5 rounded-2xl flex flex-col items-center justify-center min-h-[120px] sm:min-h-[260px] ad-slot-container">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2 font-mono">PUBLICIDADE • GOOGLE ADSENSE</span>
+                <div class="w-full max-w-4xl flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
                 </div>
+            </section>
+        </main>
 
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-xl font-bold">
-                        <i class="ph-bold ph-ruler"></i>
-                    </div>
-                    <div>
-                        <span class="text-[11px] font-mono text-slate-400 block uppercase">Distância do Alvo Real</span>
-                        <span class="text-base sm:text-lg font-heading font-bold text-white" id="result-distance">
-                            142 km de distância
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Mini Fato Pedagógico -->
-                <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-3 rounded-xl border border-white/5 mb-4" id="result-fact">
-                    Carregando fato sobre este local...
-                </p>
-
-                <button onclick="proximaRodada()" id="btn-next-round" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
-                    <span>Próxima Rodada</span>
-                    <i class="ph-bold ph-arrow-right"></i>
-                </button>
+        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
             </div>
-        </div>
-    </main>
+        </aside>
+    </div>
 
     <!-- MODAL DE RESULTADO FINAL (FIM DE JOGO) -->
-    <div id="modal-game-over" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000] hidden flex items-center justify-center p-4">
-        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative overflow-hidden text-center animate-fade-in">
+    <div id="modal-game-over" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000] hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-xl w-full p-5 sm:p-8 shadow-2xl relative overflow-hidden text-center animate-fade-in">
             
-            <div class="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/20 mx-auto flex items-center justify-center text-amber-400 text-3xl mb-4">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/10 border border-amber-400/20 mx-auto flex items-center justify-center text-amber-400 text-2xl sm:text-3xl mb-3 sm:mb-4">
                 <i class="ph-bold ph-trophy"></i>
             </div>
 
             <span class="text-xs font-mono uppercase tracking-widest text-amber-400 block mb-1">
                 Fim de Desafio // 5 Rodadas Concluídas
             </span>
-            <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-2" id="final-rank-title">
+            <h3 class="text-xl sm:text-3xl font-heading font-bold text-white mb-2" id="final-rank-title">
                 Mestre de Cartografia
             </h3>
-            <p class="text-sm text-slate-400 mb-6 max-w-sm mx-auto" id="final-rank-desc">
+            <p class="text-xs sm:text-sm text-slate-400 mb-5 sm:mb-6 max-w-sm mx-auto leading-relaxed" id="final-rank-desc">
                 Sua precisão geoespacial demonstra profundo domínio sobre os nós estratégicos e anomalias da Terra.
             </p>
 
             <!-- Placar Central -->
-            <div class="bg-[#181b24] border border-white/10 rounded-2xl p-4 mb-6 flex items-center justify-around">
+            <div class="bg-[#181b24] border border-white/10 rounded-2xl p-3 sm:p-4 mb-5 sm:mb-6 flex items-center justify-around">
                 <div>
                     <span class="text-[10px] font-mono uppercase text-slate-400 block">Pontuação Final</span>
-                    <span class="text-2xl sm:text-3xl font-mono font-bold text-emerald-400" id="final-score-val">22.450</span>
-                    <span class="text-xs font-mono text-slate-500">/ 25.000 pts</span>
+                    <span class="text-xl sm:text-3xl font-mono font-bold text-emerald-400" id="final-score-val">22.450</span>
+                    <span class="text-[10px] sm:text-xs font-mono text-slate-500">/ 25.000 pts</span>
                 </div>
-                <div class="h-10 w-px bg-white/10"></div>
+                <div class="h-8 sm:h-10 w-px bg-white/10"></div>
                 <div>
                     <span class="text-[10px] font-mono uppercase text-slate-400 block">Média de Distância</span>
-                    <span class="text-2xl sm:text-3xl font-mono font-bold text-amber-400" id="final-avg-dist">124 km</span>
+                    <span class="text-xl sm:text-3xl font-mono font-bold text-amber-400" id="final-avg-dist">124 km</span>
                 </div>
             </div>
 
             <!-- Tabela Resumo das 5 Rodadas -->
-            <div class="space-y-2 mb-6 text-left max-h-48 overflow-y-auto pr-1" id="final-rounds-list">
+            <div class="space-y-1.5 sm:space-y-2 mb-5 sm:mb-6 text-left max-h-44 sm:max-h-48 overflow-y-auto pr-1" id="final-rounds-list">
                 <!-- Inserido dinamicamente via JS -->
             </div>
 
             <!-- Botões de Ação -->
-            <div class="flex flex-col sm:flex-row items-center gap-3">
-                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full sm:flex-1 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-heading font-semibold text-sm flex items-center justify-center gap-2 transition">
-                    <i class="ph-bold ph-share-network text-lg"></i>
+            <div class="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
+                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full sm:flex-1 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-heading font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="ph-bold ph-share-network text-base sm:text-lg"></i>
                     <span>Copiar Resultado</span>
                 </button>
-                <button onclick="reiniciarJogo()" class="w-full sm:flex-1 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-lg"></i>
+                <button onclick="reiniciarJogo()" class="w-full sm:flex-1 py-3 sm:py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base sm:text-lg"></i>
                     <span>Jogar Novamente</span>
                 </button>
             </div>
@@ -324,15 +385,15 @@
 
     <!-- LÓGICA DO JOGO -->
     <script>
-        // BANCO DE LOCAIS GEOPOLÍTICOS & CARTOGRÁFICOS DO VITALEGEO (40 PONTOS LENDÁRIOS)
-        const LOCAIS_DB = [
+        // BANCO DE LOCAIS (Usa a base carregada de locais-onde-fica.js com mais de 100 locais)
+        const LOCAIS_FALLBACK = [
             {
                 nome: "Estreito de Ormuz",
                 categoria: "Chokepoint do Petróleo",
                 lat: 26.5667,
                 lng: 56.2500,
                 dica: "Gargalo marítimo estratégico entre o Irã e Omã por onde escoa 20% do petróleo mundial.",
-                fato: "Com apenas 33 km de largura no seu ponto mais estreito, o Estreito de Ormuz é a artéria mais vigiada do Golfo Pérsico."
+                fato: "Com apenas 33 km de largura no seu ponto mais estreito, o Estreito de Ormuz é a artéria energética mais vigiada do Golfo Pérsico."
             },
             {
                 nome: "Canal de Suez",
@@ -340,39 +401,7 @@
                 lat: 30.7050,
                 lng: 32.3442,
                 dica: "Corta o Egito conectando o Mar Mediterrâneo ao Mar Vermelho sem contornar a África.",
-                fato: "Inaugurado em 1869, o canal movimenta 12% do comércio global e economiza 7.000 km de viagem aos navios."
-            },
-            {
-                nome: "Canal do Panamá",
-                categoria: "Chokepoint Interoceânico",
-                lat: 9.0800,
-                lng: -79.6800,
-                dica: "Conecta os Oceanos Atlântico e Pacífico através da América Central.",
-                fato: "Utiliza um sistema lendário de eclusas que ergue os cargueiros a 26 metros de altitude no Lago Gatún."
-            },
-            {
-                nome: "Estreito de Malaca",
-                categoria: "Chokepoint Asiático",
-                lat: 2.5000,
-                lng: 101.5000,
-                dica: "Entre a Malásia e a ilha de Sumatra, é a rota mais movimentada de navios do Extremo Oriente.",
-                fato: "Mais de 100 mil navios cruzam Malaca todo ano, abastecendo China, Japão e Coreia com matérias-primas."
-            },
-            {
-                nome: "Estreito de Gibraltar",
-                categoria: "Porta do Mediterrâneo",
-                lat: 35.9667,
-                lng: -5.6000,
-                dica: "Separa a Europa (Espanha) da África (Marrocos) por apenas 14 km de água.",
-                fato: "Na antiguidade clássica, era conhecido como as lendárias 'Colunas de Hércules', o limite ocidental do mundo civilizado."
-            },
-            {
-                nome: "Estreito de Bósforo",
-                categoria: "Divisor Continental",
-                lat: 41.1167,
-                lng: 29.0833,
-                dica: "Corta a cidade de Istambul dividindo a Europa da Ásia e ligando o Mar Negro ao Mar de Mármara.",
-                fato: "Regulado pela Convenção de Montreux de 1936, é a única saída marítima para países como Ucrânia, Romênia e Geórgia."
+                fato: "Inaugurado em 1869, o canal movimenta 12% do comércio global e economiza cerca de 7.000 km de viagem aos navios mercantes."
             },
             {
                 nome: "Ponto Nemo",
@@ -388,7 +417,7 @@
                 lat: 54.7104,
                 lng: 20.4522,
                 dica: "Território militar russo separado do resto da Rússia, prensado entre Polônia e Lituânia.",
-                fato: "Antiga cidade prussiana de Königsberg, abriga a frota russa do Báltico e mísseis com capacidade nuclear."
+                fato: "Antiga cidade prussiana de Königsberg, abriga a frota russa do Mar Báltico e mísseis estratégicos de longo alcance."
             },
             {
                 nome: "Baarle",
@@ -396,177 +425,14 @@
                 lat: 51.4433,
                 lng: 4.9317,
                 dica: "Cidade fronteiriça entre Bélgica e Holanda com 30 enclaves interligados cortando casas e ruas.",
-                fato: "A linha de fronteira é desenhada no chão com cruzes brancas; se ela corta sua porta de entrada, define qual lei você obedece."
-            },
-            {
-                nome: "Bir Tawil",
-                categoria: "Terra Nullius (De Ninguém)",
-                lat: 21.8683,
-                lng: 33.7431,
-                dica: "Território de 2.060 km² no deserto entre o Egito e o Sudão que nenhum país quer reivindicar.",
-                fato: "Devido a tratados divergentes de 1899 e 1902, aceitar Bir Tawil faria qualquer um dos países perder o valioso Triângulo de Hala'ib."
-            },
-            {
-                nome: "Ilhas Diomedes",
-                categoria: "Fronteira do Tempo",
-                lat: 65.7667,
-                lng: -168.9667,
-                dica: "Duas ilhas separadas por 3,8 km no Estreito de Bering: uma dos EUA e outra da Rússia.",
-                fato: "Entre elas passa a Linha Internacional de Data: a Ilha Grande está 21 horas à frente da Ilha Pequena ('Ilha de Ontem' e 'Ilha de Amanhã')."
-            },
-            {
-                nome: "Ilha dos Faisões",
-                categoria: "Condomínio Binacional",
-                lat: 43.3422,
-                lng: -1.7761,
-                dica: "Pequena ilha fluvial que troca de dono a cada 6 meses entre a França e a Espanha.",
-                fato: "Governada pela França de agosto a janeiro e pela Espanha de fevereiro a julho, conforme o Tratado dos Pirenéus de 1659."
-            },
-            {
-                nome: "Ceuta",
-                categoria: "Enclave Espanhol na África",
-                lat: 35.8894,
-                lng: -5.3213,
-                dica: "Cidade autônoma espanhola situada na ponta norte do território do Marrocos.",
-                fato: "Faz parte do território aduaneiro da União Europeia em pleno continente africano, protegida por cercas de alta segurança."
-            },
-            {
-                nome: "Corredor de Suwalki",
-                categoria: "Gargalo Militar da OTAN",
-                lat: 54.2667,
-                lng: 23.3333,
-                dica: "Faixa estreita de 65 km de fronteira entre Polônia e Lituânia, ligando Belarus a Kaliningrado.",
-                fato: "Considerado pelos estrategistas da OTAN o ponto mais vulnerável da Europa em um eventual conflito com a Rússia."
-            },
-            {
-                nome: "Cabo da Boa Esperança",
-                categoria: "Marco Náutico Histórico",
-                lat: -34.3569,
-                lng: 18.4728,
-                dica: "Península no extremo sul da África do Sul dobrada por Bartolomeu Dias em 1488.",
-                fato: "Originalmente batizado de 'Cabo das Tormentas', foi renomeado pelo rei D. João II de Portugal pela esperança de chegar às Índias."
-            },
-            {
-                nome: "Cabo Horn",
-                categoria: "Extremo Sul das Américas",
-                lat: -55.9833,
-                lng: -67.2667,
-                dica: "Ponto mais meridional do arquipélago da Terra do Fogo, no extremo sul do Chile.",
-                fato: "Famoso pelas ondas gigantes e tempestades violentas da Passagem de Drake, considerado o Everest dos marinheiros."
-            },
-            {
-                nome: "Estreito de Taiwan",
-                categoria: "Zona de Tensão Geopolítica",
-                lat: 24.0000,
-                lng: 119.5000,
-                dica: "Braço de mar de 160 km que separa a China continental da ilha de Taiwan.",
-                fato: "Por ele passa cerca de metade da frota global de navios porta-contêineres e 88% dos maiores navios do planeta."
-            },
-            {
-                nome: "Porto de Chancay",
-                categoria: "Megaprojeto da Rota da Seda",
-                lat: -11.5833,
-                lng: -77.2667,
-                dica: "Megaporto financiado pela China na costa do Peru para encurtar o trajeto até Xangai.",
-                fato: "Projetado para ser o principal 'hub' sul-americano para a Ásia, reduzindo a viagem de navios em até 15 dias."
-            },
-            {
-                nome: "Fossa das Marianas",
-                categoria: "Abismo Oceânico",
-                lat: 11.3500,
-                lng: 142.2000,
-                dica: "O ponto mais profundo dos oceanos da Terra, no oeste do Oceano Pacífico.",
-                fato: "No Challenger Deep, o fundo atinge quase 11.000 metros de profundidade sob uma pressão de mais de 1.000 atmosferas."
-            },
-            {
-                nome: "Monte Everest",
-                categoria: "Teto do Mundo",
-                lat: 27.9881,
-                lng: 86.9250,
-                dica: "A montanha mais alta acima do nível do mar, na cordilheira do Himalaia (fronteira Nepal/China).",
-                fato: "Com 8.848,86 metros de altitude, sua crista exata marca a fronteira política entre o Nepal e a Região Autônoma do Tibete."
-            },
-            {
-                nome: "Vulcão Chimborazo",
-                categoria: "Ponto Mais Perto do Espaço",
-                lat: -1.4692,
-                lng: -78.8169,
-                dica: "Pico no Equador que é o ponto da superfície mais distante do centro da Terra.",
-                fato: "Devido ao formato elipsoidal achatado da Terra na Linha do Equador, seu cume fica a 6.384 km do núcleo, superando o Everest."
-            },
-            {
-                nome: "Salar de Uyuni",
-                categoria: "Triângulo do Lítio",
-                lat: -20.1338,
-                lng: -67.4891,
-                dica: "O maior deserto de sal do mundo, localizado no sudoeste da Bolívia.",
-                fato: "Com mais de 10.000 km², guarda uma das maiores reservas de lítio do planeta e é tão plano que serve para calibrar satélites orbitais."
-            },
-            {
-                nome: "Mar de Aral",
-                categoria: "Desastre Ambiental Histórico",
-                lat: 45.0000,
-                lng: 59.0000,
-                dica: "Antigo quarto maior lago do mundo, entre Cazaquistão e Uzbequistão, que quase secou por desvios de rios.",
-                fato: "Perdeu mais de 90% do seu volume de água após a União Soviética desviar os rios Amu Darya e Syr Darya para lavouras de algodão."
-            },
-            {
-                nome: "Svalbard (Banco Mundial de Sementes)",
-                categoria: "Cofre do Fim do Mundo",
-                lat: 78.2232,
-                lng: 15.6267,
-                dica: "Arquipélago ártico sob soberania da Noruega com um cofre subterrâneo de sementes.",
-                fato: "Escavado dentro de uma montanha congelada (permafrost) para resistir a guerras e desastres climáticos globais."
-            },
-            {
-                nome: "Whittier",
-                categoria: "Cidade em um Prédio",
-                lat: 60.7731,
-                lng: -148.6839,
-                dica: "Pequena cidade no Alasca onde quase todos os habitantes vivem dentro do mesmo edifício de 14 andares.",
-                fato: "O prédio Begich Towers abriga escola, delegacia, correio, mercado e residências sob o mesmo teto para fugir da neve brutal."
-            },
-            {
-                nome: "Cataratas do Iguaçu",
-                categoria: "Tríplice Fronteira",
-                lat: -25.6953,
-                lng: -54.4367,
-                dica: "Monumento natural na fronteira entre Brasil, Argentina e próximo ao Paraguai.",
-                fato: "Com 275 quedas d'água, o Rio Iguaçu se encontra com o Rio Paraná demarcando o marco tríplice mais famoso da América do Sul."
-            },
-            {
-                nome: "Usina de Chernobil",
-                categoria: "Zona de Exclusão Histórica",
-                lat: 51.3892,
-                lng: 30.0997,
-                dica: "Complexo nuclear no norte da Ucrânia palco do pior acidente atômico da história em 1986.",
-                fato: "Hoje cercada por uma zona de exclusão de 30 km que se tornou um refúgio ecológico involuntário para a vida selvagem."
-            },
-            {
-                nome: "Ilhas Malvinas / Falklands",
-                categoria: "Disputa Territorial Histórica",
-                lat: -51.7963,
-                lng: -59.5236,
-                dica: "Arquipélago no Atlântico Sul sob domínio britânico e reivindicado pela Argentina.",
-                fato: "Palco de uma guerra em 1982 que durou 74 dias e continua sendo o litígio diplomático mais sensível da América do Sul."
-            },
-            {
-                nome: "Círculo Valeriepieris",
-                categoria: "Centro Demográfico da Terra",
-                lat: 19.0000,
-                lng: 100.0000,
-                dica: "Área circular no Sudeste/Leste Asiático que concentra mais pessoas vivendo dentro dela do que no resto do planeta.",
-                fato: "Abrange China, Índia, Indonésia e vizinhos em um raio de 4.000 km contendo mais de 54% de toda a população humana."
-            },
-            {
-                nome: "Estreito de Bab el-Mandeb",
-                categoria: "Gargalo do Mar Vermelho",
-                lat: 12.5833,
-                lng: 43.3333,
-                dica: "Separa o Iêmen na Península Arábica do Djibuti e Eritreia no Chifre da África.",
-                fato: "Conhecido em árabe como 'A Porta das Lágrimas', é a entrada sul do Canal de Suez e rota vital de petroleiros."
+                fato: "A linha de fronteira é desenhada no chão com cruzes brancas; se ela corta sua porta de entrada, define qual país você obedece."
             }
         ];
+
+        // Base consolidada
+        const LOCAIS_ATIVOS = (typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) 
+            ? LOCAIS_ONDE_FICA 
+            : LOCAIS_FALLBACK;
 
         // ESTADO GLOBAL DO JOGO
         let partidaLocais = [];
@@ -592,8 +458,8 @@
 
         // INICIALIZAÇÃO DO JOGO
         function iniciarJogo() {
-            // Sorteia 5 locais aleatórios sem repetição
-            const embaralhado = [...LOCAIS_DB].sort(() => 0.5 - Math.random());
+            // Sorteia 5 locais aleatórios da base ampla de 110+ locais
+            const embaralhado = [...LOCAIS_ATIVOS].sort(() => 0.5 - Math.random());
             partidaLocais = embaralhado.slice(0, 5);
             rodadaAtualIndex = 0;
             pontuacaoTotal = 0;
@@ -615,7 +481,8 @@
                 minZoom: 2,
                 maxZoom: 17,
                 worldCopyJump: true,
-                zoomControl: true
+                zoomControl: true,
+                tap: true
             });
 
             // Camada padrão Esri Gray Canvas (muda e limpa)
@@ -651,9 +518,9 @@
                 const btn = document.getElementById(`btn-layer-${t}`);
                 if (btn) {
                     if (t === tipo) {
-                        btn.className = "px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition";
+                        btn.className = "px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition";
                     } else {
-                        btn.className = "px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition";
+                        btn.className = "px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition";
                     }
                 }
             });
@@ -740,7 +607,6 @@
             ));
 
             // Cálculo da pontuação (Decaimento suave de 0 a 5.000 pts)
-            // Se errou menos de 25km: 5.000 pts cravados
             let roundScore = 0;
             if (distKm <= 25) {
                 roundScore = 5000;
@@ -778,7 +644,7 @@
 
             // Anima enquadramento entre os dois pontos
             const bounds = L.latLngBounds([palpiteAtualLatLng, targetLatLng]);
-            map.flyToBounds(bounds, { padding: [80, 80], maxZoom: 8, duration: 1.2 });
+            map.flyToBounds(bounds, { padding: [60, 60], maxZoom: 8, duration: 1.2 });
 
             // Esconde barra de ação
             const actionBar = document.getElementById('action-bar');
@@ -864,7 +730,7 @@
                         <strong class="text-slate-200">${r.local}</strong>
                     </div>
                     <div class="text-right">
-                        <span class="text-amber-400 mr-3">${r.distKm.toLocaleString('pt-BR')} km</span>
+                        <span class="text-amber-400 mr-2 sm:mr-3">${r.distKm.toLocaleString('pt-BR')} km</span>
                         <span class="text-emerald-400 font-bold">+${r.score} pts</span>
                     </div>
                 </div>
@@ -894,12 +760,12 @@
                 const btn = document.getElementById('btn-copy-score');
                 btn.innerHTML = `<i class="ph-bold ph-check text-emerald-400"></i> Copiado com Sucesso!`;
                 setTimeout(() => {
-                    btn.innerHTML = `<i class="ph-bold ph-share-network text-lg"></i> <span>Copiar Resultado</span>`;
+                    btn.innerHTML = `<i class="ph-bold ph-share-network text-base sm:text-lg"></i> <span>Copiar Resultado</span>`;
                 }, 2500);
             });
         }
 
-        // FÓRMULA DE HAVERSINE (DISTÂNCIA EM KM ENTRE DUAS COORDENADAS)
+        // FÓRMULA DE HAVERSINE
         function calcularHaversineKm(lat1, lon1, lat2, lon2) {
             const R = 6371; // Raio médio da Terra em km
             const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -915,7 +781,7 @@
             document.getElementById('total-score').innerText = `${pontuacaoTotal.toLocaleString('pt-BR')} pts`;
         }
 
-        // EFEITOS SONOROS NATIVOS VIA WEB AUDIO API (ZERO MP3 EXTERNO)
+        // ÁUDIO SINTETIZADO NATIVO VIA WEB AUDIO API
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         let audioCtx = null;
 

@@ -17,6 +17,9 @@
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/rotas-extremas/">
     <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
 
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     
@@ -113,8 +116,25 @@
         </div>
     </nav>
 
-    <!-- Conteúdo Principal -->
-    <main class="pt-28 pb-16 px-4 sm:px-6 max-w-6xl mx-auto flex-grow w-full">
+    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIOS LATERAIS + FERRAMENTA CENTRAL) -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 flex items-start justify-center gap-4 flex-grow pt-24 pb-8">
+
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="max-w-5xl mx-auto flex-grow w-full">
         <!-- Cabeçalho Limpo e Educativo -->
         <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
             <div>
@@ -243,13 +263,21 @@
             </div>
         </div>
 
-        <!-- Espaço Reservado para Google AdSense -->
-        <div class="editorial-panel p-4 mb-8 text-center min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border-dashed">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
-            <div class="w-full max-w-2xl py-6 text-xs text-slate-500 font-mono">
-                [Espaço do Anúncio Responsivo VitaleGeo]
+        <!-- Anúncio Oficial Google AdSense (Visível no Mobile e Desktop Abaixo da Ferramenta) -->
+        <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
+            <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
+            <div class="w-full max-w-4xl py-2 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
             </div>
-        </div>
+        </section>
 
         <!-- Links Limpos para Outras Ferramentas -->
         <div class="border-t border-white/10 pt-6 flex items-center justify-between text-xs text-slate-400">
@@ -261,6 +289,21 @@
             </div>
         </div>
     </main>
+
+    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <div class="w-full flex-1 flex items-center justify-center">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </div>
+    </aside>
+</div>
 
     <!-- Rodapé Oficial VitaleGeo -->
     <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
