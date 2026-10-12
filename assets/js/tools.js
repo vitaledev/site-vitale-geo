@@ -40,5 +40,12 @@ const toolsDB = [
         icon: "ph-bold ph-globe-hemisphere-west",
         cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
         link: "/ferramentas/calculadora-antipodas/"
+    },
+    {
+        titulo: "Simulador de Linha Reta (As Maiores Rotas do Planeta)",
+        desc: "A maior rota navegável sem tocar terra (32.090 km), a maior rota terrestre contínua (11.241 km) e arcos geodésicos.",
+        icon: "ph-bold ph-compass",
+        cover: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=80",
+        link: "/ferramentas/rotas-extremas/"
     }
 ];
