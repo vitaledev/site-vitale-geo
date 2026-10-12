@@ -1,13 +1,15 @@
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
-        serif: ['Plus Jakarta Sans', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Plus Jakarta Sans', 'serif'],
+        mono: ['Space Mono', 'JetBrains Mono', 'monospace'],
       },
       colors: {
         geoBg: '#090a0f',
@@ -22,5 +24,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
+

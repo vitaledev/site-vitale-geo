@@ -28,21 +28,20 @@ const postsData = sortedPosts.map(p => ({
 >
   <main class="page-content">
     <!-- Hero Editorial Minimalista e Arejado -->
-    <header class="relative pt-36 sm:pt-44 pb-16 px-6 text-center overflow-hidden">
+    <header class="relative pt-36 sm:pt-44 pb-20 px-6 text-center overflow-hidden">
       <TopoLines strokeColor="#f59e0b" />
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <!-- Telemetria Cartográfica Discreta -->
-        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-amber-400/90 mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-          <span>Atlas Territorial & Cartografia</span>
+        <!-- Telemetria Cartográfica de Atlas -->
+        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-amber-400 mb-6 px-4 py-1.5 rounded-full bg-amber-400/[0.05] border border-amber-400/20 shadow-sm">
+          <span>⌖ ATLAS TERRITORIAL // ACERVO ABERTO</span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-medium text-white max-w-4xl mx-auto leading-[1.12] tracking-tight">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-bold text-white max-w-4xl mx-auto leading-[1.1] tracking-[-0.03em]">
           Geopolítica, fronteiras e a verdadeira escala do mundo.
         </h1>
         
-        <p class="text-base sm:text-lg text-slate-300 max-w-xl mx-auto font-normal leading-relaxed mt-5 mb-8">
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed mt-6 mb-10">
           Investigações territoriais, rotas marítimas estratégicas e as anomalias geográficas que os mapas convencionais omitem.
         </p>
         
@@ -57,23 +56,16 @@ const postsData = sortedPosts.map(p => ({
       </div>
     </header>
 
-    <!-- Divisor Cartográfico com Régua de Escala -->
-    <div class="max-w-6xl mx-auto px-6 my-6">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line"></span>
-          <span>500 km</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Seção: Dossiês Recentes (Ilha React) -->
-    <section class="py-12 px-6 max-w-6xl mx-auto">
-      <div class="flex items-baseline justify-between mb-6">
+    <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
+      <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Dossiês em Destaque</h2>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Dossiês em Destaque</h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Investigações sobre limites soberanos e disputas territoriais.</p>
         </div>
         <a href="/blog" class="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1">
@@ -85,23 +77,16 @@ const postsData = sortedPosts.map(p => ({
       <HomeBlogFilter client:load posts={postsData} />
     </section>
 
-    <!-- Divisor Cartográfico -->
-    <div class="max-w-6xl mx-auto px-6 my-6">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line"></span>
-          <span>1:50.000.000</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Seção: Ferramentas de Escala -->
-    <section class="py-12 px-6 max-w-6xl mx-auto">
+    <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Instrumentos de Escala</h2>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Instrumentos de Escala</h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Comparação de projeções e dimensões territoriais reais.</p>
         </div>
         <a href="/ferramentas" class="text-xs font-semibold text-sky-400 hover:text-white transition flex items-center gap-1">
@@ -111,7 +96,7 @@ const postsData = sortedPosts.map(p => ({
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {toolsDB.slice(0, 3).map(tool => (
-          <a href={tool.link} class="minimal-card carto-corner-frame carto-corner-frame-cyan group overflow-hidden flex flex-col justify-between h-full">
+          <a href={tool.link} class="editorial-card minimal-card carto-corner-frame carto-corner-frame-cyan group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {tool.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
@@ -137,23 +122,16 @@ const postsData = sortedPosts.map(p => ({
       </div>
     </section>
 
-    <!-- Divisor Cartográfico -->
-    <div class="max-w-6xl mx-auto px-6 my-6">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line"></span>
-          <span>COORDENADAS</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Seção: Simulações & Desafios -->
-    <section class="py-12 px-6 max-w-6xl mx-auto">
+    <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Desafios de Fronteira</h2>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Desafios de Fronteira</h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Módulos interativos de reconhecimento territorial e soberania.</p>
         </div>
         <a href="/jogos" class="text-xs font-semibold text-emerald-400 hover:text-white transition flex items-center gap-1">
@@ -163,7 +141,7 @@ const postsData = sortedPosts.map(p => ({
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {gamesDB.slice(0, 3).map(game => (
-          <a href={game.link} class="minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
+          <a href={game.link} class="editorial-card minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
@@ -189,23 +167,16 @@ const postsData = sortedPosts.map(p => ({
       </div>
     </section>
 
-    <!-- Divisor Cartográfico -->
-    <div class="max-w-6xl mx-auto px-6 my-6">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line"></span>
-          <span>4K UHD</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Seção: Vídeos do Canal -->
-    <section class="py-12 px-6 max-w-6xl mx-auto pb-24">
+    <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto pb-28">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-semibold">Vídeos & Documentários</h2>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Vídeos & Documentários</h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Análises cartográficas produzidas para o canal Já Imaginou Isso.</p>
         </div>
         <a href="/videos" class="text-xs font-semibold text-red-400 hover:text-white transition flex items-center gap-1">
@@ -215,7 +186,7 @@ const postsData = sortedPosts.map(p => ({
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videosLongos.slice(0, 3).map(video => (
-          <a href={video.link} target="_blank" rel="noopener noreferrer" class="minimal-card carto-corner-frame group overflow-hidden block">
+          <a href={video.link} target="_blank" rel="noopener noreferrer" class="editorial-card minimal-card carto-corner-frame group overflow-hidden block">
             <div class="aspect-video relative bg-slate-900 overflow-hidden">
               <img
                 src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
