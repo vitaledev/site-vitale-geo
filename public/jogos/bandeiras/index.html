@@ -5,18 +5,25 @@
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/bandeiras/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Operação Bandeira | Arcade VitaleGeo</title>
+    <title>Desafio das Bandeiras do Mundo | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Teste seus reflexos e conhecimentos identificando as bandeiras de mais de 70 países do mundo em modo arcade.">
-    <meta name="keywords" content="bandeiras, geografia, jogo, quiz, países, vitalegeo">
+    <meta name="description" content="Você consegue identificar todas as bandeiras do mundo? Jogue o desafio completo com todos os países do planeta e tente zerar o jogo!">
+    <meta name="keywords" content="todas as bandeiras do mundo, quiz de bandeiras, zerar jogo de geografia, países do mundo, vitalegeo">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Desafio das Bandeiras do Mundo | VitaleGeo">
+    <meta property="og:description" content="Você consegue zerar todas as bandeiras do planeta Terra? Jogue agora e teste seus conhecimentos!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/bandeiras/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -33,8 +40,24 @@
             }
         }
     </script>
+
+    <style>
+        .flag-frame {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
+        }
+        .option-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none">
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between">
 
     <!-- BARRA DEDICADA DO ARCADE (Ambiente isolado do site) -->
     <header class="arcade-header">
@@ -44,9 +67,9 @@
         </a>
 
         <div class="flex items-center gap-2">
-            <div class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></div>
+            <i class="ph-fill ph-flag-banner text-amber-400 text-lg"></i>
             <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
-                Operação <span class="text-amber-400">Bandeira</span>
+                Desafio Mundial: <span class="text-amber-400">Todas as Bandeiras</span>
             </span>
         </div>
 
@@ -58,204 +81,579 @@
         </div>
     </header>
 
-    <!-- PALCO CENTRAL PROTEGIDO (The Stage - Sem invasão de anúncios) -->
-    <main class="arcade-stage-wrapper" id="game-stage-container">
+    <!-- PALCO CENTRAL AMPLIADO (The Grand Stage) -->
+    <main class="arcade-stage-wrapper w-full max-w-4xl px-4 py-4 sm:py-6 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-        <div class="arcade-stage p-5 sm:p-8 max-w-xl mx-auto flex flex-col items-center justify-between text-center min-h-[480px]">
+        <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO GLOBAL -->
+        <div class="w-full mb-3 flex flex-col gap-2">
+            <div class="flex items-center justify-between text-xs font-mono">
+                <!-- Vidas / Tentativas -->
+                <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
+                    <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                        <i class="ph-fill ph-heart"></i>
+                        <i class="ph-fill ph-heart"></i>
+                        <i class="ph-fill ph-heart"></i>
+                    </span>
+                </div>
+
+                <!-- Progresso / Total de Bandeiras -->
+                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <i class="ph-bold ph-globe-hemisphere-east text-amber-400"></i>
+                    <span class="text-slate-300">Conquistadas: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">196</span></span>
+                </div>
+
+                <!-- Recorde Máximo Salvo -->
+                <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <i class="ph-fill ph-trophy text-emerald-400"></i>
+                    <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                </div>
+            </div>
+
+            <!-- Barra de Progresso Visual do Planeta -->
+            <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
+            </div>
+        </div>
+
+        <!-- O PALCO DO JOGO (TELA DEDICADA AMPLIADA) -->
+        <div id="stage-active" class="arcade-stage p-6 sm:p-10 w-full flex flex-col items-center justify-between text-center min-h-[540px] relative">
             
-            <!-- Barra de Status do Jogador -->
-            <div class="w-full flex items-center justify-between border-b border-white/5 pb-4 mb-4">
-                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-                    <i class="ph-fill ph-flame text-amber-400 text-sm"></i>
-                    <span>Streak: <strong id="score" class="text-amber-400 text-sm">0</strong></span>
-                </div>
-                <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest">
-                    Round Rápido
-                </div>
-                <div class="text-xs font-mono text-slate-400">
-                    <span>Recorde: <strong id="best-score" class="text-emerald-400 text-sm">0</strong></span>
-                </div>
-            </div>
-
-            <!-- Moldura da Bandeira (Carregamento Local Seguro) -->
-            <div class="my-auto flex flex-col items-center">
-                <p class="text-[11px] font-mono uppercase tracking-widest text-slate-500 mb-3">Qual é este país?</p>
+            <!-- Bandeira Central Ampliada -->
+            <div class="my-auto flex flex-col items-center w-full">
+                <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-1.5">
+                    <i class="ph-bold ph-crosshair text-amber-400"></i> Qual país tem esta bandeira?
+                </span>
                 
-                <div class="w-64 h-40 sm:w-72 sm:h-44 bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex items-center justify-center relative p-1.5 bg-gradient-to-b from-white/5 to-transparent">
-                    <img id="flag-img" src="" class="w-full h-full object-cover rounded-xl shadow-inner transition-transform duration-300 hover:scale-105" alt="Bandeira do País">
+                <div class="flag-frame w-72 h-44 sm:w-96 sm:h-56 bg-slate-950 rounded-2xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-1.5 bg-gradient-to-b from-white/10 to-transparent">
+                    <img id="flag-img" src="" class="w-full h-full object-cover rounded-xl shadow-2xl transition-transform duration-300" alt="Bandeira do País">
                 </div>
 
-                <div id="feedback" class="h-6 mt-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-500">
-                    Selecione uma opção abaixo
+                <!-- Feedback de Acerto/Erro -->
+                <div id="feedback-msg" class="h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center">
+                    Selecione uma das 4 opções abaixo:
                 </div>
             </div>
 
-            <!-- Grade de Opções (4 Alternativas Táteis) -->
-            <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full mt-4">
+            <!-- Grade de Alternativas (4 Botões Ampliados e Confortáveis) -->
+            <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-4">
                 <!-- Preenchido via JavaScript -->
             </div>
 
         </div>
 
-        <!-- ZONA SEGURA DE ANÚNCIOS (Abaixo do Palco - Não quebra os cliques do jogo) -->
+        <!-- TELA DE FIM DE RODADA / GAME OVER (QUANDO AS VIDAS ACABAM) -->
+        <div id="stage-gameover" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in fade-in duration-300">
+            <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
+                <i class="ph-bold ph-flag"></i>
+            </div>
+            
+            <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim da Rodada!</span>
+            <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
+            
+            <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
+                A última bandeira era da <strong id="last-correct-country" class="text-white">--</strong>.
+            </p>
+
+            <!-- Placar de Conquista -->
+            <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-6 max-w-md w-full mb-8 shadow-xl">
+                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Bandeiras Conquistadas</span>
+                <div class="text-5xl sm:text-6xl font-heading font-black text-amber-400 mb-2">
+                    <span id="final-score">0</span> <span class="text-xl text-slate-400 font-normal">/ 196</span>
+                </div>
+                <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-3">0% do planeta Terra dominado</p>
+                <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300" id="final-rank">
+                    Rank: Turista Curioso
+                </div>
+            </div>
+
+            <!-- Botões de Ação e Compartilhamento Viral -->
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
+                </button>
+                <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition flex items-center gap-2">
+                    <i class="ph-bold ph-copy text-base"></i> Copiar
+                </button>
+                <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-2 shadow-lg shadow-amber-400/20">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR ZERA TODAS AS 196 BANDEIRAS) -->
+        <div id="stage-victory" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in zoom-in duration-500">
+            <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+                <i class="ph-fill ph-trophy"></i>
+            </div>
+
+            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA LENDÁRIA!</span>
+            <h2 class="text-3xl sm:text-6xl font-heading font-black text-white mb-3">VOCÊ ZEROU O MUNDO!</h2>
+            
+            <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
+                Incrível! Você acertou com sucesso <strong class="text-amber-400">todas as 196 bandeiras</strong> do planeta Terra sem errar. Você é oficialmente um Mestre Supremo da Geografia Mundial!
+            </p>
+
+            <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-8 shadow-2xl">
+                <span class="text-xs font-mono uppercase text-slate-400">Score Máximo Absoluto</span>
+                <div class="text-5xl font-black text-amber-400 my-1">196 / 196 (100%)</div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">★ Mestre da Vexilologia da Terra ★</span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
+                </button>
+                <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente do Início
+                </button>
+            </div>
+        </div>
+
+        <!-- ZONA SEGURA DE PUBLICIDADE (Totalmente fora do palco do jogo) -->
         <div class="arcade-ad-zone">
             <span>PUBLICIDADE RESERVADA · VITALEGEO ARCADE</span>
-            <!-- Bloco AdSense aqui, completamente fora dos botões de resposta -->
+            <!-- Bloco de anúncio aqui, sem interferir no jogo -->
         </div>
 
     </main>
 
     <!-- Rodapé Minimalista do Arcade -->
     <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Ambiente Otimizado de Jogo
+        VitaleGeo Arcade &copy; 2026 · Desafio de Bandeiras Mundiais · 196 Países Oficiais
     </footer>
 
-    <!-- Lógica do Jogo com Assets Locais e Confetes -->
+    <!-- Catálogo Completo dos 196 Países do Mundo em Português e Mecânica do Jogo -->
     <script>
-        // Banco Enriquecido com mais de 70 países usando as bandeiras baixadas localmente (/assets/flags/)
-        const allCountries = [
-            { name: "Brasil", code: "br" },
-            { name: "Portugal", code: "pt" },
-            { name: "Estados Unidos", code: "us" },
-            { name: "Canadá", code: "ca" },
-            { name: "Reino Unido", code: "gb" },
-            { name: "Alemanha", code: "de" },
-            { name: "França", code: "fr" },
-            { name: "Itália", code: "it" },
-            { name: "Japão", code: "jp" },
-            { name: "China", code: "cn" },
-            { name: "Rússia", code: "ru" },
-            { name: "Austrália", code: "au" },
-            { name: "Coreia do Sul", code: "kr" },
-            { name: "Índia", code: "in" },
-            { name: "Argentina", code: "ar" },
-            { name: "México", code: "mx" },
-            { name: "Espanha", code: "es" },
-            { name: "Suíça", code: "ch" },
-            { name: "Suécia", code: "se" },
-            { name: "Noruega", code: "no" },
-            { name: "Finlândia", code: "fi" },
-            { name: "Dinamarca", code: "dk" },
+        // Catálogo de 196 Países Soberanos da ONU + Territórios Globais em Português
+        const catalogoBandeiras = [
+            { name: "Afeganistão", code: "af" },
             { name: "África do Sul", code: "za" },
-            { name: "Israel", code: "il" },
-            { name: "Turquia", code: "tr" },
-            { name: "Ucrânia", code: "ua" },
-            { name: "Holanda", code: "nl" },
-            { name: "Bélgica", code: "be" },
-            { name: "Uruguai", code: "uy" },
-            { name: "Paraguai", code: "py" },
-            { name: "Chile", code: "cl" },
-            { name: "Colômbia", code: "co" },
-            { name: "Peru", code: "pe" },
-            { name: "Egito", code: "eg" },
-            { name: "Marrocos", code: "ma" },
-            { name: "Nigéria", code: "ng" },
+            { name: "Albânia", code: "al" },
+            { name: "Alemanha", code: "de" },
+            { name: "Andorra", code: "ad" },
+            { name: "Angola", code: "ao" },
+            { name: "Antígua e Barbuda", code: "ag" },
             { name: "Arábia Saudita", code: "sa" },
-            { name: "Emirados Árabes", code: "ae" },
+            { name: "Argélia", code: "dz" },
+            { name: "Argentina", code: "ar" },
+            { name: "Armênia", code: "am" },
+            { name: "Austrália", code: "au" },
+            { name: "Áustria", code: "at" },
+            { name: "Azerbaijão", code: "az" },
+            { name: "Bahamas", code: "bs" },
+            { name: "Bangladesh", code: "bd" },
+            { name: "Barbados", code: "bb" },
+            { name: "Bahrein", code: "bh" },
+            { name: "Bélgica", code: "be" },
+            { name: "Belize", code: "bz" },
+            { name: "Benim", code: "bj" },
+            { name: "Bielorrússia", code: "by" },
+            { name: "Bolívia", code: "bo" },
+            { name: "Bósnia e Herzegovina", code: "ba" },
+            { name: "Botsuana", code: "bw" },
+            { name: "Brasil", code: "br" },
+            { name: "Brunei", code: "bn" },
+            { name: "Bulgária", code: "bg" },
+            { name: "Burquina Faso", code: "bf" },
+            { name: "Burundi", code: "bi" },
+            { name: "Butão", code: "bt" },
+            { name: "Cabo Verde", code: "cv" },
+            { name: "Camarões", code: "cm" },
+            { name: "Camboja", code: "kh" },
+            { name: "Canadá", code: "ca" },
+            { name: "Catar", code: "qa" },
+            { name: "Cazaquistão", code: "kz" },
+            { name: "Chade", code: "td" },
+            { name: "Chile", code: "cl" },
+            { name: "China", code: "cn" },
+            { name: "Chipre", code: "cy" },
+            { name: "Colômbia", code: "co" },
+            { name: "Comores", code: "km" },
+            { name: "Congo (Brazzaville)", code: "cg" },
+            { name: "Coreia do Norte", code: "kp" },
+            { name: "Coreia do Sul", code: "kr" },
+            { name: "Costa do Marfim", code: "ci" },
+            { name: "Costa Rica", code: "cr" },
+            { name: "Croácia", code: "hr" },
+            { name: "Cuba", code: "cu" },
+            { name: "Dinamarca", code: "dk" },
+            { name: "Djibuti", code: "dj" },
+            { name: "Dominica", code: "dm" },
+            { name: "Egito", code: "eg" },
+            { name: "El Salvador", code: "sv" },
+            { name: "Emirados Árabes Unidos", code: "ae" },
+            { name: "Equador", code: "ec" },
+            { name: "Eritreia", code: "er" },
+            { name: "Eslováquia", code: "sk" },
+            { name: "Eslovênia", code: "si" },
+            { name: "Espanha", code: "es" },
+            { name: "Estados Unidos", code: "us" },
+            { name: "Estônia", code: "ee" },
+            { name: "Essuatíni", code: "sz" },
+            { name: "Etiópia", code: "et" },
+            { name: "Fiji", code: "fj" },
+            { name: "Filipinas", code: "ph" },
+            { name: "Finlândia", code: "fi" },
+            { name: "França", code: "fr" },
+            { name: "Gabão", code: "ga" },
+            { name: "Gâmbia", code: "gm" },
+            { name: "Gana", code: "gh" },
+            { name: "Geórgia", code: "ge" },
+            { name: "Granada", code: "gd" },
             { name: "Grécia", code: "gr" },
-            { name: "Polônia", code: "pl" },
+            { name: "Guatemala", code: "gt" },
+            { name: "Guiana", code: "gy" },
+            { name: "Guiné", code: "gn" },
+            { name: "Guiné Equatorial", code: "gq" },
+            { name: "Guiné-Bissau", code: "gw" },
+            { name: "Haiti", code: "ht" },
+            { name: "Holanda", code: "nl" },
+            { name: "Honduras", code: "hn" },
+            { name: "Hungria", code: "hu" },
+            { name: "Iêmen", code: "ye" },
+            { name: "Ilhas Marshall", code: "mh" },
+            { name: "Ilhas Salomão", code: "sb" },
+            { name: "Índia", code: "in" },
+            { name: "Indonésia", code: "id" },
+            { name: "Irã", code: "ir" },
+            { name: "Iraque", code: "iq" },
             { name: "Irlanda", code: "ie" },
+            { name: "Islândia", code: "is" },
+            { name: "Israel", code: "il" },
+            { name: "Itália", code: "it" },
+            { name: "Jamaica", code: "jm" },
+            { name: "Japão", code: "jp" },
+            { name: "Jordânia", code: "jo" },
+            { name: "Kuait", code: "kw" },
+            { name: "Laos", code: "la" },
+            { name: "Lesoto", code: "ls" },
+            { name: "Letônia", code: "lv" },
+            { name: "Líbano", code: "lb" },
+            { name: "Libéria", code: "lr" },
+            { name: "Líbia", code: "ly" },
+            { name: "Liechtenstein", code: "li" },
+            { name: "Lituânia", code: "lt" },
+            { name: "Luxemburgo", code: "lu" },
+            { name: "Macedônia do Norte", code: "mk" },
+            { name: "Madagascar", code: "mg" },
+            { name: "Malásia", code: "my" },
+            { name: "Malaui", code: "mw" },
+            { name: "Maldivas", code: "mv" },
+            { name: "Mali", code: "ml" },
+            { name: "Malta", code: "mt" },
+            { name: "Marrocos", code: "ma" },
+            { name: "Maurício", code: "mu" },
+            { name: "Mauritânia", code: "mr" },
+            { name: "México", code: "mx" },
+            { name: "Mianmar", code: "mm" },
+            { name: "Micronésia", code: "fm" },
+            { name: "Moçambique", code: "mz" },
+            { name: "Moldávia", code: "md" },
+            { name: "Mônaco", code: "mc" },
+            { name: "Mongólia", code: "mn" },
+            { name: "Montenegro", code: "me" },
+            { name: "Namíbia", code: "na" },
+            { name: "Nauru", code: "nr" },
+            { name: "Nepal", code: "np" },
+            { name: "Nicarágua", code: "ni" },
+            { name: "Níger", code: "ne" },
+            { name: "Nigéria", code: "ng" },
+            { name: "Noruega", code: "no" },
             { name: "Nova Zelândia", code: "nz" },
+            { name: "Omã", code: "om" },
+            { name: "Palau", code: "pw" },
+            { name: "Panamá", code: "pa" },
+            { name: "Papua-Nova Guiné", code: "pg" },
+            { name: "Paquistão", code: "pk" },
+            { name: "Paraguai", code: "py" },
+            { name: "Peru", code: "pe" },
+            { name: "Polônia", code: "pl" },
+            { name: "Portugal", code: "pt" },
+            { name: "Quênia", code: "ke" },
+            { name: "Quirguistão", code: "kg" },
+            { name: "Quiribati", code: "ki" },
+            { name: "Reino Unido", code: "gb" },
+            { name: "República Centro-Africana", code: "cf" },
+            { name: "Rep. Democrática do Congo", code: "cd" },
+            { name: "República Dominicana", code: "do" },
+            { name: "República Tcheca", code: "cz" },
+            { name: "Romênia", code: "ro" },
+            { name: "Ruanda", code: "rw" },
+            { name: "Rússia", code: "ru" },
+            { name: "Samoa", code: "ws" },
+            { name: "San Marino", code: "sm" },
+            { name: "Santa Lúcia", code: "lc" },
+            { name: "São Cristóvão e Neves", code: "kn" },
+            { name: "São Tomé e Príncipe", code: "st" },
+            { name: "São Vicente e Granadinas", code: "vc" },
+            { name: "Seicheles", code: "sc" },
+            { name: "Senegal", code: "sn" },
+            { name: "Serra Leoa", code: "sl" },
+            { name: "Sérvia", code: "rs" },
+            { name: "Singapura", code: "sg" },
+            { name: "Síria", code: "sy" },
+            { name: "Somália", code: "so" },
+            { name: "Sri Lanka", code: "lk" },
+            { name: "Sudão", code: "sd" },
+            { name: "Sudão do Sul", code: "ss" },
+            { name: "Suécia", code: "se" },
+            { name: "Suíça", code: "ch" },
+            { name: "Suriname", code: "sr" },
             { name: "Tailândia", code: "th" },
+            { name: "Taiwan", code: "tw" },
+            { name: "Tajiquistão", code: "tj" },
+            { name: "Tanzânia", code: "tz" },
+            { name: "Timor-Leste", code: "tl" },
+            { name: "Togo", code: "tg" },
+            { name: "Tonga", code: "to" },
+            { name: "Trinidad e Tobago", code: "tt" },
+            { name: "Tunísia", code: "tn" },
+            { name: "Turcomenistão", code: "tm" },
+            { name: "Turquia", code: "tr" },
+            { name: "Tuvalu", code: "tv" },
+            { name: "Ucrânia", code: "ua" },
+            { name: "Uganda", code: "ug" },
+            { name: "Uruguai", code: "uy" },
+            { name: "Uzbequistão", code: "uz" },
+            { name: "Vanuatu", code: "vu" },
+            { name: "Vaticano", code: "va" },
+            { name: "Venezuela", code: "ve" },
             { name: "Vietnã", code: "vn" },
-            { name: "Indonésia", code: "id" }
+            { name: "Zâmbia", code: "zm" },
+            { name: "Zimbábue", code: "zw" },
+            { name: "Groenlândia", code: "gl" }
         ];
 
-        let correctCountry;
-        let score = 0;
-        let bestScore = parseInt(localStorage.getItem('vg_best_bandeiras') || '0');
-        document.getElementById('best-score').innerText = bestScore;
+        // Estado do Jogo
+        let paisesRestantes = [];
+        let paisAtual = null;
+        let acertos = 0;
+        let vidas = 3;
+        const totalBandeiras = catalogoBandeiras.length;
+        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_todas_bandeiras') || '0');
 
-        function startGame() {
-            correctCountry = allCountries[Math.floor(Math.random() * allCountries.length)];
-            
-            let options = [correctCountry];
-            while (options.length < 4) {
-                let random = allCountries[Math.floor(Math.random() * allCountries.length)];
-                if (!options.some(o => o.code === random.code)) {
-                    options.push(random);
+        // Elementos DOM
+        const stageActive = document.getElementById('stage-active');
+        const stageGameOver = document.getElementById('stage-gameover');
+        const stageVictory = document.getElementById('stage-victory');
+
+        const scoreVal = document.getElementById('score-val');
+        const totalVal = document.getElementById('total-val');
+        const bestScoreVal = document.getElementById('best-score');
+        const progressBar = document.getElementById('progress-bar');
+        const vidasContainer = document.getElementById('vidas-container');
+
+        const flagImg = document.getElementById('flag-img');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const optionsGrid = document.getElementById('options-grid');
+
+        totalVal.innerText = totalBandeiras;
+        bestScoreVal.innerText = recordeMaximo;
+
+        // Inicia ou Reinicia o Jogo
+        function reiniciarJogo() {
+            acertos = 0;
+            vidas = 3;
+            // Clona e embaralha todos os 196 países
+            paisesRestantes = [...catalogoBandeiras].sort(() => Math.random() - 0.5);
+
+            stageActive.classList.remove('hidden');
+            stageActive.classList.add('flex');
+            stageGameOver.classList.add('hidden');
+            stageGameOver.classList.remove('flex');
+            stageVictory.classList.add('hidden');
+            stageVictory.classList.remove('flex');
+
+            atualizarStatusUI();
+            proximaRodada();
+        }
+
+        // Atualiza UI de Vidas e Barra
+        function atualizarStatusUI() {
+            scoreVal.innerText = acertos;
+            const perc = ((acertos / totalBandeiras) * 100).toFixed(1);
+            progressBar.style.width = `${perc}%`;
+
+            // Renderiza os corações de vida
+            let coracoesHTML = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    coracoesHTML += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                } else {
+                    coracoesHTML += '<i class="ph-bold ph-heart-break text-slate-700"></i>';
+                }
+            }
+            vidasContainer.innerHTML = coracoesHTML;
+        }
+
+        // Gera a Próxima Rodada
+        function proximaRodada() {
+            // Checa se zerou todas as 196 bandeiras!
+            if (paisesRestantes.length === 0) {
+                concluirZeramento();
+                return;
+            }
+
+            // Pega o próximo país da fila sem repetição
+            paisAtual = paisesRestantes.pop();
+
+            // Sorteia 3 opções erradas aleatórias
+            let opcoes = [paisAtual];
+            while (opcoes.length < 4) {
+                let random = catalogoBandeiras[Math.floor(Math.random() * catalogoBandeiras.length)];
+                if (!opcoes.some(o => o.code === random.code)) {
+                    opcoes.push(random);
                 }
             }
 
-            options.sort(() => Math.random() - 0.5);
+            // Embaralha as 4 alternativas
+            opcoes.sort(() => Math.random() - 0.5);
 
-            // Carrega a bandeira prioritariamente do diretório local rápido (/assets/flags/) com fallback
-            const imgEl = document.getElementById("flag-img");
-            imgEl.src = `/assets/flags/${correctCountry.code}.svg`;
-            imgEl.onerror = () => {
-                // Fallback para CDN caso esteja em ambiente que ainda não copiou o asset
-                imgEl.src = `https://flagcdn.com/w320/${correctCountry.code}.png`;
+            // Carrega a bandeira localmente com fallback
+            flagImg.src = `/assets/flags/${paisAtual.code}.svg`;
+            flagImg.onerror = () => {
+                flagImg.src = `https://flagcdn.com/w640/${paisAtual.code}.png`;
             };
-            
-            const grid = document.getElementById("options-grid");
-            grid.innerHTML = "";
-            
-            const feedback = document.getElementById("feedback");
-            feedback.innerText = "Escolha a resposta correta:";
-            feedback.className = "h-6 mt-3 text-xs font-mono uppercase tracking-wider text-slate-500";
 
-            options.forEach(opt => {
-                const btn = document.createElement("button");
-                btn.className = "bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/90 py-3.5 px-4 rounded-xl font-heading font-semibold transition shadow-md text-sm leading-tight active:scale-98 text-slate-200 text-left flex items-center justify-between group";
+            feedbackMsg.innerText = "Qual é o país desta bandeira?";
+            feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400";
+
+            // Renderiza os 4 botões de resposta
+            optionsGrid.innerHTML = '';
+            opcoes.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
                 btn.innerHTML = `
-                    <span>${opt.name}</span>
-                    <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 transition"></i>
+                    <span class="truncate">${opt.name}</span>
+                    <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
                 `;
-                btn.onclick = () => checkAnswer(opt, btn);
-                grid.appendChild(btn);
+                btn.onclick = () => verificarResposta(opt, btn);
+                optionsGrid.appendChild(btn);
             });
         }
 
-        function checkAnswer(selected, btn) {
-            const feedback = document.getElementById("feedback");
-            const allBtns = document.getElementById("options-grid").querySelectorAll("button");
-            
+        // Validação da Resposta
+        function verificarResposta(selecionado, btnClicado) {
+            const allBtns = optionsGrid.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
-            if (selected.code === correctCountry.code) {
-                // Acerto
-                btn.classList.remove("bg-slate-900/90", "border-white/10");
-                btn.classList.add("bg-emerald-500/20", "border-emerald-500", "text-emerald-300");
-                
-                feedback.innerText = "✓ Correto! Alvo confirmado!";
-                feedback.className = "h-6 mt-3 text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse";
-                
-                score++;
-                document.getElementById("score").innerText = score;
+            if (selecionado.code === paisAtual.code) {
+                // ACERTO
+                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
+                btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
 
-                if (score > bestScore) {
-                    bestScore = score;
-                    localStorage.setItem('vg_best_bandeiras', bestScore);
-                    document.getElementById('best-score').innerText = bestScore;
+                feedbackMsg.innerText = `✓ Correto! ${paisAtual.name}!`;
+                feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse";
+
+                acertos++;
+                if (acertos > recordeMaximo) {
+                    recordeMaximo = acertos;
+                    localStorage.setItem('vg_recorde_todas_bandeiras', recordeMaximo);
+                    bestScoreVal.innerText = recordeMaximo;
                 }
 
-                // Explosão de confetes a cada 5 acertos seguidos
-                if (score % 5 === 0 && typeof confetti === 'function') {
-                    confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+                atualizarStatusUI();
+
+                // Confete comemorativo em marcos
+                if (acertos % 10 === 0 && typeof confetti === 'function') {
+                    confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
                 }
 
-                setTimeout(startGame, 600);
+                setTimeout(proximaRodada, 500);
             } else {
-                // Erro
-                btn.classList.remove("bg-slate-900/90", "border-white/10");
-                btn.classList.add("bg-red-500/20", "border-red-500", "text-red-300");
-                
-                feedback.innerText = `✗ Errado! Era: ${correctCountry.name}`;
-                feedback.className = "h-6 mt-3 text-xs font-mono font-bold uppercase tracking-wider text-red-400";
-                
+                // ERRO
+                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
+                btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
+
+                feedbackMsg.innerText = `✗ Errado! Era: ${paisAtual.name}`;
+                feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400";
+
+                // Destaca o botão correto
                 allBtns.forEach(b => {
-                    if (b.innerText.trim().includes(correctCountry.name)) {
-                        b.classList.add("border-emerald-500", "text-emerald-400", "border-2");
+                    if (b.innerText.trim().includes(paisAtual.name)) {
+                        b.classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
                     }
                 });
-                
-                score = 0;
-                document.getElementById("score").innerText = score;
-                setTimeout(startGame, 1800);
+
+                vidas--;
+                atualizarStatusUI();
+
+                if (vidas <= 0) {
+                    setTimeout(finalizarGameOver, 1600);
+                } else {
+                    setTimeout(proximaRodada, 1600);
+                }
             }
         }
 
-        // Alternar modo Tela Cheia nativo
+        // Fim de Jogo (Game Over)
+        function finalizarGameOver() {
+            stageActive.classList.add('hidden');
+            stageActive.classList.remove('flex');
+            stageGameOver.classList.remove('hidden');
+            stageGameOver.classList.add('flex');
+
+            document.getElementById('last-correct-country').innerText = paisAtual.name;
+            document.getElementById('final-score').innerText = acertos;
+
+            const perc = ((acertos / totalBandeiras) * 100).toFixed(1);
+            document.getElementById('final-porcentagem').innerText = `${perc}% do planeta Terra dominado!`;
+
+            // Determina Rank
+            let rank = "Turista Curioso";
+            if (acertos >= 150) rank = "Geógrafo Lendário";
+            else if (acertos >= 80) rank = "Embaixador Global";
+            else if (acertos >= 40) rank = "Diplomata Internacional";
+            else if (acertos >= 15) rank = "Viajante Experiente";
+            document.getElementById('final-rank').innerText = `Rank: ${rank}`;
+        }
+
+        // Vitória Suprema (Zerou o Jogo)
+        function concluirZeramento() {
+            stageActive.classList.add('hidden');
+            stageActive.classList.remove('flex');
+            stageVictory.classList.remove('hidden');
+            stageVictory.classList.add('flex');
+
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
+                setTimeout(() => confetti({ particleCount: 150, spread: 80, origin: { y: 0.4 } }), 800);
+            }
+        }
+
+        // Compartilhamento no WhatsApp (Quando Perde / Pontuação)
+        function compartilharResultadoWhatsApp() {
+            const perc = ((acertos / totalBandeiras) * 100).toFixed(0);
+            const texto = `Acertei ${acertos} de 196 bandeiras (${perc}% do mundo) no Desafio das Bandeiras do VitaleGeo! 🌍🚩\nConsegue me superar? Jogue também:\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        // Compartilhamento no WhatsApp (Vitória Total / Zerou)
+        function compartilharVitoriaWhatsApp() {
+            const texto = `🏆 EU ZEREI O DESAFIO DE BANDEIRAS DO MUNDO! Acertei todas as 196 bandeiras do planeta no VitaleGeo! 🌍✨\nDuvido você conseguir zerar também:\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        // Copiar Resultado com Feedback Tátil
+        function copiarResultado() {
+            const perc = ((acertos / totalBandeiras) * 100).toFixed(0);
+            const texto = `Acertei ${acertos} de 196 bandeiras do mundo no VitaleGeo! 🌍🚩 Jogue também: https://www.vitalegeo.com.br/jogos/bandeiras/`;
+
+            const btn = document.getElementById('btn-copiar');
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
+                btn.classList.add('text-emerald-400', 'border-emerald-500/40');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar';
+                    btn.classList.remove('text-emerald-400', 'border-emerald-500/40');
+                }, 2000);
+            });
+        }
+
+        // Alternar Modo Tela Cheia
         function alternarTelaCheia() {
             const container = document.getElementById("game-stage-container") || document.documentElement;
             if (!document.fullscreenElement) {
@@ -271,7 +669,8 @@
             }
         }
 
-        startGame();
+        // Inicia a partida ao carregar
+        reiniciarJogo();
     </script>
 </body>
 </html>
