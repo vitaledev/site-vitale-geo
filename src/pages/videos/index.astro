@@ -16,8 +16,9 @@ const featuredVideo = videosLongos[0];
 
       <div class="max-w-6xl mx-auto relative z-10">
         <div class="max-w-2xl mb-8">
-          <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-red-400 mb-4 px-3.5 py-1 rounded-full bg-red-400/[0.05] border border-red-400/20">
-            <span>⌖ CANAL JÁ IMAGINOU ISSO // 4K UHD</span>
+          <div class="inline-flex items-center gap-2 text-xs font-medium text-red-300/90 mb-4 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+            <span>Canal Já Imaginou Isso</span>
           </div>
           <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-white tracking-tight leading-tight">
             Vídeos & Documentários
@@ -29,7 +30,7 @@ const featuredVideo = videosLongos[0];
 
         <!-- Vídeo em Destaque Principal -->
         {featuredVideo && (
-          <div class="aspect-video max-w-4xl rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black carto-corner-frame">
+          <div class="aspect-video max-w-4xl rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
             <iframe
               class="w-full h-full"
               src={`https://www.youtube.com/embed/${featuredVideo.id}`}
@@ -42,16 +43,9 @@ const featuredVideo = videosLongos[0];
       </div>
     </header>
 
-    <!-- Divisor Cartográfico com Escala -->
+    <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6 mb-8">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line" style="border-color: #ef4444;"></span>
-          <span style="color: #ef4444;">Documentários</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Galeria de Documentários Longos -->
@@ -63,7 +57,7 @@ const featuredVideo = videosLongos[0];
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videosLongos.slice(1).map(video => (
-          <a href={video.link} target="_blank" rel="noopener noreferrer" class="minimal-card carto-corner-frame group overflow-hidden block">
+          <a href={video.link} target="_blank" rel="noopener noreferrer" class="minimal-card group overflow-hidden block">
             <div class="aspect-video relative bg-slate-900 overflow-hidden">
               <img
                 src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
@@ -86,16 +80,9 @@ const featuredVideo = videosLongos[0];
       </div>
     </section>
 
-    <!-- Divisor Cartográfico com Escala -->
+    <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6 my-8">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line" style="border-color: #f59e0b;"></span>
-          <span style="color: #f59e0b;">60s Shorts</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <!-- Galeria de Shorts -->
@@ -107,7 +94,7 @@ const featuredVideo = videosLongos[0];
 
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {videosShorts.slice(0, 15).map(short => (
-          <a href={short.link} target="_blank" rel="noopener noreferrer" class="minimal-card carto-corner-frame group overflow-hidden block">
+          <a href={short.link} target="_blank" rel="noopener noreferrer" class="minimal-card group overflow-hidden block">
             <div class="aspect-[9/16] relative bg-slate-900 overflow-hidden">
               <img
                 src={`https://img.youtube.com/vi/${short.id}/hqdefault.jpg`}

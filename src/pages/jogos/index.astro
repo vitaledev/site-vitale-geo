@@ -13,8 +13,9 @@ import { gamesDB } from '../../data/games';
       <TopoLines strokeColor="#10b981" />
 
       <div class="max-w-3xl mx-auto relative z-10">
-        <div class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 mb-4 px-3.5 py-1 rounded-full bg-emerald-400/[0.05] border border-emerald-400/20">
-          <span>⌖ SIMULAÇÕES & JOGOS // DESAFIOS</span>
+        <div class="inline-flex items-center gap-2 text-xs font-medium text-emerald-300/90 mb-4 px-3.5 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Desafios Interativos</span>
         </div>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-white tracking-tight leading-tight">
           Desafios de Fronteira
@@ -25,22 +26,15 @@ import { gamesDB } from '../../data/games';
       </div>
     </header>
 
-    <!-- Divisor Cartográfico com Escala -->
+    <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6 mb-8">
-      <div class="carto-divider">
-        <div class="carto-divider-line"></div>
-        <div class="carto-scale-bar">
-          <span class="carto-scale-bar-line" style="border-color: #10b981;"></span>
-          <span style="color: #10b981;">Interativo</span>
-        </div>
-        <div class="carto-divider-line"></div>
-      </div>
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
     <section class="py-4 px-6 max-w-6xl mx-auto pb-24">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {gamesDB.map(game => (
-          <a href={game.link} class="minimal-card carto-corner-frame group overflow-hidden flex flex-col justify-between h-full">
+          <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
                 <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">

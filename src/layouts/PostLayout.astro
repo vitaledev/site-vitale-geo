@@ -34,13 +34,13 @@ const {
 
       <div class="max-w-4xl mx-auto relative z-10">
         <div class="flex flex-wrap items-center gap-2.5 mb-5">
-          <a href="/blog" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white transition">
+          <a href="/blog" class="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition">
             <i class="ph-bold ph-arrow-left"></i> Dossiês
           </a>
           <span class="text-slate-700">·</span>
           <span class="category-pill">{categoria}</span>
           <span class="text-slate-700">·</span>
-          <span class="text-xs font-mono text-slate-400">{tempoLeitura.toUpperCase()} LEITURA</span>
+          <span class="text-xs text-slate-400">{tempoLeitura} de leitura</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-medium text-white leading-[1.15] tracking-tight mb-5">
@@ -51,8 +51,8 @@ const {
           {resumo}
         </p>
 
-        <div class="flex items-center gap-3 text-xs font-mono text-slate-400 border-t border-white/[0.05] pt-4">
-          <span class="text-amber-400">{data}</span>
+        <div class="flex items-center gap-3 text-xs text-slate-400 border-t border-white/[0.05] pt-4">
+          <span class="text-amber-400 font-medium">{data}</span>
           <span class="text-slate-700">·</span>
           <span>VitaleGeo</span>
         </div>
@@ -62,7 +62,7 @@ const {
     <!-- Imagem de Capa com Proporção Cartográfica 16:9 -->
     {img && (
       <div class="max-w-4xl mx-auto px-6 -mt-6 sm:-mt-8 mb-10 relative z-20">
-        <div class="aspect-[16/9] overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-slate-900 carto-corner-frame">
+        <div class="aspect-[16/9] overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-slate-900">
           <img
             src={img}
             alt={titulo}
@@ -93,7 +93,7 @@ const {
       </div>
 
       <!-- Rodapé do Artigo / Chamada para o YouTube -->
-      <div class="mt-12 p-6 sm:p-8 rounded-xl bg-white/[0.02] border border-white/10 carto-corner-frame flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
+      <div class="mt-12 p-6 sm:p-8 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
         <div>
           <h3 class="text-base font-heading font-semibold text-white">Gostou deste dossiê?</h3>
           <p class="text-xs sm:text-sm text-slate-400 mt-1">Inscreva-se no canal Já Imaginou Isso para análises territoriais em 4K.</p>

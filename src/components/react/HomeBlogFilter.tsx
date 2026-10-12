@@ -74,7 +74,7 @@ export default function HomeBlogFilter({ posts }: Props) {
           filtered.map((post, index) => (
             <article
               key={post.id || post.slug}
-              className="minimal-card carto-corner-frame animate-card-fade flex flex-col h-full group overflow-hidden"
+              className="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden"
               style={{ animationDelay: `${index * 40}ms` }}
             >
               <a href={`/blog/${post.slug || post.id}`} className="flex flex-col h-full">
@@ -99,9 +99,9 @@ export default function HomeBlogFilter({ posts }: Props) {
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
                     <span>{post.data.split('-')[0].trim()}</span>
-                    <span>{post.tempoLeitura?.toUpperCase() || '5 MIN'}</span>
+                    <span>{post.tempoLeitura || '5 min'}</span>
                   </div>
                   
                   <h3 className="text-base sm:text-lg font-heading text-white group-hover:text-amber-400 transition leading-snug mb-2 font-semibold">

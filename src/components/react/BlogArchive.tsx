@@ -42,7 +42,7 @@ export default function BlogArchive({ posts }: Props) {
       {/* Post em Destaque Principal */}
       {!searchTerm && selectedCategory === 'all' && featured && (
         <div className="mb-12">
-          <a href={`/blog/${featured.slug || featured.id}`} className="minimal-card carto-corner-frame block overflow-hidden group">
+          <a href={`/blog/${featured.slug || featured.id}`} className="minimal-card block overflow-hidden group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-7 aspect-[16/10] lg:aspect-auto overflow-hidden bg-slate-900 relative min-h-[260px] lg:min-h-[340px]">
                 <img
@@ -61,8 +61,8 @@ export default function BlogArchive({ posts }: Props) {
               </div>
               <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 text-[11px] font-mono text-amber-400 uppercase tracking-widest mb-3">
-                    <span>DESTAQUE</span>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 mb-3">
+                    <span>Destaque</span>
                     <span className="text-slate-600">·</span>
                     <span className="text-slate-400">{featured.data.split('-')[0].trim()}</span>
                   </div>
@@ -77,7 +77,7 @@ export default function BlogArchive({ posts }: Props) {
                   <span className="flex items-center gap-1 group-hover:text-amber-300">
                     Ler investigação <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                   </span>
-                  <span className="text-[11px] font-mono text-slate-500">{featured.tempoLeitura || '5 min'}</span>
+                  <span className="text-xs text-slate-400 font-normal">{featured.tempoLeitura || '5 min'}</span>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function BlogArchive({ posts }: Props) {
           list.map((post, index) => (
             <article
               key={post.id || post.slug}
-              className="minimal-card carto-corner-frame animate-card-fade flex flex-col h-full group overflow-hidden"
+              className="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden"
               style={{ animationDelay: `${index * 30}ms` }}
             >
               <a href={`/blog/${post.slug || post.id}`} className="flex flex-col h-full">
@@ -156,9 +156,9 @@ export default function BlogArchive({ posts }: Props) {
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
                     <span>{post.data.split('-')[0].trim()}</span>
-                    <span>{post.tempoLeitura?.toUpperCase() || '5 MIN'}</span>
+                    <span>{post.tempoLeitura || '5 min'}</span>
                   </div>
                   
                   <h3 className="text-base sm:text-lg font-heading text-white group-hover:text-amber-400 transition leading-snug mb-2 font-semibold">
