@@ -8,12 +8,12 @@
     <title>Onde Fica no Mapa? Desafio de Precisão Geopolítica | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Você sabe onde fica o Estreito de Ormuz, o Ponto Nemo ou Kaliningrado? Clique no mapa mudo e teste sua precisão geográfica neste desafio interativo!">
-    <meta name="keywords" content="onde fica no mapa, geoclicker, pinpoint geography, jogo de geografia, geopolitica, vitalegeo">
+    <meta name="description" content="Você sabe onde fica o Estreito de Ormuz, o Ponto Nemo ou Kaliningrado? Clique no mapa mudo e teste sua precisão geográfica com streaks, combos e ranks arcade!">
+    <meta name="keywords" content="onde fica no mapa, geoclicker, pinpoint geography, jogo de geografia, geopolitica, vitalegeo arcade">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Onde Fica no Mapa? Desafio Geopolítico | VitaleGeo">
-    <meta property="og:description" content="Clique no mapa e veja quão perto você chega dos locais mais estratégicos do planeta. 5 rodadas de pura precisão!">
+    <meta property="og:description" content="Clique no mapa e veja quão perto você chega dos locais mais estratégicos do planeta. 5 rodadas com streaks, combos e ranks!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/onde-fica/">
     <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/onde-fica.jpg">
@@ -25,7 +25,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -138,6 +138,27 @@
             position: relative;
             overflow: hidden;
         }
+
+        /* Efeito de impacto quando acerta Na Mosca (< 50 km) */
+        @keyframes screen-shake {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-3px, 2px); }
+            40% { transform: translate(3px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+        .shake-impact {
+            animation: screen-shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        /* Animação do Pulso de Combo */
+        @keyframes combo-pulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4)); }
+            50% { transform: scale(1.06); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)); }
+        }
+        .combo-active {
+            animation: combo-pulse 1.4s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
@@ -153,7 +174,7 @@
             <div class="flex items-center gap-2">
                 <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
                 <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Onde Fica no Mapa? <span class="hidden md:inline text-xs text-amber-400/90 font-mono font-normal">// Desafio Geopolítico</span>
+                    Onde Fica no Mapa? <span class="hidden md:inline text-xs text-amber-400/90 font-mono font-normal">// Desafio Arcade</span>
                 </h1>
             </div>
 
@@ -186,10 +207,10 @@
         </aside>
 
         <!-- ÁREA CENTRAL DO JOGO (100% RESPONSIVA PARA MOBILE E DESKTOP) -->
-        <main class="w-full flex-1 max-w-5xl flex flex-col gap-2.5 sm:gap-3">
+        <main class="w-full flex-1 max-w-5xl flex flex-col gap-2.5 sm:gap-3" id="game-main-container">
             
-            <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA -->
-            <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3.5 sm:p-5 shadow-2xl relative overflow-hidden">
+            <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA ARCADE -->
+            <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
                     
                     <!-- Alvo Atual -->
@@ -206,6 +227,11 @@
                             <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição no seu navegador. Clique para reiniciar o ciclo." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
                                 <i class="ph-bold ph-compass text-xs"></i>
                                 <span id="catalog-progress-text">Carregando acervo...</span>
+                            </div>
+
+                            <!-- Badge de Combo Streak (Dopamina Arcade) -->
+                            <div class="hidden items-center gap-1.5 text-[10px] sm:text-xs font-mono text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full" id="streak-badge">
+                                <span id="streak-text">🔥 STREAK x1</span>
                             </div>
 
                             <!-- Dica em Hover / Toque -->
@@ -225,6 +251,16 @@
 
                     <!-- Placar e Controles Rápidos -->
                     <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-4 border-t md:border-t-0 pt-2 md:pt-0 border-white/5">
+                        <!-- Cronômetro de Agilidade da Rodada -->
+                        <div class="text-left md:text-right hidden sm:block">
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Agilidade</span>
+                            <div class="flex items-center gap-1 text-xs font-mono text-sky-400 font-bold">
+                                <i class="ph-bold ph-timer text-sm"></i>
+                                <span id="round-timer">0.0s</span>
+                            </div>
+                        </div>
+
+                        <!-- Pontuação Geral -->
                         <div class="text-left md:text-right">
                             <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Pontuação</span>
                             <span class="text-lg sm:text-2xl font-mono font-bold text-emerald-400" id="total-score">0 pts</span>
@@ -247,7 +283,7 @@
             </div>
 
             <!-- CONTAINER DO MAPA -->
-            <div class="relative w-full h-[54vh] min-h-[380px] sm:min-h-[540px] sm:h-[62vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
+            <div id="map-wrapper" class="relative w-full h-[54vh] min-h-[380px] sm:min-h-[540px] sm:h-[62vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col transition-transform">
                 <div id="map" class="w-full flex-1"></div>
 
                 <!-- Instrução Flutuante Quando Nenhum Ponto Foi Marcado -->
@@ -267,31 +303,47 @@
                     </button>
                 </div>
 
-                <!-- CARD DE RESULTADO DA RODADA (Aparece após confirmar) -->
-                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[300px] sm:min-w-[360px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-4 sm:p-5 rounded-2xl shadow-2xl z-[500] hidden transition-all">
-                    <div class="flex items-center justify-between mb-2.5 border-b border-white/10 pb-2">
-                        <span class="text-xs font-mono font-bold uppercase text-amber-400" id="result-grade-label">
-                            Excelente Aproximação!
+                <!-- CARD DE RESULTADO DA RODADA (DOPAMINA & ARCADE BREAKDOWN) -->
+                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[320px] sm:min-w-[420px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-3.5 sm:p-5 rounded-2xl shadow-2xl z-[500] hidden transition-all animate-fade-in">
+                    <div class="flex items-center justify-between mb-2 border-b border-white/10 pb-2">
+                        <span class="text-xs sm:text-sm font-mono font-bold uppercase text-amber-400 flex items-center gap-1.5" id="result-grade-label">
+                            🎯 NA MOSCA! CIRÚRGICO!
                         </span>
-                        <span class="text-base sm:text-lg font-mono font-bold text-emerald-400" id="result-round-score">
-                            +4.820 pts
+                        <span class="text-lg sm:text-xl font-mono font-black text-emerald-400" id="result-round-score">
+                            +0 pts
                         </span>
                     </div>
 
-                    <div class="flex items-center gap-3 mb-2.5">
-                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-lg sm:text-xl font-bold shrink-0">
+                    <!-- Breakdown Arcade: Base + Combo + Agilidade -->
+                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 bg-[#0c0e14]/80 border border-white/10 rounded-xl p-2 mb-2 text-center font-mono text-[10px] sm:text-xs">
+                        <div>
+                            <span class="text-slate-400 block text-[9px] uppercase">Base</span>
+                            <strong class="text-slate-200" id="breakdown-base">+0</strong>
+                        </div>
+                        <div class="border-x border-white/10">
+                            <span class="text-slate-400 block text-[9px] uppercase">Combo</span>
+                            <strong class="text-amber-400" id="breakdown-combo">x1.0</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block text-[9px] uppercase">Agilidade</span>
+                            <strong class="text-sky-400" id="breakdown-speed">+0 pts</strong>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-base sm:text-lg font-bold shrink-0">
                             <i class="ph-bold ph-ruler"></i>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono text-slate-400 block uppercase">Distância do Alvo Real</span>
-                            <span class="text-sm sm:text-base font-heading font-bold text-white" id="result-distance">
-                                142 km de distância
+                            <span class="text-xs sm:text-sm font-heading font-bold text-white" id="result-distance">
+                                0 km de distância
                             </span>
                         </div>
                     </div>
 
-                    <!-- Mini Fato Pedagógico -->
-                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2.5 sm:p-3 rounded-xl border border-white/5 mb-3" id="result-fact">
+                    <!-- Fato Pedagógico Enxuto -->
+                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2.5 rounded-xl border border-white/5 mb-3" id="result-fact">
                         Carregando fato sobre este local...
                     </p>
 
@@ -302,9 +354,9 @@
                 </div>
             </div>
 
-            <!-- ANÚNCIO INFERIOR (VISÍVEL TANTO NO MOBILE QUANTO NO DESKTOP ABAIXO DO JOGO) -->
-            <section class="w-full my-3 sm:my-5 p-3 sm:p-4 bg-[#0c0e14]/70 border border-white/5 rounded-2xl flex flex-col items-center justify-center min-h-[120px] sm:min-h-[260px] ad-slot-container">
-                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2 font-mono">PUBLICIDADE • GOOGLE ADSENSE</span>
+            <!-- ANÚNCIO INFERIOR (VISÍVEL NO MOBILE E DESKTOP ABAIXO DO JOGO) -->
+            <section class="w-full my-2 sm:my-3 p-2 sm:p-3 bg-[#0c0e14]/70 border border-white/5 rounded-2xl flex flex-col items-center justify-center min-h-[90px] sm:min-h-[120px] ad-slot-container">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1 font-mono">PUBLICIDADE • GOOGLE ADSENSE</span>
                 <div class="w-full max-w-4xl flex items-center justify-center">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -334,57 +386,81 @@
         </aside>
     </div>
 
-    <!-- MODAL DE RESULTADO FINAL (FIM DE JOGO) -->
-    <div id="modal-game-over" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000] hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-xl w-full p-5 sm:p-8 shadow-2xl relative overflow-hidden text-center animate-fade-in">
+    <!-- MODAL DE RESULTADO FINAL (FIM DE JOGO / SCORECARD ARCADE VIRAL) -->
+    <div id="modal-game-over" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-xl w-full p-5 sm:p-7 shadow-2xl relative overflow-hidden text-center animate-fade-in my-auto">
             
-            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-400/10 border border-amber-400/20 mx-auto flex items-center justify-center text-amber-400 text-2xl sm:text-3xl mb-3 sm:mb-4">
-                <i class="ph-bold ph-trophy"></i>
+            <!-- Badge Grande de Rank Arcade -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-mono uppercase tracking-widest mb-3" id="final-rank-badge">
+                <i class="ph-bold ph-seal-check"></i>
+                <span id="final-rank-pill">RANK S // ALTA PRECISÃO</span>
             </div>
 
-            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 block mb-1">
-                Fim de Desafio // 5 Rodadas Concluídas
-            </span>
-            <h3 class="text-xl sm:text-3xl font-heading font-bold text-white mb-2" id="final-rank-title">
-                Mestre de Cartografia
+            <h3 class="text-2xl sm:text-4xl font-heading font-black text-white mb-1 tracking-tight" id="final-rank-title">
+                Satélite Militar
             </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mb-3 sm:mb-4 max-w-sm mx-auto leading-relaxed" id="final-rank-desc">
+            <p class="text-xs sm:text-sm text-slate-400 mb-4 max-w-md mx-auto leading-relaxed" id="final-rank-desc">
                 Sua precisão geoespacial demonstra profundo domínio sobre os nós estratégicos e anomalias da Terra.
             </p>
 
-            <!-- Badge de Progresso sem Repetição -->
-            <div class="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400" id="final-cache-progress">
+            <!-- Placar Central Arcade com 3 Colunas -->
+            <div class="bg-[#181b24] border border-white/10 rounded-2xl p-3 sm:p-4 mb-4 grid grid-cols-3 gap-2 text-center">
+                <div>
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Pontos</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-emerald-400" id="final-score-val">0</span>
+                    <span class="text-[9px] font-mono text-slate-500 block">/ 25.000+</span>
+                </div>
+                <div class="border-x border-white/10">
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Média</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-amber-400" id="final-avg-dist">0 km</span>
+                    <span class="text-[9px] font-mono text-slate-500 block">Distância</span>
+                </div>
+                <div>
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Melhor Streak</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-sky-400" id="final-best-streak">0x</span>
+                    <span class="text-[9px] font-mono text-slate-500 block">Combo 🔥</span>
+                </div>
+            </div>
+
+            <!-- Badges e Conquistas Alcançadas na Partida -->
+            <div class="flex items-center justify-center gap-1.5 flex-wrap mb-4" id="final-badges-container">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+
+            <!-- Tabela Resumo das 5 Rodadas -->
+            <div class="space-y-1.5 mb-4 text-left max-h-40 overflow-y-auto pr-1" id="final-rounds-list">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+
+            <!-- Telemetria do Acervo sem Repetição -->
+            <div class="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400" id="final-cache-progress">
                 <i class="ph-bold ph-compass"></i>
                 <span id="final-cache-text">Explorando novos locais a cada partida!</span>
             </div>
 
-            <!-- Placar Central -->
-            <div class="bg-[#181b24] border border-white/10 rounded-2xl p-3 sm:p-4 mb-5 sm:mb-6 flex items-center justify-around">
-                <div>
-                    <span class="text-[10px] font-mono uppercase text-slate-400 block">Pontuação Final</span>
-                    <span class="text-xl sm:text-3xl font-mono font-bold text-emerald-400" id="final-score-val">22.450</span>
-                    <span class="text-[10px] sm:text-xs font-mono text-slate-500">/ 25.000 pts</span>
-                </div>
-                <div class="h-8 sm:h-10 w-px bg-white/10"></div>
-                <div>
-                    <span class="text-[10px] font-mono uppercase text-slate-400 block">Média de Distância</span>
-                    <span class="text-xl sm:text-3xl font-mono font-bold text-amber-400" id="final-avg-dist">124 km</span>
-                </div>
-            </div>
-
-            <!-- Tabela Resumo das 5 Rodadas -->
-            <div class="space-y-1.5 sm:space-y-2 mb-5 sm:mb-6 text-left max-h-44 sm:max-h-48 overflow-y-auto pr-1" id="final-rounds-list">
-                <!-- Inserido dinamicamente via JS -->
-            </div>
-
-            <!-- Botões de Ação -->
-            <div class="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
-                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full sm:flex-1 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-heading font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
-                    <i class="ph-bold ph-share-network text-base sm:text-lg"></i>
-                    <span>Copiar Resultado</span>
+            <!-- BOTÕES DE COMPARTILHAMENTO VIRAL MÁXIMO & AÇÃO -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2">
+                <!-- Botão 1: WhatsApp Direto -->
+                <button onclick="compartilharWhatsApp()" class="w-full py-3 sm:py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                    <i class="ph-fill ph-whatsapp-logo text-lg sm:text-xl"></i>
+                    <span>Desafiar no WhatsApp</span>
                 </button>
-                <button onclick="reiniciarJogo()" class="w-full sm:flex-1 py-3 sm:py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base sm:text-lg"></i>
+
+                <!-- Botão 2: Gerar e Baixar Card PNG para Stories/Redes -->
+                <button onclick="baixarCardImagemPNG()" id="btn-download-card" class="w-full py-3 sm:py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-amber-400/20">
+                    <i class="ph-bold ph-download-simple text-base sm:text-lg"></i>
+                    <span>Baixar Card (PNG)</span>
+                </button>
+
+                <!-- Botão 3: Copiar Texto Viral -->
+                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-heading font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                    <i class="ph-bold ph-copy text-base"></i>
+                    <span>Copiar Texto</span>
+                </button>
+
+                <!-- Botão 4: Jogar Novamente (5 Locais Inéditos) -->
+                <button onclick="reiniciarJogo()" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.01]">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base text-amber-400"></i>
                     <span>Jogar Novamente</span>
                 </button>
             </div>
@@ -396,9 +472,9 @@
         VitaleGeo Arcade &copy; 2026 &mdash; Mapas abertos via Esri Canvas & OpenStreetMap. Zero API Keys.
     </footer>
 
-    <!-- LÓGICA DO JOGO -->
+    <!-- LÓGICA DO JOGO, DOPAMINA, COMBO STREAKS E COMPARTILHAMENTO -->
     <script>
-        // BANCO DE LOCAIS (Usa a base carregada de locais-onde-fica.js com mais de 100 locais)
+        // BANCO DE LOCAIS FALLBACK
         const LOCAIS_FALLBACK = [
             {
                 nome: "Estreito de Ormuz",
@@ -470,11 +546,9 @@
                 ciclo = 1;
             }
 
-            // Filtra estritamente os locais que o jogador AINDA NÃO VIU neste ciclo
             let naoVistos = baseCompleta.filter(l => !vistos.includes(l.nome));
             let cicloRenovado = false;
 
-            // Se o acervo de locais não vistos estiver esgotado (< quantidade), renova o ciclo!
             if (naoVistos.length < quantidade) {
                 ciclo += 1;
                 vistos = [];
@@ -485,7 +559,7 @@
                 } catch (e) {}
             }
 
-            // Algoritmo Fisher-Yates de embaralhamento sem viés estatístico
+            // Algoritmo Fisher-Yates
             const copia = [...naoVistos];
             for (let i = copia.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -493,12 +567,8 @@
             }
 
             const selecionados = copia.slice(0, quantidade);
-
-            // Grava os novos locais no histórico de vistos para nunca repetir em partidas seguintes
             selecionados.forEach(s => {
-                if (!vistos.includes(s.nome)) {
-                    vistos.push(s.nome);
-                }
+                if (!vistos.includes(s.nome)) vistos.push(s.nome);
             });
 
             try {
@@ -522,7 +592,7 @@
             iniciarJogo();
         }
 
-        // ESTADO GLOBAL DO JOGO
+        // ESTADO GLOBAL DO JOGO & ELEMENTOS ARCADE
         let partidaLocais = [];
         let rodadaAtualIndex = 0;
         let pontuacaoTotal = 0;
@@ -530,12 +600,20 @@
         let somHabilitado = true;
         let historicoRodadas = [];
 
+        // SISTEMA DE COMBO STREAK & AGILIDADE
+        let comboStreak = 0;
+        let maxStreakPartida = 0;
+        let comboMultiplier = 1.0;
+        let tempoInicioRodada = Date.now();
+        let timerInterval = null;
+
         // MAPA LEAFLET
         let map = null;
         let camadaAtual = null;
         let guessMarker = null;
         let targetMarker = null;
         let connectionLine = null;
+        let radarCircle = null;
 
         // CAMADAS DE MAPA GRATUITAS
         const TILES = {
@@ -544,15 +622,20 @@
             osm: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
         };
 
-        // INICIALIZAÇÃO DO JOGO COM ANTI-REPETIÇÃO
+        // INICIALIZAÇÃO DO JOGO
         function iniciarJogo() {
             const selecao = sortearLocaisSemRepeticao(5);
             partidaLocais = selecao.locais;
             rodadaAtualIndex = 0;
             pontuacaoTotal = 0;
+            comboStreak = 0;
+            maxStreakPartida = 0;
+            comboMultiplier = 1.0;
             historicoRodadas = [];
+
             atualizarPlacarInterface();
             atualizarBadgeProgresso(selecao);
+            atualizarStreakUI();
 
             if (!map) {
                 inicializarMapa();
@@ -568,6 +651,25 @@
             }
         }
 
+        function atualizarStreakUI() {
+            const badge = document.getElementById('streak-badge');
+            const text = document.getElementById('streak-text');
+            if (!badge || !text) return;
+
+            if (comboStreak >= 2) {
+                badge.classList.remove('hidden');
+                badge.classList.add('inline-flex', 'combo-active');
+                text.innerText = `🔥 COMBO x${comboMultiplier.toFixed(1)} (${comboStreak} seguidas)`;
+            } else if (comboStreak === 1) {
+                badge.classList.remove('hidden', 'combo-active');
+                badge.classList.add('inline-flex');
+                text.innerText = `🔥 STREAK 1x`;
+            } else {
+                badge.classList.add('hidden');
+                badge.classList.remove('combo-active');
+            }
+        }
+
         // INICIALIZAÇÃO DO MAPA
         function inicializarMapa() {
             map = L.map('map', {
@@ -580,51 +682,42 @@
                 tap: true
             });
 
-            // Camada padrão Esri Gray Canvas (muda e limpa)
             camadaAtual = L.tileLayer(TILES.canvas, {
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
                 maxZoom: 16
             }).addTo(map);
 
-            // Evento de clique para marcar o palpite
             map.on('click', function(e) {
                 if (document.getElementById('round-result-card').classList.contains('hidden') === false) {
-                    return; // Bloqueia clique se o resultado já foi revelado
+                    return;
                 }
-
                 registrarClique(e.latlng);
             });
         }
 
-        // MUDANÇA DE CAMADA DO MAPA
         function mudarCamada(tipo) {
             if (!map) return;
             map.removeLayer(camadaAtual);
 
             let url = TILES[tipo] || TILES.canvas;
-            let attr = tipo === 'osm' 
-                ? '&copy; OpenStreetMap contributors' 
-                : 'Tiles &copy; Esri';
+            let attr = tipo === 'osm' ? '&copy; OpenStreetMap contributors' : 'Tiles &copy; Esri';
 
             camadaAtual = L.tileLayer(url, { attribution: attr }).addTo(map);
 
-            // Atualiza botões
             ['canvas', 'sat', 'osm'].forEach(t => {
                 const btn = document.getElementById(`btn-layer-${t}`);
                 if (btn) {
-                    if (t === tipo) {
-                        btn.className = "px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition";
-                    } else {
-                        btn.className = "px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition";
-                    }
+                    btn.className = (t === tipo) 
+                        ? "px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition"
+                        : "px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition";
                 }
             });
         }
 
-        // REGISTRAR CLIQUE DO JOGADOR
+        // REGISTRAR CLIQUE
         function registrarClique(latlng) {
             palpiteAtualLatLng = latlng;
-            tocarBeep(600, 0.05);
+            tocarSomClick();
 
             if (guessMarker) {
                 guessMarker.setLatLng(latlng);
@@ -638,12 +731,10 @@
                 guessMarker = L.marker(latlng, { icon: guessIcon }).addTo(map);
             }
 
-            // Exibe a barra de ação para confirmar
             const actionBar = document.getElementById('action-bar');
             actionBar.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
             actionBar.classList.add('opacity-100', 'translate-y-0');
 
-            // Esconde instrução de clique
             document.getElementById('hint-click-banner').classList.add('hidden');
         }
 
@@ -660,7 +751,7 @@
             document.getElementById('hint-click-banner').classList.remove('hidden');
         }
 
-        // CARREGAR RODADA ESPECÍFICA
+        // CARREGAR RODADA
         function carregarRodada(index) {
             const local = partidaLocais[index];
             if (!local) return;
@@ -669,6 +760,7 @@
             if (guessMarker) { map.removeLayer(guessMarker); guessMarker = null; }
             if (targetMarker) { map.removeLayer(targetMarker); targetMarker = null; }
             if (connectionLine) { map.removeLayer(connectionLine); connectionLine = null; }
+            if (radarCircle) { map.removeLayer(radarCircle); radarCircle = null; }
             palpiteAtualLatLng = null;
 
             // Interface
@@ -677,21 +769,37 @@
             document.getElementById('target-title').innerHTML = `Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">${local.nome}</span>?`;
             document.getElementById('target-hint').innerText = local.dica;
 
-            // Oculta cards de ação e resultado
             document.getElementById('round-result-card').classList.add('hidden');
             const actionBar = document.getElementById('action-bar');
             actionBar.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
             actionBar.classList.remove('opacity-100', 'translate-y-0');
             document.getElementById('hint-click-banner').classList.remove('hidden');
 
-            // Reseta visualização global suave
+            // Inicia cronômetro da rodada
+            tempoInicioRodada = Date.now();
+            if (timerInterval) clearInterval(timerInterval);
+            const timerEl = document.getElementById('round-timer');
+            if (timerEl) {
+                timerEl.innerText = "0.0s";
+                timerInterval = setInterval(() => {
+                    const seg = ((Date.now() - tempoInicioRodada) / 1000).toFixed(1);
+                    timerEl.innerText = `${seg}s`;
+                }, 100);
+            }
+
             map.flyTo([20, 0], 2, { duration: 0.8 });
         }
 
-        // CONFIRMAR PALPITE & CALCULAR PONTUAÇÃO
+        // CONFIRMAR PALPITE & CALCULAR PONTUAÇÃO ARCADE
         function confirmarPalpite() {
             if (!palpiteAtualLatLng) return;
 
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+
+            const tempoGasto = Math.max(0.5, (Date.now() - tempoInicioRodada) / 1000);
             const local = partidaLocais[rodadaAtualIndex];
             const targetLatLng = L.latLng(local.lat, local.lng);
 
@@ -701,23 +809,56 @@
                 targetLatLng.lat, targetLatLng.lng
             ));
 
-            // Cálculo da pontuação (Decaimento suave de 0 a 5.000 pts)
-            let roundScore = 0;
+            // 1. Pontuação Base (0 a 5.000 pts)
+            let baseScore = 0;
             if (distKm <= 25) {
-                roundScore = 5000;
+                baseScore = 5000;
             } else {
-                roundScore = Math.max(0, Math.round(5000 * Math.exp(-distKm / 1900)));
+                baseScore = Math.max(0, Math.round(5000 * Math.exp(-distKm / 1900)));
             }
 
+            // 2. Atualiza Combo Streak
+            let streakGanho = false;
+            if (distKm <= 300) {
+                comboStreak++;
+                if (comboStreak > maxStreakPartida) maxStreakPartida = comboStreak;
+                streakGanho = true;
+
+                if (comboStreak === 2) comboMultiplier = 1.2;
+                else if (comboStreak === 3) comboMultiplier = 1.5;
+                else if (comboStreak >= 4) comboMultiplier = 2.0;
+                else comboMultiplier = 1.0;
+            } else if (distKm > 1000) {
+                comboStreak = 0;
+                comboMultiplier = 1.0;
+            }
+
+            // 3. Bônus de Agilidade / Velocidade (até +500 pts se acertou razoavelmente perto e rápido)
+            let speedBonus = 0;
+            if (distKm <= 600) {
+                if (tempoGasto <= 5) speedBonus = 500;
+                else if (tempoGasto <= 15) speedBonus = Math.round(500 * (1 - (tempoGasto - 5) / 10));
+            }
+
+            // 4. Pontuação Final da Rodada com Multiplicador
+            const pontuacaoBaseComCombo = Math.round(baseScore * comboMultiplier);
+            const roundScore = pontuacaoBaseComCombo + speedBonus;
+
+            const pontuacaoAnterior = pontuacaoTotal;
             pontuacaoTotal += roundScore;
-            atualizarPlacarInterface();
+
+            atualizarStreakUI();
 
             // Salva no histórico da partida
             historicoRodadas.push({
                 local: local.nome,
                 categoria: local.categoria,
                 distKm: distKm,
-                score: roundScore
+                baseScore: baseScore,
+                comboMultiplier: comboMultiplier,
+                speedBonus: speedBonus,
+                score: roundScore,
+                tempoGasto: tempoGasto
             });
 
             // Revela Alvo Real no Mapa
@@ -729,12 +870,22 @@
             });
             targetMarker = L.marker(targetLatLng, { icon: targetIcon }).addTo(map);
 
-            // Linha conectora pontilhada
+            // Círculo de Radar Militar no Alvo
+            radarCircle = L.circle(targetLatLng, {
+                radius: Math.max(50000, Math.min(250000, distKm * 1000 * 0.5)),
+                color: '#10b981',
+                weight: 1.5,
+                fillColor: '#10b981',
+                fillOpacity: 0.12
+            }).addTo(map);
+
+            // Linha conectora dinâmica
+            const lineColor = distKm <= 50 ? '#10b981' : (distKm <= 300 ? '#38bdf8' : (distKm <= 1200 ? '#f59e0b' : '#ef4444'));
             connectionLine = L.polyline([palpiteAtualLatLng, targetLatLng], {
-                color: distKm < 200 ? '#10b981' : (distKm < 1500 ? '#f59e0b' : '#ef4444'),
-                weight: 3,
-                dashArray: '6, 8',
-                opacity: 0.85
+                color: lineColor,
+                weight: 3.5,
+                dashArray: '8, 8',
+                opacity: 0.9
             }).addTo(map);
 
             // Anima enquadramento entre os dois pontos
@@ -745,31 +896,50 @@
             const actionBar = document.getElementById('action-bar');
             actionBar.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
 
-            // Feedback Sonoro e Confetes
-            if (roundScore >= 4500) {
-                tocarSomSucesso();
+            // Feedback Visual e Dopamina de Impacto
+            if (distKm <= 50) {
+                // Bullseye!
+                const mapWrapper = document.getElementById('map-wrapper');
+                if (mapWrapper) {
+                    mapWrapper.classList.add('shake-impact');
+                    setTimeout(() => mapWrapper.classList.remove('shake-impact'), 350);
+                }
+                tocarSomBullseye();
                 dispararConfetes();
+            } else if (streakGanho && comboStreak >= 2) {
+                tocarSomCombo();
+            } else if (roundScore >= 3500) {
+                tocarSomSucesso();
             } else {
-                tocarBeep(440, 0.15);
+                tocarBeep(380, 0.18);
             }
 
-            // Exibe Card de Resultado da Rodada
-            exibirResultadoRodada(distKm, roundScore, local);
+            // Exibe Card de Resultado com Count-Up Animado
+            exibirResultadoRodada(distKm, roundScore, baseScore, comboMultiplier, speedBonus, local, pontuacaoAnterior);
         }
 
         // EXIBIR CARD DE RESULTADO DA RODADA
-        function exibirResultadoRodada(distKm, score, local) {
+        function exibirResultadoRodada(distKm, totalRound, baseScore, multiplier, speedBonus, local, pontuacaoAnterior) {
             let label = "Boa tentativa";
             if (distKm <= 50) label = "🎯 NA MOSCA! CIRÚRGICO!";
-            else if (distKm <= 250) label = "⭐ EXCELENTE APROXIMAÇÃO!";
-            else if (distKm <= 800) label = "👍 MUITO PERTO!";
-            else if (distKm <= 2500) label = "🧭 NA MESMA REGIÃO";
-            else label = "🗺️ BEM LONGE DO ALVO";
+            else if (distKm <= 200) label = "⚡ EXCELENTE! RADAR PRECISO!";
+            else if (distKm <= 600) label = "👍 MUITO PERTO!";
+            else if (distKm <= 1800) label = "🧭 NA MESMA REGIÃO";
+            else label = "🗺️ FORA DE ALCANCE";
 
             document.getElementById('result-grade-label').innerText = label;
-            document.getElementById('result-round-score').innerText = `+${score.toLocaleString('pt-BR')} pts`;
             document.getElementById('result-distance').innerText = `${distKm.toLocaleString('pt-BR')} km de distância`;
             document.getElementById('result-fact').innerText = local.fato;
+
+            document.getElementById('breakdown-base').innerText = `+${baseScore.toLocaleString('pt-BR')}`;
+            document.getElementById('breakdown-combo').innerText = `x${multiplier.toFixed(1)}${multiplier > 1 ? ' 🔥' : ''}`;
+            document.getElementById('breakdown-speed').innerText = speedBonus > 0 ? `+${speedBonus} pts` : `0 pts`;
+
+            // Animação de contagem rápida de pontos da rodada
+            animarContador('result-round-score', totalRound, '+', ' pts', 700);
+
+            // Animação da barra superior do placar geral
+            animarContadorDeAte('total-score', pontuacaoAnterior, pontuacaoTotal, '', ' pts', 800);
 
             const btnNext = document.getElementById('btn-next-round');
             if (rodadaAtualIndex >= 4) {
@@ -792,46 +962,97 @@
             }
         }
 
-        // FINALIZAR PARTIDA & ABRIR MODAL
+        // FINALIZAR PARTIDA & ABRIR MODAL ARCADE
         function finalizarPartida() {
             const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
 
-            let rankTitle = "Explorador Territorial";
-            let rankDesc = "Você conhece os pontos cardeais mas ainda precisa afiar o posicionamento geodésico exato.";
+            let rankLetra = "C";
+            let rankPill = "RANK C // VIAJANTE";
+            let rankTitle = "Viajante com Bússola";
+            let rankDesc = "Identificou o continente correto, mas ainda precisa calibrar a mira nos gargalos menores.";
 
-            if (pontuacaoTotal >= 22500) {
-                rankTitle = "🏆 Embaixador Supremo da Terra";
-                rankDesc = "Precisão cirúrgica de nível militar! Você conhece cada gargalo marítimo e enclave do planeta.";
-                dispararConfetes();
-            } else if (pontuacaoTotal >= 18000) {
-                rankTitle = "🎖️ Analista Geopolítico Sênior";
+            if (pontuacaoTotal >= 24000) {
+                rankLetra = "SSS";
+                rankPill = "RANK SSS // SATÉLITE MILITAR";
+                rankTitle = "Satélite Militar de Espionagem 🛰️";
+                rankDesc = "Precisão absurda de nível militar! Você conhece cada gargalo marítimo e ponto cego da Terra.";
+                dispararConfetesGrandes();
+                tocarSomGameOver('SSS');
+            } else if (pontuacaoTotal >= 20000) {
+                rankLetra = "S";
+                rankPill = "RANK S // INTELIGÊNCIA MESTRE";
+                rankTitle = "General de Inteligência Geoespacial 🎖️";
                 rankDesc = "Excelente visão espacial e cartográfica. Seus palpites cruzaram com maestria os limites soberanos.";
-            } else if (pontuacaoTotal >= 12000) {
-                rankTitle = "🧭 Navegador de Longo Curso";
-                rankDesc = "Boa noção dos continentes e mares, acertando a maior parte dos alvos a distâncias respeitáveis.";
+                dispararConfetes();
+                tocarSomGameOver('S');
+            } else if (pontuacaoTotal >= 16000) {
+                rankLetra = "A";
+                rankPill = "RANK A // RECONHECIMENTO TÁTICO";
+                rankTitle = "Piloto de Reconhecimento Tático ✈️";
+                rankDesc = "Excelente intuição e reflexos de localização. Você cruza oceanos sem hesitar!";
+                tocarSomGameOver('A');
+            } else if (pontuacaoTotal >= 11000) {
+                rankLetra = "B";
+                rankPill = "RANK B // CARTÓGRAFO";
+                rankTitle = "Cartógrafo Expedicionário 🧭";
+                rankDesc = "Boa noção geral dos continentes e mares, acertando a vizinhança dos alvos mais conhecidos.";
+                tocarSomGameOver('B');
+            } else {
+                rankLetra = "D";
+                rankPill = "RANK D // PERDIDO";
+                rankTitle = "Perdido no Triângulo das Bermudas 🕳️";
+                rankDesc = "O radar falhou e você caiu no meio do oceano. Jogue outra rodada para calibrar a bússola!";
+                tocarSomGameOver('D');
             }
 
+            document.getElementById('final-rank-pill').innerText = rankPill;
             document.getElementById('final-rank-title').innerText = rankTitle;
             document.getElementById('final-rank-desc').innerText = rankDesc;
             document.getElementById('final-score-val').innerText = pontuacaoTotal.toLocaleString('pt-BR');
             document.getElementById('final-avg-dist').innerText = `${avgDist.toLocaleString('pt-BR')} km`;
+            document.getElementById('final-best-streak').innerText = `${maxStreakPartida}x`;
 
-            // Preenche lista de rodadas
-            const roundsList = document.getElementById('final-rounds-list');
-            roundsList.innerHTML = historicoRodadas.map((r, i) => `
-                <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#090a0f] border border-white/5 text-xs font-mono">
-                    <div>
-                        <span class="text-slate-500 mr-2">#${i + 1}</span>
-                        <strong class="text-slate-200">${r.local}</strong>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-amber-400 mr-2 sm:mr-3">${r.distKm.toLocaleString('pt-BR')} km</span>
-                        <span class="text-emerald-400 font-bold">+${r.score} pts</span>
-                    </div>
+            // Conquistas e Badges Desbloqueados na Partida
+            const badgesContainer = document.getElementById('final-badges-container');
+            const badges = [];
+
+            const temSniper = historicoRodadas.some(r => r.distKm <= 50);
+            if (temSniper) badges.push({ icone: "ph-bold ph-crosshair", texto: "Sniper (< 50 km)", cor: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10" });
+
+            if (maxStreakPartida >= 2) badges.push({ icone: "ph-bold ph-fire", texto: `Streak ${maxStreakPartida}x`, cor: "text-amber-400 border-amber-500/30 bg-amber-500/10" });
+
+            const tempoMedio = historicoRodadas.reduce((acc, r) => acc + (r.tempoGasto || 0), 0) / 5;
+            if (tempoMedio <= 6) badges.push({ icone: "ph-bold ph-lightning", texto: `Reflexo Rápido (${tempoMedio.toFixed(1)}s)`, cor: "text-sky-400 border-sky-500/30 bg-sky-500/10" });
+
+            if (pontuacaoTotal >= 20000) badges.push({ icone: "ph-bold ph-trophy", texto: "Mestre de Precisão", cor: "text-yellow-300 border-yellow-400/30 bg-yellow-400/10" });
+
+            badgesContainer.innerHTML = badges.map(b => `
+                <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-[10px] font-mono ${b.cor}">
+                    <i class="${b.icone}"></i>
+                    <span>${b.texto}</span>
                 </div>
             `).join('');
 
-            // Atualiza telemetria de progresso no modal final
+            // Preenche lista de rodadas com emojis de proximidade
+            const roundsList = document.getElementById('final-rounds-list');
+            roundsList.innerHTML = historicoRodadas.map((r, i) => {
+                let badgeEmoji = r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'));
+                return `
+                <div class="flex items-center justify-between p-2 rounded-xl bg-[#090a0f] border border-white/5 text-xs font-mono">
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-500 text-[10px]">#${i + 1}</span>
+                        <span>${badgeEmoji}</span>
+                        <strong class="text-slate-200 truncate max-w-[170px] sm:max-w-[220px]">${r.local}</strong>
+                    </div>
+                    <div class="text-right flex items-center gap-2">
+                        <span class="text-amber-400 font-bold">${r.distKm.toLocaleString('pt-BR')} km</span>
+                        <span class="text-emerald-400 font-bold">+${r.score}</span>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            // Telemetria do acervo
             const finalCacheEl = document.getElementById('final-cache-text');
             if (finalCacheEl) {
                 let vistos = [];
@@ -852,30 +1073,209 @@
             iniciarJogo();
         }
 
-        // COPIAR RESULTADO PARA REDES SOCIAIS (FORMATO VIRAL)
-        function copiarResultado() {
-            let texto = `🎯 Joguei "Onde Fica no Mapa?" no VitaleGeo!\n`;
-            texto += `🏆 Minha pontuação: ${pontuacaoTotal.toLocaleString('pt-BR')} / 25.000 pts\n\n`;
+        // COMPARTILHAR DIRETAMENTE NO WHATSAPP COM FORMATO VIRAL
+        function compartilharWhatsApp() {
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+            let rankLetra = "C";
+            let emojiRank = '🗺️';
+            if (pontuacaoTotal >= 24000) { rankLetra = "SSS"; emojiRank = '🛰️'; }
+            else if (pontuacaoTotal >= 20000) { rankLetra = "S"; emojiRank = '🎖️'; }
+            else if (pontuacaoTotal >= 16000) { rankLetra = "A"; emojiRank = '✈️'; }
+            else if (pontuacaoTotal >= 11000) { rankLetra = "B"; emojiRank = '🧭'; }
 
-            historicoRodadas.forEach(r => {
-                let icone = r.distKm <= 100 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴');
-                texto += `${icone} ${r.local}: ${r.distKm} km (+${r.score} pts)\n`;
+            let texto = `🎯 Joguei "Onde Fica no Mapa?" no VitaleGeo Arcade!\n`;
+            texto += `🏆 Pontuação: ${pontuacaoTotal.toLocaleString('pt-BR')} pts (RANK ${rankLetra} ${emojiRank})\n`;
+            texto += `📏 Distância Média: ${avgDist.toLocaleString('pt-BR')} km | 🔥 Melhor Streak: ${maxStreakPartida}x\n\n`;
+
+            historicoRodadas.forEach((r, i) => {
+                let icone = r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'));
+                texto += `${i + 1}. ${r.local} ${icone} ${r.distKm} km (+${r.score} pts)\n`;
             });
 
-            texto += `\nDesafie sua inteligência geográfica em: https://www.vitalegeo.com.br/jogos/onde-fica/ #VitaleGeo`;
+            texto += `\nDuvido você chegar mais perto no mapa mudo! Jogue grátis:\n👉 https://www.vitalegeo.com.br/jogos/onde-fica/`;
+
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        // COPIAR RESULTADO PARA A ÁREA DE TRANSFERÊNCIA (GRADE EMOJI ESTILO WORDLE)
+        function copiarResultado() {
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+            let emojis = historicoRodadas.map(r => r.distKm <= 50 ? '🎯' : (r.distKm <= 250 ? '🟢' : (r.distKm <= 1000 ? '🟡' : '🔴'))).join(' ');
+
+            let texto = `🌍 VitaleGeo // Onde Fica no Mapa?\n`;
+            texto += `🏆 ${pontuacaoTotal.toLocaleString('pt-BR')} pts | ${emojis}\n`;
+            texto += `📏 Média: ${avgDist} km | 🔥 Streak: ${maxStreakPartida}x\n`;
+            texto += `Jogue também: https://www.vitalegeo.com.br/jogos/onde-fica/`;
 
             navigator.clipboard.writeText(texto).then(() => {
                 const btn = document.getElementById('btn-copy-score');
-                btn.innerHTML = `<i class="ph-bold ph-check text-emerald-400"></i> Copiado com Sucesso!`;
+                btn.innerHTML = `<i class="ph-bold ph-check text-emerald-400"></i> Copiado!`;
+                tocarSomClick();
                 setTimeout(() => {
-                    btn.innerHTML = `<i class="ph-bold ph-share-network text-base sm:text-lg"></i> <span>Copiar Resultado</span>`;
-                }, 2500);
+                    btn.innerHTML = `<i class="ph-bold ph-copy text-base"></i> <span>Copiar Texto</span>`;
+                }, 2000);
             });
+        }
+
+        // GERAR E BAIXAR SCORECARD VISUAL EM PNG VIA HTML5 CANVAS (PARA STORIES & TWITTER)
+        function baixarCardImagemPNG() {
+            const btn = document.getElementById('btn-download-card');
+            if (btn) btn.innerHTML = `<i class="ph-bold ph-spinner animate-spin"></i> Gerando...`;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 900;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const avgDist = Math.round(historicoRodadas.reduce((acc, r) => acc + r.distKm, 0) / 5);
+
+            let rankLetra = "C";
+            let rankSub = "CARTÓGRAFO EM TREINAMENTO";
+            if (pontuacaoTotal >= 24000) { rankLetra = "SSS"; rankSub = "SATÉLITE MILITAR DE ESPIONAGEM"; }
+            else if (pontuacaoTotal >= 20000) { rankLetra = "S"; rankSub = "GENERAL DE INTELIGÊNCIA GEOESPACIAL"; }
+            else if (pontuacaoTotal >= 16000) { rankLetra = "A"; rankSub = "PILOTO DE RECONHECIMENTO TÁTICO"; }
+            else if (pontuacaoTotal >= 11000) { rankLetra = "B"; rankSub = "CARTÓGRAFO EXPEDICIONÁRIO"; }
+
+            // 1. Fundo Gradiente Escuro Sofisticado
+            const bgGrad = ctx.createRadialGradient(450, 150, 40, 450, 450, 620);
+            bgGrad.addColorStop(0, '#1c2233');
+            bgGrad.addColorStop(0.6, '#0d1017');
+            bgGrad.addColorStop(1, '#07080c');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 900, 900);
+
+            // Borda Externa Fina
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(24, 24, 852, 852);
+
+            // 2. Cabeçalho / Logo VitaleGeo
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE', 450, 85);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '14px "Space Mono", monospace';
+            ctx.fillText('DESAFIO DE PRECISÃO: ONDE FICA NO MAPA?', 450, 115);
+
+            // 3. Card do Rank Central
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+            ctx.fillRect(75, 145, 750, 175);
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(75, 145, 750, 175);
+
+            // Letra do Rank
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 64px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`RANK ${rankLetra}`, 450, 218);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 18px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(rankSub, 450, 252);
+
+            // Pontuação e Média
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillText(`${pontuacaoTotal.toLocaleString('pt-BR')} PTS`, 320, 298);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillText(`MÉDIA: ${avgDist} KM`, 580, 298);
+
+            // 4. As 5 Rodadas em Linhas Visuais
+            ctx.textAlign = 'left';
+            const startY = 350;
+            historicoRodadas.forEach((r, i) => {
+                const y = startY + (i * 78);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+                ctx.fillRect(75, y, 750, 62);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+                ctx.strokeRect(75, y, 750, 62);
+
+                // Número
+                ctx.fillStyle = '#64748b';
+                ctx.font = 'bold 16px "Space Mono", monospace';
+                ctx.fillText(`#${i + 1}`, 98, y + 38);
+
+                // Nome do Local
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+                let nome = r.local;
+                if (nome.length > 25) nome = nome.substring(0, 23) + '...';
+                ctx.fillText(nome, 150, y + 38);
+
+                // Distância
+                ctx.textAlign = 'right';
+                ctx.fillStyle = r.distKm <= 50 ? '#10b981' : (r.distKm <= 250 ? '#f59e0b' : '#ef4444');
+                ctx.font = 'bold 18px "Space Mono", monospace';
+                ctx.fillText(`${r.distKm.toLocaleString('pt-BR')} km`, 670, y + 38);
+
+                // Pontos
+                ctx.fillStyle = '#10b981';
+                ctx.fillText(`+${r.score}`, 795, y + 38);
+                ctx.textAlign = 'left';
+            });
+
+            // 5. Rodapé
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#64748b';
+            ctx.font = '15px "Space Mono", monospace';
+            ctx.fillText('JOGUE GRÁTIS EM WWW.VITALEGEO.COM.BR/JOGOS/ONDE-FICA/', 450, 840);
+
+            // Download automático
+            try {
+                const link = document.createElement('a');
+                link.download = `vitalegeo-onde-fica-${pontuacaoTotal}pts.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                tocarSomSucesso();
+            } catch(e) {}
+
+            setTimeout(() => {
+                if (btn) btn.innerHTML = `<i class="ph-bold ph-download-simple text-base sm:text-lg"></i> <span>Baixar Card (PNG)</span>`;
+            }, 1500);
+        }
+
+        // ANIMAÇÕES DE NÚMEROS / CONTADORES DE PONTOS (DOPAMINA)
+        function animarContador(id, valorFinal, prefixo = '', sufixo = '', duracao = 700) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const start = 0;
+            const startTime = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - startTime) / duracao, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(start + (valorFinal - start) * ease);
+                el.innerText = `${prefixo}${current.toLocaleString('pt-BR')}${sufixo}`;
+                if (Math.random() < 0.3) tocarSomCountUpTick();
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        }
+
+        function animarContadorDeAte(id, valorInicial, valorFinal, prefixo = '', sufixo = '', duracao = 800) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const startTime = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - startTime) / duracao, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(valorInicial + (valorFinal - valorInicial) * ease);
+                el.innerText = `${prefixo}${current.toLocaleString('pt-BR')}${sufixo}`;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
         }
 
         // FÓRMULA DE HAVERSINE
         function calcularHaversineKm(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Raio médio da Terra em km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -889,13 +1289,16 @@
             document.getElementById('total-score').innerText = `${pontuacaoTotal.toLocaleString('pt-BR')} pts`;
         }
 
-        // ÁUDIO SINTETIZADO NATIVO VIA WEB AUDIO API
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        // ÁUDIO SINTETIZADO NATIVO VIA WEB AUDIO API (ZERO ARQUIVOS EXTERNOS)
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
         let audioCtx = null;
 
         function obterAudioContext() {
-            if (!audioCtx && AudioContext) {
-                audioCtx = new AudioContext();
+            if (!audioCtx && AudioCtxClass) {
+                audioCtx = new AudioCtxClass();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
             }
             return audioCtx;
         }
@@ -918,6 +1321,45 @@
             } catch (e) {}
         }
 
+        function tocarSomClick() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.04);
+            } catch(e) {}
+        }
+
+        function tocarSomCountUpTick() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1100 + Math.random() * 200, now);
+                gain.gain.setValueAtTime(0.02, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.015);
+            } catch(e) {}
+        }
+
         function tocarSomSucesso() {
             if (!somHabilitado) return;
             try {
@@ -927,15 +1369,83 @@
                 [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
-                    osc.frequency.setValueAtTime(freq, now + i * 0.08);
-                    gain.gain.setValueAtTime(0.06, now + i * 0.08);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.07);
+                    gain.gain.setValueAtTime(0.08, now + i * 0.07);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + (i + 1) * 0.1);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.07);
+                    osc.stop(now + (i + 1) * 0.1);
+                });
+            } catch (e) {}
+        }
+
+        function tocarSomBullseye() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.06);
+                    gain.gain.setValueAtTime(0.12, now + i * 0.06);
                     gain.gain.exponentialRampToValueAtTime(0.001, now + (i + 1) * 0.12);
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.start(now + i * 0.08);
+                    osc.start(now + i * 0.06);
                     osc.stop(now + (i + 1) * 0.12);
                 });
-            } catch (e) {}
+            } catch(e) {}
+        }
+
+        function tocarSomCombo() {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                [440, 554.37, 659.25, 880].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.05);
+                    gain.gain.setValueAtTime(0.09, now + i * 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + (i + 1) * 0.1);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.05);
+                    osc.stop(now + (i + 1) * 0.1);
+                });
+            } catch(e) {}
+        }
+
+        function tocarSomGameOver(rank) {
+            if (!somHabilitado) return;
+            try {
+                const ctx = obterAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+                const acordes = (rank === 'SSS' || rank === 'S')
+                    ? [523.25, 659.25, 783.99, 1046.50]
+                    : [392.00, 493.88, 587.33];
+
+                acordes.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.1);
+                    gain.gain.setValueAtTime(0.1, now + i * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.6);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + i * 0.1);
+                    osc.stop(now + i * 0.1 + 0.6);
+                });
+            } catch(e) {}
         }
 
         function alternarSom() {
@@ -945,25 +1455,33 @@
                 icon.className = 'ph-bold ph-speaker-high';
                 tocarBeep(520, 0.1);
             } else {
-                icon.className = 'ph-bold ph-speaker-slash';
+                icon.className = 'ph-bold ph-speaker-slash text-slate-500';
             }
         }
 
         function alternarTelaCheia() {
+            const container = document.getElementById("game-main-container") || document.documentElement;
             if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(() => {});
+                if (container.requestFullscreen) container.requestFullscreen();
             } else {
-                document.exitFullscreen().catch(() => {});
+                if (document.exitFullscreen) document.exitFullscreen();
             }
         }
 
         function dispararConfetes() {
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 80,
-                    spread: 70,
-                    origin: { y: 0.6 }
+                    particleCount: 70,
+                    spread: 60,
+                    origin: { y: 0.65 }
                 });
+            }
+        }
+
+        function dispararConfetesGrandes() {
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 150, spread: 90, origin: { y: 0.55 } });
+                setTimeout(() => confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }), 400);
             }
         }
 
