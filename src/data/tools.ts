@@ -41,5 +41,12 @@ export const toolsDB: ToolItem[] = [
     icon: "ph-bold ph-path",
     cover: "https://articles-images.sftcdn.net/wp-content/uploads/sites/7/2014/09/Measure-Distances-in-Google-Maps-header1.jpg",
     link: "/ferramentas/calculadora-distancia/"
+  },
+  {
+    titulo: "Calculador de Antípodas (O Outro Lado da Terra)",
+    desc: "Se você cavar um buraco reto atravessando o planeta, onde você sairia? Mapa duplo e coordenadas geodésicas.",
+    icon: "ph-bold ph-globe-hemisphere-west",
+    cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    link: "/ferramentas/calculadora-antipodas/"
   }
 ];
