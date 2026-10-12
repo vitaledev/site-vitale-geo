@@ -5,27 +5,25 @@
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/rotas-extremas/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Linha Reta: As Maiores Rotas do Planeta | VitaleGeo</title>
+    <title>Rotas em Linha Reta no Globo | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Explore a maior linha reta navegável da Terra (32.090 km do Paquistão à Rússia) e a maior rota terrestre contínua (11.241 km). Calcule rotas geodésicas de grande círculo em tempo real.">
-    <meta name="keywords" content="maior linha reta navegável, rota geodésica, grande círculo, distorção de mercator, maior rota terrestre, linha reta no globo, vitalegeo">
+    <meta name="description" content="Explore a maior linha reta navegável da Terra (32.090 km) e rotas geodésicas de grande círculo comparadas com a distorção do mapa plano.">
 
-    <!-- Open Graph / Redes Sociais -->
-    <meta property="og:title" content="Simulador de Linha Reta: As Maiores Rotas do Planeta | VitaleGeo">
-    <meta property="og:description" content="Você sabia que a maior rota reta no mar cruza 32.090 km do Paquistão à Rússia sem tocar terra firme? Veja a rota no mapa!">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rotas em Linha Reta no Globo | VitaleGeo">
+    <meta property="og:description" content="Descubra por que a linha mais curta na Terra parece uma curva no mapa plano.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/rotas-extremas/">
     <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
-    <meta name="twitter:card" content="summary_large_image">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Fontes Oficiais VitaleGeo -->
+    <!-- Tipografia Oficial -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Leaflet CSS & JS -->
@@ -40,13 +38,6 @@
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
-                    },
-                    colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#1e293b',
-                        geoGold: '#f59e0b',
-                        geoCyan: '#38bdf8'
                     }
                 }
             }
@@ -54,51 +45,50 @@
     </script>
 
     <style>
-        .editorial-card {
+        .editorial-panel {
             background: #11131a;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 1rem;
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
         }
         .leaflet-container {
-            background: #090a0f;
+            background: #0d0f15;
             font-family: 'Inter', sans-serif;
             border-radius: 0.75rem;
-            z-index: 10;
         }
-        .custom-pin-a {
+        /* Pinos escolares nítidos e limpos, sem brilho neon */
+        .pin-a {
             background-color: #f59e0b;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 14px rgba(245, 158, 11, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             cursor: grab;
         }
-        .custom-pin-b {
+        .pin-b {
             background-color: #38bdf8;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             cursor: grab;
         }
-        .custom-pin-a:active, .custom-pin-b:active {
-            cursor: grabbing;
-        }
+        .pin-a:active, .pin-b:active { cursor: grabbing; }
+
+        /* Estilo sutil do controle de camadas */
         .leaflet-control-layers {
             background: #11131a !important;
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
             color: #cbd5e1 !important;
             border-radius: 0.5rem !important;
             font-size: 11px !important;
-            font-family: 'Space Mono', monospace, sans-serif !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.6) !important;
+            font-family: 'Inter', sans-serif !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
         }
         .leaflet-control-layers label {
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             cursor: pointer;
         }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black page-shell min-h-screen flex flex-col justify-between">
+<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black min-h-screen flex flex-col justify-between">
 
     <!-- Navegação Oficial -->
     <nav class="glass-nav fixed w-full z-40 top-0">
@@ -118,266 +108,168 @@
             </div>
 
             <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
     </nav>
 
     <!-- Conteúdo Principal -->
-    <main class="pt-28 pb-20 px-4 sm:px-6 max-w-6xl mx-auto flex-grow w-full">
-        <!-- Cabeçalho Editorial -->
-        <div class="mb-10 text-center sm:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-medium tracking-wide mb-3">
-                <i class="ph-bold ph-compass"></i> FERRAMENTA CARTOGRÁFICA #04 • ROTAS GEODÉSICAS & NÁUTICAS
+    <main class="pt-28 pb-16 px-4 sm:px-6 max-w-6xl mx-auto flex-grow w-full">
+        <!-- Cabeçalho Limpo e Educativo -->
+        <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
+                    Rotas em Linha Reta no Globo
+                </h1>
+                <p class="mt-1 text-slate-400 text-sm max-w-xl">
+                    Compare a menor rota real em uma esfera (Grande Círculo) com a distorção do mapa plano. Arraste os pinos para traçar qualquer caminho.
+                </p>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight">
-                Simulador de Linha Reta: <span class="text-cyan-400">As Maiores Rotas do Planeta</span>
-            </h1>
-            <p class="mt-3 text-slate-400 max-w-3xl text-sm sm:text-base leading-relaxed">
-                Por que uma linha perfeitamente reta no globo terrestre se transforma em uma curva sinuosa no mapa plano? Explore as maiores linhas retas do mundo sem tocar terra firme ou sem pisar no mar, e trace rotas geodésicas de Grande Círculo em tempo real.
-            </p>
+            
+            <!-- Botão de Ajuda / Informações Rápidas -->
+            <button onclick="toggleAjuda()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 border border-white/10 transition self-start sm:self-auto">
+                <i class="ph-bold ph-info text-amber-400 text-sm"></i>
+                <span>Por que a reta parece curva?</span>
+            </button>
         </div>
 
-        <!-- Seletor de Rotas Históricas e Recordes Mundiais -->
-        <div class="editorial-card p-4 sm:p-6 mb-8">
-            <div class="flex items-center justify-between mb-3">
-                <span class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                    <i class="ph-bold ph-trophy text-amber-400"></i> Recordes & Rotas Extremas Pré-Configuradas:
-                </span>
-                <span class="text-xs text-slate-500 hidden sm:inline">Clique para carregar e visualizar</span>
-            </div>
-            <div class="flex flex-wrap gap-2">
-                <button onclick="carregarRotaRecorde('nautica')" class="px-3.5 py-2 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-xs font-heading font-semibold text-cyan-300 border border-cyan-500/30 transition flex items-center gap-1.5">
-                    🌊 Maior Rota Náutica do Mundo (32.090 km)
-                </button>
-                <button onclick="carregarRotaRecorde('terrestre')" class="px-3.5 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-xs font-heading font-semibold text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5">
-                    🏔️ Maior Rota Terrestre Contínua (11.241 km)
-                </button>
-                <button onclick="carregarRotaRecorde('brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 hover:text-white border border-white/10 transition">
-                    🇧🇷 Extremo Brasil: Caburaí ao Chuí (4.394 km)
-                </button>
-                <button onclick="carregarRotaRecorde('transiberiana')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 hover:text-white border border-white/10 transition">
-                    🚂 Transiberiana (8 Fusos Horários • 6.540 km)
-                </button>
-                <button onclick="carregarRotaRecorde('mediterraneo')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 hover:text-white border border-white/10 transition">
-                    ⛵ Mar Mediterrâneo de Ponta a Ponta (3.860 km)
+        <!-- Painel Explicativo Opcional (Toggle / Hover) -->
+        <div id="painelAjuda" class="hidden mb-6 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-slate-300 leading-relaxed">
+            <div class="flex items-start justify-between gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <strong class="text-sky-300 font-semibold block mb-1">Linha Azul (Grande Círculo):</strong>
+                        É o menor caminho real na superfície da Terra. Aviões e navios seguem esse traçado para economizar tempo e combustível.
+                    </div>
+                    <div>
+                        <strong class="text-amber-300 font-semibold block mb-1">Linha Tracejada (Plana):</strong>
+                        É a linha reta no mapa de Mercator. Parece reta no papel, mas no mundo real é mais longa porque o mapa estica as áreas próximas aos polos.
+                    </div>
+                    <div>
+                        <strong class="text-slate-100 font-semibold block mb-1">Rota Recorde Náutica:</strong>
+                        A reta de Sonmiani (Paquistão) até Kamchatka (Rússia) cruza 32.090 km de mar contínuo sem tocar terra firme (estudo de 2018).
+                    </div>
+                </div>
+                <button onclick="toggleAjuda()" class="text-slate-500 hover:text-white text-base">
+                    <i class="ph-bold ph-x"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Painel de Dados da Rota e Métricas -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <!-- Controles de Coordenadas e Seleção -->
-            <div class="editorial-card p-6 lg:col-span-1 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-base font-heading font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="ph-bold ph-sliders text-cyan-400"></i> Parâmetros da Rota
-                    </h2>
+        <!-- Seletor de Rotas Pré-configuradas (Chips Simples e Diretos) -->
+        <div class="mb-5 flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-slate-400 text-xs font-medium mr-1">Exemplos:</span>
+            <button onclick="carregarRotaRecorde('nautica')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                <i class="ph-bold ph-boat text-sky-400"></i> Rota Náutica (32.090 km)
+            </button>
+            <button onclick="carregarRotaRecorde('terrestre')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                <i class="ph-bold ph-path text-amber-400"></i> Rota Terrestre (11.241 km)
+            </button>
+            <button onclick="carregarRotaRecorde('brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                <i class="ph-bold ph-map-pin text-emerald-400"></i> Brasil: Caburaí ao Chuí
+            </button>
+            <button onclick="carregarRotaRecorde('transiberiana')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                <i class="ph-bold ph-train text-violet-400"></i> Transiberiana (8 Fusos)
+            </button>
+            <button onclick="carregarRotaRecorde('mediterraneo')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                <i class="ph-bold ph-compass text-rose-400"></i> Mar Mediterrâneo
+            </button>
+        </div>
 
-                    <div class="space-y-4 text-xs font-mono">
-                        <!-- Ponto A -->
-                        <div class="p-3 rounded-lg bg-black/40 border border-amber-500/20">
-                            <div class="flex items-center justify-between text-amber-400 font-bold mb-1">
-                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> PONTO A (Partida)</span>
-                                <span id="labelPontoA" class="text-[11px] text-slate-400 font-sans truncate max-w-[120px]">Sonmiani</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 mt-2">
-                                <div>
-                                    <label class="text-[10px] text-slate-500">Lat A:</label>
-                                    <input id="inputLatA" type="number" step="0.01" class="w-full bg-[#090a0f] border border-white/10 rounded px-2 py-1 text-white text-xs">
-                                </div>
-                                <div>
-                                    <label class="text-[10px] text-slate-500">Lon A:</label>
-                                    <input id="inputLonA" type="number" step="0.01" class="w-full bg-[#090a0f] border border-white/10 rounded px-2 py-1 text-white text-xs">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ponto B -->
-                        <div class="p-3 rounded-lg bg-black/40 border border-cyan-500/20">
-                            <div class="flex items-center justify-between text-cyan-400 font-bold mb-1">
-                                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-cyan-400 inline-block"></span> PONTO B (Destino)</span>
-                                <span id="labelPontoB" class="text-[11px] text-slate-400 font-sans truncate max-w-[120px]">Kamchatka</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 mt-2">
-                                <div>
-                                    <label class="text-[10px] text-slate-500">Lat B:</label>
-                                    <input id="inputLatB" type="number" step="0.01" class="w-full bg-[#090a0f] border border-white/10 rounded px-2 py-1 text-white text-xs">
-                                </div>
-                                <div>
-                                    <label class="text-[10px] text-slate-500">Lon B:</label>
-                                    <input id="inputLonB" type="number" step="0.01" class="w-full bg-[#090a0f] border border-white/10 rounded px-2 py-1 text-white text-xs">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button onclick="aplicarCoordenadasManuais()" class="w-full py-2 bg-white/5 hover:bg-white/10 text-white font-heading font-semibold rounded-lg border border-white/15 transition flex items-center justify-center gap-1.5">
-                            <i class="ph-bold ph-arrows-clockwise text-sm"></i> Recalcular Rota
-                        </button>
-                    </div>
-                </div>
-
-                <div class="mt-4 pt-4 border-t border-white/5 text-[11px] text-slate-500 leading-relaxed">
-                    💡 Dica: Você pode <strong>clicar e arrastar os marcadores A e B</strong> diretamente no mapa abaixo para simular qualquer linha reta pelo planeta!
-                </div>
+        <!-- Painel de Métricas Essenciais -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+            <div class="editorial-panel p-3.5 text-center" title="Menor distância na superfície da esfera">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Distância Real</span>
+                <span id="resDistKm" class="text-xl sm:text-2xl font-mono font-bold text-white block mt-0.5">32.090 km</span>
+                <span id="resDistNm" class="text-[11px] text-slate-500 font-mono">17.327 milhas náuticas</span>
             </div>
+            <div class="editorial-panel p-3.5 text-center" title="Porcentagem dos 40.075 km da circunferência equatorial da Terra">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Tamanho da Terra</span>
+                <span id="resPctTerra" class="text-xl sm:text-2xl font-mono font-bold text-sky-400 block mt-0.5">79,8%</span>
+                <span class="text-[11px] text-slate-500">da circunferência global</span>
+            </div>
+            <div class="editorial-panel p-3.5 text-center" title="Tempo aproximado voando a 850 km/h sem escalas">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Tempo de Voo</span>
+                <span id="resTempoAviao" class="text-xl sm:text-2xl font-mono font-bold text-slate-200 block mt-0.5">~38 horas</span>
+                <span class="text-[11px] text-slate-500">a 850 km/h</span>
+            </div>
+            <div class="editorial-panel p-3.5 text-center" title="Direção inicial da bússola em graus">
+                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Rumo Inicial</span>
+                <span id="resAzimute" class="text-xl sm:text-2xl font-mono font-bold text-amber-400 block mt-0.5">142° (SE)</span>
+                <span class="text-[11px] text-slate-500">azimute de partida</span>
+            </div>
+        </div>
 
-            <!-- Dashboard de Telemetria e Distância Real -->
-            <div class="editorial-card p-6 lg:col-span-2 border-cyan-500/20 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
-                        <span class="text-xs font-mono uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                            <i class="ph-bold ph-radar"></i> Métricas Geodésicas de Grande Círculo
-                        </span>
-                        <span id="badgeTipoRota" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                            ROTA NÁUTICA RECORDE
-                        </span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                        <div class="p-4 rounded-xl bg-black/40 border border-white/5">
-                            <div class="text-[11px] font-mono text-slate-400 uppercase">Distância Geodésica Real</div>
-                            <div id="resDistKm" class="text-2xl sm:text-3xl font-mono font-bold text-white mt-1">32.090 km</div>
-                            <div id="resDistNm" class="text-xs text-cyan-400 font-mono mt-1">17.327 milhas náuticas (NM)</div>
-                        </div>
-                        <div class="p-4 rounded-xl bg-black/40 border border-white/5">
-                            <div class="text-[11px] font-mono text-slate-400 uppercase">Circunferência Planetária</div>
-                            <div id="resPctTerra" class="text-2xl sm:text-3xl font-mono font-bold text-amber-400 mt-1">79,8%</div>
-                            <div class="text-xs text-slate-400 mt-1">da circunferência equatorial total da Terra</div>
-                        </div>
-                    </div>
-
-                    <!-- Métricas de Tempo Estimado de Viagem -->
-                    <div class="grid grid-cols-3 gap-3 pt-1 text-center">
-                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                            <div class="text-[10px] font-mono uppercase text-slate-400">Avião Comercial</div>
-                            <div id="resTempoAviao" class="text-sm font-mono font-bold text-slate-100 mt-0.5">~37,7 horas</div>
-                            <div class="text-[10px] text-slate-500">a 850 km/h</div>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                            <div class="text-[10px] font-mono uppercase text-slate-400">Navio Cargueiro</div>
-                            <div id="resTempoNavio" class="text-sm font-mono font-bold text-cyan-300 mt-0.5">~36,1 dias</div>
-                            <div class="text-[10px] text-slate-500">a 20 nós (37 km/h)</div>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                            <div class="text-[10px] font-mono uppercase text-slate-400">Rumo / Bússola</div>
-                            <div id="resAzimute" class="text-sm font-mono font-bold text-amber-400 mt-0.5">142° (SE)</div>
-                            <div class="text-[10px] text-slate-500">Azimute inicial</div>
-                        </div>
-                    </div>
+        <!-- Mapa Principal -->
+        <div class="editorial-panel p-3 mb-6">
+            <div id="mapContainer" class="h-[420px] sm:h-[500px] w-full rounded-lg overflow-hidden"></div>
+            
+            <!-- Barra Inferior do Mapa: Legenda e Compartilhamento -->
+            <div class="mt-3 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
+                <div class="flex items-center gap-4">
+                    <span class="inline-flex items-center gap-1.5 text-sky-300">
+                        <span class="w-3 h-0.5 bg-sky-400 rounded"></span> Rota real (Grande Círculo)
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 text-amber-300">
+                        <span class="w-3 h-0.5 border-b border-dashed border-amber-400"></span> Linha reta plana
+                    </span>
                 </div>
 
-                <!-- Botão Viral de Compartilhamento WhatsApp -->
-                <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap gap-3 items-center justify-between">
-                    <span class="text-xs text-slate-400">Compartilhe essa anomalia cartográfica:</span>
-                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-heading font-bold text-xs uppercase tracking-wider transition">
-                        <i class="ph-bold ph-whatsapp-logo text-base"></i> Compartilhar no WhatsApp
+                <div class="flex items-center gap-3">
+                    <span id="txtDescricaoRota" class="text-slate-400 text-xs hidden md:inline">Sonmiani (Paquistão) → Kamchatka (Rússia)</span>
+                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs">
+                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Visualizador Interativo do Mapa -->
-        <div class="editorial-card p-4 sm:p-6 mb-12">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-2 border-b border-white/10">
-                <div class="flex items-center gap-2">
-                    <h3 class="text-base font-heading font-bold text-white flex items-center gap-2">
-                        <i class="ph-bold ph-map-trifold text-cyan-400"></i> Projeção Cartográfica Global da Rota
-                    </h3>
+        <!-- Controles Compactos de Ponto A e Ponto B (Opcional para quem quiser digitar) -->
+        <div class="editorial-panel p-4 mb-8 text-xs">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="text-slate-400 font-medium">Partida (A):</span>
+                    <span id="labelPontoA" class="text-white font-mono">Sonmiani</span>
                 </div>
-                <div class="flex items-center gap-4 text-xs font-mono">
-                    <span class="flex items-center gap-1.5 text-cyan-400">
-                        <span class="w-3 h-0.5 bg-cyan-400 inline-block"></span> Rota Geodésica (Linha Reta na Esfera)
-                    </span>
-                    <span class="flex items-center gap-1.5 text-amber-400">
-                        <span class="w-3 h-0.5 border-b border-dashed border-amber-400 inline-block"></span> Linha de Mercator (Plana)
-                    </span>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span>
+                    <span class="text-slate-400 font-medium">Destino (B):</span>
+                    <span id="labelPontoB" class="text-white font-mono">Kamchatka</span>
                 </div>
-            </div>
-
-            <!-- Container do Mapa -->
-            <div id="mapContainer" class="h-96 sm:h-[480px] w-full border border-white/10 shadow-inner rounded-xl overflow-hidden"></div>
-
-            <div class="mt-3 flex flex-wrap items-center justify-between text-xs text-slate-400 px-1 font-mono">
-                <span id="txtDescricaoRota">Visualizando: <strong>Maior Rota Náutica do Mundo</strong> (Sonmiani, Paquistão → Kamchatka, Rússia).</span>
-                <span class="text-slate-500">Dados Abertos • OpenStreetMap / Esri Gratuito • WGS84</span>
-            </div>
-        </div>
-
-        <!-- Seção Editorial Explicativa Anti-Slop -->
-        <div class="editorial-card p-6 sm:p-8 mb-12">
-            <h3 class="text-xl font-heading font-bold text-white mb-4 flex items-center gap-2">
-                <i class="ph-bold ph-book-open-text text-amber-400"></i> O Paradoxo do Grande Círculo: Por Que Retas Parecem Curvas?
-            </h3>
-            <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
-                <p>
-                    Quando você traça uma linha reta em um mapa plano convencional (como a Projeção de Mercator de 1569), você está desenhando uma <strong>Linha de Rumo (Loxodrômica)</strong> — uma linha que mantém o mesmo ângulo em relação aos meridianos, mas que <strong>não é a menor distância entre dois pontos em uma esfera</strong>.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                    <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                        <h4 class="font-heading font-bold text-white text-sm mb-1 text-cyan-300">A Rota Náutica de 32.090 km</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Provada matematicamente em 2018 pelos pesquisadores Rohan Chabukswar e Ashoke Mukherjee usando algoritmos de otimização sobre a base de relevo NOAA. Ela atravessa o Oceano Índico, passa entre a África e a Antártica e sobe por todo o Pacífico até a Sibéria sem esbarrar em terra firme!
-                        </p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                        <h4 class="font-heading font-bold text-white text-sm mb-1 text-amber-300">A Rota Terrestre de 11.241 km</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Começa nas falésias de Sagres, no sudoeste de Portugal, e segue em linha reta geodésica contínua até Jinjiang, no leste da China. Cruza 10 países (Portugal, Espanha, França, Alemanha, Polônia, Belarus, Rússia, Cazaquistão, Mongólia e China) sem cruzar nenhum oceano ou mar.
-                        </p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                        <h4 class="font-heading font-bold text-white text-sm mb-1 text-emerald-300">Por Que Aviões Fazem Curva?</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Voos de Nova York para Hong Kong ou de Paris para Tóquio sobrevoam o Ártico e o Polo Norte. No mapa da escola parece um desvio absurdo, mas no globo 3D essa é exatamente a linha mais curta possível, economizando milhares de litros de combustível!
-                        </p>
-                    </div>
+                <div class="text-slate-500 text-[11px]">
+                    Arraste os círculos A e B no mapa para recalcular instantaneamente.
                 </div>
             </div>
         </div>
 
         <!-- Espaço Reservado para Google AdSense -->
-        <div class="editorial-card p-4 mb-12 text-center min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border-dashed border-white/10">
+        <div class="editorial-panel p-4 mb-8 text-center min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border-dashed">
             <span class="text-[10px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
-            <div class="w-full max-w-2xl py-8 text-xs text-slate-500 font-mono">
+            <div class="w-full max-w-2xl py-6 text-xs text-slate-500 font-mono">
                 [Espaço do Anúncio Responsivo VitaleGeo]
             </div>
         </div>
 
-        <!-- Mais Ferramentas do VitaleGeo -->
-        <div class="border-t border-white/10 pt-10">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg font-heading font-bold text-white">Explore Outras Ferramentas do VitaleGeo:</h3>
-                <a href="/ferramentas" class="text-xs font-mono text-cyan-400 hover:underline">Ver catálogo completo →</a>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <a href="/ferramentas/calculadora-antipodas/" class="editorial-card p-4 hover:border-cyan-400/40 transition group">
-                    <div class="text-xs font-mono text-amber-400 mb-1">GEODÉSIA</div>
-                    <div class="font-heading font-bold text-white text-sm group-hover:text-amber-400 transition">Calculador de Antípodas</div>
-                    <p class="text-xs text-slate-400 mt-1">Descubra o ponto diametralmente oposto no globo.</p>
-                </a>
-                <a href="/ferramentas/quantos-cabem/" class="editorial-card p-4 hover:border-cyan-400/40 transition group">
-                    <div class="text-xs font-mono text-cyan-400 mb-1">ESCALA REAL</div>
-                    <div class="font-heading font-bold text-white text-sm group-hover:text-cyan-400 transition">Quantos Cabem?</div>
-                    <p class="text-xs text-slate-400 mt-1">Veja quantos países cabem dentro de outro território.</p>
-                </a>
-                <a href="/ferramentas/comparador-paises/" class="editorial-card p-4 hover:border-cyan-400/40 transition group">
-                    <div class="text-xs font-mono text-emerald-400 mb-1">CARTOGRAFIA</div>
-                    <div class="font-heading font-bold text-white text-sm group-hover:text-emerald-400 transition">Tamanho Real dos Países</div>
-                    <p class="text-xs text-slate-400 mt-1">Descubra a verdadeira distorção da projeção de Mercator.</p>
-                </a>
+        <!-- Links Limpos para Outras Ferramentas -->
+        <div class="border-t border-white/10 pt-6 flex items-center justify-between text-xs text-slate-400">
+            <span>Outras ferramentas:</span>
+            <div class="flex gap-4">
+                <a href="/ferramentas/calculadora-antipodas/" class="hover:text-amber-400 transition">Calculador de Antípodas</a>
+                <a href="/ferramentas/quantos-cabem/" class="hover:text-amber-400 transition">Quantos Cabem?</a>
+                <a href="/ferramentas/comparador-paises/" class="hover:text-amber-400 transition">Tamanho Real dos Países</a>
             </div>
         </div>
     </main>
 
     <!-- Rodapé Oficial VitaleGeo -->
-    <footer class="border-t border-white/10 py-12 px-6 bg-[#07080d] mt-20">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-500 font-mono">
-            <div class="flex items-center gap-3">
-                <i class="ph-fill ph-globe-hemisphere-east text-xl text-amber-400"></i>
-                <span>© 2026 VitaleGeo • Inteligência Geográfica & Geopolítica</span>
+    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-globe-hemisphere-east text-base text-amber-400"></i>
+                <span>© 2026 VitaleGeo • Geografia e Cartografia</span>
             </div>
-            <div class="flex gap-6">
+            <div class="flex gap-5">
                 <a href="/" class="hover:text-slate-300">Início</a>
                 <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
                 <a href="/jogos" class="hover:text-slate-300">Arcade</a>
@@ -386,7 +278,7 @@
         </div>
     </footer>
 
-    <!-- Lógica do Simulador de Linha Reta e Grande Círculo -->
+    <!-- Lógica da Ferramenta -->
     <script>
         let map = null;
         let markerA = null;
@@ -396,64 +288,48 @@
 
         const ROTAS_RECORDES = {
             nautica: {
-                nome: "Maior Rota Náutica em Linha Reta do Planeta",
                 nomeA: "Sonmiani, Paquistão",
                 coordA: [25.28, 66.75],
                 nomeB: "Kamchatka, Rússia",
                 coordB: [58.62, 162.24],
-                tipo: "ROTA NÁUTICA RECORDE",
-                distForcadaKm: 32090,
-                desc: "A maior distância contínua navegável sem tocar nenhuma terra (Sonmiani, Paquistão → Kamchatka, Rússia - 32.090 km)."
+                desc: "Maior Rota Náutica Contínua (32.090 km)"
             },
             terrestre: {
-                nome: "Maior Rota Terrestre em Linha Reta do Planeta",
                 nomeA: "Sagres, Portugal",
                 coordA: [37.03, -8.99],
                 nomeB: "Jinjiang, China",
                 coordB: [24.57, 118.57],
-                tipo: "ROTA TERRESTRE RECORDE",
-                distForcadaKm: 11241,
-                desc: "A maior distância contínua caminhável em linha reta sem pisar no mar (Portugal → China cruzando 10 países - 11.241 km)."
+                desc: "Maior Rota Terrestre Contínua (11.241 km)"
             },
             brasil: {
-                nome: "Maior Linha Reta Norte-Sul do Brasil",
-                nomeA: "Monte Caburaí, Roraima",
+                nomeA: "Monte Caburaí, RR",
                 coordA: [5.27, -60.21],
                 nomeB: "Barra do Chuí, RS",
                 coordB: [-33.75, -53.37],
-                tipo: "EXTREMO BRASIL",
-                distForcadaKm: 4394,
-                desc: "O verdadeiro extremo norte ao extremo sul do Brasil (Monte Caburaí, RR → Chuí, RS - 4.394 km)."
+                desc: "Extremo Norte ao Extremo Sul do Brasil (4.394 km)"
             },
             transiberiana: {
-                nome: "Rota Geodésica Transiberiana",
                 nomeA: "São Petersburgo, Rússia",
                 coordA: [59.93, 30.33],
                 nomeB: "Vladivostok, Rússia",
                 coordB: [43.11, 131.88],
-                tipo: "FUSOS HORÁRIOS",
-                distForcadaKm: 6540,
-                desc: "Cruza 8 fusos horários em uma única linha reta no mesmo país (São Petersburgo → Vladivostok)."
+                desc: "Travessia de 8 Fusos Horários (6.540 km)"
             },
             mediterraneo: {
-                nome: "Maior Travessia Reta no Mar Mediterrâneo",
                 nomeA: "Estreito de Gibraltar",
                 coordA: [36.14, -5.35],
                 nomeB: "Iskenderun, Turquia",
                 coordB: [36.58, 36.17],
-                tipo: "MEDITERRÂNEO",
-                distForcadaKm: 3860,
-                desc: "A maior distância navegável contínua dentro do Mar Mediterrâneo sem tocar ilhas (Gibraltar → Turquia)."
+                desc: "Travessia do Mar Mediterrâneo (3.860 km)"
             }
         };
 
-        const R_TERRA = 6371; // Raio da Terra em km
-        const CIRCUNFERENCIA_TERRA = 40075; // Circunferência equatorial em km
+        const R_TERRA = 6371;
+        const CIRCUNFERENCIA_TERRA = 40075;
 
         function toRad(deg) { return deg * Math.PI / 180; }
         function toDeg(rad) { return rad * 180 / Math.PI; }
 
-        // Distância de Haversine em km
         function calcularHaversineKm(lat1, lon1, lat2, lon2) {
             const φ1 = toRad(lat1), φ2 = toRad(lat2);
             const Δφ = toRad(lat2 - lat1);
@@ -466,7 +342,6 @@
             return Math.round(R_TERRA * c);
         }
 
-        // Azimute inicial em graus
         function calcularAzimute(lat1, lon1, lat2, lon2) {
             const φ1 = toRad(lat1), φ2 = toRad(lat2);
             const Δλ = toRad(lon2 - lon1);
@@ -479,11 +354,9 @@
 
         function azimuteParaRosa(graus) {
             const setores = ['N', 'NNE', 'NE', 'ENE', 'L', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
-            const idx = Math.round(graus / 22.5) % 16;
-            return setores[idx];
+            return setores[Math.round(graus / 22.5) % 16];
         }
 
-        // Interpolação de Grande Círculo (Great Circle Geodesic Arc)
         function gerarWaypointsGrandeCirculo(lat1, lon1, lat2, lon2, numPontos = 80) {
             const phi1 = toRad(lat1), lam1 = toRad(lon1);
             const phi2 = toRad(lat2), lam2 = toRad(lon2);
@@ -521,44 +394,33 @@
                 worldCopyJump: true
             });
 
-            // Opções de Mapas 100% Gratuitas e Livres (Sem chaves de API ou planos pagos)
+            // Camadas 100% gratuitas
             const camadaDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 16,
-                attribution: 'Tiles &copy; Esri &mdash; &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+                attribution: 'Tiles &copy; Esri &mdash; &copy; OpenStreetMap'
             });
 
             const camadaOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+                attribution: '&copy; OpenStreetMap contributors'
             });
 
             const camadaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 18,
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
+                attribution: 'Tiles &copy; Esri'
             });
 
-            // Ativa camada escura por padrão para harmonizar com a UI
             camadaDark.addTo(map);
 
-            // Controle de camadas gratuito no topo direito
             L.control.layers({
-                "🌙 Noturno (Esri Dark)": camadaDark,
-                "🗺️ OpenStreetMap": camadaOSM,
-                "🛰️ Satélite Real (Esri)": camadaSatelite
+                "Noturno": camadaDark,
+                "OpenStreetMap": camadaOSM,
+                "Satélite": camadaSatelite
             }, null, { position: 'topright' }).addTo(map);
 
-            const iconA = L.divIcon({
-                className: 'custom-pin-a',
-                iconSize: [18, 18],
-                iconAnchor: [9, 9]
-            });
-            const iconB = L.divIcon({
-                className: 'custom-pin-b',
-                iconSize: [18, 18],
-                iconAnchor: [9, 9]
-            });
+            const iconA = L.divIcon({ className: 'pin-a', iconSize: [16, 16], iconAnchor: [8, 8] });
+            const iconB = L.divIcon({ className: 'pin-b', iconSize: [16, 16], iconAnchor: [8, 8] });
 
-            // Inicia com rota náutica
             const rotaInit = ROTAS_RECORDES.nautica;
             markerA = L.marker(rotaInit.coordA, { icon: iconA, draggable: true }).addTo(map);
             markerB = L.marker(rotaInit.coordB, { icon: iconB, draggable: true }).addTo(map);
@@ -568,27 +430,21 @@
             markerA.on('dragend', atualizarTracado);
             markerB.on('dragend', atualizarTracado);
 
-            // Clique no mapa pode reposicionar o ponto mais próximo
             map.on('click', function(e) {
                 const distA = map.distance(e.latlng, markerA.getLatLng());
                 const distB = map.distance(e.latlng, markerB.getLatLng());
                 if (distA <= distB) {
                     markerA.setLatLng(e.latlng);
-                    document.getElementById('labelPontoA').textContent = 'Ponto no Mapa';
+                    document.getElementById('labelPontoA').textContent = `${e.latlng.lat.toFixed(1)}°, ${e.latlng.lng.toFixed(1)}°`;
                 } else {
                     markerB.setLatLng(e.latlng);
-                    document.getElementById('labelPontoB').textContent = 'Ponto no Mapa';
+                    document.getElementById('labelPontoB').textContent = `${e.latlng.lat.toFixed(1)}°, ${e.latlng.lng.toFixed(1)}°`;
                 }
                 atualizarTracado();
             });
 
-            setTimeout(() => {
-                map.invalidateSize();
-            }, 300);
-
-            window.addEventListener('resize', () => {
-                if (map) map.invalidateSize();
-            });
+            setTimeout(() => { if (map) map.invalidateSize(); }, 300);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
 
             carregarRotaRecorde('nautica');
         }
@@ -597,58 +453,44 @@
             const posA = markerA.getLatLng();
             const posB = markerB.getLatLng();
 
-            // Atualiza inputs
-            document.getElementById('inputLatA').value = posA.lat.toFixed(2);
-            document.getElementById('inputLonA').value = posA.lng.toFixed(2);
-            document.getElementById('inputLatB').value = posB.lat.toFixed(2);
-            document.getElementById('inputLonB').value = posB.lng.toFixed(2);
-
-            // Remove camadas anteriores
             if (layerGeodesica) map.removeLayer(layerGeodesica);
             if (layerPlana) map.removeLayer(layerPlana);
 
-            // Gera rota geodésica em Grande Círculo
-            const waypoints = gerarWaypointsGrandeCirculo(posA.lat, posA.lng, posB.lat, posB.lng, 100);
+            const waypoints = gerarWaypointsGrandeCirculo(posA.lat, posA.lng, posB.lat, posB.lng, 90);
 
+            // Rota esférica em azul suave
             layerGeodesica = L.polyline(waypoints, {
                 color: '#38bdf8',
-                weight: 3.5,
+                weight: 3,
                 opacity: 0.9,
-                lineCap: 'round',
-                dashArray: null
+                lineCap: 'round'
             }).addTo(map);
 
-            // Gera linha reta plana de Mercator (Loxodrômica direta)
+            // Rota plana em traço discreto
             layerPlana = L.polyline([[posA.lat, posA.lng], [posB.lat, posB.lng]], {
                 color: '#f59e0b',
-                weight: 2,
-                opacity: 0.6,
-                dashArray: '6, 6'
+                weight: 1.5,
+                opacity: 0.5,
+                dashArray: '5, 5'
             }).addTo(map);
 
-            // Cálculo das métricas
             const distKm = calcularHaversineKm(posA.lat, posA.lng, posB.lat, posB.lng);
             const distNm = Math.round(distKm * 0.539957);
             const azimute = calcularAzimute(posA.lat, posA.lng, posB.lat, posB.lng);
             const rosa = azimuteParaRosa(azimute);
             const pctTerra = ((distKm / CIRCUNFERENCIA_TERRA) * 100).toFixed(1);
+            const horasAviao = (distKm / 850).toFixed(0);
 
-            const horasAviao = (distKm / 850).toFixed(1);
-            const diasNavio = (distKm / 37 / 24).toFixed(1);
-
-            // Renderiza na UI
             document.getElementById('resDistKm').textContent = `${distKm.toLocaleString('pt-BR')} km`;
-            document.getElementById('resDistNm').textContent = `${distNm.toLocaleString('pt-BR')} milhas náuticas (NM)`;
+            document.getElementById('resDistNm').textContent = `${distNm.toLocaleString('pt-BR')} NM`;
             document.getElementById('resPctTerra').textContent = `${pctTerra}%`;
-            document.getElementById('resTempoAviao').textContent = `~${horasAviao} horas`;
-            document.getElementById('resTempoNavio').textContent = `~${diasNavio} dias`;
+            document.getElementById('resTempoAviao').textContent = `~${horasAviao}h`;
             document.getElementById('resAzimute').textContent = `${azimute}° (${rosa})`;
 
-            // WhatsApp viral share
             const labelA = document.getElementById('labelPontoA').textContent;
             const labelB = document.getElementById('labelPontoB').textContent;
             const shareText = encodeURIComponent(
-                `Você sabia que a distância em linha reta de ${labelA} até ${labelB} é de ${distKm.toLocaleString('pt-BR')} km (${pctTerra}% da Terra)? 🗺️✈️ Veja a rota geodésica no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/rotas-extremas/`
+                `A menor rota no globo de ${labelA} até ${labelB} tem ${distKm.toLocaleString('pt-BR')} km (${pctTerra}% da Terra). Veja o traçado: https://www.vitalegeo.com.br/ferramentas/rotas-extremas/`
             );
             document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareText}`;
         }
@@ -659,33 +501,20 @@
 
             document.getElementById('labelPontoA').textContent = rota.nomeA;
             document.getElementById('labelPontoB').textContent = rota.nomeB;
-            document.getElementById('badgeTipoRota').textContent = rota.tipo;
-            document.getElementById('txtDescricaoRota').innerHTML = `Visualizando: <strong>${rota.nome}</strong> (${rota.desc}).`;
+            document.getElementById('txtDescricaoRota').textContent = `${rota.nomeA} → ${rota.nomeB}`;
 
             markerA.setLatLng(rota.coordA);
             markerB.setLatLng(rota.coordB);
 
             atualizarTracado();
 
-            // Ajusta o zoom do mapa para caber a rota com folga
             const bounds = L.latLngBounds([rota.coordA, rota.coordB]);
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 5 });
+            map.fitBounds(bounds, { padding: [40, 40], maxZoom: 4 });
         }
 
-        function aplicarCoordenadasManuais() {
-            const latA = parseFloat(document.getElementById('inputLatA').value);
-            const lonA = parseFloat(document.getElementById('inputLonA').value);
-            const latB = parseFloat(document.getElementById('inputLatB').value);
-            const lonB = parseFloat(document.getElementById('inputLonB').value);
-
-            if (!isNaN(latA) && !isNaN(lonA) && !isNaN(latB) && !isNaN(lonB)) {
-                markerA.setLatLng([latA, lonA]);
-                markerB.setLatLng([latB, lonB]);
-                document.getElementById('labelPontoA').textContent = 'Ponto Personalizado A';
-                document.getElementById('labelPontoB').textContent = 'Ponto Personalizado B';
-                document.getElementById('badgeTipoRota').textContent = 'ROTA LIVRE';
-                atualizarTracado();
-            }
+        function toggleAjuda() {
+            const el = document.getElementById('painelAjuda');
+            el.classList.toggle('hidden');
         }
 
         window.addEventListener('DOMContentLoaded', inicializarMapa);

@@ -43,15 +43,15 @@ export const toolsDB: ToolItem[] = [
     link: "/ferramentas/calculadora-distancia/"
   },
   {
-    titulo: "Calculador de Antípodas (O Outro Lado da Terra)",
-    desc: "Se você cavar um buraco reto atravessando o planeta, onde você sairia? Mapa duplo e coordenadas geodésicas.",
+    titulo: "Calculador de Antípodas",
+    desc: "Veja onde você sairia se atravessasse a Terra em linha reta pelo centro do planeta.",
     icon: "ph-bold ph-globe-hemisphere-west",
     cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
     link: "/ferramentas/calculadora-antipodas/"
   },
   {
-    titulo: "Simulador de Linha Reta (As Maiores Rotas do Planeta)",
-    desc: "A maior rota navegável sem tocar terra (32.090 km), a maior rota terrestre contínua (11.241 km) e arcos geodésicos.",
+    titulo: "Rotas em Linha Reta no Globo",
+    desc: "Compare a menor distância esférica com a distorção do mapa plano e veja a maior rota marítima do mundo.",
     icon: "ph-bold ph-compass",
     cover: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=80",
     link: "/ferramentas/rotas-extremas/"
