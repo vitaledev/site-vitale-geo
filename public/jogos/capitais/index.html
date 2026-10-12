@@ -1,293 +1,553 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="bg-slate-900">
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-[#07080d]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/capitais/">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missão Capital | VitaleGeo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Missão Capitais do Mundo | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos sobre capitais de países.">
-    <meta name="keywords" content="capitais, geografia, jogo, quiz, países, cidades">
-    <meta property="og:title" content="Missão Capital | VitaleGeo">
-    <meta property="og:description" content="Descubra as capitais do mundo! Jogo geográfico interativo que desafia seus conhecimentos.">
+    <meta name="description" content="Você sabe qual é a verdadeira capital da Austrália, Canadá ou Suíça? Teste seus conhecimentos e tente zerar todas as capitais do mundo!">
+    <meta name="keywords" content="capitais do mundo, quiz de capitais, cidades capitais, geografia, jogo, vitalegeo">
+
+    <meta property="og:title" content="Missão Capitais do Mundo | VitaleGeo">
+    <meta property="og:description" content="Desafio de Capitais Mundiais! Acerte as capitais e tente zerar o jogo!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vitalegeo.com.br/jogos/capitais">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/capitais/">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-</head>
-<body class="text-white font-sans min-h-screen page-shell p-4 select-none overflow-hidden bg-slate-900">
-
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="text-white">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
-            </div>
-
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
-            </a>
-        </div>
-    </nav>
-
-    <div class="absolute top-24 right-6 z-30">
-        <a href="/jogos" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/5"><i class="ph-bold ph-arrow-left"></i> Central de Simulações</a>
-    </div>
-
-    <main class="page-content flex flex-col items-center justify-center w-full">
-    <div class="w-full max-w-lg relative z-10 pt-28">
-        
-        <div class="text-center mb-8">
-            <span class="inline-flex items-center gap-2 bg-slate-800 border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4 animate-pulse">
-                <i class="ph-fill ph-target"></i> Localizar Alvo
-            </span>
-            <div class="flex justify-between items-end px-4">
-                <div class="text-left">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Pontuação</p>
-                    <p class="text-2xl font-mono font-bold text-yellow-500" id="score">0</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Rodada</p>
-                    <p class="text-2xl font-mono font-bold" id="round">1</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-slate-800 border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
-            <div class="absolute top-0 right-0 p-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-
-            <div class="relative z-10 flex flex-col items-center text-center">
-                
-                <div class="w-24 h-16 md:w-32 md:h-20 rounded-lg overflow-hidden flag-shadow mb-4 border border-white/20">
-                    <img id="flag-img" src="" class="w-full h-full object-cover" alt="Bandeira">
-                </div>
-
-                <h2 class="text-xl md:text-2xl font-bold text-white mb-1" id="country-name">Carregando...</h2>
-                <p class="text-slate-400 text-xs uppercase tracking-widest mb-6">Qual é a capital?</p>
-
-                <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-                    </div>
-            </div>
-
-            <div id="feedback-overlay" class="absolute inset-0 bg-slate-900/90 z-20 hidden flex-col items-center justify-center backdrop-blur-sm">
-                <i id="feedback-icon" class="text-6xl mb-4"></i>
-                <h3 id="feedback-text" class="text-2xl font-bold uppercase tracking-widest mb-1"></h3>
-                <p id="feedback-sub" class="text-slate-400 text-sm"></p>
-            </div>
-        </div>
-    </div>
-    </main>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
-        // BANCO DE DADOS (País, Código ISO, Capital)
-        const countryData = [
-            { name: "Brasil", code: "br", capital: "Brasília" },
-            { name: "Estados Unidos", code: "us", capital: "Washington, D.C." },
-            { name: "Reino Unido", code: "gb", capital: "Londres" },
-            { name: "França", code: "fr", capital: "Paris" },
-            { name: "Alemanha", code: "de", capital: "Berlim" },
-            { name: "Itália", code: "it", capital: "Roma" },
-            { name: "Japão", code: "jp", capital: "Tóquio" },
-            { name: "China", code: "cn", capital: "Pequim" },
-            { name: "Rússia", code: "ru", capital: "Moscou" },
-            { name: "Canadá", code: "ca", capital: "Ottawa" },
-            { name: "Austrália", code: "au", capital: "Canberra" },
-            { name: "Espanha", code: "es", capital: "Madri" },
-            { name: "Argentina", code: "ar", capital: "Buenos Aires" },
-            { name: "Coreia do Sul", code: "kr", capital: "Seul" },
-            { name: "Índia", code: "in", capital: "Nova Delhi" },
-            { name: "Egito", code: "eg", capital: "Cairo" },
-            { name: "Turquia", code: "tr", capital: "Ancara" },
-            { name: "México", code: "mx", capital: "Cidade do México" },
-            { name: "Portugal", code: "pt", capital: "Lisboa" },
-            { name: "Suíça", code: "ch", capital: "Berna" },
-            { name: "Suécia", code: "se", capital: "Estocolmo" },
-            { name: "Holanda", code: "nl", capital: "Amsterdã" },
-            { name: "Bélgica", code: "be", capital: "Bruxelas" },
-            { name: "Noruega", code: "no", capital: "Oslo" },
-            { name: "Grécia", code: "gr", capital: "Atenas" },
-            { name: "Chile", code: "cl", capital: "Santiago" },
-            { name: "Colômbia", code: "co", capital: "Bogotá" },
-            { name: "Peru", code: "pe", capital: "Lima" },
-            { name: "África do Sul", code: "za", capital: "Pretória" }, // Uma das capitais
-            { name: "Nova Zelândia", code: "nz", capital: "Wellington" },
-            { name: "Ucrânia", code: "ua", capital: "Kiev" },
-            { name: "Polônia", code: "pl", capital: "Varsóvia" },
-            { name: "Tailândia", code: "th", capital: "Bangkok" },
-            { name: "Vietnã", code: "vn", capital: "Hanói" },
-            { name: "Indonésia", code: "id", capital: "Jacarta" }, // Em transição, mas oficial por enquanto
-            { name: "Arábia Saudita", code: "sa", capital: "Riade" },
-            { name: "Israel", code: "il", capital: "Jerusalém" }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .flag-frame {
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
+        }
+        .option-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between">
+
+    <!-- BARRA DEDICADA DO ARCADE -->
+    <header class="arcade-header">
+        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
+            <i class="ph-bold ph-arrow-left"></i>
+            <span>Central de Jogos</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+            <i class="ph-fill ph-buildings text-amber-400 text-lg"></i>
+            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
+                Missão <span class="text-amber-400">Capitais do Mundo</span>
+            </span>
+        </div>
+
+        <div class="arcade-header__actions">
+            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
+                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
+                <span class="hidden sm:inline">Tela Cheia</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PALCO CENTRAL AMPLIADO (The Grand Stage) -->
+    <main class="arcade-stage-wrapper w-full max-w-4xl px-4 py-4 sm:py-6 flex-1 flex flex-col justify-center" id="game-stage-container">
+        
+        <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO -->
+        <div class="w-full mb-3 flex flex-col gap-2">
+            <div class="flex items-center justify-between text-xs font-mono">
+                <!-- Vidas -->
+                <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
+                    <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                        <i class="ph-fill ph-heart"></i>
+                        <i class="ph-fill ph-heart"></i>
+                        <i class="ph-fill ph-heart"></i>
+                    </span>
+                </div>
+
+                <!-- Acertos e Total da Rodada -->
+                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <i class="ph-bold ph-map-pin text-amber-400"></i>
+                    <span class="text-slate-300">Capitais: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">100</span></span>
+                </div>
+
+                <!-- Recorde Máximo -->
+                <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <i class="ph-fill ph-trophy text-emerald-400"></i>
+                    <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                </div>
+            </div>
+
+            <!-- Barra de Progresso Visual -->
+            <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
+            </div>
+        </div>
+
+        <!-- O PALCO DO JOGO (TELA DEDICADA AMPLIADA) -->
+        <div id="stage-active" class="arcade-stage p-6 sm:p-10 w-full flex flex-col items-center justify-between text-center min-h-[540px] relative">
+            
+            <div class="my-auto flex flex-col items-center w-full">
+                <!-- Bandeira e Nome do País -->
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="flag-frame w-16 h-11 sm:w-20 sm:h-14 rounded-lg overflow-hidden border border-white/20 bg-slate-950">
+                        <img id="flag-img" src="" class="w-full h-full object-cover" alt="Bandeira">
+                    </div>
+                    <div class="text-left">
+                        <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 block">Identifique o Alvo</span>
+                        <h2 class="text-2xl sm:text-4xl font-heading font-black text-white" id="country-name">Carregando...</h2>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm font-mono text-amber-400 uppercase tracking-widest mt-3 mb-4">
+                    Qual é a capital oficial deste país?
+                </p>
+
+                <!-- Feedback de Acerto/Erro -->
+                <div id="feedback-msg" class="h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center">
+                    Selecione uma das 4 cidades abaixo:
+                </div>
+            </div>
+
+            <!-- Grade de Opções (4 Cidades) -->
+            <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-4">
+                <!-- Preenchido via JavaScript -->
+            </div>
+
+        </div>
+
+        <!-- TELA DE FIM DE RODADA / GAME OVER -->
+        <div id="stage-gameover" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in fade-in duration-300">
+            <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
+                <i class="ph-bold ph-compass"></i>
+            </div>
+            
+            <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Missão Abortada!</span>
+            <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
+            
+            <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
+                A capital correta de <strong id="last-country-name" class="text-white">--</strong> é <strong id="last-capital-name" class="text-amber-400">--</strong>.
+            </p>
+
+            <!-- Placar de Conquista -->
+            <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-6 max-w-md w-full mb-8 shadow-xl">
+                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Capitais Localizadas</span>
+                <div class="text-5xl sm:text-6xl font-heading font-black text-amber-400 mb-2">
+                    <span id="final-score">0</span> <span class="text-xl text-slate-400 font-normal">/ 100</span>
+                </div>
+                <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-3">0% do mapa dominado</p>
+                <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300" id="final-rank">
+                    Rank: Turista Perdido
+                </div>
+            </div>
+
+            <!-- Botões de Ação e Compartilhamento Viral -->
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
+                </button>
+                <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition flex items-center gap-2">
+                    <i class="ph-bold ph-copy text-base"></i> Copiar
+                </button>
+                <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-2 shadow-lg shadow-amber-400/20">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR ZERA TODAS AS 100 CAPITAIS) -->
+        <div id="stage-victory" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in zoom-in duration-500">
+            <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+                <i class="ph-fill ph-trophy"></i>
+            </div>
+
+            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA SUPREMA!</span>
+            <h2 class="text-3xl sm:text-6xl font-heading font-black text-white mb-3">ZEREI AS CAPITAIS!</h2>
+            
+            <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
+                Incrível! Você localizou todas as <strong class="text-amber-400">100 capitais globais</strong> sem falhar na missão. Você possui conhecimento de inteligência geopolítica absoluta!
+            </p>
+
+            <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-8 shadow-2xl">
+                <span class="text-xs font-mono uppercase text-slate-400">Score Máximo</span>
+                <div class="text-5xl font-black text-amber-400 my-1">100 / 100 (100%)</div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">★ Mestre Supremo das Capitais ★</span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
+                </button>
+                <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- ZONA SEGURA DE PUBLICIDADE -->
+        <div class="arcade-ad-zone">
+            <span>PUBLICIDADE RESERVADA · VITALEGEO ARCADE</span>
+        </div>
+
+    </main>
+
+    <!-- Rodapé Minimalista do Arcade -->
+    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
+        VitaleGeo Arcade &copy; 2026 · Desafio de Capitais Mundiais
+    </footer>
+
+    <!-- Banco de Dados e Lógica do Jogo -->
+    <script>
+        const catalogoCapitais = [
+            { name: "Austrália", code: "au", capital: "Camberra", pegadinhas: ["Sydney", "Melbourne", "Brisbane"] },
+            { name: "Canadá", code: "ca", capital: "Ottawa", pegadinhas: ["Toronto", "Vancouver", "Montreal"] },
+            { name: "Brasil", code: "br", capital: "Brasília", pegadinhas: ["Rio de Janeiro", "São Paulo", "Salvador"] },
+            { name: "Estados Unidos", code: "us", capital: "Washington, D.C.", pegadinhas: ["Nova York", "Los Angeles", "Chicago"] },
+            { name: "Suíça", code: "ch", capital: "Berna", pegadinhas: ["Zurique", "Genebra", "Basileia"] },
+            { name: "Turquia", code: "tr", capital: "Ancara", pegadinhas: ["Istambul", "Esmirna", "Antália"] },
+            { name: "África do Sul", code: "za", capital: "Pretória", pegadinhas: ["Joanesburgo", "Durban", "Soweto"] },
+            { name: "Nova Zelândia", code: "nz", capital: "Wellington", pegadinhas: ["Auckland", "Christchurch", "Queenstown"] },
+            { name: "Marrocos", code: "ma", capital: "Rabat", pegadinhas: ["Casablanca", "Marrakech", "Fez"] },
+            { name: "Cazaquistão", code: "kz", capital: "Astana", pegadinhas: ["Almaty", "Shymkent", "Aktobe"] },
+            { name: "Índia", code: "in", capital: "Nova Délhi", pegadinhas: ["Mumbai", "Calcutá", "Bangalore"] },
+            { name: "Alemanha", code: "de", capital: "Berlim", pegadinhas: ["Munique", "Frankfurt", "Hamburgo"] },
+            { name: "Reino Unido", code: "gb", capital: "Londres", pegadinhas: ["Manchester", "Edimburgo", "Birmingham"] },
+            { name: "França", code: "fr", capital: "Paris", pegadinhas: ["Marselha", "Lyon", "Nice"] },
+            { name: "Japão", code: "jp", capital: "Tóquio", pegadinhas: ["Quioto", "Osaka", "Yokohama"] },
+            { name: "China", code: "cn", capital: "Pequim", pegadinhas: ["Xangai", "Hong Kong", "Cantão"] },
+            { name: "Rússia", code: "ru", capital: "Moscou", pegadinhas: ["São Petersburgo", "Kazan", "Novosibirsk"] },
+            { name: "Itália", code: "it", capital: "Roma", pegadinhas: ["Milão", "Florença", "Nápoles"] },
+            { name: "Espanha", code: "es", capital: "Madri", pegadinhas: ["Barcelona", "Sevilha", "Valência"] },
+            { name: "Portugal", code: "pt", capital: "Lisboa", pegadinhas: ["Porto", "Coimbra", "Braga"] },
+            { name: "Argentina", code: "ar", capital: "Buenos Aires", pegadinhas: ["Córdoba", "Rosário", "Mendoza"] },
+            { name: "Coreia do Sul", code: "kr", capital: "Seul", pegadinhas: ["Busan", "Incheon", "Daegu"] },
+            { name: "Egito", code: "eg", capital: "Cairo", pegadinhas: ["Alexandria", "Giza", "Luxor"] },
+            { name: "Nigéria", code: "ng", capital: "Abuja", pegadinhas: ["Lagos", "Kano", "Ibadan"] },
+            { name: "Holanda", code: "nl", capital: "Amsterdã", pegadinhas: ["Roterdã", "Haia", "Utrecht"] },
+            { name: "Bélgica", code: "be", capital: "Bruxelas", pegadinhas: ["Antuérpia", "Gante", "Bruges"] },
+            { name: "Suécia", code: "se", capital: "Estocolmo", pegadinhas: ["Gotemburgo", "Malmö", "Uppsala"] },
+            { name: "Noruega", code: "no", capital: "Oslo", pegadinhas: ["Bergen", "Trondheim", "Stavanger"] },
+            { name: "Finlândia", code: "fi", capital: "Helsinque", pegadinhas: ["Espoo", "Tampere", "Turku"] },
+            { name: "Dinamarca", code: "dk", capital: "Copenhague", pegadinhas: ["Aarhus", "Odense", "Aalborg"] },
+            { name: "Polônia", code: "pl", capital: "Varsóvia", pegadinhas: ["Cracóvia", "Wrocław", "Gdańsk"] },
+            { name: "Ucrânia", code: "ua", capital: "Kiev", pegadinhas: ["Kharkiv", "Odessa", "Lviv"] },
+            { name: "Grécia", code: "gr", capital: "Atenas", pegadinhas: ["Tessalônica", "Patras", "Heraclião"] },
+            { name: "México", code: "mx", capital: "Cidade do México", pegadinhas: ["Guadalajara", "Monterrey", "Cancún"] },
+            { name: "Chile", code: "cl", capital: "Santiago", pegadinhas: ["Valparaíso", "Concepción", "Antofagasta"] },
+            { name: "Colômbia", code: "co", capital: "Bogotá", pegadinhas: ["Medellín", "Cali", "Cartagena"] },
+            { name: "Peru", code: "pe", capital: "Lima", pegadinhas: ["Cusco", "Arequipa", "Trujillo"] },
+            { name: "Venezuela", code: "ve", capital: "Caracas", pegadinhas: ["Maracaibo", "Valência", "Barquisimeto"] },
+            { name: "Uruguai", code: "uy", capital: "Montevidéu", pegadinhas: ["Punta del Este", "Salto", "Paysandú"] },
+            { name: "Paraguai", code: "py", capital: "Assunção", pegadinhas: ["Ciudad del Este", "Encarnación", "Luque"] },
+            { name: "Bolívia", code: "bo", capital: "Sucre (Constitucional) / La Paz", pegadinhas: ["Santa Cruz de la Sierra", "Cochabamba", "Potosí"] },
+            { name: "Equador", code: "ec", capital: "Quito", pegadinhas: ["Guayaquil", "Cuenca", "Manta"] },
+            { name: "Israel", code: "il", capital: "Jerusalém", pegadinhas: ["Tel Aviv", "Haifa", "Eilat"] },
+            { name: "Arábia Saudita", code: "sa", capital: "Riad", pegadinhas: ["Jidá", "Meca", "Medina"] },
+            { name: "Emirados Árabes Unidos", code: "ae", capital: "Abu Dhabi", pegadinhas: ["Dubai", "Sharjah", "Ajman"] },
+            { name: "Catar", code: "qa", capital: "Doha", pegadinhas: ["Al Rayyan", "Al Wakrah", "Lusail"] },
+            { name: "Irã", code: "ir", capital: "Teerã", pegadinhas: ["Isfahan", "Shiraz", "Tabriz"] },
+            { name: "Iraque", code: "iq", capital: "Bagdá", pegadinhas: ["Basra", "Erbil", "Mossul"] },
+            { name: "Indonésia", code: "id", capital: "Jacarta (Nusantara)", pegadinhas: ["Bali", "Surabaia", "Bandung"] },
+            { name: "Tailândia", code: "th", capital: "Bangcoc", pegadinhas: ["Phuket", "Chiang Mai", "Pattaya"] },
+            { name: "Vietnã", code: "vn", capital: "Hanói", pegadinhas: ["Ho Chi Minh", "Da Nang", "Hai Phong"] },
+            { name: "Filipinas", code: "ph", capital: "Manila", pegadinhas: ["Cebu", "Davao", "Quezon"] },
+            { name: "Malásia", code: "my", capital: "Kuala Lumpur", pegadinhas: ["Penang", "Johor Bahru", "Putrajaya"] },
+            { name: "Singapura", code: "sg", capital: "Singapura (Cidade-Estado)", pegadinhas: ["Jurong", "Woodlands", "Sentosa"] },
+            { name: "Paquistão", code: "pk", capital: "Islamabad", pegadinhas: ["Karachi", "Lahore", "Faisalabad"] },
+            { name: "Bangladesh", code: "bd", capital: "Daca", pegadinhas: ["Chittagong", "Khulna", "Sylhet"] },
+            { name: "Quênia", code: "ke", capital: "Nairóbi", pegadinhas: ["Mombasa", "Kisumu", "Nakuru"] },
+            { name: "Etiópia", code: "et", capital: "Adis Abeba", pegadinhas: ["Dire Dawa", "Gondar", "Hawassa"] },
+            { name: "Gana", code: "gh", capital: "Acra", pegadinhas: ["Kumasi", "Tamale", "Takoradi"] },
+            { name: "Senegal", code: "sn", capital: "Dacar", pegadinhas: ["Touba", "Thies", "Saint-Louis"] },
+            { name: "Angola", code: "ao", capital: "Luanda", pegadinhas: ["Benguela", "Huambo", "Lobito"] },
+            { name: "Moçambique", code: "mz", capital: "Maputo", pegadinhas: ["Beira", "Nampula", "Matola"] },
+            { name: "Cuba", code: "cu", capital: "Havana", pegadinhas: ["Santiago de Cuba", "Varadero", "Camagüey"] },
+            { name: "República Dominicana", code: "do", capital: "Santo Domingo", pegadinhas: ["Punta Cana", "Santiago", "Puerto Plata"] },
+            { name: "Panamá", code: "pa", capital: "Cidade do Panamá", pegadinhas: ["Colón", "David", "Bocas del Toro"] },
+            { name: "Costa Rica", code: "cr", capital: "São José", pegadinhas: ["Alajuela", "Cartago", "Heredia"] },
+            { name: "Áustria", code: "at", capital: "Viena", pegadinhas: ["Salzburgo", "Innsbruck", "Graz"] },
+            { name: "Hungria", code: "hu", capital: "Budapeste", pegadinhas: ["Debrecen", "Szeged", "Miskolc"] },
+            { name: "República Tcheca", code: "cz", capital: "Praga", pegadinhas: ["Brno", "Ostrava", "Plzeň"] },
+            { name: "Irlanda", code: "ie", capital: "Dublin", pegadinhas: ["Cork", "Galway", "Limerick"] },
+            { name: "Islândia", code: "is", capital: "Reykjavik", pegadinhas: ["Akureyri", "Keflavík", "Kópavogur"] },
+            { name: "Croácia", code: "hr", capital: "Zagreb", pegadinhas: ["Split", "Dubrovnik", "Rijeka"] },
+            { name: "Sérvia", code: "rs", capital: "Belgrado", pegadinhas: ["Novi Sad", "Niš", "Kragujevac"] },
+            { name: "Romênia", code: "ro", capital: "Bucareste", pegadinhas: ["Cluj-Napoca", "Timișoara", "Iași"] },
+            { name: "Bulgária", code: "bg", capital: "Sófia", pegadinhas: ["Plovdiv", "Varna", "Burgas"] },
+            { name: "Eslováquia", code: "sk", capital: "Bratislava", pegadinhas: ["Košice", "Prešov", "Žilina"] },
+            { name: "Eslovênia", code: "si", capital: "Liubliana", pegadinhas: ["Maribor", "Celje", "Kranj"] },
+            { name: "Estônia", code: "ee", capital: "Tallinn", pegadinhas: ["Tartu", "Narva", "Pärnu"] },
+            { name: "Letônia", code: "lv", capital: "Riga", pegadinhas: ["Daugavpils", "Liepāja", "Jelgava"] },
+            { name: "Lituânia", code: "lt", capital: "Vilnius", pegadinhas: ["Kaunas", "Klaipėda", "Šiauliai"] },
+            { name: "Chipre", code: "cy", capital: "Nicósia", pegadinhas: ["Limassol", "Larnaca", "Paphos"] },
+            { name: "Líbano", code: "lb", capital: "Beirute", pegadinhas: ["Trípoli", "Sídon", "Tiro"] },
+            { name: "Jordânia", code: "jo", capital: "Amã", pegadinhas: ["Zarqa", "Irbid", "Aqaba"] },
+            { name: "Argélia", code: "dz", capital: "Argel", pegadinhas: ["Orã", "Constantina", "Annaba"] },
+            { name: "Tunísia", code: "tn", capital: "Túnis", pegadinhas: ["Sfax", "Sousse", "Kairouan"] },
+            { name: "Nepal", code: "np", capital: "Catmandu", pegadinhas: ["Pokhara", "Lalitpur", "Biratnagar"] },
+            { name: "Sri Lanka", code: "lk", capital: "Colombo / Sri Jayawardenepura Kotte", pegadinhas: ["Kandy", "Galle", "Jaffna"] },
+            { name: "Mianmar", code: "mm", capital: "Naipidau (Naypyidaw)", pegadinhas: ["Yangon (Rangum)", "Mandalay", "Bago"] },
+            { name: "Geórgia", code: "ge", capital: "Tbilisi", pegadinhas: ["Batumi", "Kutaisi", "Rustavi"] },
+            { name: "Armênia", code: "am", capital: "Yerevan", pegadinhas: ["Gyumri", "Vanadzor", "Vagharshapat"] },
+            { name: "Azerbaijão", code: "az", capital: "Baku", pegadinhas: ["Ganja", "Sumqayit", "Mingachevir"] },
+            { name: "Uzbequistão", code: "uz", capital: "Tashkent", pegadinhas: ["Samarcanda", "Bukhara", "Namangan"] },
+            { name: "Mongólia", code: "mn", capital: "Ulaanbaatar", pegadinhas: ["Erdenet", "Darkhan", "Choibalsan"] },
+            { name: "Jamaica", code: "jm", capital: "Kingston", pegadinhas: ["Montego Bay", "Spanish Town", "Negril"] },
+            { name: "Haiti", code: "ht", capital: "Porto Príncipe", pegadinhas: ["Cap-Haïtien", "Gonaïves", "Les Cayes"] },
+            { name: "Guatemala", code: "gt", capital: "Cidade da Guatemala", pegadinhas: ["Antigua", "Quetzaltenango", "Escuintla"] },
+            { name: "Honduras", code: "hn", capital: "Tegucigalpa", pegadinhas: ["San Pedro Sula", "La Ceiba", "Choloma"] },
+            { name: "Camboja", code: "kh", capital: "Phnom Penh", pegadinhas: ["Siem Reap", "Battambang", "Sihanoukville"] },
+            { name: "Laos", code: "la", capital: "Vientiane", pegadinhas: ["Luang Prabang", "Pakse", "Savannakhet"] },
+            { name: "Tanzânia", code: "tz", capital: "Dodoma", pegadinhas: ["Dar es Salaam", "Arusha", "Zanzibar"] }
         ];
 
-        let currentRound = 1;
-        let score = 0;
-        let correctTarget;
+        let capitaisRestantes = [];
+        let alvoAtual = null;
+        let acertos = 0;
+        let vidas = 3;
+        const totalCapitais = catalogoCapitais.length;
+        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_capitais') || '0');
 
-        function startGame() {
-            pickQuestion();
+        const stageActive = document.getElementById('stage-active');
+        const stageGameOver = document.getElementById('stage-gameover');
+        const stageVictory = document.getElementById('stage-victory');
+
+        const scoreVal = document.getElementById('score-val');
+        const totalVal = document.getElementById('total-val');
+        const bestScoreVal = document.getElementById('best-score');
+        const progressBar = document.getElementById('progress-bar');
+        const vidasContainer = document.getElementById('vidas-container');
+
+        const flagImg = document.getElementById('flag-img');
+        const countryName = document.getElementById('country-name');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const optionsGrid = document.getElementById('options-grid');
+
+        totalVal.innerText = totalCapitais;
+        bestScoreVal.innerText = recordeMaximo;
+
+        function reiniciarJogo() {
+            acertos = 0;
+            vidas = 3;
+            capitaisRestantes = [...catalogoCapitais].sort(() => Math.random() - 0.5);
+
+            stageActive.classList.remove('hidden');
+            stageActive.classList.add('flex');
+            stageGameOver.classList.add('hidden');
+            stageGameOver.classList.remove('flex');
+            stageVictory.classList.add('hidden');
+            stageVictory.classList.remove('flex');
+
+            atualizarStatusUI();
+            proximaRodada();
         }
 
-        function pickQuestion() {
-            // Escolhe um país alvo
-            correctTarget = countryData[Math.floor(Math.random() * countryData.length)];
+        function atualizarStatusUI() {
+            scoreVal.innerText = acertos;
+            const perc = ((acertos / totalCapitais) * 100).toFixed(1);
+            progressBar.style.width = `${perc}%`;
+
+            let coracoesHTML = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    coracoesHTML += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                } else {
+                    coracoesHTML += '<i class="ph-bold ph-heart-break text-slate-700"></i>';
+                }
+            }
+            vidasContainer.innerHTML = coracoesHTML;
+        }
+
+        function proximaRodada() {
+            if (capitaisRestantes.length === 0) {
+                concluirZeramento();
+                return;
+            }
+
+            alvoAtual = capitaisRestantes.pop();
+
+            // Sorteia opções (a capital certa + 3 pegadinhas ou capitais de outros)
+            let opcoes = [alvoAtual.capital];
             
-            // Escolhe 3 capitais erradas
-            let options = [correctTarget];
-            while (options.length < 4) {
-                let random = countryData[Math.floor(Math.random() * countryData.length)];
-                // Garante que não é o mesmo país e não repete opção
-                if (!options.some(o => o.code === random.code)) {
-                    options.push(random);
+            // Usa as pegadinhas famosas daquele país se disponíveis
+            if (alvoAtual.pegadinhas && alvoAtual.pegadinhas.length >= 3) {
+                opcoes = [alvoAtual.capital, ...alvoAtual.pegadinhas.slice(0, 3)];
+            } else {
+                while (opcoes.length < 4) {
+                    let randomItem = catalogoCapitais[Math.floor(Math.random() * catalogoCapitais.length)];
+                    if (!opcoes.includes(randomItem.capital)) {
+                        opcoes.push(randomItem.capital);
+                    }
                 }
             }
 
-            // Embaralha
-            options.sort(() => Math.random() - 0.5);
+            opcoes.sort(() => Math.random() - 0.5);
 
-            render(options);
-        }
+            countryName.innerText = alvoAtual.name;
+            flagImg.src = `/assets/flags/${alvoAtual.code}.svg`;
+            flagImg.onerror = () => {
+                flagImg.src = `https://flagcdn.com/w320/${alvoAtual.code}.png`;
+            };
 
-        function render(options) {
-            // Renderiza Dados
-            document.getElementById("flag-img").src = `https://flagcdn.com/w640/${correctTarget.code}.png`;
-            document.getElementById("country-name").innerText = correctTarget.name;
-            document.getElementById("round").innerText = currentRound;
+            feedbackMsg.innerText = "Escolha a capital correta:";
+            feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center";
 
-            // Esconde Feedback
-            document.getElementById("feedback-overlay").classList.add("hidden");
-            document.getElementById("feedback-overlay").classList.remove("flex");
-
-            // Renderiza Botões
-            const grid = document.getElementById("options-grid");
-            grid.innerHTML = "";
-
-            options.forEach((opt, index) => {
-                const btn = document.createElement("button");
-                btn.className = "bg-slate-700/50 hover:bg-slate-700 border border-white/5 hover:border-blue-400 py-3 px-4 rounded-xl font-bold transition text-sm md:text-base text-left flex items-center gap-3 group slide-in";
-                btn.style.animationDelay = `${index * 0.1}s`; // Efeito cascata
-                
-                // Letra da opção (A, B, C, D)
-                const letter = ["A", "B", "C", "D"][index];
-                
+            optionsGrid.innerHTML = '';
+            opcoes.forEach(cidade => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
                 btn.innerHTML = `
-                    <span class="bg-slate-900 text-slate-500 group-hover:text-blue-400 w-6 h-6 flex items-center justify-center rounded text-xs font-bold border border-white/10 transition">${letter}</span>
-                    <span class="flex-1">${opt.capital}</span>
+                    <span class="truncate">${cidade}</span>
+                    <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
                 `;
-                
-                btn.onclick = () => checkAnswer(opt);
-                grid.appendChild(btn);
+                btn.onclick = () => verificarResposta(cidade, btn);
+                optionsGrid.appendChild(btn);
             });
         }
 
-        function checkAnswer(selected) {
-            const overlay = document.getElementById("feedback-overlay");
-            const icon = document.getElementById("feedback-icon");
-            const text = document.getElementById("feedback-text");
-            const sub = document.getElementById("feedback-sub");
+        function verificarResposta(cidadeEscolhida, btnClicado) {
+            const allBtns = optionsGrid.querySelectorAll('button');
+            allBtns.forEach(b => b.disabled = true);
 
-            overlay.classList.remove("hidden");
-            overlay.classList.add("flex");
+            if (cidadeEscolhida === alvoAtual.capital) {
+                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
+                btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
 
-            if (selected.code === correctTarget.code) {
-                // CORRETO
-                score += 100;
-                document.getElementById("score").innerText = score;
-                
-                icon.className = "ph-duotone ph-check-circle text-6xl mb-4 text-green-500";
-                text.innerText = "LOCALIZADO!";
-                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-green-400";
-                sub.innerText = `Capital confirmada: ${correctTarget.capital}`;
-                
-                setTimeout(() => {
-                    currentRound++;
-                    pickQuestion();
-                }, 1200);
+                feedbackMsg.innerText = `✓ Correto! ${alvoAtual.capital} é a capital!`;
+                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse flex items-center justify-center";
 
+                acertos++;
+                if (acertos > recordeMaximo) {
+                    recordeMaximo = acertos;
+                    localStorage.setItem('vg_recorde_capitais', recordeMaximo);
+                    bestScoreVal.innerText = recordeMaximo;
+                }
+
+                atualizarStatusUI();
+
+                if (acertos % 10 === 0 && typeof confetti === 'function') {
+                    confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+                }
+
+                setTimeout(proximaRodada, 500);
             } else {
-                // ERRO
-                score = Math.max(0, score - 50); // Perde pontos mas não fica negativo
-                document.getElementById("score").innerText = score;
+                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
+                btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
 
-                icon.className = "ph-duotone ph-x-circle text-6xl mb-4 text-red-500";
-                text.innerText = "FALHA NA MISSÃO";
-                text.className = "text-2xl font-bold uppercase tracking-widest mb-1 text-red-500";
-                sub.innerText = `A capital correta era: ${correctTarget.capital}`;
+                feedbackMsg.innerText = `✗ Errado! A capital correta é ${alvoAtual.capital}!`;
+                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center";
 
-                setTimeout(() => {
-                    currentRound++;
-                    pickQuestion();
-                }, 2000); // Demora um pouco mais pra ler a resposta certa
+                allBtns.forEach(b => {
+                    if (b.innerText.trim().includes(alvoAtual.capital)) {
+                        b.classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
+                    }
+                });
+
+                vidas--;
+                atualizarStatusUI();
+
+                if (vidas <= 0) {
+                    setTimeout(finalizarGameOver, 1600);
+                } else {
+                    setTimeout(proximaRodada, 1600);
+                }
             }
         }
 
-        startGame();
+        function finalizarGameOver() {
+            stageActive.classList.add('hidden');
+            stageActive.classList.remove('flex');
+            stageGameOver.classList.remove('hidden');
+            stageGameOver.classList.add('flex');
+
+            document.getElementById('last-country-name').innerText = alvoAtual.name;
+            document.getElementById('last-capital-name').innerText = alvoAtual.capital;
+            document.getElementById('final-score').innerText = acertos;
+
+            const perc = ((acertos / totalCapitais) * 100).toFixed(1);
+            document.getElementById('final-porcentagem').innerText = `${perc}% das capitais do mundo dominadas!`;
+
+            let rank = "Turista Perdido";
+            if (acertos >= 80) rank = "Mestre da Geopolítica";
+            else if (acertos >= 50) rank = "Diplomata Sênior";
+            else if (acertos >= 25) rank = "Viajante Cosmopolita";
+            else if (acertos >= 10) rank = "Mochileiro Curioso";
+            document.getElementById('final-rank').innerText = `Rank: ${rank}`;
+        }
+
+        function concluirZeramento() {
+            stageActive.classList.add('hidden');
+            stageActive.classList.remove('flex');
+            stageVictory.classList.remove('hidden');
+            stageVictory.classList.add('flex');
+
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
+            }
+        }
+
+        function compartilharResultadoWhatsApp() {
+            const perc = ((acertos / totalCapitais) * 100).toFixed(0);
+            const texto = `Acertei ${acertos} de 100 capitais do mundo (${perc}% do mapa) no Quiz de Capitais do VitaleGeo! 🌍🏛️\nConsegue me superar? Jogue também:\nhttps://www.vitalegeo.com.br/jogos/capitais/`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        function compartilharVitoriaWhatsApp() {
+            const texto = `🏆 EU ZEREI O DESAFIO DAS CAPITAIS DO MUNDO! Acertei todas as 100 capitais globais no VitaleGeo! 🌍🏛️\nDuvido você conseguir: https://www.vitalegeo.com.br/jogos/capitais/`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+
+        function copiarResultado() {
+            const texto = `Acertei ${acertos} de 100 capitais no Quiz do VitaleGeo! 🌍🏛️ Jogue também: https://www.vitalegeo.com.br/jogos/capitais/`;
+            const btn = document.getElementById('btn-copiar');
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
+                setTimeout(() => { btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar'; }, 2000);
+            });
+        }
+
+        function alternarTelaCheia() {
+            const container = document.getElementById("game-stage-container") || document.documentElement;
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        reiniciarJogo();
     </script>
-                    <footer class="site-footer">
-        <div class="max-w-6xl mx-auto">
-            <div class="site-footer__social">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
-            </div>
-            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
-            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <div class="site-footer__links text-xs mt-4">
-                <a href="/sobre/">Sobre o Projeto</a>
-                <span class="text-slate-700">·</span>
-                <a href="/politica/">Política de Privacidade</a>
-                <span class="text-slate-700">·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
-            </div>
-            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
-
