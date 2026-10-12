@@ -126,60 +126,146 @@ if (typeof module !== 'undefined' && module.exports) {{
     # =========================================================================
     # 4. BUNDLE CLIENTE UNIFICADO DO NAVEGADOR (cerebro-geo.js)
     # =========================================================================
-    js_bundle = f"""/**
+    js_template = """/**
  * CÉREBRO GEOGRÁFICO DO VITALEGEO — BUNDLE CLIENTE GLOBAL
  * Disponível globalmente no navegador em window.CerebroGeo
- * - {len(PAISES)} Nações Soberanas e Territórios
- * - {len(LOCAIS)} Locais Estratégicos e Chokepoints
- * - {len(PERGUNTAS)} Perguntas de Quiz Geopolítico de Alto Nível
+ * - __PAISES_COUNT__ Nações Soberanas e Territórios
+ * - __LOCAIS_COUNT__ Locais Estratégicos e Chokepoints
+ * - __PERGUNTAS_COUNT__ Perguntas de Quiz Geopolítico de Alto Nível
  */
-(function() {{
-    const PAISES = {json.dumps(PAISES, ensure_ascii=False)};
-    const LOCAIS = {json.dumps(LOCAIS, ensure_ascii=False)};
-    const PERGUNTAS = {json.dumps(PERGUNTAS, ensure_ascii=False)};
+(function() {
+    const PAISES = __PAISES__;
+    const LOCAIS = __LOCAIS__;
+    const PERGUNTAS = __PERGUNTAS__;
 
-    window.CerebroGeo = {{
+    window.CerebroGeo = {
         paises: PAISES,
         locais: LOCAIS,
         perguntas: PERGUNTAS,
         
         // MÉTODOS DE BUSCA E CONSULTA
-        obterPaisPorIso2: function(iso2) {{
+        obterPaisPorIso2: function(iso2) {
             if (!iso2) return null;
             return PAISES.find(p => p.iso2.toLowerCase() === iso2.toLowerCase());
-        }},
-        obterPaisPorNome: function(nome) {{
+        },
+        obterPaisPorNome: function(nome) {
             if (!nome) return null;
             const termo = nome.toLowerCase().trim();
             return PAISES.find(p => p.nome.toLowerCase() === termo || p.nome_oficial.toLowerCase().includes(termo));
-        }},
-        obterLocaisPorCategoria: function(cat) {{
+        },
+        obterLocaisPorCategoria: function(cat) {
             if (!cat) return [...LOCAIS];
             return LOCAIS.filter(l => l.categoria.toLowerCase().includes(cat.toLowerCase()));
-        }},
-        obterPerguntasPorCategoria: function(cat) {{
+        },
+        obterPerguntasPorCategoria: function(cat) {
             if (!cat) return [...PERGUNTAS];
             return PERGUNTAS.filter(q => q.categoria.toLowerCase().includes(cat.toLowerCase()));
-        }},
-        obterPerguntasAleatorias: function(qtd = 10, categoria = null) {{
-            let base = categoria ? this.obterPerguntasPorCategoria(categoria) : [...PERGUNTAS];
-            return base.sort(() => 0.5 - Math.random()).slice(0, qtd);
-        }},
-        obterLocaisAleatorios: function(qtd = 5, categoria = null) {{
-            let base = categoria ? this.obterLocaisPorCategoria(categoria) : [...LOCAIS];
-            return base.sort(() => 0.5 - Math.random()).slice(0, qtd);
-        }},
-        obterPaisesAleatorios: function(qtd = 5, continente = null) {{
-            let base = continente ? PAISES.filter(p => p.continente.toLowerCase() === continente.toLowerCase()) : [...PAISES];
-            return base.sort(() => 0.5 - Math.random()).slice(0, qtd);
-        }}
-    }};
+        },
+        // ALGORITMO FISHER-YATES (SEM VIÉS ESTATÍSTICO)
+        embaralhar: function(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        },
 
-    if (typeof module !== 'undefined' && module.exports) {{
+        // MOTOR ANTI-REPETIÇÃO COM MEMÓRIA NO LOCALSTORAGE
+        obterLocaisSemRepeticao: function(qtd = 5, storageKey = 'vitalegeo_locais_vistos') {
+            let vistos = [];
+            let ciclo = 1;
+            try {
+                vistos = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                if (!Array.isArray(vistos)) vistos = [];
+                ciclo = parseInt(localStorage.getItem(storageKey + '_ciclo') || '1', 10);
+            } catch (e) {
+                vistos = [];
+            }
+            let naoVistos = LOCAIS.filter(l => !vistos.includes(l.nome));
+            let cicloRenovado = false;
+            if (naoVistos.length < qtd) {
+                ciclo += 1;
+                vistos = [];
+                naoVistos = [...LOCAIS];
+                cicloRenovado = true;
+                try { localStorage.setItem(storageKey + '_ciclo', ciclo.toString()); } catch(e) {}
+            }
+            const selecionados = this.embaralhar(naoVistos).slice(0, qtd);
+            selecionados.forEach(s => {
+                if (!vistos.includes(s.nome)) vistos.push(s.nome);
+            });
+            try { localStorage.setItem(storageKey, JSON.stringify(vistos)); } catch(e) {}
+            return {
+                locais: selecionados,
+                vistosTotal: vistos.length,
+                acervoTotal: LOCAIS.length,
+                ciclo: ciclo,
+                cicloRenovado: cicloRenovado
+            };
+        },
+
+        obterPerguntasSemRepeticao: function(qtd = 10, storageKey = 'vitalegeo_perguntas_vistas') {
+            let vistas = [];
+            let ciclo = 1;
+            try {
+                vistas = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                if (!Array.isArray(vistas)) vistas = [];
+                ciclo = parseInt(localStorage.getItem(storageKey + '_ciclo') || '1', 10);
+            } catch (e) {
+                vistas = [];
+            }
+            let naoVistas = PERGUNTAS.filter(q => !vistas.includes(q.id));
+            let cicloRenovado = false;
+            if (naoVistas.length < qtd) {
+                ciclo += 1;
+                vistas = [];
+                naoVistas = [...PERGUNTAS];
+                cicloRenovado = true;
+                try { localStorage.setItem(storageKey + '_ciclo', ciclo.toString()); } catch(e) {}
+            }
+            const selecionadas = this.embaralhar(naoVistas).slice(0, qtd);
+            selecionadas.forEach(s => {
+                if (!vistas.includes(s.id)) vistas.push(s.id);
+            });
+            try { localStorage.setItem(storageKey, JSON.stringify(vistas)); } catch(e) {}
+            return {
+                perguntas: selecionadas,
+                vistosTotal: vistas.length,
+                acervoTotal: PERGUNTAS.length,
+                ciclo: ciclo,
+                cicloRenovado: cicloRenovado
+            };
+        },
+
+        obterPerguntasAleatorias: function(qtd = 10, categoria = null) {
+            let base = categoria ? this.obterPerguntasPorCategoria(categoria) : [...PERGUNTAS];
+            return this.embaralhar(base).slice(0, qtd);
+        },
+        obterLocaisAleatorios: function(qtd = 5, categoria = null) {
+            let base = categoria ? this.obterLocaisPorCategoria(categoria) : [...LOCAIS];
+            return this.embaralhar(base).slice(0, qtd);
+        },
+        obterPaisesAleatorios: function(qtd = 5, continente = null) {
+            let base = continente ? PAISES.filter(p => p.continente.toLowerCase() === continente.toLowerCase()) : [...PAISES];
+            return this.embaralhar(base).slice(0, qtd);
+        }
+    };
+
+    if (typeof module !== 'undefined' && module.exports) {
         module.exports = window.CerebroGeo;
-    }}
-}})();
+    }
+})();
 """
+    js_bundle = (
+        js_template
+        .replace("__PAISES_COUNT__", str(len(PAISES)))
+        .replace("__LOCAIS_COUNT__", str(len(LOCAIS)))
+        .replace("__PERGUNTAS_COUNT__", str(len(PERGUNTAS)))
+        .replace("__PAISES__", json.dumps(PAISES, ensure_ascii=False))
+        .replace("__LOCAIS__", json.dumps(LOCAIS, ensure_ascii=False))
+        .replace("__PERGUNTAS__", json.dumps(PERGUNTAS, ensure_ascii=False))
+    )
     caminhos_bundle = [
         "D:\\Dev\\vitale-geo\\public\\assets\\js\\cerebro-geo.js",
         "D:\\Dev\\vitale-geo\\assets\\js\\cerebro-geo.js"

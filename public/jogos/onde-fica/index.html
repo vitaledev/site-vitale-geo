@@ -202,6 +202,12 @@
                                 Chokepoint Estratégico
                             </span>
                             
+                            <!-- Indicador Anti-Repetição no Cache -->
+                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição no seu navegador. Clique para reiniciar o ciclo." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
+                                <i class="ph-bold ph-compass text-xs"></i>
+                                <span id="catalog-progress-text">Carregando acervo...</span>
+                            </div>
+
                             <!-- Dica em Hover / Toque -->
                             <div class="relative group cursor-pointer inline-flex">
                                 <i class="ph-bold ph-info text-slate-400 hover:text-amber-400 text-sm"></i>
@@ -342,9 +348,15 @@
             <h3 class="text-xl sm:text-3xl font-heading font-bold text-white mb-2" id="final-rank-title">
                 Mestre de Cartografia
             </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mb-5 sm:mb-6 max-w-sm mx-auto leading-relaxed" id="final-rank-desc">
+            <p class="text-xs sm:text-sm text-slate-400 mb-3 sm:mb-4 max-w-sm mx-auto leading-relaxed" id="final-rank-desc">
                 Sua precisão geoespacial demonstra profundo domínio sobre os nós estratégicos e anomalias da Terra.
             </p>
+
+            <!-- Badge de Progresso sem Repetição -->
+            <div class="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400" id="final-cache-progress">
+                <i class="ph-bold ph-compass"></i>
+                <span id="final-cache-text">Explorando novos locais a cada partida!</span>
+            </div>
 
             <!-- Placar Central -->
             <div class="bg-[#181b24] border border-white/10 rounded-2xl p-3 sm:p-4 mb-5 sm:mb-6 flex items-center justify-around">
@@ -430,10 +442,85 @@
             }
         ];
 
-        // Base consolidada a partir do CerebroGeo Mestre
-        const LOCAIS_ATIVOS = (window.CerebroGeo && window.CerebroGeo.locais && window.CerebroGeo.locais.length > 0)
-            ? window.CerebroGeo.locais
-            : ((typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) ? LOCAIS_ONDE_FICA : LOCAIS_FALLBACK);
+        // BASE DE DADOS CONSOLIDADA
+        function obterBaseLocais() {
+            if (window.CerebroGeo && window.CerebroGeo.locais && window.CerebroGeo.locais.length > 0) {
+                return window.CerebroGeo.locais;
+            }
+            if (typeof LOCAIS_ONDE_FICA !== 'undefined' && LOCAIS_ONDE_FICA.length > 0) {
+                return LOCAIS_ONDE_FICA;
+            }
+            return LOCAIS_FALLBACK;
+        }
+
+        // MOTOR ANTI-REPETIÇÃO COM MEMÓRIA NO LOCALSTORAGE
+        const STORAGE_KEY_VISTOS = 'vitalegeo_onde_fica_historico_vistos';
+        const STORAGE_KEY_CICLO = 'vitalegeo_onde_fica_ciclo';
+
+        function sortearLocaisSemRepeticao(quantidade = 5) {
+            const baseCompleta = obterBaseLocais();
+            let vistos = [];
+            let ciclo = 1;
+            try {
+                vistos = JSON.parse(localStorage.getItem(STORAGE_KEY_VISTOS) || '[]');
+                if (!Array.isArray(vistos)) vistos = [];
+                ciclo = parseInt(localStorage.getItem(STORAGE_KEY_CICLO) || '1', 10);
+            } catch (e) {
+                vistos = [];
+                ciclo = 1;
+            }
+
+            // Filtra estritamente os locais que o jogador AINDA NÃO VIU neste ciclo
+            let naoVistos = baseCompleta.filter(l => !vistos.includes(l.nome));
+            let cicloRenovado = false;
+
+            // Se o acervo de locais não vistos estiver esgotado (< quantidade), renova o ciclo!
+            if (naoVistos.length < quantidade) {
+                ciclo += 1;
+                vistos = [];
+                naoVistos = [...baseCompleta];
+                cicloRenovado = true;
+                try {
+                    localStorage.setItem(STORAGE_KEY_CICLO, ciclo.toString());
+                } catch (e) {}
+            }
+
+            // Algoritmo Fisher-Yates de embaralhamento sem viés estatístico
+            const copia = [...naoVistos];
+            for (let i = copia.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+
+            const selecionados = copia.slice(0, quantidade);
+
+            // Grava os novos locais no histórico de vistos para nunca repetir em partidas seguintes
+            selecionados.forEach(s => {
+                if (!vistos.includes(s.nome)) {
+                    vistos.push(s.nome);
+                }
+            });
+
+            try {
+                localStorage.setItem(STORAGE_KEY_VISTOS, JSON.stringify(vistos));
+            } catch (e) {}
+
+            return {
+                locais: selecionados,
+                vistosTotal: vistos.length,
+                acervoTotal: baseCompleta.length,
+                ciclo: ciclo,
+                cicloRenovado: cicloRenovado
+            };
+        }
+
+        function reiniciarHistoricoCache() {
+            try {
+                localStorage.removeItem(STORAGE_KEY_VISTOS);
+                localStorage.removeItem(STORAGE_KEY_CICLO);
+            } catch (e) {}
+            iniciarJogo();
+        }
 
         // ESTADO GLOBAL DO JOGO
         let partidaLocais = [];
@@ -457,21 +544,28 @@
             osm: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
         };
 
-        // INICIALIZAÇÃO DO JOGO
+        // INICIALIZAÇÃO DO JOGO COM ANTI-REPETIÇÃO
         function iniciarJogo() {
-            // Sorteia 5 locais aleatórios da base ampla de 110+ locais
-            const embaralhado = [...LOCAIS_ATIVOS].sort(() => 0.5 - Math.random());
-            partidaLocais = embaralhado.slice(0, 5);
+            const selecao = sortearLocaisSemRepeticao(5);
+            partidaLocais = selecao.locais;
             rodadaAtualIndex = 0;
             pontuacaoTotal = 0;
             historicoRodadas = [];
             atualizarPlacarInterface();
+            atualizarBadgeProgresso(selecao);
 
             if (!map) {
                 inicializarMapa();
             }
 
             carregarRodada(rodadaAtualIndex);
+        }
+
+        function atualizarBadgeProgresso(dados) {
+            const el = document.getElementById('catalog-progress-text');
+            if (el) {
+                el.innerText = `${dados.vistosTotal} / ${dados.acervoTotal} explorados (Ciclo ${dados.ciclo})`;
+            }
         }
 
         // INICIALIZAÇÃO DO MAPA
@@ -736,6 +830,19 @@
                     </div>
                 </div>
             `).join('');
+
+            // Atualiza telemetria de progresso no modal final
+            const finalCacheEl = document.getElementById('final-cache-text');
+            if (finalCacheEl) {
+                let vistos = [];
+                let ciclo = 1;
+                try {
+                    vistos = JSON.parse(localStorage.getItem(STORAGE_KEY_VISTOS) || '[]');
+                    ciclo = localStorage.getItem(STORAGE_KEY_CICLO) || '1';
+                } catch (e) {}
+                const total = obterBaseLocais().length;
+                finalCacheEl.innerHTML = `🌍 Você já explorou <strong>${vistos.length} de ${total}</strong> locais da Terra sem repetição (Ciclo ${ciclo})!`;
+            }
 
             document.getElementById('modal-game-over').classList.remove('hidden');
         }
