@@ -3,6 +3,166 @@
 
 const blogPosts = [
     {
+        titulo: "Vennbahn: A Linha de Trem Belga Que Isolou 5 Pedaços de Território Alemão",
+        categoria: "Fronteiras",
+        data: "16 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Vennbahn_Karte.svg/1280px-Vennbahn_Karte.svg.png",
+        link: "vennbahn-enclaves-belgas/",
+        resumo: "O Tratado de Versalhes entregou o leito de uma ferrovia à Bélgica, gerando enclaves alemães separados por poucos metros de trilhos na Europa Central."
+    },
+    {
+        titulo: "O Menor Gigante Geopolítico: Por Que as Superpotências Disputam o Djibuti?",
+        categoria: "Geopolítica",
+        data: "16 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Djibouti_%28orthographic_projection%29.svg/1280px-Djibouti_%28orthographic_projection%29.svg.png",
+        link: "djibuti-bases-militares/",
+        resumo: "EUA, China, França, Japão e Itália dividem poucos quilômetros quadrados no Djibuti, a sentinela armada do estreito de Bab el-Mandeb."
+    },
+    {
+        titulo: "A Biblioteca Cortada ao Meio: Onde EUA e Canadá se Cruzam na Sala de Leitura",
+        categoria: "Curiosidades",
+        data: "16 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Haskell_Free_Library_and_Opera_House_2008.jpg/1280px-Haskell_Free_Library_and_Opera_House_2008.jpg",
+        link: "derby-line-biblioteca-fronteira/",
+        resumo: "Na Haskell Free Library, a linha divisória internacional passa pelo chão do palco e entre as estantes de livros em pleno Paralelo 45."
+    },
+    {
+        titulo: "Por Que o Canadá Tem Mais Lagos Que o Resto do Mundo Inteiro Junto?",
+        categoria: "Curiosidades",
+        data: "16 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Canada_%28orthographic_projection%29.svg/1280px-Canada_%28orthographic_projection%29.svg.png",
+        link: "canada-pais-dos-lagos/",
+        resumo: "O Canadá abriga mais de 60% dos lagos de água doce do planeta. Entenda a herança glacial do Escudo Canadense e seu peso geoestratégico global."
+    },
+    {
+        titulo: "As Duas Capitais do Saara Ocidental: Por Que uma Cidade Fica Atrás de um Muro de 2.700 km?",
+        categoria: "Fronteiras",
+        data: "16 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Western_Sahara_walls_en.svg/1280px-Western_Sahara_walls_en.svg.png",
+        link: "capitais-saara-ocidental-berm/",
+        resumo: "Separadas pelo Berm marroquino, El Aaiún e Tifariti simbolizam o conflito entre o controle administrativo de Marrocos e a Frente Polisário no deserto."
+    },
+    {
+        titulo: "Túnel do Estreito de Bering: A Megaconexão de 100 km Que Uniria a Ásia às Américas",
+        categoria: "Geopolítica",
+        data: "16 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bering_Strait.jpeg/1280px-Bering_Strait.jpeg",
+        link: "estreito-de-bering-tunel/",
+        resumo: "Apenas 82 km separam a Sibéria do Alasca. Entenda a engenharia, os custos astronômicos e os entraves geopolíticos de conectar dois mundos por trilhos."
+    },
+    {
+        titulo: "O Triângulo de Ilemi: O Pedaço Esquecido da África Que Três Países Reclamam",
+        categoria: "Fronteiras",
+        data: "16 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Ilemi_triangle_map.png/1280px-Ilemi_triangle_map.png",
+        link: "triangulo-de-ilemi/",
+        resumo: "Uma área de 14.000 km² no Chifre da África disputada por Quênia, Sudão do Sul e Etiópia desde as demarcações britânicas imprecisas do século XX."
+    },
+    {
+        titulo: "A Geoeconomia da Noruega: Como o Petróleo Criou o Maior Fundo Soberano da Terra",
+        categoria: "Geopolítica",
+        data: "16 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Norway_%28orthographic_projection%29.svg/1280px-Norway_%28orthographic_projection%29.svg.png",
+        link: "geoeconomia-da-noruega/",
+        resumo: "Ao descobrir óleo no Mar do Norte em 1969, Oslo evitou a 'doença holandesa' e ergueu um fundo de US$ 1,6 trilhão que detém 1,5% de todas as ações do planeta."
+    },
+    {
+        titulo: "A Geopolítica da Turquia: A Sentinela dos Estreitos Entre o Oriente e o Ocidente",
+        categoria: "Geopolítica",
+        data: "16 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Turkey_%28orthographic_projection%29.svg/1280px-Turkey_%28orthographic_projection%29.svg.png",
+        link: "geopolitica-da-turquia/",
+        resumo: "Controlando o Bósforo e os Dardanelos pelo Tratado de Montreux, Ancara opera como o pivô eurasiático indispensável entre a OTAN, o Cáucaso e o Oriente Médio."
+    },
+    {
+        titulo: "A História Completa da Colômbia: De Eldorado e Grã-Colômbia ao País dos Três Andes",
+        categoria: "História",
+        data: "16 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Colombia_%28orthographic_projection%29.svg/1280px-Colombia_%28orthographic_projection%29.svg.png",
+        link: "historia-da-colombia/",
+        resumo: "Conheça a trajetória épica da Colômbia: a lenda de Eldorado, as guerras de Bolívar, a perda do Panamá e a geografia montanhosa que moldou sua identidade."
+    },
+    {
+        titulo: "A Fronteira Mais Reta do Mundo: Os 1.000 km do Meridiano 25 Entre Egito e Líbia",
+        categoria: "Fronteiras",
+        data: "15 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Egypt_Libya_Border.jpg/1280px-Egypt_Libya_Border.jpg",
+        link: "fronteira-egito-libia-meridiano-25/",
+        resumo: "Desenhada com régua em conferências coloniais entre britânicos e italianos, a linha do Meridiano 25 rasga o Saara sem uma curva por mil quilômetros."
+    },
+    {
+        titulo: "O Lago Tanganica: O Segundo Mais Fundo do Mundo Onde 4 Países Dividem uma Fenda",
+        categoria: "Geopolítica",
+        data: "15 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg",
+        link: "lago-tanganica-fronteiras/",
+        resumo: "Com 1.470 metros de profundidade no Rift Africano, o Lago Tanganica divide 4 nações e guarda 18% da água doce de superfície do planeta."
+    },
+    {
+        titulo: "O Enclave de Llívia: A Ilha de Solo Espanhol Cercada pela França nos Pirineus",
+        categoria: "Fronteiras",
+        data: "15 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Llivia_aerial_view.jpg/1280px-Llivia_aerial_view.jpg",
+        link: "llivia-enclave-espanhol/",
+        resumo: "No Tratado dos Pirineus de 1659, a Espanha cedeu 33 vilarejos à França. Llívia foi mantida por Madri por ser classificada como cidade e virou um enclave."
+    },
+    {
+        titulo: "A Represa das Três Gargantas: Como a Megaconstrução da China Desacelerou a Terra",
+        categoria: "Curiosidades",
+        data: "15 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg",
+        link: "represa-tres-gargantas-impacto/",
+        resumo: "Com 39 trilhões de quilos de água represados no rio Yangtze, a megaconstrução chinesa deslocou a massa planetária e alongou o dia terrestre."
+    },
+    {
+        titulo: "Por que a Bolívia Mantém uma Marinha de Guerra Sem Ter Acesso ao Mar?",
+        categoria: "Geopolítica",
+        data: "15 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Armada_Boliviana_Titicaca.jpg/1280px-Armada_Boliviana_Titicaca.jpg",
+        link: "bolivia-marinha-sem-mar/",
+        resumo: "Após perder 400 km de litoral para o Chile na Guerra do Pacífico (1879), a Bolívia preserva 5.000 marinheiros no Titicaca e luta por sua saída soberana ao mar."
+    },
+    {
+        titulo: "A Ilha de Hans: A Guerra do Uísque Que Terminou em Uma Fronteira de 1,2 km",
+        categoria: "Fronteiras",
+        data: "15 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hans_Island.jpg/1280px-Hans_Island.jpg",
+        link: "divisao-da-ilha-hans/",
+        resumo: "Depois de 49 anos de Guerra do Uísque, Canadá e Dinamarca assinaram a partilha de uma rocha no Ártico, criando a terceira fronteira terrestre do Canadá."
+    },
+    {
+        titulo: "Svalbard: O Arquipélago no Ártico Onde Qualquer Pessoa Pode Morar Sem Visto",
+        categoria: "Curiosidades",
+        data: "15 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Longyearbyen_2011.jpg/1280px-Longyearbyen_2011.jpg",
+        link: "svalbard-tratado-artico/",
+        resumo: "Sob o Tratado de 1920, cidadãos de mais de 40 países podem morar nas ilhas norueguesas sem visto, além do território abrigar o Cofre Global de Sementes."
+    },
+    {
+        titulo: "O Corredor de Wakhan: O Dedo de 350 km do Afeganistão que Toca a China",
+        categoria: "Fronteiras",
+        data: "15 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wakhan_corridor.jpg/1280px-Wakhan_corridor.jpg",
+        link: "corredor-de-wakhan/",
+        resumo: "Criado no Grande Jogo como zona tampão entre impérios britânico e russo, esse corredor montanhoso tem o maior salto de fuso horário do mundo (+3h30)."
+    },
+    {
+        titulo: "A Linha Internacional de Data e Kiribati: O País Que 'Pulou' um Dia Inteiro",
+        categoria: "Curiosidades",
+        data: "15 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/International_Date_Line.png/1280px-International_Date_Line.png",
+        link: "kiribati-fuso-horario/",
+        resumo: "Para não ter o território dividido em dias diferentes pela Linha de Data, Kiribati fez uma curva de 3.000 km no fuso em 1995 e virou o primeiro a ver o sol."
+    },
+    {
+        titulo: "Gibraltar: Por que 6 km² de Rocha no Sul da Espanha Pertencem ao Reino Unido?",
+        categoria: "Geopolítica",
+        data: "15 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rock_of_Gibraltar_from_Spain.jpg/1280px-Rock_of_Gibraltar_from_Spain.jpg",
+        link: "gibraltar-reino-unido/",
+        resumo: "Cravado na entrada do Mediterrâneo, o rochedo de Gibraltar desafia a Espanha desde o Tratado de Utrecht de 1713. Entenda seu aeroporto que corta uma avenida."
+    },
+    {
         titulo: "Por que 80% do Petróleo da Ásia Pode Ser Bloqueado no Estreito de Malaca?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 23:00",
