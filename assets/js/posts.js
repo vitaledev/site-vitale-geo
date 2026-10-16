@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha da Europa na Ilha de Märket?",
+        categoria: "Fronteiras",
+        data: "17 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg/1280px-M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg",
+        link: "ilha-market-fronteira-ziguezague/",
+        resumo: "Um erro de cálculo russo em 1885 colocou um farol em território sueco. Para resolver a gafe sem mexer nas áreas dos países, diplomatas criaram um zigue-zague surreal."
+    },
+    {
+        titulo: "Por Que Submarinos Nucleares Preferem Cruzar os Estreitos de Sunda e Lombok em Vez de Malaca?",
+        categoria: "Geopolítica",
+        data: "17 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Selat_Sunda_2014_%283%29.jpg/1280px-Selat_Sunda_2014_%283%29.jpg",
+        link: "estreitos-sunda-lombok/",
+        resumo: "Enquanto Malaca sofre com águas rasas e risco de engarrafamento, as fossas profundas de Lombok e Sunda são as autoestradas secretas de submarinos e superpetroleiros."
+    },
+    {
+        titulo: "Por Que a Mongólia Tem o Menor Povoamento do Planeta Espalhado em Três Espanhas de Terra?",
+        categoria: "Curiosidades",
+        data: "17 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mongolia_%28orthographic_projection%29.svg/1280px-Mongolia_%28orthographic_projection%29.svg.png",
+        link: "mongolia-vazio-demografico/",
+        resumo: "Com 1,56 milhão de km² e apenas 3,4 milhões de habitantes, o país dos cavaleiros nômades é a nação soberana mais vazia do mundo entre a Rússia e a China."
+    },
+    {
+        titulo: "Por Que a Maior Fronteira Terrestre da França Fica na Floresta Amazônica com o Brasil?",
+        categoria: "Fronteiras",
+        data: "17 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Pont_depuis_l%27_Oyapock.jpg/1280px-Pont_depuis_l%27_Oyapock.jpg",
+        link: "fronteira-franca-brasil-oiapoque/",
+        resumo: "Com 730 km ao longo do Amapá e do Rio Oiapoque, a França compartilha com o Brasil sua mais extensa fronteira contínua, superando vizinhos europeus."
+    },
+    {
+        titulo: "Por Que 18 Cabos Submarinos da Internet Mundial Cruzam a Mesma Praia no Brasil?",
+        categoria: "Geopolítica",
+        data: "17 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/2008_submarine_cable_disruption_map.jpg",
+        link: "cabos-submarinos-fortaleza/",
+        resumo: "A Praia do Futuro, em Fortaleza, é o maior entroncamento digital da América Latina, conectando o continente aos EUA, Europa e África sob ameaça de apagão."
+    },
+    {
+        titulo: "Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entre Portugal e Espanha?",
+        categoria: "Fronteiras",
+        data: "17 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg/1280px-Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg",
+        link: "couto-misto-microestado/",
+        resumo: "Durante sete séculos, três aldeias entre a Galiza e Trás-os-Montes operaram como território soberano, sem pagar tributos a Madri ou Lisboa até 1864."
+    },
+    {
+        titulo: "Por Que o Canal de Kiel é a Rota Marítima Artificial Mais Movimentada do Planeta?",
+        categoria: "Curiosidades",
+        data: "17 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg/1280px-Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg",
+        link: "canal-de-kiel-alemanha/",
+        resumo: "Cruzando a península da Jutlândia por 98 km, o Nord-Ostsee-Kanal economiza 460 km ao redor da Dinamarca e movimenta mais de 30.000 cargueiros por ano."
+    },
+    {
+        titulo: "Como o Cazaquistão Monopolizou Quase Metade de Todo o Urânio do Planeta?",
+        categoria: "Geopolítica",
+        data: "17 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kazakhstan_%28orthographic_projection%29.svg/1280px-Kazakhstan_%28orthographic_projection%29.svg.png",
+        link: "geoeconomia-do-cazaquistao/",
+        resumo: "Com 43% da produção mundial de urânio e posição chave no Corredor Médio, a gigante das estepes navega com maestria entre a Rússia, a China e o Ocidente."
+    },
+    {
+        titulo: "Por Que a Polônia Está Se Armando para Ter o Maior Exército Terrestre da Europa?",
+        categoria: "Geopolítica",
+        data: "17 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Poland_%28orthographic_projection%29.svg/1280px-Poland_%28orthographic_projection%29.svg.png",
+        link: "geopolitica-da-polonia/",
+        resumo: "Na planície indefesa entre a Alemanha e a Rússia, Varsóvia investe mais de 4% do PIB em defesa para se tornar o escudo inexpugnável do flanco leste da OTAN."
+    },
+    {
+        titulo: "Como o México Perdeu Mais de Metade de Seu Território para os Estados Unidos?",
+        categoria: "História",
+        data: "17 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mexico_%28orthographic_projection%29.svg/1280px-Mexico_%28orthographic_projection%29.svg.png",
+        link: "historia-do-mexico/",
+        resumo: "Do esplendor de Tenochtitlán à perda de 2 milhões de km² no Tratado de Guadalupe Hidalgo em 1848, entenda como as fronteiras mexicanas foram forjadas."
+    },
+    {
         titulo: "Vennbahn: A Linha de Trem Belga Que Isolou 5 Pedaços de Território Alemão",
         categoria: "Fronteiras",
         data: "16 Out 2026 - 22:30",

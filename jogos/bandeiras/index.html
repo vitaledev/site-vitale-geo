@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#07080d]">
+<html lang="pt-br" class="bg-[#090a0f]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/bandeiras/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Desafio das Bandeiras do Mundo | Arcade VitaleGeo</title>
+    <title>Desafio Mundial das Bandeiras (198 Nações) | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Você consegue identificar todas as bandeiras do mundo? Jogue o desafio completo com todos os países do planeta e tente zerar o jogo!">
-    <meta name="keywords" content="todas as bandeiras do mundo, quiz de bandeiras, zerar jogo de geografia, países do mundo, vitalegeo">
+    <meta name="description" content="Você consegue identificar todas as 198 bandeiras do mundo? Jogue no Modo Sobrevivência ou Blitz 60s, filtre por continente, faça combos e baixe seu Scorecard!">
+    <meta name="keywords" content="todas as bandeiras do mundo, quiz de bandeiras, vexilologia, jogo de geografia, países do mundo, vitalegeo arcade">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Desafio das Bandeiras do Mundo | VitaleGeo">
-    <meta property="og:description" content="Você consegue zerar todas as bandeiras do planeta Terra? Jogue agora e teste seus conhecimentos!">
+    <meta property="og:title" content="Desafio Mundial das Bandeiras (198 Nações) | VitaleGeo">
+    <meta property="og:description" content="Identifique as 198 bandeiras do planeta nos modos Sobrevivência e Blitz 60s. Consegue zerar o mapa?">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/bandeiras/">
-    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/bandeiras.jpg">
 
     <!-- Google AdSense Oficial VitaleGeo -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
@@ -30,6 +30,9 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -38,6 +41,13 @@
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
                     }
                 }
             }
@@ -45,49 +55,75 @@
     </script>
 
     <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
         .flag-frame {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
         .option-btn {
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 52px;
         }
-        .option-btn:hover {
+        .option-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
         }
-        .option-btn:active {
+        .option-btn:active:not(:disabled) {
             transform: scale(0.98);
+        }
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes screen-shake-damage {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-5px, 3px); }
+            40% { transform: translate(5px, -3px); }
+            60% { transform: translate(-3px, -2px); }
+            80% { transform: translate(3px, 2px); }
+        }
+        .shake-damage {
+            animation: screen-shake-damage 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between">
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <!-- BARRA DEDICADA DO ARCADE (Ambiente isolado do site) -->
-    <header class="arcade-header">
-        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
-            <i class="ph-bold ph-arrow-left"></i>
-            <span>Central de Jogos</span>
-        </a>
+    <!-- HEADER DO ARCADE -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Central de Jogos</span>
+            </a>
 
-        <div class="flex items-center gap-2">
-            <i class="ph-fill ph-flag-banner text-amber-400 text-lg"></i>
-            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
-                Desafio Mundial: <span class="text-amber-400">Todas as Bandeiras</span>
-            </span>
-        </div>
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-flag-banner text-amber-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    Desafio Mundial: <span class="text-amber-400">Todas as Bandeiras</span>
+                </h1>
+            </div>
 
-        <div class="arcade-header__actions">
-            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
-                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
-                <span class="hidden sm:inline">Tela Cheia</span>
-            </button>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Escolher Modo e Continente">
+                    <i class="ph-bold ph-sliders-horizontal"></i>
+                    <span id="header-mode-label" class="hidden sm:inline">Mundo (198)</span>
+                </button>
+                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ativar/Desativar Efeitos Sonoros" aria-label="Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
     <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
 
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
         <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
             <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
@@ -101,382 +137,365 @@
             </div>
         </aside>
 
-        <!-- PALCO CENTRAL AMPLIADO (The Grand Stage) -->
-        <main class="arcade-stage-wrapper w-full max-w-4xl px-2 sm:px-4 py-2 sm:py-4 flex-1 flex flex-col justify-center" id="game-stage-container">
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-4xl px-1 sm:px-3 py-1 sm:py-2 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-        <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO GLOBAL -->
-        <div class="w-full mb-3 flex flex-col gap-2">
-            <div class="flex items-center justify-between text-xs font-mono">
-                <!-- Vidas / Tentativas -->
-                <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
-                    <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
-                    </span>
+            <!-- BARRA DE TELEMETRIA E FILTROS RÁPIDOS -->
+            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 mb-3 shadow-xl">
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono mb-2.5">
+                    <!-- Vidas ou Cronômetro Blitz -->
+                    <div id="status-left-pill" class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <span class="text-slate-400 text-[11px] uppercase mr-1" id="status-left-label">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                        </span>
+                        <span id="timer-val" class="hidden font-bold text-amber-400 text-sm">60s</span>
+                    </div>
+
+                    <!-- Progresso -->
+                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-bold ph-flag text-amber-400"></i>
+                        <span class="text-slate-300">Domínio: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">198</span></span>
+                    </div>
+
+                    <!-- Combo Streak -->
+                    <div id="streak-pill" class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-fire text-amber-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Sequência: <strong id="streak-val" class="text-white">0</strong></span>
+                    </div>
+
+                    <!-- Recorde -->
+                    <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-trophy text-emerald-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                    </div>
                 </div>
 
-                <!-- Progresso / Total de Bandeiras -->
-                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-bold ph-globe-hemisphere-east text-amber-400"></i>
-                    <span class="text-slate-300">Conquistadas: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">196</span></span>
-                </div>
-
-                <!-- Recorde Máximo Salvo -->
-                <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-fill ph-trophy text-emerald-400"></i>
-                    <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                <!-- Barra de Progresso -->
+                <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-300 w-0"></div>
                 </div>
             </div>
 
-            <!-- Barra de Progresso Visual do Planeta -->
-            <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
-                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
-            </div>
-        </div>
-
-        <!-- O PALCO DO JOGO (TELA DEDICADA AMPLIADA) -->
-        <div id="stage-active" class="arcade-stage p-6 sm:p-10 w-full flex flex-col items-center justify-between text-center min-h-[540px] relative">
-            
-            <!-- Bandeira Central Ampliada -->
-            <div class="my-auto flex flex-col items-center w-full">
-                <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-1.5">
-                    <i class="ph-bold ph-crosshair text-amber-400"></i> Qual país tem esta bandeira?
-                </span>
+            <!-- PALCO ATIVO -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full flex flex-col items-center justify-between text-center min-h-[520px] relative shadow-2xl">
                 
-                <div class="flag-frame w-72 h-44 sm:w-96 sm:h-56 bg-slate-950 rounded-2xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-1.5 bg-gradient-to-b from-white/10 to-transparent">
-                    <img id="flag-img" src="" class="w-full h-full object-cover rounded-xl shadow-2xl transition-transform duration-300" alt="Bandeira do País">
+                <!-- Badge de Continente & Dica -->
+                <div class="w-full flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                        <i class="ph-bold ph-globe-hemisphere-west text-amber-400"></i>
+                        <span id="region-badge">Mundo Inteiro</span>
+                    </span>
+                    <button onclick="revelarDica()" id="btn-hint" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/20 transition text-[11px]">
+                        <i class="ph-bold ph-lightbulb"></i> Dica (Capital / Região)
+                    </button>
                 </div>
 
-                <!-- Feedback de Acerto/Erro -->
-                <div id="feedback-msg" class="h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center">
-                    Selecione uma das 4 opções abaixo:
+                <!-- Bandeira Central -->
+                <div class="my-auto flex flex-col items-center w-full py-2">
+                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-1.5">
+                        <i class="ph-bold ph-crosshair text-amber-400"></i> De qual nação soberana é esta bandeira?
+                    </span>
+                    
+                    <div class="flag-frame w-64 h-40 sm:w-88 sm:h-56 bg-slate-950 rounded-2xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-2 bg-gradient-to-b from-white/10 to-transparent">
+                        <img id="flag-img" src="" class="w-full h-full object-contain rounded-xl transition-transform duration-300" alt="Bandeira misteriosa">
+                    </div>
+
+                    <!-- Caixa de Dica Opcional -->
+                    <div id="hint-box" class="hidden mt-3 px-3.5 py-1.5 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs font-mono"></div>
+
+                    <!-- Feedback e Curiosidade Geográfica -->
+                    <div id="feedback-msg" class="min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2">
+                        Selecione a alternativa correta (ou teclas 1 a 4):
+                    </div>
+
+                    <div id="fact-drawer" class="hidden mt-2 max-w-xl w-full bg-slate-900/90 border border-white/10 rounded-xl p-3 text-left text-xs text-slate-300 leading-relaxed">
+                        <div class="flex items-center justify-between text-[11px] font-mono text-amber-400 uppercase mb-1">
+                            <span id="fact-header"><i class="ph-bold ph-book-open"></i> Dossiê Vexilológico & Territorial</span>
+                            <span id="fact-capital" class="text-emerald-400"></span>
+                        </div>
+                        <p id="fact-text" class="text-slate-300"></p>
+                    </div>
+                </div>
+
+                <!-- Grade de 4 Alternativas -->
+                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-3"></div>
+
+            </div>
+
+            <!-- TELA DE GAME OVER -->
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
+                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-3">
+                    <i class="ph-bold ph-flag-banner"></i>
+                </div>
+                
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1" id="gameover-kicker">Fim da Rodada</span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2" id="gameover-title">Suas Vidas Acabaram!</h2>
+                
+                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-4">
+                    A última bandeira pertencia a <strong id="last-correct-country" class="text-amber-400">--</strong>.
+                </p>
+
+                <!-- Último Fato -->
+                <div id="gameover-fact-box" class="bg-slate-900/70 border border-white/10 rounded-xl p-3.5 max-w-md w-full mb-5 text-left text-xs text-slate-300">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">Arquivo de Inteligência:</span>
+                    <p id="gameover-fact-text">--</p>
+                </div>
+
+                <!-- Placar -->
+                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
+                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Bandeiras Identificadas</span>
+                    <div class="text-4xl sm:text-5xl font-heading font-black text-amber-400 mb-1">
+                        <span id="final-score">0</span> <span class="text-lg text-slate-400 font-normal">/ <span id="final-total">198</span></span>
+                    </div>
+                    <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-2">0% do catálogo dominado</p>
+                    <div class="flex items-center justify-center gap-2 flex-wrap">
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200" id="final-rank">
+                            Rank: Observador
+                        </span>
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300" id="final-streak">
+                            Maior Sequência: 0
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ações e Compartilhamento -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 w-full max-w-md">
+                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[180px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5" title="Baixar Card de Pontuação em PNG para Stories">
+                        <i class="ph-bold ph-download-simple text-base"></i> Card PNG
+                    </button>
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="ph-bold ph-copy text-base"></i> Copiar
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-1 shadow-lg shadow-amber-400/20">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
+                    </button>
                 </div>
             </div>
 
-            <!-- Grade de Alternativas (4 Botões Ampliados e Confortáveis) -->
-            <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-4">
-                <!-- Preenchido via JavaScript -->
-            </div>
-
-        </div>
-
-        <!-- TELA DE FIM DE RODADA / GAME OVER (QUANDO AS VIDAS ACABAM) -->
-        <div id="stage-gameover" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in fade-in duration-300">
-            <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
-                <i class="ph-bold ph-flag"></i>
-            </div>
-            
-            <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim da Rodada!</span>
-            <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
-            
-            <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
-                A última bandeira era da <strong id="last-correct-country" class="text-white">--</strong>.
-            </p>
-
-            <!-- Placar de Conquista -->
-            <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-6 max-w-md w-full mb-8 shadow-xl">
-                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Bandeiras Conquistadas</span>
-                <div class="text-5xl sm:text-6xl font-heading font-black text-amber-400 mb-2">
-                    <span id="final-score">0</span> <span class="text-xl text-slate-400 font-normal">/ 196</span>
+            <!-- TELA DE VITÓRIA SUPREMA -->
+            <div id="stage-victory" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
+                <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+                    <i class="ph-fill ph-trophy"></i>
                 </div>
-                <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-3">0% do planeta Terra dominado</p>
-                <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300" id="final-rank">
-                    Rank: Turista Curioso
+
+                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA LENDÁRIA!</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-3">DOMÍNIO VEXILOLÓGICO TOTAL!</h2>
+                
+                <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
+                    Você identificou perfeitamente todas as <strong id="victory-total-text" class="text-amber-400">198 bandeiras</strong> selecionadas. Seu domínio visual das soberanias mundiais é absoluto!
+                </p>
+
+                <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-6 shadow-2xl">
+                    <span class="text-xs font-mono uppercase text-slate-300">Score Máximo Absoluto</span>
+                    <div class="text-4xl sm:text-5xl font-black text-amber-400 my-1" id="victory-score-box">198 / 198 (100%)</div>
+                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Rank SSS: Mestre da Vexilologia</span>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharVitoriaWhatsApp()" class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/40 text-amber-300 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i> Baixar Card PNG
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Outro Modo
+                    </button>
                 </div>
             </div>
 
-            <!-- Botões de Ação e Compartilhamento Viral -->
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
-                </button>
-                <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition flex items-center gap-2">
-                    <i class="ph-bold ph-copy text-base"></i> Copiar
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-2 shadow-lg shadow-amber-400/20">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
-                </button>
-            </div>
-        </div>
+            <!-- BANNER INFERIOR -->
+            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
 
-        <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR ZERA TODAS AS 196 BANDEIRAS) -->
-        <div id="stage-victory" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in zoom-in duration-500">
-            <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
-                <i class="ph-fill ph-trophy"></i>
-            </div>
+        </main>
 
-            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA LENDÁRIA!</span>
-            <h2 class="text-3xl sm:text-6xl font-heading font-black text-white mb-3">VOCÊ ZEROU O MUNDO!</h2>
-            
-            <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
-                Incrível! Você acertou com sucesso <strong class="text-amber-400">todas as 196 bandeiras</strong> do planeta Terra sem errar. Você é oficialmente um Mestre Supremo da Geografia Mundial!
-            </p>
-
-            <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-8 shadow-2xl">
-                <span class="text-xs font-mono uppercase text-slate-400">Score Máximo Absoluto</span>
-                <div class="text-5xl font-black text-amber-400 my-1">196 / 196 (100%)</div>
-                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">★ Mestre da Vexilologia da Terra ★</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente do Início
-                </button>
-            </div>
-        </div>
-
-        <!-- BANNER DE ANÚNCIO INFERIOR (RESPONSIVO PARA MOBILE E DESKTOP) -->
-        <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
-            <div class="w-full min-h-[90px] flex items-center justify-center">
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:inline-block;width:160px;height:600px"
                      data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-ad-slot="5140105675"></ins>
                 <script>
                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
                 </script>
             </div>
-        </section>
+        </aside>
+    </div>
 
-    </main>
+    <!-- MODAL DE CONFIGURAÇÃO DE MODO E CONTINENTE -->
+    <div id="modal-modos" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#11131a] border border-white/15 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-sliders-horizontal text-amber-400 text-xl"></i>
+                    <h3 class="font-heading font-bold text-lg text-white">Configurar Missão de Bandeiras</h3>
+                </div>
+                <button onclick="fecharModalModos()" class="text-slate-400 hover:text-white p-1">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
 
-    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-        <div class="w-full flex-1 flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-6879770260785828"
-                 data-ad-slot="5140105675"></ins>
-            <script>
-                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-            </script>
+            <!-- Modo de Jogo -->
+            <div class="mb-5">
+                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">1. Mecânica da Partida</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <button onclick="selecionarModo('survival')" id="mode-btn-survival" class="p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
+                            <i class="ph-fill ph-heart text-rose-500"></i> Sobrevivência (3 Vidas)
+                        </div>
+                        <p class="text-[11px] text-slate-400">Tente zerar o catálogo. A cada 10 acertos seguidos você recupera 1 vida.</p>
+                    </button>
+                    <button onclick="selecionarModo('blitz')" id="mode-btn-blitz" class="p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
+                            <i class="ph-fill ph-lightning text-amber-400"></i> Blitz 60 Segundos
+                        </div>
+                        <p class="text-[11px] text-slate-400">Corrida contra o relógio! Combos dão +2s extras no cronômetro.</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtro de Continente -->
+            <div class="mb-6">
+                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">2. Recorte Continental</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="continent-buttons">
+                    <button onclick="selecionarContinente('todos')" data-cont="todos" class="cont-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300">Mundo (198)</button>
+                    <button onclick="selecionarContinente('Américas')" data-cont="Américas" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Américas</button>
+                    <button onclick="selecionarContinente('Europa')" data-cont="Europa" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Europa</button>
+                    <button onclick="selecionarContinente('Ásia')" data-cont="Ásia" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Ásia</button>
+                    <button onclick="selecionarContinente('África')" data-cont="África" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">África</button>
+                    <button onclick="selecionarContinente('Oceania')" data-cont="Oceania" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Oceania</button>
+                </div>
+            </div>
+
+            <button onclick="aplicarModosEReiniciar()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+                <i class="ph-bold ph-play"></i> Iniciar com estas Configurações
+            </button>
         </div>
-    </aside>
-</div>
+    </div>
 
-    <!-- Rodapé Minimalista do Arcade -->
     <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Desafio de Bandeiras Mundiais · 196 Países Oficiais
+        VitaleGeo Arcade &copy; 2026 · Desafio Mundial de Vexilologia · Motor CerebroGeo
     </footer>
 
-    <!-- Catálogo Completo dos 196 Países do Mundo em Português e Mecânica do Jogo -->
     <script>
-        // Catálogo de 196 Países Soberanos da ONU + Territórios Globais em Português
-        const catalogoBandeiras = [
-            { name: "Afeganistão", code: "af" },
-            { name: "África do Sul", code: "za" },
-            { name: "Albânia", code: "al" },
-            { name: "Alemanha", code: "de" },
-            { name: "Andorra", code: "ad" },
-            { name: "Angola", code: "ao" },
-            { name: "Antígua e Barbuda", code: "ag" },
-            { name: "Arábia Saudita", code: "sa" },
-            { name: "Argélia", code: "dz" },
-            { name: "Argentina", code: "ar" },
-            { name: "Armênia", code: "am" },
-            { name: "Austrália", code: "au" },
-            { name: "Áustria", code: "at" },
-            { name: "Azerbaijão", code: "az" },
-            { name: "Bahamas", code: "bs" },
-            { name: "Bangladesh", code: "bd" },
-            { name: "Barbados", code: "bb" },
-            { name: "Bahrein", code: "bh" },
-            { name: "Bélgica", code: "be" },
-            { name: "Belize", code: "bz" },
-            { name: "Benim", code: "bj" },
-            { name: "Bielorrússia", code: "by" },
-            { name: "Bolívia", code: "bo" },
-            { name: "Bósnia e Herzegovina", code: "ba" },
-            { name: "Botsuana", code: "bw" },
-            { name: "Brasil", code: "br" },
-            { name: "Brunei", code: "bn" },
-            { name: "Bulgária", code: "bg" },
-            { name: "Burquina Faso", code: "bf" },
-            { name: "Burundi", code: "bi" },
-            { name: "Butão", code: "bt" },
-            { name: "Cabo Verde", code: "cv" },
-            { name: "Camarões", code: "cm" },
-            { name: "Camboja", code: "kh" },
-            { name: "Canadá", code: "ca" },
-            { name: "Catar", code: "qa" },
-            { name: "Cazaquistão", code: "kz" },
-            { name: "Chade", code: "td" },
-            { name: "Chile", code: "cl" },
-            { name: "China", code: "cn" },
-            { name: "Chipre", code: "cy" },
-            { name: "Colômbia", code: "co" },
-            { name: "Comores", code: "km" },
-            { name: "Congo (Brazzaville)", code: "cg" },
-            { name: "Coreia do Norte", code: "kp" },
-            { name: "Coreia do Sul", code: "kr" },
-            { name: "Costa do Marfim", code: "ci" },
-            { name: "Costa Rica", code: "cr" },
-            { name: "Croácia", code: "hr" },
-            { name: "Cuba", code: "cu" },
-            { name: "Dinamarca", code: "dk" },
-            { name: "Djibuti", code: "dj" },
-            { name: "Dominica", code: "dm" },
-            { name: "Egito", code: "eg" },
-            { name: "El Salvador", code: "sv" },
-            { name: "Emirados Árabes Unidos", code: "ae" },
-            { name: "Equador", code: "ec" },
-            { name: "Eritreia", code: "er" },
-            { name: "Eslováquia", code: "sk" },
-            { name: "Eslovênia", code: "si" },
-            { name: "Espanha", code: "es" },
-            { name: "Estados Unidos", code: "us" },
-            { name: "Estônia", code: "ee" },
-            { name: "Essuatíni", code: "sz" },
-            { name: "Etiópia", code: "et" },
-            { name: "Fiji", code: "fj" },
-            { name: "Filipinas", code: "ph" },
-            { name: "Finlândia", code: "fi" },
-            { name: "França", code: "fr" },
-            { name: "Gabão", code: "ga" },
-            { name: "Gâmbia", code: "gm" },
-            { name: "Gana", code: "gh" },
-            { name: "Geórgia", code: "ge" },
-            { name: "Granada", code: "gd" },
-            { name: "Grécia", code: "gr" },
-            { name: "Guatemala", code: "gt" },
-            { name: "Guiana", code: "gy" },
-            { name: "Guiné", code: "gn" },
-            { name: "Guiné Equatorial", code: "gq" },
-            { name: "Guiné-Bissau", code: "gw" },
-            { name: "Haiti", code: "ht" },
-            { name: "Holanda", code: "nl" },
-            { name: "Honduras", code: "hn" },
-            { name: "Hungria", code: "hu" },
-            { name: "Iêmen", code: "ye" },
-            { name: "Ilhas Marshall", code: "mh" },
-            { name: "Ilhas Salomão", code: "sb" },
-            { name: "Índia", code: "in" },
-            { name: "Indonésia", code: "id" },
-            { name: "Irã", code: "ir" },
-            { name: "Iraque", code: "iq" },
-            { name: "Irlanda", code: "ie" },
-            { name: "Islândia", code: "is" },
-            { name: "Israel", code: "il" },
-            { name: "Itália", code: "it" },
-            { name: "Jamaica", code: "jm" },
-            { name: "Japão", code: "jp" },
-            { name: "Jordânia", code: "jo" },
-            { name: "Kuait", code: "kw" },
-            { name: "Laos", code: "la" },
-            { name: "Lesoto", code: "ls" },
-            { name: "Letônia", code: "lv" },
-            { name: "Líbano", code: "lb" },
-            { name: "Libéria", code: "lr" },
-            { name: "Líbia", code: "ly" },
-            { name: "Liechtenstein", code: "li" },
-            { name: "Lituânia", code: "lt" },
-            { name: "Luxemburgo", code: "lu" },
-            { name: "Macedônia do Norte", code: "mk" },
-            { name: "Madagascar", code: "mg" },
-            { name: "Malásia", code: "my" },
-            { name: "Malaui", code: "mw" },
-            { name: "Maldivas", code: "mv" },
-            { name: "Mali", code: "ml" },
-            { name: "Malta", code: "mt" },
-            { name: "Marrocos", code: "ma" },
-            { name: "Maurício", code: "mu" },
-            { name: "Mauritânia", code: "mr" },
-            { name: "México", code: "mx" },
-            { name: "Mianmar", code: "mm" },
-            { name: "Micronésia", code: "fm" },
-            { name: "Moçambique", code: "mz" },
-            { name: "Moldávia", code: "md" },
-            { name: "Mônaco", code: "mc" },
-            { name: "Mongólia", code: "mn" },
-            { name: "Montenegro", code: "me" },
-            { name: "Namíbia", code: "na" },
-            { name: "Nauru", code: "nr" },
-            { name: "Nepal", code: "np" },
-            { name: "Nicarágua", code: "ni" },
-            { name: "Níger", code: "ne" },
-            { name: "Nigéria", code: "ng" },
-            { name: "Noruega", code: "no" },
-            { name: "Nova Zelândia", code: "nz" },
-            { name: "Omã", code: "om" },
-            { name: "Palau", code: "pw" },
-            { name: "Panamá", code: "pa" },
-            { name: "Papua-Nova Guiné", code: "pg" },
-            { name: "Paquistão", code: "pk" },
-            { name: "Paraguai", code: "py" },
-            { name: "Peru", code: "pe" },
-            { name: "Polônia", code: "pl" },
-            { name: "Portugal", code: "pt" },
-            { name: "Quênia", code: "ke" },
-            { name: "Quirguistão", code: "kg" },
-            { name: "Quiribati", code: "ki" },
-            { name: "Reino Unido", code: "gb" },
-            { name: "República Centro-Africana", code: "cf" },
-            { name: "Rep. Democrática do Congo", code: "cd" },
-            { name: "República Dominicana", code: "do" },
-            { name: "República Tcheca", code: "cz" },
-            { name: "Romênia", code: "ro" },
-            { name: "Ruanda", code: "rw" },
-            { name: "Rússia", code: "ru" },
-            { name: "Samoa", code: "ws" },
-            { name: "San Marino", code: "sm" },
-            { name: "Santa Lúcia", code: "lc" },
-            { name: "São Cristóvão e Neves", code: "kn" },
-            { name: "São Tomé e Príncipe", code: "st" },
-            { name: "São Vicente e Granadinas", code: "vc" },
-            { name: "Seicheles", code: "sc" },
-            { name: "Senegal", code: "sn" },
-            { name: "Serra Leoa", code: "sl" },
-            { name: "Sérvia", code: "rs" },
-            { name: "Singapura", code: "sg" },
-            { name: "Síria", code: "sy" },
-            { name: "Somália", code: "so" },
-            { name: "Sri Lanka", code: "lk" },
-            { name: "Sudão", code: "sd" },
-            { name: "Sudão do Sul", code: "ss" },
-            { name: "Suécia", code: "se" },
-            { name: "Suíça", code: "ch" },
-            { name: "Suriname", code: "sr" },
-            { name: "Tailândia", code: "th" },
-            { name: "Taiwan", code: "tw" },
-            { name: "Tajiquistão", code: "tj" },
-            { name: "Tanzânia", code: "tz" },
-            { name: "Timor-Leste", code: "tl" },
-            { name: "Togo", code: "tg" },
-            { name: "Tonga", code: "to" },
-            { name: "Trinidad e Tobago", code: "tt" },
-            { name: "Tunísia", code: "tn" },
-            { name: "Turcomenistão", code: "tm" },
-            { name: "Turquia", code: "tr" },
-            { name: "Tuvalu", code: "tv" },
-            { name: "Ucrânia", code: "ua" },
-            { name: "Uganda", code: "ug" },
-            { name: "Uruguai", code: "uy" },
-            { name: "Uzbequistão", code: "uz" },
-            { name: "Vanuatu", code: "vu" },
-            { name: "Vaticano", code: "va" },
-            { name: "Venezuela", code: "ve" },
-            { name: "Vietnã", code: "vn" },
-            { name: "Zâmbia", code: "zm" },
-            { name: "Zimbábue", code: "zw" },
-            { name: "Groenlândia", code: "gl" }
-        ];
+        // Inicialização da Base via CerebroGeo (198 Nações) com fallback seguro
+        const basePaises = (window.CerebroGeo && Array.isArray(window.CerebroGeo.paises) && window.CerebroGeo.paises.length > 0)
+            ? window.CerebroGeo.paises.map(p => ({
+                name: p.nome,
+                code: p.iso2.toLowerCase(),
+                capital: p.capital,
+                continente: p.continente,
+                subregiao: p.subregiao,
+                fato: p.fato
+            }))
+            : [
+                { name: "Brasil", code: "br", capital: "Brasília", continente: "América do Sul", subregiao: "América do Sul", fato: "Faz fronteira com 10 vizinhos sul-americanos." },
+                { name: "Estados Unidos", code: "us", capital: "Washington, D.C.", continente: "América do Norte", subregiao: "América do Norte", fato: "Possui 50 estados e o Distrito de Colúmbia." },
+                { name: "Japão", code: "jp", capital: "Tóquio", continente: "Ásia", subregiao: "Ásia Oriental", fato: "Arquipélago vulcânico com mais de 6.800 ilhas." }
+            ];
+
+        // Sintetizador de Áudio Nativo (Web Audio API)
+        let somAtivo = true;
+        let audioCtx = null;
+
+        function getAudioCtx() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        function tocarSom(tipo) {
+            if (!somAtivo) return;
+            const ctx = getAudioCtx();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+
+            if (tipo === 'acerto') {
+                [523.25, 659.25, 783.99].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.11, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.18);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.19);
+                });
+            } else if (tipo === 'erro') {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(160, now);
+                osc.frequency.linearRampToValueAtTime(95, now + 0.28);
+                gain.gain.setValueAtTime(0.14, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.31);
+            } else if (tipo === 'cura') {
+                [587.33, 783.99, 987.77, 1174.66].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.07);
+                    osc.stop(now + idx * 0.07 + 0.23);
+                });
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+        }
 
         // Estado do Jogo
+        let modoAtual = 'survival'; // 'survival' | 'blitz'
+        let continenteFiltro = 'todos';
+        let catalogoFiltrado = [];
         let paisesRestantes = [];
         let paisAtual = null;
         let acertos = 0;
         let vidas = 3;
-        const totalBandeiras = catalogoBandeiras.length;
-        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_todas_bandeiras') || '0');
+        let streakAtual = 0;
+        let maiorStreak = 0;
+        let tempoRestante = 60;
+        let timerInterval = null;
+        let aguardandoProxima = false;
+
+        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_todas_bandeiras') || '0', 10);
 
         // Elementos DOM
         const stageActive = document.getElementById('stage-active');
@@ -486,22 +505,109 @@
         const scoreVal = document.getElementById('score-val');
         const totalVal = document.getElementById('total-val');
         const bestScoreVal = document.getElementById('best-score');
+        const streakVal = document.getElementById('streak-val');
         const progressBar = document.getElementById('progress-bar');
         const vidasContainer = document.getElementById('vidas-container');
+        const timerVal = document.getElementById('timer-val');
+        const statusLeftLabel = document.getElementById('status-left-label');
 
         const flagImg = document.getElementById('flag-img');
         const feedbackMsg = document.getElementById('feedback-msg');
         const optionsGrid = document.getElementById('options-grid');
+        const hintBox = document.getElementById('hint-box');
+        const factDrawer = document.getElementById('fact-drawer');
 
-        totalVal.innerText = totalBandeiras;
         bestScoreVal.innerText = recordeMaximo;
 
-        // Inicia ou Reinicia o Jogo
+        function filtrarPorContinente(cont) {
+            if (cont === 'todos') return [...basePaises];
+            if (cont === 'Américas') {
+                return basePaises.filter(p => p.continente && p.continente.includes('América'));
+            }
+            return basePaises.filter(p => p.continente === cont);
+        }
+
+        function abrirModalModos() {
+            const modal = document.getElementById('modal-modos');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function fecharModalModos() {
+            const modal = document.getElementById('modal-modos');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function selecionarModo(modo) {
+            modoAtual = modo;
+            const btnSurv = document.getElementById('mode-btn-survival');
+            const btnBlitz = document.getElementById('mode-btn-blitz');
+            if (modo === 'survival') {
+                btnSurv.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
+                btnBlitz.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+            } else {
+                btnBlitz.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
+                btnSurv.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+            }
+        }
+
+        function selecionarContinente(cont) {
+            continenteFiltro = cont;
+            document.querySelectorAll('.cont-btn').forEach(btn => {
+                if (btn.getAttribute('data-cont') === cont) {
+                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300";
+                } else {
+                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30";
+                }
+            });
+        }
+
+        function aplicarModosEReiniciar() {
+            fecharModalModos();
+            reiniciarJogo();
+        }
+
         function reiniciarJogo() {
+            if (timerInterval) clearInterval(timerInterval);
             acertos = 0;
             vidas = 3;
-            // Clona e embaralha todos os 196 países
-            paisesRestantes = [...catalogoBandeiras].sort(() => Math.random() - 0.5);
+            streakAtual = 0;
+            maiorStreak = 0;
+            tempoRestante = 60;
+            aguardandoProxima = false;
+
+            catalogoFiltrado = filtrarPorContinente(continenteFiltro);
+            paisesRestantes = [...catalogoFiltrado].sort(() => Math.random() - 0.5);
+
+            totalVal.innerText = catalogoFiltrado.length;
+            const labelRegiao = continenteFiltro === 'todos' ? `Mundo (${catalogoFiltrado.length})` : `${continenteFiltro} (${catalogoFiltrado.length})`;
+            document.getElementById('header-mode-label').innerText = modoAtual === 'blitz' ? `Blitz · ${labelRegiao}` : labelRegiao;
+            document.getElementById('region-badge').innerText = modoAtual === 'blitz' ? `Modo Blitz 60s · ${labelRegiao}` : `Modo Sobrevivência · ${labelRegiao}`;
+
+            if (modoAtual === 'blitz') {
+                statusLeftLabel.innerText = 'Tempo:';
+                vidasContainer.classList.add('hidden');
+                timerVal.classList.remove('hidden');
+                timerVal.innerText = `${tempoRestante}s`;
+                timerInterval = setInterval(() => {
+                    tempoRestante--;
+                    timerVal.innerText = `${tempoRestante}s`;
+                    if (tempoRestante <= 10) {
+                        timerVal.className = 'font-bold text-rose-500 text-sm animate-pulse';
+                    } else {
+                        timerVal.className = 'font-bold text-amber-400 text-sm';
+                    }
+                    if (tempoRestante <= 0) {
+                        clearInterval(timerInterval);
+                        finalizarGameOver('tempo');
+                    }
+                }, 1000);
+            } else {
+                statusLeftLabel.innerText = 'Vidas:';
+                vidasContainer.classList.remove('hidden');
+                timerVal.classList.add('hidden');
+            }
 
             stageActive.classList.remove('hidden');
             stageActive.classList.add('flex');
@@ -514,13 +620,13 @@
             proximaRodada();
         }
 
-        // Atualiza UI de Vidas e Barra
         function atualizarStatusUI() {
             scoreVal.innerText = acertos;
-            const perc = ((acertos / totalBandeiras) * 100).toFixed(1);
+            streakVal.innerText = streakAtual > 1 ? `${streakAtual}x` : streakAtual;
+            const total = catalogoFiltrado.length || 1;
+            const perc = ((acertos / total) * 100).toFixed(1);
             progressBar.style.width = `${perc}%`;
 
-            // Renderiza os corações de vida
             let coracoesHTML = '';
             for (let i = 0; i < 3; i++) {
                 if (i < vidas) {
@@ -532,45 +638,56 @@
             vidasContainer.innerHTML = coracoesHTML;
         }
 
-        // Gera a Próxima Rodada
+        function revelarDica() {
+            if (!paisAtual) return;
+            hintBox.classList.remove('hidden');
+            hintBox.innerHTML = `<i class="ph-bold ph-compass text-amber-400"></i> Sub-região: <strong>${paisAtual.subregiao || paisAtual.continente}</strong> · Capital: <strong>${paisAtual.capital}</strong>`;
+        }
+
         function proximaRodada() {
-            // Checa se zerou todas as 196 bandeiras!
+            aguardandoProxima = false;
+            hintBox.classList.add('hidden');
+            factDrawer.classList.add('hidden');
+
             if (paisesRestantes.length === 0) {
+                if (timerInterval) clearInterval(timerInterval);
                 concluirZeramento();
                 return;
             }
 
-            // Pega o próximo país da fila sem repetição
             paisAtual = paisesRestantes.pop();
 
-            // Sorteia 3 opções erradas aleatórias
+            // Distratores inteligentes (prioriza países do mesmo continente para aumentar o desafio)
+            const mesmoContinente = basePaises.filter(p => p.continente === paisAtual.continente && p.code !== paisAtual.code);
+            const poolDistratores = mesmoContinente.length >= 6 ? mesmoContinente : basePaises;
+
             let opcoes = [paisAtual];
             while (opcoes.length < 4) {
-                let random = catalogoBandeiras[Math.floor(Math.random() * catalogoBandeiras.length)];
+                let random = poolDistratores[Math.floor(Math.random() * poolDistratores.length)];
                 if (!opcoes.some(o => o.code === random.code)) {
                     opcoes.push(random);
                 }
             }
 
-            // Embaralha as 4 alternativas
             opcoes.sort(() => Math.random() - 0.5);
 
-            // Carrega a bandeira localmente com fallback
             flagImg.src = `/assets/flags/${paisAtual.code}.svg`;
             flagImg.onerror = () => {
                 flagImg.src = `https://flagcdn.com/w640/${paisAtual.code}.png`;
             };
 
             feedbackMsg.innerText = "Qual é o país desta bandeira?";
-            feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400";
+            feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2";
 
-            // Renderiza os 4 botões de resposta
             optionsGrid.innerHTML = '';
-            opcoes.forEach(opt => {
+            opcoes.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
                 btn.innerHTML = `
-                    <span class="truncate">${opt.name}</span>
+                    <span class="flex items-center gap-2.5 truncate">
+                        <span class="w-5 h-5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">${idx + 1}</span>
+                        <span class="truncate">${opt.name}</span>
+                    </span>
                     <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
                 `;
                 btn.onclick = () => verificarResposta(opt, btn);
@@ -578,20 +695,43 @@
             });
         }
 
-        // Validação da Resposta
         function verificarResposta(selecionado, btnClicado) {
+            if (aguardandoProxima) return;
+            aguardandoProxima = true;
+
             const allBtns = optionsGrid.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
+            // Exibe dossiê rápido
+            if (paisAtual.fato) {
+                factDrawer.classList.remove('hidden');
+                document.getElementById('fact-capital').innerText = `Capital: ${paisAtual.capital}`;
+                document.getElementById('fact-text').innerText = paisAtual.fato;
+            }
+
             if (selecionado.code === paisAtual.code) {
-                // ACERTO
+                tocarSom('acerto');
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
 
-                feedbackMsg.innerText = `✓ Correto! ${paisAtual.name}!`;
-                feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse";
-
                 acertos++;
+                streakAtual++;
+                if (streakAtual > maiorStreak) maiorStreak = streakAtual;
+
+                let msgExtra = '';
+                // Cura no modo sobrevivência a cada 10 seguidas
+                if (modoAtual === 'survival' && streakAtual > 0 && streakAtual % 10 === 0 && vidas < 3) {
+                    vidas++;
+                    tocarSom('cura');
+                    msgExtra = ' · +1 VIDA RECUPERADA!';
+                } else if (modoAtual === 'blitz' && streakAtual > 0 && streakAtual % 5 === 0) {
+                    tempoRestante += 3;
+                    msgExtra = ' · +3s BÔNUS DE COMBO!';
+                }
+
+                feedbackMsg.innerText = `Correto: ${paisAtual.name}!${msgExtra}`;
+                feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center justify-center px-2";
+
                 if (acertos > recordeMaximo) {
                     recordeMaximo = acertos;
                     localStorage.setItem('vg_recorde_todas_bandeiras', recordeMaximo);
@@ -600,121 +740,202 @@
 
                 atualizarStatusUI();
 
-                // Confete comemorativo em marcos
                 if (acertos % 10 === 0 && typeof confetti === 'function') {
-                    confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
+                    confetti({ particleCount: 55, spread: 65, origin: { y: 0.6 } });
                 }
 
-                setTimeout(proximaRodada, 500);
+                setTimeout(proximaRodada, modoAtual === 'blitz' ? 450 : 950);
             } else {
-                // ERRO
+                tocarSom('erro');
+                streakAtual = 0;
+                stageActive.classList.remove('shake-damage');
+                void stageActive.offsetWidth;
+                stageActive.classList.add('shake-damage');
+
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
 
-                feedbackMsg.innerText = `✗ Errado! Era: ${paisAtual.name}`;
-                feedbackMsg.className = "h-7 mt-4 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400";
+                feedbackMsg.innerText = `Incorreto! A bandeira pertence a: ${paisAtual.name}`;
+                feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center px-2";
 
-                // Destaca o botão correto
                 allBtns.forEach(b => {
-                    if (b.innerText.trim().includes(paisAtual.name)) {
+                    if (b.innerText.includes(paisAtual.name)) {
                         b.classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
                     }
                 });
 
-                vidas--;
-                atualizarStatusUI();
-
-                if (vidas <= 0) {
-                    setTimeout(finalizarGameOver, 1600);
+                if (modoAtual === 'survival') {
+                    vidas--;
+                    atualizarStatusUI();
+                    if (vidas <= 0) {
+                        setTimeout(() => finalizarGameOver('vidas'), 1700);
+                    } else {
+                        setTimeout(proximaRodada, 1700);
+                    }
                 } else {
-                    setTimeout(proximaRodada, 1600);
+                    tempoRestante = Math.max(0, tempoRestante - 3);
+                    timerVal.innerText = `${tempoRestante}s`;
+                    atualizarStatusUI();
+                    setTimeout(proximaRodada, 900);
                 }
             }
         }
 
-        // Fim de Jogo (Game Over)
-        function finalizarGameOver() {
+        // Atalhos de Teclado (1, 2, 3, 4)
+        window.addEventListener('keydown', (e) => {
+            if (aguardandoProxima || stageActive.classList.contains('hidden')) return;
+            const idx = parseInt(e.key, 10) - 1;
+            if (idx >= 0 && idx < 4) {
+                const btns = optionsGrid.querySelectorAll('button');
+                if (btns[idx] && !btns[idx].disabled) btns[idx].click();
+            }
+        });
+
+        function obterRank(pts, total) {
+            const ratio = pts / (total || 198);
+            if (pts >= 150 || ratio >= 0.85) return "Rank S: Geógrafo Lendário";
+            if (pts >= 80 || ratio >= 0.55) return "Rank A: Embaixador Global";
+            if (pts >= 40 || ratio >= 0.30) return "Rank B: Diplomata de Carreira";
+            if (pts >= 15 || ratio >= 0.12) return "Rank C: Analista de Fronteiras";
+            return "Rank D: Observador Cartográfico";
+        }
+
+        function finalizarGameOver(motivo = 'vidas') {
+            if (timerInterval) clearInterval(timerInterval);
             stageActive.classList.add('hidden');
             stageActive.classList.remove('flex');
             stageGameOver.classList.remove('hidden');
             stageGameOver.classList.add('flex');
 
-            document.getElementById('last-correct-country').innerText = paisAtual.name;
+            const total = catalogoFiltrado.length || 198;
+            document.getElementById('gameover-kicker').innerText = motivo === 'tempo' ? 'Tempo Esgotado no Modo Blitz!' : 'Fim da Rodada';
+            document.getElementById('gameover-title').innerText = motivo === 'tempo' ? 'Relógio Zerado!' : 'Suas Vidas Acabaram!';
+            document.getElementById('last-correct-country').innerText = paisAtual ? `${paisAtual.name} (${paisAtual.capital})` : '--';
+            document.getElementById('gameover-fact-text').innerText = (paisAtual && paisAtual.fato) ? paisAtual.fato : 'Continue treinando para dominar todas as soberanias.';
             document.getElementById('final-score').innerText = acertos;
+            document.getElementById('final-total').innerText = total;
 
-            const perc = ((acertos / totalBandeiras) * 100).toFixed(1);
-            document.getElementById('final-porcentagem').innerText = `${perc}% do planeta Terra dominado!`;
-
-            // Determina Rank
-            let rank = "Turista Curioso";
-            if (acertos >= 150) rank = "Geógrafo Lendário";
-            else if (acertos >= 80) rank = "Embaixador Global";
-            else if (acertos >= 40) rank = "Diplomata Internacional";
-            else if (acertos >= 15) rank = "Viajante Experiente";
-            document.getElementById('final-rank').innerText = `Rank: ${rank}`;
+            const perc = ((acertos / total) * 100).toFixed(1);
+            document.getElementById('final-porcentagem').innerText = `${perc}% do recorte dominado`;
+            document.getElementById('final-rank').innerText = obterRank(acertos, total);
+            document.getElementById('final-streak').innerText = `Maior Sequência: ${maiorStreak}x`;
         }
 
-        // Vitória Suprema (Zerou o Jogo)
         function concluirZeramento() {
             stageActive.classList.add('hidden');
             stageActive.classList.remove('flex');
             stageVictory.classList.remove('hidden');
             stageVictory.classList.add('flex');
 
+            const total = catalogoFiltrado.length || 198;
+            document.getElementById('victory-total-text').innerText = `${total} bandeiras`;
+            document.getElementById('victory-score-box').innerText = `${total} / ${total} (100%)`;
+
             if (typeof confetti === 'function') {
-                confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
-                setTimeout(() => confetti({ particleCount: 150, spread: 80, origin: { y: 0.4 } }), 800);
+                confetti({ particleCount: 180, spread: 100, origin: { y: 0.5 } });
             }
         }
 
-        // Compartilhamento no WhatsApp (Quando Perde / Pontuação)
         function compartilharResultadoWhatsApp() {
-            const perc = ((acertos / totalBandeiras) * 100).toFixed(0);
-            const texto = `Acertei ${acertos} de 196 bandeiras (${perc}% do mundo) no Desafio das Bandeiras do VitaleGeo! 🌍🚩\nConsegue me superar? Jogue também:\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
-            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            const total = catalogoFiltrado.length || 198;
+            const perc = ((acertos / total) * 100).toFixed(0);
+            const texto = `Identifiquei ${acertos} de ${total} bandeiras (${perc}%) com sequência máxima de ${maiorStreak}x no Desafio Mundial de Bandeiras do VitaleGeo!\nConsegue superar meu recorde?\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
-        // Compartilhamento no WhatsApp (Vitória Total / Zerou)
         function compartilharVitoriaWhatsApp() {
-            const texto = `🏆 EU ZEREI O DESAFIO DE BANDEIRAS DO MUNDO! Acertei todas as 196 bandeiras do planeta no VitaleGeo! 🌍✨\nDuvido você conseguir zerar também:\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
-            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            const total = catalogoFiltrado.length || 198;
+            const texto = `ZEREI O DESAFIO DE BANDEIRAS DO VITALEGEO! Identifiquei todas as ${total} bandeiras sem falhar!\nDuvido você conseguir:\nhttps://www.vitalegeo.com.br/jogos/bandeiras/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
-        // Copiar Resultado com Feedback Tátil
         function copiarResultado() {
-            const perc = ((acertos / totalBandeiras) * 100).toFixed(0);
-            const texto = `Acertei ${acertos} de 196 bandeiras do mundo no VitaleGeo! 🌍🚩 Jogue também: https://www.vitalegeo.com.br/jogos/bandeiras/`;
-
+            const total = catalogoFiltrado.length || 198;
+            const perc = ((acertos / total) * 100).toFixed(0);
+            const texto = `Identifiquei ${acertos}/${total} bandeiras (${perc}%) · Streak ${maiorStreak}x no VitaleGeo Arcade! Jogue em: https://www.vitalegeo.com.br/jogos/bandeiras/`;
             const btn = document.getElementById('btn-copiar');
             navigator.clipboard.writeText(texto).then(() => {
                 btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
-                btn.classList.add('text-emerald-400', 'border-emerald-500/40');
                 setTimeout(() => {
                     btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar';
-                    btn.classList.remove('text-emerald-400', 'border-emerald-500/40');
                 }, 2000);
             });
         }
 
-        // Alternar Modo Tela Cheia
+        // Gerador de Scorecard PNG 900x900 Nativo
+        function baixarScorecardPNG() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 900;
+            const ctx = canvas.getContext('2d');
+
+            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
+            grad.addColorStop(0, '#171c2b');
+            grad.addColorStop(1, '#090a0f');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 900, 900);
+
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(36, 36, 828, 828);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE · DOSSIÊ VEXILOLÓGICO', 450, 110);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('DESAFIO DAS BANDEIRAS', 450, 175);
+
+            const total = catalogoFiltrado.length || 198;
+            const perc = ((acertos / total) * 100).toFixed(1);
+
+            ctx.fillStyle = '#11131a';
+            ctx.fillRect(110, 230, 680, 340);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(110, 230, 680, 340);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillText(`RECORTE: ${continenteFiltro.toUpperCase()} (${modoAtual.toUpperCase()})`, 450, 290);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '900 105px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`${acertos} / ${total}`, 450, 415);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.fillText(`${perc}% DO MAPA DOMINADO · STREAK MÁX: ${maiorStreak}x`, 450, 480);
+
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(obterRank(acertos, total), 450, 535);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillText('Teste sua precisão geográfica e supere este recorde em:', 450, 710);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillText('www.vitalegeo.com.br/jogos/bandeiras', 450, 760);
+
+            const link = document.createElement('a');
+            link.download = `vitalegeo-bandeiras-${acertos}pts.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
         function alternarTelaCheia() {
             const container = document.getElementById("game-stage-container") || document.documentElement;
             if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                }
+                if (container.requestFullscreen) container.requestFullscreen();
             } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
+                if (document.exitFullscreen) document.exitFullscreen();
             }
         }
 
-        // Inicia a partida ao carregar
         reiniciarJogo();
     </script>
 </body>
