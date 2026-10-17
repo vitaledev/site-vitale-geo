@@ -1,16 +1,34 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
+import { parsePostDate } from '../../utils/dates';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  const allPosts = await getCollection('blog');
+  const sorted = allPosts.sort((a, b) => parsePostDate(b.data.data) - parsePostDate(a.data.data));
+
+  return sorted.map((post) => {
+    // 3 posts recomendados: preferencialmente da mesma categoria, excluindo o atual
+    const sameCategory = sorted.filter(p => p.id !== post.id && p.data.categoria === post.data.categoria);
+    const otherCategory = sorted.filter(p => p.id !== post.id && p.data.categoria !== post.data.categoria);
+    const related = [...sameCategory, ...otherCategory].slice(0, 3).map(p => ({
+      slug: p.id,
+      titulo: p.data.titulo,
+      resumo: p.data.resumo,
+      categoria: p.data.categoria,
+      data: p.data.data,
+      img: p.data.img,
+      tempoLeitura: p.data.tempoLeitura || '5 min'
+    }));
+
+    return {
+      params: { slug: post.id },
+      props: { post, related },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -21,6 +39,8 @@ const { Content } = await render(post);
   data={post.data.data}
   img={post.data.img}
   tempoLeitura={post.data.tempoLeitura}
+  slug={post.id}
+  relatedPosts={related}
 >
   <Content />
 </PostLayout>

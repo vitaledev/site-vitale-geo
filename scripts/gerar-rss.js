@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const rootDir = path.join(__dirname, '..');
 const postsJsFile = path.join(rootDir, 'assets', 'js', 'posts.js');
@@ -13,7 +17,7 @@ if (!fs.existsSync(postsJsFile)) {
 }
 
 const postsContent = fs.readFileSync(postsJsFile, 'utf8');
-const fn = new Function(postsContent + '; return blogPosts;');
+const fn = new Function(postsContent + '; return typeof blogPosts !== "undefined" ? blogPosts : [];');
 const blogPosts = fn();
 
 console.log(`📡 Processando ${blogPosts.length} artigos para o Feed RSS...`);
@@ -72,7 +76,7 @@ for (const post of blogPosts) {
     const tituloEscaped = escapeXml(post.titulo);
     const categoriaEscaped = escapeXml(post.categoria || 'Geopolítica');
     const resumo = post.resumo || '';
-    const imagem = post.img || `${siteUrl}/assets/icons/favicon.svg`;
+    const imagem = post.img || `${siteUrl}/assets/img/publisher/logo-publisher-square-1000.png`;
 
     itemsXml += `    <item>
       <title>${tituloEscaped}</title>
@@ -116,4 +120,11 @@ console.log(`✅ Feed RSS gerado com sucesso na raiz: ${outputRssRoot}`);
 if (fs.existsSync(path.join(rootDir, 'public'))) {
     fs.writeFileSync(outputRssPublic, rssXml, 'utf8');
     console.log(`✅ Feed RSS sincronizado em public/: ${outputRssPublic}`);
+}
+
+// Salva na pasta dist se ela existir
+const outputRssDist = path.join(rootDir, 'dist', 'rss.xml');
+if (fs.existsSync(path.join(rootDir, 'dist'))) {
+    fs.writeFileSync(outputRssDist, rssXml, 'utf8');
+    console.log(`✅ Feed RSS sincronizado em dist/: ${outputRssDist}`);
 }

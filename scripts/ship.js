@@ -20,7 +20,7 @@ console.log('🚀 [VitaleGeo] Iniciando esteira de validação e deploy...');
 // 1. Validar compilação Astro
 console.log('📦 1/4 Validando build do Astro...');
 try {
-  run('npx astro build');
+  run('npm run build');
   console.log('   ✅ Build compilado com 0 erros.');
 } catch (err) {
   console.error('❌ Erro de compilação! O deploy foi abortado:\n', err.message);

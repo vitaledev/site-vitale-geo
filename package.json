@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node gerar_sitemap.js && node scripts/gerar-rss.js && astro build",
     "cerebro": "node scripts/sync-cerebro-geo.js",
     "preview": "astro preview",
     "sitemap": "node gerar_sitemap.js",

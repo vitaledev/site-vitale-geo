@@ -1,18 +1,26 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const rootDir = path.join(__dirname, '..');
-const sitemapFile = path.join(rootDir, 'sitemap.xml');
+const sitemapFile = path.join(rootDir, 'public', 'sitemap.xml') || path.join(rootDir, 'sitemap.xml');
 const key = 'c4b9e28f1d7a46e3950b712fa83d9e01';
 const host = 'www.vitalegeo.com.br';
 const keyLocation = `https://${host}/${key}.txt`;
 
-if (!fs.existsSync(sitemapFile)) {
+const targetSitemap = fs.existsSync(path.join(rootDir, 'public', 'sitemap.xml')) 
+    ? path.join(rootDir, 'public', 'sitemap.xml')
+    : path.join(rootDir, 'sitemap.xml');
+
+if (!fs.existsSync(targetSitemap)) {
     console.error('❌ sitemap.xml não encontrado. Execute node gerar_sitemap.js antes.');
     process.exit(1);
 }
 
-const sitemapContent = fs.readFileSync(sitemapFile, 'utf8');
+const sitemapContent = fs.readFileSync(targetSitemap, 'utf8');
 const urls = [...sitemapContent.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 
 console.log(`🚀 Preparando envio de ${urls.length} URLs para o IndexNow (Bing, Copilot, ChatGPT Search)...`);
