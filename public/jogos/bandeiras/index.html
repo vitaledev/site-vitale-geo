@@ -91,29 +91,29 @@
 <body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- HEADER DO ARCADE -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
                 <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Central de Jogos</span>
+                <span class="hidden sm:inline">Jogos</span>
             </a>
 
             <div class="flex items-center gap-2">
                 <i class="ph-fill ph-flag-banner text-amber-400 text-lg"></i>
                 <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Desafio Mundial: <span class="text-amber-400">Todas as Bandeiras</span>
+                    Bandeiras do <span class="text-amber-400">Mundo</span>
                 </h1>
             </div>
 
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Escolher Modo e Continente">
+                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Modos e Continente">
                     <i class="ph-bold ph-sliders-horizontal"></i>
                     <span id="header-mode-label" class="hidden sm:inline">Mundo (198)</span>
                 </button>
-                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ativar/Desativar Efeitos Sonoros" aria-label="Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
             </div>
@@ -121,10 +121,10 @@
     </header>
 
     <!-- WRAPPER 3 COLUNAS DESKTOP -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 flex items-start justify-center gap-4 flex-1">
 
         <!-- ANÚNCIO LATERAL ESQUERDO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
             <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
@@ -138,15 +138,16 @@
         </aside>
 
         <!-- PALCO CENTRAL -->
-        <main class="w-full max-w-4xl px-1 sm:px-3 py-1 sm:py-2 flex-1 flex flex-col justify-center" id="game-stage-container">
+        <main class="w-full max-w-2xl px-1 sm:px-2 py-1 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-            <!-- BARRA DE TELEMETRIA E FILTROS RÁPIDOS -->
-            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 mb-3 shadow-xl">
-                <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono mb-2.5">
-                    <!-- Vidas ou Cronômetro Blitz -->
-                    <div id="status-left-pill" class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                        <span class="text-slate-400 text-[11px] uppercase mr-1" id="status-left-label">Vidas:</span>
-                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+            <!-- PALCO ATIVO -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-4 sm:p-6 w-full flex flex-col items-center justify-between text-center relative shadow-2xl">
+                
+                <!-- Barra de Status Compacta -->
+                <div class="w-full flex items-center justify-between gap-2 text-xs font-mono pb-2.5 border-b border-white/10">
+                    <div id="status-left-pill" class="flex items-center gap-1.5">
+                        <span class="text-slate-400 text-[11px] uppercase" id="status-left-label">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-sm text-rose-500">
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
@@ -154,85 +155,96 @@
                         <span id="timer-val" class="hidden font-bold text-amber-400 text-sm">60s</span>
                     </div>
 
-                    <!-- Progresso -->
-                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <div class="flex items-center gap-1.5 text-slate-300">
                         <i class="ph-bold ph-flag text-amber-400"></i>
-                        <span class="text-slate-300">Domínio: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">198</span></span>
+                        <span><strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">198</span></span>
                     </div>
 
-                    <!-- Combo Streak -->
-                    <div id="streak-pill" class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <div id="streak-pill" class="flex items-center gap-1 text-slate-400">
                         <i class="ph-fill ph-fire text-amber-400"></i>
-                        <span class="text-slate-400 text-[11px] uppercase">Sequência: <strong id="streak-val" class="text-white">0</strong></span>
+                        <span><strong id="streak-val" class="text-white">0</strong></span>
                     </div>
 
-                    <!-- Recorde -->
-                    <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                    <div class="flex items-center gap-1 text-slate-400">
                         <i class="ph-fill ph-trophy text-emerald-400"></i>
-                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                        <span><strong id="best-score" class="text-emerald-400">0</strong></span>
                     </div>
                 </div>
 
-                <!-- Barra de Progresso -->
-                <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-300 w-0"></div>
+                <!-- Barra de Progresso Fina -->
+                <div class="w-full h-1 bg-slate-950 rounded-full overflow-hidden mt-1 mb-2.5">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
                 </div>
-            </div>
 
-            <!-- PALCO ATIVO -->
-            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full flex flex-col items-center justify-between text-center min-h-[520px] relative shadow-2xl">
-                
-                <!-- Badge de Continente & Dica -->
-                <div class="w-full flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                        <i class="ph-bold ph-globe-hemisphere-west text-amber-400"></i>
-                        <span id="region-badge">Mundo Inteiro</span>
+                <!-- Sub-barra com Região e Dica -->
+                <div class="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+                    <span id="region-badge" class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                        Mundo Inteiro
                     </span>
-                    <button onclick="revelarDica()" id="btn-hint" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/20 transition text-[11px]">
-                        <i class="ph-bold ph-lightbulb"></i> Dica (Capital / Região)
+                    <button onclick="revelarDica()" id="btn-hint" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/20 transition">
+                        <i class="ph-bold ph-lightbulb"></i> Dica
                     </button>
                 </div>
 
-                <!-- Bandeira Central -->
-                <div class="my-auto flex flex-col items-center w-full py-2">
-                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-1.5">
-                        <i class="ph-bold ph-crosshair text-amber-400"></i> De qual nação soberana é esta bandeira?
-                    </span>
-                    
-                    <div class="flag-frame w-64 h-40 sm:w-88 sm:h-56 bg-slate-950 rounded-2xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-2 bg-gradient-to-b from-white/10 to-transparent">
-                        <img id="flag-img" src="" class="w-full h-full object-contain rounded-xl transition-transform duration-300" alt="Bandeira misteriosa">
+                <!-- Bandeira Central (Compacta e Nítida) -->
+                <div class="flex flex-col items-center w-full my-auto py-1">
+                    <div class="flag-frame w-44 h-28 sm:w-56 sm:h-36 bg-slate-950 rounded-xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-1.5 shadow-lg">
+                        <img id="flag-img" src="" class="w-full h-full object-contain rounded-lg transition-transform duration-300" alt="Bandeira">
                     </div>
 
                     <!-- Caixa de Dica Opcional -->
-                    <div id="hint-box" class="hidden mt-3 px-3.5 py-1.5 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs font-mono"></div>
+                    <div id="hint-box" class="hidden mt-2 px-3 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs font-mono"></div>
 
-                    <!-- Feedback e Curiosidade Geográfica -->
-                    <div id="feedback-msg" class="min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2">
-                        Selecione a alternativa correta (ou teclas 1 a 4):
-                    </div>
-
-                    <div id="fact-drawer" class="hidden mt-2 max-w-xl w-full bg-slate-900/90 border border-white/10 rounded-xl p-3 text-left text-xs text-slate-300 leading-relaxed">
-                        <div class="flex items-center justify-between text-[11px] font-mono text-amber-400 uppercase mb-1">
-                            <span id="fact-header"><i class="ph-bold ph-book-open"></i> Dossiê Vexilológico & Territorial</span>
-                            <span id="fact-capital" class="text-emerald-400"></span>
-                        </div>
-                        <p id="fact-text" class="text-slate-300"></p>
+                    <!-- Feedback Estável e Sem Pulo de Layout -->
+                    <div id="feedback-msg" class="h-8 mt-2 text-xs sm:text-sm font-mono text-slate-300 flex items-center justify-center px-2 text-center">
+                        Qual é o país desta bandeira?
                     </div>
                 </div>
 
-                <!-- Grade de 4 Alternativas -->
-                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-3"></div>
+                <!-- Grade de 4 Alternativas (Sempre Visível) -->
+                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full mt-2"></div>
 
             </div>
 
             <!-- TELA DE GAME OVER -->
-            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
-                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-3">
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-2xl">
+                <div class="w-14 h-14 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-2xl mb-2.5">
                     <i class="ph-bold ph-flag-banner"></i>
                 </div>
                 
-                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1" id="gameover-kicker">Fim da Rodada</span>
-                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2" id="gameover-title">Suas Vidas Acabaram!</h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1" id="gameover-kicker">Fim de Jogo</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-2" id="gameover-title">Suas Vidas Acabaram</h2>
+                
+                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-3">
+                    A última bandeira era de <strong id="last-correct-country" class="text-amber-400">--</strong>.
+                </p>
+
+                <!-- Placar -->
+                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-4 max-w-sm w-full mb-4 shadow-xl">
+                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Acertos</span>
+                    <div class="text-3xl sm:text-4xl font-heading font-black text-amber-400 mb-1">
+                        <span id="final-score">0</span> <span class="text-base text-slate-400 font-normal">/ <span id="final-total">198</span></span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 flex-wrap text-xs font-mono">
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300" id="final-streak">
+                            Sequência: 0
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Ações e Compartilhamento -->
+                <div class="flex flex-wrap items-center justify-center gap-2 w-full max-w-sm">
+                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[160px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition">
+                        <i class="ph-fill ph-whatsapp-logo text-base"></i> WhatsApp
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs py-3 px-3.5 rounded-xl flex items-center gap-1.5" title="Baixar Card PNG">
+                        <i class="ph-bold ph-download-simple text-base"></i> PNG
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 mt-1">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
+                    </button>
+                </div>
+            </div>
                 
                 <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-4">
                     A última bandeira pertencia a <strong id="last-correct-country" class="text-amber-400">--</strong>.
@@ -647,7 +659,6 @@
         function proximaRodada() {
             aguardandoProxima = false;
             hintBox.classList.add('hidden');
-            factDrawer.classList.add('hidden');
 
             if (paisesRestantes.length === 0) {
                 if (timerInterval) clearInterval(timerInterval);
@@ -677,14 +688,14 @@
             };
 
             feedbackMsg.innerText = "Qual é o país desta bandeira?";
-            feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2";
+            feedbackMsg.className = "h-8 mt-2 text-xs sm:text-sm font-mono text-slate-300 flex items-center justify-center px-2 text-center";
 
             optionsGrid.innerHTML = '';
             opcoes.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-semibold text-slate-200 text-xs sm:text-sm text-left flex items-center justify-between group shadow-sm transition";
                 btn.innerHTML = `
-                    <span class="flex items-center gap-2.5 truncate">
+                    <span class="flex items-center gap-2 truncate">
                         <span class="w-5 h-5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">${idx + 1}</span>
                         <span class="truncate">${opt.name}</span>
                     </span>
@@ -702,13 +713,6 @@
             const allBtns = optionsGrid.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
-            // Exibe dossiê rápido
-            if (paisAtual.fato) {
-                factDrawer.classList.remove('hidden');
-                document.getElementById('fact-capital').innerText = `Capital: ${paisAtual.capital}`;
-                document.getElementById('fact-text').innerText = paisAtual.fato;
-            }
-
             if (selecionado.code === paisAtual.code) {
                 tocarSom('acerto');
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
@@ -719,18 +723,17 @@
                 if (streakAtual > maiorStreak) maiorStreak = streakAtual;
 
                 let msgExtra = '';
-                // Cura no modo sobrevivência a cada 10 seguidas
                 if (modoAtual === 'survival' && streakAtual > 0 && streakAtual % 10 === 0 && vidas < 3) {
                     vidas++;
                     tocarSom('cura');
-                    msgExtra = ' · +1 VIDA RECUPERADA!';
+                    msgExtra = '+1 vida';
                 } else if (modoAtual === 'blitz' && streakAtual > 0 && streakAtual % 5 === 0) {
                     tempoRestante += 3;
-                    msgExtra = ' · +3s BÔNUS DE COMBO!';
+                    msgExtra = '+3s';
                 }
 
-                feedbackMsg.innerText = `Correto: ${paisAtual.name}!${msgExtra}`;
-                feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center justify-center px-2";
+                const bonusText = msgExtra ? ` · <span class="text-amber-300">${msgExtra}</span>` : '';
+                feedbackMsg.innerHTML = `<span class="text-emerald-400 font-bold">Correto!</span> <span class="text-slate-300 ml-1.5 font-normal">Capital: ${paisAtual.capital}${bonusText}</span>`;
 
                 if (acertos > recordeMaximo) {
                     recordeMaximo = acertos;
@@ -744,7 +747,7 @@
                     confetti({ particleCount: 55, spread: 65, origin: { y: 0.6 } });
                 }
 
-                setTimeout(proximaRodada, modoAtual === 'blitz' ? 450 : 950);
+                setTimeout(proximaRodada, modoAtual === 'blitz' ? 450 : 800);
             } else {
                 tocarSom('erro');
                 streakAtual = 0;
@@ -755,8 +758,7 @@
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
 
-                feedbackMsg.innerText = `Incorreto! A bandeira pertence a: ${paisAtual.name}`;
-                feedbackMsg.className = "min-h-[32px] mt-3 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center px-2";
+                feedbackMsg.innerHTML = `<span class="text-rose-400 font-bold">Incorreto!</span> <span class="text-slate-300 ml-1.5 font-normal">Bandeira de <strong>${paisAtual.name}</strong> (Capital: ${paisAtual.capital})</span>`;
 
                 allBtns.forEach(b => {
                     if (b.innerText.includes(paisAtual.name)) {
@@ -768,9 +770,9 @@
                     vidas--;
                     atualizarStatusUI();
                     if (vidas <= 0) {
-                        setTimeout(() => finalizarGameOver('vidas'), 1700);
+                        setTimeout(() => finalizarGameOver('vidas'), 1400);
                     } else {
-                        setTimeout(proximaRodada, 1700);
+                        setTimeout(proximaRodada, 1400);
                     }
                 } else {
                     tempoRestante = Math.max(0, tempoRestante - 3);

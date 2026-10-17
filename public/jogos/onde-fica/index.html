@@ -241,7 +241,7 @@
         <!-- ÁREA CENTRAL DO JOGO (100% RESPONSIVA PARA MOBILE E DESKTOP) -->
         <main class="w-full flex-1 max-w-5xl flex flex-col gap-2.5 sm:gap-3" id="game-main-container">
             
-            <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA ARCADE -->
+            <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA -->
             <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
                     
@@ -266,13 +266,13 @@
                                 Chokepoint Estratégico
                             </span>
                             
-                            <!-- Indicador Anti-Repetição no Cache -->
-                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais e bandeiras explorados sem repetição. Clique para reiniciar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais e bandeiras?')) reiniciarHistoricoCache();">
+                            <!-- Indicador de Progresso sem Repetição -->
+                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição. Clique para reiniciar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
                                 <i class="ph-bold ph-compass text-xs"></i>
                                 <span id="catalog-progress-text">Carregando acervo...</span>
                             </div>
 
-                            <!-- Badge de Combo Streak (Dopamina Arcade) -->
+                            <!-- Badge de Combo Streak -->
                             <div class="hidden items-center gap-1.5 text-[10px] sm:text-xs font-mono text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full" id="streak-badge">
                                 <span id="streak-text">🔥 STREAK x1</span>
                             </div>
@@ -281,7 +281,7 @@
                             <div class="relative group cursor-pointer inline-flex">
                                 <i class="ph-bold ph-info text-slate-400 hover:text-amber-400 text-sm"></i>
                                 <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2.5 bg-slate-900 border border-white/15 rounded-lg text-xs text-slate-300 shadow-xl pointer-events-none z-50 leading-relaxed font-normal">
-                                    <span class="font-semibold text-amber-400 block mb-0.5">Dica Pedagógica:</span>
+                                    <span class="font-semibold text-amber-400 block mb-0.5">Dica:</span>
                                     <span id="target-hint">Aguardando local...</span>
                                 </div>
                             </div>
@@ -291,8 +291,8 @@
                         <div id="flag-challenge-box" class="hidden my-2 flex items-center gap-3 flag-glow-box p-2.5 rounded-xl border border-amber-400/30 animate-fade-in">
                             <img id="flag-challenge-img" src="" alt="Bandeira do País" class="w-16 h-11 object-cover rounded shadow-md border border-white/20 shrink-0">
                             <div>
-                                <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">Desafio de Vexilologia</span>
-                                <span class="text-xs sm:text-sm font-heading font-semibold text-white" id="flag-challenge-prompt">Onde fica o território deste país no mapa?</span>
+                                <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">Bandeira</span>
+                                <span class="text-xs sm:text-sm font-heading font-semibold text-white" id="flag-challenge-prompt">Onde fica este país no mapa?</span>
                             </div>
                         </div>
 
@@ -335,7 +335,7 @@
             </div>
 
             <!-- CONTAINER DO MAPA -->
-            <div id="map-wrapper" class="relative w-full h-[54vh] min-h-[380px] sm:min-h-[540px] sm:h-[62vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col transition-transform">
+            <div id="map-wrapper" class="relative w-full h-[50vh] min-h-[340px] max-h-[520px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col transition-transform">
                 <div id="map" class="w-full flex-1"></div>
 
                 <!-- Instrução Flutuante Quando Nenhum Ponto Foi Marcado -->
@@ -355,18 +355,18 @@
                     </button>
                 </div>
 
-                <!-- CARD DE RESULTADO DA RODADA (DOPAMINA & ARCADE BREAKDOWN) -->
-                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[320px] sm:min-w-[420px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-3.5 sm:p-5 rounded-2xl shadow-2xl z-[500] hidden transition-all animate-fade-in">
+                <!-- CARD DE RESULTADO DA RODADA -->
+                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[300px] sm:min-w-[400px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-3 sm:p-4 rounded-2xl shadow-2xl z-[500] hidden transition-all animate-fade-in">
                     <div class="flex items-center justify-between mb-2 border-b border-white/10 pb-2">
                         <span class="text-xs sm:text-sm font-mono font-bold uppercase text-amber-400 flex items-center gap-1.5" id="result-grade-label">
-                            🎯 NA MOSCA! CIRÚRGICO!
+                            🎯 NA MOSCA!
                         </span>
                         <span class="text-lg sm:text-xl font-mono font-black text-emerald-400" id="result-round-score">
                             +0 pts
                         </span>
                     </div>
 
-                    <!-- Breakdown Arcade: Base + Combo + Agilidade -->
+                    <!-- Breakdown: Base + Combo + Agilidade -->
                     <div class="grid grid-cols-3 gap-1.5 sm:gap-2 bg-[#0c0e14]/80 border border-white/10 rounded-xl p-2 mb-2 text-center font-mono text-[10px] sm:text-xs">
                         <div>
                             <span class="text-slate-400 block text-[9px] uppercase">Base</span>
@@ -383,19 +383,19 @@
                     </div>
 
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-base sm:text-lg font-bold shrink-0">
+                        <div class="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-sm font-bold shrink-0">
                             <i class="ph-bold ph-ruler"></i>
                         </div>
                         <div>
-                            <span class="text-[10px] font-mono text-slate-400 block uppercase">Distância do Alvo Real</span>
+                            <span class="text-[10px] font-mono text-slate-400 block uppercase">Distância do Alvo</span>
                             <span class="text-xs sm:text-sm font-heading font-bold text-white" id="result-distance">
                                 0 km de distância
                             </span>
                         </div>
                     </div>
 
-                    <!-- Fato Pedagógico Enxuto -->
-                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2.5 rounded-xl border border-white/5 mb-3" id="result-fact">
+                    <!-- Fato sobre o Local -->
+                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2 sm:p-2.5 rounded-xl border border-white/5 mb-2.5 max-h-24 overflow-y-auto" id="result-fact">
                         Carregando fato sobre este local...
                     </p>
 
@@ -449,10 +449,10 @@
             </div>
 
             <h3 class="text-2xl sm:text-4xl font-heading font-black text-white mb-1 tracking-tight" id="final-rank-title">
-                Satélite Militar
+                Geógrafo Mestre
             </h3>
             <p class="text-xs sm:text-sm text-slate-400 mb-4 max-w-md mx-auto leading-relaxed" id="final-rank-desc">
-                Sua precisão geoespacial demonstra profundo domínio sobre os nós estratégicos e anomalias da Terra.
+                Sua precisão demonstra excelente domínio sobre a localização e as fronteiras do planeta.
             </p>
 
             <!-- Placar Central Arcade com 3 Colunas -->
@@ -857,7 +857,7 @@
                             categoria: "🚩 Bandeira do Mundo",
                             lat: p.lat,
                             lng: p.lng,
-                            dica: `País soberano situado em ${p.continente}. Capital política: ${p.capital}.`,
+                            dica: `País situado em ${p.continente}. Capital: ${p.capital}.`,
                             fato: p.fato || `Território de ${p.nome}, capital ${p.capital} (${p.continente}).`
                         });
                     }
@@ -1450,8 +1450,8 @@
         // EXIBIR CARD DE RESULTADO DA RODADA
         function exibirResultadoRodada(distKm, totalRound, baseScore, multiplier, speedBonus, desafio, pontuacaoAnterior, vidaPerdida, vidaRecuperada) {
             let label = "Boa tentativa";
-            if (distKm <= 50) label = "🎯 NA MOSCA! CIRÚRGICO!";
-            else if (distKm <= 200) label = "⚡ EXCELENTE! RADAR PRECISO!";
+            if (distKm <= 50) label = "🎯 NA MOSCA! EXATO!";
+            else if (distKm <= 200) label = "⚡ EXCELENTE! MUITO PERTO!";
             else if (distKm <= 600) label = "👍 MUITO PERTO!";
             else if (distKm <= 1200) label = "🧭 NA MESMA REGIÃO";
             else label = "🗺️ FORA DE ALCANCE (>1.200 km)";
@@ -1529,29 +1529,29 @@
 
             let rankLetra = "C";
             let rankPill = "RANK C // VIAJANTE";
-            let rankTitle = "Viajante com Bússola 🧭";
-            let rankDesc = "Identificou o continente correto, mas ainda precisa calibrar a mira nos gargalos menores.";
+            let rankTitle = "Viajante Curioso 🧭";
+            let rankDesc = "Identificou o continente correto, mas ainda pode afinar a mira nos locais menores.";
 
             if (configJogo.modo === 'arcade') {
                 // Ranks de sobrevivência Arcade
                 if (totalJogadas >= 15) {
                     rankLetra = "SSS";
                     rankPill = `RANK SSS // LENDA DA SOBREVIVÊNCIA (${totalJogadas} ONDAS)`;
-                    rankTitle = "Lenda da Sobrevivência Geoespacial 🛰️";
-                    rankDesc = `Você resistiu a impressionantes ${totalJogadas} ondas seguidas de alvos e bandeiras sem esgotar suas 3 vidas!`;
+                    rankTitle = "Mestre da Sobrevivência 🏆";
+                    rankDesc = `Você resistiu a impressionantes ${totalJogadas} ondas seguidas de locais e bandeiras sem esgotar suas vidas!`;
                     dispararConfetesGrandes();
                     tocarSomGameOver('SSS');
                 } else if (totalJogadas >= 10) {
                     rankLetra = "S";
-                    rankPill = `RANK S // MESTRE DO RADAR (${totalJogadas} ONDAS)`;
-                    rankTitle = "Mestre de Precisão Tática 🎖️";
-                    rankDesc = `Excelente intuição e reflexos de localização sobrevivendo a ${totalJogadas} desafios do globo!`;
+                    rankPill = `RANK S // ALTA PRECISÃO (${totalJogadas} ONDAS)`;
+                    rankTitle = "Especialista em Cartografia 🎖️";
+                    rankDesc = `Excelente intuição e reflexos de localização, sobrevivendo a ${totalJogadas} desafios pelo globo!`;
                     dispararConfetes();
                     tocarSomGameOver('S');
                 } else if (totalJogadas >= 6) {
                     rankLetra = "A";
-                    rankPill = `RANK A // PILOTO EXPERIENTE (${totalJogadas} ONDAS)`;
-                    rankTitle = "Piloto de Reconhecimento ✈️";
+                    rankPill = `RANK A // NAVEGADOR (${totalJogadas} ONDAS)`;
+                    rankTitle = "Navegador Experiente ✈️";
                     rankDesc = `Boa agilidade e visão de mapa, aguentando ${totalJogadas} rodadas sob a pressão das 3 vidas.`;
                     tocarSomGameOver('A');
                 } else if (totalJogadas >= 3) {
@@ -1562,9 +1562,9 @@
                     tocarSomGameOver('B');
                 } else {
                     rankLetra = "D";
-                    rankPill = "RANK D // ABATIDO PRECOCE";
-                    rankTitle = "Abatido em Combate 🕳️";
-                    rankDesc = "As 3 vidas foram esgotadas rapidamente por erros acima de 1.200 km. Tente novamente!";
+                    rankPill = "RANK D // FIM DAS VIDAS";
+                    rankTitle = "Fim de Jogo 🧭";
+                    rankDesc = "As vidas foram esgotadas rapidamente por palpites distantes. Tente novamente!";
                     tocarSomGameOver('D');
                 }
             } else {
@@ -1572,35 +1572,35 @@
                 const avgPtsPorRodada = pontuacaoTotal / totalJogadas;
                 if (avgPtsPorRodada >= 4800) {
                     rankLetra = "SSS";
-                    rankPill = "RANK SSS // SATÉLITE MILITAR";
-                    rankTitle = "Satélite Militar de Espionagem 🛰️";
-                    rankDesc = "Precisão absurda de nível militar! Você conhece cada gargalo marítimo, capital e bandeira da Terra.";
+                    rankPill = "RANK SSS // GEÓGRAFO MESTRE";
+                    rankTitle = "Geógrafo Mestre 🏆";
+                    rankDesc = "Precisão impressionante! Você conhece cada ponto estratégico, capital e bandeira do planeta.";
                     dispararConfetesGrandes();
                     tocarSomGameOver('SSS');
                 } else if (avgPtsPorRodada >= 4000) {
                     rankLetra = "S";
-                    rankPill = "RANK S // INTELIGÊNCIA MESTRE";
-                    rankTitle = "General de Inteligência Geoespacial 🎖️";
-                    rankDesc = "Excelente visão espacial e cartográfica. Seus palpites cruzaram com maestria os limites soberanos.";
+                    rankPill = "RANK S // ESPECIALISTA";
+                    rankTitle = "Especialista em Cartografia 🎖️";
+                    rankDesc = "Excelente visão espacial e conhecimento do mapa mundi.";
                     dispararConfetes();
                     tocarSomGameOver('S');
                 } else if (avgPtsPorRodada >= 3000) {
                     rankLetra = "A";
-                    rankPill = "RANK A // RECONHECIMENTO TÁTICO";
-                    rankTitle = "Piloto de Reconhecimento Tático ✈️";
-                    rankDesc = "Excelente intuição e reflexos de localização. Você cruza oceanos sem hesitar!";
+                    rankPill = "RANK A // NAVEGADOR";
+                    rankTitle = "Navegador Experiente ✈️";
+                    rankDesc = "Excelente intuição e reflexos de localização. Você cruza continentes sem hesitar!";
                     tocarSomGameOver('A');
                 } else if (avgPtsPorRodada >= 2000) {
                     rankLetra = "B";
                     rankPill = "RANK B // CARTÓGRAFO";
-                    rankTitle = "Cartógrafo Expedicionário 🧭";
-                    rankDesc = "Boa noção geral dos continentes e mares, acertando a vizinhança dos alvos mais conhecidos.";
+                    rankTitle = "Cartógrafo Curioso 🧭";
+                    rankDesc = "Boa noção geral dos continentes e mares, acertando a vizinhança dos alvos.";
                     tocarSomGameOver('B');
                 } else {
                     rankLetra = "D";
-                    rankPill = "RANK D // PERDIDO";
-                    rankTitle = "Perdido no Triângulo das Bermudas 🕳️";
-                    rankDesc = "O radar falhou e você caiu no meio do oceano. Jogue outra rodada para calibrar a bússola!";
+                    rankPill = "RANK D // EXPLORADOR INICIANTE";
+                    rankTitle = "Explorador Iniciante 🗺️";
+                    rankDesc = "O mapa foi desafiador desta vez. Jogue outra rodada para treinar!";
                     tocarSomGameOver('D');
                 }
             }
@@ -1764,10 +1764,10 @@ Duvido você chegar mais perto no mapa mudo! Jogue grátis:
 
             let rankLetra = "C";
             let rankSub = "CARTÓGRAFO EM TREINAMENTO";
-            if (pontuacaoTotal >= 40000) { rankLetra = "SSS"; rankSub = "SATÉLITE MILITAR DE ESPIONAGEM"; }
-            else if (pontuacaoTotal >= 25000) { rankLetra = "S"; rankSub = "GENERAL DE INTELIGÊNCIA GEOESPACIAL"; }
-            else if (pontuacaoTotal >= 15000) { rankLetra = "A"; rankSub = "PILOTO DE RECONHECIMENTO TÁTICO"; }
-            else if (pontuacaoTotal >= 8000) { rankLetra = "B"; rankSub = "CARTÓGRAFO EXPEDICIONÁRIO"; }
+            if (pontuacaoTotal >= 40000) { rankLetra = "SSS"; rankSub = "GEÓGRAFO MESTRE"; }
+            else if (pontuacaoTotal >= 25000) { rankLetra = "S"; rankSub = "ESPECIALISTA EM CARTOGRAFIA"; }
+            else if (pontuacaoTotal >= 15000) { rankLetra = "A"; rankSub = "NAVEGADOR EXPERIENTE"; }
+            else if (pontuacaoTotal >= 8000) { rankLetra = "B"; rankSub = "CARTÓGRAFO CURIOSO"; }
 
             // 1. Fundo Gradiente Escuro Sofisticado
             const bgGrad = ctx.createRadialGradient(450, 150, 40, 450, 450, 620);

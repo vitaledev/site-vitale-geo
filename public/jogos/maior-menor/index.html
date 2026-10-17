@@ -76,25 +76,25 @@
 <body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- HEADER DO ARCADE -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
                 <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Central de Jogos</span>
+                <span class="hidden sm:inline">Jogos</span>
             </a>
 
             <div class="flex items-center gap-2">
                 <i class="ph-fill ph-scales text-amber-400 text-lg"></i>
                 <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Guerra de <span class="text-amber-400">Escala & Números</span>
+                    Maior ou <span class="text-amber-400">Menor</span>
                 </h1>
             </div>
 
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
             </div>
@@ -102,10 +102,10 @@
     </header>
 
     <!-- WRAPPER 3 COLUNAS DESKTOP -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 flex items-start justify-center gap-4 flex-1">
 
         <!-- ANÚNCIO LATERAL ESQUERDO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
             <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
@@ -119,135 +119,111 @@
         </aside>
 
         <!-- PALCO CENTRAL -->
-        <main class="w-full max-w-4xl px-1 sm:px-3 py-1 sm:py-2 flex-1 flex flex-col justify-center" id="game-stage-container">
+        <main class="w-full max-w-3xl px-1 sm:px-2 py-1 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-            <!-- BARRA SUPERIOR: SELETOR DE MODO DE DUELO & TELEMETRIA -->
-            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 mb-3 shadow-xl">
-                <!-- Pílulas de Categoria de Comparação -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-white/10">
-                    <div class="flex flex-wrap items-center gap-1.5">
-                        <button onclick="mudarCategoria('area')" id="cat-btn-area" class="px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1.5 bg-amber-400 text-slate-950">
-                            <i class="ph-bold ph-Selection-all"></i> Área Real (km²)
-                        </button>
-                        <button onclick="mudarCategoria('pop')" id="cat-btn-pop" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
-                            <i class="ph-bold ph-users-three"></i> População
-                        </button>
-                        <button onclick="mudarCategoria('pib')" id="cat-btn-pib" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
-                            <i class="ph-bold ph-Trend-up"></i> Economia (PIB)
-                        </button>
-                        <button onclick="mudarCategoria('caos')" id="cat-btn-caos" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
-                            <i class="ph-bold ph-shuffle"></i> Modo Caos
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Placar e Vidas -->
-                <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                        <span class="text-slate-400 text-[11px] uppercase mr-1">Escudos:</span>
-                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
-                            <i class="ph-fill ph-heart"></i>
-                            <i class="ph-fill ph-heart"></i>
-                            <i class="ph-fill ph-heart"></i>
-                        </span>
-                    </div>
-
-                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                        <i class="ph-fill ph-flame text-amber-400"></i>
-                        <span class="text-slate-300">Vitórias: <strong id="score" class="text-amber-400 text-sm">0</strong></span>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                        <i class="ph-fill ph-trophy text-emerald-400"></i>
-                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400 text-sm">0</strong></span>
-                    </div>
-                </div>
-            </div>
-
             <!-- PALCO DE DUELO ATIVO -->
-            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl overflow-hidden w-full flex flex-col min-h-[500px] relative shadow-2xl">
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-5 w-full flex flex-col justify-between relative shadow-2xl overflow-hidden">
                 
-                <!-- Faixa de Pergunta da Rodada -->
-                <div class="w-full bg-slate-950/90 border-b border-white/10 py-2.5 px-4 text-center flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-compass text-amber-400 text-sm" id="round-metric-icon"></i>
-                    <span class="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold" id="round-metric-title">
-                        DUELO DE ESCALA REAL: QUEM TEM MAIOR EXTENSÃO TERRITORIAL (KM²)?
-                    </span>
+                <!-- Barra de Status e Seletor Compactos -->
+                <div class="w-full flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-2 border-b border-white/10">
+                    <div class="flex items-center gap-1">
+                        <button onclick="mudarCategoria('area')" id="cat-btn-area" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition bg-amber-400 text-slate-950">
+                            Área
+                        </button>
+                        <button onclick="mudarCategoria('pop')" id="cat-btn-pop" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            População
+                        </button>
+                        <button onclick="mudarCategoria('pib')" id="cat-btn-pib" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            PIB
+                        </button>
+                        <button onclick="mudarCategoria('caos')" id="cat-btn-caos" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            Caos
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1">
+                            <span id="vidas-container" class="flex gap-0.5 text-sm text-rose-500">
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                            </span>
+                        </div>
+                        <span class="text-slate-300 text-xs">Vitórias: <strong id="score" class="text-amber-400">0</strong></span>
+                        <span class="text-slate-400 text-xs hidden sm:inline">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                    </div>
                 </div>
 
-                <!-- Grid Duplo (Esquerda vs Direita) -->
-                <div class="flex-1 flex flex-col md:flex-row relative">
+                <!-- Pergunta da Rodada -->
+                <div class="w-full py-1.5 text-center my-1 bg-slate-950/60 rounded-lg border border-white/5">
+                    <h2 class="text-xs sm:text-sm font-mono uppercase tracking-wider text-amber-300 font-bold" id="round-metric-title">
+                        Quem tem maior área territorial?
+                    </h2>
+                </div>
+
+                <!-- Grid Duplo Lado a Lado (Sempre 2 Colunas, Mobile e Desktop) -->
+                <div class="grid grid-cols-2 gap-2 sm:gap-3 my-auto py-1 relative">
                     
                     <!-- CARTA DA ESQUERDA (Referência) -->
-                    <div class="w-full md:w-1/2 min-h-[230px] md:min-h-[410px] relative overflow-hidden bg-slate-900/90 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center p-6 text-center">
-                        <img id="left-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
-                        
-                        <div class="relative z-10 flex flex-col items-center max-w-xs">
-                            <div class="w-16 h-11 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-2.5 shadow-lg">
-                                <img id="left-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
-                            </div>
-                            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-1" id="left-continent">Referência</span>
-                            <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-2 leading-tight" id="left-name">Carregando...</h2>
-                            <div class="text-2xl sm:text-4xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
-                            <p class="text-xs font-mono text-slate-400 mt-1" id="left-unit">km² de área territorial</p>
+                    <div class="relative overflow-hidden bg-slate-900/90 rounded-xl border border-white/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center">
+                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-1.5 shadow">
+                            <img id="left-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
                         </div>
+                        <span class="text-[10px] font-mono text-slate-400 truncate max-w-full mb-0.5" id="left-continent">Referência</span>
+                        <h3 class="text-base sm:text-xl font-heading font-black text-white leading-tight mb-2 truncate max-w-full" id="left-name">Carregando...</h3>
+                        <div class="text-base sm:text-2xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
+                        <p class="text-[10px] sm:text-xs font-mono text-slate-400 mt-0.5" id="left-unit">Área real</p>
                     </div>
 
                     <!-- BADGE VS CENTRAL -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-slate-950 font-black font-mono rounded-full w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center text-xs sm:text-sm shadow-2xl border-2 border-white/30 pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-slate-950 font-black font-mono rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[10px] sm:text-xs shadow-xl border border-white/40 pointer-events-none">
                         VS
                     </div>
 
                     <!-- CARTA DA DIREITA (Desafiante) -->
-                    <div class="w-full md:w-1/2 min-h-[250px] md:min-h-[410px] relative overflow-hidden bg-slate-900/90 flex flex-col items-center justify-center p-6 text-center">
-                        <img id="right-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
+                    <div class="relative overflow-hidden bg-slate-900/90 rounded-xl border border-white/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center">
+                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-1.5 shadow">
+                            <img id="right-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
+                        </div>
+                        <span class="text-[10px] font-mono text-slate-400 truncate max-w-full mb-0.5" id="right-prompt-label">Comparado ao lado</span>
+                        <h3 class="text-base sm:text-xl font-heading font-black text-white leading-tight mb-2 truncate max-w-full" id="right-name">Carregando...</h3>
                         
-                        <div class="relative z-10 w-full max-w-xs flex flex-col items-center">
-                            <div class="w-16 h-11 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-2.5 shadow-lg">
-                                <img id="right-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
-                            </div>
-                            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-1" id="right-prompt-label">Comparado a referência, tem...</span>
-                            <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-4 leading-tight" id="right-name">Carregando...</h2>
-                            
-                            <!-- Controles de Palpite -->
-                            <div id="game-controls" class="flex flex-col gap-2.5 w-full">
-                                <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
-                                    <i class="ph-bold ph-caret-up text-lg text-emerald-400"></i> <span id="btn-higher-text">MAIOR ÁREA</span>
-                                </button>
-                                <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
-                                    <i class="ph-bold ph-caret-down text-lg text-rose-400"></i> <span id="btn-lower-text">MENOR ÁREA</span>
-                                </button>
-                            </div>
+                        <!-- Controles de Palpite -->
+                        <div id="game-controls" class="flex flex-col gap-1.5 w-full max-w-[180px]">
+                            <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm">
+                                <i class="ph-bold ph-caret-up text-emerald-400"></i> <span id="btn-higher-text">MAIOR</span>
+                            </button>
+                            <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm">
+                                <i class="ph-bold ph-caret-down text-rose-400"></i> <span id="btn-lower-text">MENOR</span>
+                            </button>
+                        </div>
 
-                            <!-- Overlay de Revelação -->
-                            <div id="result-overlay" class="hidden flex-col items-center w-full">
-                                <div class="text-2xl sm:text-4xl text-amber-400 font-mono font-bold mb-0.5" id="right-value-reveal">---</div>
-                                <p class="text-xs font-mono text-slate-400 mb-2" id="right-unit-reveal">km²</p>
-                                <div id="scale-ratio-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 mb-2"></div>
-                                <div id="result-message" class="font-heading font-bold uppercase tracking-wider text-xs sm:text-sm mb-3"></div>
-                                <button onclick="nextRound()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs uppercase tracking-wider py-3 px-5 rounded-xl transition shadow-xl flex items-center justify-center gap-2">
-                                    Próximo Duelo <i class="ph-bold ph-arrow-right"></i>
-                                </button>
-                            </div>
+                        <!-- Overlay de Revelação -->
+                        <div id="result-overlay" class="hidden flex-col items-center w-full">
+                            <div class="text-base sm:text-2xl text-amber-400 font-mono font-bold" id="right-value-reveal">---</div>
+                            <div id="scale-ratio-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300 mt-0.5 mb-1 truncate max-w-full"></div>
+                            <div id="result-message" class="font-heading font-bold text-xs uppercase mb-1.5"></div>
+                            <button onclick="nextRound()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-2 px-4 rounded-lg transition shadow flex items-center justify-center gap-1">
+                                Próximo <i class="ph-bold ph-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Rodapé do Palco: Dossiê Comparativo -->
-                <div id="dossier-footer" class="bg-slate-950/90 border-t border-white/10 px-4 py-2.5 text-xs text-slate-400 font-sans flex items-center justify-between gap-2">
-                    <span id="dossier-text" class="truncate"><i class="ph-bold ph-info text-amber-400"></i> Use também as setas <kbd class="px-1.5 py-0.5 bg-white/10 rounded font-mono text-[10px]">↑</kbd> Maior e <kbd class="px-1.5 py-0.5 bg-white/10 rounded font-mono text-[10px]">↓</kbd> Menor do teclado.</span>
+                <!-- Rodapé Discreto -->
+                <div id="dossier-footer" class="bg-slate-950/70 border-t border-white/10 px-3 py-1.5 text-[11px] text-slate-400 font-mono text-center truncate rounded-b-xl mt-1">
+                    <span id="dossier-text">Teclas ↑ (Maior) e ↓ (Menor) disponíveis</span>
                 </div>
             </div>
 
             <!-- TELA DE GAME OVER -->
-            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[500px] shadow-2xl">
-                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-3">
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-2xl">
+                <div class="w-14 h-14 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-2xl mb-2.5">
                     <i class="ph-bold ph-scales"></i>
                 </div>
                 
-                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim dos Escudos!</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim de Jogo</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-2">Suas Vidas Acabaram</h2>
                 <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2">Sequência Interrompida</h2>
                 
                 <p id="gameover-comparison" class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto mb-4">--</p>
@@ -498,23 +474,23 @@
             const btnLower = document.getElementById('btn-lower-text');
 
             if (metricaRodada === 'area') {
-                titleEl.innerText = 'DUELO DE ESCALA REAL: QUEM TEM MAIOR EXTENSÃO TERRITORIAL (KM²)?';
-                unitLeft.innerText = 'Extensão territorial (Escala Real)';
-                unitRight.innerText = 'Extensão territorial (Escala Real)';
-                btnHigher.innerText = 'MAIOR TERRITÓRIO';
-                btnLower.innerText = 'MENOR TERRITÓRIO';
+                titleEl.innerText = 'Quem tem maior área territorial (km²)?';
+                unitLeft.innerText = 'Área real';
+                unitRight.innerText = 'Área real';
+                btnHigher.innerText = 'MAIOR';
+                btnLower.innerText = 'MENOR';
             } else if (metricaRodada === 'pop') {
-                titleEl.innerText = 'DUELO DEMOGRÁFICO: QUEM TEM MAIOR POPULAÇÃO NACIONAL?';
-                unitLeft.innerText = 'População nacional estimada';
-                unitRight.innerText = 'População nacional estimada';
-                btnHigher.innerText = 'MAIS POPULOSO';
-                btnLower.innerText = 'MENOS POPULOSO';
+                titleEl.innerText = 'Quem tem mais habitantes?';
+                unitLeft.innerText = 'População estimada';
+                unitRight.innerText = 'População estimada';
+                btnHigher.innerText = 'MAIS';
+                btnLower.innerText = 'MENOS';
             } else {
-                titleEl.innerText = 'DUELO ECONÔMICO: QUEM TEM MAIOR PIB NOMINAL (USD)?';
-                unitLeft.innerText = 'Produto Interno Bruto (PIB Nominal)';
-                unitRight.innerText = 'Produto Interno Bruto (PIB Nominal)';
-                btnHigher.innerText = 'MAIOR PIB';
-                btnLower.innerText = 'MENOR PIB';
+                titleEl.innerText = 'Quem tem maior economia (PIB)?';
+                unitLeft.innerText = 'PIB Nominal';
+                unitRight.innerText = 'PIB Nominal';
+                btnHigher.innerText = 'MAIOR';
+                btnLower.innerText = 'MENOR';
             }
         }
 
