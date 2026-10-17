@@ -21,9 +21,9 @@ const pathname = Astro.url.pathname;
       
       <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
         <a href="/" class={`px-3.5 py-1.5 rounded-full transition ${pathname === '/' ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Início</a>
-        <a href="/blog/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/blog') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Dossiês</a>
+        <a href="/blog/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/blog') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Posts</a>
         <a href="/ferramentas/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/ferramentas') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Ferramentas</a>
-        <a href="/jogos/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/jogos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Simulações</a>
+        <a href="/jogos/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/jogos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Jogos</a>
         <a href="/videos/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/videos') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Vídeos</a>
         <a href="/sobre/" class={`px-3.5 py-1.5 rounded-full transition ${pathname.startsWith('/sobre') ? 'text-white bg-white/10 font-semibold' : 'hover:text-white hover:bg-white/5'}`}>Sobre</a>
       </div>
@@ -36,22 +36,25 @@ const pathname = Astro.url.pathname;
 
   <!-- Mobile Bottom Navigation Bar -->
   <div class="h-16 md:hidden"></div>
-  <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#07090e]/95 backdrop-blur-lg border-t border-white/10 py-2 px-3" aria-label="Navegação Mobile">
-    <div class="flex justify-around items-center text-[11px] font-medium text-slate-400">
+  <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#07090e]/95 backdrop-blur-lg border-t border-white/10 py-2 px-1.5" aria-label="Navegação Mobile">
+    <div class="grid grid-cols-6 items-center text-center text-[10px] sm:text-[11px] font-medium text-slate-400">
       <a href="/" class={`flex flex-col items-center gap-0.5 ${pathname === '/' ? 'text-amber-400 font-semibold' : 'hover:text-white transition'}`}>
-        <i class="ph-bold ph-house text-base"></i> Início
+        <i class="ph-bold ph-house text-base"></i> <span class="truncate">Início</span>
       </a>
       <a href="/blog/" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/blog') ? 'text-amber-400 font-semibold' : 'hover:text-white transition'}`}>
-        <i class="ph-bold ph-newspaper text-base"></i> Dossiês
+        <i class="ph-bold ph-newspaper text-base"></i> <span class="truncate">Posts</span>
       </a>
       <a href="/ferramentas/" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/ferramentas') ? 'text-sky-400 font-semibold' : 'hover:text-white transition'}`}>
-        <i class="ph-bold ph-compass text-base"></i> Escala
+        <i class="ph-bold ph-compass text-base"></i> <span class="truncate">Ferramentas</span>
       </a>
       <a href="/jogos/" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/jogos') ? 'text-emerald-400 font-semibold' : 'hover:text-white transition'}`}>
-        <i class="ph-bold ph-game-controller text-base"></i> Jogos
+        <i class="ph-bold ph-game-controller text-base"></i> <span class="truncate">Jogos</span>
       </a>
       <a href="/videos/" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/videos') ? 'text-red-400 font-semibold' : 'hover:text-white transition'}`}>
-        <i class="ph-bold ph-play-circle text-base"></i> Vídeos
+        <i class="ph-bold ph-play-circle text-base"></i> <span class="truncate">Vídeos</span>
+      </a>
+      <a href="/sobre/" class={`flex flex-col items-center gap-0.5 ${pathname.startsWith('/sobre') ? 'text-purple-400 font-semibold' : 'hover:text-white transition'}`}>
+        <i class="ph-bold ph-info text-base"></i> <span class="truncate">Sobre</span>
       </a>
     </div>
   </nav>

@@ -105,9 +105,9 @@
             
             <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
                 <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
-                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Posts</a>
                 <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
-                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Jogos</a>
                 <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
                 <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
@@ -125,7 +125,7 @@
             <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
                 <a href="/" class="hover:text-amber-400 transition">Home</a>
                 <span>/</span>
-                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <a href="/blog" class="hover:text-amber-400 transition">Posts</a>
                 <span>/</span>
                 <span class="text-amber-400">{{CATEGORIA}}</span>
             </div>
@@ -225,18 +225,24 @@
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            <div class="grid grid-cols-6 gap-1 px-2 py-3 text-[10px] font-medium text-slate-400 text-center">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-amber-400"></i> Home
+                    <i class="ph-fill ph-house text-lg text-geoGold"></i> <span class="truncate">Início</span>
                 </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
+                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-newspaper text-lg"></i> <span class="truncate">Posts</span>
                 </a>
                 <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                    <i class="ph-fill ph-wrench text-lg"></i> <span class="truncate">Ferramentas</span>
                 </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 text-white">
-                    <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Blog
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-lg"></i> <span class="truncate">Jogos</span>
+                </a>
+                <a href="/videos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-play-circle text-lg"></i> <span class="truncate">Vídeos</span>
+                </a>
+                <a href="/sobre" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-info text-lg"></i> <span class="truncate">Sobre</span>
                 </a>
             </div>
         </div>

@@ -59,9 +59,9 @@
             
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
                 <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/blog" class="hover:text-white transition">Posts</a>
                 <a href="/ferramentas" class="hover:text-white transition">Ferramentas</a>
-                <a href="/jogos" class="text-white">Simulações</a>
+                <a href="/jogos" class="text-white">Jogos</a>
                 <a href="/videos" class="hover:text-white transition">Vídeos</a>
                 <a href="/sobre" class="hover:text-white transition">Sobre</a>
             </div>
@@ -157,18 +157,24 @@
     <div class="h-20 md:hidden"></div>
     <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
         <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            <div class="grid grid-cols-6 gap-1 px-2 py-3 text-[10px] font-medium text-slate-400 text-center">
                 <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
+                    <i class="ph-fill ph-house text-lg text-geoGold"></i> <span class="truncate">Início</span>
                 </a>
                 <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
+                    <i class="ph-fill ph-newspaper text-lg"></i> <span class="truncate">Posts</span>
+                </a>
+                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-wrench text-lg"></i> <span class="truncate">Ferramentas</span>
+                </a>
+                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-game-controller text-lg"></i> <span class="truncate">Jogos</span>
+                </a>
+                <a href="/videos" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-play-circle text-lg"></i> <span class="truncate">Vídeos</span>
+                </a>
+                <a href="/sobre" class="flex flex-col items-center gap-1 hover:text-white transition">
+                    <i class="ph-fill ph-info text-lg"></i> <span class="truncate">Sobre</span>
                 </a>
             </div>
         </div>
