@@ -4,49 +4,56 @@ export interface GameItem {
   icon: string;
   cover: string;
   link: string;
+  badge?: string;
 }
 
 export const gamesDB: GameItem[] = [
   {
-    titulo: "Onde Fica no Mapa? (Desafio Geopolítico)",
-    desc: "Clique no mapa mudo e descubra quão perto você chega dos enclaves, estreitos e locais mais estratégicos do planeta em 5 rodadas.",
-    icon: "https://img.icons8.com/?size=100&id=36839&format=png&color=000000",
+    titulo: "Onde Fica no Mapa?",
+    desc: "Aponte estreitos estratégicos, chokepoints e marcos geopolíticos no mapa mudo com pontuação de precisão por distância.",
+    icon: "ph-fill ph-crosshair",
     cover: "/assets/img/jogos/onde-fica.jpg",
-    link: "/jogos/onde-fica/"
+    link: "/jogos/onde-fica/",
+    badge: "PRECISÃO GEODÉSICA"
   },
   {
-    titulo: "Acerte a Bandeira (Todas as 196)",
-    desc: "Desafio global com todas as 196 bandeiras do mundo! Acerte em sequência sem perder as 3 vidas e tente zerar o planeta.",
-    icon: "https://img.icons8.com/?size=100&id=o6oNyiaQhfex&format=png&color=000000",
-    cover: "https://i.ytimg.com/vi/o5TQkVy0KWM/maxresdefault.jpg",
-    link: "/jogos/bandeiras/"
+    titulo: "O País Secreto",
+    desc: "Descubra a nação misteriosa do dia guiado pela temperatura geodésica em km, bússola de azimute e mapa térmico.",
+    icon: "ph-fill ph-thermometer-hot",
+    cover: "/assets/img/jogos/pais-secreto.jpg",
+    link: "/jogos/pais-secreto/",
+    badge: "DESAFIO DIÁRIO"
   },
   {
-    titulo: "Missão Capitais do Mundo (Top 100)",
-    desc: "Você sabe a capital real do Canadá, Austrália ou Suíça? Desafio das 100 capitais mais estratégicas com pegadinhas clássicas.",
-    icon: "https://img.icons8.com/?size=100&id=36839&format=png&color=000000",
-    cover: "https://i.ytimg.com/vi/EPWgsC6Tn00/maxresdefault.jpg",
-    link: "/jogos/capitais/"
+    titulo: "Desafio Mundial de Bandeiras",
+    desc: "Identifique as 198 bandeiras soberanas do planeta nos modos Sobrevivência (3 vidas) e Blitz 60s, com filtros por continente.",
+    icon: "ph-fill ph-flag-banner",
+    cover: "/assets/img/jogos/bandeiras.jpg",
+    link: "/jogos/bandeiras/",
+    badge: "198 SOBERANIAS"
   },
   {
-    titulo: "Guerra de Números (PIB)",
-    desc: "Quem é mais rico? Compare o PIB nominal das maiores potências em um desafio Higher or Lower com streak de recordes.",
-    icon: "https://img.icons8.com/?size=100&id=rOdRrQQZESUB&format=png&color=000000",
-    cover: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Ranks_of_countries_by_the_Good_Country_Index_1.5_%282020%29.png",
-    link: "/jogos/maior-menor/"
+    titulo: "Missão Capitais do Mundo",
+    desc: "Domine as 198 capitais oficiais e supere as pegadinhas clássicas onde a maior metrópole não é a sede de governo.",
+    icon: "ph-fill ph-buildings",
+    cover: "/assets/img/jogos/capitais.jpg",
+    link: "/jogos/capitais/",
+    badge: "INTELIGÊNCIA DIPLOMÁTICA"
+  },
+  {
+    titulo: "Guerra de Escala & Números",
+    desc: "Duelos estatísticos de Maior ou Menor: compare a extensão territorial real (km² sem distorção de Mercator), população e PIB.",
+    icon: "ph-fill ph-scales",
+    cover: "/assets/img/jogos/maior-menor.jpg",
+    link: "/jogos/maior-menor/",
+    badge: "ESCALA REAL VS MERCATOR"
   },
   {
     titulo: "Quiz de Inteligência Geopolítica",
-    desc: "40 questões investigativas sobre fronteiras, enclaves bizarros, estreitos marítimos e tratados históricos mundiais.",
-    icon: "https://img.icons8.com/?size=100&id=XsvEZR0h6fav&format=png&color=000000",
-    cover: "https://i.natgeofe.com/k/c821a1da-3cea-4f22-a913-1018461702f3/quiz_geography_16x9.jpg?w=1200",
-    link: "/jogos/quiz/"
-  },
-  {
-    titulo: "O País Secreto (Termômetro Geodésico)",
-    desc: "Descubra o país misterioso usando proximidade em km, mapa térmico e bússola de azimute em estilo Globle.",
-    icon: "ph-bold ph-compass",
-    cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png",
-    link: "/jogos/pais-secreto/"
+    desc: "Acervo investigativo com mais de 1.050 dossiês sobre tratados, canais marítimos, hidrografia e extremos do planeta sem repetição.",
+    icon: "ph-fill ph-brain",
+    cover: "/assets/img/jogos/quiz.jpg",
+    link: "/jogos/quiz/",
+    badge: "1.050 PERGUNTAS"
   }
 ];

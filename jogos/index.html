@@ -113,6 +113,15 @@
         const container = document.getElementById('games-grid');
         const db = (typeof gameDB !== 'undefined') ? gameDB : (typeof gamesDB !== 'undefined' ? gamesDB : []);
 
+        const recordesMap = {
+            '/jogos/onde-fica/': { key: 'vg_recorde_onde_fica', label: 'Recorde: {v} pts' },
+            '/jogos/pais-secreto/': { key: 'vg_recorde_pais_secreto', label: '{v} vitórias' },
+            '/jogos/bandeiras/': { key: 'vg_recorde_todas_bandeiras', label: 'Recorde: {v} acertos' },
+            '/jogos/capitais/': { key: 'vg_recorde_capitais', label: 'Recorde: {v} capitais' },
+            '/jogos/maior-menor/': { key: 'vg_best_pib', label: 'Recorde: {v} duelos' },
+            '/jogos/quiz/': { key: 'vitalegeo_quiz_melhor_score', label: 'Melhor: {v}/20' }
+        };
+
         if (db.length > 0) {
             container.innerHTML = ''; 
             db.forEach(game => {
@@ -123,6 +132,33 @@
                     cleanLink = '..' + cleanLink;
                 }
 
+                let badgeHTML = '';
+                if (game.badge) {
+                    badgeHTML = `
+                        <div class="absolute top-3 left-3 z-10">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-sm border border-emerald-400/30 text-[10px] font-mono font-bold text-emerald-300">
+                                <i class="ph-bold ph-game-controller"></i> ${game.badge}
+                            </span>
+                        </div>
+                    `;
+                }
+
+                let recordeHTML = '';
+                const recConfig = recordesMap[game.link];
+                if (recConfig) {
+                    const salvo = localStorage.getItem(recConfig.key);
+                    if (salvo && parseInt(salvo, 10) > 0) {
+                        const textoRec = recConfig.label.replace('{v}', salvo);
+                        recordeHTML = `
+                            <div class="absolute top-3 right-3 z-10">
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-400/40 text-[10px] font-mono font-bold text-amber-300">
+                                    <i class="ph-fill ph-trophy"></i> ${textoRec}
+                                </span>
+                            </div>
+                        `;
+                    }
+                }
+
                 let iconHTML = '';
                 if (game.icon.includes('/') || game.icon.includes('.')) {
                     iconHTML = `<img src="${game.icon}" class="w-16 h-16 object-contain">`;
@@ -131,8 +167,13 @@
                 }
 
                 const coverHTML = game.cover
-                    ? `<div class="aspect-[16/10] overflow-hidden bg-slate-900"><img src="${game.cover}" alt="${game.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>`
-                    : `<div class="aspect-[16/10] bg-slate-900 flex items-center justify-center">${iconHTML}</div>`;
+                    ? `<div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                        ${badgeHTML}
+                        ${recordeHTML}
+                        <img src="${game.cover}" alt="${game.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                       </div>`
+                    : `<div class="aspect-[16/10] bg-slate-900 flex items-center justify-center relative">${badgeHTML}${recordeHTML}${iconHTML}</div>`;
 
                 container.innerHTML += `
                     <a href="${cleanLink}" class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
@@ -143,8 +184,8 @@
                                 <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed">${game.desc || 'Módulo de desafio cartográfico.'}</p>
                             </div>
                         </div>
-                        <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                            Iniciar desafio <i class="ph-bold ph-arrow-right"></i>
+                        <div class="px-6 pb-6 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
+                            Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
                         </div>
                     </a>
                 `;
