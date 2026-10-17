@@ -3,7 +3,7 @@ titulo: "O Menor Gigante Geopolítico: Por Que as Superpotências Disputam o Dji
 resumo: "EUA, China, França, Japão e Itália dividem poucos quilômetros quadrados no Djibuti, a sentinela armada do estreito de Bab el-Mandeb."
 categoria: "Geopolítica"
 data: "16 Out 2026 - 21:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Djibouti_%28orthographic_projection%29.svg/1280px-Djibouti_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg/1280px-Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

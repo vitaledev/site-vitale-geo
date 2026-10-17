@@ -3,7 +3,7 @@ titulo: "Por Que a Mongólia Tem o Menor Povoamento do Planeta Espalhado em Trê
 resumo: "Com 1,56 milhão de km² e apenas 3,4 milhões de habitantes, o país dos cavaleiros nômades é a nação soberana mais vazia do mundo entre a Rússia e a China."
 categoria: "Curiosidades"
 data: "17 Out 2026 - 19:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mongolia_%28orthographic_projection%29.svg/1280px-Mongolia_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mongolian_Steppes_%286228096139%29.jpg/1280px-Mongolian_Steppes_%286228096139%29.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

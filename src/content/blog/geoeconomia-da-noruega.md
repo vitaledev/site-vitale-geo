@@ -3,7 +3,7 @@ titulo: "A Geoeconomia da Noruega: Como o Petróleo Criou o Maior Fundo Soberano
 resumo: "Ao descobrir óleo no Mar do Norte em 1969, Oslo evitou a 'doença holandesa' e ergueu um fundo de US$ 1,6 trilhão que detém 1,5% de todas as ações do planeta."
 categoria: "Geopolítica"
 data: "16 Out 2026 - 11:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Norway_%28orthographic_projection%29.svg/1280px-Norway_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Troll_A_Platform.jpg/1280px-Troll_A_Platform.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

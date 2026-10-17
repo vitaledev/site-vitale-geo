@@ -3,7 +3,7 @@ titulo: "A Geopolítica da Turquia: A Sentinela dos Estreitos Entre o Oriente e 
 resumo: "Controlando o Bósforo e os Dardanelos pelo Tratado de Montreux, Ancara opera como o pivô eurasiático indispensável entre a OTAN, o Cáucaso e o Oriente Médio."
 categoria: "Geopolítica"
 data: "16 Out 2026 - 09:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Turkey_%28orthographic_projection%29.svg/1280px-Turkey_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg/1280px-The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

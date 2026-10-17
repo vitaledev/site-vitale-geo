@@ -3,7 +3,7 @@ titulo: "Por Que a Polônia Está Se Armando para Ter o Maior Exército Terrestr
 resumo: "Na planície indefesa entre a Alemanha e a Rússia, Varsóvia investe mais de 4% do PIB em defesa para se tornar o escudo inexpugnável do flanco leste da OTAN."
 categoria: "Geopolítica"
 data: "17 Out 2026 - 09:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Poland_%28orthographic_projection%29.svg/1280px-Poland_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/0/05/Suwalki_Gap-de-cropped.png"
 tempoLeitura: "8 min"
 destaque: false
 ---

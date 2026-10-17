@@ -3,7 +3,7 @@ titulo: "Por Que o Canadá Tem Mais Lagos Que o Resto do Mundo Inteiro Junto?"
 resumo: "O Canadá abriga mais de 60% dos lagos de água doce do planeta. Entenda a herança glacial do Escudo Canadense e seu peso geoestratégico global."
 categoria: "Curiosidades"
 data: "16 Out 2026 - 18:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Canada_%28orthographic_projection%29.svg/1280px-Canada_%28orthographic_projection%29.svg.png"
+img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

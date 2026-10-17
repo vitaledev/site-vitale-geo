@@ -3,7 +3,7 @@ titulo: "Por que uma Faixa de 43 km no Cáucaso Pode Incendiar a Região?"
 resumo: "Uma faixa de 43 km no sul da Armênia separa o Azerbaijão de seu enclave de Nakhchivan e pode unir o mundo túrquico de Istambul ao Mar Cáspio."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 20:30"
-img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg/960px-Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+img: "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zangezur_corridor_red_arrow.png"
 tempoLeitura: "11 min"
 destaque: false
 ---

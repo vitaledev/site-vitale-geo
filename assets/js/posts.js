@@ -22,7 +22,7 @@ const blogPosts = [
         titulo: "Por Que a Mongólia Tem o Menor Povoamento do Planeta Espalhado em Três Espanhas de Terra?",
         categoria: "Curiosidades",
         data: "17 Out 2026 - 19:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mongolia_%28orthographic_projection%29.svg/1280px-Mongolia_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mongolian_Steppes_%286228096139%29.jpg/1280px-Mongolian_Steppes_%286228096139%29.jpg",
         link: "mongolia-vazio-demografico/",
         resumo: "Com 1,56 milhão de km² e apenas 3,4 milhões de habitantes, o país dos cavaleiros nômades é a nação soberana mais vazia do mundo entre a Rússia e a China."
     },
@@ -62,7 +62,7 @@ const blogPosts = [
         titulo: "Como o Cazaquistão Monopolizou Quase Metade de Todo o Urânio do Planeta?",
         categoria: "Geopolítica",
         data: "17 Out 2026 - 11:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kazakhstan_%28orthographic_projection%29.svg/1280px-Kazakhstan_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg/1280px-Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg",
         link: "geoeconomia-do-cazaquistao/",
         resumo: "Com 43% da produção mundial de urânio e posição chave no Corredor Médio, a gigante das estepes navega com maestria entre a Rússia, a China e o Ocidente."
     },
@@ -70,7 +70,7 @@ const blogPosts = [
         titulo: "Por Que a Polônia Está Se Armando para Ter o Maior Exército Terrestre da Europa?",
         categoria: "Geopolítica",
         data: "17 Out 2026 - 09:15",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Poland_%28orthographic_projection%29.svg/1280px-Poland_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/05/Suwalki_Gap-de-cropped.png",
         link: "geopolitica-da-polonia/",
         resumo: "Na planície indefesa entre a Alemanha e a Rússia, Varsóvia investe mais de 4% do PIB em defesa para se tornar o escudo inexpugnável do flanco leste da OTAN."
     },
@@ -78,7 +78,7 @@ const blogPosts = [
         titulo: "Como o México Perdeu Mais de Metade de Seu Território para os Estados Unidos?",
         categoria: "História",
         data: "17 Out 2026 - 07:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Mexico_%28orthographic_projection%29.svg/1280px-Mexico_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mexican_Cession.png/1280px-Mexican_Cession.png",
         link: "historia-do-mexico/",
         resumo: "Do esplendor de Tenochtitlán à perda de 2 milhões de km² no Tratado de Guadalupe Hidalgo em 1848, entenda como as fronteiras mexicanas foram forjadas."
     },
@@ -94,7 +94,7 @@ const blogPosts = [
         titulo: "O Menor Gigante Geopolítico: Por Que as Superpotências Disputam o Djibuti?",
         categoria: "Geopolítica",
         data: "16 Out 2026 - 21:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Djibouti_%28orthographic_projection%29.svg/1280px-Djibouti_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg/1280px-Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg",
         link: "djibuti-bases-militares/",
         resumo: "EUA, China, França, Japão e Itália dividem poucos quilômetros quadrados no Djibuti, a sentinela armada do estreito de Bab el-Mandeb."
     },
@@ -110,7 +110,7 @@ const blogPosts = [
         titulo: "Por Que o Canadá Tem Mais Lagos Que o Resto do Mundo Inteiro Junto?",
         categoria: "Curiosidades",
         data: "16 Out 2026 - 18:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Canada_%28orthographic_projection%29.svg/1280px-Canada_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg",
         link: "canada-pais-dos-lagos/",
         resumo: "O Canadá abriga mais de 60% dos lagos de água doce do planeta. Entenda a herança glacial do Escudo Canadense e seu peso geoestratégico global."
     },
@@ -142,7 +142,7 @@ const blogPosts = [
         titulo: "A Geoeconomia da Noruega: Como o Petróleo Criou o Maior Fundo Soberano da Terra",
         categoria: "Geopolítica",
         data: "16 Out 2026 - 11:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Norway_%28orthographic_projection%29.svg/1280px-Norway_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Troll_A_Platform.jpg/1280px-Troll_A_Platform.jpg",
         link: "geoeconomia-da-noruega/",
         resumo: "Ao descobrir óleo no Mar do Norte em 1969, Oslo evitou a 'doença holandesa' e ergueu um fundo de US$ 1,6 trilhão que detém 1,5% de todas as ações do planeta."
     },
@@ -150,7 +150,7 @@ const blogPosts = [
         titulo: "A Geopolítica da Turquia: A Sentinela dos Estreitos Entre o Oriente e o Ocidente",
         categoria: "Geopolítica",
         data: "16 Out 2026 - 09:15",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Turkey_%28orthographic_projection%29.svg/1280px-Turkey_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg/1280px-The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg",
         link: "geopolitica-da-turquia/",
         resumo: "Controlando o Bósforo e os Dardanelos pelo Tratado de Montreux, Ancara opera como o pivô eurasiático indispensável entre a OTAN, o Cáucaso e o Oriente Médio."
     },
@@ -158,7 +158,7 @@ const blogPosts = [
         titulo: "A História Completa da Colômbia: De Eldorado e Grã-Colômbia ao País dos Três Andes",
         categoria: "História",
         data: "16 Out 2026 - 07:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Colombia_%28orthographic_projection%29.svg/1280px-Colombia_%28orthographic_projection%29.svg.png",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Gran_Colombia_in_1824.svg/1280px-Gran_Colombia_in_1824.svg.png",
         link: "historia-da-colombia/",
         resumo: "Conheça a trajetória épica da Colômbia: a lenda de Eldorado, as guerras de Bolívar, a perda do Panamá e a geografia montanhosa que moldou sua identidade."
     },
@@ -262,7 +262,7 @@ const blogPosts = [
         titulo: "Por que uma Faixa de 43 km no Cáucaso Pode Incendiar a Região?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 20:30",
-        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg/960px-Armenia_%28orthographic_projection%2C_with_Zangezur_corridor%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/7d/Zangezur_corridor_red_arrow.png",
         link: "corredor-de-zangezur/",
         resumo: "Uma faixa de 43 km no sul da Armênia separa o Azerbaijão de seu enclave de Nakhchivan e pode unir o mundo túrquico de Istambul ao Mar Cáspio."
     },
