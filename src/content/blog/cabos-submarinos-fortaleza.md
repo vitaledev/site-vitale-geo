@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2008_submarine_cable_disruption_map.jpg" alt="Mapa global de rotas de cabos submarinos e incidentes de ruptura" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Mapa da infraestrutura global de cabos submarinos de fibra óptica transoceânicos.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 Ao contrário da crença popular de que a internet mundial trafega por satélites espaciais, mais de <strong>98% de todo o tráfego intercontinental de dados</strong> viaja por finos cabos de fibra óptica depositados no leito dos oceanos. Na América Latina, a espinha dorsal dessa infraestrutura passa por um único ponto geográfico: a <strong>Praia do Futuro</strong>, em Fortaleza. Ali, na costa do Ceará, convergem <strong>18 sistemas submarinos de telecomunicações</strong>, tornando a cidade o segundo maior hub de cabos submarinos do planeta.
 </p>

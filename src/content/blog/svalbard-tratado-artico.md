@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Longyearbyen_2011.jpg/1280px-Longyearbyen_2011.jpg" alt="A cidade de Longyearbyen em Svalbard cercada por montanhas árticas cobertas de neve" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 A meio caminho entre o norte da Noruega e o Polo Norte geográfico repousa o arquipélago gelado de <strong>Svalbard</strong>. Com cerca de 3.000 habitantes humanos (e quase 3.000 ursos polares), essas ilhas abrigam uma das maiores peculiaridades jurídicas do direito internacional.
 </p>

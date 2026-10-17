@@ -77,7 +77,7 @@ export default function HomeBlogFilter({ posts }: Props) {
               className="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden"
               style={{ animationDelay: `${index * 40}ms` }}
             >
-              <a href={`/blog/${post.slug || post.id}`} className="flex flex-col h-full">
+              <a href={`/blog/${post.slug || post.id}/`} className="flex flex-col h-full">
                 {/* Imagem Documental Limpa */}
                 <div className="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img

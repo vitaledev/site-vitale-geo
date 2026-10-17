@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg/1280px-Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg" alt="Tráfego naval no Canal de Kiel sob ponte suspensa na Alemanha" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Tráfego de embarcações no Canal de Kiel (Nord-Ostsee-Kanal) sob pontes suspensas na Alemanha.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 Quando pensamos em canais marítimos globais, os nomes de Suez e do Panamá vêm imediatamente à mente. No entanto, em número absoluto de trânsito de embarcações, o recordista mundial absoluto fica no norte da Alemanha: o <strong>Canal de Kiel</strong> (conhecido oficialmente em alemão como <em>Nord-Ostsee-Kanal</em>). Rasgando <strong>98 quilômetros</strong> do estado de Schleswig-Holstein, ele registra a passagem de mais de <strong>30.000 navios por ano</strong> — superando o Panamá e Suez combinados em fluxo de cascos.
 </p>

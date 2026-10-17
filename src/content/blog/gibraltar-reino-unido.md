@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rock_of_Gibraltar_from_Spain.jpg/1280px-Rock_of_Gibraltar_from_Spain.jpg" alt="O Rochedo de Gibraltar visto a partir do território espanhol" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Na ponta sul da Península Ibérica, uma imensa rocha calcária de 426 metros de altitude projeta-se sobre o Estreito que liga o Atlântico ao Mediterrâneo. Esse território de apenas <strong>6,8 quilômetros quadrados</strong> é <strong>Gibraltar</strong>, território ultramarino britânico cravado diretamente em solo espanhol.
 </p>

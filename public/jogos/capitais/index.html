@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#07080d]">
+<html lang="pt-br" class="bg-[#090a0f]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/capitais/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Missão Capitais do Mundo | Arcade VitaleGeo</title>
+    <title>Missão Capitais do Mundo (198 Nações & Pegadinhas) | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Você sabe qual é a verdadeira capital da Austrália, Canadá ou Suíça? Teste seus conhecimentos e tente zerar todas as capitais do mundo!">
-    <meta name="keywords" content="capitais do mundo, quiz de capitais, cidades capitais, geografia, jogo, vitalegeo">
+    <meta name="description" content="Você sabe a verdadeira capital da Austrália, Canadá, Suíça, Tanzânia ou Cazaquistão? Domine as 198 capitais mundiais nos modos Sobrevivência, Pegadinhas e Blitz 60s!">
+    <meta name="keywords" content="capitais do mundo, quiz de capitais, cidades capitais, pegadinhas geografia, vitalegeo arcade">
 
-    <meta property="og:title" content="Missão Capitais do Mundo | VitaleGeo">
-    <meta property="og:description" content="Desafio de Capitais Mundiais! Acerte as capitais e tente zerar o jogo!">
+    <meta property="og:title" content="Missão Capitais do Mundo (198 Nações) | VitaleGeo">
+    <meta property="og:description" content="Desafio das 198 Capitais Mundiais e Pegadinhas Geopolíticas! Jogue agora e baixe seu Scorecard!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/capitais/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/capitais.jpg">
 
     <!-- Google AdSense Oficial VitaleGeo -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
@@ -28,6 +29,9 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -36,6 +40,13 @@
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
                     }
                 }
             }
@@ -43,49 +54,75 @@
     </script>
 
     <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
         .flag-frame {
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
         .option-btn {
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 52px;
         }
-        .option-btn:hover {
+        .option-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
         }
-        .option-btn:active {
+        .option-btn:active:not(:disabled) {
             transform: scale(0.98);
+        }
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes screen-shake-damage {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-5px, 3px); }
+            40% { transform: translate(5px, -3px); }
+            60% { transform: translate(-3px, -2px); }
+            80% { transform: translate(3px, 2px); }
+        }
+        .shake-damage {
+            animation: screen-shake-damage 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between">
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <!-- BARRA DEDICADA DO ARCADE -->
-    <header class="arcade-header">
-        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
-            <i class="ph-bold ph-arrow-left"></i>
-            <span>Central de Jogos</span>
-        </a>
+    <!-- HEADER DO ARCADE -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Central de Jogos</span>
+            </a>
 
-        <div class="flex items-center gap-2">
-            <i class="ph-fill ph-buildings text-amber-400 text-lg"></i>
-            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
-                Missão <span class="text-amber-400">Capitais do Mundo</span>
-            </span>
-        </div>
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-buildings text-amber-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    Missão <span class="text-amber-400">Capitais do Mundo</span>
+                </h1>
+            </div>
 
-        <div class="arcade-header__actions">
-            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
-                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
-                <span class="hidden sm:inline">Tela Cheia</span>
-            </button>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Configurar Modo e Recorte">
+                    <i class="ph-bold ph-sliders-horizontal"></i>
+                    <span id="header-mode-label" class="hidden sm:inline">Mundo (198)</span>
+                </button>
+                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
     <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
 
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
         <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
             <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
@@ -99,290 +136,369 @@
             </div>
         </aside>
 
-        <!-- PALCO CENTRAL AMPLIADO (The Grand Stage) -->
-        <main class="arcade-stage-wrapper w-full max-w-4xl px-2 sm:px-4 py-2 sm:py-4 flex-1 flex flex-col justify-center" id="game-stage-container">
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-4xl px-1 sm:px-3 py-1 sm:py-2 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-        <!-- BARRA SUPERIOR DE TELEMETRIA & PROGRESSO -->
-        <div class="w-full mb-3 flex flex-col gap-2">
-            <div class="flex items-center justify-between text-xs font-mono">
-                <!-- Vidas -->
-                <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <span class="text-slate-400 text-[11px] uppercase mr-1">Vidas:</span>
-                    <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
-                        <i class="ph-fill ph-heart"></i>
+            <!-- BARRA SUPERIOR DE TELEMETRIA -->
+            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 mb-3 shadow-xl">
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono mb-2.5">
+                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <span class="text-slate-400 text-[11px] uppercase mr-1" id="status-left-label">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                        </span>
+                        <span id="timer-val" class="hidden font-bold text-amber-400 text-sm">60s</span>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-bold ph-map-pin text-amber-400"></i>
+                        <span class="text-slate-300">Capitais: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">198</span></span>
+                    </div>
+
+                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-fire text-amber-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Sequência: <strong id="streak-val" class="text-white">0</strong></span>
+                    </div>
+
+                    <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-trophy text-emerald-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                    </div>
+                </div>
+
+                <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-300 w-0"></div>
+                </div>
+            </div>
+
+            <!-- PALCO DO JOGO ATIVO -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full flex flex-col items-center justify-between text-center min-h-[520px] relative shadow-2xl">
+                
+                <!-- Topo do Card -->
+                <div class="w-full flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                        <i class="ph-bold ph-compass text-amber-400"></i>
+                        <span id="region-badge">Mundo Inteiro</span>
+                    </span>
+                    <span id="subregion-pill" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-[11px]">
+                        Carregando...
                     </span>
                 </div>
 
-                <!-- Acertos e Total da Rodada -->
-                <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-bold ph-map-pin text-amber-400"></i>
-                    <span class="text-slate-300">Capitais: <strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">100</span></span>
-                </div>
-
-                <!-- Recorde Máximo -->
-                <div class="hidden sm:flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
-                    <i class="ph-fill ph-trophy text-emerald-400"></i>
-                    <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
-                </div>
-            </div>
-
-            <!-- Barra de Progresso Visual -->
-            <div class="w-full h-2 bg-slate-950 rounded-full border border-white/10 overflow-hidden relative">
-                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 rounded-full transition-all duration-500 w-0"></div>
-            </div>
-        </div>
-
-        <!-- O PALCO DO JOGO (TELA DEDICADA AMPLIADA) -->
-        <div id="stage-active" class="arcade-stage p-6 sm:p-10 w-full flex flex-col items-center justify-between text-center min-h-[540px] relative">
-            
-            <div class="my-auto flex flex-col items-center w-full">
-                <!-- Bandeira e Nome do País -->
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="flag-frame w-16 h-11 sm:w-20 sm:h-14 rounded-lg overflow-hidden border border-white/20 bg-slate-950">
-                        <img id="flag-img" src="" class="w-full h-full object-cover" alt="Bandeira">
+                <div class="my-auto flex flex-col items-center w-full py-2">
+                    <!-- Bandeira e Nome do País / Capital -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
+                        <div class="flag-frame w-24 h-16 sm:w-28 sm:h-20 rounded-xl overflow-hidden border border-white/20 bg-slate-950 p-1 shrink-0">
+                            <img id="flag-img" src="" class="w-full h-full object-contain rounded-lg" alt="Bandeira Nacional">
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 block mb-0.5" id="question-kicker">Identifique a Sede Soberana</span>
+                            <h2 class="text-2xl sm:text-4xl font-heading font-black text-white leading-tight" id="country-name">Carregando...</h2>
+                        </div>
                     </div>
-                    <div class="text-left">
-                        <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 block">Identifique o Alvo</span>
-                        <h2 class="text-2xl sm:text-4xl font-heading font-black text-white" id="country-name">Carregando...</h2>
+
+                    <p class="text-xs sm:text-sm font-mono text-amber-400 uppercase tracking-widest mt-1 mb-2" id="question-prompt">
+                        Qual é a capital oficial deste território?
+                    </p>
+
+                    <!-- Feedback -->
+                    <div id="feedback-msg" class="min-h-[30px] text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2">
+                        Selecione uma das 4 opções abaixo (ou teclas 1 a 4):
+                    </div>
+
+                    <!-- Dossiê Geopolítico Rápido -->
+                    <div id="fact-drawer" class="hidden mt-2 max-w-xl w-full bg-slate-900/90 border border-white/10 rounded-xl p-3 text-left text-xs text-slate-300 leading-relaxed">
+                        <div class="flex items-center justify-between text-[11px] font-mono text-amber-400 uppercase mb-1">
+                            <span><i class="ph-bold ph-buildings"></i> Inteligência Territorial</span>
+                            <span id="fact-meta" class="text-emerald-400"></span>
+                        </div>
+                        <p id="fact-text" class="text-slate-300"></p>
                     </div>
                 </div>
 
-                <p class="text-xs sm:text-sm font-mono text-amber-400 uppercase tracking-widest mt-3 mb-4">
-                    Qual é a capital oficial deste país?
+                <!-- Grade de 4 Alternativas -->
+                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-3"></div>
+
+            </div>
+
+            <!-- TELA DE GAME OVER -->
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
+                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-3">
+                    <i class="ph-bold ph-compass"></i>
+                </div>
+                
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1" id="gameover-kicker">Missão Interrompida</span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2" id="gameover-title">Suas Vidas Acabaram!</h2>
+                
+                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto mb-4">
+                    A capital oficial de <strong id="last-country-name" class="text-white">--</strong> é <strong id="last-capital-name" class="text-amber-400">--</strong>.
                 </p>
 
-                <!-- Feedback de Acerto/Erro -->
-                <div id="feedback-msg" class="h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center">
-                    Selecione uma das 4 cidades abaixo:
+                <div class="bg-slate-900/70 border border-white/10 rounded-xl p-3.5 max-w-md w-full mb-5 text-left text-xs text-slate-300">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">Nota Geopolítica:</span>
+                    <p id="gameover-fact-text">--</p>
+                </div>
+
+                <!-- Placar -->
+                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
+                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Capitais Localizadas</span>
+                    <div class="text-4xl sm:text-5xl font-heading font-black text-amber-400 mb-1">
+                        <span id="final-score">0</span> <span class="text-lg text-slate-400 font-normal">/ <span id="final-total">198</span></span>
+                    </div>
+                    <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-2">0% do catálogo dominado</p>
+                    <div class="flex items-center justify-center gap-2 flex-wrap">
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200" id="final-rank">
+                            Rank: Turista
+                        </span>
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300" id="final-streak">
+                            Maior Sequência: 0x
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2.5 w-full max-w-md">
+                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[180px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="ph-bold ph-download-simple text-base"></i> Card PNG
+                    </button>
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="ph-bold ph-copy text-base"></i> Copiar
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-1 shadow-lg shadow-amber-400/20">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
+                    </button>
                 </div>
             </div>
 
-            <!-- Grade de Opções (4 Cidades) -->
-            <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl mt-4">
-                <!-- Preenchido via JavaScript -->
-            </div>
-
-        </div>
-
-        <!-- TELA DE FIM DE RODADA / GAME OVER -->
-        <div id="stage-gameover" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in fade-in duration-300">
-            <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-4">
-                <i class="ph-bold ph-compass"></i>
-            </div>
-            
-            <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Missão Abortada!</span>
-            <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-2">Suas Vidas Acabaram!</h2>
-            
-            <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
-                A capital correta de <strong id="last-country-name" class="text-white">--</strong> é <strong id="last-capital-name" class="text-amber-400">--</strong>.
-            </p>
-
-            <!-- Placar de Conquista -->
-            <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-6 max-w-md w-full mb-8 shadow-xl">
-                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Capitais Localizadas</span>
-                <div class="text-5xl sm:text-6xl font-heading font-black text-amber-400 mb-2">
-                    <span id="final-score">0</span> <span class="text-xl text-slate-400 font-normal">/ 100</span>
+            <!-- TELA DE VITÓRIA SUPREMA -->
+            <div id="stage-victory" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
+                <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+                    <i class="ph-fill ph-trophy"></i>
                 </div>
-                <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-3">0% do mapa dominado</p>
-                <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300" id="final-rank">
-                    Rank: Turista Perdido
+
+                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA SUPREMA!</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-3">MESTRE DAS CAPITAIS!</h2>
+                
+                <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
+                    Você localizou todas as <strong id="victory-total-text" class="text-amber-400">198 capitais</strong> deste módulo sem esgotar suas vidas!
+                </p>
+
+                <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-6 shadow-2xl">
+                    <span class="text-xs font-mono uppercase text-slate-300">Score Máximo</span>
+                    <div class="text-4xl sm:text-5xl font-black text-amber-400 my-1" id="victory-score-box">198 / 198 (100%)</div>
+                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Rank SSS: Chanceler Plenipotenciário</span>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharVitoriaWhatsApp()" class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/40 text-amber-300 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i> Baixar Card PNG
+                    </button>
+                    <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
+                    </button>
                 </div>
             </div>
 
-            <!-- Botões de Ação e Compartilhamento Viral -->
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[200px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
-                </button>
-                <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition flex items-center gap-2">
-                    <i class="ph-bold ph-copy text-base"></i> Copiar
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-2 shadow-lg shadow-amber-400/20">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Tentar Novamente
-                </button>
-            </div>
-        </div>
+            <!-- BANNER INFERIOR -->
+            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
 
-        <!-- TELA DE VITÓRIA SUPREMA (QUANDO O JOGADOR ZERA TODAS AS 100 CAPITAIS) -->
-        <div id="stage-victory" class="arcade-stage p-6 sm:p-12 w-full hidden flex-col items-center justify-center text-center min-h-[540px] animate-in zoom-in duration-500">
-            <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
-                <i class="ph-fill ph-trophy"></i>
-            </div>
+        </main>
 
-            <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA SUPREMA!</span>
-            <h2 class="text-3xl sm:text-6xl font-heading font-black text-white mb-3">ZEREI AS CAPITAIS!</h2>
-            
-            <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
-                Incrível! Você localizou todas as <strong class="text-amber-400">100 capitais globais</strong> sem falhar na missão. Você possui conhecimento de inteligência geopolítica absoluta!
-            </p>
-
-            <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-8 shadow-2xl">
-                <span class="text-xs font-mono uppercase text-slate-400">Score Máximo</span>
-                <div class="text-5xl font-black text-amber-400 my-1">100 / 100 (100%)</div>
-                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">★ Mestre Supremo das Capitais ★</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                <button onclick="compartilharVitoriaWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
-                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar Vitória Suprema!
-                </button>
-                <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
-                </button>
-            </div>
-        </div>
-
-        <!-- BANNER DE ANÚNCIO INFERIOR (RESPONSIVO PARA MOBILE E DESKTOP) -->
-        <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
-            <div class="w-full min-h-[90px] flex items-center justify-center">
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:inline-block;width:160px;height:600px"
                      data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-ad-slot="5140105675"></ins>
                 <script>
                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
                 </script>
             </div>
-        </section>
+        </aside>
+    </div>
 
-    </main>
+    <!-- MODAL DE CONFIGURAÇÃO DE MODOS -->
+    <div id="modal-modos" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#11131a] border border-white/15 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-sliders-horizontal text-amber-400 text-xl"></i>
+                    <h3 class="font-heading font-bold text-lg text-white">Configurar Missão de Capitais</h3>
+                </div>
+                <button onclick="fecharModalModos()" class="text-slate-400 hover:text-white p-1">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
 
-    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-        <div class="w-full flex-1 flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-6879770260785828"
-                 data-ad-slot="5140105675"></ins>
-            <script>
-                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-            </script>
+            <!-- Mecânica -->
+            <div class="mb-5">
+                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">1. Mecânica de Jogo</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <button onclick="selecionarModo('survival')" id="mode-btn-survival" class="p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
+                            <i class="ph-fill ph-heart text-rose-500"></i> Sobrevivência (3 Vidas)
+                        </div>
+                        <p class="text-[11px] text-slate-400">Zere o mapa! A cada 10 acertos seguidos você recupera 1 vida.</p>
+                    </button>
+                    <button onclick="selecionarModo('blitz')" id="mode-btn-blitz" class="p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
+                            <i class="ph-fill ph-lightning text-amber-400"></i> Blitz 60 Segundos
+                        </div>
+                        <p class="text-[11px] text-slate-400">Máximo de capitais em 60 segundos. Combos rendem +3s extras!</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recorte -->
+            <div class="mb-6">
+                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">2. Recorte Geopolítico</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <button onclick="selecionarRecorte('todos')" data-rec="todos" class="rec-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300">Mundo (198)</button>
+                    <button onclick="selecionarRecorte('pegadinhas')" data-rec="pegadinhas" class="rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Só Pegadinhas (40)</button>
+                    <button onclick="selecionarRecorte('Américas')" data-rec="Américas" class="rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Américas</button>
+                    <button onclick="selecionarRecorte('Europa')" data-rec="Europa" class="rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Europa</button>
+                    <button onclick="selecionarRecorte('Ásia')" data-rec="Ásia" class="rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Ásia</button>
+                    <button onclick="selecionarRecorte('África')" data-rec="África" class="rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">África</button>
+                </div>
+            </div>
+
+            <button onclick="aplicarModosEReiniciar()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+                <i class="ph-bold ph-play"></i> Iniciar Missão
+            </button>
         </div>
-    </aside>
-</div>
+    </div>
 
-    <!-- Rodapé Minimalista do Arcade -->
     <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Desafio de Capitais Mundiais
+        VitaleGeo Arcade &copy; 2026 · Missão Capitais do Mundo · 198 Soberanias Oficiais
     </footer>
 
-    <!-- Banco de Dados e Lógica do Jogo -->
     <script>
-        const catalogoCapitais = [
-            { name: "Austrália", code: "au", capital: "Camberra", pegadinhas: ["Sydney", "Melbourne", "Brisbane"] },
-            { name: "Canadá", code: "ca", capital: "Ottawa", pegadinhas: ["Toronto", "Vancouver", "Montreal"] },
-            { name: "Brasil", code: "br", capital: "Brasília", pegadinhas: ["Rio de Janeiro", "São Paulo", "Salvador"] },
-            { name: "Estados Unidos", code: "us", capital: "Washington, D.C.", pegadinhas: ["Nova York", "Los Angeles", "Chicago"] },
-            { name: "Suíça", code: "ch", capital: "Berna", pegadinhas: ["Zurique", "Genebra", "Basileia"] },
-            { name: "Turquia", code: "tr", capital: "Ancara", pegadinhas: ["Istambul", "Esmirna", "Antália"] },
-            { name: "África do Sul", code: "za", capital: "Pretória", pegadinhas: ["Joanesburgo", "Durban", "Soweto"] },
-            { name: "Nova Zelândia", code: "nz", capital: "Wellington", pegadinhas: ["Auckland", "Christchurch", "Queenstown"] },
-            { name: "Marrocos", code: "ma", capital: "Rabat", pegadinhas: ["Casablanca", "Marrakech", "Fez"] },
-            { name: "Cazaquistão", code: "kz", capital: "Astana", pegadinhas: ["Almaty", "Shymkent", "Aktobe"] },
-            { name: "Índia", code: "in", capital: "Nova Délhi", pegadinhas: ["Mumbai", "Calcutá", "Bangalore"] },
-            { name: "Alemanha", code: "de", capital: "Berlim", pegadinhas: ["Munique", "Frankfurt", "Hamburgo"] },
-            { name: "Reino Unido", code: "gb", capital: "Londres", pegadinhas: ["Manchester", "Edimburgo", "Birmingham"] },
-            { name: "França", code: "fr", capital: "Paris", pegadinhas: ["Marselha", "Lyon", "Nice"] },
-            { name: "Japão", code: "jp", capital: "Tóquio", pegadinhas: ["Quioto", "Osaka", "Yokohama"] },
-            { name: "China", code: "cn", capital: "Pequim", pegadinhas: ["Xangai", "Hong Kong", "Cantão"] },
-            { name: "Rússia", code: "ru", capital: "Moscou", pegadinhas: ["São Petersburgo", "Kazan", "Novosibirsk"] },
-            { name: "Itália", code: "it", capital: "Roma", pegadinhas: ["Milão", "Florença", "Nápoles"] },
-            { name: "Espanha", code: "es", capital: "Madri", pegadinhas: ["Barcelona", "Sevilha", "Valência"] },
-            { name: "Portugal", code: "pt", capital: "Lisboa", pegadinhas: ["Porto", "Coimbra", "Braga"] },
-            { name: "Argentina", code: "ar", capital: "Buenos Aires", pegadinhas: ["Córdoba", "Rosário", "Mendoza"] },
-            { name: "Coreia do Sul", code: "kr", capital: "Seul", pegadinhas: ["Busan", "Incheon", "Daegu"] },
-            { name: "Egito", code: "eg", capital: "Cairo", pegadinhas: ["Alexandria", "Giza", "Luxor"] },
-            { name: "Nigéria", code: "ng", capital: "Abuja", pegadinhas: ["Lagos", "Kano", "Ibadan"] },
-            { name: "Holanda", code: "nl", capital: "Amsterdã", pegadinhas: ["Roterdã", "Haia", "Utrecht"] },
-            { name: "Bélgica", code: "be", capital: "Bruxelas", pegadinhas: ["Antuérpia", "Gante", "Bruges"] },
-            { name: "Suécia", code: "se", capital: "Estocolmo", pegadinhas: ["Gotemburgo", "Malmö", "Uppsala"] },
-            { name: "Noruega", code: "no", capital: "Oslo", pegadinhas: ["Bergen", "Trondheim", "Stavanger"] },
-            { name: "Finlândia", code: "fi", capital: "Helsinque", pegadinhas: ["Espoo", "Tampere", "Turku"] },
-            { name: "Dinamarca", code: "dk", capital: "Copenhague", pegadinhas: ["Aarhus", "Odense", "Aalborg"] },
-            { name: "Polônia", code: "pl", capital: "Varsóvia", pegadinhas: ["Cracóvia", "Wrocław", "Gdańsk"] },
-            { name: "Ucrânia", code: "ua", capital: "Kiev", pegadinhas: ["Kharkiv", "Odessa", "Lviv"] },
-            { name: "Grécia", code: "gr", capital: "Atenas", pegadinhas: ["Tessalônica", "Patras", "Heraclião"] },
-            { name: "México", code: "mx", capital: "Cidade do México", pegadinhas: ["Guadalajara", "Monterrey", "Cancún"] },
-            { name: "Chile", code: "cl", capital: "Santiago", pegadinhas: ["Valparaíso", "Concepción", "Antofagasta"] },
-            { name: "Colômbia", code: "co", capital: "Bogotá", pegadinhas: ["Medellín", "Cali", "Cartagena"] },
-            { name: "Peru", code: "pe", capital: "Lima", pegadinhas: ["Cusco", "Arequipa", "Trujillo"] },
-            { name: "Venezuela", code: "ve", capital: "Caracas", pegadinhas: ["Maracaibo", "Valência", "Barquisimeto"] },
-            { name: "Uruguai", code: "uy", capital: "Montevidéu", pegadinhas: ["Punta del Este", "Salto", "Paysandú"] },
-            { name: "Paraguai", code: "py", capital: "Assunção", pegadinhas: ["Ciudad del Este", "Encarnación", "Luque"] },
-            { name: "Bolívia", code: "bo", capital: "Sucre (Constitucional) / La Paz", pegadinhas: ["Santa Cruz de la Sierra", "Cochabamba", "Potosí"] },
-            { name: "Equador", code: "ec", capital: "Quito", pegadinhas: ["Guayaquil", "Cuenca", "Manta"] },
-            { name: "Israel", code: "il", capital: "Jerusalém", pegadinhas: ["Tel Aviv", "Haifa", "Eilat"] },
-            { name: "Arábia Saudita", code: "sa", capital: "Riad", pegadinhas: ["Jidá", "Meca", "Medina"] },
-            { name: "Emirados Árabes Unidos", code: "ae", capital: "Abu Dhabi", pegadinhas: ["Dubai", "Sharjah", "Ajman"] },
-            { name: "Catar", code: "qa", capital: "Doha", pegadinhas: ["Al Rayyan", "Al Wakrah", "Lusail"] },
-            { name: "Irã", code: "ir", capital: "Teerã", pegadinhas: ["Isfahan", "Shiraz", "Tabriz"] },
-            { name: "Iraque", code: "iq", capital: "Bagdá", pegadinhas: ["Basra", "Erbil", "Mossul"] },
-            { name: "Indonésia", code: "id", capital: "Jacarta (Nusantara)", pegadinhas: ["Bali", "Surabaia", "Bandung"] },
-            { name: "Tailândia", code: "th", capital: "Bangcoc", pegadinhas: ["Phuket", "Chiang Mai", "Pattaya"] },
-            { name: "Vietnã", code: "vn", capital: "Hanói", pegadinhas: ["Ho Chi Minh", "Da Nang", "Hai Phong"] },
-            { name: "Filipinas", code: "ph", capital: "Manila", pegadinhas: ["Cebu", "Davao", "Quezon"] },
-            { name: "Malásia", code: "my", capital: "Kuala Lumpur", pegadinhas: ["Penang", "Johor Bahru", "Putrajaya"] },
-            { name: "Singapura", code: "sg", capital: "Singapura (Cidade-Estado)", pegadinhas: ["Jurong", "Woodlands", "Sentosa"] },
-            { name: "Paquistão", code: "pk", capital: "Islamabad", pegadinhas: ["Karachi", "Lahore", "Faisalabad"] },
-            { name: "Bangladesh", code: "bd", capital: "Daca", pegadinhas: ["Chittagong", "Khulna", "Sylhet"] },
-            { name: "Quênia", code: "ke", capital: "Nairóbi", pegadinhas: ["Mombasa", "Kisumu", "Nakuru"] },
-            { name: "Etiópia", code: "et", capital: "Adis Abeba", pegadinhas: ["Dire Dawa", "Gondar", "Hawassa"] },
-            { name: "Gana", code: "gh", capital: "Acra", pegadinhas: ["Kumasi", "Tamale", "Takoradi"] },
-            { name: "Senegal", code: "sn", capital: "Dacar", pegadinhas: ["Touba", "Thies", "Saint-Louis"] },
-            { name: "Angola", code: "ao", capital: "Luanda", pegadinhas: ["Benguela", "Huambo", "Lobito"] },
-            { name: "Moçambique", code: "mz", capital: "Maputo", pegadinhas: ["Beira", "Nampula", "Matola"] },
-            { name: "Cuba", code: "cu", capital: "Havana", pegadinhas: ["Santiago de Cuba", "Varadero", "Camagüey"] },
-            { name: "República Dominicana", code: "do", capital: "Santo Domingo", pegadinhas: ["Punta Cana", "Santiago", "Puerto Plata"] },
-            { name: "Panamá", code: "pa", capital: "Cidade do Panamá", pegadinhas: ["Colón", "David", "Bocas del Toro"] },
-            { name: "Costa Rica", code: "cr", capital: "São José", pegadinhas: ["Alajuela", "Cartago", "Heredia"] },
-            { name: "Áustria", code: "at", capital: "Viena", pegadinhas: ["Salzburgo", "Innsbruck", "Graz"] },
-            { name: "Hungria", code: "hu", capital: "Budapeste", pegadinhas: ["Debrecen", "Szeged", "Miskolc"] },
-            { name: "República Tcheca", code: "cz", capital: "Praga", pegadinhas: ["Brno", "Ostrava", "Plzeň"] },
-            { name: "Irlanda", code: "ie", capital: "Dublin", pegadinhas: ["Cork", "Galway", "Limerick"] },
-            { name: "Islândia", code: "is", capital: "Reykjavik", pegadinhas: ["Akureyri", "Keflavík", "Kópavogur"] },
-            { name: "Croácia", code: "hr", capital: "Zagreb", pegadinhas: ["Split", "Dubrovnik", "Rijeka"] },
-            { name: "Sérvia", code: "rs", capital: "Belgrado", pegadinhas: ["Novi Sad", "Niš", "Kragujevac"] },
-            { name: "Romênia", code: "ro", capital: "Bucareste", pegadinhas: ["Cluj-Napoca", "Timișoara", "Iași"] },
-            { name: "Bulgária", code: "bg", capital: "Sófia", pegadinhas: ["Plovdiv", "Varna", "Burgas"] },
-            { name: "Eslováquia", code: "sk", capital: "Bratislava", pegadinhas: ["Košice", "Prešov", "Žilina"] },
-            { name: "Eslovênia", code: "si", capital: "Liubliana", pegadinhas: ["Maribor", "Celje", "Kranj"] },
-            { name: "Estônia", code: "ee", capital: "Tallinn", pegadinhas: ["Tartu", "Narva", "Pärnu"] },
-            { name: "Letônia", code: "lv", capital: "Riga", pegadinhas: ["Daugavpils", "Liepāja", "Jelgava"] },
-            { name: "Lituânia", code: "lt", capital: "Vilnius", pegadinhas: ["Kaunas", "Klaipėda", "Šiauliai"] },
-            { name: "Chipre", code: "cy", capital: "Nicósia", pegadinhas: ["Limassol", "Larnaca", "Paphos"] },
-            { name: "Líbano", code: "lb", capital: "Beirute", pegadinhas: ["Trípoli", "Sídon", "Tiro"] },
-            { name: "Jordânia", code: "jo", capital: "Amã", pegadinhas: ["Zarqa", "Irbid", "Aqaba"] },
-            { name: "Argélia", code: "dz", capital: "Argel", pegadinhas: ["Orã", "Constantina", "Annaba"] },
-            { name: "Tunísia", code: "tn", capital: "Túnis", pegadinhas: ["Sfax", "Sousse", "Kairouan"] },
-            { name: "Nepal", code: "np", capital: "Catmandu", pegadinhas: ["Pokhara", "Lalitpur", "Biratnagar"] },
-            { name: "Sri Lanka", code: "lk", capital: "Colombo / Sri Jayawardenepura Kotte", pegadinhas: ["Kandy", "Galle", "Jaffna"] },
-            { name: "Mianmar", code: "mm", capital: "Naipidau (Naypyidaw)", pegadinhas: ["Yangon (Rangum)", "Mandalay", "Bago"] },
-            { name: "Geórgia", code: "ge", capital: "Tbilisi", pegadinhas: ["Batumi", "Kutaisi", "Rustavi"] },
-            { name: "Armênia", code: "am", capital: "Yerevan", pegadinhas: ["Gyumri", "Vanadzor", "Vagharshapat"] },
-            { name: "Azerbaijão", code: "az", capital: "Baku", pegadinhas: ["Ganja", "Sumqayit", "Mingachevir"] },
-            { name: "Uzbequistão", code: "uz", capital: "Tashkent", pegadinhas: ["Samarcanda", "Bukhara", "Namangan"] },
-            { name: "Mongólia", code: "mn", capital: "Ulaanbaatar", pegadinhas: ["Erdenet", "Darkhan", "Choibalsan"] },
-            { name: "Jamaica", code: "jm", capital: "Kingston", pegadinhas: ["Montego Bay", "Spanish Town", "Negril"] },
-            { name: "Haiti", code: "ht", capital: "Porto Príncipe", pegadinhas: ["Cap-Haïtien", "Gonaïves", "Les Cayes"] },
-            { name: "Guatemala", code: "gt", capital: "Cidade da Guatemala", pegadinhas: ["Antigua", "Quetzaltenango", "Escuintla"] },
-            { name: "Honduras", code: "hn", capital: "Tegucigalpa", pegadinhas: ["San Pedro Sula", "La Ceiba", "Choloma"] },
-            { name: "Camboja", code: "kh", capital: "Phnom Penh", pegadinhas: ["Siem Reap", "Battambang", "Sihanoukville"] },
-            { name: "Laos", code: "la", capital: "Vientiane", pegadinhas: ["Luang Prabang", "Pakse", "Savannakhet"] },
-            { name: "Tanzânia", code: "tz", capital: "Dodoma", pegadinhas: ["Dar es Salaam", "Arusha", "Zanzibar"] }
-        ];
+        // Países com pegadinhas clássicas de capital (onde a maior metrópole econômica não é a capital)
+        const ISO_PEGADINHAS = new Set([
+            'au', 'ca', 'br', 'us', 'ch', 'tr', 'za', 'nz', 'ma', 'kz',
+            'in', 'ng', 'nl', 'bo', 'il', 'ae', 'id', 'vn', 'my', 'pk',
+            'tz', 'cm', 'ci', 'bj', 'mm', 'lk', 'bz', 'ec', 'cn', 'sa',
+            'eg', 'de', 'es', 'it', 'be', 'sc', 'fm', 'pw', 'nr', 'tw'
+        ]);
 
+        const baseCapitais = (window.CerebroGeo && Array.isArray(window.CerebroGeo.paises) && window.CerebroGeo.paises.length > 0)
+            ? window.CerebroGeo.paises.map(p => ({
+                name: p.nome,
+                code: p.iso2.toLowerCase(),
+                capital: p.capital,
+                pegadinhas: Array.isArray(p.pegadinhas) ? p.pegadinhas : [],
+                continente: p.continente,
+                subregiao: p.subregiao,
+                fato: p.fato
+            }))
+            : [
+                { name: "Austrália", code: "au", capital: "Camberra", pegadinhas: ["Sydney", "Melbourne", "Brisbane"], continente: "Oceania", subregiao: "Australásia", fato: "Camberra foi construída em 1913 como compromisso entre Sydney e Melbourne." },
+                { name: "Canadá", code: "ca", capital: "Ottawa", pegadinhas: ["Toronto", "Vancouver", "Montreal"], continente: "América do Norte", subregiao: "América Anglo-Saxônica", fato: "Escolhida pela Rainha Vitória em 1857 na fronteira entre Ontário e Quebec." }
+            ];
+
+        // Sintetizador Web Audio API
+        let somAtivo = true;
+        let audioCtx = null;
+
+        function getAudioCtx() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        function tocarSom(tipo) {
+            if (!somAtivo) return;
+            const ctx = getAudioCtx();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+
+            if (tipo === 'acerto') {
+                [523.25, 659.25, 783.99].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.11, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.18);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.19);
+                });
+            } else if (tipo === 'erro') {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(155, now);
+                osc.frequency.linearRampToValueAtTime(90, now + 0.28);
+                gain.gain.setValueAtTime(0.14, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.31);
+            } else if (tipo === 'cura') {
+                [587.33, 783.99, 987.77, 1174.66].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.07);
+                    osc.stop(now + idx * 0.07 + 0.23);
+                });
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+        }
+
+        // Estado do Jogo
+        let modoAtual = 'survival';
+        let recorteFiltro = 'todos';
+        let catalogoFiltrado = [];
         let capitaisRestantes = [];
         let alvoAtual = null;
         let acertos = 0;
         let vidas = 3;
-        const totalCapitais = catalogoCapitais.length;
-        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_capitais') || '0');
+        let streakAtual = 0;
+        let maiorStreak = 0;
+        let tempoRestante = 60;
+        let timerInterval = null;
+        let aguardandoProxima = false;
+
+        let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_capitais') || '0', 10);
 
         const stageActive = document.getElementById('stage-active');
         const stageGameOver = document.getElementById('stage-gameover');
@@ -391,21 +507,104 @@
         const scoreVal = document.getElementById('score-val');
         const totalVal = document.getElementById('total-val');
         const bestScoreVal = document.getElementById('best-score');
+        const streakVal = document.getElementById('streak-val');
         const progressBar = document.getElementById('progress-bar');
         const vidasContainer = document.getElementById('vidas-container');
+        const timerVal = document.getElementById('timer-val');
+        const statusLeftLabel = document.getElementById('status-left-label');
 
         const flagImg = document.getElementById('flag-img');
         const countryName = document.getElementById('country-name');
         const feedbackMsg = document.getElementById('feedback-msg');
         const optionsGrid = document.getElementById('options-grid');
+        const factDrawer = document.getElementById('fact-drawer');
 
-        totalVal.innerText = totalCapitais;
         bestScoreVal.innerText = recordeMaximo;
 
+        function filtrarCatalogo(rec) {
+            if (rec === 'todos') return [...baseCapitais];
+            if (rec === 'pegadinhas') return baseCapitais.filter(p => ISO_PEGADINHAS.has(p.code));
+            if (rec === 'Américas') return baseCapitais.filter(p => p.continente && p.continente.includes('América'));
+            return baseCapitais.filter(p => p.continente === rec);
+        }
+
+        function abrirModalModos() {
+            const m = document.getElementById('modal-modos');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function fecharModalModos() {
+            const m = document.getElementById('modal-modos');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        function selecionarModo(modo) {
+            modoAtual = modo;
+            const btnSurv = document.getElementById('mode-btn-survival');
+            const btnBlitz = document.getElementById('mode-btn-blitz');
+            if (modo === 'survival') {
+                btnSurv.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
+                btnBlitz.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+            } else {
+                btnBlitz.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
+                btnSurv.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+            }
+        }
+
+        function selecionarRecorte(rec) {
+            recorteFiltro = rec;
+            document.querySelectorAll('.rec-btn').forEach(btn => {
+                if (btn.getAttribute('data-rec') === rec) {
+                    btn.className = "rec-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300";
+                } else {
+                    btn.className = "rec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30";
+                }
+            });
+        }
+
+        function aplicarModosEReiniciar() {
+            fecharModalModos();
+            reiniciarJogo();
+        }
+
         function reiniciarJogo() {
+            if (timerInterval) clearInterval(timerInterval);
             acertos = 0;
             vidas = 3;
-            capitaisRestantes = [...catalogoCapitais].sort(() => Math.random() - 0.5);
+            streakAtual = 0;
+            maiorStreak = 0;
+            tempoRestante = 60;
+            aguardandoProxima = false;
+
+            catalogoFiltrado = filtrarCatalogo(recorteFiltro);
+            capitaisRestantes = [...catalogoFiltrado].sort(() => Math.random() - 0.5);
+
+            totalVal.innerText = catalogoFiltrado.length;
+            const nomeRec = recorteFiltro === 'todos' ? `Mundo (${catalogoFiltrado.length})` : (recorteFiltro === 'pegadinhas' ? `Pegadinhas (${catalogoFiltrado.length})` : `${recorteFiltro} (${catalogoFiltrado.length})`);
+            document.getElementById('header-mode-label').innerText = modoAtual === 'blitz' ? `Blitz · ${nomeRec}` : nomeRec;
+            document.getElementById('region-badge').innerText = modoAtual === 'blitz' ? `Modo Blitz 60s · ${nomeRec}` : `Modo Sobrevivência · ${nomeRec}`;
+
+            if (modoAtual === 'blitz') {
+                statusLeftLabel.innerText = 'Tempo:';
+                vidasContainer.classList.add('hidden');
+                timerVal.classList.remove('hidden');
+                timerVal.innerText = `${tempoRestante}s`;
+                timerInterval = setInterval(() => {
+                    tempoRestante--;
+                    timerVal.innerText = `${tempoRestante}s`;
+                    timerVal.className = tempoRestante <= 10 ? 'font-bold text-rose-500 text-sm animate-pulse' : 'font-bold text-amber-400 text-sm';
+                    if (tempoRestante <= 0) {
+                        clearInterval(timerInterval);
+                        finalizarGameOver('tempo');
+                    }
+                }, 1000);
+            } else {
+                statusLeftLabel.innerText = 'Vidas:';
+                vidasContainer.classList.remove('hidden');
+                timerVal.classList.add('hidden');
+            }
 
             stageActive.classList.remove('hidden');
             stageActive.classList.add('flex');
@@ -420,7 +619,9 @@
 
         function atualizarStatusUI() {
             scoreVal.innerText = acertos;
-            const perc = ((acertos / totalCapitais) * 100).toFixed(1);
+            streakVal.innerText = streakAtual > 1 ? `${streakAtual}x` : streakAtual;
+            const total = catalogoFiltrado.length || 1;
+            const perc = ((acertos / total) * 100).toFixed(1);
             progressBar.style.width = `${perc}%`;
 
             let coracoesHTML = '';
@@ -435,45 +636,51 @@
         }
 
         function proximaRodada() {
+            aguardandoProxima = false;
+            factDrawer.classList.add('hidden');
+
             if (capitaisRestantes.length === 0) {
+                if (timerInterval) clearInterval(timerInterval);
                 concluirZeramento();
                 return;
             }
 
             alvoAtual = capitaisRestantes.pop();
 
-            // Sorteia opções (a capital certa + 3 pegadinhas ou capitais de outros)
             let opcoes = [alvoAtual.capital];
-            
-            // Usa as pegadinhas famosas daquele país se disponíveis
             if (alvoAtual.pegadinhas && alvoAtual.pegadinhas.length >= 3) {
-                opcoes = [alvoAtual.capital, ...alvoAtual.pegadinhas.slice(0, 3)];
-            } else {
-                while (opcoes.length < 4) {
-                    let randomItem = catalogoCapitais[Math.floor(Math.random() * catalogoCapitais.length)];
-                    if (!opcoes.includes(randomItem.capital)) {
-                        opcoes.push(randomItem.capital);
-                    }
+                alvoAtual.pegadinhas.slice(0, 3).forEach(peg => {
+                    if (!opcoes.includes(peg)) opcoes.push(peg);
+                });
+            }
+            while (opcoes.length < 4) {
+                let randomItem = baseCapitais[Math.floor(Math.random() * baseCapitais.length)];
+                if (!opcoes.includes(randomItem.capital)) {
+                    opcoes.push(randomItem.capital);
                 }
             }
 
             opcoes.sort(() => Math.random() - 0.5);
 
             countryName.innerText = alvoAtual.name;
+            document.getElementById('subregion-pill').innerText = alvoAtual.subregiao || alvoAtual.continente;
             flagImg.src = `/assets/flags/${alvoAtual.code}.svg`;
             flagImg.onerror = () => {
                 flagImg.src = `https://flagcdn.com/w320/${alvoAtual.code}.png`;
             };
 
-            feedbackMsg.innerText = "Escolha a capital correta:";
-            feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center";
+            feedbackMsg.innerText = "Escolha a capital oficial:";
+            feedbackMsg.className = "min-h-[30px] text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center justify-center px-2";
 
             optionsGrid.innerHTML = '';
-            opcoes.forEach(cidade => {
+            opcoes.forEach((cidade, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
+                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-3.5 px-4 sm:px-5 rounded-xl font-heading font-semibold text-slate-200 text-sm sm:text-base text-left flex items-center justify-between group shadow-md";
                 btn.innerHTML = `
-                    <span class="truncate">${cidade}</span>
+                    <span class="flex items-center gap-2.5 truncate">
+                        <span class="w-5 h-5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">${idx + 1}</span>
+                        <span class="truncate">${cidade}</span>
+                    </span>
                     <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
                 `;
                 btn.onclick = () => verificarResposta(cidade, btn);
@@ -482,17 +689,40 @@
         }
 
         function verificarResposta(cidadeEscolhida, btnClicado) {
+            if (aguardandoProxima) return;
+            aguardandoProxima = true;
+
             const allBtns = optionsGrid.querySelectorAll('button');
             allBtns.forEach(b => b.disabled = true);
 
+            if (alvoAtual.fato) {
+                factDrawer.classList.remove('hidden');
+                document.getElementById('fact-meta').innerText = `${alvoAtual.name} · ${alvoAtual.capital}`;
+                document.getElementById('fact-text').innerText = alvoAtual.fato;
+            }
+
             if (cidadeEscolhida === alvoAtual.capital) {
+                tocarSom('acerto');
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
 
-                feedbackMsg.innerText = `✓ Correto! ${alvoAtual.capital} é a capital!`;
-                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 animate-pulse flex items-center justify-center";
-
                 acertos++;
+                streakAtual++;
+                if (streakAtual > maiorStreak) maiorStreak = streakAtual;
+
+                let extra = '';
+                if (modoAtual === 'survival' && streakAtual > 0 && streakAtual % 10 === 0 && vidas < 3) {
+                    vidas++;
+                    tocarSom('cura');
+                    extra = ' · +1 VIDA RECUPERADA!';
+                } else if (modoAtual === 'blitz' && streakAtual > 0 && streakAtual % 5 === 0) {
+                    tempoRestante += 3;
+                    extra = ' · +3s BÔNUS!';
+                }
+
+                feedbackMsg.innerText = `Correto! ${alvoAtual.capital} é a capital!${extra}`;
+                feedbackMsg.className = "min-h-[30px] text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center justify-center px-2";
+
                 if (acertos > recordeMaximo) {
                     recordeMaximo = acertos;
                     localStorage.setItem('vg_recorde_capitais', recordeMaximo);
@@ -502,53 +732,84 @@
                 atualizarStatusUI();
 
                 if (acertos % 10 === 0 && typeof confetti === 'function') {
-                    confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+                    confetti({ particleCount: 55, spread: 65, origin: { y: 0.6 } });
                 }
 
-                setTimeout(proximaRodada, 500);
+                setTimeout(proximaRodada, modoAtual === 'blitz' ? 450 : 950);
             } else {
+                tocarSom('erro');
+                streakAtual = 0;
+                stageActive.classList.remove('shake-damage');
+                void stageActive.offsetWidth;
+                stageActive.classList.add('shake-damage');
+
                 btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
                 btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
 
-                feedbackMsg.innerText = `✗ Errado! A capital correta é ${alvoAtual.capital}!`;
-                feedbackMsg.className = "h-7 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center";
+                feedbackMsg.innerText = `Incorreto! A capital oficial é ${alvoAtual.capital}!`;
+                feedbackMsg.className = "min-h-[30px] text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-rose-400 flex items-center justify-center px-2";
 
                 allBtns.forEach(b => {
-                    if (b.innerText.trim().includes(alvoAtual.capital)) {
+                    if (b.innerText.includes(alvoAtual.capital)) {
                         b.classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
                     }
                 });
 
-                vidas--;
-                atualizarStatusUI();
-
-                if (vidas <= 0) {
-                    setTimeout(finalizarGameOver, 1600);
+                if (modoAtual === 'survival') {
+                    vidas--;
+                    atualizarStatusUI();
+                    if (vidas <= 0) {
+                        setTimeout(() => finalizarGameOver('vidas'), 1700);
+                    } else {
+                        setTimeout(proximaRodada, 1700);
+                    }
                 } else {
-                    setTimeout(proximaRodada, 1600);
+                    tempoRestante = Math.max(0, tempoRestante - 3);
+                    timerVal.innerText = `${tempoRestante}s`;
+                    atualizarStatusUI();
+                    setTimeout(proximaRodada, 900);
                 }
             }
         }
 
-        function finalizarGameOver() {
+        window.addEventListener('keydown', (e) => {
+            if (aguardandoProxima || stageActive.classList.contains('hidden')) return;
+            const idx = parseInt(e.key, 10) - 1;
+            if (idx >= 0 && idx < 4) {
+                const btns = optionsGrid.querySelectorAll('button');
+                if (btns[idx] && !btns[idx].disabled) btns[idx].click();
+            }
+        });
+
+        function obterRank(pts, total) {
+            const ratio = pts / (total || 198);
+            if (pts >= 140 || ratio >= 0.85) return "Rank S: Chanceler Supremo";
+            if (pts >= 80 || ratio >= 0.55) return "Rank A: Diplomata Sênior";
+            if (pts >= 35 || ratio >= 0.30) return "Rank B: Cônsul Internacional";
+            if (pts >= 15 || ratio >= 0.12) return "Rank C: Viajante Cosmopolita";
+            return "Rank D: Mochileiro em Treinamento";
+        }
+
+        function finalizarGameOver(motivo = 'vidas') {
+            if (timerInterval) clearInterval(timerInterval);
             stageActive.classList.add('hidden');
             stageActive.classList.remove('flex');
             stageGameOver.classList.remove('hidden');
             stageGameOver.classList.add('flex');
 
-            document.getElementById('last-country-name').innerText = alvoAtual.name;
-            document.getElementById('last-capital-name').innerText = alvoAtual.capital;
+            const total = catalogoFiltrado.length || 198;
+            document.getElementById('gameover-kicker').innerText = motivo === 'tempo' ? 'Tempo Esgotado no Modo Blitz!' : 'Missão Interrompida';
+            document.getElementById('gameover-title').innerText = motivo === 'tempo' ? 'Relógio Zerado!' : 'Suas Vidas Acabaram!';
+            document.getElementById('last-country-name').innerText = alvoAtual ? alvoAtual.name : '--';
+            document.getElementById('last-capital-name').innerText = alvoAtual ? alvoAtual.capital : '--';
+            document.getElementById('gameover-fact-text').innerText = (alvoAtual && alvoAtual.fato) ? alvoAtual.fato : 'Continue treinando para dominar todas as capitais mundiais.';
             document.getElementById('final-score').innerText = acertos;
+            document.getElementById('final-total').innerText = total;
 
-            const perc = ((acertos / totalCapitais) * 100).toFixed(1);
-            document.getElementById('final-porcentagem').innerText = `${perc}% das capitais do mundo dominadas!`;
-
-            let rank = "Turista Perdido";
-            if (acertos >= 80) rank = "Mestre da Geopolítica";
-            else if (acertos >= 50) rank = "Diplomata Sênior";
-            else if (acertos >= 25) rank = "Viajante Cosmopolita";
-            else if (acertos >= 10) rank = "Mochileiro Curioso";
-            document.getElementById('final-rank').innerText = `Rank: ${rank}`;
+            const perc = ((acertos / total) * 100).toFixed(1);
+            document.getElementById('final-porcentagem').innerText = `${perc}% das capitais localizadas`;
+            document.getElementById('final-rank').innerText = obterRank(acertos, total);
+            document.getElementById('final-streak').innerText = `Maior Sequência: ${maiorStreak}x`;
         }
 
         function concluirZeramento() {
@@ -557,31 +818,100 @@
             stageVictory.classList.remove('hidden');
             stageVictory.classList.add('flex');
 
+            const total = catalogoFiltrado.length || 198;
+            document.getElementById('victory-total-text').innerText = `${total} capitais`;
+            document.getElementById('victory-score-box').innerText = `${total} / ${total} (100%)`;
+
             if (typeof confetti === 'function') {
                 confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
             }
         }
 
         function compartilharResultadoWhatsApp() {
-            const perc = ((acertos / totalCapitais) * 100).toFixed(0);
-            const texto = `Acertei ${acertos} de 100 capitais do mundo (${perc}% do mapa) no Quiz de Capitais do VitaleGeo! 🌍🏛️\nConsegue me superar? Jogue também:\nhttps://www.vitalegeo.com.br/jogos/capitais/`;
-            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            const total = catalogoFiltrado.length || 198;
+            const perc = ((acertos / total) * 100).toFixed(0);
+            const texto = `Acertei ${acertos} de ${total} capitais (${perc}%) com sequência de ${maiorStreak}x na Missão Capitais do Mundo do VitaleGeo!\nConsegue me superar?\nhttps://www.vitalegeo.com.br/jogos/capitais/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
         function compartilharVitoriaWhatsApp() {
-            const texto = `🏆 EU ZEREI O DESAFIO DAS CAPITAIS DO MUNDO! Acertei todas as 100 capitais globais no VitaleGeo! 🌍🏛️\nDuvido você conseguir: https://www.vitalegeo.com.br/jogos/capitais/`;
-            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            const total = catalogoFiltrado.length || 198;
+            const texto = `ZEREI A MISSÃO CAPITAIS DO MUNDO! Acertei todas as ${total} capitais no VitaleGeo!\nDuvido você conseguir: https://www.vitalegeo.com.br/jogos/capitais/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
         }
 
         function copiarResultado() {
-            const texto = `Acertei ${acertos} de 100 capitais no Quiz do VitaleGeo! 🌍🏛️ Jogue também: https://www.vitalegeo.com.br/jogos/capitais/`;
+            const total = catalogoFiltrado.length || 198;
+            const texto = `Acertei ${acertos}/${total} capitais · Streak ${maiorStreak}x no VitaleGeo! Jogue em: https://www.vitalegeo.com.br/jogos/capitais/`;
             const btn = document.getElementById('btn-copiar');
             navigator.clipboard.writeText(texto).then(() => {
                 btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
                 setTimeout(() => { btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar'; }, 2000);
             });
+        }
+
+        function baixarScorecardPNG() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 900;
+            const ctx = canvas.getContext('2d');
+
+            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
+            grad.addColorStop(0, '#171c2b');
+            grad.addColorStop(1, '#090a0f');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 900, 900);
+
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(36, 36, 828, 828);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE · INTELIGÊNCIA DIPLOMÁTICA', 450, 110);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 46px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('MISSÃO CAPITAIS DO MUNDO', 450, 175);
+
+            const total = catalogoFiltrado.length || 198;
+            const perc = ((acertos / total) * 100).toFixed(1);
+
+            ctx.fillStyle = '#11131a';
+            ctx.fillRect(110, 230, 680, 340);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(110, 230, 680, 340);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillText(`RECORTE: ${recorteFiltro.toUpperCase()} (${modoAtual.toUpperCase()})`, 450, 290);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '900 105px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`${acertos} / ${total}`, 450, 415);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.fillText(`${perc}% LOCALIZADO · STREAK MÁX: ${maiorStreak}x`, 450, 480);
+
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(obterRank(acertos, total), 450, 535);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillText('Desafie seu conhecimento de capitais e pegadinhas em:', 450, 710);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillText('www.vitalegeo.com.br/jogos/capitais', 450, 760);
+
+            const link = document.createElement('a');
+            link.download = `vitalegeo-capitais-${acertos}pts.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
 
         function alternarTelaCheia() {

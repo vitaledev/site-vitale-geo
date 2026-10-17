@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Pont_depuis_l%27_Oyapock.jpg/1280px-Pont_depuis_l%27_Oyapock.jpg" alt="Ponte Binacional sobre o Rio Oiapoque entre o Brasil e a França" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Ponte Binacional sobre o Rio Oiapoque, conectando o Brasil (Amapá) à França (Guiana Francesa).
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 Se você perguntar a um estudante europeu qual é a maior fronteira terrestre da <strong>França</strong>, a resposta provável será Espanha (623 km) ou Bélgica (620 km). Ambas estão erradas. A linha divisória mais longa contínua do território soberano francês tem <strong>730 quilômetros de extensão</strong> e fica no norte da América do Sul, separando o departamento ultramarino da Guiana Francesa do estado brasileiro do Amapá ao longo das águas do Rio Oiapoque e da selva amazônica.
 </p>

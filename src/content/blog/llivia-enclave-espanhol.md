@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Llivia_aerial_view.jpg/1280px-Llivia_aerial_view.jpg" alt="Vista aérea do município espanhol de Llívia cercado pelo departamento francês dos Pirenéus Orientais" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Se você dirigir pelas estradas alpinas do departamento francês dos Pirineus Orientais, passará por uma placa indicando a entrada no município de <strong>Llívia</strong>. De repente, a língua oficial passa a ser o catalão e o espanhol, a polícia veste o uniforme dos Mossos d'Esquadra e você está em solo da <strong>Espanha</strong>, embora esteja a quase dois quilômetros de distância da fronteira espanhola mais próxima.
 </p>

@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/International_Date_Line.png/1280px-International_Date_Line.png" alt="Mapa da Linha Internacional de Data destacando a grande curva para o leste em torno de Kiribati" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 A <strong>República de Kiribati</strong> é um arquipélago formado por 33 atóis espalhados por mais de 3,5 milhões de quilômetros quadrados do Oceano Pacífico Central. Até 1994, o país convivia com um pesadelo administrativo: a <strong>Linha Internacional de Data (antimeridiano 180°)</strong> cortava exatamente o meio de suas ilhas.
 </p>

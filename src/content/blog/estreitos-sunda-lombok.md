@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Selat_Sunda_2014_%283%29.jpg/1280px-Selat_Sunda_2014_%283%29.jpg" alt="Vista das águas profundas do Estreito de Sunda na Indonésia" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Vista aérea do Estreito de Sunda, canal vulcânico entre as ilhas de Sumatra e Java na Indonésia.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 O Estreito de Malaca é o chokepoint comercial mais famoso do mundo, por onde navegam mais de 90 mil cargueiros a cada ano. No entanto, para os comandantes de submarinos nucleares da Marinha dos Estados Unidos e da Marinha da China, Malaca é uma armadilha perigosa. Com profundidades mínimas de apenas <strong>25 metros</strong> em certos pontos do Canal de Phillips, um submarino moderno de grande porte seria forçado a navegar na superfície ou arrastaria sua quilha na lama, tornando-se alvo fácil para sonares e satélites inimigos. Por essa razão, as potências navais utilizam rotas secretas e abissais no arquipélago da Indonésia: os <strong>Estreitos de Sunda e Lombok</strong>.
 </p>

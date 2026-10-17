@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bering_Strait.jpeg/1280px-Bering_Strait.jpeg" alt="Imagem de satélite do Estreito de Bering separando a Península de Chukotka na Rússia do Cabo Príncipe de Gales no Alasca" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Nos mapas-múndis tradicionais centrados no meridiano de Greenwich, os Estados Unidos e a Rússia parecem repousar em extremos opostos do universo. Mas se você girar o globo até o Círculo Polar Ártico, descobrirá que apenas <strong>82 quilômetros de água rasa</strong> separam a América do Norte do continente asiático: o <strong>Estreito de Bering</strong>.
 </p>

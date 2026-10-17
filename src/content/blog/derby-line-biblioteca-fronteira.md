@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Haskell_Free_Library_and_Opera_House_2008.jpg/1280px-Haskell_Free_Library_and_Opera_House_2008.jpg" alt="A Haskell Free Library and Opera House na fronteira entre EUA e Canadá" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Imagine pegar um livro em uma estante nos Estados Unidos e caminhar quatro passos para sentar em uma poltrona no Canadá sem passar por alfândega ou controle de passaporte. Esse lugar existe há mais de 120 anos: trata-se da <strong>Haskell Free Library and Opera House</strong>, cravada exatamente sobre a linha divisória internacional entre <strong>Derby Line (Vermont, EUA)</strong> e <strong>Stanstead (Quebec, Canadá)</strong>.
 </p>

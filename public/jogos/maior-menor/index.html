@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#07080d]">
+<html lang="pt-br" class="bg-[#090a0f]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/maior-menor/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Guerra de PIB (Maior ou Menor) | Arcade VitaleGeo</title>
+    <title>Guerra de Escala & Números (Área, População e PIB) | Arcade VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Compare o PIB das maiores economias globais! Descubra quem é mais rico em um jogo estilo Higher or Lower geopolítico.">
-    <meta name="keywords" content="PIB, economia, países, jogo, quiz, comparação, geografia econômica, vitalegeo">
+    <meta name="description" content="Quem é maior sem a distorção de Mercator? Quem é mais populoso? Quem tem maior PIB? Duelo estatístico Maior ou Menor com 198 países no VitaleGeo Arcade!">
+    <meta name="keywords" content="maior ou menor geografia, tamanho real dos países, área territorial, população países, PIB países, higher or lower geopolítica, vitalegeo">
+
+    <meta property="og:title" content="Guerra de Escala & Números (Maior ou Menor) | VitaleGeo">
+    <meta property="og:description" content="Compare Área Territorial (Mercator vs Real), População e PIB de 198 nações! Quantos duelos você acerta em sequência?">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/maior-menor/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/maior-menor.jpg">
 
     <!-- Google AdSense Oficial VitaleGeo -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
@@ -19,9 +25,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
 
     <script>
         tailwind.config = {
@@ -31,40 +40,71 @@
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes screen-shake-damage {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-5px, 3px); }
+            40% { transform: translate(5px, -3px); }
+            60% { transform: translate(-3px, -2px); }
+            80% { transform: translate(3px, 2px); }
+        }
+        .shake-damage {
+            animation: screen-shake-damage 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+    </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none">
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <!-- BARRA DEDICADA DO ARCADE (Ambiente isolado do site) -->
-    <header class="arcade-header">
-        <a href="/jogos" class="arcade-header__exit" title="Voltar para a central de simulações">
-            <i class="ph-bold ph-arrow-left"></i>
-            <span>Central de Jogos</span>
-        </a>
+    <!-- HEADER DO ARCADE -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Central de Jogos</span>
+            </a>
 
-        <div class="flex items-center gap-2">
-            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
-            <span class="font-heading font-bold text-sm tracking-tight text-white sm:text-base">
-                Guerra de <span class="text-amber-400">Números</span> (PIB)
-            </span>
-        </div>
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-scales text-amber-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    Guerra de <span class="text-amber-400">Escala & Números</span>
+                </h1>
+            </div>
 
-        <div class="arcade-header__actions">
-            <button onclick="alternarTelaCheia()" id="btn-fullscreen" class="arcade-btn-action" title="Modo Tela Cheia">
-                <i class="ph-bold ph-arrows-out-simple text-sm"></i>
-                <span class="hidden sm:inline">Tela Cheia</span>
-            </button>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
     <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
 
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
         <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
             <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
@@ -78,180 +118,459 @@
             </div>
         </aside>
 
-        <!-- PALCO CENTRAL PROTEGIDO (The Stage - Sem invasão de anúncios) -->
-        <main class="arcade-stage-wrapper w-full max-w-4xl px-2 sm:px-4 py-2 sm:py-4 flex-1 flex flex-col justify-center" id="game-stage-container">
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-4xl px-1 sm:px-3 py-1 sm:py-2 flex-1 flex flex-col justify-center" id="game-stage-container">
         
-        <!-- Placar e Status -->
-        <div class="w-full max-w-4xl flex items-center justify-between px-2 mb-3">
-            <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-                <i class="ph-fill ph-flame text-amber-400 text-sm"></i>
-                <span>Sequência: <strong id="score" class="text-amber-400 text-sm">0</strong></span>
-            </div>
-            <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest hidden sm:block">
-                Quem tem o maior PIB? (Trilhões USD)
-            </div>
-            <div class="text-xs font-mono text-slate-400">
-                <span>Recorde: <strong id="best-score" class="text-emerald-400 text-sm">0</strong></span>
-            </div>
-        </div>
+            <!-- BARRA SUPERIOR: SELETOR DE MODO DE DUELO & TELEMETRIA -->
+            <div class="w-full bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 mb-3 shadow-xl">
+                <!-- Pílulas de Categoria de Comparação -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-white/10">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <button onclick="mudarCategoria('area')" id="cat-btn-area" class="px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1.5 bg-amber-400 text-slate-950">
+                            <i class="ph-bold ph-Selection-all"></i> Área Real (km²)
+                        </button>
+                        <button onclick="mudarCategoria('pop')" id="cat-btn-pop" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            <i class="ph-bold ph-users-three"></i> População
+                        </button>
+                        <button onclick="mudarCategoria('pib')" id="cat-btn-pib" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            <i class="ph-bold ph-Trend-up"></i> Economia (PIB)
+                        </button>
+                        <button onclick="mudarCategoria('caos')" id="cat-btn-caos" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            <i class="ph-bold ph-shuffle"></i> Modo Caos
+                        </button>
+                    </div>
+                </div>
 
-        <div class="arcade-stage p-0 max-w-4xl w-full flex flex-col md:flex-row min-h-[460px] relative overflow-hidden">
-            
-            <!-- CARTA DA ESQUERDA (País de Referência Conhecido) -->
-            <div class="w-full md:w-1/2 min-h-[220px] md:min-h-full relative overflow-hidden bg-slate-900 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center p-6 text-center">
-                <img id="left-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
-                
-                <div class="relative z-10">
-                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 block">País de Referência</span>
-                    <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-white mb-2" id="left-name">Carregando...</h2>
-                    <div class="text-3xl sm:text-4xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
-                    <p class="text-xs font-mono text-slate-400 mt-1">Trilhões USD (PIB Nominal)</p>
+                <!-- Placar e Vidas -->
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <span class="text-slate-400 text-[11px] uppercase mr-1">Escudos:</span>
+                        <span id="vidas-container" class="flex gap-1 text-base text-rose-500">
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-flame text-amber-400"></i>
+                        <span class="text-slate-300">Vitórias: <strong id="score" class="text-amber-400 text-sm">0</strong></span>
+                    </div>
+
+                    <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="ph-fill ph-trophy text-emerald-400"></i>
+                        <span class="text-slate-400 text-[11px] uppercase">Recorde: <strong id="best-score" class="text-emerald-400 text-sm">0</strong></span>
+                    </div>
                 </div>
             </div>
 
-            <!-- DISTINTIVO VS CENTRAL -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-black font-black font-mono rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-xs sm:text-sm shadow-xl border-2 border-white/20 pointer-events-none">
-                VS
-            </div>
-
-            <!-- CARTA DA DIREITA (O Desafio) -->
-            <div class="w-full md:w-1/2 min-h-[240px] md:min-h-full relative overflow-hidden bg-slate-900 flex flex-col items-center justify-center p-6 text-center">
-                <img id="right-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
+            <!-- PALCO DE DUELO ATIVO -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl overflow-hidden w-full flex flex-col min-h-[500px] relative shadow-2xl">
                 
-                <div class="relative z-10 w-full max-w-xs flex flex-col items-center">
-                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 block">O PIB deste país é...</span>
-                    <h2 class="text-2xl sm:text-4xl font-heading font-extrabold text-white mb-4" id="right-name">Carregando...</h2>
+                <!-- Faixa de Pergunta da Rodada -->
+                <div class="w-full bg-slate-950/90 border-b border-white/10 py-2.5 px-4 text-center flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-compass text-amber-400 text-sm" id="round-metric-icon"></i>
+                    <span class="text-xs font-mono uppercase tracking-widest text-amber-300 font-bold" id="round-metric-title">
+                        DUELO DE ESCALA REAL: QUEM TEM MAIOR EXTENSÃO TERRITORIAL (KM²)?
+                    </span>
+                </div>
+
+                <!-- Grid Duplo (Esquerda vs Direita) -->
+                <div class="flex-1 flex flex-col md:flex-row relative">
                     
-                    <!-- Botões de Ação -->
-                    <div id="game-controls" class="flex flex-col gap-2.5 w-full">
-                        <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
-                            <i class="ph-bold ph-caret-up text-lg text-emerald-400"></i> MAIOR
-                        </button>
-                        <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
-                            <i class="ph-bold ph-caret-down text-lg text-rose-400"></i> MENOR
-                        </button>
+                    <!-- CARTA DA ESQUERDA (Referência) -->
+                    <div class="w-full md:w-1/2 min-h-[230px] md:min-h-[410px] relative overflow-hidden bg-slate-900/90 border-b md:border-b-0 md:border-r border-white/10 flex flex-col items-center justify-center p-6 text-center">
+                        <img id="left-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
+                        
+                        <div class="relative z-10 flex flex-col items-center max-w-xs">
+                            <div class="w-16 h-11 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-2.5 shadow-lg">
+                                <img id="left-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
+                            </div>
+                            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-1" id="left-continent">Referência</span>
+                            <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-2 leading-tight" id="left-name">Carregando...</h2>
+                            <div class="text-2xl sm:text-4xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
+                            <p class="text-xs font-mono text-slate-400 mt-1" id="left-unit">km² de área territorial</p>
+                        </div>
                     </div>
 
-                    <!-- Overlay de Revelação do Resultado -->
-                    <div id="result-overlay" class="hidden flex-col items-center animate-in fade-in zoom-in duration-300 w-full">
-                        <div class="text-3xl sm:text-4xl text-amber-400 font-mono font-bold mb-1" id="right-value-reveal">---</div>
-                        <p class="text-xs font-mono text-slate-400 mb-2">Trilhões USD</p>
-                        <div id="result-message" class="font-heading font-bold uppercase tracking-wider text-sm mb-4"></div>
-                        <button onclick="nextRound()" class="w-full bg-white text-slate-950 font-heading font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl hover:bg-slate-200 transition shadow-xl flex items-center justify-center gap-2 hover:scale-[1.02]">
-                            Próxima Rodada <i class="ph-bold ph-arrow-right"></i>
-                        </button>
+                    <!-- BADGE VS CENTRAL -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-slate-950 font-black font-mono rounded-full w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center text-xs sm:text-sm shadow-2xl border-2 border-white/30 pointer-events-none">
+                        VS
                     </div>
 
+                    <!-- CARTA DA DIREITA (Desafiante) -->
+                    <div class="w-full md:w-1/2 min-h-[250px] md:min-h-[410px] relative overflow-hidden bg-slate-900/90 flex flex-col items-center justify-center p-6 text-center">
+                        <img id="right-img" src="" class="absolute inset-0 w-full h-full object-cover opacity-20 filter blur-[1px] transition-opacity duration-500" alt="Bandeira">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30"></div>
+                        
+                        <div class="relative z-10 w-full max-w-xs flex flex-col items-center">
+                            <div class="w-16 h-11 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-2.5 shadow-lg">
+                                <img id="right-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
+                            </div>
+                            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-1" id="right-prompt-label">Comparado a referência, tem...</span>
+                            <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-4 leading-tight" id="right-name">Carregando...</h2>
+                            
+                            <!-- Controles de Palpite -->
+                            <div id="game-controls" class="flex flex-col gap-2.5 w-full">
+                                <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
+                                    <i class="ph-bold ph-caret-up text-lg text-emerald-400"></i> <span id="btn-higher-text">MAIOR ÁREA</span>
+                                </button>
+                                <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] active:scale-98 shadow-lg">
+                                    <i class="ph-bold ph-caret-down text-lg text-rose-400"></i> <span id="btn-lower-text">MENOR ÁREA</span>
+                                </button>
+                            </div>
+
+                            <!-- Overlay de Revelação -->
+                            <div id="result-overlay" class="hidden flex-col items-center w-full">
+                                <div class="text-2xl sm:text-4xl text-amber-400 font-mono font-bold mb-0.5" id="right-value-reveal">---</div>
+                                <p class="text-xs font-mono text-slate-400 mb-2" id="right-unit-reveal">km²</p>
+                                <div id="scale-ratio-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 mb-2"></div>
+                                <div id="result-message" class="font-heading font-bold uppercase tracking-wider text-xs sm:text-sm mb-3"></div>
+                                <button onclick="nextRound()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs uppercase tracking-wider py-3 px-5 rounded-xl transition shadow-xl flex items-center justify-center gap-2">
+                                    Próximo Duelo <i class="ph-bold ph-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rodapé do Palco: Dossiê Comparativo -->
+                <div id="dossier-footer" class="bg-slate-950/90 border-t border-white/10 px-4 py-2.5 text-xs text-slate-400 font-sans flex items-center justify-between gap-2">
+                    <span id="dossier-text" class="truncate"><i class="ph-bold ph-info text-amber-400"></i> Use também as setas <kbd class="px-1.5 py-0.5 bg-white/10 rounded font-mono text-[10px]">↑</kbd> Maior e <kbd class="px-1.5 py-0.5 bg-white/10 rounded font-mono text-[10px]">↓</kbd> Menor do teclado.</span>
                 </div>
             </div>
 
-        </div>
+            <!-- TELA DE GAME OVER -->
+            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[500px] shadow-2xl">
+                <div class="w-16 h-16 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-3xl mb-3">
+                    <i class="ph-bold ph-scales"></i>
+                </div>
+                
+                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim dos Escudos!</span>
+                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2">Sequência Interrompida</h2>
+                
+                <p id="gameover-comparison" class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto mb-4">--</p>
 
-        <!-- BANNER DE ANÚNCIO INFERIOR (RESPONSIVO PARA MOBILE E DESKTOP) -->
-        <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
-            <div class="w-full min-h-[90px] flex items-center justify-center">
+                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
+                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Duelos Vencidos na Partida</span>
+                    <div class="text-5xl font-heading font-black text-amber-400 mb-1" id="final-score">0</div>
+                    <p class="text-xs font-mono text-emerald-400 mb-2" id="final-mode-label">Modo: Área Real (km²)</p>
+                    <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200" id="final-rank">
+                        Rank: Analista Geográfico
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2.5 w-full max-w-md">
+                    <button onclick="compartilharWhatsApp()" class="flex-1 min-w-[180px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
+                    </button>
+                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="ph-bold ph-download-simple text-base"></i> Card PNG
+                    </button>
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="ph-bold ph-copy text-base"></i> Copiar
+                    </button>
+                    <button onclick="initGame()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-1 shadow-lg shadow-amber-400/20">
+                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
+                    </button>
+                </div>
+            </div>
+
+            <!-- BANNER INFERIOR -->
+            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:inline-block;width:160px;height:600px"
                      data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-ad-slot="5140105675"></ins>
                 <script>
                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
                 </script>
             </div>
-        </section>
+        </aside>
+    </div>
 
-    </main>
-
-    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-        <div class="w-full flex-1 flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-6879770260785828"
-                 data-ad-slot="5140105675"></ins>
-            <script>
-                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-            </script>
-        </div>
-    </aside>
-</div>
-
-    <!-- Rodapé Minimalista do Arcade -->
     <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Ambiente Otimizado de Jogo
+        VitaleGeo Arcade &copy; 2026 · Guerra de Escala & Números · 198 Nações
     </footer>
 
-    <!-- Lógica do Jogo -->
     <script>
-        const countryData = [
-            { name: "Estados Unidos", code: "us", gdp: 27.36 },
-            { name: "China", code: "cn", gdp: 17.79 },
-            { name: "Alemanha", code: "de", gdp: 4.45 },
-            { name: "Japão", code: "jp", gdp: 4.21 },
-            { name: "Índia", code: "in", gdp: 3.73 },
-            { name: "Reino Unido", code: "gb", gdp: 3.34 },
-            { name: "França", code: "fr", gdp: 3.03 },
-            { name: "Itália", code: "it", gdp: 2.25 },
-            { name: "Brasil", code: "br", gdp: 2.17 },
-            { name: "Canadá", code: "ca", gdp: 2.14 },
-            { name: "Rússia", code: "ru", gdp: 1.99 },
-            { name: "México", code: "mx", gdp: 1.78 },
-            { name: "Austrália", code: "au", gdp: 1.72 },
-            { name: "Coreia do Sul", code: "kr", gdp: 1.71 },
-            { name: "Espanha", code: "es", gdp: 1.58 },
-            { name: "Indonésia", code: "id", gdp: 1.37 },
-            { name: "Turquia", code: "tr", gdp: 1.10 },
-            { name: "Holanda", code: "nl", gdp: 1.09 },
-            { name: "Arábia Saudita", code: "sa", gdp: 1.06 },
-            { name: "Suíça", code: "ch", gdp: 0.90 },
-            { name: "Polônia", code: "pl", gdp: 0.81 },
-            { name: "Argentina", code: "ar", gdp: 0.63 },
-            { name: "Suécia", code: "se", gdp: 0.59 },
-            { name: "Bélgica", code: "be", gdp: 0.58 },
-            { name: "Tailândia", code: "th", gdp: 0.51 },
-            { name: "Israel", code: "il", gdp: 0.50 },
-            { name: "Singapura", code: "sg", gdp: 0.49 },
-            { name: "Portugal", code: "pt", gdp: 0.28 },
-            { name: "Chile", code: "cl", gdp: 0.33 },
-            { name: "Egito", code: "eg", gdp: 0.39 }
-        ];
+        // Mapa de PIB Nominal (em Bilhões de USD) para as principais economias globais
+        const PIB_BILHOES = {
+            us: 28780, cn: 18530, de: 4590, jp: 4110, in: 3940, gb: 3500, fr: 3130, br: 2330, it: 2330, ca: 2240,
+            ru: 2060, mx: 2020, au: 1790, kr: 1760, es: 1650, id: 1480, nl: 1140, tr: 1110, sa: 1110, ch: 940,
+            pl: 845, tw: 803, be: 655, se: 623, ar: 604, ie: 564, th: 549, at: 541, il: 530, ae: 528,
+            no: 526, sg: 525, ph: 472, vn: 465, my: 446, bd: 455, dk: 409, ir: 401, co: 386, hk: 382,
+            za: 373, ro: 370, eg: 348, pk: 338, cl: 334, cz: 326, fi: 308, pt: 299, kz: 296, pe: 282,
+            iq: 265, nz: 252, gr: 251, dz: 247, qa: 245, ng: 253, hu: 223, ua: 189, ma: 152, et: 145,
+            sk: 141, ec: 121, do: 127, ke: 116, ao: 113, gt: 110, bg: 108, uz: 101, ve: 102, cr: 95,
+            lu: 89, hr: 88, pa: 87, uy: 82, tz: 80, rs: 81, lt: 81, sl: 7, is: 31, mt: 22, cy: 34, py: 45, bo: 48
+        };
 
-        let leftItem, rightItem;
+        // Carrega todos os 198 países do CerebroGeo enriquecidos com Área, População e PIB
+        const basePaises = (window.CerebroGeo && Array.isArray(window.CerebroGeo.paises) && window.CerebroGeo.paises.length > 0)
+            ? window.CerebroGeo.paises.map(p => {
+                const code = p.iso2.toLowerCase();
+                return {
+                    name: p.nome,
+                    code: code,
+                    continente: p.continente,
+                    capital: p.capital,
+                    area: p.area_km2 || 1000,
+                    pop: p.populacao || 100000,
+                    pib: PIB_BILHOES[code] || null,
+                    fato: p.fato
+                };
+            })
+            : [
+                { name: "Brasil", code: "br", continente: "América do Sul", capital: "Brasília", area: 8515767, pop: 215000000, pib: 2330, fato: "Maior país da América do Sul." },
+                { name: "Estados Unidos", code: "us", continente: "América do Norte", capital: "Washington, D.C.", area: 9833517, pop: 335000000, pib: 28780, fato: "Maior economia nominal do mundo." }
+            ];
+
+        // Sintetizador Web Audio API
+        let somAtivo = true;
+        let audioCtx = null;
+
+        function getAudioCtx() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        function tocarSom(tipo) {
+            if (!somAtivo) return;
+            const ctx = getAudioCtx();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+
+            if (tipo === 'acerto') {
+                [523.25, 659.25, 783.99].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.11, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.18);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.19);
+                });
+            } else if (tipo === 'erro') {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.linearRampToValueAtTime(88, now + 0.28);
+                gain.gain.setValueAtTime(0.14, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.31);
+            } else if (tipo === 'cura') {
+                [587.33, 783.99, 987.77, 1174.66].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                    gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.07);
+                    osc.stop(now + idx * 0.07 + 0.23);
+                });
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+        }
+
+        // Estado do Jogo
+        let categoriaSelecionada = 'area'; // 'area' | 'pop' | 'pib' | 'caos'
+        let metricaRodada = 'area';
+        let leftItem = null;
+        let rightItem = null;
         let score = 0;
-        let bestScore = parseInt(localStorage.getItem('vg_best_pib') || '0');
+        let vidas = 3;
+        let streakEscudo = 0;
+        let emRevelacao = false;
+        let ultimoResultadoVitoria = true;
+
+        let bestScore = parseInt(localStorage.getItem('vg_best_pib') || '0', 10);
         document.getElementById('best-score').innerText = bestScore;
+
+        function obterPoolParaMetrica(metrica) {
+            if (metrica === 'pib') {
+                return basePaises.filter(p => p.pib !== null);
+            }
+            return basePaises;
+        }
+
+        function formatarValor(item, metrica) {
+            if (metrica === 'area') {
+                return item.area.toLocaleString('pt-BR') + ' km²';
+            } else if (metrica === 'pop') {
+                if (item.pop >= 1000000000) {
+                    return (item.pop / 1000000000).toFixed(2).replace('.', ',') + ' Bilhões';
+                } else if (item.pop >= 1000000) {
+                    return (item.pop / 1000000).toFixed(1).replace('.', ',') + ' Milhões';
+                }
+                return item.pop.toLocaleString('pt-BR') + ' hab.';
+            } else {
+                if (item.pib >= 1000) {
+                    return 'US$ ' + (item.pib / 1000).toFixed(2).replace('.', ',') + ' Tri';
+                }
+                return 'US$ ' + item.pib.toLocaleString('pt-BR') + ' Bi';
+            }
+        }
+
+        function obterValorBruto(item, metrica) {
+            if (metrica === 'area') return item.area;
+            if (metrica === 'pop') return item.pop;
+            return item.pib || 0;
+        }
+
+        function mudarCategoria(cat) {
+            categoriaSelecionada = cat;
+            ['area', 'pop', 'pib', 'caos'].forEach(c => {
+                const btn = document.getElementById(`cat-btn-${c}`);
+                if (c === cat) {
+                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1.5 bg-amber-400 text-slate-950";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10";
+                }
+            });
+            initGame();
+        }
+
+        function atualizarVidasUI() {
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    html += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                } else {
+                    html += '<i class="ph-bold ph-heart-break text-slate-700"></i>';
+                }
+            }
+            document.getElementById('vidas-container').innerHTML = html;
+        }
+
+        function sortearMetricaDaRodada() {
+            if (categoriaSelecionada !== 'caos') {
+                metricaRodada = categoriaSelecionada;
+            } else {
+                const tipos = ['area', 'pop', 'pib'];
+                metricaRodada = tipos[Math.floor(Math.random() * tipos.length)];
+            }
+
+            const titleEl = document.getElementById('round-metric-title');
+            const unitLeft = document.getElementById('left-unit');
+            const unitRight = document.getElementById('right-unit-reveal');
+            const btnHigher = document.getElementById('btn-higher-text');
+            const btnLower = document.getElementById('btn-lower-text');
+
+            if (metricaRodada === 'area') {
+                titleEl.innerText = 'DUELO DE ESCALA REAL: QUEM TEM MAIOR EXTENSÃO TERRITORIAL (KM²)?';
+                unitLeft.innerText = 'Extensão territorial (Escala Real)';
+                unitRight.innerText = 'Extensão territorial (Escala Real)';
+                btnHigher.innerText = 'MAIOR TERRITÓRIO';
+                btnLower.innerText = 'MENOR TERRITÓRIO';
+            } else if (metricaRodada === 'pop') {
+                titleEl.innerText = 'DUELO DEMOGRÁFICO: QUEM TEM MAIOR POPULAÇÃO NACIONAL?';
+                unitLeft.innerText = 'População nacional estimada';
+                unitRight.innerText = 'População nacional estimada';
+                btnHigher.innerText = 'MAIS POPULOSO';
+                btnLower.innerText = 'MENOS POPULOSO';
+            } else {
+                titleEl.innerText = 'DUELO ECONÔMICO: QUEM TEM MAIOR PIB NOMINAL (USD)?';
+                unitLeft.innerText = 'Produto Interno Bruto (PIB Nominal)';
+                unitRight.innerText = 'Produto Interno Bruto (PIB Nominal)';
+                btnHigher.innerText = 'MAIOR PIB';
+                btnLower.innerText = 'MENOR PIB';
+            }
+        }
 
         function initGame() {
             score = 0;
-            document.getElementById("score").innerText = score;
-            leftItem = countryData[Math.floor(Math.random() * countryData.length)];
+            vidas = 3;
+            streakEscudo = 0;
+            emRevelacao = false;
+
+            document.getElementById('score').innerText = score;
+            atualizarVidasUI();
+
+            document.getElementById('stage-active').classList.remove('hidden');
+            document.getElementById('stage-active').classList.add('flex');
+            document.getElementById('stage-gameover').classList.add('hidden');
+            document.getElementById('stage-gameover').classList.remove('flex');
+
+            sortearMetricaDaRodada();
+            const pool = obterPoolParaMetrica(metricaRodada);
+            leftItem = pool[Math.floor(Math.random() * pool.length)];
             pickNextItem();
         }
 
         function pickNextItem() {
+            emRevelacao = false;
+            sortearMetricaDaRodada();
+            const pool = obterPoolParaMetrica(metricaRodada);
+
+            // Garante que leftItem tenha valor válido na métrica sorteada (caso Caos mude para PIB)
+            if (metricaRodada === 'pib' && !leftItem.pib) {
+                leftItem = pool[Math.floor(Math.random() * pool.length)];
+            }
+
             do {
-                rightItem = countryData[Math.floor(Math.random() * countryData.length)];
+                rightItem = pool[Math.floor(Math.random() * pool.length)];
             } while (rightItem.code === leftItem.code);
+
             render();
+        }
+
+        function configurarBandeira(imgEl, code) {
+            imgEl.src = `/assets/flags/${code}.svg`;
+            imgEl.onerror = () => { imgEl.src = `https://flagcdn.com/w640/${code}.png`; };
         }
 
         function render() {
             document.getElementById("left-name").innerText = leftItem.name;
-            document.getElementById("left-value").innerText = `$ ${leftItem.gdp.toFixed(2)}`;
-            const leftImg = document.getElementById("left-img");
-            leftImg.src = `/assets/flags/${leftItem.code}.svg`;
-            leftImg.onerror = () => { leftImg.src = `https://flagcdn.com/w640/${leftItem.code}.png`; };
+            document.getElementById("left-continent").innerText = `${leftItem.continente} · Capital: ${leftItem.capital}`;
+            document.getElementById("left-value").innerText = formatarValor(leftItem, metricaRodada);
+            configurarBandeira(document.getElementById("left-img"), leftItem.code);
+            configurarBandeira(document.getElementById("left-flag-mini"), leftItem.code);
 
             document.getElementById("right-name").innerText = rightItem.name;
-            const rightImg = document.getElementById("right-img");
-            rightImg.src = `/assets/flags/${rightItem.code}.svg`;
-            rightImg.onerror = () => { rightImg.src = `https://flagcdn.com/w640/${rightItem.code}.png`; };
+            document.getElementById("right-prompt-label").innerText = `${rightItem.continente} · Capital: ${rightItem.capital}`;
+            configurarBandeira(document.getElementById("right-img"), rightItem.code);
+            configurarBandeira(document.getElementById("right-flag-mini"), rightItem.code);
 
             document.getElementById("game-controls").classList.remove("hidden");
             document.getElementById("game-controls").classList.add("flex");
@@ -260,19 +579,23 @@
         }
 
         function guess(choice) {
-            const isHigher = rightItem.gdp >= leftItem.gdp;
-            let win = false;
+            if (emRevelacao) return;
+            emRevelacao = true;
 
-            if (choice === 'higher' && isHigher) win = true;
-            if (choice === 'lower' && !isHigher) win = true;
+            const leftVal = obterValorBruto(leftItem, metricaRodada);
+            const rightVal = obterValorBruto(rightItem, metricaRodada);
 
-            showResult(win);
+            const isHigher = rightVal >= leftVal;
+            const win = (choice === 'higher' && isHigher) || (choice === 'lower' && !isHigher);
+
+            showResult(win, leftVal, rightVal);
         }
 
-        function showResult(win) {
+        function showResult(win, leftVal, rightVal) {
             const overlay = document.getElementById("result-overlay");
             const message = document.getElementById("result-message");
             const valueReveal = document.getElementById("right-value-reveal");
+            const ratioBadge = document.getElementById("scale-ratio-badge");
 
             document.getElementById("game-controls").classList.add("hidden");
             document.getElementById("game-controls").classList.remove("flex");
@@ -280,12 +603,37 @@
             overlay.classList.remove("hidden");
             overlay.classList.add("flex");
 
-            valueReveal.innerText = `$ ${rightItem.gdp.toFixed(2)}`;
+            valueReveal.innerText = formatarValor(rightItem, metricaRodada);
+
+            // Proporção comparativa
+            const maior = Math.max(leftVal, rightVal);
+            const menor = Math.max(0.01, Math.min(leftVal, rightVal));
+            const multiplo = (maior / menor).toFixed(1).replace('.', ',');
+            const nomeMaior = rightVal >= leftVal ? rightItem.name : leftItem.name;
+            const nomeMenor = rightVal >= leftVal ? leftItem.name : rightItem.name;
+            ratioBadge.innerText = `${nomeMaior} é ${multiplo}x maior que ${nomeMenor}`;
+
+            if (rightItem.fato) {
+                document.getElementById('dossier-text').innerHTML = `<i class="ph-bold ph-book-open text-amber-400"></i> <strong>${rightItem.name}:</strong> ${rightItem.fato}`;
+            }
+
+            ultimoResultadoVitoria = win;
 
             if (win) {
+                tocarSom('acerto');
                 score++;
-                message.innerText = "✓ CORRETO! VOCÊ ACERTOU!";
-                message.className = "font-heading font-bold uppercase tracking-wider text-sm text-emerald-400";
+                streakEscudo++;
+
+                let extra = '';
+                if (streakEscudo > 0 && streakEscudo % 8 === 0 && vidas < 3) {
+                    vidas++;
+                    tocarSom('cura');
+                    atualizarVidasUI();
+                    extra = ' · +1 ESCUDO RECUPERADO!';
+                }
+
+                message.innerText = `Correto! Vitória no Duelo!${extra}`;
+                message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-emerald-400 mb-3";
 
                 if (score > bestScore) {
                     bestScore = score;
@@ -293,38 +641,170 @@
                     document.getElementById('best-score').innerText = bestScore;
                 }
 
-                if (score % 3 === 0 && typeof confetti === 'function') {
-                    confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
+                if (score % 5 === 0 && typeof confetti === 'function') {
+                    confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
                 }
             } else {
-                score = 0;
-                message.innerText = "✗ GAME OVER! ERA DIFERENTE!";
-                message.className = "font-heading font-bold uppercase tracking-wider text-sm text-rose-500";
+                tocarSom('erro');
+                streakEscudo = 0;
+                vidas--;
+                atualizarVidasUI();
+
+                const stage = document.getElementById('stage-active');
+                stage.classList.remove('shake-damage');
+                void stage.offsetWidth;
+                stage.classList.add('shake-damage');
+
+                if (vidas <= 0) {
+                    message.innerText = "Escudos Esgotados! Fim da Partida!";
+                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-rose-500 mb-3";
+                    setTimeout(finalizarGameOver, 1400);
+                } else {
+                    message.innerText = `Incorreto! Restam ${vidas} escudo(s)!`;
+                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-rose-400 mb-3";
+                }
             }
             document.getElementById("score").innerText = score;
         }
 
         function nextRound() {
-            if (document.getElementById("result-message").innerText.includes("GAME OVER")) {
-                leftItem = countryData[Math.floor(Math.random() * countryData.length)];
-            } else {
-                leftItem = rightItem;
+            if (vidas <= 0) {
+                finalizarGameOver();
+                return;
             }
+            leftItem = rightItem;
             pickNextItem();
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('stage-active').classList.contains('hidden')) return;
+            if (!emRevelacao) {
+                if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
+                    e.preventDefault();
+                    guess('higher');
+                } else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
+                    e.preventDefault();
+                    guess('lower');
+                }
+            } else {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    nextRound();
+                }
+            }
+        });
+
+        function obterRank(pts) {
+            if (pts >= 35) return "Rank SSS: Oráculo Geoeconômico";
+            if (pts >= 22) return "Rank S: Estrategista de Escala";
+            if (pts >= 12) return "Rank A: Analista Sênior";
+            if (pts >= 6) return "Rank B: Cartógrafo de Campo";
+            return "Rank C: Observador Estatístico";
+        }
+
+        function obterNomeCategoria(cat) {
+            if (cat === 'area') return 'Extensão Territorial (km²)';
+            if (cat === 'pop') return 'População Nacional';
+            if (cat === 'pib') return 'Poder Econômico (PIB)';
+            return 'Modo Caos Geopolítico';
+        }
+
+        function finalizarGameOver() {
+            document.getElementById('stage-active').classList.add('hidden');
+            document.getElementById('stage-active').classList.remove('flex');
+            document.getElementById('stage-gameover').classList.remove('hidden');
+            document.getElementById('stage-gameover').classList.add('flex');
+
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('final-mode-label').innerText = `Modo: ${obterNomeCategoria(categoriaSelecionada)}`;
+            document.getElementById('final-rank').innerText = obterRank(score);
+
+            if (leftItem && rightItem) {
+                document.getElementById('gameover-comparison').innerHTML = `Último duelo: <strong>${leftItem.name}</strong> (${formatarValor(leftItem, metricaRodada)}) vs <strong>${rightItem.name}</strong> (${formatarValor(rightItem, metricaRodada)}).`;
+            }
+        }
+
+        function compartilharWhatsApp() {
+            const texto = `Venci ${score} duelos na Guerra de Escala & Números (${obterNomeCategoria(categoriaSelecionada)}) do VitaleGeo!\nConsegue superar minha sequência?\nhttps://www.vitalegeo.com.br/jogos/maior-menor/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        function copiarResultado() {
+            const texto = `Venci ${score} duelos na Guerra de Escala & Números (${obterNomeCategoria(categoriaSelecionada)}) do VitaleGeo! Jogue em: https://www.vitalegeo.com.br/jogos/maior-menor/`;
+            const btn = document.getElementById('btn-copiar');
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
+                setTimeout(() => { btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar'; }, 2000);
+            });
+        }
+
+        function baixarScorecardPNG() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 900;
+            const ctx = canvas.getContext('2d');
+
+            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
+            grad.addColorStop(0, '#171c2b');
+            grad.addColorStop(1, '#090a0f');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 900, 900);
+
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(36, 36, 828, 828);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE · DUELO DE ESCALA REAL', 450, 110);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 44px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('GUERRA DE ESCALA & NÚMEROS', 450, 175);
+
+            ctx.fillStyle = '#11131a';
+            ctx.fillRect(110, 230, 680, 340);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(110, 230, 680, 340);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillText(`MODO: ${obterNomeCategoria(categoriaSelecionada).toUpperCase()}`, 450, 290);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '900 110px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`${score}`, 450, 415);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.fillText(`DUELOS VENCIDOS · RECORDE: ${bestScore}`, 450, 480);
+
+            ctx.fillStyle = '#e2e8f0';
+            ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(obterRank(score), 450, 535);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillText('Compare área real, população e PIB das nações em:', 450, 710);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillText('www.vitalegeo.com.br/jogos/maior-menor', 450, 760);
+
+            const link = document.createElement('a');
+            link.download = `vitalegeo-escala-${score}pts.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
 
         function alternarTelaCheia() {
             const container = document.getElementById("game-stage-container") || document.documentElement;
             if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                }
+                if (container.requestFullscreen) container.requestFullscreen();
             } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
+                if (document.exitFullscreen) document.exitFullscreen();
             }
         }
 

@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: true
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg/1280px-M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg" alt="Farol histórico na Ilha de Märket cortada pela fronteira" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // O histórico farol da Ilha de Märket sobre os rochedos cortados pela fronteira entre Suécia e Finlândia.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 No meio do Mar Báltico, entre a costa leste da Suécia e o arquipélago finlandês de Åland, ergue-se a <strong>Ilha de Märket</strong>: um rochedo açoitado por ondas com míseros <strong>3,3 hectares</strong> de extensão (cerca de 350 metros de comprimento por 140 metros de largura). Apesar do tamanho diminuto e de ser completamente desabitada por civis, essa pedra nua abriga uma das fronteiras internacionais mais bizarras do mundo: uma linha em zigue-zague absurdo com <strong>14 vértices e curvas de 90 graus</strong>, criada exclusivamente para corrigir um erro de engenharia do século XIX.
 </p>

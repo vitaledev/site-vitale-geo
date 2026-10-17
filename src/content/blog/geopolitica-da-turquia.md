@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg/1280px-The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg" alt="Posição geopolítica da Turquia ligando os Bálcãs, o Cáucaso e o Oriente Médio" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Poucos países no mundo possuem uma posição geográfica tão determinante para o destino de outros continentes quanto a <strong>República da Turquia</strong>. Ancorada entre a Europa Oriental, o Cáucaso e o turbulento Oriente Médio, ela é a sentinela que guarda a única saída marítima para os portos de águas quentes da Rússia no Mar Negro.
 </p>

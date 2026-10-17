@@ -41,5 +41,12 @@ export const gamesDB: GameItem[] = [
     icon: "https://img.icons8.com/?size=100&id=XsvEZR0h6fav&format=png&color=000000",
     cover: "https://i.natgeofe.com/k/c821a1da-3cea-4f22-a913-1018461702f3/quiz_geography_16x9.jpg?w=1200",
     link: "/jogos/quiz/"
+  },
+  {
+    titulo: "O País Secreto (Termômetro Geodésico)",
+    desc: "Descubra o país misterioso usando proximidade em km, mapa térmico e bússola de azimute em estilo Globle.",
+    icon: "ph-bold ph-compass",
+    cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png",
+    link: "/jogos/pais-secreto/"
   }
 ];

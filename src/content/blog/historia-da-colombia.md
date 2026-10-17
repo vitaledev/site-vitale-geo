@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Gran_Colombia_in_1824.svg/1280px-Gran_Colombia_in_1824.svg.png" alt="Projeção ortográfica da Colômbia no noroeste da América do Sul" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 A <strong>Colômbia</strong> é o único país da América do Sul banhado simultaneamente pelo Oceano Pacífico e pelo Mar do Caribe. Com mais de 52 milhões de habitantes, sua trajetória histórica não pode ser compreendida sem a sua geografia: ao entrar no país pelo sul, a Cordilheira dos Andes se divide em três ramais paralelos (Ocidental, Central e Oriental), criando muralhas naturais que fragmentaram suas cidades em ilhas culturais autônomas.
 </p>

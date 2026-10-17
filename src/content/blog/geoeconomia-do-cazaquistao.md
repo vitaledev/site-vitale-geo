@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg/1280px-Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg" alt="O Cazaquistão na Eurásia central" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Cazaquistão, o nono maior país do planeta e o coração da Eurásia central.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 O <strong>Cazaquistão</strong> é o maior país sem litoral da Terra, cobrindo 2,72 milhões de km² de estepes e desertos no coração da Ásia Central. Mas o dado geoeconômico mais estarrecedor sobre o país está debaixo do solo: a estatal cazaque <strong>Kazatomprom</strong> controla mais de 43% de toda a produção mundial de urânio primário. Se os poços cazaques pararem por um trimestre, reatores nucleares nos Estados Unidos, França, Japão e China entram em crise imediata de combustível.
 </p>

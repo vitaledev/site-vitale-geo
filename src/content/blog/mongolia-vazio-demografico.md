@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mongolian_Steppes_%286228096139%29.jpg/1280px-Mongolian_Steppes_%286228096139%29.jpg" alt="A Mongólia encravada entre a Rússia e a China" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Mongólia, o vasto platô sem litoral encravado entre a Sibéria russa e o norte da China.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 A <strong>Mongólia</strong> possui uma área territorial de <strong>1.564.116 quilômetros quadrados</strong> — uma extensão maior do que a soma dos territórios de França, Alemanha e Itália combinados. No entanto, em todo esse oceano de estepe e montanhas vivem apenas <strong>3,4 milhões de pessoas</strong>. Com uma densidade demográfica de apenas <strong>2,1 habitantes por quilômetro quadrado</strong>, a Mongólia é oficialmente o país soberano menos densamente povoado do planeta Terra.
 </p>

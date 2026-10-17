@@ -42,7 +42,7 @@ export default function BlogArchive({ posts }: Props) {
       {/* Post em Destaque Principal */}
       {!searchTerm && selectedCategory === 'all' && featured && (
         <div className="mb-12">
-          <a href={`/blog/${featured.slug || featured.id}`} className="minimal-card block overflow-hidden group">
+          <a href={`/blog/${featured.slug || featured.id}/`} className="minimal-card block overflow-hidden group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               <div className="lg:col-span-7 aspect-[16/10] lg:aspect-auto overflow-hidden bg-slate-900 relative min-h-[260px] lg:min-h-[340px]">
                 <img
@@ -135,7 +135,7 @@ export default function BlogArchive({ posts }: Props) {
               className="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden"
               style={{ animationDelay: `${index * 30}ms` }}
             >
-              <a href={`/blog/${post.slug || post.id}`} className="flex flex-col h-full">
+              <a href={`/blog/${post.slug || post.id}/`} className="flex flex-col h-full">
                 <div className="aspect-[16/10] overflow-hidden bg-slate-900 relative">
                   <img
                     src={post.img}

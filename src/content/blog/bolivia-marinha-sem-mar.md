@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Armada_Boliviana_Titicaca.jpg/1280px-Armada_Boliviana_Titicaca.jpg" alt="Embarcações de patrulha da Armada Boliviana navegando no Lago Titicaca a 3.812 metros de altitude" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 A <strong>Bolívia</strong> é, ao lado do Paraguai, um dos dois únicos países sem litoral de toda a América do Sul. No entanto, suas Forças Armadas contam com uma instituição ativa e respeitada: a <strong>Armada Boliviana</strong>, com cerca de 5.000 marinheiros e oficiais fardados, barcos de patrulha e infantaria naval.
 </p>

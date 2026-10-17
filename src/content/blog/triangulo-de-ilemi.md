@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ilemi_triangle_map.png/1280px-Ilemi_triangle_map.png" alt="Mapa do Triângulo de Ilemi entre o Quênia, Sudão do Sul e Etiópia" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Prensado entre o extremo noroeste do Quênia, o sudeste do Sudão do Sul e a fronteira sudoeste da Etiópia, existe um pedaço de terra árida de até <strong>14.000 quilômetros quadrados</strong> — maior do que países como Catar, Jamaica ou Líbano — cuja demarcação oficial permanece uma incógnita cartográfica há mais de um século: o <strong>Triângulo de Ilemi</strong>.
 </p>

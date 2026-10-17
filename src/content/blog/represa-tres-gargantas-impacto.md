@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg" alt="A gigantesca Represa das Três Gargantas no rio Yangtze na província de Hubei na China" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Erguida no curso do poderoso Rio Yangtze, na província de Hubei, a <strong>Usina Hidrelétrica das Três Gargantas</strong> é a maior usina de geração de energia e a maior estrutura de concreto armado já fabricada pela humanidade.
 </p>

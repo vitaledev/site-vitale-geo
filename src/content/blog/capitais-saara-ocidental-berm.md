@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Western_sahara_walls_sand.jpg/1280px-Western_sahara_walls_sand.jpg" alt="Muro militar de areia construído no deserto do Saara Ocidental (Berm)" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 O território do <strong>Saara Ocidental</strong>, antiga colônia espanhola no noroeste da África, abriga a maior e mais longa barreira militar ativa do planeta: o <strong>Berm Marroquino</strong>, um muro fortificado de areia, trincheiras, radares e milhões de minas terrestres que se estende por mais de <strong>2.700 quilômetros de deserto</strong>.
 </p>

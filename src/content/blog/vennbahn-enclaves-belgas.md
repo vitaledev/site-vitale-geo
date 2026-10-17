@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Vennbahn_Karte.svg/1280px-Vennbahn_Karte.svg.png" alt="Mapa do traçado da ferrovia Vennbahn e os enclaves alemães circundantes" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Se você caminhar pela ciclovia da <strong>Vennbahn</strong>, no oeste da Alemanha, estará fisicamente na Bélgica. Mas basta dar dois passos para o lado e descer do antigo leito ferroviário para voltar à jurisdição da Alemanha. Esse curioso desenho cartográfico é responsável por criar <strong>cinco enclaves alemães</strong> completamente cercados por território belga: Münsterbildchen, Roetgener Wald, Rückschlag, Mützenich e Ruitzhof.
 </p>

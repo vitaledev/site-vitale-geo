@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hans_Island.jpg/1280px-Hans_Island.jpg" alt="A Ilha de Hans no Canal de Kennedy entre o Canadá e a Groenlândia" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 No Estreito de Nares, entre a ilha canadense de Ellesmere e o noroeste da Groenlândia (território autônomo da Dinamarca), repousa uma rocha inóspita e sem vegetação de 1,3 km² chamada <strong>Ilha de Hans</strong>.
 </p>

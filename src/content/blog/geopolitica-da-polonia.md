@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Suwalki_Gap-de-cropped.png" alt="Localização estratégica da Polônia no centro-leste da Europa" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // A República da Polônia no coração estratégico da Planície do Norte Europeu.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 A geografia da <strong>Polônia</strong> é uma armadilha militar clássica: uma esteira contínua de solo plano, sem montanhas ao norte, leste ou oeste, conectando a estepe russa à bacia do Reno. Ciente de que essa planície aberta foi a rota de três partições históricas e de duas guerras mundiais, o governo em Varsóvia decidiu que nunca mais será vítima do mapa. Em 2026, os gastos militares poloneses ultrapassam 4,5% do PIB, superando com folga qualquer outro membro da OTAN, incluindo os Estados Unidos.
 </p>

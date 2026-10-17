@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg" alt="Localização e extensão do território canadense" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Se você somar todos os lagos naturais do Brasil, Estados Unidos, Rússia, China e todos os outros países do globo, a conta ainda não supera a quantidade de corpos d'água catalogados em solo canadense. Estima-se que existam mais de <strong>2 milhões de lagos</strong> no Canadá, abrigando cerca de <strong>60% de todos os lagos do planeta</strong> e quase um quinto de toda a água doce superficial não congelada do mundo.
 </p>

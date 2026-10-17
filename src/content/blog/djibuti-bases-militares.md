@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg/1280px-Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg" alt="Posição geográfica estratégica do Djibuti no Chifre da África" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Com uma área de apenas 23.200 km² — menor que o estado brasileiro de Sergipe — e um território árido quase desprovido de recursos naturais, o <strong>Djibuti</strong> é um dos países mais improváveis para sediar um dos maiores nós da política internacional. No entanto, é o único lugar da Terra onde tropas dos <strong>Estados Unidos</strong> e da <strong>China</strong> operam bases militares permanentes a menos de 12 quilômetros de distância uma da outra.
 </p>

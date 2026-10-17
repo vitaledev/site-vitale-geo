@@ -2,12 +2,63 @@
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
 import { gamesDB } from '../../data/games';
+
+const canonicalUrl = 'https://www.vitalegeo.com.br/jogos/';
+
+const faqItems = [
+  {
+    q: 'Os desafios e simulações cartográficas do VitaleGeo são 100% gratuitos?',
+    a: 'Sim, todos os módulos, jogos e simuladores do VitaleGeo são totalmente abertos e gratuitos, acessíveis diretamente no navegador sem necessidade de cadastro ou download.'
+  },
+  {
+    q: 'Com que frequência os desafios e dados são atualizados?',
+    a: 'O País Secreto traz uma nova rodada diariamente às 00:00 (horário de Brasília). Os quizzes e dados de PIB e população são atualizados periodicamente com base em estatísticas do Banco Mundial, FMI e ONU.'
+  },
+  {
+    q: 'Qual projeção cartográfica e métrica de distância são utilizadas?',
+    a: 'Os módulos de localização e distância utilizam fórmulas geodésicas de ortodromia (fórmula de Haversine e cálculo esférico sobre o elipsoide WGS84), eliminando as distorções visuais de projeções cilíndricas como Mercator.'
+  },
+  {
+    q: 'Como os jogos auxiliam estudantes e concurseiros?',
+    a: 'Cada módulo foi desenhado para fixar pontos cegos recorrentes em provas de geografia e geopolítica, como enclaves internacionais, estreitos estratégicos, fusos horários e capitais que não coincidem com as maiores cidades.'
+  }
+];
 ---
 
 <Layout
   title="Desafios de Fronteira & Território | VitaleGeo"
-  description="Módulos interativos para testar o conhecimento sobre fronteiras, enclaves e geografia política mundial."
+  description="Módulos interativos e desafios de geografia mundial: identifique fronteiras, capitais, bandeiras, PIB e distâncias no mapa mudo."
+  canonical={canonicalUrl}
 >
+  <!-- Schema.org FAQPage & CollectionPage JSON-LD -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.vitalegeo.com.br/jogos/#collection",
+        "url": canonicalUrl,
+        "name": "Desafios de Fronteira & Território | VitaleGeo",
+        "description": "Módulos interativos e desafios de geografia mundial.",
+        "isPartOf": {
+          "@id": "https://www.vitalegeo.com.br/#website"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.vitalegeo.com.br/jogos/#faq",
+        "mainEntity": faqItems.map(item => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.a
+          }
+        }))
+      }
+    ]
+  })} />
+
   <main class="page-content">
     <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
       <TopoLines strokeColor="#10b981" />
@@ -31,7 +82,8 @@ import { gamesDB } from '../../data/games';
       <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
-    <section class="py-4 px-6 max-w-6xl mx-auto pb-24">
+    <!-- Grade Oficial de Simulações -->
+    <section class="py-4 px-6 max-w-6xl mx-auto pb-16">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {gamesDB.map(game => (
           <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
@@ -56,6 +108,123 @@ import { gamesDB } from '../../data/games';
               Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6 mb-12">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+    </div>
+
+    <!-- Seção Editorial: Como Funcionam os Desafios -->
+    <section class="px-6 max-w-4xl mx-auto pb-16">
+      <div class="text-center mb-10">
+        <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Laboratório Cartográfico</span>
+        <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight mt-1">
+          A Ciência por Trás das Simulações
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl mx-auto">
+          Por que aprender limites territoriais jogando é o método mais eficiente de fixação espacial.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed text-slate-300">
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-400/10 text-emerald-400 flex items-center justify-center mb-4">
+            <i class="ph-bold ph-compass text-lg"></i>
+          </div>
+          <h3 class="text-base font-heading font-semibold text-white mb-2">Eliminação da Distorção Mercator</h3>
+          <p class="text-slate-400 text-xs sm:text-sm">
+            Mapas planos escolares esticam países próximos aos polos e encolhem regiões tropicais. Nossos desafios usam distâncias geodésicas esféricas reais para forçar você a recalibrar sua intuição visual sobre o tamanho de continentes.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-400/10 text-emerald-400 flex items-center justify-center mb-4">
+            <i class="ph-bold ph-target text-lg"></i>
+          </div>
+          <h3 class="text-base font-heading font-semibold text-white mb-2">Memória Muscular no Mapa Mudo</h3>
+          <p class="text-slate-400 text-xs sm:text-sm">
+            Identificar um enclave ou estreito sem fronteiras desenhadas ou nomes escritos ativa o raciocínio topológico profundo, criando pontes duradouras entre geopolítica documental e a geografia física real.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6 mb-12">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+    </div>
+
+    <!-- Seção: Dossiês Recomendados para Dominar os Jogos -->
+    <section class="px-6 max-w-6xl mx-auto pb-16">
+      <div class="flex items-baseline justify-between mb-8">
+        <div>
+          <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Fundamento Teórico</span>
+          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight mt-1">Dossiês Recomendados</h2>
+        </div>
+        <a href="/blog/" class="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1">
+          Ver acervo completo <i class="ph-bold ph-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/blog/ceuta-e-melilla/" class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
+          <div class="p-5">
+            <span class="category-pill text-amber-300 border-amber-400/20 bg-amber-950/70 mb-3 inline-block">Fronteiras</span>
+            <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition mb-2 font-semibold">Ceuta e Melilla</h3>
+            <p class="text-xs text-slate-400 line-clamp-2">Entenda por que a Espanha controla dois enclaves soberanos no norte da África.</p>
+          </div>
+          <div class="px-5 pb-5 pt-0 text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
+            Estudar dossiê <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+          </div>
+        </a>
+
+        <a href="/blog/estreito-de-ormuz/" class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
+          <div class="p-5">
+            <span class="category-pill text-amber-300 border-amber-400/20 bg-amber-950/70 mb-3 inline-block">Geopolítica</span>
+            <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition mb-2 font-semibold">Estreito de Ormuz</h3>
+            <p class="text-xs text-slate-400 line-clamp-2">A passagem naval por onde escoa 20% do petróleo mundial entre Omã e o Irã.</p>
+          </div>
+          <div class="px-5 pb-5 pt-0 text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
+            Estudar dossiê <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+          </div>
+        </a>
+
+        <a href="/blog/desaparecimento-mar-de-aral/" class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
+          <div class="p-5">
+            <span class="category-pill text-amber-300 border-amber-400/20 bg-amber-950/70 mb-3 inline-block">Desastres</span>
+            <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition mb-2 font-semibold">Desaparecimento do Mar de Aral</h3>
+            <p class="text-xs text-slate-400 line-clamp-2">Como o 4º maior lago do mundo entre Cazaquistão e Uzbequistão virou deserto.</p>
+          </div>
+          <div class="px-5 pb-5 pt-0 text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
+            Estudar dossiê <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Transição Editorial -->
+    <div class="max-w-6xl mx-auto px-6 mb-12">
+      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+    </div>
+
+    <!-- Seção FAQ Estruturada -->
+    <section class="px-6 max-w-4xl mx-auto pb-24">
+      <div class="text-center mb-10">
+        <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Perguntas Frequentes</span>
+        <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight mt-1">
+          Tire Suas Dúvidas Sobre as Simulações
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqItems.map(item => (
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <h3 class="text-sm sm:text-base font-heading font-semibold text-white mb-2">{item.q}</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">{item.a}</p>
+          </div>
         ))}
       </div>
     </section>

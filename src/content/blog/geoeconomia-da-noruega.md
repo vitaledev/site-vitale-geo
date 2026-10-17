@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Troll_A_Platform.jpg/1280px-Troll_A_Platform.jpg" alt="Localização geográfica e plataforma marítima da Noruega no Mar do Norte" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Até meados do século XX, a <strong>Noruega</strong> era uma das nações mais modestas da Escandinávia, sustentada pela pesca de bacalhau nos fiordes, transporte marítimo mercante e energia hidrelétrica.
 </p>

@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg" alt="Vista das águas profundas do Lago Tanganica margeado pela fenda tectônica do Vale do Rift" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Rasgando o leste do continente africano por <strong>673 quilômetros de comprimento</strong> em linha reta, o <strong>Lago Tanganica</strong> é o lago de água doce mais longo do mundo e o segundo mais profundo do planeta, atingindo inacreditáveis <strong>1.470 metros de profundidade</strong> (superado apenas pelo Lago Baikal, na Sibéria).
 </p>

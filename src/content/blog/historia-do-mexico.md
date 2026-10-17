@@ -8,6 +8,13 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<figure class="mb-12 not-prose">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mexican_Cession.png/1280px-Mexican_Cession.png" alt="Projeção ortográfica do México atual na América do Norte" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
+FIG 01 // Projeção ortográfica dos Estados Unidos Mexicanos na América do Norte.
+</figcaption>
+</figure>
+
 <p class="lead text-xl text-slate-200">
 Em 1821, o mapa do <strong>Império Mexicano</strong> estendia-se da fronteira com o atual Panamá até o norte da Califórnia e o litoral do Oregon, cobrindo quase 4,5 milhões de quilômetros quadrados. Menos de três décadas depois, o país havia sido desmembrado. Pelo Tratado de Guadalupe Hidalgo, assinado em 2 de fevereiro de 1848, o México cedeu 55% de seu solo soberano aos Estados Unidos em troca de uma indenização de 15 milhões de dólares.
 </p>

@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wakhan_corridor.jpg/1280px-Wakhan_corridor.jpg" alt="Mapa destacando o estreito Corredor de Wakhan projetando o Afeganistão até a fronteira com a China" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Se você observar o mapa do <strong>Afeganistão</strong>, notará uma estreita faixa de terra alongada estendendo-se para o nordeste como um longo dedo que separa o Tajiquistão do Paquistão, até tocar uma minúscula fronteira de 76 quilômetros com a <strong>China</strong>. Esse é o <strong>Corredor de Wakhan</strong>.
 </p>

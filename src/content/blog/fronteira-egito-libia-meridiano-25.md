@@ -8,6 +8,8 @@ tempoLeitura: "8 min"
 destaque: false
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Egypt_Libya_Border.jpg/1280px-Egypt_Libya_Border.jpg" alt="A linha de fronteira rigorosamente reta no deserto do Saara entre a Líbia e o Egito vista de satélite" class="w-full h-auto mb-10 shadow-2xl border border-white/10 rounded-xl object-cover aspect-video">
+
 <p class="lead text-xl text-slate-200">
 Se você abrir qualquer mapa político do norte da África, verá uma linha geométrica impecável desenhada como se um arquiteto tivesse usado uma régua de precisão sobre a areia dourada do Deserto do Saara: a fronteira internacional que separa o <strong>Egito</strong> da <strong>Líbia</strong>.
 </p>
