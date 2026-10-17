@@ -33,6 +33,14 @@ const gamesDB = [
         badge: "CAPITAIS"
     },
     {
+        titulo: "Fronteiras do Mundo",
+        desc: "Descubra quais países dividem limites terrestres, quais são ilhas e não caia nas pegadinhas de fronteira.",
+        icon: "ph-fill ph-map-trifold",
+        cover: "/assets/img/jogos/fronteiras.jpg",
+        link: "/jogos/fronteiras/",
+        badge: "FRONTEIRAS"
+    },
+    {
         titulo: "Maior ou Menor",
         desc: "Duelos diretos: compare dois países por área real em km², população ou tamanho da economia.",
         icon: "ph-fill ph-scales",
