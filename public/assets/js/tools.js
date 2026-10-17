@@ -54,5 +54,12 @@ const toolsDB = [
         icon: "ph-bold ph-magnifying-glass-plus",
         cover: "/assets/img/ferramentas/radar-microestados.png",
         link: "/ferramentas/radar-microestados/"
+    },
+    {
+        titulo: "O Paradoxo da Linha de Costa",
+        desc: "Descubra por que é impossível medir o litoral exato de um país e simule o efeito fractal de Mandelbrot com réguas interativas.",
+        icon: "ph-bold ph-chart-line-up",
+        cover: "/assets/img/ferramentas/paradoxo-linha-costa.jpg",
+        link: "/ferramentas/paradoxo-linha-costa/"
     }
 ];
