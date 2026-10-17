@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/radar-microestados/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar de Microestados: Os Menores Países em Escala | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Explore os 18 menores países soberanos do planeta com zoom guiado por satélite e compare o tamanho real do Vaticano, Mônaco, Nauru e San Marino com o Parque Ibirapuera, Copacabana e o Aeroporto de Guarulhos.">
+    <meta name="keywords" content="menores países do mundo, microestados, tamanho do vaticano, tamanho de monaco, nauru mapa, san marino escala, geografia interativa, vitalegeo">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Radar de Microestados: Os Menores Países em Escala | VitaleGeo">
+    <meta property="og:description" content="Este país inteiro é menor que o aeroporto da sua cidade. Compare os menores países do mundo com locais do Brasil no mapa interativo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/radar-microestados/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/radar-microestados.png">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Tipografia Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .editorial-panel {
+            background: #11131a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+        }
+        .leaflet-container {
+            background: #0d0f15;
+            font-family: 'Inter', sans-serif;
+            border-radius: 0.75rem;
+        }
+        .pin-micro {
+            background-color: #38bdf8;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+            cursor: grab;
+        }
+        .pin-ref {
+            background-color: #f59e0b;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+            cursor: grab;
+        }
+        .pin-micro:active, .pin-ref:active { cursor: grabbing; }
+
+        .leaflet-control-layers {
+            background: #11131a !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #cbd5e1 !important;
+            border-radius: 0.5rem !important;
+            font-size: 11px !important;
+            font-family: 'Inter', sans-serif !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+        }
+        .leaflet-control-layers label {
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+        .chip-active {
+            background-color: rgba(56, 189, 248, 0.15) !important;
+            border-color: rgba(56, 189, 248, 0.6) !important;
+            color: #ffffff !important;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.4);
+        }
+    </style>
+</head>
+<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Oficial -->
+    <nav class="glass-nav fixed w-full z-40 top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
+                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-white transition">Início</a>
+                <a href="/blog" class="hover:text-white transition">Dossiês</a>
+                <a href="/ferramentas" class="text-white">Ferramentas</a>
+                <a href="/jogos" class="hover:text-white transition">Arcade</a>
+                <a href="/videos" class="hover:text-white transition">Vídeos</a>
+                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            </div>
+
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
+                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            </a>
+        </div>
+    </nav>
+
+    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIOS LATERAIS + FERRAMENTA CENTRAL) -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 flex items-start justify-center gap-4 flex-grow pt-24 pb-8">
+
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="max-w-5xl mx-auto flex-grow w-full">
+            <!-- Cabeçalho Limpo e Educativo -->
+            <div class="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
+                        Radar de Microestados em Escala Real
+                    </h1>
+                    <p class="mt-1 text-slate-400 text-sm max-w-2xl">
+                        Explore os 18 menores países soberanos do planeta e compare sua extensão territorial com parques, bairros, aeroportos e cidades brasileiras.
+                    </p>
+                </div>
+                
+                <!-- Botão de Ajuda / Informações Rápidas -->
+                <button onclick="toggleAjuda()" class="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-lg bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 border border-white/10 transition self-start sm:self-auto shrink-0">
+                    <i class="ph-bold ph-info text-amber-400 text-sm"></i>
+                    <span>Como funciona a escala?</span>
+                </button>
+            </div>
+
+            <!-- Painel Explicativo Opcional (Toggle / Hover) -->
+            <div id="painelAjuda" class="hidden mb-5 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-slate-300 leading-relaxed">
+                <div class="flex items-start justify-between gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <strong class="text-sky-300 font-semibold block mb-1">Círculo Geodésico Equivalente:</strong>
+                            O círculo azul representa a área territorial oficial exata do microestado convertida em raio geodésico ($r = \sqrt{A/\pi}$), corrigindo automaticamente a distorção da latitude.
+                        </div>
+                        <div>
+                            <strong class="text-amber-300 font-semibold block mb-1">Referência Urbana Arrastável:</strong>
+                            O círculo tracejado âmbar mostra a área real de marcos conhecidos (Parque Ibirapuera, Copacabana, Aeroporto de Guarulhos). Arraste os pinos para sobrepor os tamanhos.
+                        </div>
+                        <div>
+                            <strong class="text-slate-100 font-semibold block mb-1">Modo Teletransporte (Projetar no Brasil):</strong>
+                            Use o botão <em>"Projetar na Referência"</em> para levar o microestado diretamente para cima da cidade ou parque escolhido no Brasil.
+                        </div>
+                    </div>
+                    <button onclick="toggleAjuda()" class="text-slate-500 hover:text-white text-base">
+                        <i class="ph-bold ph-x"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros Regionais + Catálogo dos 18 Menores Países Soberanos -->
+            <div class="editorial-panel p-3.5 mb-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                        <i class="ph-bold ph-ranking text-sky-400"></i>
+                        <span>Ranking dos 18 Menores Países Soberanos (da menor para a maior área):</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 text-[11px]" id="filtroRegioes">
+                        <button onclick="filtrarRegiao('todos')" data-reg="todos" class="px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-300 border border-sky-400/40 font-medium transition">Todos (18)</button>
+                        <button onclick="filtrarRegiao('Europa')" data-reg="Europa" class="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10 transition">Europa (6)</button>
+                        <button onclick="filtrarRegiao('Oceania')" data-reg="Oceania" class="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10 transition">Oceania (4)</button>
+                        <button onclick="filtrarRegiao('Caribe')" data-reg="Caribe" class="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10 transition">Caribe (5)</button>
+                        <button onclick="filtrarRegiao('Ásia & África')" data-reg="Ásia & África" class="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10 transition">Ásia & África (3)</button>
+                    </div>
+                </div>
+
+                <!-- Lista Horizontal de Chips de Países -->
+                <div id="listaMicroestados" class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar"></div>
+            </div>
+
+            <!-- Barra de Controles de Comparação Urbana e Câmera -->
+            <div class="editorial-panel p-3.5 mb-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2.5 flex-1">
+                    <label for="selectReferencia" class="text-xs font-medium text-slate-300 inline-flex items-center gap-1.5 shrink-0">
+                        <i class="ph-bold ph-scales text-amber-400 text-sm"></i>
+                        <span>Comparar com:</span>
+                    </label>
+                    <select id="selectReferencia" onchange="trocarReferencia(this.value)" class="bg-[#090a0f] border border-white/15 rounded-lg px-3 py-2 min-h-[42px] text-xs sm:text-sm text-white font-medium focus:border-amber-400 focus:outline-none flex-1 max-w-md">
+                        <option value="ibirapuera">Parque Ibirapuera, São Paulo (1,58 km²)</option>
+                        <option value="centralpark">Central Park, Nova York (3,41 km²)</option>
+                        <option value="usp">Cidade Universitária USP, SP (3,65 km²)</option>
+                        <option value="copacabana">Bairro de Copacabana, Rio (4,10 km²)</option>
+                        <option value="guarulhos">Aeroporto Internacional de Guarulhos (13,77 km²)</option>
+                        <option value="noronha">Ilha de Fernando de Noronha, PE (18,60 km²)</option>
+                        <option value="brasilia">Plano Piloto de Brasília, DF (42,30 km²)</option>
+                        <option value="manhattan">Ilha de Manhattan, Nova York (59,10 km²)</option>
+                        <option value="bh">Município de Belo Horizonte, MG (331,40 km²)</option>
+                        <option value="florianopolis">Ilha de Florianópolis, SC (424,40 km²)</option>
+                        <option value="rio">Município do Rio de Janeiro, RJ (1.200,30 km²)</option>
+                        <option value="saopaulo">Município de São Paulo, SP (1.521,10 km²)</option>
+                    </select>
+                </div>
+
+                <!-- Alternador de Modo de Visualização -->
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="btnModoPais" onclick="alternarModoCamera('pais')" class="flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-sky-500/20 text-sky-300 border border-sky-400/50 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5">
+                        <i class="ph-bold ph-Crosshair text-sm"></i>
+                        <span>Ver no País Real</span>
+                    </button>
+                    <button id="btnModoRef" onclick="alternarModoCamera('referencia')" class="flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5">
+                        <i class="ph-bold ph-arrows-in-cardinal text-amber-400 text-sm"></i>
+                        <span>Projetar na Referência</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Painel de 4 Métricas Essenciais com Hovers Pedagógicos -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                <div class="editorial-panel p-3.5 text-center" title="Área territorial oficial reconhecida pela ONU e equivalente em hectares (1 km² = 100 ha)">
+                    <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Área Territorial</span>
+                    <span id="metricAreaKm" class="text-xl sm:text-2xl font-mono font-bold text-white block mt-0.5">0,49 km²</span>
+                    <span id="metricAreaSub" class="text-[11px] text-sky-400 font-mono">49 hectares • #1 menor</span>
+                </div>
+                <div class="editorial-panel p-3.5 text-center" title="Relação direta de área entre o microestado selecionado e o marco urbano de referência">
+                    <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Escala Comparada</span>
+                    <span id="metricProporcao" class="text-xl sm:text-2xl font-mono font-bold text-amber-400 block mt-0.5">3,2x menor</span>
+                    <span id="metricProporcaoSub" class="text-[11px] text-slate-400 truncate block px-1">que o Parque Ibirapuera</span>
+                </div>
+                <div class="editorial-panel p-3.5 text-center" title="Diâmetro de um círculo perfeito com a mesma área do país e tempo de caminhada a 5 km/h">
+                    <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Diâmetro Equivalente</span>
+                    <span id="metricDiametro" class="text-xl sm:text-2xl font-mono font-bold text-slate-200 block mt-0.5">790 m</span>
+                    <span id="metricCaminhada" class="text-[11px] text-slate-500 font-mono">~9 min a pé de ponta a ponta</span>
+                </div>
+                <div class="editorial-panel p-3.5 text-center" id="cardDemografia" title="População residente estimada, densidade demográfica e capital oficial">
+                    <span class="text-[11px] text-slate-400 uppercase tracking-wide block">População & Capital</span>
+                    <span id="metricPopulacao" class="text-xl sm:text-2xl font-mono font-bold text-emerald-400 block mt-0.5">764 hab.</span>
+                    <span id="metricCapital" class="text-[11px] text-slate-400 truncate block px-1">Cidade do Vaticano • 1.559/km²</span>
+                </div>
+            </div>
+
+            <!-- Mapa Principal -->
+            <div class="editorial-panel p-3 mb-5">
+                <!-- Barra Superior Rápida do Mapa -->
+                <div class="mb-2.5 px-1 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div class="flex items-center gap-2.5">
+                        <img id="imgFlagAtiva" src="/assets/flags/va.svg" alt="Bandeira" class="w-6 h-4 object-cover rounded shadow-sm border border-white/20">
+                        <span id="tituloMapaAtivo" class="font-heading font-bold text-white text-sm">1. Vaticano (Santa Sé)</span>
+                        <span id="badgeContinente" class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] text-slate-400 font-mono">Europa</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[11px] text-slate-500 mr-1 hidden sm:inline">Camada:</span>
+                        <button onclick="mudarCamadaBase('satelite')" id="btnLayerSat" class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[11px] font-medium transition">Satélite</button>
+                        <button onclick="mudarCamadaBase('osm')" id="btnLayerOsm" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-[11px] font-medium transition">Atlas OSM</button>
+                        <button onclick="mudarCamadaBase('dark')" id="btnLayerDark" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-[11px] font-medium transition">Noturno</button>
+                    </div>
+                </div>
+
+                <div id="mapContainer" class="h-[420px] sm:h-[520px] w-full rounded-lg overflow-hidden"></div>
+                
+                <!-- Barra Inferior do Mapa: Legenda e Compartilhamento -->
+                <div class="mt-3 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <span class="inline-flex items-center gap-1.5 text-sky-300">
+                            <span class="w-3 h-3 rounded-full bg-sky-400/40 border-2 border-sky-400 inline-block"></span>
+                            <span id="legendaPais">Área equivalente: Vaticano (0,49 km²)</span>
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 text-amber-300">
+                            <span class="w-3 h-3 rounded-full bg-amber-400/25 border-2 border-dashed border-amber-400 inline-block"></span>
+                            <span id="legendaRef">Referência: Parque Ibirapuera (1,58 km²)</span>
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="centralizarComparacao()" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition text-xs" title="Sobrepor os dois círculos no mesmo ponto central">
+                            <i class="ph-bold ph-intersect text-amber-400"></i> Sobrepor Centros
+                        </button>
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra Visual de Proporção + Fato Geopolítico Sintético -->
+            <div class="editorial-panel p-4 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between text-xs mb-1.5">
+                            <span id="barLabelPais" class="font-semibold text-sky-300">Vaticano (0,49 km²)</span>
+                            <span id="barLabelRef" class="font-semibold text-amber-300">Parque Ibirapuera (1,58 km²)</span>
+                        </div>
+                        <div class="w-full h-3 bg-white/5 rounded-full overflow-hidden flex p-0.5 gap-0.5 border border-white/10">
+                            <div id="barWidthPais" class="h-full bg-sky-400 rounded-l-full transition-all duration-300" style="width: 24%"></div>
+                            <div id="barWidthRef" class="h-full bg-amber-400/80 rounded-r-full transition-all duration-300" style="width: 76%"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:border-l border-white/10 md:pl-4 text-xs text-slate-300 leading-relaxed">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-0.5">Perfil Territorial</span>
+                        <p id="txtCuriosidadePais">Sede da Igreja Católica desde o Tratado de Latrão (1929). Seu território inteiro é cercado por muralhas dentro de Roma e equivale a apenas um terço do Parque Ibirapuera.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anúncio Oficial Google AdSense (Visível no Mobile e Desktop Abaixo da Ferramenta) -->
+            <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
+                <div class="w-full max-w-4xl py-2 flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+            <!-- Links Limpos para Outras Ferramentas -->
+            <div class="border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+                <span>Outras ferramentas cartográficas:</span>
+                <div class="flex flex-wrap gap-4">
+                    <a href="/ferramentas/quantos-cabem/" class="hover:text-amber-400 transition">Quantos Cabem?</a>
+                    <a href="/ferramentas/comparador-paises/" class="hover:text-amber-400 transition">Tamanho Real dos Países</a>
+                    <a href="/ferramentas/rotas-extremas/" class="hover:text-amber-400 transition">Rotas em Linha Reta</a>
+                    <a href="/ferramentas/calculadora-antipodas/" class="hover:text-amber-400 transition">Calculador de Antípodas</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-globe-hemisphere-east text-base text-amber-400"></i>
+                <span>© 2026 VitaleGeo • Geografia e Cartografia</span>
+            </div>
+            <div class="flex gap-5">
+                <a href="/" class="hover:text-slate-300">Início</a>
+                <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
+                <a href="/jogos" class="hover:text-slate-300">Arcade</a>
+                <a href="/politica" class="hover:text-slate-300">Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica Geodésica do Radar de Microestados -->
+    <script>
+        const MICROESTADOS = [
+            {
+                id: 'vaticano', rank: 1, nome: 'Vaticano', iso: 'va', regiao: 'Europa',
+                areaKm2: 0.49, pop: '764', capital: 'Cidade do Vaticano',
+                coords: [41.9029, 12.4534], zoomIdeal: 15,
+                refSugerida: 'ibirapuera',
+                curiosidade: 'Sede da Igreja Católica desde o Tratado de Latrão (1929). Seu território inteiro é cercado por muralhas dentro de Roma e equivale a menos de um terço do Parque Ibirapuera.'
+            },
+            {
+                id: 'monaco', rank: 2, nome: 'Mônaco', iso: 'mc', regiao: 'Europa',
+                areaKm2: 2.08, pop: '39.050', capital: 'Mônaco-Ville',
+                coords: [43.7384, 7.4246], zoomIdeal: 14,
+                refSugerida: 'centralpark',
+                curiosidade: 'Segundo menor país do mundo e o mais densamente povoado (18.774 hab/km²). Seu território costeiro na Riviera Francesa é menor que o Central Park de Nova York.'
+            },
+            {
+                id: 'nauru', rank: 3, nome: 'Nauru', iso: 'nr', regiao: 'Oceania',
+                areaKm2: 21.0, pop: '12.500', capital: 'Yaren (distrito)',
+                coords: [-0.5228, 166.9315], zoomIdeal: 13,
+                refSugerida: 'guarulhos',
+                curiosidade: 'Menor república insular do planeta, localizada na Micronésia. Uma única avenida asfaltada de 19 km contorna a ilha inteira, que tem quase o tamanho do Aeroporto de Guarulhos.'
+            },
+            {
+                id: 'tuvalu', rank: 4, nome: 'Tuvalu', iso: 'tv', regiao: 'Oceania',
+                areaKm2: 26.0, pop: '11.300', capital: 'Funafuti',
+                coords: [-8.5211, 179.1962], zoomIdeal: 12,
+                refSugerida: 'noronha',
+                curiosidade: 'Arquipélago polinésio formado por 9 atóis de coral cuja altitude máxima é de apenas 4,5 metros acima do mar. Gera parte relevante do seu PIB licenciando o domínio de internet ".tv".'
+            },
+            {
+                id: 'sanmarino', rank: 5, nome: 'San Marino', iso: 'sm', regiao: 'Europa',
+                areaKm2: 61.2, pop: '33.600', capital: 'San Marino',
+                coords: [43.9424, 12.4578], zoomIdeal: 12,
+                refSugerida: 'manhattan',
+                curiosidade: 'Fundada no ano 301 d.C. no topo do Monte Titano, é a república constitucional mais antiga do mundo ainda existente. Sua área total equivale exatamente à Ilha de Manhattan.'
+            },
+            {
+                id: 'liechtenstein', rank: 6, nome: 'Liechtenstein', iso: 'li', regiao: 'Europa',
+                areaKm2: 160.0, pop: '39.500', capital: 'Vaduz',
+                coords: [47.1660, 9.5554], zoomIdeal: 11,
+                refSugerida: 'brasilia',
+                curiosidade: 'Principado alpino espremido entre a Suíça e a Áustria. É um dos dois únicos países duplamente encravados do planeta e possui mais empresas registradas do que cidadãos.'
+            },
+            {
+                id: 'marshall', rank: 7, nome: 'Ilhas Marshall', iso: 'mh', regiao: 'Oceania',
+                areaKm2: 181.0, pop: '42.000', capital: 'Majuro',
+                coords: [7.1315, 171.1845], zoomIdeal: 11,
+                refSugerida: 'bh',
+                curiosidade: 'Composto por 29 atóis de coral e 5 ilhas isoladas no Pacífico Central (incluindo o histórico Atol de Bikini). Embora tenha apenas 181 km² de terra firme, controla 2,1 milhões de km² de oceano.'
+            },
+            {
+                id: 'saocristovao', rank: 8, nome: 'São Cristóvão e Névis', iso: 'kn', regiao: 'Caribe',
+                areaKm2: 261.0, pop: '47.700', capital: 'Basseterre',
+                coords: [17.3578, -62.7830], zoomIdeal: 11,
+                refSugerida: 'bh',
+                curiosidade: 'Menor nação soberana de todo o continente americano (em área e população). É formada por duas ilhas vulcânicas separadas pelo canal "The Narrows", de apenas 3 km de largura.'
+            },
+            {
+                id: 'maldivas', rank: 9, nome: 'Maldivas', iso: 'mv', regiao: 'Ásia & África',
+                areaKm2: 298.0, pop: '521.000', capital: 'Malé',
+                coords: [4.1755, 73.5093], zoomIdeal: 12,
+                refSugerida: 'bh',
+                curiosidade: 'Menor país do continente asiático em área terrestre, espalhado por 1.192 ilhas de coral no Oceano Índico. Também detém a menor altitude máxima média do mundo (apenas 1,5 m).'
+            },
+            {
+                id: 'malta', rank: 10, nome: 'Malta', iso: 'mt', regiao: 'Europa',
+                areaKm2: 316.0, pop: '535.000', capital: 'Valeta',
+                coords: [35.9375, 14.3754], zoomIdeal: 11,
+                refSugerida: 'bh',
+                curiosidade: 'Arquipélago estratégico no centro do Mar Mediterrâneo, ao sul da Sicília. É o menor Estado-membro da União Europeia e todo o seu país cabe dentro do município de Belo Horizonte.'
+            },
+            {
+                id: 'granada', rank: 11, nome: 'Granada', iso: 'gd', regiao: 'Caribe',
+                areaKm2: 344.0, pop: '125.000', capital: 'Saint George\'s',
+                coords: [12.1165, -61.6790], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Conhecida mundialmente como a "Ilha das Especiarias" por ser uma das maiores produtoras globais de noz-moscada (símbolo estampado inclusive na sua bandeira nacional).'
+            },
+            {
+                id: 'saovicente', rank: 12, nome: 'São Vicente e Granadinas', iso: 'vc', regiao: 'Caribe',
+                areaKm2: 389.0, pop: '104.000', capital: 'Kingstown',
+                coords: [13.2528, -61.1971], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Cadeia insular vulcânica no Caribe Oriental dominada pelo vulcão ativo La Soufrière. Suas 32 ilhas e cayos somados são menores que a Ilha de Florianópolis.'
+            },
+            {
+                id: 'barbados', rank: 13, nome: 'Barbados', iso: 'bb', regiao: 'Caribe',
+                areaKm2: 430.0, pop: '281.000', capital: 'Bridgetown',
+                coords: [13.1939, -59.5432], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Ilha mais oriental do Caribe, formada por calcário coralino em vez de vulcões. Em 2021, deixou a monarquia britânica para se tornar a mais jovem república parlamentarista das Américas.'
+            },
+            {
+                id: 'antigua', rank: 14, nome: 'Antígua e Barbuda', iso: 'ag', regiao: 'Caribe',
+                areaKm2: 442.0, pop: '94.000', capital: 'Saint John\'s',
+                coords: [17.0608, -61.7964], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Famosa por possuir "365 praias, uma para cada dia do ano". Mais de 97% da população vive na ilha de Antígua, enquanto Barbuda preserva grandes santuários de aves marinhas.'
+            },
+            {
+                id: 'seicheles', rank: 15, nome: 'Seicheles', iso: 'sc', regiao: 'Ásia & África',
+                areaKm2: 459.0, pop: '107.000', capital: 'Victoria',
+                coords: [-4.6796, 55.4920], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Menor país soberano de todo o continente africano, formado por 115 ilhas de granito e coral no Oceano Índico. Detém o maior IDH da África.'
+            },
+            {
+                id: 'palau', rank: 16, nome: 'Palau', iso: 'pw', regiao: 'Oceania',
+                areaKm2: 459.0, pop: '18.000', capital: 'Ngerulmud',
+                coords: [7.5004, 134.6242], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Sua sede de governo, Ngerulmud, é a capital menos populosa do planeta (com menos de 400 moradores no estado de Melekeok). Transformou 80% de sua zona marítima em santuário ecológico.'
+            },
+            {
+                id: 'andorra', rank: 17, nome: 'Andorra', iso: 'ad', regiao: 'Europa',
+                areaKm2: 468.0, pop: '80.000', capital: 'Andorra-a-Velha',
+                coords: [42.5462, 1.6016], zoomIdeal: 11,
+                refSugerida: 'florianopolis',
+                curiosidade: 'Principado encravado na cordilheira dos Pireneus entre França e Espanha. É governado por dois Co-Príncipes estrangeiros: o Presidente da França e o Bispo de Urgel (Espanha).'
+            },
+            {
+                id: 'singapura', rank: 18, nome: 'Singapura', iso: 'sg', regiao: 'Ásia & África',
+                areaKm2: 734.0, pop: '5.917.000', capital: 'Singapura',
+                coords: [1.3521, 103.8198], zoomIdeal: 11,
+                refSugerida: 'saopaulo',
+                curiosidade: 'Cidade-estado insular na ponta do Estreito de Malaca. Expandiu seu território em mais de 25% desde a independência (de 581 km² em 1965 para 734 km² hoje) através de aterros marítimos, mas ainda tem menos da metade da área do município de São Paulo.'
+            }
+        ];
+
+        const REFERENCIAS_URBANAS = {
+            ibirapuera: { nome: 'Parque Ibirapuera (SP)', areaKm2: 1.58, coords: [-23.5874, -46.6576], zoom: 14 },
+            centralpark: { nome: 'Central Park (Nova York)', areaKm2: 3.41, coords: [40.7829, -73.9654], zoom: 13 },
+            usp: { nome: 'Cidade Universitária USP (SP)', areaKm2: 3.65, coords: [-23.5614, -46.7308], zoom: 14 },
+            copacabana: { nome: 'Bairro de Copacabana (RJ)', areaKm2: 4.10, coords: [-22.9698, -43.1847], zoom: 14 },
+            guarulhos: { nome: 'Aeroporto de Guarulhos (GRU)', areaKm2: 13.77, coords: [-23.4356, -46.4731], zoom: 13 },
+            noronha: { nome: 'Fernando de Noronha (PE)', areaKm2: 18.60, coords: [-3.8547, -32.4233], zoom: 12 },
+            brasilia: { nome: 'Plano Piloto de Brasília (DF)', areaKm2: 42.30, coords: [-15.7939, -47.8828], zoom: 12 },
+            manhattan: { nome: 'Ilha de Manhattan (NY)', areaKm2: 59.10, coords: [40.7831, -73.9712], zoom: 11 },
+            bh: { nome: 'Belo Horizonte (MG)', areaKm2: 331.40, coords: [-19.9167, -43.9345], zoom: 11 },
+            florianopolis: { nome: 'Ilha de Florianópolis (SC)', areaKm2: 424.40, coords: [-27.5954, -48.5480], zoom: 10 },
+            rio: { nome: 'Cidade do Rio de Janeiro (RJ)', areaKm2: 1200.30, coords: [-22.9068, -43.1729], zoom: 10 },
+            saopaulo: { nome: 'Cidade de São Paulo (SP)', areaKm2: 1521.10, coords: [-23.5505, -46.6333], zoom: 10 }
+        };
+
+        let map = null;
+        let baseLayers = {};
+        let currentBaseLayer = null;
+
+        let estadoAtivo = MICROESTADOS[0];
+        let refAtivaKey = 'ibirapuera';
+        let regiaoFiltro = 'todos';
+        let modoCamera = 'pais'; // 'pais' ou 'referencia'
+
+        let circleMicro = null;
+        let circleRef = null;
+        let markerMicro = null;
+        let markerRef = null;
+
+        function calcularRaioMetros(areaKm2) {
+            // A = pi * r^2 -> r = sqrt(A / pi)
+            const areaM2 = areaKm2 * 1000000;
+            return Math.sqrt(areaM2 / Math.PI);
+        }
+
+        function deslocarLongitude(lat, lng, metrosLeste) {
+            const metrosPorGrauLng = 111320 * Math.cos(lat * Math.PI / 180);
+            if (Math.abs(metrosPorGrauLng) < 1) return lng;
+            return lng + (metrosLeste / metrosPorGrauLng);
+        }
+
+        function renderizarChips() {
+            const container = document.getElementById('listaMicroestados');
+            container.innerHTML = '';
+
+            const listaFiltrada = regiaoFiltro === 'todos'
+                ? MICROESTADOS
+                : MICROESTADOS.filter(m => m.regiao === regiaoFiltro);
+
+            listaFiltrada.forEach(item => {
+                const isSelected = item.id === estadoAtivo.id;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => selecionarMicroestado(item.id);
+                btn.className = `px-3 py-2 min-h-[42px] rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center gap-2 shrink-0 text-xs ${isSelected ? 'chip-active' : 'text-slate-300'}`;
+                btn.innerHTML = `
+                    <span class="font-mono text-[10px] text-slate-500">#${item.rank}</span>
+                    <img src="/assets/flags/${item.iso}.svg" alt="${item.nome}" class="w-5 h-3.5 object-cover rounded-[2px] border border-white/15">
+                    <span class="font-medium">${item.nome}</span>
+                    <span class="font-mono text-[10px] text-sky-400">${item.areaKm2.toLocaleString('pt-BR')} km²</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function filtrarRegiao(regiao) {
+            regiaoFiltro = regiao;
+            const botoes = document.querySelectorAll('#filtroRegioes button');
+            botoes.forEach(b => {
+                if (b.dataset.reg === regiao) {
+                    b.className = 'px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-300 border border-sky-400/40 font-medium transition';
+                } else {
+                    b.className = 'px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-400 border border-white/10 transition';
+                }
+            });
+            renderizarChips();
+        }
+
+        function inicializarMapa() {
+            map = L.map('mapContainer', {
+                center: estadoAtivo.coords,
+                zoom: estadoAtivo.zoomIdeal,
+                minZoom: 2,
+                maxZoom: 18,
+                worldCopyJump: true
+            });
+
+            baseLayers.satelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 18,
+                attribution: 'Tiles &copy; Esri'
+            });
+
+            baseLayers.osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            });
+
+            baseLayers.dark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 16,
+                attribution: 'Tiles &copy; Esri &mdash; &copy; OpenStreetMap'
+            });
+
+            currentBaseLayer = baseLayers.satelite;
+            currentBaseLayer.addTo(map);
+
+            setTimeout(() => { if (map) map.invalidateSize(); }, 300);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+
+            renderizarChips();
+            atualizarVisualizacao(true);
+        }
+
+        function mudarCamadaBase(chave) {
+            if (!baseLayers[chave] || !map) return;
+            if (currentBaseLayer) map.removeLayer(currentBaseLayer);
+            currentBaseLayer = baseLayers[chave];
+            currentBaseLayer.addTo(map);
+
+            const mapBtns = {
+                satelite: document.getElementById('btnLayerSat'),
+                osm: document.getElementById('btnLayerOsm'),
+                dark: document.getElementById('btnLayerDark')
+            };
+            Object.keys(mapBtns).forEach(k => {
+                if (k === chave) {
+                    mapBtns[k].className = 'px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[11px] font-medium transition';
+                } else {
+                    mapBtns[k].className = 'px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-[11px] font-medium transition';
+                }
+            });
+        }
+
+        function selecionarMicroestado(id) {
+            const encontrado = MICROESTADOS.find(m => m.id === id);
+            if (!encontrado) return;
+            estadoAtivo = encontrado;
+
+            // Sugere automaticamente uma referência proporcionalmente interessante
+            if (encontrado.refSugerida && REFERENCIAS_URBANAS[encontrado.refSugerida]) {
+                refAtivaKey = encontrado.refSugerida;
+                document.getElementById('selectReferencia').value = refAtivaKey;
+            }
+
+            renderizarChips();
+            atualizarVisualizacao(true);
+        }
+
+        function trocarReferencia(novaKey) {
+            if (!REFERENCIAS_URBANAS[novaKey]) return;
+            refAtivaKey = novaKey;
+            atualizarVisualizacao(true);
+        }
+
+        function alternarModoCamera(modo) {
+            modoCamera = modo;
+            const btnPais = document.getElementById('btnModoPais');
+            const btnRef = document.getElementById('btnModoRef');
+
+            if (modo === 'pais') {
+                btnPais.className = 'flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-sky-500/20 text-sky-300 border border-sky-400/50 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5';
+                btnRef.className = 'flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5';
+            } else {
+                btnRef.className = 'flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-amber-500/20 text-amber-300 border border-amber-400/50 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5';
+                btnPais.className = 'flex-1 sm:flex-initial px-3.5 py-2 min-h-[42px] rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-semibold transition inline-flex items-center justify-center gap-1.5';
+            }
+            atualizarVisualizacao(true);
+        }
+
+        function centralizarComparacao() {
+            if (!markerMicro || !markerRef || !circleMicro || !circleRef) return;
+            const alvo = modoCamera === 'pais' ? markerMicro.getLatLng() : markerRef.getLatLng();
+            markerMicro.setLatLng(alvo);
+            markerRef.setLatLng(alvo);
+            circleMicro.setLatLng(alvo);
+            circleRef.setLatLng(alvo);
+
+            const maiorCirculo = estadoAtivo.areaKm2 >= REFERENCIAS_URBANAS[refAtivaKey].areaKm2 ? circleMicro : circleRef;
+            map.fitBounds(maiorCirculo.getBounds(), { padding: [45, 45] });
+        }
+
+        function atualizarVisualizacao(reposicionarCamera = true) {
+            const ref = REFERENCIAS_URBANAS[refAtivaKey];
+            const rMicro = calcularRaioMetros(estadoAtivo.areaKm2);
+            const rRef = calcularRaioMetros(ref.areaKm2);
+
+            // Atualiza métricas textuais
+            const hectares = Math.round(estadoAtivo.areaKm2 * 100);
+            document.getElementById('metricAreaKm').textContent = `${estadoAtivo.areaKm2.toLocaleString('pt-BR')} km²`;
+            document.getElementById('metricAreaSub').textContent = `${hectares.toLocaleString('pt-BR')} ha • #${estadoAtivo.rank} menor`;
+
+            let textoProp = '';
+            if (estadoAtivo.areaKm2 < ref.areaKm2) {
+                const fator = (ref.areaKm2 / estadoAtivo.areaKm2);
+                textoProp = `${fator >= 10 ? Math.round(fator) : fator.toFixed(1).replace('.', ',')}x menor`;
+            } else if (estadoAtivo.areaKm2 > ref.areaKm2) {
+                const fator = (estadoAtivo.areaKm2 / ref.areaKm2);
+                textoProp = `${fator >= 10 ? Math.round(fator) : fator.toFixed(1).replace('.', ',')}x maior`;
+            } else {
+                textoProp = 'Mesma escala';
+            }
+            document.getElementById('metricProporcao').textContent = textoProp;
+            document.getElementById('metricProporcaoSub').textContent = `que ${ref.nome}`;
+
+            const diametroMetros = Math.round(rMicro * 2);
+            const diametroFormatado = diametroMetros < 1500
+                ? `${diametroMetros.toLocaleString('pt-BR')} m`
+                : `${(diametroMetros / 1000).toFixed(1).replace('.', ',')} km`;
+            const minCaminhada = Math.max(1, Math.round((diametroMetros / 1000) / 5 * 60));
+            const textoCaminhada = minCaminhada < 60
+                ? `~${minCaminhada} min a pé de ponta a ponta`
+                : `~${(minCaminhada / 60).toFixed(1).replace('.', ',')}h a pé de ponta a ponta`;
+
+            document.getElementById('metricDiametro').textContent = diametroFormatado;
+            document.getElementById('metricCaminhada').textContent = textoCaminhada;
+
+            const popNum = parseInt(estadoAtivo.pop.replace(/\./g, ''), 10) || 1000;
+            const densidade = Math.round(popNum / estadoAtivo.areaKm2);
+            document.getElementById('metricPopulacao').textContent = `${estadoAtivo.pop} hab.`;
+            document.getElementById('metricCapital').textContent = `${estadoAtivo.capital} • ${densidade.toLocaleString('pt-BR')}/km²`;
+
+            // Cabeçalho do mapa e barra de proporção
+            document.getElementById('imgFlagAtiva').src = `/assets/flags/${estadoAtivo.iso}.svg`;
+            document.getElementById('tituloMapaAtivo').textContent = `${estadoAtivo.rank}. ${estadoAtivo.nome}`;
+            document.getElementById('badgeContinente').textContent = estadoAtivo.regiao;
+
+            document.getElementById('legendaPais').textContent = `${estadoAtivo.nome} (${estadoAtivo.areaKm2.toLocaleString('pt-BR')} km²)`;
+            document.getElementById('legendaRef').textContent = `${ref.nome} (${ref.areaKm2.toLocaleString('pt-BR')} km²)`;
+
+            document.getElementById('barLabelPais').textContent = `${estadoAtivo.nome} (${estadoAtivo.areaKm2.toLocaleString('pt-BR')} km²)`;
+            document.getElementById('barLabelRef').textContent = `${ref.nome} (${ref.areaKm2.toLocaleString('pt-BR')} km²)`;
+
+            const somaAreas = estadoAtivo.areaKm2 + ref.areaKm2;
+            const pctPais = Math.max(6, Math.min(94, Math.round((estadoAtivo.areaKm2 / somaAreas) * 100)));
+            const pctRef = 100 - pctPais;
+            document.getElementById('barWidthPais').style.width = `${pctPais}%`;
+            document.getElementById('barWidthRef').style.width = `${pctRef}%`;
+            document.getElementById('txtCuriosidadePais').textContent = estadoAtivo.curiosidade;
+
+            // Compartilhamento WhatsApp
+            const shareMsg = encodeURIComponent(
+                `Você sabia que ${estadoAtivo.nome} inteiro tem ${estadoAtivo.areaKm2.toLocaleString('pt-BR')} km² (${textoProp} que ${ref.nome})? Compare a escala dos menores países do mundo no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/radar-microestados/`
+            );
+            document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareMsg}`;
+
+            // Geometria no Mapa
+            if (!map) return;
+
+            if (circleMicro) map.removeLayer(circleMicro);
+            if (circleRef) map.removeLayer(circleRef);
+            if (markerMicro) map.removeLayer(markerMicro);
+            if (markerRef) map.removeLayer(markerRef);
+
+            const centroBase = modoCamera === 'pais' ? estadoAtivo.coords : ref.coords;
+            const offsetMetros = (rMicro + rRef) * 0.65;
+
+            const posMicro = modoCamera === 'pais'
+                ? [centroBase[0], centroBase[1]]
+                : [centroBase[0], deslocarLongitude(centroBase[0], centroBase[1], -offsetMetros * 0.35)];
+
+            const posRef = modoCamera === 'pais'
+                ? [centroBase[0], deslocarLongitude(centroBase[0], centroBase[1], offsetMetros)]
+                : [centroBase[0], centroBase[1]];
+
+            circleMicro = L.circle(posMicro, {
+                radius: rMicro,
+                color: '#38bdf8',
+                weight: 2.5,
+                fillColor: '#38bdf8',
+                fillOpacity: 0.25
+            }).addTo(map);
+
+            circleRef = L.circle(posRef, {
+                radius: rRef,
+                color: '#f59e0b',
+                weight: 2,
+                dashArray: '6, 6',
+                fillColor: '#f59e0b',
+                fillOpacity: 0.18
+            }).addTo(map);
+
+            const iconMicro = L.divIcon({ className: 'pin-micro', iconSize: [14, 14], iconAnchor: [7, 7] });
+            const iconRef = L.divIcon({ className: 'pin-ref', iconSize: [14, 14], iconAnchor: [7, 7] });
+
+            markerMicro = L.marker(posMicro, { icon: iconMicro, draggable: true }).addTo(map);
+            markerRef = L.marker(posRef, { icon: iconRef, draggable: true }).addTo(map);
+
+            markerMicro.bindTooltip(`${estadoAtivo.nome} (${estadoAtivo.areaKm2.toLocaleString('pt-BR')} km²) — Arraste para comparar`, { direction: 'top', offset: [0, -8] });
+            markerRef.bindTooltip(`${ref.nome} (${ref.areaKm2.toLocaleString('pt-BR')} km²) — Arraste para sobrepor`, { direction: 'top', offset: [0, -8] });
+
+            markerMicro.on('drag', (e) => {
+                circleMicro.setLatLng(e.target.getLatLng());
+            });
+            markerRef.on('drag', (e) => {
+                circleRef.setLatLng(e.target.getLatLng());
+            });
+
+            if (reposicionarCamera) {
+                const group = L.featureGroup([circleMicro, circleRef]);
+                map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 16 });
+            }
+        }
+
+        function toggleAjuda() {
+            const el = document.getElementById('painelAjuda');
+            el.classList.toggle('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', inicializarMapa);
+    </script>
+</body>
+</html>

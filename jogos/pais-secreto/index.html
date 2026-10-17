@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/pais-secreto/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>O País Secreto (Termômetro Geodésico & Bússola) | Arcade VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Descubra o País Secreto do dia usando temperatura geodésica, distância em km e bússola de azimute! Jogo estilo Globle e Worldle em português no VitaleGeo.">
+    <meta name="keywords" content="país secreto, globle em português, worldle brasil, adivinhar país pelo mapa, jogo de geografia diário, vitalegeo arcade">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="O País Secreto (Termômetro Geodésico) | VitaleGeo">
+    <meta property="og:description" content="Em quantas tentativas você descobre o País Secreto usando distância em km, calor térmico e bússola?">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/pais-secreto/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/pais-secreto.jpg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoBlue: '#38bdf8'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
+        #map {
+            background-color: #0b0d13;
+        }
+        .leaflet-control-zoom {
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            background: #11131a !important;
+            border-radius: 8px !important;
+            overflow: hidden;
+        }
+        .leaflet-control-zoom a {
+            background: #11131a !important;
+            color: #cbd5e1 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .leaflet-control-attribution {
+            background: rgba(9, 10, 15, 0.75) !important;
+            color: #64748b !important;
+            font-size: 10px !important;
+        }
+        .ad-slot-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .thermal-pin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 11px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- HEADER DO ARCADE -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Central de Jogos</span>
+            </a>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-thermometer-hot text-amber-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    O País <span class="text-amber-400">Secreto</span>
+                    <span class="hidden md:inline text-xs text-slate-400 font-mono font-normal">· Termômetro Geodésico</span>
+                </h1>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="alternarModoJogo()" id="btn-mode-toggle" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Alternar entre Desafio Diário e Modo Livre">
+                    <i class="ph-bold ph-calendar-check"></i>
+                    <span id="mode-label">Desafio do Dia</span>
+                </button>
+                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
+
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-5xl flex-1 flex flex-col gap-3" id="game-stage-container">
+
+            <!-- BARRA SUPERIOR DE TELEMETRIA E DICAS DE INTELIGÊNCIA -->
+            <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-xl">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-white/10 text-xs font-mono text-slate-300">
+                            <i class="ph-bold ph-crosshair text-amber-400"></i>
+                            Tentativas: <strong id="attempts-count" class="text-amber-400">0</strong>
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-white/10 text-xs font-mono text-slate-300">
+                            <i class="ph-bold ph-thermometer text-emerald-400"></i>
+                            Mais Perto: <strong id="best-dist-label" class="text-emerald-400">--- km</strong>
+                        </span>
+                        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-white/10 text-xs font-mono text-slate-400">
+                            <i class="ph-fill ph-trophy text-amber-400"></i>
+                            Vitórias: <strong id="wins-count" class="text-white">0</strong>
+                        </span>
+                    </div>
+
+                    <!-- Botões de Dicas de Dossiê -->
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                        <button onclick="revelarPista(1)" id="hint-btn-1" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-400/15 border border-white/10 hover:border-amber-400/30 text-[11px] font-mono text-slate-300 hover:text-amber-300 transition flex items-center gap-1">
+                            <i class="ph-bold ph-globe"></i> Dica 1: Região
+                        </button>
+                        <button onclick="revelarPista(2)" id="hint-btn-2" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-400/15 border border-white/10 hover:border-amber-400/30 text-[11px] font-mono text-slate-300 hover:text-amber-300 transition flex items-center gap-1">
+                            <i class="ph-bold ph-buildings"></i> Dica 2: Capital
+                        </button>
+                        <button onclick="revelarPista(3)" id="hint-btn-3" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-400/15 border border-white/10 hover:border-amber-400/30 text-[11px] font-mono text-slate-300 hover:text-amber-300 transition flex items-center gap-1">
+                            <i class="ph-bold ph-flag"></i> Dica 3: Bandeira
+                        </button>
+                        <button onclick="desistirERevelar()" id="btn-giveup" class="px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-[11px] font-mono text-rose-300 transition flex items-center gap-1" title="Revelar País Secreto">
+                            <i class="ph-bold ph-eye"></i> Revelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gaveta de Pistas Desbloqueadas -->
+                <div id="clues-drawer" class="hidden bg-slate-950/90 border border-amber-400/20 rounded-xl p-3 mb-3 text-xs font-mono text-slate-200 flex flex-wrap items-center gap-3">
+                    <div id="clue-1-box" class="hidden items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-lg">
+                        <i class="ph-bold ph-compass text-amber-400"></i> <span id="clue-1-text"></span>
+                    </div>
+                    <div id="clue-2-box" class="hidden items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-lg">
+                        <i class="ph-bold ph-buildings text-emerald-400"></i> <span id="clue-2-text"></span>
+                    </div>
+                    <div id="clue-3-box" class="hidden items-center gap-2 bg-white/5 px-2.5 py-1 rounded-lg">
+                        <span class="text-slate-400">Bandeira:</span>
+                        <img id="clue-3-flag" src="" class="w-8 h-5 object-contain rounded border border-white/20" alt="Bandeira Dica">
+                    </div>
+                </div>
+
+                <!-- BARRA DE BUSCA COM AUTOCOMPLETE DE PAÍSES -->
+                <div id="search-container" class="relative">
+                    <div class="flex gap-2">
+                        <div class="relative flex-1">
+                            <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
+                            <input
+                                type="text"
+                                id="country-input"
+                                autocomplete="off"
+                                placeholder="Digite o nome de qualquer país (ex: Brasil, Egito, Japão)..."
+                                class="w-full bg-slate-950 border border-white/15 focus:border-amber-400 focus:outline-none rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 font-sans transition"
+                            />
+                        </div>
+                        <button onclick="submeterPalpiteInput()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition flex items-center gap-1.5 shrink-0 shadow-lg shadow-amber-400/10">
+                            <i class="ph-bold ph-paper-plane-right"></i> Chutar
+                        </button>
+                    </div>
+
+                    <!-- Lista Autocomplete -->
+                    <div id="autocomplete-list" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-[#131620] border border-white/15 rounded-xl shadow-2xl max-h-60 overflow-y-auto z-40 divide-y divide-white/5"></div>
+                </div>
+            </div>
+
+            <!-- GRID PRINCIPAL: MAPA TÉRMICO + HISTÓRICO DE PALPITES -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+                
+                <!-- COLUNA DO MAPA (7 Colunas no Desktop) -->
+                <div class="lg:col-span-7 bg-[#11131a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+                    <div class="relative w-full h-[340px] sm:h-[430px]" id="map">
+                        <!-- Legenda de Temperatura Sobreposta -->
+                        <div class="absolute bottom-3 left-3 z-[400] bg-slate-950/90 backdrop-blur-md border border-white/10 rounded-xl px-3 py-2 text-[10px] font-mono text-slate-300 flex flex-wrap items-center gap-2.5 pointer-events-none">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Alvo</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> &lt;1.500km</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> &lt;4.500km</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span> &lt;9.500km</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-indigo-500 inline-block"></span> Frio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUNA DE TELEMETRIA DOS PALPITES (5 Colunas no Desktop) -->
+                <div class="lg:col-span-5 bg-[#11131a] border border-white/10 rounded-2xl p-4 flex flex-col justify-between min-h-[340px] sm:min-h-[430px] shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
+                            <span class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                <i class="ph-bold ph-radar text-amber-400"></i> Radar de Palpites
+                            </span>
+                            <span class="text-[11px] font-mono text-slate-500">Ordenado por proximidade</span>
+                        </div>
+
+                        <!-- Lista de Palpites -->
+                        <div id="guesses-list" class="space-y-2 max-h-[330px] overflow-y-auto pr-1">
+                            <div id="empty-state" class="py-14 text-center text-slate-500 text-xs font-mono">
+                                <i class="ph-duotone ph-globe-stand text-4xl text-slate-600 block mx-auto mb-2"></i>
+                                Digite seu primeiro país acima para calibrar o termômetro geodésico e a bússola!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Painel de Vitória / Revelação Final -->
+                    <div id="victory-panel" class="hidden mt-3 pt-3 border-t border-white/10">
+                        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3.5 mb-3">
+                            <div class="flex items-center gap-3 mb-2">
+                                <img id="win-flag" src="" class="w-12 h-8 object-contain rounded border border-white/20 bg-slate-950" alt="Bandeira">
+                                <div>
+                                    <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block" id="win-kicker">PAÍS SECRETO LOCALIZADO!</span>
+                                    <h3 class="text-lg font-heading font-black text-white leading-tight" id="win-country-name">--</h3>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed mb-2" id="win-fact">--</p>
+                            <div class="text-[11px] font-mono text-amber-300" id="win-meta">--</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="compartilharWhatsApp()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition">
+                                <i class="ph-fill ph-whatsapp-logo text-base"></i> WhatsApp
+                            </button>
+                            <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition">
+                                <i class="ph-bold ph-download-simple text-base"></i> Card PNG
+                            </button>
+                            <button onclick="jogarModoLivre()" class="col-span-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-2.5 px-4 rounded-xl flex items-center justify-center gap-1.5 transition">
+                                <i class="ph-bold ph-arrows-clockwise"></i> Sortear Novo País Secreto (Modo Livre)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BANNER INFERIOR -->
+            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-1">
+                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
+        VitaleGeo Arcade &copy; 2026 · O País Secreto · Termômetro Geodésico & Azimute
+    </footer>
+
+    <script>
+        const todosPaises = (window.CerebroGeo && Array.isArray(window.CerebroGeo.paises) && window.CerebroGeo.paises.length > 0)
+            ? window.CerebroGeo.paises
+            : [];
+
+        // Normaliza string sem acentos para busca
+        function normalizar(str) {
+            return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+        }
+
+        // Fórmulas Geodésicas Oficiais (Haversine + Azimute)
+        function distanciaHaversineKm(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return Math.round(R * c);
+        }
+
+        function calcularAzimuteGraus(lat1, lon1, lat2, lon2) {
+            const phi1 = lat1 * Math.PI / 180;
+            const phi2 = lat2 * Math.PI / 180;
+            const dLambda = (lon2 - lon1) * Math.PI / 180;
+            const y = Math.sin(dLambda) * Math.cos(phi2);
+            const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(dLambda);
+            const theta = Math.atan2(y, x);
+            return (theta * 180 / Math.PI + 360) % 360;
+        }
+
+        function obterDirecaoCardeal(graus) {
+            const dirs = ['N', 'NE', 'L', 'SE', 'S', 'SO', 'O', 'NO'];
+            const idx = Math.round(graus / 45) % 8;
+            return dirs[idx];
+        }
+
+        function obterPerfilTermico(distKm, ehFronteira, acertou) {
+            if (acertou) return { corHex: '#10b981', classeBadge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40', label: 'ALVO EXATO!', bloco: '🟩', prox: 100 };
+            if (ehFronteira) return { corHex: '#ef4444', classeBadge: 'bg-rose-500/25 text-rose-300 border-rose-500/50', label: 'FRONTEIRA!', bloco: '🟥', prox: 96 };
+            const prox = Math.max(2, Math.min(95, Math.round((1 - distKm / 19000) * 100)));
+            if (distKm <= 1500) return { corHex: '#ef4444', classeBadge: 'bg-rose-500/20 text-rose-300 border-rose-500/40', label: 'Fervendo', bloco: '🟥', prox };
+            if (distKm <= 3500) return { corHex: '#f97316', classeBadge: 'bg-orange-500/20 text-orange-300 border-orange-500/40', label: 'Muito Quente', bloco: '🟧', prox };
+            if (distKm <= 6500) return { corHex: '#f59e0b', classeBadge: 'bg-amber-500/20 text-amber-300 border-amber-500/40', label: 'Morno', bloco: '🟨', prox };
+            if (distKm <= 10500) return { corHex: '#38bdf8', classeBadge: 'bg-sky-500/20 text-sky-300 border-sky-500/40', label: 'Frio', bloco: '🟦', prox };
+            return { corHex: '#6366f1', classeBadge: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40', label: 'Congelante', bloco: '🟪', prox };
+        }
+
+        // Sintetizador Web Audio API
+        let somAtivo = true;
+        let audioCtx = null;
+
+        function getAudioCtx() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            return audioCtx;
+        }
+
+        function tocarSom(tipo) {
+            if (!somAtivo) return;
+            const ctx = getAudioCtx();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+
+            if (tipo === 'chute') {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(420, now);
+                osc.frequency.exponentialRampToValueAtTime(580, now + 0.12);
+                gain.gain.setValueAtTime(0.09, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.15);
+            } else if (tipo === 'vitoria') {
+                [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    gain.gain.setValueAtTime(0.13, now + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 0.26);
+                });
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+        }
+
+        // Inicialização do Mapa Leaflet (Esri World Gray Canvas 100% Gratuito)
+        const map = L.map('map', {
+            center: [20, 10],
+            zoom: 2,
+            minZoom: 2,
+            maxZoom: 8,
+            worldCopyJump: true
+        });
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 16,
+            attribution: 'Tiles &copy; Esri'
+        }).addTo(map);
+
+        let markersLayer = L.layerGroup().addTo(map);
+
+        // Estado do Jogo
+        let modoDiario = true;
+        let paisAlvo = null;
+        let palpites = [];
+        let jogoEncerrado = false;
+        let vitoriasAcumuladas = parseInt(localStorage.getItem('vg_recorde_pais_secreto') || '0', 10);
+        document.getElementById('wins-count').innerText = vitoriasAcumuladas;
+
+        function obterPaisDoDia() {
+            const hoje = new Date();
+            const chaveData = `${hoje.getFullYear()}-${hoje.getMonth() + 1}-${hoje.getDate()}`;
+            let hash = 0;
+            for (let i = 0; i < chaveData.length; i++) {
+                hash = ((hash << 5) - hash) + chaveData.charCodeAt(i);
+                hash |= 0;
+            }
+            const idx = Math.abs(hash) % todosPaises.length;
+            return todosPaises[idx];
+        }
+
+        function iniciarPartida() {
+            palpites = [];
+            jogoEncerrado = false;
+            markersLayer.clearLayers();
+            map.setView([20, 10], 2);
+
+            paisAlvo = modoDiario
+                ? obterPaisDoDia()
+                : todosPaises[Math.floor(Math.random() * todosPaises.length)];
+
+            document.getElementById('mode-label').innerText = modoDiario ? 'Desafio do Dia' : 'Modo Livre';
+            document.getElementById('attempts-count').innerText = '0';
+            document.getElementById('best-dist-label').innerText = '--- km';
+            document.getElementById('guesses-list').innerHTML = `
+                <div id="empty-state" class="py-14 text-center text-slate-500 text-xs font-mono">
+                    <i class="ph-duotone ph-globe-stand text-4xl text-slate-600 block mx-auto mb-2"></i>
+                    Digite seu primeiro país acima para calibrar o termômetro geodésico e a bússola!
+                </div>
+            `;
+            document.getElementById('victory-panel').classList.add('hidden');
+            document.getElementById('search-container').classList.remove('hidden');
+            document.getElementById('clues-drawer').classList.add('hidden');
+            document.getElementById('clue-1-box').classList.add('hidden');
+            document.getElementById('clue-2-box').classList.add('hidden');
+            document.getElementById('clue-3-box').classList.add('hidden');
+            document.getElementById('country-input').value = '';
+        }
+
+        function alternarModoJogo() {
+            modoDiario = !modoDiario;
+            iniciarPartida();
+        }
+
+        function jogarModoLivre() {
+            modoDiario = false;
+            iniciarPartida();
+        }
+
+        // Autocomplete de Países
+        const inputEl = document.getElementById('country-input');
+        const listEl = document.getElementById('autocomplete-list');
+
+        inputEl.addEventListener('input', () => {
+            const termo = normalizar(inputEl.value);
+            if (!termo) {
+                listEl.classList.add('hidden');
+                return;
+            }
+            const sugeridos = todosPaises
+                .filter(p => !palpites.some(g => g.pais.iso2 === p.iso2))
+                .filter(p => normalizar(p.nome).includes(termo) || normalizar(p.capital).includes(termo))
+                .slice(0, 8);
+
+            if (sugeridos.length === 0) {
+                listEl.classList.add('hidden');
+                return;
+            }
+
+            listEl.innerHTML = '';
+            sugeridos.forEach(p => {
+                const item = document.createElement('button');
+                item.type = 'button';
+                item.className = 'w-full px-3.5 py-2.5 text-left hover:bg-amber-400/15 flex items-center justify-between transition text-xs sm:text-sm text-slate-200';
+                item.innerHTML = `
+                    <span class="flex items-center gap-2.5">
+                        <img src="/assets/flags/${p.iso2.toLowerCase()}.svg" onerror="this.src='https://flagcdn.com/w80/${p.iso2.toLowerCase()}.png'" class="w-6 h-4 object-contain rounded border border-white/15">
+                        <span class="font-heading font-semibold text-white">${p.nome}</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-slate-400">${p.continente}</span>
+                `;
+                item.onclick = () => {
+                    listEl.classList.add('hidden');
+                    inputEl.value = '';
+                    registrarPalpite(p);
+                };
+                listEl.appendChild(item);
+            });
+            listEl.classList.remove('hidden');
+        });
+
+        inputEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submeterPalpiteInput();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#search-container')) {
+                listEl.classList.add('hidden');
+            }
+        });
+
+        function submeterPalpiteInput() {
+            const termo = normalizar(inputEl.value);
+            if (!termo) return;
+            const exato = todosPaises.find(p => normalizar(p.nome) === termo);
+            const parcial = todosPaises.find(p => normalizar(p.nome).startsWith(termo) && !palpites.some(g => g.pais.iso2 === p.iso2));
+            const escolhido = exato || parcial;
+            if (escolhido) {
+                if (palpites.some(g => g.pais.iso2 === escolhido.iso2)) {
+                    inputEl.value = '';
+                    listEl.classList.add('hidden');
+                    return;
+                }
+                inputEl.value = '';
+                listEl.classList.add('hidden');
+                registrarPalpite(escolhido);
+            }
+        }
+
+        function registrarPalpite(paisChutado) {
+            if (jogoEncerrado || !paisAlvo) return;
+
+            const acertou = paisChutado.iso2.toLowerCase() === paisAlvo.iso2.toLowerCase();
+            const distKm = acertou ? 0 : distanciaHaversineKm(paisChutado.lat, paisChutado.lng, paisAlvo.lat, paisAlvo.lng);
+            const ehFronteira = !acertou && Array.isArray(paisAlvo.fronteiras) && paisAlvo.fronteiras.map(f => f.toLowerCase()).includes(paisChutado.iso2.toLowerCase());
+            const azimute = acertou ? 0 : calcularAzimuteGraus(paisChutado.lat, paisChutado.lng, paisAlvo.lat, paisAlvo.lng);
+            const cardeal = acertou ? 'ALVO' : obterDirecaoCardeal(azimute);
+            const termico = obterPerfilTermico(distKm, ehFronteira, acertou);
+
+            const registro = {
+                ordem: palpites.length + 1,
+                pais: paisChutado,
+                distKm,
+                ehFronteira,
+                azimute,
+                cardeal,
+                termico,
+                acertou
+            };
+
+            palpites.push(registro);
+
+            // Adiciona marcador térmico no mapa
+            const icon = L.divIcon({
+                className: '',
+                html: `<div class="thermal-pin" style="width:30px;height:30px;background:${termico.corHex};">${acertou ? '★' : `${termico.prox}%`}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            });
+
+            const marker = L.marker([paisChutado.lat, paisChutado.lng], { icon }).addTo(markersLayer);
+            marker.bindPopup(`<strong>${paisChutado.nome}</strong><br>${acertou ? 'País Secreto!' : `${distKm.toLocaleString('pt-BR')} km (${cardeal})`}`);
+
+            map.flyTo([paisChutado.lat, paisChutado.lng], acertou ? 4 : 3, { duration: 0.8 });
+
+            atualizarListaPalpites();
+
+            if (acertou) {
+                tocarSom('vitoria');
+                vitoriasAcumuladas++;
+                localStorage.setItem('vg_recorde_pais_secreto', vitoriasAcumuladas);
+                document.getElementById('wins-count').innerText = vitoriasAcumuladas;
+                concluirPartida(true);
+            } else {
+                tocarSom('chute');
+            }
+        }
+
+        function atualizarListaPalpites() {
+            document.getElementById('attempts-count').innerText = palpites.length;
+            const menorDist = Math.min(...palpites.map(p => p.distKm));
+            document.getElementById('best-dist-label').innerText = `${menorDist.toLocaleString('pt-BR')} km`;
+
+            const ordenados = [...palpites].sort((a, b) => a.distKm - b.distKm);
+            const container = document.getElementById('guesses-list');
+            container.innerHTML = '';
+
+            ordenados.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'bg-slate-900/90 border border-white/10 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs';
+                const setaHtml = item.acertou
+                    ? `<i class="ph-fill ph-check-circle text-emerald-400 text-base"></i>`
+                    : `<i class="ph-bold ph-arrow-up text-amber-400 text-sm inline-block" style="transform: rotate(${Math.round(item.azimute)}deg)"></i>`;
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-2 min-w-0">
+                        <span class="text-[10px] font-mono text-slate-500 w-5">#${item.ordem}</span>
+                        <img src="/assets/flags/${item.pais.iso2.toLowerCase()}.svg" onerror="this.src='https://flagcdn.com/w80/${item.pais.iso2.toLowerCase()}.png'" class="w-6 h-4 object-contain rounded border border-white/15 shrink-0">
+                        <span class="font-heading font-bold text-white truncate">${item.pais.nome}</span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 font-mono">
+                        <span class="text-slate-300 font-bold">${item.ehFronteira ? 'FRONTEIRA' : `${item.distKm.toLocaleString('pt-BR')} km`}</span>
+                        <span class="w-11 text-center px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] flex items-center justify-center gap-1" title="Direção Azimute">
+                            ${setaHtml} ${item.cardeal}
+                        </span>
+                        <span class="px-2 py-0.5 rounded-full border text-[10px] font-bold ${item.termico.classeBadge}">
+                            ${item.termico.prox}%
+                        </span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function revelarPista(num) {
+            if (!paisAlvo) return;
+            document.getElementById('clues-drawer').classList.remove('hidden');
+            if (num === 1) {
+                const box = document.getElementById('clue-1-box');
+                box.classList.remove('hidden');
+                box.classList.add('flex');
+                document.getElementById('clue-1-text').innerText = `${paisAlvo.continente} (${paisAlvo.subregiao})`;
+            } else if (num === 2) {
+                const box = document.getElementById('clue-2-box');
+                box.classList.remove('hidden');
+                box.classList.add('flex');
+                document.getElementById('clue-2-text').innerText = `Capital: ${paisAlvo.capital}`;
+            } else if (num === 3) {
+                const box = document.getElementById('clue-3-box');
+                box.classList.remove('hidden');
+                box.classList.add('flex');
+                const img = document.getElementById('clue-3-flag');
+                img.src = `/assets/flags/${paisAlvo.iso2.toLowerCase()}.svg`;
+                img.onerror = () => { img.src = `https://flagcdn.com/w160/${paisAlvo.iso2.toLowerCase()}.png`; };
+            }
+        }
+
+        function desistirERevelar() {
+            if (jogoEncerrado || !paisAlvo) return;
+            concluirPartida(false);
+        }
+
+        function concluirPartida(venceu) {
+            jogoEncerrado = true;
+            document.getElementById('search-container').classList.add('hidden');
+            const panel = document.getElementById('victory-panel');
+            panel.classList.remove('hidden');
+
+            const flag = document.getElementById('win-flag');
+            flag.src = `/assets/flags/${paisAlvo.iso2.toLowerCase()}.svg`;
+            flag.onerror = () => { flag.src = `https://flagcdn.com/w160/${paisAlvo.iso2.toLowerCase()}.png`; };
+
+            document.getElementById('win-kicker').innerText = venceu
+                ? `DESCOBERTO EM ${palpites.length} TENTATIVA(S)!`
+                : 'ALVO REVELADO PELA INTELIGÊNCIA';
+            document.getElementById('win-country-name').innerText = `${paisAlvo.nome} (${paisAlvo.capital})`;
+            document.getElementById('win-fact').innerText = paisAlvo.fato || '';
+            document.getElementById('win-meta').innerText = `${paisAlvo.continente} · Área: ${(paisAlvo.area_km2 || 0).toLocaleString('pt-BR')} km² · Pop: ${(paisAlvo.populacao || 0).toLocaleString('pt-BR')}`;
+
+            if (!venceu) {
+                const icon = L.divIcon({
+                    className: '',
+                    html: `<div class="thermal-pin" style="width:32px;height:32px;background:#10b981;">★</div>`,
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16]
+                });
+                L.marker([paisAlvo.lat, paisAlvo.lng], { icon }).addTo(markersLayer).bindPopup(`<strong>${paisAlvo.nome}</strong>`).openPopup();
+                map.flyTo([paisAlvo.lat, paisAlvo.lng], 4, { duration: 0.9 });
+            } else if (typeof confetti === 'function') {
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        function gerarGradeBlocos() {
+            return palpites.map(p => p.termico.bloco).join('');
+        }
+
+        function compartilharWhatsApp() {
+            const blocos = gerarGradeBlocos();
+            const texto = `Descobri O País Secreto do VitaleGeo em ${palpites.length} tentativa(s)!\nTermômetro: ${blocos}\nConsegue adivinhar em menos chutes?\nhttps://www.vitalegeo.com.br/jogos/pais-secreto/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        function baixarScorecardPNG() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 900;
+            canvas.height = 900;
+            const ctx = canvas.getContext('2d');
+
+            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
+            grad.addColorStop(0, '#171c2b');
+            grad.addColorStop(1, '#090a0f');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 900, 900);
+
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(36, 36, 828, 828);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE · TERMÔMETRO GEODÉSICO', 450, 110);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('O PAÍS SECRETO', 450, 175);
+
+            ctx.fillStyle = '#11131a';
+            ctx.fillRect(110, 230, 680, 340);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(110, 230, 680, 340);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillText(modoDiario ? 'MODALIDADE: DESAFIO DO DIA' : 'MODALIDADE: OPERAÇÃO LIVRE', 450, 290);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = '900 95px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText(`${palpites.length} CHUTES`, 450, 410);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.fillText(`VITÓRIAS ACUMULADAS: ${vitoriasAcumuladas}`, 450, 485);
+
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillText('Siga o calor geodésico e a bússola para descobrir em:', 450, 710);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillText('www.vitalegeo.com.br/jogos/pais-secreto', 450, 760);
+
+            const link = document.createElement('a');
+            link.download = `vitalegeo-pais-secreto-${palpites.length}chutes.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function alternarTelaCheia() {
+            const container = document.getElementById("game-stage-container") || document.documentElement;
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        iniciarPartida();
+    </script>
+</body>
+</html>

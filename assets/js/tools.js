@@ -47,5 +47,12 @@ const toolsDB = [
         icon: "ph-bold ph-compass",
         cover: "/assets/img/ferramentas/rotas-extremas.png",
         link: "/ferramentas/rotas-extremas/"
+    },
+    {
+        titulo: "Radar de Microestados em Escala",
+        desc: "Compare o tamanho real dos 18 menores países soberanos do mundo com o Parque Ibirapuera, Copacabana e cidades brasileiras.",
+        icon: "ph-bold ph-magnifying-glass-plus",
+        cover: "/assets/img/ferramentas/radar-microestados.png",
+        link: "/ferramentas/radar-microestados/"
     }
 ];
