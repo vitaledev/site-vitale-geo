@@ -66,7 +66,7 @@ Espaço Público Térreo | 100% aberto sob pilotis | Cidades-satélites com lote
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: A Falta de Nomes de Rua e a Lógica de Coordenadas</span>
+    <span>Investigação Cartográfica: A Falta de Nomes de Rua e a Lógica de Coordenadas</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Em Brasília não existem ruas com nomes de generais ou poetas. O endereço é puramente matricial e geodésico: SQS 308 Bloco F Apt 204 significa Superquadra Sul, número 308, bloco de letra F. Uma vez decodificada a lógica geométrica, ninguém se perde na capital.
@@ -106,7 +106,7 @@ São as alças de acesso curvo em formato de tesoura que permitem trocar de pist
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG/1280px-BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

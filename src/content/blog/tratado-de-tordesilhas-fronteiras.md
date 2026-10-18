@@ -66,7 +66,7 @@ Tratado de Madri | 1750 | Princípio do Uti Possidetis | Revoga Tordesilhas e le
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Marco de Cananeia e Laguna</span>
+    <span>Investigação Cartográfica: O Marco de Cananeia e Laguna</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     O meridiano de Tordesilhas cortava o litoral brasileiro entre Belém do Pará, ao norte, e a cidade de Laguna, em Santa Catarina, ao sul. Hoje, marcos de pedra e memoriais históricos assinalam os locais exatos onde passava a linha imaginária que dividiu o continente americano.
@@ -106,7 +106,7 @@ Na navegação ibérica da época, uma légua marítima correspondia a cerca de 
   "image": "https://upload.wikimedia.org/wikipedia/commons/e/e9/El_reparto_del_espacio_terrestre_en_Tordesillas_y_Zaragoza%2C_1494-1529.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

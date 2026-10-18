@@ -25,7 +25,7 @@
     "jogos",
     "vitalegeo"
   ],
-  "author": "Agnaldo Batista (vitaledev)",
+  "author": "VitaleGeo",
   "license": "MIT",
   "dependencies": {
     "@astrojs/react": "^7.0.1",

@@ -56,10 +56,10 @@ for (const file of mdFiles) {
     body = proseMatch[1].trim();
   }
 
-  // Corrigir o grid do dossiê tático se a abertura estiver faltando
-  if (body.includes('<!-- Dossiê Tático') && !body.includes('grid grid-cols-1 md:grid-cols-3')) {
+  // Corrigir o grid do Ficha Técnica se a abertura estiver faltando
+  if (body.includes('<!-- Ficha Técnica') && !body.includes('grid grid-cols-1 md:grid-cols-3')) {
     body = body.replace(
-      /(<!-- Dossiê Tático[\s\S]*?-->)\s*(<div class="bg-slate-900)/i,
+      /(<!-- Ficha Técnica[\s\S]*?-->)\s*(<div class="bg-slate-900)/i,
       '$1\n<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-8 not-prose">\n$2'
     );
   }

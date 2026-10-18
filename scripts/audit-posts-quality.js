@@ -7,7 +7,7 @@ const entries = fs.readdirSync(blogDir).filter(f => {
     return fs.statSync(p).isDirectory() && f !== 'fronteira-mais-louca';
 });
 
-console.log(`Auditando a qualidade e integridade editorial dos ${entries.length} dossiês...\n`);
+console.log(`Auditando a qualidade e integridade editorial dos ${entries.length} posts...\n`);
 
 let passedCount = 0;
 let errors = [];
@@ -75,5 +75,5 @@ if (errors.length > 0) {
     errors.forEach(err => console.error(`- ${err}`));
     process.exit(1);
 } else {
-    console.log(`STATUS: 100% APROVADO! Todos os dossiês possuem densidade editorial nobre (>8.000 chars), tipografia Playfair Display e zero poluição visual de IA.`);
+    console.log(`STATUS: 100% APROVADO! Todos os posts possuem densidade editorial nobre (>8.000 chars), tipografia Playfair Display e zero poluição visual de IA.`);
 }

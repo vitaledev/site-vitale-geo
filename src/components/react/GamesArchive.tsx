@@ -5,6 +5,8 @@ interface Props {
   games: GameItem[];
 }
 
+const ITEMS_PER_PAGE = 6; // Quantidade padrão e fixa por página para manter o carregamento leve
+
 const categoryIcons: Record<string, string> = {
   all: 'ph-bold ph-squares-four',
   'mapa mudo & localização': 'ph-bold ph-crosshair',
@@ -40,7 +42,6 @@ export default function GamesArchive({ games }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(6); // 6 itens por página para manter a página ultraleve
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -165,8 +166,8 @@ export default function GamesArchive({ games }: Props) {
     });
   }, [games, selectedCategory, searchTerm]);
 
-  // Total de páginas e fatiamento leve para performance máxima
-  const totalPages = Math.ceil(filteredGames.length / itemsPerPage) || 1;
+  // Total de páginas com quantidade fixa
+  const totalPages = Math.ceil(filteredGames.length / ITEMS_PER_PAGE) || 1;
 
   // Ajusta a página caso a filtragem reduza a quantidade de páginas
   useEffect(() => {
@@ -176,12 +177,12 @@ export default function GamesArchive({ games }: Props) {
   }, [totalPages, currentPage]);
 
   const paginatedGames = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredGames.slice(start, start + itemsPerPage);
-  }, [filteredGames, currentPage, itemsPerPage]);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredGames.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredGames, currentPage]);
 
-  const startIndex = filteredGames.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
-  const endIndex = Math.min(currentPage * itemsPerPage, filteredGames.length);
+  const startIndex = filteredGames.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
+  const endIndex = Math.min(currentPage * ITEMS_PER_PAGE, filteredGames.length);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -344,7 +345,7 @@ export default function GamesArchive({ games }: Props) {
           </div>
         </div>
 
-        {/* Linha de Status e Telemetria de Resultados */}
+        {/* Linha de Status de Resultados */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
           <div className="flex items-center gap-2 flex-wrap">
             <span>
@@ -380,7 +381,7 @@ export default function GamesArchive({ games }: Props) {
         </div>
       </div>
 
-      {/* Grade de Desafios Cartográficos (Apenas os itens da página ativa para leveza máxima) */}
+      {/* Grade de Desafios Cartográficos (6 itens padrão) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedGames.length === 0 ? (
           <div className="col-span-full text-center py-16 text-slate-400 bg-white/[0.02] rounded-2xl border border-white/5 p-8">
@@ -471,79 +472,57 @@ export default function GamesArchive({ games }: Props) {
         )}
       </div>
 
-      {/* Controles de Paginação Tátil (Ativa apenas quando houver mais de uma página) */}
+      {/* Controles de Paginação Centralizados e Limpos */}
       {totalPages > 1 && (
-        <nav aria-label="Navegação entre páginas de desafios" className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-8 border-t border-white/[0.06]">
-          {/* Seletor sutil de densidade */}
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 order-2 sm:order-1">
-            <span className="text-[11px] font-mono text-slate-500">Exibir por página:</span>
-            {[6, 9, 12].map(num => (
-              <button
-                key={num}
-                type="button"
-                onClick={() => { setItemsPerPage(num); setCurrentPage(1); }}
-                className={`px-2 py-0.5 rounded text-[11px] font-mono transition ${
-                  itemsPerPage === num
-                    ? 'bg-emerald-400/20 text-emerald-300 font-bold border border-emerald-400/30'
-                    : 'text-slate-500 hover:text-slate-300 bg-white/[0.02]'
-                }`}
-              >
-                {num}
-              </button>
-            ))}
-          </div>
+        <nav aria-label="Navegação entre páginas de desafios" className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-white/[0.06]">
+          <button
+            type="button"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="pagination-nav-btn"
+            aria-label="Página anterior"
+          >
+            <i className="ph-bold ph-caret-left"></i>
+            <span className="hidden xs:inline">Anterior</span>
+          </button>
 
-          {/* Botões Numéricos e Setas */}
-          <div className="flex items-center gap-1.5 order-1 sm:order-2">
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="pagination-nav-btn"
-              aria-label="Página anterior"
-            >
-              <i className="ph-bold ph-caret-left"></i>
-              <span className="hidden xs:inline">Anterior</span>
-            </button>
-
-            <div className="flex items-center gap-1">
-              {getPageNumbers(currentPage, totalPages).map((p, idx) => {
-                if (p === '...') {
-                  return (
-                    <span key={`ellipsis-${idx}`} className="px-2 text-slate-600 font-mono text-xs select-none">
-                      ...
-                    </span>
-                  );
-                }
-                const pageNum = p as number;
-                const isActive = currentPage === pageNum;
+          <div className="flex items-center gap-1">
+            {getPageNumbers(currentPage, totalPages).map((p, idx) => {
+              if (p === '...') {
                 return (
-                  <button
-                    key={pageNum}
-                    type="button"
-                    onClick={() => handlePageChange(pageNum)}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`pagination-num-btn ${
-                      isActive ? 'active !bg-emerald-400 !text-slate-950 !font-bold !border-emerald-400 shadow-lg shadow-emerald-400/20' : ''
-                    }`}
-                  >
-                    {pageNum}
-                  </button>
+                  <span key={`ellipsis-${idx}`} className="px-2 text-slate-600 font-mono text-xs select-none">
+                    ...
+                  </span>
                 );
-              })}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="pagination-nav-btn"
-              aria-label="Próxima página"
-            >
-              <span className="hidden xs:inline">Próxima</span>
-              <i className="ph-bold ph-caret-right"></i>
-            </button>
+              }
+              const pageNum = p as number;
+              const isActive = currentPage === pageNum;
+              return (
+                <button
+                  key={pageNum}
+                  type="button"
+                  onClick={() => handlePageChange(pageNum)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`pagination-num-btn ${
+                    isActive ? 'active !bg-emerald-400 !text-slate-950 !font-bold !border-emerald-400 shadow-lg shadow-emerald-400/20' : ''
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
           </div>
+
+          <button
+            type="button"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="pagination-nav-btn"
+            aria-label="Próxima página"
+          >
+            <span className="hidden xs:inline">Próxima</span>
+            <i className="ph-bold ph-caret-right"></i>
+          </button>
         </nav>
       )}
     </div>

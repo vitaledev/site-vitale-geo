@@ -66,7 +66,7 @@ Washington (EUA) | 77° 03' 56" W | Sede do Observatório Naval Americano | Reti
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Desvio Moderno do GPS</span>
+    <span>Investigação Cartográfica: O Desvio Moderno do GPS</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Se você visitar hoje o Observatório de Greenwich com um smartphone, verá que o GPS aponta longitude 00° 00' 00" cerca de 102 metros a leste da famosa linha de bronze cravada no chão. Essa discrepância decorre do sistema geodésico WGS84, que usa o centro de massa da Terra com satélites, corrigindo a leve distorção gravitacional local que afetava os telescópios do século XIX.
@@ -106,7 +106,7 @@ O delegado do Império do Brasil, Luís Cruls, reconheceu os méritos técnicos 
   "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Greenwich_observatory_laser.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

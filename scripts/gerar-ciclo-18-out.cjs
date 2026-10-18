@@ -924,7 +924,7 @@ function generatePostHtml(p) {
       "image": "${p.img}",
       "author": {
         "@type": "Person",
-        "name": "Agnaldo Batista",
+        "name": "VitaleGeo",
         "url": "https://www.vitalegeo.com.br/sobre/"
       },
       "publisher": {
@@ -1016,13 +1016,13 @@ function generatePostHtml(p) {
             <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-4 uppercase">
                 <a href="/" class="hover:text-amber-400 transition">Home</a>
                 <span>/</span>
-                <a href="/blog" class="hover:text-amber-400 transition">Dossiês</a>
+                <a href="/blog" class="hover:text-amber-400 transition">posts</a>
                 <span>/</span>
                 <span class="text-amber-400">${p.categoria}</span>
             </div>
 
             <div class="carto-badge mb-6">
-                <span>Dossiê Investigativo · ${p.categoria}</span>
+                <span>post Investigativo · ${p.categoria}</span>
             </div>
             
             <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
@@ -1032,7 +1032,7 @@ function generatePostHtml(p) {
             <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
                 <span><i class="ph-bold ph-calendar text-amber-400"></i> ${p.data}</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> VitaleGeo</span>
                 <span>•</span>
                 <span><i class="ph-bold ph-clock text-amber-400"></i> ${p.tempoLeitura} (Leitura Completa)</span>
             </div>
@@ -1104,7 +1104,7 @@ function generatePostHtml(p) {
 
                 <div class="my-10 not-prose">
                     <h3 class="text-lg font-bold text-white mb-4 font-heading flex items-center gap-2">
-                        <i class="ph-bold ph-question text-amber-400"></i> Perguntas Frequentes do Dossiê (FAQ)
+                        <i class="ph-bold ph-question text-amber-400"></i> Perguntas Frequentes do post (FAQ)
                     </h3>
                     <div class="space-y-3">
                         ${faqHtml}

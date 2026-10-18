@@ -98,7 +98,7 @@ const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
   <channel>
     <title>VitaleGeo | Geopolítica, Fronteiras &amp; Cartografia</title>
     <link>${siteUrl}</link>
-    <description>Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e dossiês geopolíticos documentados.</description>
+    <description>Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e posts geopolíticos documentados.</description>
     <language>pt-BR</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />

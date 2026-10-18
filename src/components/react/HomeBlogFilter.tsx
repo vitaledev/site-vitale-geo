@@ -93,7 +93,7 @@ export default function HomeBlogFilter({ posts }: Props) {
         <button
           onClick={() => setActiveCategory('all')}
           className={`filter-tab ${activeCategory === 'all' ? 'active' : ''}`}
-          aria-label="Ver todos os dossiês recentes"
+          aria-label="Ver todos os posts recentes"
         >
           <i className="ph-bold ph-squares-four"></i> Todos
         </button>
@@ -180,7 +180,7 @@ export default function HomeBlogFilter({ posts }: Props) {
         {filtered.length === 0 ? (
           <div className="col-span-full text-center py-12 text-slate-400 bg-white/[0.02] rounded-xl border border-white/5">
             <i className="ph-duotone ph-compass text-3xl mb-2 block text-amber-400/60"></i>
-            <p className="text-sm font-medium">Nenhum dossiê nesta categoria no momento.</p>
+            <p className="text-sm font-medium">Nenhum post nesta categoria no momento.</p>
           </div>
         ) : (
           filtered.map((post, index) => (
@@ -225,7 +225,7 @@ export default function HomeBlogFilter({ posts }: Props) {
                   </p>
                   
                   <div className="mt-4 pt-3 border-t border-white/[0.04] text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
-                    Ler dossiê <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
+                    Ler post <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                   </div>
                 </div>
               </a>

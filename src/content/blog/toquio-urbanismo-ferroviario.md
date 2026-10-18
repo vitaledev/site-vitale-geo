@@ -66,7 +66,7 @@ Acidentes Fatais por 100k hab. | 1,3 | 8,9 | 4,2 |
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Efeito do 'Micro-Urbanismo' Japonês</span>
+    <span>Investigação Cartográfica: O Efeito do 'Micro-Urbanismo' Japonês</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Em bairros tradicionais como Shimokitazawa, Yanaka ou Kichijoji, as ruas não possuem calçadas elevadas nem meio-fio: o asfalto é compartilhado entre pedestres, ciclistas e veículos em velocidades inferiores a 20 km/h. Como as casas não possuem recuos frontais obrigatórios nem garagens gigantescas, o olhar da rua é constante, gerando índices de criminalidade próximos de zero.
@@ -106,7 +106,7 @@ Sim. Diferente da maioria das redes mundiais subsidiadas por impostos, as operad
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg/1280px-Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

@@ -241,7 +241,7 @@ export default function BlogArchive({ posts }: Props) {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar dossiê ou país..."
+              placeholder="Buscar post ou país..."
               className="w-full bg-white/[0.03] border border-white/10 rounded-full py-2 px-3.5 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 transition"
             />
             <i className="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
@@ -249,12 +249,12 @@ export default function BlogArchive({ posts }: Props) {
         </div>
       </div>
 
-      {/* Grade de Dossiês */}
+      {/* Grade de Posts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {list.length === 0 ? (
           <div className="col-span-full text-center py-16 text-slate-400 bg-white/[0.02] rounded-xl border border-white/5">
             <i className="ph-duotone ph-map-pin-line text-3xl mb-2 block text-amber-400/60"></i>
-            <p className="text-base font-medium text-white mb-1">Nenhum dossiê localizado.</p>
+            <p className="text-base font-medium text-white mb-1">Nenhum post localizado.</p>
             <p className="text-xs text-slate-400 mb-4">Tente buscar por termos mais genéricos.</p>
             <button
               onClick={() => { setSelectedCategory('all'); setSearchTerm(''); }}
@@ -305,7 +305,7 @@ export default function BlogArchive({ posts }: Props) {
                   </p>
                   
                   <div className="mt-4 pt-3 border-t border-white/[0.04] text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
-                    Ler dossiê <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
+                    Ler post <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                   </div>
                 </div>
               </a>

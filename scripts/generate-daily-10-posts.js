@@ -54,7 +54,7 @@ const newPosts = [
             ["Malásia", "5 recifes artificiais (Swallow Reef)", "Plataforma continental nacional", "Estação naval e pista de mergulho turística"]
         ],
         quote: "O controle do Mar do Sul da China confere a quem o domina o poder de sufocar as economias da Coreia do Sul, do Japão e de Taiwan em caso de crise militar.",
-        quoteAuthor: "Dossiê Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.",
+        quoteAuthor: "Relatório Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.",
         tacticalBoxTitle: "A Tática da Zona Cinzenta e a Milícia Marítima Chinesa",
         tacticalBoxText: "Em vez de empregar navios de guerra cinzentos da Marinha (PLAN), a China utiliza com frequência a chamada Milícia Marítima das Forças Armadas Populares (PAFMM): centenas de traineiras de pesca com cascos reforçados de aço financiadas pelo Estado que ancoram em massa ao redor de recifes filipinos para intimidar pescadores locais sem disparar tiros, operando logo abaixo do limiar de uma resposta armada formal.",
         faq: [
@@ -517,7 +517,7 @@ function generatePostHtml(p) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>${p.titulo} | Dossiê VitaleGeo</title>
+    <title>${p.titulo} | post VitaleGeo</title>
     <meta name="description" content="${p.resumo}">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/blog/${p.slug}/">
@@ -525,11 +525,11 @@ function generatePostHtml(p) {
     <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.vitalegeo.com.br/blog/${p.slug}/">
-    <meta property="og:title" content="${p.titulo} | Dossiê VitaleGeo">
+    <meta property="og:title" content="${p.titulo} | post VitaleGeo">
     <meta property="og:description" content="${p.resumo}">
     <meta property="og:image" content="${p.img}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${p.titulo} | Dossiê VitaleGeo">
+    <meta name="twitter:title" content="${p.titulo} | post VitaleGeo">
     <meta name="twitter:description" content="${p.resumo}">
     <meta name="twitter:image" content="${p.img}">
 
@@ -543,7 +543,7 @@ function generatePostHtml(p) {
       "image": "${p.img}",
       "author": {
         "@type": "Person",
-        "name": "Agnaldo Batista",
+        "name": "VitaleGeo",
         "url": "https://www.vitalegeo.com.br/sobre/"
       },
       "publisher": {
@@ -642,7 +642,7 @@ function generatePostHtml(p) {
             </div>
 
             <div class="carto-badge mb-6">
-                <span>Dossiê Geopolítico · Investigação Territorial</span>
+                <span>post Geopolítico · Investigação Territorial</span>
             </div>
             
             <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
@@ -652,9 +652,9 @@ function generatePostHtml(p) {
             <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
                 <span><i class="ph-bold ph-calendar text-amber-400"></i> ${p.data.split(' - ')[0]}</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-user text-amber-400"></i> Agnaldo Batista</span>
+                <span><i class="ph-bold ph-user text-amber-400"></i> VitaleGeo</span>
                 <span>•</span>
-                <span><i class="ph-bold ph-clock text-amber-400"></i> ${p.tempoLeitura} (Dossiê Completo)</span>
+                <span><i class="ph-bold ph-clock text-amber-400"></i> ${p.tempoLeitura} (post Completo)</span>
             </div>
         </div>
     </header>
@@ -743,7 +743,7 @@ function generatePostHtml(p) {
                 <div class="carto-badge mb-4">
                     <span>Análises Cartográficas em Vídeo</span>
                 </div>
-                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê investigativo?</h3>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste post investigativo?</h3>
                 <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas táticos, chokepoints navais e rotas geopolíticas com animações em alta definição.</p>
                 <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
                     <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube

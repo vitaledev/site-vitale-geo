@@ -71,7 +71,7 @@ Completam o ranking oficial: Cidade do México (2.240 m, erguida sobre a antiga 
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Maior Metrô de Cabos do Mundo em La Paz</span>
+    <span>Investigação Cartográfica: O Maior Metrô de Cabos do Mundo em La Paz</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Diante da geografia acidentada com desníveis de quase 1.000 metros entre o vale e o planalto, La Paz e El Alto construíram a maior rede de transporte por teleférico do planeta: a rede 'Mi Teleférico' possui 10 linhas, 36 estações e 33 km de extensão, transportando 300 mil passageiros diários sem trânsito.
@@ -111,7 +111,7 @@ Pela baixa pressão barométrica, o oxigênio está mais disperso no ar. O organ
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

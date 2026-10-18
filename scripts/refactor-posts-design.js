@@ -24,7 +24,7 @@ for (const slug of entries) {
     updated = updated.replace(/\s*<div class="fixed top-24 left-6 z-30 hidden lg:block">[\s\S]*?<\/div>/g, '');
 
     // 2. Remover ticker de 4 métricas estilo dashboard SaaS
-    updated = updated.replace(/\s*<!--\s*Dossiê Tático\s*\/\/\s*Ficha Técnica Rápida\s*\(4 Métricas\)\s*-->\s*<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-10 not-prose">[\s\S]*?<\/div>/g, '');
+    updated = updated.replace(/\s*<!--\s*Ficha Técnica\s*\/\/\s*Ficha Técnica Rápida\s*\(4 Métricas\)\s*-->\s*<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-10 not-prose">[\s\S]*?<\/div>/g, '');
     updated = updated.replace(/\s*<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-10 not-prose">[\s\S]*?<\/div>/g, '');
     updated = updated.replace(/\s*<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-8 not-prose">[\s\S]*?<\/div>/g, '');
 

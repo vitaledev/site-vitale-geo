@@ -66,7 +66,7 @@ AuthaGraph (2016) | Poliédrica Tetraédrica | Áreas e continentes intactos | O
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: A África Real: O Que Cabe Dentro do Continente</span>
+    <span>Investigação Cartográfica: A África Real: O Que Cabe Dentro do Continente</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Dentro do continente africano (30,3 milhões de km²) cabem com folga os territórios inteiros dos Estados Unidos, China, Índia, Europa Ocidental, Japão e ainda sobra espaço para o Reino Unido. Olhar para a projeção de Mercator apaga essa dimensão continental da consciência pública.
@@ -106,7 +106,7 @@ O globo terrestre tridimensional. Apenas sobre uma esfera com escala reduzida é
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

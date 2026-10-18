@@ -16,7 +16,7 @@ FIG 01 // A posição geográfica isolada de Kaliningrado (em vermelho): uma ilh
 </figcaption>
 </figure>
 
-<!-- Dossiê Tático // Ficha Técnica Rápida -->
+<!-- Ficha Técnica // Ficha Técnica Rápida -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-8 not-prose">
 <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 text-center">
 <i class="ph-bold ph-users text-amber-400 text-lg mb-1 inline-block"></i>

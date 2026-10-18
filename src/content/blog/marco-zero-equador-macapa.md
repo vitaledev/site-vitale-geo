@@ -66,7 +66,7 @@ Brasil na Linha | Cruza 4 estados brasileiros | Amazonas, Roraima, Pará e Amap�
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: Por Que a Força Centrífuga Faz Você Pesar Menos no Equador?</span>
+    <span>Investigação Cartográfica: Por Que a Força Centrífuga Faz Você Pesar Menos no Equador?</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Como a Terra é achatada nos polos e bojudas no Equador devido à rotação diária de 1.670 km/h, um ser humano situado na linha do Equador está cerca de 21 km mais longe do centro de massa do planeta e sofre maior inércia centrífuga. Na prática, uma pessoa de 80 kg pesa cerca de 400 gramas a menos na linha do Equador do que se estivesse no Polo Sul.
@@ -106,7 +106,7 @@ Ao meio-dia solar dos dias 20/21 de março e 22/23 de setembro, o sol atinge o z
   "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/2023-03-20_Marco_Zero_do_Equador_05.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

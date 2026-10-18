@@ -516,7 +516,7 @@ for p in posts:
         "image": p["img"],
         "author": {
             "@type": "Person",
-            "name": "Agnaldo Batista",
+            "name": "VitaleGeo",
             "url": "https://www.vitalegeo.com.br/sobre/"
         },
         "publisher": {
@@ -582,7 +582,7 @@ tempoLeitura: {p['tempoLeitura']}
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: {p['box_tatica'][0]}</span>
+    <span>Investigação Cartográfica: {p['box_tatica'][0]}</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     {p['box_tatica'][1]}

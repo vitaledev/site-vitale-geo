@@ -71,7 +71,7 @@ Completam a lista das dez menores nações soberanas as Ilhas Marshall (181 km²
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: A Ordem de Malta: O País Sem Território</span>
+    <span>Investigação Cartográfica: A Ordem de Malta: O País Sem Território</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Embora não entre no ranking por não possuir território físico soberano contínuo, a Soberana Ordem Militar de Malta é reconhecida pelo direito internacional como entidade soberana plena: emite passaportes diplomáticos, possui embaixadores em mais de 100 países e tem status de observador na ONU com sede no Palazzo Malta em Roma.
@@ -111,7 +111,7 @@ O Vaticano, Mônaco e San Marino utilizam o Euro através de acordos bilaterais 
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg/1280px-Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

@@ -58,7 +58,7 @@ A mais de mil quilômetros da costa continental da China, no coração de um dos
 "O controle do Mar do Sul da China confere a quem o domina o poder de sufocar as economias do Japão, Coreia do Sul e Taiwan em caso de crise militar, sem necessidade de invasão continental."
 </p>
 <footer class="text-xs text-slate-400 not-italic font-mono">
-— Dossiê Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.
+— Relatório Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.
 </footer>
 </blockquote>
 

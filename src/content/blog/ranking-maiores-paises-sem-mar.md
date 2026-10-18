@@ -71,7 +71,7 @@ Nas Américas, apenas dois países não possuem saída soberana para o mar. A Bo
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Caso Único dos Países Duplamente Sem Litoral</span>
+    <span>Investigação Cartográfica: O Caso Único dos Países Duplamente Sem Litoral</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     No mundo inteiro existem apenas dois países 'duplamente sem litoral' (doubly landlocked): Liechtenstein e Uzbequistão. Isso significa que para alcançar o oceano, um cidadão dessas nações precisa cruzar pelo menos dois países soberanos vizinhos consecutivos.
@@ -111,7 +111,7 @@ A Europa possui 16 países sem litoral, incluindo Suíça, Áustria, República 
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/View_from_Bayterek_tower.jpg/1280px-View_from_Bayterek_tower.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

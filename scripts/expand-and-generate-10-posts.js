@@ -67,7 +67,7 @@ const posts = [
             ["Malásia", "5 recifes artificiais (Swallow Reef / Layang-Layang)", "Plataforma continental soberana nacional", "Estação naval da Real Marinha da Malásia e pista aérea"]
         ],
         quote: "O controle do Mar do Sul da China confere a quem o domina o poder de sufocar as economias do Japão, Coreia do Sul e Taiwan em caso de crise militar, sem necessidade de invasão continental.",
-        quoteAuthor: "Dossiê Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.",
+        quoteAuthor: "Relatório Estratégico CSIS // Asia Maritime Transparency Initiative, Washington.",
         tacticalBoxTitle: "A Tática da Zona Cinzenta e a Milícia Marítima Chinesa",
         tacticalBoxText: "Em vez de empregar navios de guerra cinzentos da Marinha (PLAN), a China utiliza com frequência a chamada Milícia Marítima das Forças Armadas Populares (PAFMM): centenas de traineiras de pesca com cascos reforçados de aço financiadas pelo Estado que ancoram em massa ao redor de recifes filipinos para intimidar pescadores locais sem disparar tiros, operando logo abaixo do limiar de uma resposta armada formal.",
         faq: [
@@ -739,7 +739,7 @@ function generatePostHtml(p) {
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="flex items-center gap-3 mb-6">
                 <a href="/blog" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 transition font-mono uppercase tracking-wider">
-                    <i class="ph ph-arrow-left"></i> Voltar aos Dossiês
+                    <i class="ph ph-arrow-left"></i> Voltar aos posts
                 </a>
                 <span class="text-slate-600">/</span>
                 <span class="text-xs font-mono uppercase tracking-wider text-slate-400">${p.categoria}</span>
@@ -760,7 +760,7 @@ function generatePostHtml(p) {
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="ph-bold ph-shield-check text-amber-400 text-sm"></i>
-                    <span>Dossiê Cartográfico Verificado</span>
+                    <span>Investigação Cartográfica Verificado</span>
                 </div>
             </div>
         </div>
@@ -859,7 +859,7 @@ function generatePostHtml(p) {
                 <div class="carto-badge mb-4">
                     <span>Análises Cartográficas em Vídeo</span>
                 </div>
-                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste dossiê investigativo?</h3>
+                <h3 class="text-2xl font-heading font-bold text-white mb-2">Gostou deste post investigativo?</h3>
                 <p class="text-slate-400 mb-6 text-sm max-w-lg mx-auto">No canal oficial do VitaleGeo desvendamos mapas táticos, chokepoints navais e rotas geopolíticas com animações em alta definição.</p>
                 <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 rounded-full transition text-xs shadow-lg shadow-red-600/20">
                     <i class="ph-fill ph-youtube-logo text-lg"></i> Inscrever-se no YouTube
@@ -909,7 +909,7 @@ function generatePostHtml(p) {
                 <i class="ph-fill ph-house text-xl"></i> Início
             </a>
             <a href="/blog" class="flex flex-col items-center gap-1 text-white">
-                <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> Dossiês
+                <i class="ph-fill ph-newspaper text-xl text-amber-400"></i> posts
             </a>
             <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                 <i class="ph-fill ph-wrench text-xl"></i> Ferramentas

@@ -66,7 +66,7 @@ Ruído Urbano Diurno | 72 dB | 66 dB | Queda perceptível
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: O Chanfro das Esquinas: De Curva de Trem a Praça de Bairro</span>
+    <span>Investigação Cartográfica: O Chanfro das Esquinas: De Curva de Trem a Praça de Bairro</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Os cantos chanfrados de Cerdà criam pequenas praças octogonais em cada cruzamento. Com o fechamento do tráfego interno, esses cruzamentos viraram parques de bolso infantis, mesas de xadrez comunitárias e feiras de produtores locais, redefinindo a vida social dos bairros de Barcelona.
@@ -106,7 +106,7 @@ O modelo inicial utiliza 'urbanismo tático' de baixíssimo custo: pintura no as
   "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerda-quadricula_eixample_compara.jpg/1280px-Cerda-quadricula_eixample_compara.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {

@@ -66,7 +66,7 @@ Império Bizantino como barreira | Expansão otomana até os portões de Viena |
 <div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
   <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
     <i class="ph-bold ph-compass"></i>
-    <span>Dossiê Cartográfico: A Cadeia do Corno de Ouro e o Transporte de Navios por Terra</span>
+    <span>Investigação Cartográfica: A Cadeia do Corno de Ouro e o Transporte de Navios por Terra</span>
   </div>
   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
     Um dos feitos táticos mais brilhantes do cerco de 1453 foi ordenado por Mehmed II: para contornar a gigantesca corrente de ferro que os bizantinos estenderam na foz do Corno de Ouro para impedir a entrada de navios, o sultão mandou construir uma estrada de troncos de madeira engraxados e arrastou 70 navios de guerra por cima da colina de Galata durante a noite, atacando os bizantinos pela retaguarda.
@@ -106,7 +106,7 @@ A busca desesperada por uma rota marítima para as especiarias da Índia sem pas
   "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Le_si%C3%A8ge_de_Constantinople_%281453%29_by_Jean_Le_Tavernier_after_1455.jpg",
   "author": {
     "@type": "Person",
-    "name": "Agnaldo Batista",
+    "name": "VitaleGeo",
     "url": "https://www.vitalegeo.com.br/sobre/"
   },
   "publisher": {
