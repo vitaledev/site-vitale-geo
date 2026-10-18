@@ -1,7 +1,7 @@
 ---
 titulo: "Arquivo Confidencial: Área 51"
 resumo: "Relatório desclassificado sobre a base militar mais secreta do mundo. [DADOS EXPURGADOS]"
-categoria: "Conspiração"
+categoria: "Curiosidades"
 data: "01 Fev 2026"
 img: "/assets/img/blog/area-51.jpg"
 tempoLeitura: "10 min"

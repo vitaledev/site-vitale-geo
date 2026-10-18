@@ -1,7 +1,7 @@
 ---
 titulo: "O Crepúsculo das Nações e as Hipercidades de 2100"
 resumo: "Por que o futuro não será desenhado por fronteiras, mas por cidades com 80 milhões de habitantes. Bem-vindo à era das Megacidades Africanas."
-categoria: "Futurologia"
+categoria: "Urbanismo"
 data: "05 Fev 2026"
 img: "/assets/img/blog/hipercidades-2100.jpg"
 tempoLeitura: "10 min"

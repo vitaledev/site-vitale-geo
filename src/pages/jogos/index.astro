@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
+import GamesArchive from '../../components/react/GamesArchive';
 import { gamesDB } from '../../data/games';
 
 const canonicalUrl = 'https://www.vitalegeo.com.br/jogos/';
@@ -74,38 +75,13 @@ const faqItems = [
     </header>
 
     <!-- Transição Editorial -->
-    <div class="max-w-6xl mx-auto px-6 mb-8">
+    <div class="max-w-6xl mx-auto px-6 mb-6">
       <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
-    <!-- Grade Oficial de Simulações -->
-    <section class="py-4 px-6 max-w-6xl mx-auto pb-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {gamesDB.map(game => (
-          <a href={game.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
-            <div>
-              {game.cover ? (
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
-                  <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
-                  <div class="absolute top-3 left-3">
-                    <span class="category-pill text-emerald-300 border-emerald-400/20 bg-emerald-950/70">
-                      <i class="ph-bold ph-game-controller"></i> {game.badge || 'DESAFIO'}
-                    </span>
-                  </div>
-                </div>
-              ) : null}
-              <div class="p-5">
-                <h2 class="text-base sm:text-lg font-heading text-white group-hover:text-emerald-400 transition mb-1.5 leading-snug font-semibold">{game.titulo}</h2>
-                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{game.desc}</p>
-              </div>
-            </div>
-            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
-              Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
-            </div>
-          </a>
-        ))}
-      </div>
+    <!-- Grade Oficial de Simulações com Filtro em Hover e Busca -->
+    <section class="py-2 px-6 max-w-6xl mx-auto pb-16">
+      <GamesArchive client:load games={gamesDB} />
     </section>
 
     <!-- Transição Editorial -->

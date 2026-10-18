@@ -1,7 +1,7 @@
 ---
 titulo: "Vennbahn: A Linha de Trem Belga Que Isolou 5 Pedaços de Território Alemão"
 resumo: "O Tratado de Versalhes entregou o leito de uma ferrovia à Bélgica, gerando enclaves alemães separados por poucos metros de trilhos na Europa Central."
-categoria: "Fronteiras"
+categoria: "Curiosidades"
 data: "16 Out 2026 - 22:30"
 img: "/assets/img/blog/vennbahn-enclaves-belgas.jpg"
 tempoLeitura: "8 min"

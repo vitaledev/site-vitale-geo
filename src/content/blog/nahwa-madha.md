@@ -1,7 +1,7 @@
 ---
 titulo: "A Boneca Russa Cartográfica: O Enclave Dentro de Outro Enclave em Nahwa e Madha"
 resumo: "Na península de Musandam, um enclave de Omã fica nos Emirados Árabes. E dentro dele, há outro enclave dos Emirados. Conheça essa anomalia de 2ª ordem."
-categoria: "Fronteiras"
+categoria: "Curiosidades"
 data: "10 Out 2026"
 img: "/assets/img/blog/nahwa-madha.png"
 tempoLeitura: "10 min"

@@ -1,7 +1,7 @@
 ---
 titulo: "O Megaporto de Chancay: Como a China Está Redesenhando o Comércio da América do Sul"
 resumo: "A 80 km de Lima, o megaporto de Chancay corta 15 dias de navio até a Ásia, conecta a Ferrovia Bioceânica ao Brasil e desafia a hegemonia no Pacífico."
-categoria: "Geopolítica"
+categoria: "Urbanismo"
 data: "10 Out 2026"
 img: "/assets/img/blog/porto-chancay.jpg"
 tempoLeitura: "10 min"

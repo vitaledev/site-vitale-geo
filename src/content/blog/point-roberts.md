@@ -1,7 +1,7 @@
 ---
 titulo: "Point Roberts: A Cidade Americana Presa no Canadá"
 resumo: "Para ir à escola ou ao mercado, os moradores precisam cruzar duas fronteiras internacionais. Conheça o erro do Paralelo 49."
-categoria: "Fronteiras"
+categoria: "Curiosidades"
 data: "20 Mar 2026"
 img: "/assets/img/blog/point-roberts.jpg"
 tempoLeitura: "10 min"

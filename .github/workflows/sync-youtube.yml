@@ -1,0 +1,49 @@
+name: Sincronizar Vídeos do YouTube
+
+on:
+  schedule:
+    # Executa automaticamente a cada 12 horas (às 06:00 e às 18:00 UTC)
+    - cron: '0 6,18 * * *'
+  workflow_dispatch: # Permite disparo manual com 1 clique na aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "sync-youtube"
+  cancel-in-progress: false
+
+jobs:
+  sync-videos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sincronizar Vídeos com o Canal do YouTube
+        run: node scripts/sync-youtube-videos.js
+
+      - name: Verificar se houve alterações
+        id: git_status
+        run: |
+          if git diff --quiet assets/js/videos.js; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Banco de vídeos já está atualizado."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Novos vídeos detectados no canal do YouTube!"
+          fi
+
+      - name: Commit e Push dos novos vídeos
+        if: steps.git_status.outputs.changed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/js/videos.js
+          git commit -m "feat(videos): sincronizar novos vídeos do canal do YouTube"
+          git push origin main

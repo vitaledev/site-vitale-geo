@@ -1,7 +1,7 @@
 ---
 titulo: "A Ilha que Troca de Dono: Ilha dos Faisões"
 resumo: "Seis meses é da França, seis meses é da Espanha. Conheça o condomínio internacional mais antigo do mundo."
-categoria: "Fronteiras"
+categoria: "História"
 data: "10 Mar 2026"
 img: "/assets/img/blog/ilha-faisoes.jpg"
 tempoLeitura: "10 min"

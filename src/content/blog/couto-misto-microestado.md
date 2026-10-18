@@ -1,7 +1,7 @@
 ---
 titulo: "Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entre Portugal e Espanha?"
 resumo: "Durante sete séculos, três aldeias entre a Galiza e Trás-os-Montes operaram como território soberano, sem pagar tributos a Madri ou Lisboa até 1864."
-categoria: "Fronteiras"
+categoria: "História"
 data: "17 Out 2026 - 14:30"
 img: "/assets/img/blog/couto-misto-microestado.jpg"
 tempoLeitura: "8 min"

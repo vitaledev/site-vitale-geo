@@ -1,7 +1,7 @@
 ---
 titulo: "O Reino da Areia: A História de Bir Tawil"
 resumo: "Um lugar de 2.000 km² sem dono, sem leis e sem governo. Conheça a anomalia geográfica que desafia a lógica moderna."
-categoria: "Geopolítica"
+categoria: "Curiosidades"
 data: "18 Fev 2026"
 img: "/assets/img/blog/bir-tawil.jpg"
 tempoLeitura: "10 min"

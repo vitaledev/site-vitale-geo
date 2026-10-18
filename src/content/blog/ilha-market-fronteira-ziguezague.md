@@ -1,7 +1,7 @@
 ---
 titulo: "Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha da Europa na Ilha de Märket?"
 resumo: "Um erro de cálculo russo em 1885 colocou um farol em território sueco. Para resolver a gafe sem mexer nas áreas dos países, diplomatas criaram um zigue-zague surreal."
-categoria: "Fronteiras"
+categoria: "Curiosidades"
 data: "17 Out 2026 - 22:30"
 img: "/assets/img/blog/ilha-market-fronteira-ziguezague.jpg"
 tempoLeitura: "8 min"

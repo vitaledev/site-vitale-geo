@@ -140,6 +140,116 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/marco-zero-equador-macapa/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/f6/2023-03-20_Marco_Zero_do_Equador_05.jpg</image:loc>
+         <image:title>Por Que a Linha do Equador Corta o Brasil no Meio e o Marco Zero Fica em Macapá?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/queda-de-constantinopla-rotas/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e2/Le_si%C3%A8ge_de_Constantinople_%281453%29_by_Jean_Le_Tavernier_after_1455.jpg</image:loc>
+         <image:title>Como a Queda de Constantinopla em 1453 Forçou a Europa a Redesenhar os Mapas do Mundo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/tratado-de-tordesilhas-fronteiras/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e9/El_reparto_del_espacio_terrestre_en_Tordesillas_y_Zaragoza%2C_1494-1529.jpg</image:loc>
+         <image:title>Como o Tratado de Tordesilhas Dividiu o Planeta Entre Portugal e Espanha Antes de Sabermos o Tamanho da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-paises-sem-mar/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/View_from_Bayterek_tower.jpg/1280px-View_from_Bayterek_tower.jpg</image:loc>
+         <image:title>Quais São os Dez Maiores Países Sem Acesso ao Mar do Mundo e Quanto Custa o Isolamento?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-capitais-mais-altas-do-mundo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg</image:loc>
+         <image:title>Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-menores-paises-do-mundo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg/1280px-Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg</image:loc>
+         <image:title>Quais São os Dez Menores Países Soberanos da Terra e Como Suas Fronteiras Sobrevivem?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/meridiano-de-greenwich-historia/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6b/Greenwich_observatory_laser.jpg</image:loc>
+         <image:title>Como o Meridiano de Greenwich Venceu Paris e Jerusalém Para Dividir os Fusos do Planeta?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/distorcao-projecoes-cartograficas/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg</image:loc>
+         <image:title>Por Que Todo Mapa Mundi Plano Mente e Qual Projeção é a Mais Precisa da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/brasilia-plano-piloto-urbanismo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG/1280px-BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG</image:loc>
+         <image:title>Por Que Brasília Foi Desenhada em Formato de Cruz e Quais São os Limites do Plano Piloto?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/barcelona-superquarteiroes-urbanismo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerda-quadricula_eixample_compara.jpg/1280px-Cerda-quadricula_eixample_compara.jpg</image:loc>
+         <image:title>Como Barcelona Inventou os Superquarteirões para Tirar o Domínio dos Carros na Cidade?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/toquio-urbanismo-ferroviario/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg/1280px-Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg</image:loc>
+         <image:title>Por Que Tóquio é a Maior Metrópole do Planeta Sem Sofrer Com Engarrafamentos Gigantescos?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-fronteiras-do-mundo/</loc>
       <lastmod>2026-10-18</lastmod>
       <changefreq>weekly</changefreq>

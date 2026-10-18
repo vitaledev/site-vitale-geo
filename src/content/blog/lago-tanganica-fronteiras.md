@@ -1,7 +1,7 @@
 ---
 titulo: "O Lago Tanganica: O Segundo Mais Fundo do Mundo Onde 4 Países Dividem uma Fenda"
 resumo: "Com 1.470 metros de profundidade no Rift Africano, o Lago Tanganica divide 4 nações e guarda 18% da água doce de superfície do planeta."
-categoria: "Geopolítica"
+categoria: "Rankings"
 data: "15 Out 2026 - 21:00"
 img: "/assets/img/blog/lago-tanganica-fronteiras.jpg"
 tempoLeitura: "8 min"

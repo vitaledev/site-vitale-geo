@@ -3,6 +3,94 @@
 
 const blogPosts = [
     {
+        titulo: "Por Que a Linha do Equador Corta o Brasil no Meio e o Marco Zero Fica em Macapá?",
+        categoria: "Curiosidades",
+        data: "18 Out 2026 - 10:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f6/2023-03-20_Marco_Zero_do_Equador_05.jpg",
+        link: "marco-zero-equador-macapa/",
+        resumo: "Macapá é a única capital estadual brasileira cortada exatamente pela latitude 0° 0' 0\". Conheça o monumento do Marco Zero, o fenômeno do equinócio e a verdade sobre o efeito Coriolis."
+    },
+    {
+        titulo: "Como a Queda de Constantinopla em 1453 Forçou a Europa a Redesenhar os Mapas do Mundo?",
+        categoria: "História",
+        data: "18 Out 2026 - 10:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Le_si%C3%A8ge_de_Constantinople_%281453%29_by_Jean_Le_Tavernier_after_1455.jpg",
+        link: "queda-de-constantinopla-rotas/",
+        resumo: "Em 29 de maio de 1453, os canhões do sultão Mehmed II derrubaram as muralhas bizantinas, cortaram a Rota da Seda e impeliram os europeus a desbravar os oceanos desconhecidos."
+    },
+    {
+        titulo: "Como o Tratado de Tordesilhas Dividiu o Planeta Entre Portugal e Espanha Antes de Sabermos o Tamanho da Terra?",
+        categoria: "História",
+        data: "18 Out 2026 - 10:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/El_reparto_del_espacio_terrestre_en_Tordesillas_y_Zaragoza%2C_1494-1529.jpg",
+        link: "tratado-de-tordesilhas-fronteiras/",
+        resumo: "Assinado em 1494 na pequena vila espanhola de Tordesilhas, o pacto traçou um meridiano imaginário que repartiu o Novo Mundo e forjou o mapa colonial da América Latina."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Países Sem Acesso ao Mar do Mundo e Quanto Custa o Isolamento?",
+        categoria: "Rankings",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/View_from_Bayterek_tower.jpg/1280px-View_from_Bayterek_tower.jpg",
+        link: "ranking-maiores-paises-sem-mar/",
+        resumo: "Do gigante Cazaquistão com seus 2,7 milhões de km² à Mongólia e Bolívia: descubra o ranking das nações encravadas e o imposto invisível que pagam sobre o comércio global."
+    },
+    {
+        titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?",
+        categoria: "Rankings",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg",
+        link: "ranking-capitais-mais-altas-do-mundo/",
+        resumo: "De La Paz e Quito a Thimphu e Bogotá: conheça o ranking das sedes de governo situadas a mais de 2.000 metros de altitude e os desafios da vida com pouco oxigênio."
+    },
+    {
+        titulo: "Quais São os Dez Menores Países Soberanos da Terra e Como Suas Fronteiras Sobrevivem?",
+        categoria: "Rankings",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg/1280px-Collier%27s_1921_Vol_9_Frontispiece_--_Vatican.jpg",
+        link: "ranking-menores-paises-do-mundo/",
+        resumo: "Do Vaticano com seus 0,49 km² a Mônaco, Nauru e San Marino: conheça o ranking oficial dos microestados que cabem dentro de bairros e fazendas mas possuem voto na ONU."
+    },
+    {
+        titulo: "Como o Meridiano de Greenwich Venceu Paris e Jerusalém Para Dividir os Fusos do Planeta?",
+        categoria: "Cartografia",
+        data: "18 Out 2026 - 10:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Greenwich_observatory_laser.jpg",
+        link: "meridiano-de-greenwich-historia/",
+        resumo: "Em 1884, delegados de 25 nações reuniram-se em Washington para eleger a Linha de Longitude Zero. Entenda a geopolítica naval britânica que derrotou o Meridiano de Paris."
+    },
+    {
+        titulo: "Por Que Todo Mapa Mundi Plano Mente e Qual Projeção é a Mais Precisa da Terra?",
+        categoria: "Cartografia",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg",
+        link: "distorcao-projecoes-cartograficas/",
+        resumo: "Do Teorema Egregium de Gauss às projeções de Mercator, Gall-Peters, Robinson e AuthaGraph: entenda a impossibilidade matemática de achatar uma esfera sem distorcer formas ou áreas."
+    },
+    {
+        titulo: "Por Que Brasília Foi Desenhada em Formato de Cruz e Quais São os Limites do Plano Piloto?",
+        categoria: "Urbanismo",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG/1280px-BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG",
+        link: "brasilia-plano-piloto-urbanismo/",
+        resumo: "Projetada em 1957 por Lúcio Costa e Oscar Niemeyer, a capital federal modernista aboliu as esquinas, inventou as superquadras e enfrenta hoje o dilema da segregação metropolitana."
+    },
+    {
+        titulo: "Como Barcelona Inventou os Superquarteirões para Tirar o Domínio dos Carros na Cidade?",
+        categoria: "Urbanismo",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerda-quadricula_eixample_compara.jpg/1280px-Cerda-quadricula_eixample_compara.jpg",
+        link: "barcelona-superquarteiroes-urbanismo/",
+        resumo: "Desenhada por Ildefons Cerdà em 1859, a malha ortogonal do Eixample virou o laboratório das 'Superilles', devolvendo 70% das ruas aos pedestres, crianças e comércio local."
+    },
+    {
+        titulo: "Por Que Tóquio é a Maior Metrópole do Planeta Sem Sofrer Com Engarrafamentos Gigantescos?",
+        categoria: "Urbanismo",
+        data: "18 Out 2026 - 10:00",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg/1280px-Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower%2C_Ebisu%2C_Tokyo%2C_Japan%2C_2024_May.jpg",
+        link: "toquio-urbanismo-ferroviario/",
+        resumo: "Com 37 milhões de habitantes na Grande Tóquio, a capital japonesa desafia as leis do tráfego urbano através do modelo ferroviário integrado e do zoneamento unificado."
+    },
+    {
         titulo: "Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta Terra?",
         categoria: "Rankings",
         data: "18 Out 2026 - 22:30",
@@ -28,7 +116,7 @@ const blogPosts = [
     },
     {
         titulo: "Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "18 Out 2026 - 18:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Angola-Cabinda_border_map.png",
         link: "enclave-de-cabinda-angola/",
@@ -44,7 +132,7 @@ const blogPosts = [
     },
     {
         titulo: "Por Que a Namíbia Tem um Dedo de Terra de 450 km Que Corta Quatro Países na África?",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "18 Out 2026 - 14:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dito_di_Caprivi_-_mappa.svg/1280px-Dito_di_Caprivi_-_mappa.svg.png",
         link: "faixa-de-caprivi-namibia/",
@@ -84,7 +172,7 @@ const blogPosts = [
     },
     {
         titulo: "Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha da Europa na Ilha de Märket?",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "17 Out 2026 - 22:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg/1280px-M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg",
         link: "ilha-market-fronteira-ziguezague/",
@@ -100,7 +188,7 @@ const blogPosts = [
     },
     {
         titulo: "Por Que a Mongólia Tem o Menor Povoamento do Planeta Espalhado em Três Espanhas de Terra?",
-        categoria: "Curiosidades",
+        categoria: "Rankings",
         data: "17 Out 2026 - 19:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mongolian_Steppes_%286228096139%29.jpg/1280px-Mongolian_Steppes_%286228096139%29.jpg",
         link: "mongolia-vazio-demografico/",
@@ -124,7 +212,7 @@ const blogPosts = [
     },
     {
         titulo: "Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entre Portugal e Espanha?",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "17 Out 2026 - 14:30",
         img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Couto_Misto.JPG/1280px-Couto_Misto.JPG",
         link: "couto-misto-microestado/",
@@ -164,7 +252,7 @@ const blogPosts = [
     },
     {
         titulo: "Vennbahn: A Linha de Trem Belga Que Isolou 5 Pedaços de Território Alemão",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "16 Out 2026 - 22:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Vennbahn_Karte.svg/1280px-Vennbahn_Karte.svg.png",
         link: "vennbahn-enclaves-belgas/",
@@ -188,7 +276,7 @@ const blogPosts = [
     },
     {
         titulo: "Por Que o Canadá Tem Mais Lagos Que o Resto do Mundo Inteiro Junto?",
-        categoria: "Curiosidades",
+        categoria: "Rankings",
         data: "16 Out 2026 - 18:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg",
         link: "canada-pais-dos-lagos/",
@@ -204,7 +292,7 @@ const blogPosts = [
     },
     {
         titulo: "Túnel do Estreito de Bering: A Megaconexão de 100 km Que Uniria a Ásia às Américas",
-        categoria: "Geopolítica",
+        categoria: "Cartografia",
         data: "16 Out 2026 - 14:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bering_Strait.jpeg/1280px-Bering_Strait.jpeg",
         link: "estreito-de-bering-tunel/",
@@ -244,7 +332,7 @@ const blogPosts = [
     },
     {
         titulo: "A Fronteira Mais Reta do Mundo: Os 1.000 km do Meridiano 25 Entre Egito e Líbia",
-        categoria: "Fronteiras",
+        categoria: "Cartografia",
         data: "15 Out 2026 - 22:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Egypt_Libya_Border.jpg/1280px-Egypt_Libya_Border.jpg",
         link: "fronteira-egito-libia-meridiano-25/",
@@ -252,7 +340,7 @@ const blogPosts = [
     },
     {
         titulo: "O Lago Tanganica: O Segundo Mais Fundo do Mundo Onde 4 Países Dividem uma Fenda",
-        categoria: "Geopolítica",
+        categoria: "Rankings",
         data: "15 Out 2026 - 21:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg",
         link: "lago-tanganica-fronteiras/",
@@ -260,7 +348,7 @@ const blogPosts = [
     },
     {
         titulo: "O Enclave de Llívia: A Ilha de Solo Espanhol Cercada pela França nos Pirineus",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "15 Out 2026 - 19:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Llivia_aerial_view.jpg/1280px-Llivia_aerial_view.jpg",
         link: "llivia-enclave-espanhol/",
@@ -276,7 +364,7 @@ const blogPosts = [
     },
     {
         titulo: "Por que a Bolívia Mantém uma Marinha de Guerra Sem Ter Acesso ao Mar?",
-        categoria: "Geopolítica",
+        categoria: "Curiosidades",
         data: "15 Out 2026 - 16:15",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Armada_Boliviana_Titicaca.jpg/1280px-Armada_Boliviana_Titicaca.jpg",
         link: "bolivia-marinha-sem-mar/",
@@ -292,7 +380,7 @@ const blogPosts = [
     },
     {
         titulo: "Svalbard: O Arquipélago no Ártico Onde Qualquer Pessoa Pode Morar Sem Visto",
-        categoria: "Curiosidades",
+        categoria: "História",
         data: "15 Out 2026 - 12:45",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Longyearbyen_2011.jpg/1280px-Longyearbyen_2011.jpg",
         link: "svalbard-tratado-artico/",
@@ -300,7 +388,7 @@ const blogPosts = [
     },
     {
         titulo: "O Corredor de Wakhan: O Dedo de 350 km do Afeganistão que Toca a China",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "15 Out 2026 - 11:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wakhan_corridor.jpg/1280px-Wakhan_corridor.jpg",
         link: "corredor-de-wakhan/",
@@ -308,7 +396,7 @@ const blogPosts = [
     },
     {
         titulo: "A Linha Internacional de Data e Kiribati: O País Que 'Pulou' um Dia Inteiro",
-        categoria: "Curiosidades",
+        categoria: "Cartografia",
         data: "15 Out 2026 - 09:15",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/International_Date_Line.png/1280px-International_Date_Line.png",
         link: "kiribati-fuso-horario/",
@@ -316,7 +404,7 @@ const blogPosts = [
     },
     {
         titulo: "Gibraltar: Por que 6 km² de Rocha no Sul da Espanha Pertencem ao Reino Unido?",
-        categoria: "Geopolítica",
+        categoria: "História",
         data: "15 Out 2026 - 07:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rock_of_Gibraltar_from_Spain.jpg/1280px-Rock_of_Gibraltar_from_Spain.jpg",
         link: "gibraltar-reino-unido/",
@@ -396,7 +484,7 @@ const blogPosts = [
     },
     {
         titulo: "Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?",
-        categoria: "Fronteiras",
+        categoria: "Urbanismo",
         data: "11 Out 2026 - 09:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Cyprus_districts_named.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
         link: "nicosia-cidade-dividida/",
@@ -412,7 +500,7 @@ const blogPosts = [
     },
     {
         titulo: "Büsingen am Hochrhein: A Cidade Alemã Que Vive Sob as Leis da Suíça",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "11 Out 2026 - 21:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Buesingen_am_Hochrhein_aerial.jpg/1280px-Buesingen_am_Hochrhein_aerial.jpg",
         link: "busingen-enclave-alemao/",
@@ -420,7 +508,7 @@ const blogPosts = [
     },
     {
         titulo: "Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?",
-        categoria: "Geopolítica",
+        categoria: "Urbanismo",
         data: "11 Out 2026 - 19:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/IKN_Nusantara_aerial_view_2024.jpg/1280px-IKN_Nusantara_aerial_view_2024.jpg",
         link: "nusantara-nova-capital-indonesia/",
@@ -436,7 +524,7 @@ const blogPosts = [
     },
     {
         titulo: "O Mar de Aral: A Catástrofe Cartográfica do 4º Maior Lago que Virou Deserto",
-        categoria: "Curiosidades",
+        categoria: "História",
         data: "11 Out 2026 - 16:15",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Aral_Sea_1989-2014.jpg/1280px-Aral_Sea_1989-2014.jpg",
         link: "desaparecimento-mar-de-aral/",
@@ -444,7 +532,7 @@ const blogPosts = [
     },
     {
         titulo: "Campione d'Italia: O Enclave Italiano Onde Quase Tudo Funciona na Suíça",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "11 Out 2026 - 14:30",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Campione_d%27Italia_view_from_Lugano.jpg/1280px-Campione_d%27Italia_view_from_Lugano.jpg",
         link: "campione-d-italia/",
@@ -452,7 +540,7 @@ const blogPosts = [
     },
     {
         titulo: "Ceuta e Melilla: Os Dois Pedaços da Europa Cravados no Norte da África",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "11 Out 2026 - 12:45",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg/1280px-Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg.png",
         link: "ceuta-e-melilla/",
@@ -460,7 +548,7 @@ const blogPosts = [
     },
     {
         titulo: "Cooch Behar: Onde Existiu o Único Enclave de 3ª Ordem da História Humana",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "11 Out 2026 - 11:00",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_Bangladesh_border_%28enclaves%29.svg/1280px-India_Bangladesh_border_%28enclaves%29.svg.png",
         link: "cooch-behar-enclaves/",
@@ -492,7 +580,7 @@ const blogPosts = [
     },
     {
         titulo: "A Boneca Russa Cartográfica: O Enclave Dentro de Outro Enclave em Nahwa e Madha",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "10 Out 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Nahwa_-_Map.png/1280px-Nahwa_-_Map.png",
         link: "nahwa-madha/",
@@ -516,7 +604,7 @@ const blogPosts = [
     },
     {
         titulo: "Baarle: A Cidade Onde a Fronteira Corta a Sua Sala de Estar",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "10 Out 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Baarle-Hertog_and_Baarle-Nassau_border.jpg/1280px-Baarle-Hertog_and_Baarle-Nassau_border.jpg",
         link: "baarle-fronteira/",
@@ -524,7 +612,7 @@ const blogPosts = [
     },
     {
         titulo: "O Megaporto de Chancay: Como a China Está Redesenhando o Comércio da América do Sul",
-        categoria: "Geopolítica",
+        categoria: "Urbanismo",
         data: "10 Out 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg/1280px-Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg",
         link: "porto-chancay/",
@@ -540,7 +628,7 @@ const blogPosts = [
     },
     {
         titulo: "O Círculo de Valeriepieris: Onde Vive Metade da Humanidade",
-        categoria: "Demografia",
+        categoria: "Cartografia",
         data: "14 Fev 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Valeriepieris_Circle.jpg",
         link: "circulo-valeriepieris/",
@@ -556,7 +644,7 @@ const blogPosts = [
     },
     {
         titulo: "A Fronteira Mais Curta do Mundo: 85 Metros",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "05 Abr 2026",
         img: "https://mega.ibxk.com.br/2024/04/10/10181558422191.jpg",
         link: "fronteira-mais-curta/",
@@ -564,7 +652,7 @@ const blogPosts = [
     },
     {
         titulo: "A Guerra do Uísque: Canadá vs Dinamarca",
-        categoria: "Curiosidades",
+        categoria: "História",
         data: "30 Mar 2026",
         img: "https://mega.ibxk.com.br/2018/01/24/24174917163561.jpg",
         link: "guerra-uisque/",
@@ -580,7 +668,7 @@ const blogPosts = [
     },
     {
         titulo: "Point Roberts: A Cidade Americana Presa no Canadá",
-        categoria: "Fronteiras",
+        categoria: "Curiosidades",
         data: "20 Mar 2026",
         img: "https://quirkytravelguy.com/wp-content/uploads/2024/08/point-roberts-map.jpg",
         link: "point-roberts/",
@@ -588,7 +676,7 @@ const blogPosts = [
     },
     {
         titulo: "A Ilha que Troca de Dono: Ilha dos Faisões",
-        categoria: "Fronteiras",
+        categoria: "História",
         data: "10 Mar 2026",
         img: "https://conteudo.imguol.com.br/blogsbol/2/2022/12/ilha-2-300x225.png",
         link: "ilha-faisoes/",
@@ -596,7 +684,7 @@ const blogPosts = [
     },
     {
         titulo: "O Reino da Areia: A História de Bir Tawil",
-        categoria: "Geopolítica",
+        categoria: "Curiosidades",
         data: "18 Fev 2026",
         img: "https://i.guim.co.uk/img/media/5ebf8e25c9fd8c7cdbf46e9d9aa89b05617a1f7f/0_145_4072_2445/master/4072.jpg?width=700&quality=85&auto=format&fit=max&s=387582e0008572dc062ebcf9729511c5",
         link: "bir-tawil/", // Link para a pasta
@@ -612,7 +700,7 @@ const blogPosts = [
     },
     {
         titulo: "O Crepúsculo das Nações e as Hipercidades de 2100",
-        categoria: "Futurologia",
+        categoria: "Urbanismo",
         data: "05 Fev 2026",
         img: "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg",
         link: "hipercidades-2100/",
@@ -645,7 +733,7 @@ const blogPosts = [
     },
     {
     titulo: "Ponto Nemo: O lugar mais solitário da Terra",
-    categoria: "Oceanografia",
+    categoria: "Cartografia",
     data: "22 Jan 2026",
     img: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png",
     link: "ponto-nemo/",
@@ -661,7 +749,7 @@ const blogPosts = [
     },
     {
         titulo: "Arquivo Confidencial: Área 51",
-        categoria: "Conspiração",
+        categoria: "Curiosidades",
         data: "01 Fev 2026",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg",
         link: "area-51/",

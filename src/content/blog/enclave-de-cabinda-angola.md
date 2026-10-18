@@ -1,7 +1,7 @@
 ---
 titulo: "Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?"
 resumo: "Separado do território angolano por uma faixa costeira de 60 km da RDC, o enclave de Cabinda concentra mais de metade de todo o petróleo de Angola sob tensões separatistas."
-categoria: "Fronteiras"
+categoria: "História"
 data: "18 Out 2026 - 18:00"
 img: "/assets/img/blog/enclave-de-cabinda-angola.jpg"
 tempoLeitura: "8 min"

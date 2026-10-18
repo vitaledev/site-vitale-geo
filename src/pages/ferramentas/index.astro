@@ -1,12 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
+import ToolsArchive from '../../components/react/ToolsArchive';
 import { toolsDB } from '../../data/tools';
+
+const canonicalUrl = 'https://www.vitalegeo.com.br/ferramentas/';
 ---
 
 <Layout
   title="Instrumentos de Escala & Projeção | VitaleGeo"
-  description="Simuladores de projeção, comparadores de escala territorial e métricas geoespaciais interativas."
+  description="Simuladores de projeção, comparadores de escala territorial e métricas geoespaciais interativas organizadas por categoria e busca."
+  canonical={canonicalUrl}
 >
   <main class="page-content">
     <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
@@ -23,37 +27,13 @@ import { toolsDB } from '../../data/tools';
     </header>
 
     <!-- Transição Editorial -->
-    <div class="max-w-6xl mx-auto px-6 mb-8">
+    <div class="max-w-6xl mx-auto px-6 mb-6">
       <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
     </div>
 
-    <section class="py-4 px-6 max-w-6xl mx-auto pb-24">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {toolsDB.map(tool => (
-          <a href={tool.link} class="minimal-card group overflow-hidden flex flex-col justify-between h-full">
-            <div>
-              {tool.cover ? (
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
-                  <img src={tool.cover} alt={tool.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
-                  <div class="absolute top-3 left-3">
-                    <span class="category-pill text-sky-300 border-sky-400/20 bg-sky-950/70">
-                      <i class="ph-bold ph-compass"></i> SIMULADOR
-                    </span>
-                  </div>
-                </div>
-              ) : null}
-              <div class="p-5">
-                <h2 class="text-base sm:text-lg font-heading text-white group-hover:text-sky-400 transition mb-1.5 leading-snug font-semibold">{tool.titulo}</h2>
-                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{tool.desc}</p>
-              </div>
-            </div>
-            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
-              Acessar simulador <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
-            </div>
-          </a>
-        ))}
-      </div>
+    <!-- Seção de Ferramentas com Filtro por Categoria em Hover e Busca Rápida -->
+    <section class="py-2 px-6 max-w-6xl mx-auto pb-24">
+      <ToolsArchive client:load tools={toolsDB} />
     </section>
   </main>
 </Layout>

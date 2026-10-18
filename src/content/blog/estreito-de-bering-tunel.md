@@ -1,7 +1,7 @@
 ---
 titulo: "Túnel do Estreito de Bering: A Megaconexão de 100 km Que Uniria a Ásia às Américas"
 resumo: "Apenas 82 km separam a Sibéria do Alasca. Entenda a engenharia, os custos astronômicos e os entraves geopolíticos de conectar dois mundos por trilhos."
-categoria: "Geopolítica"
+categoria: "Cartografia"
 data: "16 Out 2026 - 14:30"
 img: "/assets/img/blog/estreito-de-bering-tunel.jpg"
 tempoLeitura: "8 min"

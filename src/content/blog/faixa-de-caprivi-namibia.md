@@ -1,7 +1,7 @@
 ---
 titulo: "Por Que a Namíbia Tem um Dedo de Terra de 450 km Que Corta Quatro Países na África?"
 resumo: "Em 1890, a Alemanha imperial negociou a Faixa de Caprivi para tentar navegar até o Oceano Índico pelo Rio Zambeze, sem saber que as Cataratas de Vitória bloqueavam o caminho."
-categoria: "Fronteiras"
+categoria: "História"
 data: "18 Out 2026 - 14:30"
 img: "/assets/img/blog/faixa-de-caprivi-namibia.jpg"
 tempoLeitura: "7 min"

@@ -1,7 +1,7 @@
 ---
 titulo: "O Mar de Aral: A Catástrofe Cartográfica do 4º Maior Lago que Virou Deserto"
 resumo: "Em menos de quatro décadas, o desvio soviético dos rios encolheu um mar interior de 68.000 km² em 90%, deixando navios enferrujados na areia."
-categoria: "Curiosidades"
+categoria: "História"
 data: "11 Out 2026 - 16:15"
 img: "/assets/img/blog/desaparecimento-mar-de-aral.png"
 tempoLeitura: "10 min"

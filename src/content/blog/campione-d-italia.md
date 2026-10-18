@@ -1,7 +1,7 @@
 ---
 titulo: "Campione d'Italia: O Enclave Italiano Onde Quase Tudo Funciona na Suíça"
 resumo: "À beira do Lago de Lugano, uma cidade soberana italiana usa franco suíço, rede telefônica suíça e placas do cantão de Ticino."
-categoria: "Fronteiras"
+categoria: "Curiosidades"
 data: "11 Out 2026 - 14:30"
 img: "/assets/img/blog/campione-d-italia.jpg"
 tempoLeitura: "10 min"
