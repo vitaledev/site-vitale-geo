@@ -30,11 +30,10 @@ const normalizeStr = (str: string) =>
   str ? str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim() : '';
 
 export default function VideosArchive({ videosLongos, videosShorts }: Props) {
-  // Camada 1: Estado da aba ativa
+  const ITEMS_PER_PAGE = 12;
   const [activeTab, setActiveTab] = useState<TabType>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(12); // Padrão leve: 12 itens por camada
 
   // Camada Hero: Player ativo sob demanda (Facade)
   const [isHeroPlaying, setIsHeroPlaying] = useState<boolean>(false);
@@ -125,12 +124,12 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
     return list;
   }, [allVideos, activeTab, searchTerm]);
 
-  // Paginação em camadas (apenas os itens do lote ativo no DOM)
-  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage) || 1;
+  // Paginação (apenas os itens do lote ativo no DOM)
+  const totalPages = Math.ceil(filteredVideos.length / ITEMS_PER_PAGE) || 1;
   const paginatedVideos = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredVideos.slice(start, start + itemsPerPage);
-  }, [filteredVideos, currentPage, itemsPerPage]);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredVideos.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredVideos, currentPage]);
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
@@ -172,9 +171,6 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
     document.body.style.overflow = 'auto';
   };
 
-  const startIndex = filteredVideos.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
-  const endIndex = Math.min(currentPage * itemsPerPage, filteredVideos.length);
-
   return (
     <div className="w-full">
       {/* CAMADA 1: HERO COM FACADE LEVE (Zero Iframes Pesados no Carregamento Inicial) */}
@@ -196,7 +192,7 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                   <div
                     onClick={() => setIsHeroPlaying(true)}
                     className="w-full h-full relative cursor-pointer"
-                    title="Clique para assistir ao documentário em destaque"
+                    title="Assistir documentário em destaque"
                   >
                     <img
                       src={`https://img.youtube.com/vi/${heroVideo.id}/maxresdefault.jpg`}
@@ -209,23 +205,11 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                    {/* Botão de Play Pulsante e Ultra Leve */}
+                    {/* Botão de Play */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative flex items-center justify-center">
-                        <span className="absolute w-20 h-20 rounded-full bg-red-600/30 animate-ping"></span>
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-red-500 transition duration-300">
-                          <i className="ph-fill ph-play text-2xl sm:text-3xl ml-1"></i>
-                        </div>
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-red-500 transition duration-300">
+                        <i className="ph-fill ph-play text-2xl sm:text-3xl ml-1"></i>
                       </div>
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-slate-300">
-                      <span className="bg-black/70 px-2.5 py-1 rounded backdrop-blur border border-white/10 font-mono">
-                        Resolução 4K • 16:9
-                      </span>
-                      <span className="bg-black/70 px-2.5 py-1 rounded backdrop-blur border border-white/10 flex items-center gap-1.5 text-amber-400">
-                        <i className="ph-fill ph-sparkle"></i> Clique para Reproduzir
-                      </span>
                     </div>
                   </div>
                 )}
@@ -243,7 +227,7 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                     {heroVideo.titulo}
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
-                    Investigação cartográfica e geopolítica detalhada pelo canal oficial VitaleGeo.
+                    Investigação cartográfica e geopolítica detalhada.
                   </p>
                 </div>
 
@@ -315,7 +299,7 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                 }`}
               >
                 <i className="ph-fill ph-television text-sm"></i>
-                Documentários (16:9)
+                Documentários
                 <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono ${
                   activeTab === 'long' ? 'bg-slate-950/20 text-slate-950' : 'bg-white/10 text-slate-300'
                 }`}>
@@ -333,7 +317,7 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                 }`}
               >
                 <i className="ph-fill ph-lightning text-sm text-red-500"></i>
-                Shorts (9:16)
+                Shorts
                 <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono ${
                   activeTab === 'short' ? 'bg-slate-950/20 text-slate-950' : 'bg-white/10 text-slate-300'
                 }`}>
@@ -365,56 +349,26 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
             </div>
           </div>
 
-          {/* Subbarra de Status e Filtro de Lote */}
-          <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
-            <div className="flex items-center gap-2">
-              <span>
-                Exibindo <strong className="text-white font-semibold">{startIndex}–{endIndex}</strong> de {filteredVideos.length} vídeos
-                {totalPages > 1 && (
-                  <span className="text-slate-500"> (Camada {currentPage} de {totalPages})</span>
+          {/* Subbarra Limpa (Apenas quando filtros ativos) */}
+          {(activeTab !== 'all' || searchTerm) && (
+            <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+              <div>
+                {searchTerm && (
+                  <span className="text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20 text-[11px]">
+                    Busca: &ldquo;{searchTerm}&rdquo;
+                  </span>
                 )}
-              </span>
-              {searchTerm && (
-                <span className="text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
-                  Busca: &ldquo;{searchTerm}&rdquo;
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[11px] text-slate-500">Por camada:</span>
-                {[12, 24, 48].map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => {
-                      setItemsPerPage(size);
-                      setCurrentPage(1);
-                    }}
-                    className={`px-2 py-0.5 rounded text-[11px] font-mono transition ${
-                      itemsPerPage === size
-                        ? 'bg-white/15 text-white font-bold'
-                        : 'text-slate-500 hover:text-slate-300'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
               </div>
-
-              {(activeTab !== 'all' || searchTerm) && (
-                <button
-                  type="button"
-                  onClick={resetFilters}
-                  className="text-slate-400 hover:text-amber-300 transition flex items-center gap-1 underline underline-offset-2 text-[11px]"
-                >
-                  <i className="ph-bold ph-arrow-counter-clockwise"></i>
-                  Limpar
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="text-slate-400 hover:text-amber-300 transition flex items-center gap-1 text-[11px]"
+              >
+                <i className="ph-bold ph-x"></i>
+                Limpar filtros
+              </button>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -478,17 +432,13 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                       {/* Pill de Tipo no Topo */}
-                      <div className="absolute top-2.5 left-2.5 z-10">
-                        {isShort ? (
+                      {isShort && (
+                        <div className="absolute top-2.5 left-2.5 z-10">
                           <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-red-600/90 text-white tracking-wider flex items-center gap-1 shadow">
                             <i className="ph-fill ph-lightning"></i> SHORT
                           </span>
-                        ) : (
-                          <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold bg-black/75 text-amber-400 border border-amber-400/30 backdrop-blur tracking-wider">
-                            16:9 4K
-                          </span>
-                        )}
-                      </div>
+                        </div>
+                      )}
 
                       {/* Botão de Play em Hover */}
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
@@ -498,44 +448,39 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
                       </div>
                     </div>
 
-                    {/* Título do Vídeo */}
-                    <div className="p-3.5 flex flex-col justify-between flex-grow">
-                      <h3
-                        className={`font-heading font-medium text-white group-hover:text-amber-400 transition leading-snug ${
-                          isShort ? 'text-xs line-clamp-3' : 'text-sm line-clamp-2'
-                        }`}
-                      >
-                        {video.titulo}
-                      </h3>
-                      <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-                        <span>VitaleGeo</span>
-                        <span className="text-amber-400 group-hover:translate-x-0.5 transition flex items-center gap-1">
-                          Assistir <i className="ph-bold ph-arrow-right text-[10px]"></i>
-                        </span>
-                      </div>
+                  {/* Título do Vídeo */}
+                  <div className="p-3.5 flex flex-col justify-between flex-grow">
+                    <h3
+                      className={`font-heading font-medium text-white group-hover:text-amber-400 transition leading-snug ${
+                        isShort ? 'text-xs line-clamp-3' : 'text-sm line-clamp-2'
+                      }`}
+                    >
+                      {video.titulo}
+                    </h3>
+                    <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                      <span>VitaleGeo</span>
+                      <span className="text-amber-400 group-hover:translate-x-0.5 transition flex items-center gap-1">
+                        Assistir <i className="ph-bold ph-arrow-right text-[10px]"></i>
+                      </span>
                     </div>
                   </div>
-                </article>
-              );
-            })}
-          </div>
-        )}
-      </section>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )}
+    </section>
 
-      {/* CAMADA 4: PAGINADOR INTELIGENTE (Troca de Camada Ultra Leve) */}
-      {totalPages > 1 && (
-        <section className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2 border-t border-white/5 text-xs">
-          <div className="text-slate-400 text-xs">
-            Exibindo camada <strong className="text-white">{currentPage}</strong> de {totalPages} ({filteredVideos.length} vídeos no catálogo)
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition flex items-center gap-1"
-            >
+    {/* CAMADA 4: PAGINADOR INTELIGENTE */}
+    {totalPages > 1 && (
+      <section className="flex items-center justify-center gap-2 py-8 border-t border-white/5 text-xs">
+        <button
+          type="button"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1.5 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition flex items-center gap-1"
+        >
               <i className="ph-bold ph-caret-left"></i> Anterior
             </button>
 
@@ -574,7 +519,6 @@ export default function VideosArchive({ videosLongos, videosShorts }: Props) {
             >
               Próxima <i className="ph-bold ph-caret-right"></i>
             </button>
-          </div>
         </section>
       )}
 

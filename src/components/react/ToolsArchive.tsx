@@ -180,9 +180,6 @@ export default function ToolsArchive({ tools }: Props) {
     return filteredTools.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredTools, currentPage]);
 
-  const startIndex = filteredTools.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1;
-  const endIndex = Math.min(currentPage * ITEMS_PER_PAGE, filteredTools.length);
-
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
     if (gridAnchorRef.current) {
@@ -344,40 +341,31 @@ export default function ToolsArchive({ tools }: Props) {
           </div>
         </div>
 
-        {/* Linha de Status de Resultados */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span>
-              Exibindo <strong className="text-white font-semibold">{startIndex}–{endIndex}</strong> de {filteredTools.length} instrumentos
-              {totalPages > 1 && (
-                <span className="text-slate-500"> (Página {currentPage} de {totalPages})</span>
+        {/* Linha de Filtros Ativos (Apenas quando houver filtro ou busca) */}
+        {hasActiveFilters && (
+          <div className="flex items-center justify-between gap-2 mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
+            <div className="flex items-center gap-2">
+              {selectedCategory !== 'all' && (
+                <span className="text-sky-400">
+                  {selectedCategory}
+                </span>
               )}
-            </span>
-            {selectedCategory !== 'all' && (
-              <span className="inline-flex items-center gap-1 text-sky-400">
-                · {selectedCategory}
-              </span>
-            )}
-            {searchTerm && (
-              <span className="inline-flex items-center gap-1 text-amber-300">
-                · Busca: &ldquo;{searchTerm}&rdquo;
-              </span>
-            )}
+              {searchTerm && (
+                <span className="text-amber-300">
+                  Busca: &ldquo;{searchTerm}&rdquo;
+                </span>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={resetAllFilters}
+              className="text-slate-400 hover:text-sky-300 transition flex items-center gap-1 text-[11px]"
+            >
+              <i className="ph-bold ph-x"></i>
+              Limpar filtros
+            </button>
           </div>
-
-          <div className="flex items-center gap-3 self-end sm:self-auto">
-            {hasActiveFilters && (
-              <button
-                type="button"
-                onClick={resetAllFilters}
-                className="text-slate-400 hover:text-sky-300 transition flex items-center gap-1 underline underline-offset-2 text-[11px]"
-              >
-                <i className="ph-bold ph-arrow-counter-clockwise"></i>
-                Limpar filtros
-              </button>
-            )}
-          </div>
-        </div>
+        )}
       </div>
 
       {/* Grade de Ferramentas / Simuladores (6 itens padrão) */}
