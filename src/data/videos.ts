@@ -6,14 +6,19 @@ export interface VideoItem {
 
 export const videosLongos: VideoItem[] = [
   {
-    "titulo": "Por que a Argentina é tão estratégica na América do Sul?",
-    "id": "LHANhd4PMYk",
-    "link": "https://www.youtube.com/watch?v=LHANhd4PMYk"
+    "titulo": "Toda a História do Irã explicada em 12 Minutos!",
+    "id": "FxFveFDTo8k",
+    "link": "https://www.youtube.com/watch?v=FxFveFDTo8k"
   },
   {
     "titulo": "Você vive num mundo maquiavélico (e nem sabe disso)",
     "id": "yerRMDGkxrw",
     "link": "https://www.youtube.com/watch?v=yerRMDGkxrw"
+  },
+  {
+    "titulo": "Por que a Argentina é tão estratégica na América do Sul?",
+    "id": "LHANhd4PMYk",
+    "link": "https://www.youtube.com/watch?v=LHANhd4PMYk"
   },
   {
     "titulo": "Como a China se Tornou a Maior Potência Econômica do Mundo?",
@@ -74,27 +79,172 @@ export const videosLongos: VideoItem[] = [
 
 export const videosShorts: VideoItem[] = [
   {
-    "titulo": "Quais países têm as mulheres mais bonitas do mundo?",
+    "titulo": "E se você cavar um buraco até o outro lado do planeta?",
+    "id": "xddt__ypUlQ",
+    "link": "https://www.youtube.com/watch?v=xddt__ypUlQ"
+  },
+  {
+    "titulo": "Qual o país onde a capital não é a maior cidade?",
+    "id": "i4TSQpwpdKY",
+    "link": "https://www.youtube.com/watch?v=i4TSQpwpdKY"
+  },
+  {
+    "titulo": "Qual o primeiro país a celebrar o Ano-Novo?",
+    "id": "VG-kx6wbhQY",
+    "link": "https://www.youtube.com/watch?v=VG-kx6wbhQY"
+  },
+  {
+    "titulo": "Quais países dirigem na mão inglesa?",
+    "id": "grCMRTNPF9w",
+    "link": "https://www.youtube.com/watch?v=grCMRTNPF9w"
+  },
+  {
+    "titulo": "Por que a Etiópia não tem saída para o mar?",
+    "id": "jDFkAmGecYY",
+    "link": "https://www.youtube.com/watch?v=jDFkAmGecYY"
+  },
+  {
+    "titulo": "Qual país não tem exército?",
+    "id": "0xr_VposCqo",
+    "link": "https://www.youtube.com/watch?v=0xr_VposCqo"
+  },
+  {
+    "titulo": "Qual o país mais inteligente do mundo?",
+    "id": "g4zrBeclDv8",
+    "link": "https://www.youtube.com/watch?v=g4zrBeclDv8"
+  },
+  {
+    "titulo": "Quais os países mais populosos da América Latina?",
+    "id": "8wJUEOMZ0Uo",
+    "link": "https://www.youtube.com/watch?v=8wJUEOMZ0Uo"
+  },
+  {
+    "titulo": "Quais os países com menos impostos do mundo?",
+    "id": "pi7j4js-kKg",
+    "link": "https://www.youtube.com/watch?v=pi7j4js-kKg"
+  },
+  {
+    "titulo": "A Geopolítica da Argentina em 1 minuto",
+    "id": "tysm1OyZUaU",
+    "link": "https://www.youtube.com/watch?v=tysm1OyZUaU"
+  },
+  {
+    "titulo": "Quais os paises com as leis mais bizarras do mundo?",
+    "id": "9Pn4Wm7XiRo",
+    "link": "https://www.youtube.com/watch?v=9Pn4Wm7XiRo"
+  },
+  {
+    "titulo": "Quais os países mais visitados do mundo?",
+    "id": "6gjjJFuE2Vw",
+    "link": "https://www.youtube.com/watch?v=6gjjJFuE2Vw"
+  },
+  {
+    "titulo": "Quais paises fizeram mais gols em copas do mundo",
+    "id": "Y5sfI03lu14",
+    "link": "https://www.youtube.com/watch?v=Y5sfI03lu14"
+  },
+  {
+    "titulo": "Quais paises ganharam mais copas do mundo?",
+    "id": "dbWTMXROLj0",
+    "link": "https://www.youtube.com/watch?v=dbWTMXROLj0"
+  },
+  {
+    "titulo": "Quais paises com menos divórcios no mundo?",
+    "id": "woOB4fiPpA4",
+    "link": "https://www.youtube.com/watch?v=woOB4fiPpA4"
+  },
+  {
+    "titulo": "Quais os países com maior IDH da América Latina?",
+    "id": "D83iXyWJ-cA",
+    "link": "https://www.youtube.com/watch?v=D83iXyWJ-cA"
+  },
+  {
+    "titulo": "Quais os paises com mais casos de divorcio no mundo?",
+    "id": "gRgSP_9eVM4",
+    "link": "https://www.youtube.com/watch?v=gRgSP_9eVM4"
+  },
+  {
+    "titulo": "Quais os paises onde menos se falam linguas extrangeiras?",
+    "id": "FDjvKMAlDrY",
+    "link": "https://www.youtube.com/watch?v=FDjvKMAlDrY"
+  },
+  {
+    "titulo": "Qual o país com mais pessoas brancas no mundo?",
+    "id": "eCYy_cgXg_I",
+    "link": "https://www.youtube.com/watch?v=eCYy_cgXg_I"
+  },
+  {
+    "titulo": "A Geopolitica do Irã explicada em 1 minuto!",
+    "id": "gLI4iqxI5gk",
+    "link": "https://www.youtube.com/watch?v=gLI4iqxI5gk"
+  },
+  {
+    "titulo": "5 paises onde ninguém quer morar!",
+    "id": "GpyjOuGPnPE",
+    "link": "https://www.youtube.com/watch?v=GpyjOuGPnPE"
+  },
+  {
+    "titulo": "Quais paises serão engolidos pelo mar?",
+    "id": "anzq3tcTdsc",
+    "link": "https://www.youtube.com/watch?v=anzq3tcTdsc"
+  },
+  {
+    "titulo": "A Geopolitica do México em 1 minuto",
+    "id": "108RCGTADpQ",
+    "link": "https://www.youtube.com/watch?v=108RCGTADpQ"
+  },
+  {
+    "titulo": "5 paises que não possuem rios naturais!",
+    "id": "BydfzzfczAM",
+    "link": "https://www.youtube.com/watch?v=BydfzzfczAM"
+  },
+  {
+    "titulo": "Os 5 paises com as melhores geografias do mundo",
+    "id": "63bl_8rktlU",
+    "link": "https://www.youtube.com/watch?v=63bl_8rktlU"
+  },
+  {
+    "titulo": "5 paises que são os maiores paraisos fiscais do mundo",
+    "id": "BWJyZ12iNfs",
+    "link": "https://www.youtube.com/watch?v=BWJyZ12iNfs"
+  },
+  {
+    "titulo": "5 Paises com as Piores Geografias do Mundo!",
+    "id": "GKOD8Ph7jY8",
+    "link": "https://www.youtube.com/watch?v=GKOD8Ph7jY8"
+  },
+  {
+    "titulo": "5 paises com mais terras raras no mundo!",
+    "id": "nGbzGk2Q-oM",
+    "link": "https://www.youtube.com/watch?v=nGbzGk2Q-oM"
+  },
+  {
+    "titulo": "5 Países que mais lucram vendendo armas",
+    "id": "SYYMpWt5Pbo",
+    "link": "https://www.youtube.com/watch?v=SYYMpWt5Pbo"
+  },
+  {
+    "titulo": "Quais os paises com as mulheres mais bonitas do mundo",
     "id": "IhaMGj0VtGY",
     "link": "https://www.youtube.com/watch?v=IhaMGj0VtGY"
   },
   {
-    "titulo": "Os 5 países mais baratos para viajar",
+    "titulo": "Os 5 paises mais baratos para viajar",
     "id": "KjJV-zoEMrU",
     "link": "https://www.youtube.com/watch?v=KjJV-zoEMrU"
   },
   {
-    "titulo": "Os 5 países com as menores economias do mundo",
+    "titulo": "Os 5 paises com as menores economias do mundo",
     "id": "ESUzakQ9XTs",
     "link": "https://www.youtube.com/watch?v=ESUzakQ9XTs"
   },
   {
-    "titulo": "Quem é dono dos oceanos?",
+    "titulo": "Quem é o Dono dos Oceanos?",
     "id": "9bGQa_VCiP0",
     "link": "https://www.youtube.com/watch?v=9bGQa_VCiP0"
   },
   {
-    "titulo": "Quais são os países mais caros para viver?",
+    "titulo": "Quais são os países mais caros para se viver?",
     "id": "rOftJRhHztw",
     "link": "https://www.youtube.com/watch?v=rOftJRhHztw"
   },
@@ -104,27 +254,27 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=KtGLGzWHD6w"
   },
   {
-    "titulo": "Quais países têm os maiores salários do mundo?",
+    "titulo": "Quais países possuem os melhores salários do mundo?",
     "id": "NhzB1Cm9-_A",
     "link": "https://www.youtube.com/watch?v=NhzB1Cm9-_A"
   },
   {
-    "titulo": "Quais países têm os piores salários do mundo?",
+    "titulo": "Quais países possuem os piores salários do mundo?",
     "id": "j9k2PBu-QPw",
     "link": "https://www.youtube.com/watch?v=j9k2PBu-QPw"
   },
   {
-    "titulo": "Quais são os estados mais seguros do Brasil?",
+    "titulo": "Quais os estados mais seguros do Brasil?",
     "id": "Bf-XrEtQvqA",
     "link": "https://www.youtube.com/watch?v=Bf-XrEtQvqA"
   },
   {
-    "titulo": "Quais países consomem mais café no mundo?",
+    "titulo": "Quais os paises que mais consomem café no mundo?",
     "id": "TSB6ttYfV3s",
     "link": "https://www.youtube.com/watch?v=TSB6ttYfV3s"
   },
   {
-    "titulo": "Quais são os países mais perigosos para turistas?",
+    "titulo": "Quais os paises mais perigosos do mundo para turistas?",
     "id": "uzYyyuPzyM4",
     "link": "https://www.youtube.com/watch?v=uzYyyuPzyM4"
   },
@@ -134,22 +284,22 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=k-f7jVKU3V4"
   },
   {
-    "titulo": "Quais são os países mais baratos para viver?",
+    "titulo": "Quais os paises mais baratos para se viver?",
     "id": "JVZnzG6yWP4",
     "link": "https://www.youtube.com/watch?v=JVZnzG6yWP4"
   },
   {
-    "titulo": "Quais países têm a pior qualidade de vida?",
+    "titulo": "Quais os paises com a pior qualidade de vida do mundo?",
     "id": "B2Vn5x7R3ps",
     "link": "https://www.youtube.com/watch?v=B2Vn5x7R3ps"
   },
   {
-    "titulo": "Quais os países mais frios do mundo?",
+    "titulo": "Quais os paises mais frios do mundo?",
     "id": "RJZo0BkTDII",
     "link": "https://www.youtube.com/watch?v=RJZo0BkTDII"
   },
   {
-    "titulo": "Quais os países mais quentes do mundo?",
+    "titulo": "Quais os paises mais quentes do mundo?",
     "id": "89evLPNJgb0",
     "link": "https://www.youtube.com/watch?v=89evLPNJgb0"
   },
@@ -159,12 +309,12 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=UrQcT28VueE"
   },
   {
-    "titulo": "Quais países brasileiros são proibidos de entrar?",
+    "titulo": "Quais paises Brasileiros são proibidos de entrar?",
     "id": "YtEn01Bgdvw",
     "link": "https://www.youtube.com/watch?v=YtEn01Bgdvw"
   },
   {
-    "titulo": "Quais serão os países mais ricos do mundo em 2050?",
+    "titulo": "Quais serão os paises mais ricos do mundo em 2050?",
     "id": "GNscolFhFp4",
     "link": "https://www.youtube.com/watch?v=GNscolFhFp4"
   },
@@ -174,17 +324,17 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=RvZxqCE_FAY"
   },
   {
-    "titulo": "5 estados que ninguém quer morar no Brasil",
+    "titulo": "5 estados que ninguem quer morar no Brasil",
     "id": "z3_bNZbQXzI",
     "link": "https://www.youtube.com/watch?v=z3_bNZbQXzI"
   },
   {
-    "titulo": "Quais são os países mais caros do mundo?",
+    "titulo": "Quais são os paises mais caros do mundo?",
     "id": "Xxd-d2qEzpQ",
     "link": "https://www.youtube.com/watch?v=Xxd-d2qEzpQ"
   },
   {
-    "titulo": "Qual o país mais barato pra visitar?",
+    "titulo": "Qual o pais mais barato pra visitar?",
     "id": "HKlhbkeihWI",
     "link": "https://www.youtube.com/watch?v=HKlhbkeihWI"
   },
@@ -199,12 +349,12 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=tVElwUyAAnk"
   },
   {
-    "titulo": "Quais seriam os países menos seguros na 3ª Guerra Mundial?",
+    "titulo": "Quais seriam os paises menos seguros na Terceira Guerra Mundial?",
     "id": "8ClqDnsCSYA",
     "link": "https://www.youtube.com/watch?v=8ClqDnsCSYA"
   },
   {
-    "titulo": "Países mais seguros em caso de 3ª Guerra Mundial",
+    "titulo": "Paises mais seguros em caso de Terceira Guerra Mundial",
     "id": "x4ZWbKANWpQ",
     "link": "https://www.youtube.com/watch?v=x4ZWbKANWpQ"
   },
@@ -219,22 +369,22 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=vsxXXjBQynE"
   },
   {
-    "titulo": "Qual o país mais rico da Europa?",
+    "titulo": "Qual o pais mais rico da Europa?",
     "id": "ej-jsSREFmM",
     "link": "https://www.youtube.com/watch?v=ej-jsSREFmM"
   },
   {
-    "titulo": "Quais os países mais ricos da Ásia?",
+    "titulo": "Quais os paises mais ricos da Asia?",
     "id": "Y9WsfqpotNo",
     "link": "https://www.youtube.com/watch?v=Y9WsfqpotNo"
   },
   {
-    "titulo": "Quais serão os países mais ricos do mundo em 2075?",
+    "titulo": "Quais serāo os países mais ricos do mundo em 2075",
     "id": "WGc2KfjOqkI",
     "link": "https://www.youtube.com/watch?v=WGc2KfjOqkI"
   },
   {
-    "titulo": "Qual país mais acredita em Deus?",
+    "titulo": "Qual o país mais acredita em Deus?",
     "id": "W0eZw2MLzz8",
     "link": "https://www.youtube.com/watch?v=W0eZw2MLzz8"
   },
@@ -244,7 +394,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=tDL1Xx07VmU"
   },
   {
-    "titulo": "Qual o país mais poluído do mundo?",
+    "titulo": "Qual o país mais poluido do mundo?",
     "id": "9fnpfiilTno",
     "link": "https://www.youtube.com/watch?v=9fnpfiilTno"
   },
@@ -254,17 +404,17 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=sloM9oJ7eXY"
   },
   {
-    "titulo": "Qual país foi mais taxado pelos EUA?",
+    "titulo": "Qual país foi mais taxado pelos Estados Unidos?",
     "id": "Z1sisIOYMxg",
     "link": "https://www.youtube.com/watch?v=Z1sisIOYMxg"
   },
   {
-    "titulo": "Trump taxa exportações brasileiras em 50%: Entenda o impacto",
+    "titulo": "Trump taxa exportações do Brasil em 50%: entenda como isso afeta o dólar, a inflação, os preços",
     "id": "1rZsqaDbNAU",
     "link": "https://www.youtube.com/watch?v=1rZsqaDbNAU"
   },
   {
-    "titulo": "Quais são os principais parceiros comerciais do Brasil?",
+    "titulo": "Quais países sāo os principais parceiros comerciais do Brasil?",
     "id": "Cc10sHKhdU8",
     "link": "https://www.youtube.com/watch?v=Cc10sHKhdU8"
   },
@@ -274,37 +424,37 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=v3AzdRnDlaE"
   },
   {
-    "titulo": "Por que construíram esta prisão no meio da água?",
+    "titulo": "Por que construíram essa prisão no meio da água? Descubra",
     "id": "VGdTzkZOe9k",
     "link": "https://www.youtube.com/watch?v=VGdTzkZOe9k"
   },
   {
-    "titulo": "Qual país tem a melhor comida?",
+    "titulo": "Qual país possui as melhores comidas?",
     "id": "ljoG52wLGzg",
     "link": "https://www.youtube.com/watch?v=ljoG52wLGzg"
   },
   {
-    "titulo": "Esta é a fronteira mais perigosa do mundo!",
+    "titulo": "Essa é a fronteira mais perigosa do mundo!",
     "id": "l5d6tHbvsvY",
     "link": "https://www.youtube.com/watch?v=l5d6tHbvsvY"
   },
   {
-    "titulo": "Qual é o país mais rico da América Latina?",
+    "titulo": "Qual o país mais rico da América Latina?",
     "id": "B4_2VH7bR4E",
     "link": "https://www.youtube.com/watch?v=B4_2VH7bR4E"
   },
   {
-    "titulo": "Qual é a origem dos sobrenomes brasileiros?",
+    "titulo": "Qual a origem dos sobrenomes Brasileiros?",
     "id": "fOlc2_P37mY",
     "link": "https://www.youtube.com/watch?v=fOlc2_P37mY"
   },
   {
-    "titulo": "Qual é o país mais difícil de invadir?",
+    "titulo": "Qual o país mais difícil de ser invadido?",
     "id": "d9CKipCeQiE",
     "link": "https://www.youtube.com/watch?v=d9CKipCeQiE"
   },
   {
-    "titulo": "Qual país é o mais fácil de invadir?",
+    "titulo": "Qual país é mais fácil de ser invadido?",
     "id": "hXN4v7pCxmM",
     "link": "https://www.youtube.com/watch?v=hXN4v7pCxmM"
   },
@@ -314,12 +464,12 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=vx5jUZ4ysq4"
   },
   {
-    "titulo": "Qual país é mais fácil obter cidadania?",
+    "titulo": "Qual o país mais fácil de se conseguir cidadania",
     "id": "vfaiTeBOoMA",
     "link": "https://www.youtube.com/watch?v=vfaiTeBOoMA"
   },
   {
-    "titulo": "Qual país é mais difícil obter cidadania?",
+    "titulo": "Qual o país mais difícil de conseguir cidadania?",
     "id": "uejyXsWnzDk",
     "link": "https://www.youtube.com/watch?v=uejyXsWnzDk"
   },
@@ -329,37 +479,37 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=_etW52DtREw"
   },
   {
-    "titulo": "Qual país tem mais sanções no mundo?",
+    "titulo": "Qual país possui mais sançōes no mundo?",
     "id": "pInXSNKRApg",
     "link": "https://www.youtube.com/watch?v=pInXSNKRApg"
   },
   {
-    "titulo": "Qual país tem mais bilionários?",
+    "titulo": "Qual país possui mais bilionários?",
     "id": "7CZEav4Tljg",
     "link": "https://www.youtube.com/watch?v=7CZEav4Tljg"
   },
   {
-    "titulo": "Qual país tem mais petróleo no mundo?",
+    "titulo": "Qual país com mais petróleo no mundo?",
     "id": "9CrtkLcbZi8",
     "link": "https://www.youtube.com/watch?v=9CrtkLcbZi8"
   },
   {
-    "titulo": "Quais países têm as maiores taxas de juros?",
+    "titulo": "Quais países possuem as maiores taxas de juros do mundo?",
     "id": "CZztvwE3dvs",
     "link": "https://www.youtube.com/watch?v=CZztvwE3dvs"
   },
   {
-    "titulo": "Quais países têm mais bombas nucleares?",
+    "titulo": "Quais países possuem mais bombas nucleares?",
     "id": "XFqyKsJy4pE",
     "link": "https://www.youtube.com/watch?v=XFqyKsJy4pE"
   },
   {
-    "titulo": "Qual é a marca de cerveja mais valiosa do mundo?",
+    "titulo": "Qual a marca de cerveja mais valiosa do mundo?",
     "id": "ANsoH4c-4UI",
     "link": "https://www.youtube.com/watch?v=ANsoH4c-4UI"
   },
   {
-    "titulo": "Quais são os países mais perigosos para visitar?",
+    "titulo": "Quais são os paises mais perigosos para se visitar?",
     "id": "giqsqrAVQsk",
     "link": "https://www.youtube.com/watch?v=giqsqrAVQsk"
   },
@@ -374,7 +524,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=oHZ5eRr4aAY"
   },
   {
-    "titulo": "Quais os estados mais perigosos do Brasil?",
+    "titulo": "Quais os Estados mais perigosos do Brasil?",
     "id": "ohowR0KVVm4",
     "link": "https://www.youtube.com/watch?v=ohowR0KVVm4"
   },
@@ -384,7 +534,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=3U6nsTHVqsU"
   },
   {
-    "titulo": "E se os EUA anexassem o Canadá, a Groenlândia e o Panamá?",
+    "titulo": "E se os EUA anexassem o Canáda, a Groelândia e o Panamá?",
     "id": "5r979ZfC-yI",
     "link": "https://www.youtube.com/watch?v=5r979ZfC-yI"
   },
@@ -394,7 +544,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=lWS3Xt_Yxnc"
   },
   {
-    "titulo": "Qual o país que mais consome álcool no mundo?",
+    "titulo": "Qual o país que mais consome alcool no mundo?",
     "id": "q7FU8b1xCVQ",
     "link": "https://www.youtube.com/watch?v=q7FU8b1xCVQ"
   },
@@ -409,7 +559,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=Pl0ntP_w05w"
   },
   {
-    "titulo": "Qual país tem o menor IDH do mundo?",
+    "titulo": "Qual país tem o menor idh do mundo?",
     "id": "EWP6UBdQJLE",
     "link": "https://www.youtube.com/watch?v=EWP6UBdQJLE"
   },
@@ -449,7 +599,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=VYNQBQOSWiM"
   },
   {
-    "titulo": "Qual é o país mais rico da América do Sul?",
+    "titulo": "Qual o país mais rico da América do Sul?",
     "id": "x2MHuyZPbxU",
     "link": "https://www.youtube.com/watch?v=x2MHuyZPbxU"
   },
@@ -484,7 +634,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=sHFtEDOqTLc"
   },
   {
-    "titulo": "O Hotel Esqueleto abandonado no Rio de Janeiro!",
+    "titulo": "O HOTEL ESQUELETO ABANDONADO NO RIO DE JANEIRO!",
     "id": "2XeWT8_pr2E",
     "link": "https://www.youtube.com/watch?v=2XeWT8_pr2E"
   },
@@ -494,7 +644,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=5cfrMPOhuU4"
   },
   {
-    "titulo": "Quais países foram mencionados na Bíblia?",
+    "titulo": "Quais países foram mencionados na bíblia?",
     "id": "895s3ncqmaQ",
     "link": "https://www.youtube.com/watch?v=895s3ncqmaQ"
   },
@@ -559,12 +709,12 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=xx39m0455OY"
   },
   {
-    "titulo": "A guerra entre Japão e China em menos de 1 minuto!",
+    "titulo": "A guerra entre Japāo e China em menos de 1 minuto!",
     "id": "whnxAjSFWt8",
     "link": "https://www.youtube.com/watch?v=whnxAjSFWt8"
   },
   {
-    "titulo": "A cidade mais pobre do mundo...",
+    "titulo": "A cidade mais pobre do mundo... 🌎",
     "id": "u3FRZB7OCR8",
     "link": "https://www.youtube.com/watch?v=u3FRZB7OCR8"
   },
@@ -594,7 +744,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=G0aUg0rTpJ4"
   },
   {
-    "titulo": "Qual foi o impacto de Putin na economia russa?",
+    "titulo": "Qual foi o Impacto de Putin na economia Russa?",
     "id": "mf5H9FRri7M",
     "link": "https://www.youtube.com/watch?v=mf5H9FRri7M"
   },
@@ -614,7 +764,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=VdxGqve-sdI"
   },
   {
-    "titulo": "Países em que a maconha é liberada ou descriminalizada",
+    "titulo": "Paises em que a M4c0nh4 é liberada ou descriminalizada",
     "id": "_gb3wTclP98",
     "link": "https://www.youtube.com/watch?v=_gb3wTclP98"
   },
@@ -634,22 +784,22 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=TnMBdTbJ9Zs"
   },
   {
-    "titulo": "A verdade do porquê Barack Obama respeita Putin",
+    "titulo": "A Verdade do porque Barack Obama respeita Putin",
     "id": "4F105mqcLkY",
     "link": "https://www.youtube.com/watch?v=4F105mqcLkY"
   },
   {
-    "titulo": "Por que Singapura é tão rica?",
+    "titulo": "Porque Singapura é tão Rica?",
     "id": "QC-18D8l6G0",
     "link": "https://www.youtube.com/watch?v=QC-18D8l6G0"
   },
   {
-    "titulo": "Por que o Reino Unido deveria ser a maior potência mundial hoje?",
+    "titulo": "Porque o Reino Unido deveria ser a Maior Potência Mundial hoje?",
     "id": "Waf2QNV0VMM",
     "link": "https://www.youtube.com/watch?v=Waf2QNV0VMM"
   },
   {
-    "titulo": "Como a China secretamente está destruindo os Estados Unidos",
+    "titulo": "Como a China Secretamente está Destruindo os Estados Unidos",
     "id": "I77sO7tm7pA",
     "link": "https://www.youtube.com/watch?v=I77sO7tm7pA"
   },
@@ -659,22 +809,22 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=BUQV-r8BFSM"
   },
   {
-    "titulo": "A verdadeira razão pela qual Putin não respeita os presidentes dos EUA",
+    "titulo": "A Verdadeira Razão pela qual Putin não respeita os Presidentes dos EUA",
     "id": "SJd3PfnJGxQ",
     "link": "https://www.youtube.com/watch?v=SJd3PfnJGxQ"
   },
   {
-    "titulo": "A verdade sobre como Putin se tornou presidente da Rússia",
+    "titulo": "A Verdade sobre Como o Putin se tornou presidente da Russia",
     "id": "WSEVOS-3dQU",
     "link": "https://www.youtube.com/watch?v=WSEVOS-3dQU"
   },
   {
-    "titulo": "O real motivo de Putin odiar a OTAN!",
+    "titulo": "O Real Motivo do Putin Odiar a OTAN!",
     "id": "N4lxgj7bnsg",
     "link": "https://www.youtube.com/watch?v=N4lxgj7bnsg"
   },
   {
-    "titulo": "Por que a Alemanha odeia os Estados Unidos?",
+    "titulo": "Porque a Alemanha Odeia os Estados Unidos?",
     "id": "zcdD1_9hdIk",
     "link": "https://www.youtube.com/watch?v=zcdD1_9hdIk"
   },
@@ -684,7 +834,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=InWf1lebAr0"
   },
   {
-    "titulo": "Como Putin e Lula planejam destruir os Estados Unidos",
+    "titulo": "Como Putin e Lula planejam DESTRUIR os Estados Unidos",
     "id": "L9j_cYiwHfg",
     "link": "https://www.youtube.com/watch?v=L9j_cYiwHfg"
   },
@@ -694,7 +844,7 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=MBubczY8W3I"
   },
   {
-    "titulo": "Esse é o fim dos Estados Unidos?",
+    "titulo": "Esse é o Fim dos Estados Unidos?",
     "id": "0E1v-e1hJIE",
     "link": "https://www.youtube.com/watch?v=0E1v-e1hJIE"
   },
@@ -704,42 +854,42 @@ export const videosShorts: VideoItem[] = [
     "link": "https://www.youtube.com/watch?v=OFJAMvrutUQ"
   },
   {
-    "titulo": "Quais países consomem mais álcool no mundo?",
+    "titulo": "Quais países mais consomem álcool no mundo?",
     "id": "OAgULSWRkV4",
     "link": "https://www.youtube.com/watch?v=OAgULSWRkV4"
   },
   {
-    "titulo": "Qual a idade mínima legal para consumo de álcool em cada país?",
+    "titulo": "Qual a idade minima legal para consumo de álcool em cada país?",
     "id": "Wq-0MAqfjms",
     "link": "https://www.youtube.com/watch?v=Wq-0MAqfjms"
   },
   {
-    "titulo": "Qual país mudou mais de capital na história?",
+    "titulo": "Qual o país que mais mudou de capital na história?",
     "id": "ZKMUjW1oPZk",
     "link": "https://www.youtube.com/watch?v=ZKMUjW1oPZk"
   },
   {
-    "titulo": "Por que o Brasil não é uma superpotência?",
+    "titulo": "Porque o Brasil não é uma Super Potência?",
     "id": "7DMPzQ_QEIk",
     "link": "https://www.youtube.com/watch?v=7DMPzQ_QEIk"
   },
   {
-    "titulo": "Por que a Índia não é rica igual a China?",
+    "titulo": "Porque a Índia não é Rica igual a China?",
     "id": "XmN3D7gtVos",
     "link": "https://www.youtube.com/watch?v=XmN3D7gtVos"
   },
   {
-    "titulo": "Os países com as maiores reservas de ouro do mundo",
+    "titulo": "Os Países com as Maiores Reservas de Ouro do Mundo",
     "id": "scFRrik9tQw",
     "link": "https://www.youtube.com/watch?v=scFRrik9tQw"
   },
   {
-    "titulo": "O Japão pode ser extinto em breve...",
+    "titulo": "O Japão pode ser EXTINTO em breve...",
     "id": "Ub80TLQsHjc",
     "link": "https://www.youtube.com/watch?v=Ub80TLQsHjc"
   },
   {
-    "titulo": "Por que Putin anda de uma maneira estranha? Explicado",
+    "titulo": "Porque o Putin Anda de uma Maneira Estranha 🤔 Explicado",
     "id": "VcE9DLwzBSQ",
     "link": "https://www.youtube.com/watch?v=VcE9DLwzBSQ"
   }

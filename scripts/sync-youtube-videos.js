@@ -12,14 +12,36 @@ const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_I
 const VIDEOS_JS_PATH = path.join(rootDir, 'assets', 'js', 'videos.js');
 const PUBLIC_VIDEOS_JS_PATH = path.join(rootDir, 'public', 'assets', 'js', 'videos.js');
 const DIST_VIDEOS_JS_PATH = path.join(rootDir, 'dist', 'assets', 'js', 'videos.js');
+const SRC_VIDEOS_TS_PATH = path.join(rootDir, 'src', 'data', 'videos.ts');
 
-function saveVideosJs(updatedJs) {
-  const targets = [VIDEOS_JS_PATH, PUBLIC_VIDEOS_JS_PATH, DIST_VIDEOS_JS_PATH];
-  for (const p of targets) {
+function formatVideosTs(longos, shorts) {
+  return `export interface VideoItem {
+  titulo: string;
+  id: string;
+  link: string;
+}
+
+export const videosLongos: VideoItem[] = ${JSON.stringify(longos, null, 2)};
+
+export const videosShorts: VideoItem[] = ${JSON.stringify(shorts, null, 2)};
+`;
+}
+
+function saveVideos(longos, shorts) {
+  const updatedJs = formatVideosJs(longos, shorts);
+  const updatedTs = formatVideosTs(longos, shorts);
+
+  const jsTargets = [VIDEOS_JS_PATH, PUBLIC_VIDEOS_JS_PATH, DIST_VIDEOS_JS_PATH];
+  for (const p of jsTargets) {
     if (fs.existsSync(path.dirname(p))) {
       fs.writeFileSync(p, updatedJs, 'utf-8');
       console.log(`  💾 Salvo em: ${path.relative(rootDir, p)}`);
     }
+  }
+
+  if (fs.existsSync(path.dirname(SRC_VIDEOS_TS_PATH))) {
+    fs.writeFileSync(SRC_VIDEOS_TS_PATH, updatedTs, 'utf-8');
+    console.log(`  💾 Salvo em: ${path.relative(rootDir, SRC_VIDEOS_TS_PATH)}`);
   }
 }
 
@@ -169,8 +191,7 @@ async function run() {
         link: `https://www.youtube.com/watch?v=${e.id}`
       }));
 
-      const updatedJs = formatVideosJs(newLongos, newShorts);
-      saveVideosJs(updatedJs);
+      saveVideos(newLongos, newShorts);
 
       console.log(`🎉 [VitaleGeo] Modo FULL concluído com sucesso: ${newLongos.length} vídeos longos e ${newShorts.length} shorts atualizados!`);
       return;
@@ -206,8 +227,7 @@ async function run() {
   const totalAdded = addedLongCount + addedShortCount;
 
   if (totalAdded > 0) {
-    const updatedJs = formatVideosJs(longos, shorts);
-    saveVideosJs(updatedJs);
+    saveVideos(longos, shorts);
     console.log(`\n✅ [VitaleGeo] Sincronização concluída com sucesso!`);
     console.log(`   ${addedLongCount} vídeo(s) longo(s) e ${addedShortCount} short(s) adicionados ao banco.`);
     console.log(`   Total atual: ${longos.length} longos e ${shorts.length} shorts.`);

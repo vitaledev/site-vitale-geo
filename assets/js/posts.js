@@ -94,7 +94,7 @@ const blogPosts = [
         titulo: "Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta Terra?",
         categoria: "Rankings",
         data: "18 Out 2026 - 22:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg/1280px-Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg",
         link: "ranking-maiores-fronteiras-do-mundo/",
         resumo: "Dos 8.891 km entre Estados Unidos e Canadá aos desertos gelados da Eurásia e florestas sul-americanas, conheça as maiores linhas divisórias do globo e seus segredos."
     },
@@ -110,7 +110,7 @@ const blogPosts = [
         titulo: "Por Que o Rio Danúbio Cruza Dez Países e Quatro Capitais Como a Maior Artéria da Europa?",
         categoria: "Curiosidades",
         data: "18 Out 2026 - 19:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/5/53/View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg/1280px-View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg",
         link: "rio-danubio-arteria-europa/",
         resumo: "Da Floresta Negra na Alemanha ao Delta do Mar Negro na Romênia, o Danúbio é a hidrovia internacional mais vital da Europa, cruzando 2.850 km e quatro capitais nacionais."
     },
@@ -126,7 +126,7 @@ const blogPosts = [
         titulo: "Por Que o Canal de Corinto é Uma Trincheira na Rocha Onde Navios Quase Tocam as Paredes?",
         categoria: "Curiosidades",
         data: "18 Out 2026 - 16:15",
-        img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Corinth_Canal_in_Greece.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Korinth_Canal_N_2019.jpg/1280px-Korinth_Canal_N_2019.jpg",
         link: "canal-de-corinto-grecia/",
         resumo: "Cortado através de 6,3 km de calcário com paredes verticais de quase 90 metros e apenas 24,6 metros de largura, o canal grego transformou o Peloponeso em uma ilha."
     },
@@ -342,7 +342,7 @@ const blogPosts = [
         titulo: "O Lago Tanganica: O Segundo Mais Fundo do Mundo Onde 4 Países Dividem uma Fenda",
         categoria: "Rankings",
         data: "15 Out 2026 - 21:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg",
         link: "lago-tanganica-fronteiras/",
         resumo: "Com 1.470 metros de profundidade no Rift Africano, o Lago Tanganica divide 4 nações e guarda 18% da água doce de superfície do planeta."
     },
@@ -358,7 +358,7 @@ const blogPosts = [
         titulo: "A Represa das Três Gargantas: Como a Megaconstrução da China Desacelerou a Terra",
         categoria: "Curiosidades",
         data: "15 Out 2026 - 18:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg",
         link: "represa-tres-gargantas-impacto/",
         resumo: "Com 39 trilhões de quilos de água represados no rio Yangtze, a megaconstrução chinesa deslocou a massa planetária e alongou o dia terrestre."
     },
@@ -406,7 +406,7 @@ const blogPosts = [
         titulo: "Gibraltar: Por que 6 km² de Rocha no Sul da Espanha Pertencem ao Reino Unido?",
         categoria: "História",
         data: "15 Out 2026 - 07:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rock_of_Gibraltar_from_Spain.jpg/1280px-Rock_of_Gibraltar_from_Spain.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Gibraltar_View_of_the_Rock_from_La_Linea.jpg/1280px-Gibraltar_View_of_the_Rock_from_La_Linea.jpg",
         link: "gibraltar-reino-unido/",
         resumo: "Cravado na entrada do Mediterrâneo, o rochedo de Gibraltar desafia a Espanha desde o Tratado de Utrecht de 1713. Entenda seu aeroporto que corta uma avenida."
     },
