@@ -86,10 +86,28 @@
         <!-- Barra de Filtros e Busca Minimalista -->
         <div class="sticky top-20 z-30 bg-[#090a0f]/90 backdrop-blur-md border-y border-white/5 py-4 px-6">
             <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                <div id="category-filters" class="flex flex-wrap items-center gap-2">
-                    <button onclick="filterPosts('all')" class="filter-btn text-xs font-medium px-4 py-1.5 rounded-full bg-white text-black transition">
-                        Todos
+                <!-- Seletor de Categoria em Hover (Anti-Poluição Visual) -->
+                <div class="relative group/cat flex items-center gap-2" id="category-dropdown-wrapper">
+                    <button id="category-trigger-btn" class="filter-tab inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium bg-white/[0.04] text-slate-200 border border-white/10 hover:border-white/20 transition">
+                        <i class="ph-bold ph-compass text-amber-400"></i>
+                        <span id="category-trigger-label">Categorias</span>
+                        <i class="ph-bold ph-caret-down text-[11px] opacity-70 transition-transform group-hover/cat:rotate-180"></i>
                     </button>
+                    <button id="category-clear-btn" onclick="filterPosts('all')" class="hidden text-[11px] text-slate-400 hover:text-white px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/5 transition flex items-center gap-1">
+                        <i class="ph-bold ph-x"></i> <span>Todos</span>
+                    </button>
+
+                    <!-- Menu Dropdown Revelado sob Hover -->
+                    <div id="category-dropdown-menu" class="absolute left-0 top-full mt-2 w-72 max-h-[65vh] overflow-y-auto hidden group-hover/cat:block hover:block p-2 rounded-2xl bg-[#0b0e17]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-50">
+                        <div class="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/5 flex items-center justify-between">
+                            <span>Filtrar por Tema</span>
+                        </div>
+                        <div id="category-dropdown-list" class="py-1 space-y-0.5">
+                            <button onclick="filterPosts('all')" class="cat-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-left text-slate-300 hover:bg-white/5 hover:text-white transition">
+                                <span class="flex items-center gap-2"><i class="ph-bold ph-squares-four text-amber-400"></i> Todas as categorias</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="relative w-full md:w-72">
@@ -149,14 +167,33 @@
         function initBlog() {
             renderHero(blogPosts[0]);
 
-            const categories = [...new Set(blogPosts.map(post => post.categoria))];
-            categories.forEach(cat => {
-                filterContainer.innerHTML += `
-                    <button onclick="filterPosts('${cat}')" class="filter-btn text-xs font-medium px-4 py-1.5 rounded-full text-slate-400 hover:text-white border border-white/5 hover:border-white/20 transition">
-                        ${cat}
+            const counts = {};
+            blogPosts.forEach(post => {
+                if (post.categoria) {
+                    counts[post.categoria] = (counts[post.categoria] || 0) + 1;
+                }
+            });
+
+            const sortedCategories = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+            const listContainer = document.getElementById('category-dropdown-list');
+            
+            if (listContainer) {
+                listContainer.innerHTML = `
+                    <button onclick="filterPosts('all')" class="cat-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-left text-slate-300 hover:bg-white/5 hover:text-white transition">
+                        <span class="flex items-center gap-2"><i class="ph-bold ph-squares-four text-amber-400"></i> Todas as categorias</span>
+                        <span class="text-[11px] font-mono text-slate-400">${blogPosts.length}</span>
                     </button>
                 `;
-            });
+
+                sortedCategories.forEach(cat => {
+                    listContainer.innerHTML += `
+                        <button onclick="filterPosts('${cat}')" class="cat-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-left text-slate-300 hover:bg-white/5 hover:text-white transition">
+                            <span class="flex items-center gap-2 truncate"><i class="ph-bold ph-tag text-slate-500"></i> ${cat}</span>
+                            <span class="text-[11px] font-mono text-slate-400">${counts[cat]}</span>
+                        </button>
+                    `;
+                });
+            }
 
             renderGrid(blogPosts.slice(1)); 
         }
@@ -247,21 +284,33 @@
         function filterPosts(category) {
             currentCategory = category;
             
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                const text = btn.innerText.trim();
-                if ((category === 'all' && text === 'Todos') || text.toLowerCase() === category.toLowerCase()) {
-                    btn.className = 'filter-btn text-xs font-medium px-4 py-1.5 rounded-full bg-white text-black transition';
-                } else {
-                    btn.className = 'filter-btn text-xs font-medium px-4 py-1.5 rounded-full text-slate-400 hover:text-white border border-white/5 hover:border-white/20 transition';
+            const triggerLabel = document.getElementById('category-trigger-label');
+            const clearBtn = document.getElementById('category-clear-btn');
+            const triggerBtn = document.getElementById('category-trigger-btn');
+
+            if (category === 'all') {
+                if (triggerLabel) triggerLabel.innerText = 'Categorias';
+                if (triggerBtn) {
+                    triggerBtn.classList.remove('active', 'border-amber-400/30', 'bg-amber-400/10', 'text-amber-300');
+                    triggerBtn.classList.add('bg-white/[0.04]', 'text-slate-200');
                 }
-            });
+                if (clearBtn) clearBtn.classList.add('hidden');
+            } else {
+                if (triggerLabel) triggerLabel.innerText = category;
+                if (triggerBtn) {
+                    triggerBtn.classList.add('active', 'border-amber-400/30', 'bg-amber-400/10', 'text-amber-300');
+                    triggerBtn.classList.remove('bg-white/[0.04]', 'text-slate-200');
+                }
+                if (clearBtn) clearBtn.classList.remove('hidden');
+            }
 
             let filtered = blogPosts.slice(1);
             if (category !== 'all') {
-                filtered = filtered.filter(post => post.categoria === category);
+                filtered = filtered.filter(post => post.categoria.toLowerCase() === category.toLowerCase());
             }
             
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
             if (searchTerm) {
                 filtered = filtered.filter(post => post.titulo.toLowerCase().includes(searchTerm) || post.resumo.toLowerCase().includes(searchTerm));
             }

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 
 interface PostItem {
   id: string;
@@ -15,14 +15,73 @@ interface Props {
   posts: PostItem[];
 }
 
+const categoryIcons: Record<string, string> = {
+  all: 'ph-bold ph-squares-four',
+  'geopolítica': 'ph-bold ph-globe',
+  fronteiras: 'ph-bold ph-compass',
+  curiosidades: 'ph-bold ph-lightbulb',
+  'história': 'ph-bold ph-scroll',
+  geografia: 'ph-bold ph-mountains',
+  rankings: 'ph-bold ph-chart-bar',
+  enclaves: 'ph-bold ph-map-pin',
+  megaprojetos: 'ph-bold ph-buildings',
+  chokepoints: 'ph-bold ph-anchor',
+  urbanismo: 'ph-bold ph-buildings',
+};
+
+const getCategoryIcon = (cat: string) => {
+  const normalized = cat.toLowerCase().trim();
+  return categoryIcons[normalized] || 'ph-bold ph-tag';
+};
+
 export default function BlogArchive({ posts }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const categories = useMemo(() => {
-    const set = new Set(posts.map(p => p.categoria));
-    return ['all', ...Array.from(set)];
+  const categoryStats = useMemo(() => {
+    const counts: Record<string, number> = {};
+    posts.forEach(p => {
+      if (p.categoria) {
+        counts[p.categoria] = (counts[p.categoria] || 0) + 1;
+      }
+    });
+    const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    return {
+      counts,
+      categories: ['all', ...sorted],
+      total: posts.length,
+    };
   }, [posts]);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 180);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
 
   const filteredPosts = useMemo(() => {
     return posts.filter(post => {
@@ -85,20 +144,96 @@ export default function BlogArchive({ posts }: Props) {
         </div>
       )}
 
-      {/* Barra de Filtro e Busca */}
-      <div className="sticky top-20 z-30 bg-[#07090e]/95 backdrop-blur-md border-y border-white/[0.06] py-3.5 mb-8">
+      {/* Barra de Filtro e Busca com Seletor de Categoria em Hover */}
+      <div className="sticky top-20 z-30 bg-[#07090e]/95 backdrop-blur-md border-y border-white/[0.06] py-3 mb-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-3">
-          <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
-            {categories.map(cat => (
+          {/* Seletor Compacto em Hover (Anti-Poluição Visual) */}
+          <div 
+            ref={dropdownRef}
+            className="relative flex items-center gap-2 w-full md:w-auto"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              type="button"
+              onClick={() => setIsDropdownOpen(prev => !prev)}
+              aria-haspopup="true"
+              aria-expanded={isDropdownOpen}
+              className={`filter-tab group/btn ${
+                selectedCategory !== 'all' ? 'active' : ''
+              }`}
+            >
+              <i className={getCategoryIcon(selectedCategory)}></i>
+              <span className="font-medium">
+                {selectedCategory === 'all' ? 'Categorias' : selectedCategory}
+              </span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 text-slate-300 font-mono">
+                {selectedCategory === 'all' ? categoryStats.total : (categoryStats.counts[selectedCategory] || 0)}
+              </span>
+              <i className={`ph-bold ph-caret-down text-[11px] opacity-70 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}></i>
+            </button>
+
+            {selectedCategory !== 'all' && (
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`filter-tab ${selectedCategory === cat ? 'active' : ''}`}
-                aria-label={`Filtrar por ${cat === 'all' ? 'Todos' : cat}`}
+                onClick={() => setSelectedCategory('all')}
+                title="Mostrar todas as categorias"
+                className="text-[11px] text-slate-400 hover:text-white px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/5 transition flex items-center gap-1"
               >
-                {cat === 'all' ? 'Todos' : cat}
+                <i className="ph-bold ph-x"></i>
+                <span>Todos</span>
               </button>
-            ))}
+            )}
+
+            {/* Menu Suspenso em Hover */}
+            {isDropdownOpen && (
+              <div 
+                className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-h-[65vh] overflow-y-auto z-50 p-2 rounded-2xl bg-[#0b0e17]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] animate-in fade-in duration-150"
+              >
+                <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/5 flex items-center justify-between">
+                  <span>Filtrar por Tema</span>
+                  <span>{categoryStats.categories.length - 1} categorias</span>
+                </div>
+
+                <div className="py-1 space-y-0.5">
+                  <button
+                    onClick={() => { setSelectedCategory('all'); setIsDropdownOpen(false); }}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
+                      selectedCategory === 'all'
+                        ? 'bg-white/10 text-white font-semibold'
+                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <i className="ph-bold ph-squares-four text-amber-400"></i>
+                      Todas as categorias
+                    </span>
+                    <span className="text-[11px] font-mono text-slate-400">{categoryStats.total}</span>
+                  </button>
+
+                  {categoryStats.categories.filter(c => c !== 'all').map(cat => {
+                    const count = categoryStats.counts[cat] || 0;
+                    const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => { setSelectedCategory(cat); setIsDropdownOpen(false); }}
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
+                          isSelected
+                            ? 'bg-amber-400/15 text-amber-300 font-semibold border border-amber-400/20'
+                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                        }`}
+                      >
+                        <span className="flex items-center gap-2 truncate">
+                          <i className={`${getCategoryIcon(cat)} ${isSelected ? 'text-amber-400' : 'text-slate-500'}`}></i>
+                          <span className="truncate">{cat}</span>
+                        </span>
+                        <span className="text-[11px] font-mono text-slate-400 ml-2">{count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="relative w-full md:w-72">
