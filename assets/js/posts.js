@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta Terra?",
+        categoria: "Rankings",
+        data: "18 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg",
+        link: "ranking-maiores-fronteiras-do-mundo/",
+        resumo: "Dos 8.891 km entre Estados Unidos e Canadá aos desertos gelados da Eurásia e florestas sul-americanas, conheça as maiores linhas divisórias do globo e seus segredos."
+    },
+    {
+        titulo: "Por Que os Estados Unidos Estão Financiando uma Ferrovia de Bilhões no Porto de Lobito?",
+        categoria: "Geopolítica",
+        data: "18 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Benguela_Bahn.jpg",
+        link: "corredor-de-lobito-ferrovia/",
+        resumo: "Ligando as ricas minas de cobre e cobalto do Congo e da Zâmbia ao Oceano Atlântico em Angola, a Ferrovia de Benguela é o trunfo do Ocidente contra a hegemonia chinesa."
+    },
+    {
+        titulo: "Por Que o Rio Danúbio Cruza Dez Países e Quatro Capitais Como a Maior Artéria da Europa?",
+        categoria: "Curiosidades",
+        data: "18 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/53/View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg",
+        link: "rio-danubio-arteria-europa/",
+        resumo: "Da Floresta Negra na Alemanha ao Delta do Mar Negro na Romênia, o Danúbio é a hidrovia internacional mais vital da Europa, cruzando 2.850 km e quatro capitais nacionais."
+    },
+    {
+        titulo: "Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?",
+        categoria: "Fronteiras",
+        data: "18 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Cabinda_in_Angola_%282024%29.svg",
+        link: "enclave-de-cabinda-angola/",
+        resumo: "Separado do território angolano por uma faixa costeira de 60 km da RDC, o enclave de Cabinda concentra mais de metade de todo o petróleo de Angola sob tensões separatistas."
+    },
+    {
+        titulo: "Por Que o Canal de Corinto é Uma Trincheira na Rocha Onde Navios Quase Tocam as Paredes?",
+        categoria: "Curiosidades",
+        data: "18 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Corinth_Canal_in_Greece.jpg",
+        link: "canal-de-corinto-grecia/",
+        resumo: "Cortado através de 6,3 km de calcário com paredes verticais de quase 90 metros e apenas 24,6 metros de largura, o canal grego transformou o Peloponeso em uma ilha."
+    },
+    {
+        titulo: "Por Que a Namíbia Tem um Dedo de Terra de 450 km Que Corta Quatro Países na África?",
+        categoria: "Fronteiras",
+        data: "18 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dito_di_Caprivi_-_mappa.svg/1280px-Dito_di_Caprivi_-_mappa.svg.png",
+        link: "faixa-de-caprivi-namibia/",
+        resumo: "Em 1890, a Alemanha imperial negociou a Faixa de Caprivi para tentar navegar até o Oceano Índico pelo Rio Zambeze, sem saber que as Cataratas de Vitória bloqueavam o caminho."
+    },
+    {
+        titulo: "Por Que a Passagem de Drake é a Rota Marítima Mais Perigosa e Temida do Planeta?",
+        categoria: "Curiosidades",
+        data: "18 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Drake_passage_en.png",
+        link: "passagem-de-drake-maritima/",
+        resumo: "Entre o Cabo Horn e a Península Antártica, ventos uivantes e ondas de até 25 metros colidem no gargalo de 800 km onde as águas do Pacífico e do Atlântico se comprimem."
+    },
+    {
+        titulo: "Como o Congo Monopolizou 70% do Cobalto Mundial Sem Conseguir Enriquecer Seu Povo?",
+        categoria: "Geopolítica",
+        data: "18 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/DRC_mineral_resources_-_en_version.png",
+        link: "geoeconomia-da-rd-congo/",
+        resumo: "No coração da África, o cinturão mineral de Katanga detém as maiores reservas de cobalto e coltan da Terra, vitais para baterias e celulares em meio à maldição dos recursos."
+    },
+    {
+        titulo: "Por Que a Geografia Montanhosa Faz do Irã Uma Fortaleza Quase Impossível de Invadir?",
+        categoria: "Geopolítica",
+        data: "18 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/94/IranOMC.png",
+        link: "geopolitica-do-ira/",
+        resumo: "Cercado pelo muro dos Montes Zagros e desertos inóspitos de sal, o platô iraniano controla o Estreito de Ormuz e projeta poder assimétrico no Oriente Médio."
+    },
+    {
+        titulo: "Como o Vietnã Resistiu a Três Superpotências e Forjou Suas Fronteiras em Mil Anos de Guerra?",
+        categoria: "História",
+        data: "18 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Vietnam_Topography.png",
+        link: "historia-do-vietna/",
+        resumo: "De mil anos de dominação chinesa à partilha no Paralelo 17 e a vitória sobre franceses e americanos, entenda como o Vietnã forjou seu território em forma de 'S'."
+    },
+    {
         titulo: "Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha da Europa na Ilha de Märket?",
         categoria: "Fronteiras",
         data: "17 Out 2026 - 22:30",
