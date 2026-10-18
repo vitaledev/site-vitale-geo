@@ -5,7 +5,7 @@
     <link rel="canonical" href="https://www.vitalegeo.com.br/blog/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossiês Territoriais | VitaleGeo</title>
+    <title>Posts & Investigações | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
     <meta name="description" content="Investigações territoriais, anomalias de fronteiras, rotas navais e análises geopolíticas documentadas.">
@@ -46,14 +46,14 @@
             
             <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
                 <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
-                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Dossiês</a>
+                <a href="/blog" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Posts</a>
                 <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Ferramentas</a>
-                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
+                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Jogos</a>
                 <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
                 <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
+            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
                 <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
             </a>
         </div>
@@ -71,19 +71,22 @@
             <div class="max-w-6xl mx-auto relative z-10">
                 <div class="max-w-3xl mb-12">
                     <h1 class="text-4xl sm:text-6xl font-heading font-normal text-white leading-tight">
-                        Dossiês Territoriais
+                        Posts & Investigações
                     </h1>
                     <p class="text-base sm:text-lg text-slate-300 mt-4 font-normal leading-relaxed">
                         Investigações documentais sobre enclaves soberanos, rotas navais estratégicas e disputas de fronteira que moldam o equilíbrio geopolítico global.
                     </p>
                 </div>
 
-                <!-- Dossiê em Destaque Principal -->
+                <!-- Camada 1: Post em Destaque Principal (Página 1) -->
                 <div id="hero-post-container" class="mb-14"></div>
             </div>
         </header>
 
-        <!-- Barra de Filtros e Busca Minimalista -->
+        <!-- Âncora de Rolagem Inteligente -->
+        <div id="blog-grid-anchor" class="scroll-mt-28"></div>
+
+        <!-- Camada 2: Barra de Filtros e Busca Minimalista -->
         <div class="sticky top-20 z-30 bg-[#090a0f]/90 backdrop-blur-md border-y border-white/5 py-4 px-6">
             <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <!-- Seletor de Categoria em Hover (Anti-Poluição Visual) -->
@@ -117,19 +120,23 @@
             </div>
         </div>
 
+        <!-- Camada 3: Grade Paginada de Posts (12 itens por camada) -->
         <section class="py-16 px-6 max-w-6xl mx-auto min-h-[50vh]">
             <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="col-span-full text-center text-slate-500 py-12">Carregando acervo...</div>
             </div>
             
             <div id="no-results" class="hidden text-center py-20">
-                <p class="text-lg text-slate-400 mb-4">Nenhum dossiê encontrado com esses termos.</p>
+                <p class="text-lg text-slate-400 mb-4">Nenhum post localizado com esses termos.</p>
                 <button onclick="filterPosts('all'); document.getElementById('search-input').value=''" class="text-amber-400 hover:underline text-sm font-semibold">Limpar filtros</button>
             </div>
+
+            <!-- Camada 4: Paginação Editorial Limpa -->
+            <div id="pagination-controls" class="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-white/[0.06]"></div>
         </section>
     </main>
 
-        <footer class="site-footer">
+    <footer class="site-footer">
         <div class="max-w-6xl mx-auto">
             <div class="site-footer__social">
                 <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
@@ -156,7 +163,10 @@
         const filterContainer = document.getElementById('category-filters');
         const noResults = document.getElementById('no-results');
 
+        const ITEMS_PER_PAGE = 12;
+        let currentPage = 1;
         let currentCategory = 'all';
+        let currentFilteredList = [];
 
         if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
             initBlog();
@@ -165,8 +175,6 @@
         }
 
         function initBlog() {
-            renderHero(blogPosts[0]);
-
             const counts = {};
             blogPosts.forEach(post => {
                 if (post.categoria) {
@@ -195,7 +203,7 @@
                 });
             }
 
-            renderGrid(blogPosts.slice(1)); 
+            filterPosts('all');
         }
 
         function fixLink(link) {
@@ -206,6 +214,7 @@
         }
 
         function renderHero(post) {
+            if (!heroContainer) return;
             const link = fixLink(post.link);
             heroContainer.innerHTML = `
                 <a href="${link}" class="minimal-card block overflow-hidden group">
@@ -216,7 +225,7 @@
                         <div class="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-3 mb-4">
-                                    <span class="text-xs font-semibold text-amber-400">Destaque da Semana</span>
+                                    <span class="text-xs font-semibold text-amber-400">Destaque</span>
                                     <span class="text-slate-600">·</span>
                                     <span class="text-xs text-slate-400">${post.categoria}</span>
                                 </div>
@@ -237,25 +246,59 @@
             `;
         }
 
-        function renderGrid(posts) {
+        function getPageNumbers(current, total) {
+            if (total <= 5) {
+                return Array.from({ length: total }, (_, i) => i + 1);
+            }
+            if (current <= 3) {
+                return [1, 2, 3, 4, '...', total];
+            }
+            if (current >= total - 2) {
+                return [1, '...', total - 3, total - 2, total - 1, total];
+            }
+            return [1, '...', current - 1, current, current + 1, '...', total];
+        }
+
+        function renderGrid(posts, resetPage = false) {
+            if (resetPage) currentPage = 1;
+            currentFilteredList = posts;
             grid.innerHTML = '';
             
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput ? searchInput.value.trim() : '';
+
+            // Hero só aparece na página 1 quando não há busca nem filtro ativo
+            if (heroContainer) {
+                if (currentCategory === 'all' && !searchTerm && currentPage === 1 && blogPosts.length > 0) {
+                    renderHero(blogPosts[0]);
+                    heroContainer.classList.remove('hidden');
+                } else {
+                    heroContainer.classList.add('hidden');
+                }
+            }
+
             if (posts.length === 0) {
                 grid.classList.add('hidden');
                 noResults.classList.remove('hidden');
+                document.getElementById('pagination-controls').innerHTML = '';
                 return;
             }
             
             grid.classList.remove('hidden');
             noResults.classList.add('hidden');
 
-            posts.forEach((post, index) => {
+            const totalPages = Math.max(1, Math.ceil(posts.length / ITEMS_PER_PAGE));
+            if (currentPage > totalPages) currentPage = totalPages;
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const pagePosts = posts.slice(start, start + ITEMS_PER_PAGE);
+
+            pagePosts.forEach((post, index) => {
                 const link = fixLink(post.link);
                 grid.innerHTML += `
-                    <article class="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden" style="animation-delay: ${index * 40}ms">
+                    <article class="minimal-card animate-card-fade flex flex-col h-full group overflow-hidden" style="animation-delay: ${index * 30}ms">
                         <a href="${link}" class="flex flex-col h-full">
                             <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
-                                <img src="${post.img}" alt="${post.titulo}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out">
+                                <img src="${post.img}" alt="${post.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out">
                                 <div class="absolute top-3 left-3 flex items-center gap-2">
                                     <span class="category-pill">${post.categoria}</span>
                                 </div>
@@ -271,7 +314,7 @@
                                 <h3 class="text-lg font-heading text-white group-hover:text-amber-400 transition leading-snug mb-3">${post.titulo}</h3>
                                 <p class="text-sm text-slate-300 line-clamp-2 leading-relaxed flex-grow">${post.resumo}</p>
                                 <div class="mt-6 pt-4 border-t border-white/5 text-xs font-semibold text-slate-400 group-hover:text-white transition flex items-center justify-between">
-                                    <span class="flex items-center gap-1.5">Ler dossiê <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-200"></i></span>
+                                    <span class="flex items-center gap-1.5">Ler post <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-200"></i></span>
                                     <span class="text-[11px] font-mono text-slate-500">VITALEGEO</span>
                                 </div>
                             </div>
@@ -279,10 +322,63 @@
                     </article>
                 `;
             });
+
+            renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+            const paginationContainer = document.getElementById('pagination-controls');
+            if (!paginationContainer) return;
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
+            const pages = getPageNumbers(currentPage, totalPages);
+            let html = `
+                <button type="button" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="pagination-nav-btn" aria-label="Página anterior">
+                    <i class="ph-bold ph-caret-left"></i>
+                    <span class="hidden xs:inline">Anterior</span>
+                </button>
+                <div class="flex items-center gap-1">
+            `;
+
+            pages.forEach((p, idx) => {
+                if (p === '...') {
+                    html += `<span class="px-2 text-slate-600 font-mono text-xs select-none">...</span>`;
+                } else {
+                    const isActive = currentPage === p;
+                    html += `
+                        <button type="button" onclick="goToPage(${p})" class="pagination-num-btn ${isActive ? 'active !bg-amber-400 !text-slate-950 !font-bold !border-amber-400 shadow-lg shadow-amber-400/20' : ''}">${p}</button>
+                    `;
+                }
+            });
+
+            html += `
+                </div>
+                <button type="button" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="pagination-nav-btn" aria-label="Próxima página">
+                    <span class="hidden xs:inline">Próxima</span>
+                    <i class="ph-bold ph-caret-right"></i>
+                </button>
+            `;
+
+            paginationContainer.innerHTML = html;
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderGrid(currentFilteredList);
+            const anchor = document.getElementById('blog-grid-anchor');
+            if (anchor) {
+                const yOffset = -90;
+                const y = anchor.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
         }
 
         function filterPosts(category) {
             currentCategory = category;
+            currentPage = 1;
             
             const triggerLabel = document.getElementById('category-trigger-label');
             const clearBtn = document.getElementById('category-clear-btn');
@@ -304,18 +400,24 @@
                 if (clearBtn) clearBtn.classList.remove('hidden');
             }
 
-            let filtered = blogPosts.slice(1);
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            // Se for padrão, exclui o primeiro (hero da página 1)
+            let filtered = (category === 'all' && !searchTerm) ? blogPosts.slice(1) : blogPosts;
+
             if (category !== 'all') {
-                filtered = filtered.filter(post => post.categoria.toLowerCase() === category.toLowerCase());
+                filtered = filtered.filter(post => post.categoria && post.categoria.toLowerCase() === category.toLowerCase());
             }
             
-            const searchInput = document.getElementById('search-input');
-            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
             if (searchTerm) {
-                filtered = filtered.filter(post => post.titulo.toLowerCase().includes(searchTerm) || post.resumo.toLowerCase().includes(searchTerm));
+                filtered = filtered.filter(post => 
+                    (post.titulo && post.titulo.toLowerCase().includes(searchTerm)) || 
+                    (post.resumo && post.resumo.toLowerCase().includes(searchTerm))
+                );
             }
 
-            renderGrid(filtered);
+            renderGrid(filtered, true);
         }
 
         function searchPosts() {
@@ -331,13 +433,13 @@
                 <i class="ph-fill ph-house text-lg"></i> Início
             </a>
             <a href="/blog" class="flex flex-col items-center gap-1 text-white">
-                <i class="ph-fill ph-newspaper text-lg text-amber-400"></i> Dossiês
+                <i class="ph-fill ph-newspaper text-lg text-amber-400"></i> Posts
             </a>
             <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
                 <i class="ph-fill ph-wrench text-lg"></i> Ferramentas
             </a>
             <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                <i class="ph-fill ph-game-controller text-lg"></i> Simulações
+                <i class="ph-fill ph-game-controller text-lg"></i> Jogos
             </a>
             <a href="/videos" class="flex flex-col items-center gap-1 hover:text-white transition">
                 <i class="ph-fill ph-play-circle text-lg"></i> Vídeos
