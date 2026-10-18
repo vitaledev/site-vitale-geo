@@ -21,13 +21,66 @@ const getCategoryIcon = (cat: string) => {
 const normalizeStr = (str: string) =>
   str ? str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim() : '';
 
+// Gerador inteligente de páginas com elipses
+const getPageNumbers = (current: number, total: number) => {
+  if (total <= 5) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  if (current <= 3) {
+    return [1, 2, 3, 4, '...', total];
+  }
+  if (current >= total - 2) {
+    return [1, '...', total - 3, total - 2, total - 1, total];
+  }
+  return [1, '...', current - 1, current, current + 1, '...', total];
+};
+
 export default function ToolsArchive({ tools }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(6); // 6 itens por página para manter a página ultraleve
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const gridAnchorRef = useRef<HTMLDivElement>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Sincronização inicial com Query Params da URL (ex: ?cat=escala&p=2)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('cat');
+    const pageParam = params.get('p');
+    const queryParam = params.get('q');
+    
+    if (catParam && catParam !== 'all') setSelectedCategory(catParam);
+    if (queryParam) setSearchTerm(queryParam);
+    if (pageParam && !isNaN(Number(pageParam))) {
+      const p = Math.max(1, parseInt(pageParam, 10));
+      setCurrentPage(p);
+    }
+  }, []);
+
+  // Atualizar URL silenciosamente sem recarregar a tela
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    
+    if (selectedCategory !== 'all') params.set('cat', selectedCategory);
+    else params.delete('cat');
+
+    if (currentPage > 1) params.set('p', String(currentPage));
+    else params.delete('p');
+
+    if (searchTerm.trim()) params.set('q', searchTerm.trim());
+    else params.delete('q');
+
+    const newQuery = params.toString();
+    const newUrl = `${window.location.pathname}${newQuery ? `?${newQuery}` : ''}`;
+    window.history.replaceState({}, '', newUrl);
+  }, [selectedCategory, currentPage, searchTerm]);
 
   // Estatísticas de categorias calculadas dinamicamente
   const categoryStats = useMemo(() => {
@@ -111,17 +164,57 @@ export default function ToolsArchive({ tools }: Props) {
     });
   }, [tools, selectedCategory, searchTerm]);
 
+  // Total de páginas e fatiamento leve para performance máxima
+  const totalPages = Math.ceil(filteredTools.length / itemsPerPage) || 1;
+
+  // Ajusta a página caso a filtragem reduza a quantidade de páginas
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
+  const paginatedTools = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredTools.slice(start, start + itemsPerPage);
+  }, [filteredTools, currentPage, itemsPerPage]);
+
+  const startIndex = filteredTools.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(currentPage * itemsPerPage, filteredTools.length);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    if (gridAnchorRef.current) {
+      const yOffset = -100;
+      const element = gridAnchorRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleCategorySelect = (cat: string) => {
+    setSelectedCategory(cat);
+    setCurrentPage(1);
+    setIsDropdownOpen(false);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchTerm(val);
+    setCurrentPage(1);
+  };
+
   const hasActiveFilters = selectedCategory !== 'all' || searchTerm.trim().length > 0;
 
   const resetAllFilters = () => {
     setSelectedCategory('all');
     setSearchTerm('');
+    setCurrentPage(1);
     setIsDropdownOpen(false);
     searchInputRef.current?.focus();
   };
 
   return (
-    <div>
+    <div ref={gridAnchorRef}>
       {/* Barra de Filtro e Busca com Hover Dropdown */}
       <div className="sticky top-20 z-30 bg-[#07090e]/95 backdrop-blur-md border-y border-white/[0.06] py-3 mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
@@ -165,7 +258,7 @@ export default function ToolsArchive({ tools }: Props) {
                   <div className="py-1 space-y-0.5">
                     <button
                       type="button"
-                      onClick={() => { setSelectedCategory('all'); setIsDropdownOpen(false); }}
+                      onClick={() => handleCategorySelect('all')}
                       className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                         selectedCategory === 'all'
                           ? 'bg-sky-400/15 text-sky-300 font-semibold border border-sky-400/25'
@@ -186,7 +279,7 @@ export default function ToolsArchive({ tools }: Props) {
                         <button
                           key={cat}
                           type="button"
-                          onClick={() => { setSelectedCategory(cat); setIsDropdownOpen(false); }}
+                          onClick={() => handleCategorySelect(cat)}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                             isSelected
                               ? 'bg-sky-400/15 text-sky-300 font-semibold border border-sky-400/25'
@@ -210,7 +303,7 @@ export default function ToolsArchive({ tools }: Props) {
             {selectedCategory !== 'all' && (
               <button
                 type="button"
-                onClick={() => setSelectedCategory('all')}
+                onClick={() => handleCategorySelect('all')}
                 title="Mostrar todas as categorias"
                 className="text-[11px] text-slate-400 hover:text-white px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/5 transition flex items-center gap-1"
               >
@@ -228,7 +321,7 @@ export default function ToolsArchive({ tools }: Props) {
               id="search-tools"
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Buscar ferramenta (escala, fuso, distância)..."
               className="w-full bg-white/[0.03] border border-white/10 rounded-full py-2 px-3.5 pl-9 pr-8 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400/50 focus:ring-1 focus:ring-sky-400/30 transition"
             />
@@ -236,7 +329,7 @@ export default function ToolsArchive({ tools }: Props) {
             {searchTerm ? (
               <button
                 type="button"
-                onClick={() => { setSearchTerm(''); searchInputRef.current?.focus(); }}
+                onClick={() => { setSearchTerm(''); setCurrentPage(1); searchInputRef.current?.focus(); }}
                 className="absolute right-2.5 top-2 text-slate-400 hover:text-white p-0.5 rounded-full transition"
                 title="Limpar busca"
               >
@@ -251,39 +344,44 @@ export default function ToolsArchive({ tools }: Props) {
         </div>
 
         {/* Linha de Status e Telemetria de Resultados */}
-        <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
+          <div className="flex items-center gap-2 flex-wrap">
             <span>
-              Exibindo <strong className="text-white font-semibold">{filteredTools.length}</strong> de {tools.length} instrumentos
+              Exibindo <strong className="text-white font-semibold">{startIndex}–{endIndex}</strong> de {filteredTools.length} instrumentos
+              {totalPages > 1 && (
+                <span className="text-slate-500"> (Página {currentPage} de {totalPages})</span>
+              )}
             </span>
             {selectedCategory !== 'all' && (
-              <span className="hidden sm:inline-flex items-center gap-1 text-sky-400">
+              <span className="inline-flex items-center gap-1 text-sky-400">
                 · {selectedCategory}
               </span>
             )}
             {searchTerm && (
-              <span className="hidden sm:inline-flex items-center gap-1 text-amber-300">
+              <span className="inline-flex items-center gap-1 text-amber-300">
                 · Busca: &ldquo;{searchTerm}&rdquo;
               </span>
             )}
           </div>
 
-          {hasActiveFilters && (
-            <button
-              type="button"
-              onClick={resetAllFilters}
-              className="text-slate-400 hover:text-sky-300 transition flex items-center gap-1 underline underline-offset-2 text-[11px]"
-            >
-              <i className="ph-bold ph-arrow-counter-clockwise"></i>
-              Limpar filtros
-            </button>
-          )}
+          <div className="flex items-center gap-3 self-end sm:self-auto">
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={resetAllFilters}
+                className="text-slate-400 hover:text-sky-300 transition flex items-center gap-1 underline underline-offset-2 text-[11px]"
+              >
+                <i className="ph-bold ph-arrow-counter-clockwise"></i>
+                Limpar filtros
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Grade de Ferramentas / Simuladores */}
+      {/* Grade de Ferramentas / Simuladores (Apenas os itens da página ativa para leveza máxima) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredTools.length === 0 ? (
+        {paginatedTools.length === 0 ? (
           <div className="col-span-full text-center py-16 text-slate-400 bg-white/[0.02] rounded-2xl border border-white/5 p-8">
             <div className="w-12 h-12 mx-auto rounded-full bg-sky-400/10 text-sky-400 flex items-center justify-center mb-3">
               <i className="ph-bold ph-compass text-2xl"></i>
@@ -304,7 +402,7 @@ export default function ToolsArchive({ tools }: Props) {
             </button>
           </div>
         ) : (
-          filteredTools.map((tool, index) => (
+          paginatedTools.map((tool, index) => (
             <article
               key={tool.id || tool.link}
               className="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full animate-card-fade"
@@ -319,6 +417,8 @@ export default function ToolsArchive({ tools }: Props) {
                         alt={tool.titulo}
                         loading="lazy"
                         decoding="async"
+                        width="640"
+                        height="400"
                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none"></div>
@@ -330,7 +430,7 @@ export default function ToolsArchive({ tools }: Props) {
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            setSelectedCategory(tool.categoria);
+                            handleCategorySelect(tool.categoria);
                           }}
                           title={`Filtrar por ${tool.categoria}`}
                           className="category-pill text-sky-300 border-sky-400/30 bg-sky-950/85 hover:bg-sky-900 transition flex items-center gap-1.5"
@@ -369,6 +469,82 @@ export default function ToolsArchive({ tools }: Props) {
           ))
         )}
       </div>
+
+      {/* Controles de Paginação Tátil (Ativa apenas quando houver mais de uma página) */}
+      {totalPages > 1 && (
+        <nav aria-label="Navegação entre páginas de ferramentas" className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-8 border-t border-white/[0.06]">
+          {/* Seletor sutil de densidade */}
+          <div className="flex items-center gap-1.5 text-xs text-slate-400 order-2 sm:order-1">
+            <span className="text-[11px] font-mono text-slate-500">Exibir por página:</span>
+            {[6, 9, 12].map(num => (
+              <button
+                key={num}
+                type="button"
+                onClick={() => { setItemsPerPage(num); setCurrentPage(1); }}
+                className={`px-2 py-0.5 rounded text-[11px] font-mono transition ${
+                  itemsPerPage === num
+                    ? 'bg-sky-400/20 text-sky-300 font-bold border border-sky-400/30'
+                    : 'text-slate-500 hover:text-slate-300 bg-white/[0.02]'
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
+
+          {/* Botões Numéricos e Setas */}
+          <div className="flex items-center gap-1.5 order-1 sm:order-2">
+            <button
+              type="button"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="pagination-nav-btn"
+              aria-label="Página anterior"
+            >
+              <i className="ph-bold ph-caret-left"></i>
+              <span className="hidden xs:inline">Anterior</span>
+            </button>
+
+            <div className="flex items-center gap-1">
+              {getPageNumbers(currentPage, totalPages).map((p, idx) => {
+                if (p === '...') {
+                  return (
+                    <span key={`ellipsis-${idx}`} className="px-2 text-slate-600 font-mono text-xs select-none">
+                      ...
+                    </span>
+                  );
+                }
+                const pageNum = p as number;
+                const isActive = currentPage === pageNum;
+                return (
+                  <button
+                    key={pageNum}
+                    type="button"
+                    onClick={() => handlePageChange(pageNum)}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`pagination-num-btn ${
+                      isActive ? 'active !bg-sky-400 !text-slate-950 !font-bold !border-sky-400 shadow-lg shadow-sky-400/20' : ''
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="pagination-nav-btn"
+              aria-label="Próxima página"
+            >
+              <span className="hidden xs:inline">Próxima</span>
+              <i className="ph-bold ph-caret-right"></i>
+            </button>
+          </div>
+        </nav>
+      )}
     </div>
   );
 }
