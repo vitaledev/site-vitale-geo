@@ -3,7 +3,7 @@ titulo: "Por Que o Canal de Corinto é Uma Trincheira na Rocha Onde Navios Quase
 resumo: "Cortado através de 6,3 km de calcário com paredes verticais de quase 90 metros e apenas 24,6 metros de largura, o canal grego transformou o Peloponeso em uma ilha."
 categoria: "Curiosidades"
 data: "18 Out 2026 - 16:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Corinth_Canal_in_Greece.jpg"
+img: "/assets/img/blog/canal-de-corinto-grecia.jpg"
 tempoLeitura: "7 min"
 destaque: false
 ---

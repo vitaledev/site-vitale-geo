@@ -3,7 +3,7 @@ titulo: "Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha 
 resumo: "Um erro de cálculo russo em 1885 colocou um farol em território sueco. Para resolver a gafe sem mexer nas áreas dos países, diplomatas criaram um zigue-zague surreal."
 categoria: "Fronteiras"
 data: "17 Out 2026 - 22:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg/1280px-M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg"
+img: "/assets/img/blog/ilha-market-fronteira-ziguezague.jpg"
 tempoLeitura: "8 min"
 destaque: true
 ---

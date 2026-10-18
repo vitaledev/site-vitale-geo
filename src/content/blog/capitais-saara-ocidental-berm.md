@@ -3,7 +3,7 @@ titulo: "As Duas Capitais do Saara Ocidental: Por Que uma Cidade Fica Atrás de 
 resumo: "Separadas pelo Berm marroquino, El Aaiún e Tifariti simbolizam o conflito entre o controle administrativo de Marrocos e a Frente Polisário no deserto."
 categoria: "Fronteiras"
 data: "16 Out 2026 - 16:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Western_Sahara_walls_en.svg/1280px-Western_Sahara_walls_en.svg.png"
+img: "/assets/img/blog/capitais-saara-ocidental-berm.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

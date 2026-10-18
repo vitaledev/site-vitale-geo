@@ -3,7 +3,7 @@ titulo: "O Enclave de Llívia: A Ilha de Solo Espanhol Cercada pela França nos 
 resumo: "No Tratado dos Pirineus de 1659, a Espanha cedeu 33 vilarejos à França. Llívia foi mantida por Madri por ser classificada como cidade e virou um enclave."
 categoria: "Fronteiras"
 data: "15 Out 2026 - 19:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Llivia_aerial_view.jpg/1280px-Llivia_aerial_view.jpg"
+img: "/assets/img/blog/llivia-enclave-espanhol.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

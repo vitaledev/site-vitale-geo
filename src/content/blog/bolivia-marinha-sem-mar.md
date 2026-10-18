@@ -3,7 +3,7 @@ titulo: "Por que a Bolívia Mantém uma Marinha de Guerra Sem Ter Acesso ao Mar?
 resumo: "Após perder 400 km de litoral para o Chile na Guerra do Pacífico (1879), a Bolívia preserva 5.000 marinheiros no Titicaca e luta por sua saída soberana ao mar."
 categoria: "Geopolítica"
 data: "15 Out 2026 - 16:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Armada_Boliviana_Titicaca.jpg/1280px-Armada_Boliviana_Titicaca.jpg"
+img: "/assets/img/blog/bolivia-marinha-sem-mar.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

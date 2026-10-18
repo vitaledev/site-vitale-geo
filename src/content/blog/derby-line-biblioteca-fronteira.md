@@ -3,7 +3,7 @@ titulo: "A Biblioteca Cortada ao Meio: Onde EUA e Canadá se Cruzam na Sala de L
 resumo: "Na Haskell Free Library, a linha divisória internacional passa pelo chão do palco e entre as estantes de livros em pleno Paralelo 45."
 categoria: "Curiosidades"
 data: "16 Out 2026 - 19:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Haskell_Free_Library_and_Opera_House_2008.jpg/1280px-Haskell_Free_Library_and_Opera_House_2008.jpg"
+img: "/assets/img/blog/derby-line-biblioteca-fronteira.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

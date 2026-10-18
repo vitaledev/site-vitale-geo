@@ -3,7 +3,7 @@ titulo: "Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?"
 resumo: "Desde 1974, a capital do Chipre é cortada ao meio por muros, sacos de areia e uma zona tampão da ONU, separando gregos e turcos após a Operação Átila."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 09:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Cyprus_districts_named.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/nicosia-cidade-dividida.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

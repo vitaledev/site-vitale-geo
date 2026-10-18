@@ -3,7 +3,7 @@ titulo: "Por Que 18 Cabos Submarinos da Internet Mundial Cruzam a Mesma Praia no
 resumo: "A Praia do Futuro, em Fortaleza, é o maior entroncamento digital da América Latina, conectando o continente aos EUA, Europa e África sob ameaça de apagão."
 categoria: "Geopolítica"
 data: "17 Out 2026 - 16:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/2008_submarine_cable_disruption_map.jpg"
+img: "/assets/img/blog/cabos-submarinos-fortaleza.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

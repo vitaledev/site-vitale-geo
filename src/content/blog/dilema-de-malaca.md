@@ -3,7 +3,7 @@ titulo: "Por que 80% do Petróleo da Ásia Pode Ser Bloqueado no Estreito de Mal
 resumo: "Com apenas 2,8 km de largura no seu ponto mais crítico, o Estreito de Malaca concentra 100 mil navios por ano e é o maior gargalo energético de Pequim."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 23:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Strait_of_Malacca_%2836759635615%29.jpg/1280px-Strait_of_Malacca_%2836759635615%29.jpg"
+img: "/assets/img/blog/dilema-de-malaca.jpg"
 tempoLeitura: "10 min"
 destaque: true
 ---

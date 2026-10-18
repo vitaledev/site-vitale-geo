@@ -3,7 +3,7 @@ titulo: "Por Que Submarinos Nucleares Preferem Cruzar os Estreitos de Sunda e Lo
 resumo: "Enquanto Malaca sofre com águas rasas e risco de engarrafamento, as fossas profundas de Lombok e Sunda são as autoestradas secretas de submarinos e superpetroleiros."
 categoria: "Geopolítica"
 data: "17 Out 2026 - 21:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Selat_Sunda_2014_%283%29.jpg/1280px-Selat_Sunda_2014_%283%29.jpg"
+img: "/assets/img/blog/estreitos-sunda-lombok.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

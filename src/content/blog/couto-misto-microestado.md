@@ -3,7 +3,7 @@ titulo: "Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entr
 resumo: "Durante sete séculos, três aldeias entre a Galiza e Trás-os-Montes operaram como território soberano, sem pagar tributos a Madri ou Lisboa até 1864."
 categoria: "Fronteiras"
 data: "17 Out 2026 - 14:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg/1280px-Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg"
+img: "/assets/img/blog/couto-misto-microestado.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

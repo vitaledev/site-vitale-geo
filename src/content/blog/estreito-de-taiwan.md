@@ -3,7 +3,7 @@ titulo: "A Primeira Cadeia de Ilhas: Por que o Estreito de Taiwan é o Lugar Mai
 resumo: "Separando Taiwan da China continental por 160 km, o estreito concentra a produção dos chips mais avançados do mundo e a maior frota naval do planeta."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 17:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Bathymetry_and_ocean_currents_of_the_Taiwan_Strait_and_nearby_areas.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/estreito-de-taiwan.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

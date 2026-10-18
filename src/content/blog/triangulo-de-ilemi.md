@@ -3,7 +3,7 @@ titulo: "O Triângulo de Ilemi: O Pedaço Esquecido da África Que Três Países
 resumo: "Uma área de 14.000 km² no Chifre da África disputada por Quênia, Sudão do Sul e Etiópia desde as demarcações britânicas imprecisas do século XX."
 categoria: "Fronteiras"
 data: "16 Out 2026 - 12:45"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Ilemi_triangle_map.png/1280px-Ilemi_triangle_map.png"
+img: "/assets/img/blog/triangulo-de-ilemi.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

@@ -3,7 +3,7 @@ titulo: "A Fronteira Mais Reta do Mundo: Os 1.000 km do Meridiano 25 Entre Egito
 resumo: "Desenhada com régua em conferências coloniais entre britânicos e italianos, a linha do Meridiano 25 rasga o Saara sem uma curva por mil quilômetros."
 categoria: "Fronteiras"
 data: "15 Out 2026 - 22:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Egypt_Libya_Border.jpg/1280px-Egypt_Libya_Border.jpg"
+img: "/assets/img/blog/fronteira-egito-libia-meridiano-25.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

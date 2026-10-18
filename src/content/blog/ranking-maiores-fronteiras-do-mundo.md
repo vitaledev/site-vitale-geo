@@ -3,7 +3,7 @@ titulo: "Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta T
 resumo: "Dos 8.891 km entre Estados Unidos e Canadá aos desertos gelados da Eurásia e florestas sul-americanas, conheça as maiores linhas divisórias do globo e seus segredos."
 categoria: "Rankings"
 data: "18 Out 2026 - 22:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg"
+img: "/assets/img/blog/ranking-maiores-fronteiras-do-mundo.jpg"
 tempoLeitura: "9 min"
 destaque: false
 ---

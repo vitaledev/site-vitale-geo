@@ -3,7 +3,7 @@ titulo: "Por que o Triângulo do Lítio Virou o Maior Alvo Geopolítico dos Ande
 resumo: "Na fronteira entre Bolívia, Argentina e Chile estão mais de 50% das reservas mundiais de lítio, atraindo a disputa entre EUA, China e União Europeia."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 16:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Triangulo_del_lito.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/triangulo-do-litio.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

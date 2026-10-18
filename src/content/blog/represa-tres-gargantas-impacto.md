@@ -3,7 +3,7 @@ titulo: "A Represa das Três Gargantas: Como a Megaconstrução da China Desacel
 resumo: "Com 39 trilhões de quilos de água represados no rio Yangtze, a megaconstrução chinesa deslocou a massa planetária e alongou o dia terrestre."
 categoria: "Curiosidades"
 data: "15 Out 2026 - 18:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg"
+img: "/assets/img/blog/represa-tres-gargantas-impacto.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

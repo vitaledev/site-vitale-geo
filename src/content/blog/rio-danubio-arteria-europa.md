@@ -3,7 +3,7 @@ titulo: "Por Que o Rio Danúbio Cruza Dez Países e Quatro Capitais Como a Maior
 resumo: "Da Floresta Negra na Alemanha ao Delta do Mar Negro na Romênia, o Danúbio é a hidrovia internacional mais vital da Europa, cruzando 2.850 km e quatro capitais nacionais."
 categoria: "Curiosidades"
 data: "18 Out 2026 - 19:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/5/53/View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg"
+img: "/assets/img/blog/rio-danubio-arteria-europa.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

@@ -3,7 +3,7 @@ titulo: "Svalbard: O Arquipélago no Ártico Onde Qualquer Pessoa Pode Morar Sem
 resumo: "Sob o Tratado de 1920, cidadãos de mais de 40 países podem morar nas ilhas norueguesas sem visto, além do território abrigar o Cofre Global de Sementes."
 categoria: "Curiosidades"
 data: "15 Out 2026 - 12:45"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Longyearbyen_2011.jpg/1280px-Longyearbyen_2011.jpg"
+img: "/assets/img/blog/svalbard-tratado-artico.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

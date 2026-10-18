@@ -3,7 +3,7 @@ titulo: "Por que o Canal do Panamá Secou e Travou os Navios do Mundo?"
 resumo: "Cada navio que cruza o Canal do Panamá consome 200 milhões de litros de água doce. A pior seca do Lago Gatún provocou leilões de US$ 4 milhões por vaga."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 19:00"
-img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Panama_Canal_Map_EN.svg/500px-Panama_Canal_Map_EN.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+img: "/assets/img/blog/crise-canal-do-panama.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

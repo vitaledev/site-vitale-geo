@@ -3,7 +3,7 @@ titulo: "O Corredor de Wakhan: O Dedo de 350 km do Afeganistão que Toca a China
 resumo: "Criado no Grande Jogo como zona tampão entre impérios britânico e russo, esse corredor montanhoso tem o maior salto de fuso horário do mundo (+3h30)."
 categoria: "Fronteiras"
 data: "15 Out 2026 - 11:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wakhan_corridor.jpg/1280px-Wakhan_corridor.jpg"
+img: "/assets/img/blog/corredor-de-wakhan.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

@@ -3,7 +3,7 @@ titulo: "Por Que a Geografia Montanhosa Faz do Irã Uma Fortaleza Quase Impossí
 resumo: "Cercado pelo muro dos Montes Zagros e desertos inóspitos de sal, o platô iraniano controla o Estreito de Ormuz e projeta poder assimétrico no Oriente Médio."
 categoria: "Geopolítica"
 data: "18 Out 2026 - 09:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/9/94/IranOMC.png"
+img: "/assets/img/blog/geopolitica-do-ira.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

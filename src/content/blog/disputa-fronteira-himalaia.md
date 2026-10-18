@@ -3,7 +3,7 @@ titulo: "Por que Soldados Lutam Sem Armas de Fogo na Fronteira Nuclear do Himala
 resumo: "A 4.500 metros de altitude entre Índia e China, soldados de duas potências nucleares patrulham uma fronteira não demarcada de 3.488 km usando porretes."
 categoria: "Fronteiras"
 data: "11 Out 2026 - 11:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/8/82/China_India_CIA_map_border_disputes.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/disputa-fronteira-himalaia.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

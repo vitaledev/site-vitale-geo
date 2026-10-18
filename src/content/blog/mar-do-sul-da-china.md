@@ -3,7 +3,7 @@ titulo: "Como a Linha dos Nove Traços Criou uma Disputa de US$ 3 Trilhões no M
 resumo: "Pequim reivindica 90% de um mar estratégico por onde passa um terço do comércio marítimo global, construindo ilhas artificiais militarizadas."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 22:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Mar_de_China_Meridional_-_BM_WMS_2004.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/mar-do-sul-da-china.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

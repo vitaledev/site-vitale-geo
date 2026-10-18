@@ -3,7 +3,7 @@ titulo: "Por Que o Canal de Kiel é a Rota Marítima Artificial Mais Movimentada
 resumo: "Cruzando a península da Jutlândia por 98 km, o Nord-Ostsee-Kanal economiza 460 km ao redor da Dinamarca e movimenta mais de 30.000 cargueiros por ano."
 categoria: "Curiosidades"
 data: "17 Out 2026 - 12:45"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg/1280px-Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg"
+img: "/assets/img/blog/canal-de-kiel-alemanha.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

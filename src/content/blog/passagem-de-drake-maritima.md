@@ -3,7 +3,7 @@ titulo: "Por Que a Passagem de Drake é a Rota Marítima Mais Perigosa e Temida 
 resumo: "Entre o Cabo Horn e a Península Antártica, ventos uivantes e ondas de até 25 metros colidem no gargalo de 800 km onde as águas do Pacífico e do Atlântico se comprimem."
 categoria: "Curiosidades"
 data: "18 Out 2026 - 12:45"
-img: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Drake_passage_en.png"
+img: "/assets/img/blog/passagem-de-drake-maritima.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

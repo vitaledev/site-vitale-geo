@@ -3,7 +3,7 @@ titulo: "Como o Cazaquistão Monopolizou Quase Metade de Todo o Urânio do Plane
 resumo: "Com 43% da produção mundial de urânio e posição chave no Corredor Médio, a gigante das estepes navega com maestria entre a Rússia, a China e o Ocidente."
 categoria: "Geopolítica"
 data: "17 Out 2026 - 11:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg/1280px-Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg"
+img: "/assets/img/blog/geoeconomia-do-cazaquistao.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

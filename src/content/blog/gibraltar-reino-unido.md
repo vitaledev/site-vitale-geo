@@ -3,7 +3,7 @@ titulo: "Gibraltar: Por que 6 km² de Rocha no Sul da Espanha Pertencem ao Reino
 resumo: "Cravado na entrada do Mediterrâneo, o rochedo de Gibraltar desafia a Espanha desde o Tratado de Utrecht de 1713. Entenda seu aeroporto que corta uma avenida."
 categoria: "Geopolítica"
 data: "15 Out 2026 - 07:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rock_of_Gibraltar_from_Spain.jpg/1280px-Rock_of_Gibraltar_from_Spain.jpg"
+img: "/assets/img/blog/gibraltar-reino-unido.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

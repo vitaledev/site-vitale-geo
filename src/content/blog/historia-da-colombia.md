@@ -3,7 +3,7 @@ titulo: "A História Completa da Colômbia: De Eldorado e Grã-Colômbia ao Paí
 resumo: "Conheça a trajetória épica da Colômbia: a lenda de Eldorado, as guerras de Bolívar, a perda do Panamá e a geografia montanhosa que moldou sua identidade."
 categoria: "História"
 data: "16 Out 2026 - 07:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Gran_Colombia_in_1824.svg/1280px-Gran_Colombia_in_1824.svg.png"
+img: "/assets/img/blog/historia-da-colombia.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

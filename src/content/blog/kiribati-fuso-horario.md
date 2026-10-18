@@ -3,7 +3,7 @@ titulo: "A Linha Internacional de Data e Kiribati: O País Que 'Pulou' um Dia In
 resumo: "Para não ter o território dividido em dias diferentes pela Linha de Data, Kiribati fez uma curva de 3.000 km no fuso em 1995 e virou o primeiro a ver o sol."
 categoria: "Curiosidades"
 data: "15 Out 2026 - 09:15"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/International_Date_Line.png/1280px-International_Date_Line.png"
+img: "/assets/img/blog/kiribati-fuso-horario.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

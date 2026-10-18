@@ -3,7 +3,7 @@ titulo: "Como a Turquia Trancou a Entrada do Mar Negro com a Convenção de Mont
 resumo: "Com apenas 700 metros no ponto mais estreito em Istambul, os Estreitos Turcos são a única chave naval para o Mar Negro sob a Convenção de Montreux."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 14:30"
-img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Turkish_Strait_disambig.svg/500px-Turkish_Strait_disambig.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+img: "/assets/img/blog/estreito-de-bosforo.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

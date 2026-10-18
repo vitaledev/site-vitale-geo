@@ -3,7 +3,7 @@ titulo: "Por Que os Estados Unidos Estão Financiando uma Ferrovia de Bilhões n
 resumo: "Ligando as ricas minas de cobre e cobalto do Congo e da Zâmbia ao Oceano Atlântico em Angola, a Ferrovia de Benguela é o trunfo do Ocidente contra a hegemonia chinesa."
 categoria: "Geopolítica"
 data: "18 Out 2026 - 21:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/9/91/Benguela_Bahn.jpg"
+img: "/assets/img/blog/corredor-de-lobito-ferrovia.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---

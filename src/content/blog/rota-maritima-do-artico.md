@@ -3,7 +3,7 @@ titulo: "Por que o Ártico Virou o Atalho Naval Mais Disputado do Planeta?"
 resumo: "Com o derretimento do gelo marinho, a Rota Marítima do Norte encurta em 15 dias a viagem entre China e Europa, criando uma nova frente de disputa militar."
 categoria: "Geopolítica"
 data: "11 Out 2026 - 13:00"
-img: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_of_the_Arctic_region_showing_the_Northeast_Passage%2C_the_Northern_Sea_Route_and_Northwest_Passage%2C_and_bathymetry.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+img: "/assets/img/blog/rota-maritima-do-artico.jpg"
 tempoLeitura: "10 min"
 destaque: false
 ---

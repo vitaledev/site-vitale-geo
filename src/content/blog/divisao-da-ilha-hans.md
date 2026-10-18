@@ -3,7 +3,7 @@ titulo: "A Ilha de Hans: A Guerra do Uísque Que Terminou em Uma Fronteira de 1,
 resumo: "Depois de 49 anos de Guerra do Uísque, Canadá e Dinamarca assinaram a partilha de uma rocha no Ártico, criando a terceira fronteira terrestre do Canadá."
 categoria: "Fronteiras"
 data: "15 Out 2026 - 14:30"
-img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hans_Island.jpg/1280px-Hans_Island.jpg"
+img: "/assets/img/blog/divisao-da-ilha-hans.jpg"
 tempoLeitura: "8 min"
 destaque: false
 ---
