@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
-import GlobeGraticule from '../../components/shapes/GlobeGraticule.astro';
 import GlobeGridCorner from '../../components/shapes/GlobeGridCorner.astro';
 import TopoRipplesCorner from '../../components/shapes/TopoRipplesCorner.astro';
 import GamesArchive from '../../components/react/GamesArchive';
@@ -35,10 +34,6 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/jogos/';
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-3xl mx-auto relative z-10">
-        <div class="inline-flex items-center gap-2.5 mb-4 px-3.5 py-1.5 rounded-full bg-[#0A192F]/[0.03] border border-[#0A192F]/10">
-          <GlobeGraticule size={20} className="opacity-80" />
-          <span class="text-[11px] font-mono font-semibold tracking-wider text-[#0A192F] uppercase">Simulações Territoriais // Mapa Mudo</span>
-        </div>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] tracking-tight leading-tight">
           Desafios de Fronteira
         </h1>

@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
-import CompassRose from '../../components/shapes/CompassRose.astro';
 import GlobeGridCorner from '../../components/shapes/GlobeGridCorner.astro';
 import TopoRipplesCorner from '../../components/shapes/TopoRipplesCorner.astro';
 import ToolsArchive from '../../components/react/ToolsArchive';
@@ -22,9 +21,6 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/ferramentas/';
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-3xl mx-auto relative z-10">
-        <div class="inline-flex items-center gap-4 mb-4">
-          <CompassRose size={28} animate={true} />
-        </div>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] tracking-tight leading-tight">
           Ferramentas & Simuladores
         </h1>
