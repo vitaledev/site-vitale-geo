@@ -186,6 +186,10 @@ const postsData = sortedPosts.map(p => ({
               <img
                 src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                 alt={video.titulo}
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="360"
                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
               />
               <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">

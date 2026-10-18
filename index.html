@@ -321,7 +321,7 @@
                 videoContainer.innerHTML += `
                     <div class="minimal-card group overflow-hidden cursor-pointer" onclick="window.location.href='/videos'">
                         <div class="aspect-video relative bg-slate-900">
-                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" alt="${video.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" alt="${video.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
                                 <div class="w-12 h-12 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
                                     <i class="ph-fill ph-play text-xl ml-0.5"></i>

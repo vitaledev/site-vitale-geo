@@ -93,9 +93,15 @@
         <section class="py-16 px-6 max-w-6xl mx-auto border-t border-white/5">
             <div class="mb-8">
                 <h2 class="text-2xl sm:text-3xl font-heading text-white">Shorts & Curiosidades Rápidas</h2>
-                <p class="text-sm text-slate-400 mt-1">Fatos geográficos em formato vertical de 60 segundos.</p>
-            </div>
             <div id="shorts-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+            
+            <!-- Botão de Carregamento em Camadas / Progressivo -->
+            <div id="shorts-load-more-container" class="mt-12 text-center flex flex-col items-center justify-center gap-3">
+                <span id="shorts-count-label" class="text-xs text-slate-500 font-mono"></span>
+                <button id="btn-load-more-shorts" onclick="renderNextShortsBatch()" class="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-xs tracking-wide transition flex items-center gap-2 border border-white/10 shadow-lg">
+                    <i class="ph-bold ph-plus-circle text-base text-amber-400"></i> Carregar mais vídeos (+20)
+                </button>
+            </div>
         </section>
     </main>
 
@@ -169,18 +175,43 @@
             });
         }
 
-        if (typeof videosShorts !== 'undefined' && videosShorts.length > 0) {
-            videosShorts.forEach(short => {
+        // Carregamento de Shorts em Camadas Progressivas (Evita sobrecarga e DOM bloat)
+        let shortsRendered = 0;
+        const SHORTS_BATCH_SIZE = 20;
+        const loadMoreBtn = document.getElementById('btn-load-more-shorts');
+        const countLabel = document.getElementById('shorts-count-label');
+
+        function renderNextShortsBatch() {
+            if (typeof videosShorts === 'undefined' || videosShorts.length === 0) return;
+            const nextBatch = videosShorts.slice(shortsRendered, shortsRendered + SHORTS_BATCH_SIZE);
+            
+            nextBatch.forEach(short => {
                 shortsContainer.innerHTML += `
-                    <div onclick="playVideo('${short.id}', 'short')" class="minimal-card group overflow-hidden cursor-pointer relative aspect-[9/16]">
-                        <img src="https://img.youtube.com/vi/${short.id}/hqdefault.jpg" alt="${short.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div onclick="playVideo('${short.id}', 'short')" class="minimal-card group overflow-hidden cursor-pointer relative aspect-[9/16] bg-slate-900 rounded-xl border border-white/5 hover:border-amber-400/30 transition">
+                        <img src="https://img.youtube.com/vi/${short.id}/hqdefault.jpg" alt="${short.titulo}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-red-600 text-white">SHORT</span>
+                        </div>
                         <div class="absolute bottom-0 p-3 w-full">
                             <h3 class="font-medium text-white text-xs leading-snug line-clamp-3">${short.titulo}</h3>
                         </div>
                     </div>`;
             });
+
+            shortsRendered += nextBatch.length;
+            
+            if (countLabel) {
+                countLabel.textContent = `Exibindo ${shortsRendered} de ${videosShorts.length} vídeos curtos`;
+            }
+
+            if (shortsRendered >= videosShorts.length && loadMoreBtn) {
+                loadMoreBtn.style.display = 'none';
+            }
         }
+
+        // Renderiza a primeira camada (20 primeiros shorts)
+        renderNextShortsBatch();
 
         function playVideo(videoId, type) {
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
