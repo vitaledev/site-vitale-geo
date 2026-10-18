@@ -9,9 +9,9 @@ destaque: false
 ---
 
 <figure class="mb-12 not-prose">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg/1280px-Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg" alt="Carta topográfica histórica da região do Couto Misto" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Couto_Misto.JPG/1280px-Couto_Misto.JPG" alt="Marco e monumento histórico em memória do Couto Misto" class="w-full h-auto shadow-2xl border border-white/10 rounded-2xl object-cover aspect-video">
 <figcaption class="text-center font-mono text-[11px] text-slate-500 mt-3 uppercase tracking-wider">
-FIG 01 // Mapa topográfico histórico do território autônomo do Couto Misto na fronteira luso-espanhola.
+FIG 01 // Marco e monumento de pedra comemorativo da república autônoma do Couto Misto na fronteira luso-espanhola.
 </figcaption>
 </figure>
 

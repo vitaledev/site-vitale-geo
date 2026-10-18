@@ -30,7 +30,7 @@ const blogPosts = [
         titulo: "Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?",
         categoria: "Fronteiras",
         data: "18 Out 2026 - 18:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Cabinda_in_Angola_%282024%29.svg",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Angola-Cabinda_border_map.png",
         link: "enclave-de-cabinda-angola/",
         resumo: "Separado do território angolano por uma faixa costeira de 60 km da RDC, o enclave de Cabinda concentra mais de metade de todo o petróleo de Angola sob tensões separatistas."
     },
@@ -62,7 +62,7 @@ const blogPosts = [
         titulo: "Como o Congo Monopolizou 70% do Cobalto Mundial Sem Conseguir Enriquecer Seu Povo?",
         categoria: "Geopolítica",
         data: "18 Out 2026 - 11:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/DRC_mineral_resources_-_en_version.png",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Artisanal_cobalt_miners_in_the_Democratic_Republic_of_Congo.jpg/1280px-Artisanal_cobalt_miners_in_the_Democratic_Republic_of_Congo.jpg",
         link: "geoeconomia-da-rd-congo/",
         resumo: "No coração da África, o cinturão mineral de Katanga detém as maiores reservas de cobalto e coltan da Terra, vitais para baterias e celulares em meio à maldição dos recursos."
     },
@@ -118,7 +118,7 @@ const blogPosts = [
         titulo: "Por Que 18 Cabos Submarinos da Internet Mundial Cruzam a Mesma Praia no Brasil?",
         categoria: "Geopolítica",
         data: "17 Out 2026 - 16:15",
-        img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/2008_submarine_cable_disruption_map.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/JADEQUEIROZ_PRAIA_DO_FUTURO_FORTALEZA_CE_%2840209530245%29.jpg/1280px-JADEQUEIROZ_PRAIA_DO_FUTURO_FORTALEZA_CE_%2840209530245%29.jpg",
         link: "cabos-submarinos-fortaleza/",
         resumo: "A Praia do Futuro, em Fortaleza, é o maior entroncamento digital da América Latina, conectando o continente aos EUA, Europa e África sob ameaça de apagão."
     },
@@ -126,7 +126,7 @@ const blogPosts = [
         titulo: "Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entre Portugal e Espanha?",
         categoria: "Fronteiras",
         data: "17 Out 2026 - 14:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg/1280px-Carta_topogr%C3%A1fica_do_Julgado_de_Montalegre_1836_Fidencio_Bourman_%28Couto_misto%29.jpg",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Couto_Misto.JPG/1280px-Couto_Misto.JPG",
         link: "couto-misto-microestado/",
         resumo: "Durante sete séculos, três aldeias entre a Galiza e Trás-os-Montes operaram como território soberano, sem pagar tributos a Madri ou Lisboa até 1864."
     },
@@ -358,7 +358,7 @@ const blogPosts = [
         titulo: "A Primeira Cadeia de Ilhas: Por que o Estreito de Taiwan é o Lugar Mais Perigoso da Terra",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 17:30",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Bathymetry_and_ocean_currents_of_the_Taiwan_Strait_and_nearby_areas.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/2020-04-23_Seaman_Xi_Chan_stands_lookout_on_the_flight_deck_as_USS_Barry_%28DDG_52%29_transits_the_Taiwan_Strait.jpg/1280px-2020-04-23_Seaman_Xi_Chan_stands_lookout_on_the_flight_deck_as_USS_Barry_%28DDG_52%29_transits_the_Taiwan_Strait.jpg",
         link: "estreito-de-taiwan/",
         resumo: "Separando Taiwan da China continental por 160 km, o estreito concentra a produção dos chips mais avançados do mundo e a maior frota naval do planeta."
     },
@@ -366,7 +366,7 @@ const blogPosts = [
         titulo: "Por que o Triângulo do Lítio Virou o Maior Alvo Geopolítico dos Andes?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 16:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Triangulo_del_lito.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Salar_de_Atacama%2C_Chile.jpg/1280px-Salar_de_Atacama%2C_Chile.jpg",
         link: "triangulo-do-litio/",
         resumo: "Na fronteira entre Bolívia, Argentina e Chile estão mais de 50% das reservas mundiais de lítio, atraindo a disputa entre EUA, China e União Europeia."
     },
@@ -382,7 +382,7 @@ const blogPosts = [
         titulo: "Por que o Ártico Virou o Atalho Naval Mais Disputado do Planeta?",
         categoria: "Geopolítica",
         data: "11 Out 2026 - 13:00",
-        img: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_of_the_Arctic_region_showing_the_Northeast_Passage%2C_the_Northern_Sea_Route_and_Northwest_Passage%2C_and_bathymetry.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yamal_icebreaker_%282225309%29.jpg/1280px-Yamal_icebreaker_%282225309%29.jpg",
         link: "rota-maritima-do-artico/",
         resumo: "Com o derretimento do gelo marinho, a Rota Marítima do Norte encurta em 15 dias a viagem entre China e Europa, criando uma nova frente de disputa militar."
     },
