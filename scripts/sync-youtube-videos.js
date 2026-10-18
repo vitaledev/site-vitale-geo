@@ -10,7 +10,18 @@ const rootDir = path.resolve(__dirname, '..');
 const CHANNEL_ID = 'UCUJyR0FfjyksEgV64hSR3XA';
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 const VIDEOS_JS_PATH = path.join(rootDir, 'assets', 'js', 'videos.js');
+const PUBLIC_VIDEOS_JS_PATH = path.join(rootDir, 'public', 'assets', 'js', 'videos.js');
 const DIST_VIDEOS_JS_PATH = path.join(rootDir, 'dist', 'assets', 'js', 'videos.js');
+
+function saveVideosJs(updatedJs) {
+  const targets = [VIDEOS_JS_PATH, PUBLIC_VIDEOS_JS_PATH, DIST_VIDEOS_JS_PATH];
+  for (const p of targets) {
+    if (fs.existsSync(path.dirname(p))) {
+      fs.writeFileSync(p, updatedJs, 'utf-8');
+      console.log(`  💾 Salvo em: ${path.relative(rootDir, p)}`);
+    }
+  }
+}
 
 function cleanTitle(title) {
   if (!title) return '';
@@ -159,10 +170,7 @@ async function run() {
       }));
 
       const updatedJs = formatVideosJs(newLongos, newShorts);
-      fs.writeFileSync(VIDEOS_JS_PATH, updatedJs, 'utf-8');
-      if (fs.existsSync(path.dirname(DIST_VIDEOS_JS_PATH))) {
-        fs.writeFileSync(DIST_VIDEOS_JS_PATH, updatedJs, 'utf-8');
-      }
+      saveVideosJs(updatedJs);
 
       console.log(`🎉 [VitaleGeo] Modo FULL concluído com sucesso: ${newLongos.length} vídeos longos e ${newShorts.length} shorts atualizados!`);
       return;
@@ -199,10 +207,7 @@ async function run() {
 
   if (totalAdded > 0) {
     const updatedJs = formatVideosJs(longos, shorts);
-    fs.writeFileSync(VIDEOS_JS_PATH, updatedJs, 'utf-8');
-    if (fs.existsSync(path.dirname(DIST_VIDEOS_JS_PATH))) {
-      fs.writeFileSync(DIST_VIDEOS_JS_PATH, updatedJs, 'utf-8');
-    }
+    saveVideosJs(updatedJs);
     console.log(`\n✅ [VitaleGeo] Sincronização concluída com sucesso!`);
     console.log(`   ${addedLongCount} vídeo(s) longo(s) e ${addedShortCount} short(s) adicionados ao banco.`);
     console.log(`   Total atual: ${longos.length} longos e ${shorts.length} shorts.`);
