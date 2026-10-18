@@ -53,7 +53,7 @@ Cinco anos depois, em 1853, acuado por novas pressões financeiras, o México ve
 
 <div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
 <h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">
-<i class="ph-bold ph-scales"></i> Escala Territorial Comparada
+<i class="ph-bold ph-globe"></i> Dimensão Territorial Comparada
 </h4>
 <p class="text-sm text-slate-300 mb-4">
 Veja o tamanho exato do território mexicano atual em comparação com outros gigantes globais no Comparador de Países do VitaleGeo:

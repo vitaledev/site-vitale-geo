@@ -1,0 +1,26 @@
+---
+interface Props {
+  size?: number;
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  className?: string;
+  opacity?: number;
+}
+
+const {
+  size = 480,
+  position = 'top-right',
+  className = '',
+  opacity = 0.35,
+} = Astro.props;
+
+const positionClasses = {
+  'top-right': 'absolute top-0 right-0 pointer-events-none select-none z-0',
+  'top-left': 'absolute top-0 left-0 -scale-x-100 pointer-events-none select-none z-0',
+  'bottom-right': 'absolute bottom-0 right-0 -scale-y-100 pointer-events-none select-none z-0',
+  'bottom-left': 'absolute bottom-0 left-0 -scale-x-100 -scale-y-100 pointer-events-none select-none z-0'
+}[position];
+---
+
+<div class={`${positionClasses} ${className}`} style={`width: ${size}px; height: ${size}px; opacity: ${opacity};`}>
+  <img src="/brand/shapes/topo-ripples-corner.svg" alt="" aria-hidden="true" class="w-full h-full object-contain" />
+</div>

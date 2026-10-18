@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import TopoLines from '../components/TopoLines.astro';
 import CompassRose from '../components/shapes/CompassRose.astro';
-import CoordCrosshair from '../components/shapes/CoordCrosshair.astro';
+import GlobeGridCorner from '../components/shapes/GlobeGridCorner.astro';
+import TopoRipplesCorner from '../components/shapes/TopoRipplesCorner.astro';
 import HomeBlogFilter from '../components/react/HomeBlogFilter';
 import { toolsDB } from '../data/tools';
 import { gamesDB } from '../data/games';
@@ -31,6 +32,8 @@ const postsData = sortedPosts.map(p => ({
   <main class="page-content">
     <!-- Hero Editorial Cartográfico Arejado sobre Fundo Bege -->
     <header class="relative pt-36 sm:pt-44 pb-20 px-6 text-center overflow-hidden">
+      <TopoRipplesCorner position="top-left" size={460} opacity={0.22} />
+      <GlobeGridCorner position="top-right" size={380} opacity={0.18} />
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-4xl mx-auto relative z-10">
@@ -55,11 +58,6 @@ const postsData = sortedPosts.map(p => ({
           <a href="/ferramentas/" class="btn-clean-secondary">
             <i class="ph-bold ph-compass text-[#0A192F]"></i> Ferramentas
           </a>
-        </div>
-
-        <!-- Telemetria Cartográfica de Apoio no Hero -->
-        <div class="mt-12 pt-8 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-center gap-6 max-w-2xl mx-auto opacity-75">
-          <CoordCrosshair coords="23°33'01''S · 46°38'02''W" sublabel="DATUM WGS84 // SP" />
         </div>
       </div>
     </header>

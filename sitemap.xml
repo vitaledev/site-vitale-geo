@@ -152,6 +152,106 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-paises-mais-jovens-do-mundo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/bf/SouthSudanOMC.png</image:loc>
+         <image:title>Quais São as Dez Nações Mais Jovens do Planeta Que Ganharam Assento na ONU?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-ilhas-mais-povoadas-do-mundo/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/4/43/Java_Topography.png</image:loc>
+         <image:title>Quais São as Dez Ilhas Mais Povoadas do Planeta Onde Centenas de Milhões Vivem Cercados Pelo Mar?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-kerch-crimeia/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/c9/Kerch_Strait%2C_Ukraine%2C_Russia%2C_near_natural_colors_satellite_image%2C_LandSat-5%2C_2011-08-30.jpg</image:loc>
+         <image:title>Por Que a Ponte do Estreito de Kerch é o Ponto Mais Vigiado da Guerra no Mar Negro?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/tratado-da-antartida-territorios/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Antarctica%2C_territorial_claims.svg/1280px-Antarctica%2C_territorial_claims.svg.png</image:loc>
+         <image:title>Como o Tratado da Antártida Congelou as Disputas Territoriais de Sete Países no Fim do Mundo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/eurotunel-canal-da-mancha/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/5/55/Chargement_voiture_Eurotunnel.jpg</image:loc>
+         <image:title>Como o Eurotúnel Quebrou Oito Mil Anos de Isolamento Insular da Grã-Bretanha?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ilha-de-sao-martinho-fronteira/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saint_Martin_map.svg/1280px-Saint_Martin_map.svg.png</image:loc>
+         <image:title>Por Que a Menor Ilha Habitada Dividida Entre Dois Países Fica no Caribe?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-dardanelos-chokepoint/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/a/a5/Dardanelles_map2.png</image:loc>
+         <image:title>Por Que o Estreito de Dardanelos Foi Palco da Batalha Mais Sangrenta Pelo Controle dos Mares?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-do-chile/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/75/Copper_mines_in_Chile_-_3.PNG</image:loc>
+         <image:title>Como o Chile Monopolizou as Maiores Reservas de Cobre e Lítio da Terra no Deserto de Atacama?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-de-singapura/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/07/CIA_World_Factbook_map_of_Singapore_%28English%29.png</image:loc>
+         <image:title>Por Que Singapura é Uma Ilha Sem Água Doce Nem Recursos Que Domina o Comércio Mundial?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-do-egito/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/9e/Egypt_relief_location_map.jpg</image:loc>
+         <image:title>Como o Egito Manteve as Mesmas Fronteiras Naturais Por Cinco Mil Anos de História?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/lago-de-constanca-fronteira-triplice/</loc>
       <lastmod>2026-10-18</lastmod>
       <changefreq>weekly</changefreq>

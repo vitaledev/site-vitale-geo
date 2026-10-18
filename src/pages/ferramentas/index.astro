@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
 import CompassRose from '../../components/shapes/CompassRose.astro';
-import ScaleBar from '../../components/shapes/ScaleBar.astro';
+import GlobeGridCorner from '../../components/shapes/GlobeGridCorner.astro';
+import TopoRipplesCorner from '../../components/shapes/TopoRipplesCorner.astro';
 import ToolsArchive from '../../components/react/ToolsArchive';
 import { toolsDB } from '../../data/tools';
 
@@ -10,21 +11,22 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/ferramentas/';
 ---
 
 <Layout
-  title="Instrumentos de Escala & Projeção | VitaleGeo"
-  description="Simuladores de projeção, comparadores de escala territorial e métricas geoespaciais interativas organizadas por categoria e busca."
+  title="Ferramentas & Simuladores Cartográficos | VitaleGeo"
+  description="Simuladores de projeção, comparadores territoriais e métricas geoespaciais interativas organizadas por categoria e busca."
   canonical={canonicalUrl}
 >
   <main class="page-content">
     <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
+      <TopoRipplesCorner position="top-left" size={360} opacity={0.20} />
+      <GlobeGridCorner position="top-right" size={320} opacity={0.16} />
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-3xl mx-auto relative z-10">
         <div class="inline-flex items-center gap-4 mb-4">
           <CompassRose size={28} animate={true} />
-          <ScaleBar className="hidden sm:inline-flex" label="CALIBRAÇÃO DE PROJEÇÃO" />
         </div>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] tracking-tight leading-tight">
-          Instrumentos de Escala
+          Ferramentas & Simuladores
         </h1>
         <p class="text-sm sm:text-base text-[#1F334E] mt-3 max-w-xl mx-auto font-normal leading-relaxed">
           Simuladores interativos para comparar a área real de países, analisar a distorção de Mercator e calcular distâncias geodésicas.

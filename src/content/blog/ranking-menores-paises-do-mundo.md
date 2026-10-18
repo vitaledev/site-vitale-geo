@@ -31,7 +31,7 @@ No xadrez geopolítico global dominado por colossos continentais como Rússia, C
 </div>
 
 
-## 1. Vaticano (0,49 km²) e 2. Mônaco (2,02 km²): Os Titãs da Escala Mínima
+## 1. Vaticano (0,49 km²) e 2. Mônaco (2,02 km²): Os Titãs da Menor Dimensão
 
 No topo absoluto do ranking dos menores territórios soberanos da Terra está o Estado da Cidade do Vaticano, encravado no centro de Roma. Com apenas 0,49 quilômetros quadrados, ele é menor que o Central Park de Nova York e abriga cerca de 800 cidadãos. Criado pelo Tratado de Latrão em 1929 com Mussolini, o Vaticano é uma monarquia teocrática absoluta. Em segundo lugar está o Principado de Mônaco, na Côte d'Azur: com 2,02 km² e mais de 38 mil habitantes, ostenta a maior densidade populacional e a maior concentração de milionários do planeta.
 
@@ -81,7 +81,7 @@ Completam a lista das dez menores nações soberanas as Ilhas Marshall (181 km²
 <div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-white/10 not-prose flex flex-col sm:flex-row items-center justify-between gap-4">
   <div>
     <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block mb-1">Simulação Interativa</span>
-    <h3 class="text-base font-heading font-semibold text-white">Radar de Microestados em Escala Real</h3>
+    <h3 class="text-base font-heading font-semibold text-white">Radar de Microestados em Área Real</h3>
     <p class="text-xs text-slate-400 mt-1">Explore os cálculos no laboratório cartográfico do VitaleGeo.</p>
   </div>
   <a href="/ferramentas/radar-microestados/" class="btn-clean-primary whitespace-nowrap text-xs">

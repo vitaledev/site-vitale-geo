@@ -81,7 +81,7 @@ Nas Américas, apenas dois países não possuem saída soberana para o mar. A Bo
 <div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-white/10 not-prose flex flex-col sm:flex-row items-center justify-between gap-4">
   <div>
     <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block mb-1">Simulação Interativa</span>
-    <h3 class="text-base font-heading font-semibold text-white">Simulador de Escala Territorial de Países Sem Mar</h3>
+    <h3 class="text-base font-heading font-semibold text-white">Simulador Territorial de Países Sem Mar</h3>
     <p class="text-xs text-slate-400 mt-1">Explore os cálculos no laboratório cartográfico do VitaleGeo.</p>
   </div>
   <a href="/ferramentas/comparador-paises/" class="btn-clean-primary whitespace-nowrap text-xs">

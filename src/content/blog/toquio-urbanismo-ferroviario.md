@@ -76,7 +76,7 @@ Acidentes Fatais por 100k hab. | 1,3 | 8,9 | 4,2 |
 <div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-white/10 not-prose flex flex-col sm:flex-row items-center justify-between gap-4">
   <div>
     <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block mb-1">Simulação Interativa</span>
-    <h3 class="text-base font-heading font-semibold text-white">Quantos Cabem? (Comparador de Escala Territorial)</h3>
+    <h3 class="text-base font-heading font-semibold text-white">Quantos Cabem? (Comparador Territorial)</h3>
     <p class="text-xs text-slate-400 mt-1">Explore os cálculos no laboratório cartográfico do VitaleGeo.</p>
   </div>
   <a href="/ferramentas/quantos-cabem/" class="btn-clean-primary whitespace-nowrap text-xs">

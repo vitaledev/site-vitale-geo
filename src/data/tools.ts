@@ -13,14 +13,14 @@ export interface ToolItem {
 export const toolsDB: ToolItem[] = [
   {
     id: "quantos-cabem",
-    titulo: "Quantos Cabem? (Comparador de Escala)",
+    titulo: "Quantos Cabem? (Comparador de Áreas)",
     desc: "Descubra visualmente quantas vezes um país ou estado cabe dentro de outro território com preenchimento em blocos.",
     icon: "ph-bold ph-squares-four",
     cover: "/assets/img/ferramentas/quantos-cabem.jpg",
     link: "/ferramentas/quantos-cabem/",
-    categoria: "Escala & Projeção",
+    categoria: "Projeções & Território",
     badge: "COMPARADOR",
-    tags: ["escala", "tamanho", "area", "comparador", "territorio", "brasil", "superficie", "blocos"]
+    tags: ["dimensao", "tamanho", "area", "comparador", "territorio", "brasil", "superficie", "blocos"]
   },
   {
     id: "comparador-paises",
@@ -29,7 +29,7 @@ export const toolsDB: ToolItem[] = [
     icon: "ph-bold ph-globe-stand",
     cover: "/assets/img/ferramentas/comparador-paises.jpg",
     link: "/ferramentas/comparador-paises/",
-    categoria: "Escala & Projeção",
+    categoria: "Projeções & Território",
     badge: "PROJEÇÃO",
     tags: ["mercator", "distorcao", "projecao", "tamanho real", "paises", "area", "mapa", "groenlandia"]
   },
@@ -90,14 +90,14 @@ export const toolsDB: ToolItem[] = [
   },
   {
     id: "radar-microestados",
-    titulo: "Radar de Microestados em Escala",
+    titulo: "Radar de Microestados & Áreas Reais",
     desc: "Compare o tamanho real dos 18 menores países soberanos do mundo com o Parque Ibirapuera, Copacabana e cidades brasileiras.",
     icon: "ph-bold ph-magnifying-glass-plus",
     cover: "/assets/img/ferramentas/radar-microestados.png",
     link: "/ferramentas/radar-microestados/",
-    categoria: "Escala & Projeção",
+    categoria: "Projeções & Território",
     badge: "MICROESTADOS",
-    tags: ["microestados", "menores paises", "vaticano", "monaco", "escala", "ibirapuera", "copacabana", "san marino"]
+    tags: ["microestados", "menores paises", "vaticano", "monaco", "dimensao", "ibirapuera", "copacabana", "san marino"]
   },
   {
     id: "paradoxo-linha-costa",

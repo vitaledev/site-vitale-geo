@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Quais São as Dez Nações Mais Jovens do Planeta Que Ganharam Assento na ONU?",
+        categoria: "Rankings",
+        data: "20 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/bf/SouthSudanOMC.png",
+        link: "ranking-paises-mais-jovens-do-mundo/",
+        resumo: "Do Sudão do Sul em 2011 a Kosovo, Montenegro, Timor-Leste e o colapso soviético, veja os 10 países mais novos do mundo que redesenharam as fronteiras globais."
+    },
+    {
+        titulo: "Quais São as Dez Ilhas Mais Povoadas do Planeta Onde Centenas de Milhões Vivem Cercados Pelo Mar?",
+        categoria: "Rankings",
+        data: "20 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/43/Java_Topography.png",
+        link: "ranking-ilhas-mais-povoadas-do-mundo/",
+        resumo: "De Java com 156 milhões de pessoas a Honshu e Grã-Bretanha, veja as 10 ilhas mais populosas do globo e como a geografia insular condiciona nações inteiras."
+    },
+    {
+        titulo: "Por Que a Ponte do Estreito de Kerch é o Ponto Mais Vigiado da Guerra no Mar Negro?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Kerch_Strait%2C_Ukraine%2C_Russia%2C_near_natural_colors_satellite_image%2C_LandSat-5%2C_2011-08-30.jpg",
+        link: "estreito-de-kerch-crimeia/",
+        resumo: "Com 19 km de extensão, a megaestrutura construída por Putin conecta a Rússia à Crimeia, controlando a entrada do Mar de Azov como a maior artéria de guerra."
+    },
+    {
+        titulo: "Como o Tratado da Antártida Congelou as Disputas Territoriais de Sete Países no Fim do Mundo?",
+        categoria: "Fronteiras",
+        data: "20 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Antarctica%2C_territorial_claims.svg/1280px-Antarctica%2C_territorial_claims.svg.png",
+        link: "tratado-da-antartida-territorios/",
+        resumo: "Assinado em 1959 no auge da Guerra Fria, o tratado desmilitarizou 14 milhões de km², baniu armas nucleares e congelou pretensões territoriais soberanas."
+    },
+    {
+        titulo: "Como o Eurotúnel Quebrou Oito Mil Anos de Isolamento Insular da Grã-Bretanha?",
+        categoria: "Curiosidades",
+        data: "20 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Chargement_voiture_Eurotunnel.jpg",
+        link: "eurotunel-canal-da-mancha/",
+        resumo: "Com 50,4 km de trilhos sob o mar, o túnel ligou Folkestone a Coquelles em 1994, quebrando o fosso geológico que separava a Grã-Bretanha da Europa desde a Era do Gelo."
+    },
+    {
+        titulo: "Por Que a Menor Ilha Habitada Dividida Entre Dois Países Fica no Caribe?",
+        categoria: "Fronteiras",
+        data: "20 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saint_Martin_map.svg/1280px-Saint_Martin_map.svg.png",
+        link: "ilha-de-sao-martinho-fronteira/",
+        resumo: "Com apenas 87 km², a ilha caribenha abriga a única fronteira terrestre entre França e Países Baixos, aberta e pacífica desde o Tratado de Concórdia de 1648."
+    },
+    {
+        titulo: "Por Que o Estreito de Dardanelos Foi Palco da Batalha Mais Sangrenta Pelo Controle dos Mares?",
+        categoria: "Curiosidades",
+        data: "20 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Dardanelles_map2.png",
+        link: "estreito-de-dardanelos-chokepoint/",
+        resumo: "Com 61 km de comprimento e apenas 1,2 km de largura em Çanakkale, Dardanelos é a porta de saída do Mar Negro regida pelo Tratado de Montreux."
+    },
+    {
+        titulo: "Como o Chile Monopolizou as Maiores Reservas de Cobre e Lítio da Terra no Deserto de Atacama?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Copper_mines_in_Chile_-_3.PNG",
+        link: "geoeconomia-do-chile/",
+        resumo: "Com a maior mina de cobre do mundo e os salares mais secos de lítio em Atacama, o Chile domina as matérias-primas essenciais da eletrificação global."
+    },
+    {
+        titulo: "Por Que Singapura é Uma Ilha Sem Água Doce Nem Recursos Que Domina o Comércio Mundial?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/07/CIA_World_Factbook_map_of_Singapore_%28English%29.png",
+        link: "geopolitica-de-singapura/",
+        resumo: "Expulsa da Malásia em 1965 sem petróleo ou água potável, a microilha transformou sua posição no Estreito de Malaca no maior entreposto marítimo da Terra."
+    },
+    {
+        titulo: "Como o Egito Manteve as Mesmas Fronteiras Naturais Por Cinco Mil Anos de História?",
+        categoria: "História",
+        data: "20 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Egypt_relief_location_map.jpg",
+        link: "historia-do-egito/",
+        resumo: "Da unificação pelo faraó Menés em 3100 a.C. ao Canal de Suez e à era moderna, entenda como o Nilo e os desertos preservaram a nação mais antiga do planeta."
+    },
+    {
         titulo: "Por Que o Lago de Constança é o Único Lugar da Europa Onde Três Países Não Concordam Onde Fica a Fronteira?",
         categoria: "Curiosidades",
         data: "19 Out 2026 - 22:30",

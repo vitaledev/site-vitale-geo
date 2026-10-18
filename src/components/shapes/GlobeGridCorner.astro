@@ -1,0 +1,27 @@
+---
+interface Props {
+  size?: number;
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'inline';
+  className?: string;
+  opacity?: number;
+}
+
+const {
+  size = 320,
+  position = 'top-right',
+  className = '',
+  opacity = 0.22,
+} = Astro.props;
+
+const positionClasses = {
+  'top-right': 'absolute -top-16 -right-16 sm:-top-24 sm:-right-24 pointer-events-none select-none z-0',
+  'top-left': 'absolute -top-16 -left-16 sm:-top-24 sm:-left-24 pointer-events-none select-none z-0',
+  'bottom-right': 'absolute -bottom-16 -right-16 sm:-bottom-24 sm:-right-24 pointer-events-none select-none z-0',
+  'bottom-left': 'absolute -bottom-16 -left-16 sm:-bottom-24 sm:-left-24 pointer-events-none select-none z-0',
+  'inline': 'relative inline-block select-none'
+}[position];
+---
+
+<div class={`${positionClasses} ${className}`} style={`width: ${size}px; height: ${size}px; opacity: ${opacity};`}>
+  <img src="/brand/shapes/globe-grid-minimal.svg" alt="" aria-hidden="true" class="w-full h-full object-contain" />
+</div>
