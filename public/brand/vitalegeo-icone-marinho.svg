@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="VitaleGeo Símbolo">
+  <rect width="100%" height="100%" fill="#F5F2EB"/>
+  <g id="symbol">
+    
+    <!-- Outer Globe 'G' Contour (R=92, stroke=14px, flat cuts) -->
+    <path fill="none" stroke="#0A192F" stroke-width="14" stroke-linecap="butt" stroke-linejoin="miter" d="
+      M 193 63
+      A 92 92 0 1 0 220 128
+      L 154 128
+    "/>
+    
+    <!-- Geodetic Axis Markers (North, South, West) -->
+    <rect x="124" y="16" width="8" height="18" rx="2" fill="#0A192F"/>
+    <rect x="124" y="222" width="8" height="18" rx="2" fill="#0A192F"/>
+    <rect x="16" y="124" width="18" height="8" rx="2" fill="#0A192F"/>
+    
+    <!-- Spherical 3D Grid (Meridian & Parallels) -->
+    <g stroke="#0A192F" opacity="0.32">
+      <ellipse cx="128" cy="128" rx="48" ry="92" fill="none" stroke-width="2.5" stroke-dasharray="5 5"/>
+      <line x1="128" y1="36" x2="128" y2="220" stroke-width="2" stroke-dasharray="4 4"/>
+      <line x1="36" y1="128" x2="136" y2="128" stroke-width="2.5" stroke-dasharray="5 5"/>
+      <path d="M 58 84 C 78 74 102 68 128 68 C 148 68 168 73 184 82" fill="none" stroke-width="2" stroke-dasharray="4 4"/>
+      <path d="M 58 172 C 78 182 102 188 128 188 C 154 188 178 182 198 172" fill="none" stroke-width="2" stroke-dasharray="4 4"/>
+    </g>
+    
+    <!-- Central 'V' Monogram Vector (Symmetrical, 16px weight) -->
+    <path fill="#0A192F" d="
+      M 74 76
+      L 94 76
+      L 118 156
+      L 142 76
+      L 162 76
+      L 128 180
+      C 124 190 112 190 108 180
+      Z
+    "/>
+    
+  </g>
+</svg>

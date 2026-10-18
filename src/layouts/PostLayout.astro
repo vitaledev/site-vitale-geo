@@ -76,31 +76,31 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
 
   <main class="page-content">
     <!-- Header do Artigo Minimalista -->
-    <header class="relative pt-32 sm:pt-40 pb-10 px-6 border-b border-white/[0.05] overflow-hidden">
-      <TopoLines strokeColor="#f59e0b" />
+    <header class="relative pt-32 sm:pt-40 pb-10 px-6 border-b border-[#0A192F]/10 overflow-hidden">
+      <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-4xl mx-auto relative z-10">
         <div class="flex flex-wrap items-center gap-2.5 mb-5">
-          <a href="/blog/" class="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition">
+          <a href="/blog/" class="inline-flex items-center gap-1.5 text-xs text-[#53647C] hover:text-[#0A192F] transition">
             <i class="ph-bold ph-arrow-left"></i> Posts
           </a>
-          <span class="text-slate-700">·</span>
+          <span class="text-[#0A192F]/30">·</span>
           <span class="category-pill">{categoria}</span>
-          <span class="text-slate-700">·</span>
-          <span class="text-xs text-slate-400">{tempoLeitura} de leitura</span>
+          <span class="text-[#0A192F]/30">·</span>
+          <span class="text-xs text-[#53647C] font-mono">{tempoLeitura} de leitura</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-medium text-white leading-[1.15] tracking-tight mb-5">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] leading-[1.15] tracking-tight mb-5">
           {titulo}
         </h1>
 
-        <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-normal mb-6 max-w-3xl">
+        <p class="text-base sm:text-lg text-[#1F334E] leading-relaxed font-normal mb-6 max-w-3xl">
           {resumo}
         </p>
 
-        <div class="flex items-center gap-3 text-xs text-slate-400 border-t border-white/[0.05] pt-4">
-          <span class="text-amber-400 font-medium">{data}</span>
-          <span class="text-slate-700">·</span>
+        <div class="flex items-center gap-3 text-xs text-[#53647C] border-t border-[#0A192F]/10 pt-4">
+          <span class="text-[#C8102E] font-semibold font-mono">{data}</span>
+          <span class="text-[#0A192F]/30">·</span>
           <span>Por VitaleGeo</span>
         </div>
       </div>
@@ -109,7 +109,7 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
     <!-- Imagem de Capa -->
     {img && (
       <div class="max-w-4xl mx-auto px-6 -mt-6 sm:-mt-8 mb-10 relative z-20">
-        <div class="aspect-[16/9] overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-slate-900">
+        <div class="aspect-[16/9] overflow-hidden rounded-xl border border-[#0A192F]/12 shadow-xl bg-[#EDE8DF]">
           <img
             src={img}
             alt={titulo}
@@ -122,12 +122,12 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
 
     <!-- Corpo do Artigo em Tipografia Editorial Arejada -->
     <article class="px-6 pb-16 max-w-3xl mx-auto">
-      <div class="article-body prose prose-invert prose-base sm:prose-lg max-w-none">
+      <div class="article-body prose prose-base sm:prose-lg max-w-none">
         <slot />
       </div>
 
       <!-- Bloco de Anúncio In-Article Oficial do AdSense com Container Reservado Anti-CLS -->
-      <div class="my-14 pt-8 border-t border-white/[0.06] text-center min-h-[280px] flex flex-col justify-center">
+      <div class="my-14 pt-8 border-t border-[#0A192F]/10 text-center min-h-[280px] flex flex-col justify-center">
         <ins class="adsbygoogle"
              style="display:block; text-align:center;"
              data-ad-layout="in-article"
@@ -140,27 +140,27 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
       </div>
 
       <!-- Rodapé do Artigo / Chamada para o YouTube -->
-      <div class="mt-12 p-6 sm:p-8 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
+      <div class="mt-12 p-6 sm:p-8 rounded-xl bg-white border border-[#0A192F]/12 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
         <div>
-          <h3 class="text-base font-heading font-semibold text-white">Gostou deste post?</h3>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Inscreva-se no canal VitaleGeo para análises territoriais e novos mapas.</p>
+          <h3 class="text-base font-heading font-semibold text-[#0A192F]">Gostou deste post?</h3>
+          <p class="text-xs sm:text-sm text-[#53647C] mt-1">Inscreva-se no canal VitaleGeo para análises territoriais e novos mapas.</p>
         </div>
         <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" class="btn-clean-primary flex-shrink-0" aria-label="Acessar o canal VitaleGeo no YouTube">
-          <i class="ph-fill ph-youtube-logo text-red-500 text-base"></i> Canal YouTube
+          <i class="ph-fill ph-youtube-logo text-[#C8102E] text-base"></i> Canal YouTube
         </a>
       </div>
     </article>
 
     <!-- Seção de Posts Relacionados (Cross-Linking Interno para Retenção e SEO) -->
     {relatedPosts.length > 0 && (
-      <section class="border-t border-white/[0.06] bg-white/[0.01] py-16 px-6 [content-visibility:auto] [contain-intrinsic-size:auto_450px]">
+      <section class="border-t border-[#0A192F]/10 bg-[#EDE8DF]/30 py-16 px-6 [content-visibility:auto] [contain-intrinsic-size:auto_450px]">
         <div class="max-w-6xl mx-auto">
           <div class="flex items-baseline justify-between mb-8">
             <div>
-              <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Leituras Recomendadas</span>
-              <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight mt-1">Continue Investigando</h2>
+              <span class="text-xs font-mono text-[#C8102E] uppercase tracking-wider font-semibold">Leituras Recomendadas</span>
+              <h2 class="text-2xl sm:text-3xl font-heading text-[#0A192F] font-bold tracking-tight mt-1">Continue Investigando</h2>
             </div>
-            <a href="/blog/" class="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1">
+            <a href="/blog/" class="text-xs font-semibold text-[#C8102E] hover:text-[#0A192F] transition flex items-center gap-1">
               Ver todos os posts <i class="ph-bold ph-arrow-right text-xs"></i>
             </a>
           </div>
@@ -169,7 +169,7 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
             {relatedPosts.map(post => (
               <a href={`/blog/${post.slug}/`} class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
                 <div>
-                  <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                  <div class="aspect-[16/10] overflow-hidden bg-[#EDE8DF] relative">
                     <img
                       src={post.img}
                       alt={post.titulo}
@@ -182,28 +182,28 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
                       class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out will-change-transform"
                       onerror="this.onerror=null; this.src='/assets/img/publisher/logo-publisher-square-1000.png'; this.classList.add('opacity-40');"
                     />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
                     <div class="absolute top-3 left-3">
-                      <span class="category-pill text-amber-300 border-amber-400/20 bg-amber-950/70">
+                      <span class="category-pill">
                         {post.categoria}
                       </span>
                     </div>
                     <div class="absolute bottom-3 right-3">
-                      <span class="text-[10px] font-mono tracking-wider px-2 py-0.5 rounded-full bg-slate-950/90 text-slate-300 border border-white/10">
+                      <span class="text-[10px] font-mono tracking-wider px-2 py-0.5 rounded-full bg-[#0A192F]/85 text-white border border-white/10">
                         {post.tempoLeitura}
                       </span>
                     </div>
                   </div>
                   <div class="p-5">
-                    <h3 class="text-base font-heading text-white group-hover:text-amber-400 transition mb-2 leading-snug font-semibold line-clamp-2">
+                    <h3 class="text-base font-heading text-[#0A192F] group-hover:text-[#C8102E] transition mb-2 leading-snug font-semibold line-clamp-2">
                       {post.titulo}
                     </h3>
-                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    <p class="text-xs text-[#53647C] line-clamp-2 leading-relaxed">
                       {post.resumo}
                     </p>
                   </div>
                 </div>
-                <div class="px-5 pb-5 pt-0 text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
+                <div class="px-5 pb-5 pt-0 text-xs font-semibold text-[#C8102E] flex items-center gap-1 group-hover:text-[#9b0b21]">
                   Ler post <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
                 </div>
               </a>

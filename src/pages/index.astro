@@ -27,16 +27,16 @@ const postsData = sortedPosts.map(p => ({
   description="Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores de escala real."
 >
   <main class="page-content">
-    <!-- Hero Editorial Minimalista e Arejado -->
+    <!-- Hero Editorial Cartográfico Arejado sobre Fundo Bege -->
     <header class="relative pt-36 sm:pt-44 pb-20 px-6 text-center overflow-hidden">
-      <TopoLines strokeColor="#f59e0b" />
+      <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-bold text-white max-w-4xl mx-auto leading-[1.1] tracking-[-0.03em]">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-bold text-[#0A192F] max-w-4xl mx-auto leading-[1.1] tracking-[-0.03em]">
           Geopolítica, fronteiras e a verdadeira escala do mundo.
         </h1>
         
-        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed mt-6 mb-10">
+        <p class="text-base sm:text-lg text-[#1F334E] max-w-2xl mx-auto font-normal leading-relaxed mt-6 mb-10">
           Investigações territoriais, rotas marítimas estratégicas e as anomalias geográficas que os mapas convencionais omitem.
         </p>
         
@@ -45,25 +45,25 @@ const postsData = sortedPosts.map(p => ({
             Posts <i class="ph-bold ph-arrow-right text-xs"></i>
           </a>
           <a href="/ferramentas/" class="btn-clean-secondary">
-            <i class="ph-bold ph-compass text-sky-400"></i> Ferramentas
+            <i class="ph-bold ph-compass text-[#0A192F]"></i> Ferramentas
           </a>
         </div>
       </div>
     </header>
 
-    <!-- Transição Editorial -->
+    <!-- Transição Editorial Cartográfica -->
     <div class="max-w-6xl mx-auto px-6">
-      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+      <div class="h-px bg-gradient-to-r from-transparent via-[#0A192F]/10 to-transparent"></div>
     </div>
 
     <!-- Seção: Posts Recentes (Ilha React) -->
     <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Posts em Destaque</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Investigações sobre limites soberanos e disputas territoriais.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-[#0A192F] font-bold tracking-tight">Posts em Destaque</h2>
+          <p class="text-xs sm:text-sm text-[#53647C] mt-1">Investigações sobre limites soberanos e disputas territoriais.</p>
         </div>
-        <a href="/blog/" class="text-xs font-semibold text-amber-400 hover:text-white transition flex items-center gap-1">
+        <a href="/blog/" class="text-xs font-semibold text-[#C8102E] hover:text-[#0A192F] transition flex items-center gap-1">
           Ver todos os posts ({postsData.length}) <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
@@ -74,17 +74,17 @@ const postsData = sortedPosts.map(p => ({
 
     <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6">
-      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+      <div class="h-px bg-gradient-to-r from-transparent via-[#0A192F]/10 to-transparent"></div>
     </div>
 
     <!-- Seção: Ferramentas de Escala -->
     <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Instrumentos de Escala</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Comparação de projeções e dimensões territoriais reais.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-[#0A192F] font-bold tracking-tight">Instrumentos de Escala</h2>
+          <p class="text-xs sm:text-sm text-[#53647C] mt-1">Comparação de projeções e dimensões territoriais reais.</p>
         </div>
-        <a href="/ferramentas/" class="text-xs font-semibold text-sky-400 hover:text-white transition flex items-center gap-1">
+        <a href="/ferramentas/" class="text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition flex items-center gap-1">
           Ver todas <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
@@ -94,22 +94,22 @@ const postsData = sortedPosts.map(p => ({
           <a href={tool.link} class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {tool.cover ? (
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                <div class="aspect-[16/10] overflow-hidden bg-[#EDE8DF] relative">
                   <img src={tool.cover} alt={tool.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
-                    <span class="category-pill text-sky-300 border-sky-400/20 bg-sky-950/70">
+                    <span class="category-pill">
                       <i class="ph-bold ph-compass"></i> SIMULADOR
                     </span>
                   </div>
                 </div>
               ) : null}
               <div class="p-5">
-                <h3 class="text-base sm:text-lg font-heading text-white group-hover:text-sky-400 transition mb-1.5 leading-snug font-semibold">{tool.titulo}</h3>
-                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{tool.desc}</p>
+                <h3 class="text-base sm:text-lg font-heading text-[#0A192F] group-hover:text-[#C8102E] transition mb-1.5 leading-snug font-semibold">{tool.titulo}</h3>
+                <p class="text-xs sm:text-sm text-[#53647C] line-clamp-2 leading-relaxed">{tool.desc}</p>
               </div>
             </div>
-            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300">
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-[#0A192F] flex items-center gap-1 group-hover:text-[#C8102E] transition">
               Acessar simulador <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -119,17 +119,17 @@ const postsData = sortedPosts.map(p => ({
 
     <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6">
-      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+      <div class="h-px bg-gradient-to-r from-transparent via-[#0A192F]/10 to-transparent"></div>
     </div>
 
     <!-- Seção: Simulações & Desafios -->
     <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Desafios de Fronteira</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Módulos interativos de reconhecimento territorial e soberania.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-[#0A192F] font-bold tracking-tight">Desafios de Fronteira</h2>
+          <p class="text-xs sm:text-sm text-[#53647C] mt-1">Módulos interativos de reconhecimento territorial e soberania.</p>
         </div>
-        <a href="/jogos/" class="text-xs font-semibold text-emerald-400 hover:text-white transition flex items-center gap-1">
+        <a href="/jogos/" class="text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition flex items-center gap-1">
           Ver todos <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
@@ -139,22 +139,22 @@ const postsData = sortedPosts.map(p => ({
           <a href={game.link} class="editorial-card minimal-card group overflow-hidden flex flex-col justify-between h-full">
             <div>
               {game.cover ? (
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                <div class="aspect-[16/10] overflow-hidden bg-[#EDE8DF] relative">
                   <img src={game.cover} alt={game.titulo} class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
                   <div class="absolute top-3 left-3">
-                    <span class="category-pill text-emerald-300 border-emerald-400/20 bg-emerald-950/70">
+                    <span class="category-pill">
                       <i class="ph-bold ph-game-controller"></i> DESAFIO
                     </span>
                   </div>
                 </div>
               ) : null}
               <div class="p-5">
-                <h3 class="text-base sm:text-lg font-heading text-white group-hover:text-emerald-400 transition mb-1.5 leading-snug font-semibold">{game.titulo}</h3>
-                <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">{game.desc}</p>
+                <h3 class="text-base sm:text-lg font-heading text-[#0A192F] group-hover:text-[#C8102E] transition mb-1.5 leading-snug font-semibold">{game.titulo}</h3>
+                <p class="text-xs sm:text-sm text-[#53647C] line-clamp-2 leading-relaxed">{game.desc}</p>
               </div>
             </div>
-            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-emerald-300">
+            <div class="px-5 pb-5 pt-0 text-xs font-semibold text-[#0A192F] flex items-center gap-1 group-hover:text-[#C8102E] transition">
               Iniciar desafio <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -164,17 +164,17 @@ const postsData = sortedPosts.map(p => ({
 
     <!-- Transição Editorial -->
     <div class="max-w-6xl mx-auto px-6">
-      <div class="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+      <div class="h-px bg-gradient-to-r from-transparent via-[#0A192F]/10 to-transparent"></div>
     </div>
 
     <!-- Seção: Vídeos do Canal -->
     <section class="py-16 md:py-20 px-6 max-w-6xl mx-auto pb-28">
       <div class="flex items-baseline justify-between mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-heading text-white font-bold tracking-tight">Vídeos & Documentários</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Análises cartográficas e investigações em vídeo do canal VitaleGeo.</p>
+          <h2 class="text-2xl sm:text-3xl font-heading text-[#0A192F] font-bold tracking-tight">Vídeos & Documentários</h2>
+          <p class="text-xs sm:text-sm text-[#53647C] mt-1">Análises cartográficas e investigações em vídeo do canal VitaleGeo.</p>
         </div>
-        <a href="/videos/" class="text-xs font-semibold text-red-400 hover:text-white transition flex items-center gap-1">
+        <a href="/videos/" class="text-xs font-semibold text-[#C8102E] hover:text-[#0A192F] transition flex items-center gap-1">
           Ver galeria <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
@@ -182,7 +182,7 @@ const postsData = sortedPosts.map(p => ({
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {videosLongos.slice(0, 3).map(video => (
           <a href={video.link} target="_blank" rel="noopener noreferrer" class="editorial-card minimal-card group overflow-hidden block">
-            <div class="aspect-video relative bg-slate-900 overflow-hidden">
+            <div class="aspect-video relative bg-[#EDE8DF] overflow-hidden">
               <img
                 src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                 alt={video.titulo}
@@ -192,14 +192,14 @@ const postsData = sortedPosts.map(p => ({
                 height="360"
                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
               />
-              <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
-                <div class="w-10 h-10 rounded-full bg-white/90 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
-                  <i class="ph-fill ph-play text-lg ml-0.5 text-red-600"></i>
+              <div class="absolute inset-0 flex items-center justify-center bg-[#0A192F]/20 group-hover:bg-[#0A192F]/10 transition">
+                <div class="w-10 h-10 rounded-full bg-white text-[#C8102E] flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
+                  <i class="ph-fill ph-play text-lg ml-0.5 text-[#C8102E]"></i>
                 </div>
               </div>
             </div>
             <div class="p-4">
-              <h3 class="text-sm sm:text-base font-heading text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug font-semibold">
+              <h3 class="text-sm sm:text-base font-heading text-[#0A192F] group-hover:text-[#C8102E] transition line-clamp-2 leading-snug font-semibold">
                 {video.titulo}
               </h3>
             </div>

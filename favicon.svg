@@ -1,9 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#0f172a"/>
-  <circle cx="32" cy="32" r="23" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="1 0"/>
-  <ellipse cx="32" cy="32" rx="12" ry="23" stroke="#f59e0b" stroke-width="2" opacity="0.85"/>
-  <line x1="9" y1="32" x2="55" y2="32" stroke="#f59e0b" stroke-width="2" opacity="0.85"/>
-  <line x1="14" y1="21" x2="50" y2="21" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
-  <line x1="14" y1="43" x2="50" y2="43" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
-  <circle cx="32" cy="32" r="3" fill="#3b82f6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VitaleGeo">
+  <rect width="64" height="64" rx="16" fill="#F5F2EB"/>
+  <g transform="translate(32, 32) scale(0.25) translate(-128, -128)">
+    <!-- Globo-G Monocromático em Azul Marinho -->
+    <path fill="none" stroke="#0A192F" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter" d="
+      M 193 63
+      A 92 92 0 1 0 220 128
+      L 154 128
+    "/>
+    <rect x="122" y="14" width="12" height="20" rx="3" fill="#0A192F"/>
+    <rect x="122" y="222" width="12" height="20" rx="3" fill="#0A192F"/>
+    <rect x="14" y="122" width="20" height="12" rx="3" fill="#0A192F"/>
+    <ellipse cx="128" cy="128" rx="48" ry="92" fill="none" stroke="#0A192F" stroke-width="4" stroke-dasharray="8 6" opacity="0.35"/>
+    <line x1="128" y1="36" x2="128" y2="220" stroke="#0A192F" stroke-width="3" stroke-dasharray="6 6" opacity="0.3"/>
+    <line x1="36" y1="128" x2="136" y2="128" stroke="#0A192F" stroke-width="4" stroke-dasharray="8 6" opacity="0.35"/>
+    <path fill="#0A192F" d="
+      M 74 76
+      L 94 76
+      L 118 156
+      L 142 76
+      L 162 76
+      L 128 180
+      C 124 190 112 190 108 180
+      Z
+    "/>
+  </g>
 </svg>

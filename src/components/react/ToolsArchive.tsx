@@ -99,7 +99,6 @@ export default function ToolsArchive({ tools }: Props) {
     };
   }, [tools]);
 
-  // Controle de Hover com debounce de 180ms para evitar fechamento acidental
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
@@ -114,7 +113,6 @@ export default function ToolsArchive({ tools }: Props) {
     }, 180);
   };
 
-  // Fechar dropdown ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -128,53 +126,35 @@ export default function ToolsArchive({ tools }: Props) {
     };
   }, []);
 
-  // Atalho de teclado '/' para focar na busca rapidamente
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === '/' && document.activeElement !== searchInputRef.current && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
-        e.preventDefault();
-        searchInputRef.current?.focus();
-      }
-      if (e.key === 'Escape') {
-        if (isDropdownOpen) setIsDropdownOpen(false);
-        if (searchTerm) setSearchTerm('');
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isDropdownOpen, searchTerm]);
-
-  // Filtragem combinada: Categoria + Termo de Busca (normalizado anti-acentos)
+  // Filtragem ultra-rápida combinada por Categoria e Busca Textual
   const filteredTools = useMemo(() => {
-    const normalizedQuery = normalizeStr(searchTerm);
+    const query = normalizeStr(searchTerm);
     return tools.filter(tool => {
-      const matchesCategory =
+      const matchCat =
         selectedCategory === 'all' ||
         normalizeStr(tool.categoria) === normalizeStr(selectedCategory);
 
-      if (!matchesCategory) return false;
-      if (!normalizedQuery) return true;
+      if (!matchCat) return false;
+      if (!query) return true;
 
-      const titleMatch = normalizeStr(tool.titulo).includes(normalizedQuery);
-      const descMatch = normalizeStr(tool.desc).includes(normalizedQuery);
-      const catMatch = normalizeStr(tool.categoria).includes(normalizedQuery);
-      const badgeMatch = tool.badge ? normalizeStr(tool.badge).includes(normalizedQuery) : false;
-      const tagsMatch = tool.tags ? tool.tags.some(tag => normalizeStr(tag).includes(normalizedQuery)) : false;
+      const titleMatch = normalizeStr(tool.titulo).includes(query);
+      const descMatch = normalizeStr(tool.desc).includes(query);
+      const categoryMatch = normalizeStr(tool.categoria).includes(query);
 
-      return titleMatch || descMatch || catMatch || badgeMatch || tagsMatch;
+      return titleMatch || descMatch || categoryMatch;
     });
   }, [tools, selectedCategory, searchTerm]);
 
-  // Total de páginas com quantidade fixa
-  const totalPages = Math.ceil(filteredTools.length / ITEMS_PER_PAGE) || 1;
+  const totalPages = Math.max(1, Math.ceil(filteredTools.length / ITEMS_PER_PAGE));
 
-  // Ajusta a página caso a filtragem reduza a quantidade de páginas
+  // Ajuste automático se página atual exceder o total após filtrar
   useEffect(() => {
     if (currentPage > totalPages) {
-      setCurrentPage(1);
+      setCurrentPage(totalPages);
     }
   }, [totalPages, currentPage]);
 
+  // Pedaço paginado exibido na tela
   const paginatedTools = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredTools.slice(start, start + ITEMS_PER_PAGE);
@@ -214,10 +194,10 @@ export default function ToolsArchive({ tools }: Props) {
   return (
     <div ref={gridAnchorRef}>
       {/* Barra de Filtro e Busca com Hover Dropdown */}
-      <div className="sticky top-20 z-30 bg-[#07090e]/95 backdrop-blur-md border-y border-white/[0.06] py-3 mb-8">
+      <div className="sticky top-20 z-30 bg-[#F5F2EB]/95 backdrop-blur-md border-y border-[#0A192F]/10 py-3 mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
           
-          {/* Lado Esquerdo: Seletor de Categorias em Hover (Anti-Poluição Visual) */}
+          {/* Lado Esquerdo: Seletor de Categorias em Hover */}
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <div
               ref={dropdownRef}
@@ -230,7 +210,7 @@ export default function ToolsArchive({ tools }: Props) {
                 onClick={() => setIsDropdownOpen(prev => !prev)}
                 aria-haspopup="true"
                 aria-expanded={isDropdownOpen}
-                className={`filter-tab group/btn ${selectedCategory !== 'all' ? 'active !bg-sky-400 !text-slate-950 !border-sky-400' : ''}`}
+                className={`filter-tab group/btn ${selectedCategory !== 'all' ? 'active' : ''}`}
                 title="Filtrar instrumentos por categoria"
               >
                 <i className={getCategoryIcon(selectedCategory)}></i>
@@ -238,7 +218,7 @@ export default function ToolsArchive({ tools }: Props) {
                   {selectedCategory === 'all' ? 'Categorias' : selectedCategory}
                 </span>
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
-                  selectedCategory !== 'all' ? 'bg-black/20 text-black font-bold' : 'bg-white/10 text-slate-300'
+                  selectedCategory !== 'all' ? 'bg-white/20 text-white font-bold' : 'bg-white/10 text-slate-700'
                 }`}>
                   {selectedCategory === 'all' ? categoryStats.total : (categoryStats.counts[selectedCategory] || 0)}
                 </span>
@@ -247,8 +227,8 @@ export default function ToolsArchive({ tools }: Props) {
 
               {/* Menu Dropdown Suspenso no Hover */}
               {isDropdownOpen && (
-                <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-h-[65vh] overflow-y-auto z-50 p-2 rounded-2xl bg-[#0b0e17]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] animate-in fade-in duration-150">
-                  <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/5 flex items-center justify-between">
+                <div className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-h-[65vh] overflow-y-auto z-50 p-2 rounded-2xl bg-white/98 backdrop-blur-xl border border-[#0A192F]/15 shadow-[0_20px_50px_rgba(10,25,47,0.12)] animate-in fade-in duration-150">
+                  <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-[#53647C] border-b border-[#0A192F]/10 flex items-center justify-between">
                     <span>Filtrar Instrumentos</span>
                     <span>{categoryStats.categories.length - 1} áreas</span>
                   </div>
@@ -259,15 +239,15 @@ export default function ToolsArchive({ tools }: Props) {
                       onClick={() => handleCategorySelect('all')}
                       className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                         selectedCategory === 'all'
-                          ? 'bg-sky-400/15 text-sky-300 font-semibold border border-sky-400/25'
-                          : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                          ? 'bg-[#0A192F] text-white font-semibold'
+                          : 'text-[#1F334E] hover:bg-[#0A192F]/5 hover:text-[#0A192F]'
                       }`}
                     >
                       <span className="flex items-center gap-2">
-                        <i className="ph-bold ph-squares-four text-sky-400"></i>
+                        <i className="ph-bold ph-squares-four text-[#C8102E]"></i>
                         Todas as categorias
                       </span>
-                      <span className="text-[11px] font-mono text-slate-400">{categoryStats.total}</span>
+                      <span className="text-[11px] font-mono text-[#53647C]">{categoryStats.total}</span>
                     </button>
 
                     {categoryStats.categories.filter(c => c !== 'all').map(cat => {
@@ -280,15 +260,15 @@ export default function ToolsArchive({ tools }: Props) {
                           onClick={() => handleCategorySelect(cat)}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                             isSelected
-                              ? 'bg-sky-400/15 text-sky-300 font-semibold border border-sky-400/25'
-                              : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                              ? 'bg-[#C8102E]/10 text-[#C8102E] font-semibold border border-[#C8102E]/20'
+                              : 'text-[#1F334E] hover:bg-[#0A192F]/5 hover:text-[#0A192F]'
                           }`}
                         >
                           <span className="flex items-center gap-2 truncate">
-                            <i className={`${getCategoryIcon(cat)} ${isSelected ? 'text-sky-400' : 'text-slate-500'}`}></i>
+                            <i className={`${getCategoryIcon(cat)} ${isSelected ? 'text-[#C8102E]' : 'text-[#53647C]'}`}></i>
                             <span className="truncate">{cat}</span>
                           </span>
-                          <span className="text-[11px] font-mono text-slate-400 ml-2">{count}</span>
+                          <span className="text-[11px] font-mono text-[#53647C] ml-2">{count}</span>
                         </button>
                       );
                     })}
@@ -303,7 +283,7 @@ export default function ToolsArchive({ tools }: Props) {
                 type="button"
                 onClick={() => handleCategorySelect('all')}
                 title="Mostrar todas as categorias"
-                className="text-[11px] text-slate-400 hover:text-white px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/5 transition flex items-center gap-1"
+                className="text-[11px] text-[#53647C] hover:text-[#0A192F] px-2.5 py-1.5 rounded-full bg-white hover:bg-white/80 border border-[#0A192F]/10 transition flex items-center gap-1 shadow-sm"
               >
                 <i className="ph-bold ph-x"></i>
                 <span>Todas</span>
@@ -321,37 +301,37 @@ export default function ToolsArchive({ tools }: Props) {
               value={searchTerm}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Buscar ferramenta (escala, fuso, distância)..."
-              className="w-full bg-white/[0.03] border border-white/10 rounded-full py-2 px-3.5 pl-9 pr-8 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400/50 focus:ring-1 focus:ring-sky-400/30 transition"
+              className="w-full bg-white border border-[#0A192F]/15 rounded-full py-2 px-3.5 pl-9 pr-8 text-xs sm:text-sm text-[#0A192F] placeholder-[#53647C]/70 focus:outline-none focus:border-[#C8102E] transition shadow-sm"
             />
-            <i className="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs pointer-events-none"></i>
+            <i className="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-[#53647C] text-xs pointer-events-none"></i>
             {searchTerm ? (
               <button
                 type="button"
                 onClick={() => { setSearchTerm(''); setCurrentPage(1); searchInputRef.current?.focus(); }}
-                className="absolute right-2.5 top-2 text-slate-400 hover:text-white p-0.5 rounded-full transition"
+                className="absolute right-2.5 top-2 text-[#53647C] hover:text-[#0A192F] p-0.5 rounded-full transition"
                 title="Limpar busca"
               >
                 <i className="ph-bold ph-x text-xs"></i>
               </button>
             ) : (
-              <span className="hidden sm:inline-block absolute right-3 top-2.5 text-[10px] font-mono text-slate-500 border border-white/10 px-1.5 py-0.2 rounded">
+              <span className="hidden sm:inline-block absolute right-3 top-2.5 text-[10px] font-mono text-[#53647C] border border-[#0A192F]/10 px-1.5 py-0.2 rounded">
                 /
               </span>
             )}
           </div>
         </div>
 
-        {/* Linha de Filtros Ativos (Apenas quando houver filtro ou busca) */}
+        {/* Linha de Filtros Ativos */}
         {hasActiveFilters && (
-          <div className="flex items-center justify-between gap-2 mt-2.5 pt-2 border-t border-white/[0.03] text-[11px] text-slate-400 font-mono">
+          <div className="flex items-center justify-between gap-2 mt-2.5 pt-2 border-t border-[#0A192F]/10 text-[11px] text-[#53647C] font-mono">
             <div className="flex items-center gap-2">
               {selectedCategory !== 'all' && (
-                <span className="text-sky-400">
+                <span className="text-[#C8102E] font-semibold">
                   {selectedCategory}
                 </span>
               )}
               {searchTerm && (
-                <span className="text-amber-300">
+                <span className="text-[#C8102E] font-semibold">
                   Busca: &ldquo;{searchTerm}&rdquo;
                 </span>
               )}
@@ -359,7 +339,7 @@ export default function ToolsArchive({ tools }: Props) {
             <button
               type="button"
               onClick={resetAllFilters}
-              className="text-slate-400 hover:text-sky-300 transition flex items-center gap-1 text-[11px]"
+              className="text-[#53647C] hover:text-[#C8102E] transition flex items-center gap-1 text-[11px]"
             >
               <i className="ph-bold ph-x"></i>
               Limpar filtros
@@ -371,14 +351,14 @@ export default function ToolsArchive({ tools }: Props) {
       {/* Grade de Ferramentas / Simuladores (6 itens padrão) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedTools.length === 0 ? (
-          <div className="col-span-full text-center py-16 text-slate-400 bg-white/[0.02] rounded-2xl border border-white/5 p-8">
-            <div className="w-12 h-12 mx-auto rounded-full bg-sky-400/10 text-sky-400 flex items-center justify-center mb-3">
+          <div className="col-span-full text-center py-16 text-[#53647C] bg-white rounded-2xl border border-[#0A192F]/10 p-8 shadow-sm">
+            <div className="w-12 h-12 mx-auto rounded-full bg-[#0A192F]/5 text-[#0A192F] flex items-center justify-center mb-3">
               <i className="ph-bold ph-compass text-2xl"></i>
             </div>
-            <h3 className="text-base font-heading font-semibold text-white mb-1">
+            <h3 className="text-base font-heading font-semibold text-[#0A192F] mb-1">
               Nenhuma ferramenta localizada
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-5">
+            <p className="text-xs sm:text-sm text-[#53647C] max-w-md mx-auto mb-5">
               Não encontramos nenhum instrumento correspondente aos filtros atuais. Tente buscar por outros termos como &ldquo;escala&rdquo;, &ldquo;distância&rdquo; ou &ldquo;mercator&rdquo;.
             </p>
             <button
@@ -400,7 +380,7 @@ export default function ToolsArchive({ tools }: Props) {
               <a href={tool.link} className="flex flex-col h-full justify-between">
                 <div>
                   {tool.cover ? (
-                    <div className="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                    <div className="aspect-[16/10] overflow-hidden bg-[#EDE8DF] relative">
                       <img
                         src={tool.cover}
                         alt={tool.titulo}
@@ -410,7 +390,7 @@ export default function ToolsArchive({ tools }: Props) {
                         height="400"
                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
 
                       {/* Pill de Categoria Clicável no Topo Esquerdo */}
                       <div className="absolute top-3 left-3 z-10">
@@ -422,7 +402,7 @@ export default function ToolsArchive({ tools }: Props) {
                             handleCategorySelect(tool.categoria);
                           }}
                           title={`Filtrar por ${tool.categoria}`}
-                          className="category-pill text-sky-300 border-sky-400/30 bg-sky-950/85 hover:bg-sky-900 transition flex items-center gap-1.5"
+                          className="category-pill hover:border-[#C8102E]/40 hover:text-white transition flex items-center gap-1.5"
                         >
                           <i className={getCategoryIcon(tool.categoria)}></i>
                           <span>{tool.categoria}</span>
@@ -432,7 +412,7 @@ export default function ToolsArchive({ tools }: Props) {
                       {/* Badge da Ferramenta no Topo Direito */}
                       {tool.badge && (
                         <div className="absolute top-3 right-3 z-10">
-                          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-sm">
+                          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#0A192F]/85 text-white border border-white/10 backdrop-blur-sm">
                             {tool.badge}
                           </span>
                         </div>
@@ -441,16 +421,16 @@ export default function ToolsArchive({ tools }: Props) {
                   ) : null}
 
                   <div className="p-5">
-                    <h2 className="text-base sm:text-lg font-heading text-white group-hover:text-sky-400 transition mb-2 leading-snug font-semibold">
+                    <h2 className="text-base sm:text-lg font-heading text-[#0A192F] group-hover:text-[#C8102E] transition mb-2 leading-snug font-semibold">
                       {tool.titulo}
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#53647C] line-clamp-2 leading-relaxed">
                       {tool.desc}
                     </p>
                   </div>
                 </div>
 
-                <div className="px-5 pb-5 pt-0 text-xs font-semibold text-sky-400 flex items-center gap-1 group-hover:text-sky-300 transition">
+                <div className="px-5 pb-5 pt-0 text-xs font-semibold text-[#0A192F] flex items-center gap-1 group-hover:text-[#C8102E] transition">
                   Acessar simulador <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                 </div>
               </a>
@@ -461,7 +441,7 @@ export default function ToolsArchive({ tools }: Props) {
 
       {/* Controles de Paginação Centralizados e Limpos */}
       {totalPages > 1 && (
-        <nav aria-label="Navegação entre páginas de ferramentas" className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-white/[0.06]">
+        <nav aria-label="Navegação entre páginas de ferramentas" className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-[#0A192F]/10">
           <button
             type="button"
             onClick={() => handlePageChange(currentPage - 1)}
@@ -477,7 +457,7 @@ export default function ToolsArchive({ tools }: Props) {
             {getPageNumbers(currentPage, totalPages).map((p, idx) => {
               if (p === '...') {
                 return (
-                  <span key={`ellipsis-${idx}`} className="px-2 text-slate-600 font-mono text-xs select-none">
+                  <span key={`ellipsis-${idx}`} className="px-2 text-[#53647C] font-mono text-xs select-none">
                     ...
                   </span>
                 );
@@ -491,7 +471,7 @@ export default function ToolsArchive({ tools }: Props) {
                   onClick={() => handlePageChange(pageNum)}
                   aria-current={isActive ? 'page' : undefined}
                   className={`pagination-num-btn ${
-                    isActive ? 'active !bg-sky-400 !text-slate-950 !font-bold !border-sky-400 shadow-lg shadow-sky-400/20' : ''
+                    isActive ? 'active !bg-[#0A192F] !text-white !font-bold !border-[#0A192F] shadow-md' : ''
                   }`}
                 >
                   {pageNum}

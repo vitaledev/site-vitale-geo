@@ -3,33 +3,33 @@ interface Props {
   strokeColor?: string;
   className?: string;
 }
-const { strokeColor = '#f59e0b', className = '' } = Astro.props;
+const { strokeColor = '#A8C3A6', className = '' } = Astro.props;
 ---
 <div class={`topo-lines-svg ${className}`} aria-hidden="true">
   <svg class="w-full h-full" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <defs>
-      <linearGradient id="topo-amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
-        <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.1"/>
-        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
+      <linearGradient id="topo-sage-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A8C3A6" stop-opacity="0.5"/>
+        <stop offset="60%" stop-color="#A8C3A6" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#A8C3A6" stop-opacity="0.05"/>
       </linearGradient>
-      <linearGradient id="topo-blue-grad" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
-        <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.08"/>
-        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.01"/>
+      <linearGradient id="topo-navy-grad" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#0A192F" stop-opacity="0.25"/>
+        <stop offset="60%" stop-color="#0A192F" stop-opacity="0.1"/>
+        <stop offset="100%" stop-color="#0A192F" stop-opacity="0.02"/>
       </linearGradient>
     </defs>
 
     <!-- Curvas de Nível Geográficas Principais -->
-    <path d="M-100 80 C 250 200, 580 -20, 1020 120 C 1220 190, 1420 80, 1540 130" stroke={strokeColor} stroke-width="1" stroke-dasharray="6 6" opacity="0.6"/>
-    <path d="M-100 160 C 220 280, 680 40, 980 230 C 1260 310, 1400 170, 1540 220" stroke={strokeColor} stroke-width="1.2" opacity="0.75"/>
-    <path d="M-100 260 C 300 390, 720 120, 1080 340 C 1300 400, 1440 280, 1540 330" stroke="url(#topo-blue-grad)" stroke-width="1" opacity="0.7"/>
-    <path d="M-100 380 C 340 520, 780 230, 1120 450 C 1320 510, 1460 390, 1540 430" stroke={strokeColor} stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
-    <path d="M-100 500 C 270 630, 740 380, 1100 590 C 1340 660, 1450 540, 1540 600" stroke={strokeColor} stroke-width="1.2" opacity="0.7"/>
+    <path d="M-100 80 C 250 200, 580 -20, 1020 120 C 1220 190, 1420 80, 1540 130" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="6 6" opacity="0.65"/>
+    <path d="M-100 160 C 220 280, 680 40, 980 230 C 1260 310, 1400 170, 1540 220" stroke={strokeColor} stroke-width="1.4" opacity="0.8"/>
+    <path d="M-100 260 C 300 390, 720 120, 1080 340 C 1300 400, 1440 280, 1540 330" stroke="url(#topo-navy-grad)" stroke-width="1.2" opacity="0.75"/>
+    <path d="M-100 380 C 340 520, 780 230, 1120 450 C 1320 510, 1460 390, 1540 430" stroke={strokeColor} stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"/>
+    <path d="M-100 500 C 270 630, 740 380, 1100 590 C 1340 660, 1450 540, 1540 600" stroke={strokeColor} stroke-width="1.4" opacity="0.75"/>
 
     <!-- Anéis de Relevo Altimétrico -->
-    <ellipse cx="1100" cy="180" rx="70" ry="32" stroke={strokeColor} stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5" transform="rotate(-12 1100 180)" />
-    <ellipse cx="1100" cy="180" rx="42" ry="18" stroke={strokeColor} stroke-width="1" opacity="0.7" transform="rotate(-12 1100 180)" />
-    <ellipse cx="1100" cy="180" rx="18" ry="8" stroke={strokeColor} stroke-width="1.2" opacity="0.85" transform="rotate(-12 1100 180)" />
+    <ellipse cx="1100" cy="180" rx="70" ry="32" stroke={strokeColor} stroke-width="1" stroke-dasharray="3 3" opacity="0.55" transform="rotate(-12 1100 180)" />
+    <ellipse cx="1100" cy="180" rx="42" ry="18" stroke={strokeColor} stroke-width="1.2" opacity="0.75" transform="rotate(-12 1100 180)" />
+    <ellipse cx="1100" cy="180" rx="18" ry="8" stroke={strokeColor} stroke-width="1.4" opacity="0.9" transform="rotate(-12 1100 180)" />
   </svg>
 </div>

@@ -151,9 +151,6 @@ export default function BlogArchive({ posts }: Props) {
   const isDefaultView = !searchTerm && selectedCategory === 'all';
   const featured = posts[0];
 
-  // Na visualização padrão, o primeiro post é o Hero Destaque na página 1.
-  // Os demais compõem a grade paginada.
-  // Em buscas ou categorias filtradas, todos os itens filtrados compõem a grade paginada.
   const baseList = useMemo(() => {
     if (isDefaultView) {
       return filteredPosts.slice(1);
@@ -163,7 +160,6 @@ export default function BlogArchive({ posts }: Props) {
 
   const totalPages = Math.max(1, Math.ceil(baseList.length / ITEMS_PER_PAGE));
 
-  // Ajuste se a página atual ultrapassar o total de páginas
   useEffect(() => {
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
@@ -177,7 +173,7 @@ export default function BlogArchive({ posts }: Props) {
 
   const scrollToGrid = () => {
     if (gridAnchorRef.current) {
-      const yOffset = -90; // offset para compensar a navbar fixa e sticky
+      const yOffset = -90;
       const element = gridAnchorRef.current;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
@@ -210,7 +206,7 @@ export default function BlogArchive({ posts }: Props) {
         <div className="mb-12">
           <a href={`/blog/${featured.slug || featured.id}/`} className="minimal-card block overflow-hidden group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-              <div className="lg:col-span-7 aspect-[16/10] lg:aspect-auto overflow-hidden bg-slate-900 relative min-h-[260px] lg:min-h-[340px]">
+              <div className="lg:col-span-7 aspect-[16/10] lg:aspect-auto overflow-hidden bg-[#EDE8DF] relative min-h-[260px] lg:min-h-[340px]">
                 <img
                   src={featured.img}
                   alt={featured.titulo}
@@ -220,30 +216,30 @@ export default function BlogArchive({ posts }: Props) {
                   }}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
                 <div className="absolute top-4 left-4">
                   <span className="category-pill">{featured.categoria}</span>
                 </div>
               </div>
               <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 mb-3">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-[#C8102E] mb-3 font-mono">
                     <span>Destaque</span>
-                    <span className="text-slate-600">·</span>
-                    <span className="text-slate-400">{featured.data.split('-')[0].trim()}</span>
+                    <span className="text-[#0A192F]/30">·</span>
+                    <span className="text-[#53647C]">{featured.data.split('-')[0].trim()}</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-semibold text-white group-hover:text-amber-400 transition leading-snug mb-3">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-semibold text-[#0A192F] group-hover:text-[#C8102E] transition leading-snug mb-3">
                     {featured.titulo}
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-[#53647C] leading-relaxed line-clamp-3">
                     {featured.resumo}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/[0.04] flex items-center justify-between text-xs font-semibold text-amber-400">
-                  <span className="flex items-center gap-1 group-hover:text-amber-300">
+                <div className="mt-6 pt-4 border-t border-[#0A192F]/10 flex items-center justify-between text-xs font-semibold text-[#C8102E]">
+                  <span className="flex items-center gap-1 group-hover:text-[#9b0b21]">
                     Ler investigação <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                   </span>
-                  <span className="text-xs text-slate-400 font-normal">{featured.tempoLeitura || '5 min'}</span>
+                  <span className="text-xs text-[#53647C] font-mono font-normal">{featured.tempoLeitura || '5 min'}</span>
                 </div>
               </div>
             </div>
@@ -255,9 +251,9 @@ export default function BlogArchive({ posts }: Props) {
       <div ref={gridAnchorRef} className="scroll-mt-28"></div>
 
       {/* Camada 2: Barra de Filtros e Busca com Seletor em Hover */}
-      <div className="sticky top-20 z-30 bg-[#07090e]/95 backdrop-blur-md border-y border-white/[0.06] py-3 mb-8">
+      <div className="sticky top-20 z-30 bg-[#F5F2EB]/95 backdrop-blur-md border-y border-[#0A192F]/10 py-3 mb-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-3">
-          {/* Seletor Compacto em Hover (Anti-Poluição Visual) */}
+          {/* Seletor Compacto em Hover */}
           <div 
             ref={dropdownRef}
             className="relative flex items-center gap-2 w-full md:w-auto"
@@ -277,7 +273,7 @@ export default function BlogArchive({ posts }: Props) {
               <span className="font-medium">
                 {selectedCategory === 'all' ? 'Categorias' : selectedCategory}
               </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 text-slate-300 font-mono">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/20 text-white font-mono font-bold">
                 {selectedCategory === 'all' ? categoryStats.total : (categoryStats.counts[selectedCategory] || 0)}
               </span>
               <i className={`ph-bold ph-caret-down text-[11px] opacity-70 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}></i>
@@ -288,7 +284,7 @@ export default function BlogArchive({ posts }: Props) {
                 type="button"
                 onClick={() => handleCategorySelect('all')}
                 title="Mostrar todas as categorias"
-                className="text-[11px] text-slate-400 hover:text-white px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/5 transition flex items-center gap-1"
+                className="text-[11px] text-[#53647C] hover:text-[#0A192F] px-2.5 py-1.5 rounded-full bg-white hover:bg-white/80 border border-[#0A192F]/10 transition flex items-center gap-1 shadow-sm"
               >
                 <i className="ph-bold ph-x"></i>
                 <span>Todos</span>
@@ -298,9 +294,9 @@ export default function BlogArchive({ posts }: Props) {
             {/* Menu Suspenso em Hover */}
             {isDropdownOpen && (
               <div 
-                className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-h-[65vh] overflow-y-auto z-50 p-2 rounded-2xl bg-[#0b0e17]/95 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] animate-in fade-in duration-150"
+                className="absolute left-0 top-full mt-2 w-72 sm:w-80 max-h-[65vh] overflow-y-auto z-50 p-2 rounded-2xl bg-white/98 backdrop-blur-xl border border-[#0A192F]/15 shadow-[0_20px_50px_rgba(10,25,47,0.12)] animate-in fade-in duration-150"
               >
-                <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/5 flex items-center justify-between">
+                <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-[#53647C] border-b border-[#0A192F]/10 flex items-center justify-between">
                   <span>Filtrar por Tema</span>
                   <span>{categoryStats.categories.length - 1} categorias</span>
                 </div>
@@ -311,15 +307,15 @@ export default function BlogArchive({ posts }: Props) {
                     onClick={() => handleCategorySelect('all')}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                       selectedCategory === 'all'
-                        ? 'bg-white/10 text-white font-semibold'
-                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                        ? 'bg-[#0A192F] text-white font-semibold'
+                        : 'text-[#1F334E] hover:bg-[#0A192F]/5 hover:text-[#0A192F]'
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      <i className="ph-bold ph-squares-four text-amber-400"></i>
+                      <i className="ph-bold ph-squares-four text-[#C8102E]"></i>
                       Todas as categorias
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">{categoryStats.total}</span>
+                    <span className="text-[11px] font-mono text-[#53647C]">{categoryStats.total}</span>
                   </button>
 
                   {categoryStats.categories.filter(c => c !== 'all').map(cat => {
@@ -332,15 +328,15 @@ export default function BlogArchive({ posts }: Props) {
                         onClick={() => handleCategorySelect(cat)}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm text-left transition ${
                           isSelected
-                            ? 'bg-amber-400/15 text-amber-300 font-semibold border border-amber-400/20'
-                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                            ? 'bg-[#C8102E]/10 text-[#C8102E] font-semibold border border-[#C8102E]/20'
+                            : 'text-[#1F334E] hover:bg-[#0A192F]/5 hover:text-[#0A192F]'
                         }`}
                       >
                         <span className="flex items-center gap-2 truncate">
-                          <i className={`${getCategoryIcon(cat)} ${isSelected ? 'text-amber-400' : 'text-slate-500'}`}></i>
+                          <i className={`${getCategoryIcon(cat)} ${isSelected ? 'text-[#C8102E]' : 'text-[#53647C]'}`}></i>
                           <span className="truncate">{cat}</span>
                         </span>
-                        <span className="text-[11px] font-mono text-slate-400 ml-2">{count}</span>
+                        <span className="text-[11px] font-mono text-[#53647C] ml-2">{count}</span>
                       </button>
                     );
                   })}
@@ -359,24 +355,24 @@ export default function BlogArchive({ posts }: Props) {
                 setCurrentPage(1);
               }}
               placeholder="Buscar post ou país..."
-              className="w-full bg-white/[0.03] border border-white/10 rounded-full py-2 px-3.5 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400/50 transition"
+              className="w-full bg-white border border-[#0A192F]/15 rounded-full py-2 px-3.5 pl-9 text-xs sm:text-sm text-[#0A192F] placeholder-[#53647C]/70 focus:outline-none focus:border-[#C8102E] transition shadow-sm"
             />
-            <i className="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+            <i className="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-[#53647C] text-xs"></i>
           </div>
         </div>
 
-        {/* Indicador Sutil de Filtro Ativo (Anti-Fluff: só visível quando houver filtro) */}
+        {/* Indicador Sutil de Filtro Ativo */}
         {(selectedCategory !== 'all' || searchTerm.trim()) && (
-          <div className="flex items-center justify-between text-xs pt-3 mt-3 border-t border-white/5">
+          <div className="flex items-center justify-between text-xs pt-3 mt-3 border-t border-[#0A192F]/10">
             <div className="flex items-center gap-2 truncate">
-              <span className="text-slate-400">Filtro ativo:</span>
+              <span className="text-[#53647C]">Filtro ativo:</span>
               {selectedCategory !== 'all' && (
-                <span className="text-amber-300 font-medium">
+                <span className="text-[#C8102E] font-semibold">
                   {selectedCategory}
                 </span>
               )}
               {searchTerm.trim() && (
-                <span className="text-amber-300 font-medium">
+                <span className="text-[#C8102E] font-semibold">
                   Busca: &ldquo;{searchTerm}&rdquo;
                 </span>
               )}
@@ -384,7 +380,7 @@ export default function BlogArchive({ posts }: Props) {
             <button
               type="button"
               onClick={resetAllFilters}
-              className="text-slate-400 hover:text-amber-300 transition flex items-center gap-1 text-[11px] flex-shrink-0"
+              className="text-[#53647C] hover:text-[#C8102E] transition flex items-center gap-1 text-[11px] flex-shrink-0"
             >
               <i className="ph-bold ph-x"></i>
               Limpar filtros
@@ -393,13 +389,13 @@ export default function BlogArchive({ posts }: Props) {
         )}
       </div>
 
-      {/* Camada 3: Grade Paginada de Posts (12 itens por camada para máxima fluidez) */}
+      {/* Camada 3: Grade Paginada de Posts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedPosts.length === 0 ? (
-          <div className="col-span-full text-center py-16 text-slate-400 bg-white/[0.02] rounded-2xl border border-white/5 p-8">
-            <i className="ph-duotone ph-map-pin-line text-3xl mb-2 block text-amber-400/60"></i>
-            <p className="text-base font-heading font-semibold text-white mb-1">Nenhum post localizado.</p>
-            <p className="text-xs text-slate-400 mb-4">Tente buscar por termos mais genéricos.</p>
+          <div className="col-span-full text-center py-16 text-[#53647C] bg-white rounded-2xl border border-[#0A192F]/10 p-8 shadow-sm">
+            <i className="ph-duotone ph-map-pin-line text-3xl mb-2 block text-[#C8102E]/60"></i>
+            <p className="text-base font-heading font-semibold text-[#0A192F] mb-1">Nenhum post localizado.</p>
+            <p className="text-xs text-[#53647C] mb-4">Tente buscar por termos mais genéricos.</p>
             <button
               type="button"
               onClick={resetAllFilters}
@@ -417,7 +413,7 @@ export default function BlogArchive({ posts }: Props) {
               style={{ animationDelay: `${index * 30}ms` }}
             >
               <a href={`/blog/${post.slug || post.id}/`} className="flex flex-col h-full">
-                <div className="aspect-[16/10] overflow-hidden bg-slate-900 relative">
+                <div className="aspect-[16/10] overflow-hidden bg-[#EDE8DF] relative">
                   <img
                     src={post.img}
                     alt={post.titulo}
@@ -429,7 +425,7 @@ export default function BlogArchive({ posts }: Props) {
                     }}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent pointer-events-none"></div>
 
                   <div className="absolute top-3 left-3 z-10">
                     <button
@@ -440,7 +436,7 @@ export default function BlogArchive({ posts }: Props) {
                         handleCategorySelect(post.categoria);
                       }}
                       title={`Filtrar por ${post.categoria}`}
-                      className="category-pill hover:border-amber-400/40 hover:text-amber-300 transition flex items-center gap-1"
+                      className="category-pill hover:border-[#C8102E]/40 hover:text-white transition flex items-center gap-1"
                     >
                       <i className={getCategoryIcon(post.categoria)}></i>
                       <span>{post.categoria}</span>
@@ -449,20 +445,20 @@ export default function BlogArchive({ posts }: Props) {
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
+                  <div className="flex items-center justify-between text-xs text-[#53647C] mb-2 font-mono">
                     <span>{post.data.split('-')[0].trim()}</span>
                     <span>{post.tempoLeitura || '5 min'}</span>
                   </div>
                   
-                  <h3 className="text-base sm:text-lg font-heading text-white group-hover:text-amber-400 transition leading-snug mb-2 font-semibold">
+                  <h3 className="text-base sm:text-lg font-heading text-[#0A192F] group-hover:text-[#C8102E] transition leading-snug mb-2 font-semibold">
                     {post.titulo}
                   </h3>
                   
-                  <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed flex-grow">
+                  <p className="text-xs sm:text-sm text-[#53647C] line-clamp-2 leading-relaxed flex-grow">
                     {post.resumo}
                   </p>
                   
-                  <div className="mt-4 pt-3 border-t border-white/[0.04] text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-amber-300">
+                  <div className="mt-4 pt-3 border-t border-[#0A192F]/10 text-xs font-semibold text-[#C8102E] flex items-center gap-1 group-hover:text-[#9b0b21]">
                     Ler post <i className="ph-bold ph-arrow-right group-hover:translate-x-1 transition duration-150"></i>
                   </div>
                 </div>
@@ -474,7 +470,7 @@ export default function BlogArchive({ posts }: Props) {
 
       {/* Camada 4: Controles de Paginação Editorial Leve */}
       {totalPages > 1 && (
-        <nav aria-label="Navegação entre páginas de posts" className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-white/[0.06]">
+        <nav aria-label="Navegação entre páginas de posts" className="flex items-center justify-center gap-2 mt-12 pt-8 border-t border-[#0A192F]/10">
           <button
             type="button"
             onClick={() => handlePageChange(currentPage - 1)}
@@ -490,7 +486,7 @@ export default function BlogArchive({ posts }: Props) {
             {getPageNumbers(currentPage, totalPages).map((p, idx) => {
               if (p === '...') {
                 return (
-                  <span key={`ellipsis-${idx}`} className="px-2 text-slate-600 font-mono text-xs select-none">
+                  <span key={`ellipsis-${idx}`} className="px-2 text-[#53647C] font-mono text-xs select-none">
                     ...
                   </span>
                 );
@@ -504,7 +500,7 @@ export default function BlogArchive({ posts }: Props) {
                   onClick={() => handlePageChange(pageNum)}
                   aria-current={isActive ? 'page' : undefined}
                   className={`pagination-num-btn ${
-                    isActive ? 'active !bg-amber-400 !text-slate-950 !font-bold !border-amber-400 shadow-lg shadow-amber-400/20' : ''
+                    isActive ? 'active !bg-[#0A192F] !text-white !font-bold !border-[#0A192F] shadow-md' : ''
                   }`}
                 >
                   {pageNum}
