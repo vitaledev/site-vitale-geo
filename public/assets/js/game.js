@@ -49,6 +49,14 @@ const gamesDB = [
         badge: "DUELO DE DADOS"
     },
     {
+        titulo: "Duelo de Latitudes",
+        desc: "Quem está mais ao norte? Quem está mais ao sul? Desmistifique as coordenadas e paralelos climáticos do globo.",
+        icon: "ph-fill ph-compass",
+        cover: "/assets/img/jogos/duelo-latitudes.svg",
+        link: "/jogos/duelo-latitudes/",
+        badge: "NOVO DUELO"
+    },
+    {
         titulo: "Quiz Geopolítico",
         desc: "Mais de 1.000 perguntas sobre estreitos, canais, limites territoriais e geografia mundial.",
         icon: "ph-fill ph-brain",

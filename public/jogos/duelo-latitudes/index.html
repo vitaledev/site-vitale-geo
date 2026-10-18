@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/duelo-latitudes/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Duelo de Latitudes (Quem Está Mais ao Norte?) | Arcade VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Roma fica mais ao norte que Nova York? Londres fica mais ao norte que o Canadá? Teste seus reflexos e desmistifique as latitudes do planeta neste duelo geográfico viciante!">
+    <meta name="keywords" content="duelo de latitudes, quem está mais ao norte, jogo de geografia, paralelos da terra, coordenadas geográficas, vitalegeo arcade, curiosidades do mapa mundi">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Duelo de Latitudes (Quem Está Mais ao Norte?) | VitaleGeo">
+    <meta property="og:description" content="Você sabia que Roma fica mais ao norte que Nova York? Teste seus conhecimentos de latitude e desafie seus amigos!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/duelo-latitudes/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/duelo-latitudes.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#090a0f',
+                        geoCard: '#11131a',
+                        geoSlate: '#181b24',
+                        geoGold: '#f59e0b',
+                        geoCyan: '#38bdf8',
+                        geoRose: '#f43f5e',
+                        geoEmerald: '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .arcade-shell {
+            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
+        }
+        .duel-card {
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 220px;
+        }
+        .duel-card:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7);
+        }
+        .duel-card:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        .shimmer-pill {
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.03) 100%);
+            background-size: 200% 100%;
+            animation: shimmerMove 2.2s infinite;
+        }
+        @keyframes shimmerMove {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes screen-shake {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-6px, 3px); }
+            40% { transform: translate(6px, -3px); }
+            60% { transform: translate(-4px, -2px); }
+            80% { transform: translate(4px, 2px); }
+        }
+        .shake-damage {
+            animation: screen-shake 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        .pulse-target {
+            animation: targetPulse 1.8s infinite;
+        }
+        @keyframes targetPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.03); }
+        }
+    </style>
+</head>
+<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- HEADER DO ARCADE -->
+    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
+            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Jogos</span>
+            </a>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-compass text-sky-400 text-lg"></i>
+                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
+                    Duelo de <span class="text-sky-400">Latitudes</span>
+                </h1>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="alternarModoDirecao()" id="btn-dir" class="px-2 sm:px-3 py-1 rounded-lg bg-sky-400/10 hover:bg-sky-400/20 text-sky-400 border border-sky-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Alternar Direção">
+                    <i class="ph-bold ph-arrows-down-up"></i>
+                    <span id="dir-mode-label" class="hidden sm:inline">Misto (N/S)</span>
+                </button>
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-3 flex items-start justify-center gap-4 flex-1">
+
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-3xl px-1 sm:px-2 flex-1 flex flex-col justify-center" id="game-stage-container">
+        
+            <!-- CARD DO PALCO ATIVO -->
+            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-5 w-full flex flex-col justify-between relative shadow-2xl overflow-hidden">
+                
+                <!-- Barra de Status Superior -->
+                <div class="w-full flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-3 border-b border-white/10">
+                    <!-- Modos de Jogo -->
+                    <div class="flex items-center gap-1">
+                        <button onclick="mudarModoJogo('sobrevivencia')" id="mode-btn-sob" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition bg-sky-400 text-slate-950">
+                            Sobrevivência
+                        </button>
+                        <button onclick="mudarModoJogo('blitz')" id="mode-btn-blitz" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                            Blitz 60s
+                        </button>
+                    </div>
+
+                    <!-- Vidas ou Timer -->
+                    <div class="flex items-center gap-3">
+                        <div id="status-lives" class="flex items-center gap-1">
+                            <span id="vidas-container" class="flex gap-0.5 text-sm text-rose-500">
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                            </span>
+                        </div>
+                        <div id="status-timer" class="hidden items-center gap-1 font-bold text-amber-400">
+                            <i class="ph-bold ph-timer text-sm"></i>
+                            <span id="timer-val">60s</span>
+                        </div>
+
+                        <!-- Pontuação e Recorde -->
+                        <div class="flex items-center gap-2 pl-2 border-l border-white/10">
+                            <span class="text-slate-400">Streak:</span>
+                            <span id="score-val" class="font-bold text-white text-sm">0</span>
+                            <span class="text-slate-600 hidden sm:inline">|</span>
+                            <span class="text-amber-400 font-bold hidden sm:inline" id="record-display">Rec: 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta / Alvo Principal -->
+                <div class="py-4 text-center">
+                    <div id="target-pill" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-400 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider mb-2">
+                        <i id="target-icon" class="ph-bold ph-arrow-up text-base"></i>
+                        <span id="target-text">QUEM ESTÁ MAIS AO NORTE?</span>
+                    </div>
+                    <p class="text-xs text-slate-400 font-sans">
+                        Clique na localidade que possui o paralelo mais próximo do polo solicitado.
+                    </p>
+                </div>
+
+                <!-- ÁREA DE DUELO (DOIS CARDS LADO A LADO OU EMPILHADOS NO MOBILE) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 my-2 relative">
+                    
+                    <!-- CARD A -->
+                    <button onclick="escolherOpcao('A')" id="card-a" class="duel-card bg-[#161922] hover:bg-[#1c202d] border-2 border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden group">
+                        <div class="flex items-start justify-between w-full">
+                            <div class="flex items-center gap-3">
+                                <span id="card-a-flag" class="text-3xl sm:text-4xl shadow-md rounded overflow-hidden">🏳️</span>
+                                <div>
+                                    <h3 id="card-a-title" class="font-heading font-black text-lg sm:text-xl text-white group-hover:text-sky-300 transition leading-snug">
+                                        Carregando...
+                                    </h3>
+                                    <p id="card-a-subtitle" class="text-xs text-slate-400 font-medium">
+                                        País · Continente
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-mono text-slate-400 font-bold">A</span>
+                        </div>
+
+                        <!-- Informações Ocultas / Reveladas -->
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Coordenada</span>
+                            <div id="card-a-coord" class="px-3 py-1 rounded-lg text-xs font-mono font-bold shimmer-pill text-slate-400">
+                                ??.??° ?
+                            </div>
+                        </div>
+
+                        <!-- Indicador de Feedback -->
+                        <div id="card-a-badge" class="absolute inset-0 bg-transparent flex items-center justify-center opacity-0 pointer-events-none transition duration-300">
+                            <!-- Inserido dinamicamente -->
+                        </div>
+                    </button>
+
+                    <!-- DIVISOR VS -->
+                    <div class="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-[#090a0f] border-2 border-white/20 items-center justify-center text-[10px] font-heading font-black text-amber-400 shadow-xl pointer-events-none">
+                        VS
+                    </div>
+
+                    <!-- CARD B -->
+                    <button onclick="escolherOpcao('B')" id="card-b" class="duel-card bg-[#161922] hover:bg-[#1c202d] border-2 border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden group">
+                        <div class="flex items-start justify-between w-full">
+                            <div class="flex items-center gap-3">
+                                <span id="card-b-flag" class="text-3xl sm:text-4xl shadow-md rounded overflow-hidden">🏳️</span>
+                                <div>
+                                    <h3 id="card-b-title" class="font-heading font-black text-lg sm:text-xl text-white group-hover:text-amber-300 transition leading-snug">
+                                        Carregando...
+                                    </h3>
+                                    <p id="card-b-subtitle" class="text-xs text-slate-400 font-medium">
+                                        País · Continente
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-mono text-slate-400 font-bold">B</span>
+                        </div>
+
+                        <!-- Informações Ocultas / Reveladas -->
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500">Coordenada</span>
+                            <div id="card-b-coord" class="px-3 py-1 rounded-lg text-xs font-mono font-bold shimmer-pill text-slate-400">
+                                ??.??° ?
+                            </div>
+                        </div>
+
+                        <!-- Indicador de Feedback -->
+                        <div id="card-b-badge" class="absolute inset-0 bg-transparent flex items-center justify-center opacity-0 pointer-events-none transition duration-300">
+                            <!-- Inserido dinamicamente -->
+                        </div>
+                    </button>
+                </div>
+
+                <!-- PAINEL DE EXPLICAÇÃO & RÉGUA DE LATITUDES (REVELADO AO RESPONDER) -->
+                <div id="reveal-panel" class="hidden mt-3 p-3 sm:p-4 rounded-xl bg-slate-900/90 border border-white/10 flex flex-col gap-2.5 transition-all duration-300">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i id="reveal-icon" class="ph-fill ph-check-circle text-emerald-400 text-lg"></i>
+                            <span id="reveal-title" class="font-heading font-bold text-sm text-white"></span>
+                        </div>
+                        <span id="reveal-diff" class="text-xs font-mono text-amber-400 font-bold"></span>
+                    </div>
+
+                    <!-- Mini Régua Cartográfica Vertical / Horizontal -->
+                    <div class="w-full bg-black/40 rounded-lg p-2 border border-white/5">
+                        <div class="flex justify-between text-[10px] font-mono text-slate-500 pb-1 border-b border-white/5">
+                            <span>POLO NORTE (90°N)</span>
+                            <span class="text-amber-400/80">EQUADOR (0°)</span>
+                            <span>POLO SUL (90°S)</span>
+                        </div>
+                        <div class="relative h-6 w-full mt-2 bg-slate-950 rounded-full overflow-hidden flex items-center">
+                            <!-- Linha do Equador Central -->
+                            <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-amber-400/60 z-10"></div>
+                            
+                            <!-- Marcador A -->
+                            <div id="marker-a" class="absolute top-1 bottom-1 w-3 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8] transition-all duration-500 z-20 -translate-x-1/2" title="Local A"></div>
+                            
+                            <!-- Marcador B -->
+                            <div id="marker-b" class="absolute top-1 bottom-1 w-3 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b] transition-all duration-500 z-20 -translate-x-1/2" title="Local B"></div>
+                        </div>
+                    </div>
+
+                    <p id="reveal-fact" class="text-xs text-slate-300 leading-relaxed font-sans"></p>
+                    
+                    <button onclick="proximaRodada()" class="self-end px-4 py-1.5 rounded-lg bg-sky-400 hover:bg-sky-300 text-slate-950 font-heading font-bold text-xs flex items-center gap-1.5 transition">
+                        <span>Avançar</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- TELA DE FIM DE JOGO / SCORECARD -->
+            <div id="stage-gameover" class="hidden bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-8 w-full flex-col items-center text-center relative shadow-2xl">
+                <div class="w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 text-3xl mb-4">
+                    <i class="ph-fill ph-trophy"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white mb-1">
+                    Fim da Expedição!
+                </h2>
+                <p id="gameover-subtitle" class="text-sm text-slate-400 mb-6 max-w-md">
+                    Seus reflexos cartográficos foram testados nos paralelos do globo.
+                </p>
+
+                <!-- Quadro de Estatísticas -->
+                <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Pontuação Final</span>
+                        <span id="final-score" class="font-heading font-black text-2xl sm:text-3xl text-white">0</span>
+                    </div>
+                    <div class="bg-white/5 border border-white/5 rounded-xl p-3">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Melhor Recorde</span>
+                        <span id="final-record" class="font-heading font-black text-2xl sm:text-3xl text-amber-400">0</span>
+                    </div>
+                </div>
+
+                <!-- Título Honorífico -->
+                <div class="mb-6 px-4 py-2 rounded-xl bg-sky-400/10 border border-sky-400/20 text-sky-300 font-mono text-xs font-bold" id="honorific-title">
+                    🧭 Navegador dos Trópicos
+                </div>
+
+                <!-- Ações -->
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full">
+                    <button onclick="reiniciarJogo()" class="px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-heading font-bold text-sm flex items-center gap-2 transition shadow-lg shadow-sky-500/20">
+                        <i class="ph-bold ph-arrow-counter-clockwise"></i>
+                        <span>Jogar Novamente</span>
+                    </button>
+                    <button onclick="compartilharResultado()" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 font-heading font-bold text-sm flex items-center gap-2 transition">
+                        <i class="ph-bold ph-share-network"></i>
+                        <span>Compartilhar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- MINI GUIA / POR QUE ISSO ACONTECE? -->
+            <div class="mt-4 p-4 rounded-xl bg-[#0c0e14]/60 border border-white/5 text-xs text-slate-400 leading-relaxed font-sans">
+                <div class="flex items-center gap-2 text-slate-300 font-heading font-bold mb-1">
+                    <i class="ph-bold ph-info text-amber-400"></i>
+                    <span>Por que a nossa intuição de latitude costuma falhar?</span>
+                </div>
+                <p>
+                    A maioria das pessoas projeta o clima de um país diretamente em sua latitude. Devido à <strong>Corrente do Golfo</strong> (que aquece a Europa Ocidental) e à distorção da projeção de Mercator, cidades como Roma, Madri e Barcelona ficam na mesma latitude — ou mais ao norte — que metrópoles norte-americanas como Nova York, Chicago e Washington, D.C.
+                </p>
+            </div>
+
+        </main>
+
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- RODAPÉ COMPACTO -->
+    <footer class="w-full bg-[#090a0f] border-t border-white/5 py-4 px-4 text-center text-xs text-slate-500 font-sans">
+        <p>VitaleGeo Arcade &copy; 2026 · Módulos Cartográficos Interativos</p>
+    </footer>
+
+    <!-- MOTOR DO JOGO JAVASCRIPT -->
+    <script>
+        // --- 1. BANCO DE DADOS DE PARES CLÁSSICOS & PEGADINHAS DE LATITUDE ---
+        const PARES_CURADOS = [
+            {
+                a: { nome: "Roma", pais: "Itália", regiao: "Europa Meridional", lat: 41.9028, iso2: "it" },
+                b: { nome: "Nova York", pais: "Estados Unidos", regiao: "América do Norte", lat: 40.7128, iso2: "us" },
+                fato: "Roma está 132 km mais ao norte do que Nova York! Apesar de Roma ter clima mediterrâneo ensolarado e Nova York nevascas rigorosas, a Corrente do Golfo aquece a Europa."
+            },
+            {
+                a: { nome: "Madri", pais: "Espanha", regiao: "Europa", lat: 40.4168, iso2: "es" },
+                b: { nome: "Pequim", pais: "China", regiao: "Ásia Oriental", lat: 39.9042, iso2: "cn" },
+                fato: "Madri fica cerca de 57 km mais ao norte do que Pequim, embora a capital chinesa encare invernos siberianos de -10°C."
+            },
+            {
+                a: { nome: "Londres", pais: "Reino Unido", regiao: "Europa Ocidental", lat: 51.5074, iso2: "gb" },
+                b: { nome: "Calgary", pais: "Canadá", regiao: "América do Norte", lat: 51.0447, iso2: "ca" },
+                fato: "Londres fica mais ao norte que Calgary e quase na mesma latitude da congelante Baía de Hudson!"
+            },
+            {
+                a: { nome: "Paris", pais: "França", regiao: "Europa", lat: 48.8566, iso2: "fr" },
+                b: { nome: "Seattle", pais: "Estados Unidos", regiao: "América do Norte", lat: 47.6062, iso2: "us" },
+                fato: "Paris fica a mais de 138 km ao norte de Seattle, que é uma das metrópoles mais ao norte dos EUA continentais."
+            },
+            {
+                a: { nome: "Veneza", pais: "Itália", regiao: "Europa", lat: 45.4408, iso2: "it" },
+                b: { nome: "Montreal", pais: "Canadá", regiao: "América do Norte", lat: 45.5017, iso2: "ca" },
+                fato: "Montreal e Veneza dividem praticamente o mesmo paralelo (45.5° N). Em janeiro, Veneza tem média de 4°C e Montreal amarga -10°C com tempestades de neve."
+            },
+            {
+                a: { nome: "Tóquio", pais: "Japão", regiao: "Ásia Oriental", lat: 35.6762, iso2: "jp" },
+                b: { nome: "Los Angeles", pais: "Estados Unidos", regiao: "América do Norte", lat: 34.0522, iso2: "us" },
+                fato: "Tóquio fica quase 180 km mais ao norte do que Los Angeles e na mesma linha de latitude do Estreito de Gibraltar."
+            },
+            {
+                a: { nome: "Cairo", pais: "Egito", regiao: "Norte da África", lat: 30.0444, iso2: "eg" },
+                b: { nome: "Miami", pais: "Estados Unidos", regiao: "América do Norte", lat: 25.7617, iso2: "us" },
+                fato: "O Cairo fica quase 480 km mais ao norte do que Miami, aproximando-se da latitude de Houston e Nova Orleans."
+            },
+            {
+                a: { nome: "Buenos Aires", pais: "Argentina", regiao: "América do Sul", lat: -34.6037, iso2: "ar" },
+                b: { nome: "Santiago", pais: "Chile", regiao: "América do Sul", lat: -33.4489, iso2: "cl" },
+                fato: "Buenos Aires fica 128 km mais ao sul que Santiago! Ambas parecem alinhadas no mapa, mas a capital chilena está mais próxima do Equador."
+            },
+            {
+                a: { nome: "Montevidéu", pais: "Uruguai", regiao: "América do Sul", lat: -34.9011, iso2: "uy" },
+                b: { nome: "Cidade do Cabo", pais: "África do Sul", regiao: "África Austral", lat: -33.9249, iso2: "za" },
+                fato: "Montevidéu fica mais ao sul que a Cidade do Cabo no extremo da África, ficando no mesmo paralelo de Canberra na Austrália."
+            },
+            {
+                a: { nome: "Brasília", pais: "Brasil", regiao: "América do Sul", lat: -15.7975, iso2: "br" },
+                b: { nome: "Luanda", pais: "Angola", regiao: "África Central", lat: -8.8390, iso2: "ao" },
+                fato: "Brasília fica cerca de 770 km mais ao sul que Luanda, que apesar de parecer em linha reta pelo Atlântico, está muito mais perto da Linha do Equador."
+            },
+            {
+                a: { nome: "São Paulo", pais: "Brasil", regiao: "América do Sul", lat: -23.5505, iso2: "br" },
+                b: { nome: "Rio de Janeiro", pais: "Brasil", regiao: "América do Sul", lat: -22.9068, iso2: "br" },
+                fato: "São Paulo fica 71 km mais ao sul que o Rio de Janeiro. A capital paulista é cortada exatamente pelo Trópico de Capricórnio (-23.5°)."
+            },
+            {
+                a: { nome: "Reykjavík", pais: "Islândia", regiao: "Europa Nórdica", lat: 64.1466, iso2: "is" },
+                b: { nome: "Anchorage", pais: "Alasca / EUA", regiao: "América do Norte", lat: 61.2181, iso2: "us" },
+                fato: "Reykjavík fica a mais de 325 km ao norte de Anchorage, sendo a capital nacional mais setentrional do planeta Terra."
+            },
+            {
+                a: { nome: "Lisboa", pais: "Portugal", regiao: "Europa Meridional", lat: 38.7223, iso2: "pt" },
+                b: { nome: "Washington, D.C.", pais: "Estados Unidos", regiao: "América do Norte", lat: 38.9072, iso2: "us" },
+                fato: "Washington, D.C. fica ligeiramente mais ao norte que Lisboa por apenas 20 km! Ambas compartilham o paralelo 38°N."
+            },
+            {
+                a: { nome: "Havana", pais: "Cuba", regiao: "Caribe", lat: 23.1136, iso2: "cu" },
+                b: { nome: "Taipei", pais: "Taiwan", regiao: "Ásia Oriental", lat: 25.0330, iso2: "tw" },
+                fato: "Taipei fica mais de 210 km ao norte de Havana, ficando logo acima do Trópico de Câncer."
+            },
+            {
+                a: { nome: "Honolulu", pais: "Havaí / EUA", regiao: "Pacífico", lat: 21.3069, iso2: "us" },
+                b: { nome: "Cidade do México", pais: "México", regiao: "América do Norte", lat: 19.4326, iso2: "mx" },
+                fato: "Honolulu (Havaí) fica mais de 200 km mais ao norte do que a Cidade do México, desfazendo o mito de que o Havaí é um paraíso próximo ao Equador."
+            },
+            {
+                a: { nome: "Berlim", pais: "Alemanha", regiao: "Europa Central", lat: 52.5200, iso2: "de" },
+                b: { nome: "Edmonton", pais: "Canadá", regiao: "América do Norte", lat: 53.5461, iso2: "ca" },
+                fato: "Edmonton fica cerca de 114 km mais ao norte de Berlim. Berlim fica na mesma latitude da gélida estepe do sul de Saskatchewan."
+            },
+            {
+                a: { nome: "Bogotá", pais: "Colômbia", regiao: "América do Sul", lat: 4.7110, iso2: "co" },
+                b: { nome: "Cingapura", pais: "Cingapura", regiao: "Sudeste Asiático", lat: 1.3521, iso2: "sg" },
+                fato: "Bogotá fica a mais de 370 km mais ao norte do que Cingapura, que fica encostada na Linha do Equador a apenas 1° de latitude norte."
+            },
+            {
+                a: { nome: "Sydney", pais: "Austrália", regiao: "Oceania", lat: -33.8688, iso2: "au" },
+                b: { nome: "Buenos Aires", pais: "Argentina", regiao: "América do Sul", lat: -34.6037, iso2: "ar" },
+                fato: "Buenos Aires fica cerca de 81 km mais ao sul do que Sydney! A capital australiana mais ao sul é Melbourne (-37.8°)."
+            },
+            {
+                a: { nome: "Moscou", pais: "Rússia", regiao: "Eurásia", lat: 55.7558, iso2: "ru" },
+                b: { nome: "Copenhague", pais: "Dinamarca", regiao: "Escandinávia", lat: 55.6761, iso2: "dk" },
+                fato: "Moscou e Copenhague estão quase milimetricamente no mesmo paralelo 55.7° N, separados por apenas 9 km de diferença latitudinal."
+            },
+            {
+                a: { nome: "Quito", pais: "Equador", regiao: "América do Sul", lat: -0.1807, iso2: "ec" },
+                b: { nome: "Nairóbi", pais: "Quênia", regiao: "África Oriental", lat: -1.2921, iso2: "ke" },
+                fato: "Nairóbi fica 123 km mais ao sul que Quito. O monumento da Linha do Equador em Quito fica a apenas 20 minutos do centro da cidade."
+            },
+            {
+                a: { nome: "Atenas", pais: "Grécia", regiao: "Europa Meridional", lat: 37.9838, iso2: "gr" },
+                b: { nome: "Seul", pais: "Coreia do Sul", regiao: "Ásia Oriental", lat: 37.5665, iso2: "kr" },
+                fato: "Atenas fica 46 km mais ao norte de Seul. Ambas compartilham o paralelo 37.7° N."
+            },
+            {
+                a: { nome: "Dacar", pais: "Senegal", regiao: "África Ocidental", lat: 14.7167, iso2: "sn" },
+                b: { nome: "Bangcoc", pais: "Tailândia", regiao: "Sudeste Asiático", lat: 13.7563, iso2: "th" },
+                fato: "Dacar fica mais de 105 km ao norte de Bangcoc, apesar de ambas compartilharem um clima tropical quente."
+            },
+            {
+                a: { nome: "Lima", pais: "Peru", regiao: "América do Sul", lat: -12.0464, iso2: "pe" },
+                b: { nome: "Jacarta", pais: "Indonésia", regiao: "Sudeste Asiático", lat: -6.2088, iso2: "id" },
+                fato: "Lima fica quase 650 km mais ao sul que Jacarta! Jacarta está a apenas 6 graus ao sul do Equador."
+            },
+            {
+                a: { nome: "Porto Alegre", pais: "Brasil", regiao: "Cone Sul", lat: -30.0346, iso2: "br" },
+                b: { nome: "Durban", pais: "África do Sul", regiao: "África Austral", lat: -29.8587, iso2: "za" },
+                fato: "Porto Alegre fica ligeiramente mais ao sul que Durban por apenas 19 km, alinhadas no mesmo corredor costeiro sul."
+            }
+        ];
+
+        // --- 2. SISTEMA DE ÁUDIO SINTETIZADO (WEB AUDIO API) ---
+        let audioCtx = null;
+        let somAtivo = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            if (!somAtivo) return;
+            initAudio();
+            if (!audioCtx) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const t = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'acerto') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, t); // D5
+                osc.frequency.exponentialRampToValueAtTime(880, t + 0.12); // A5
+                gain.gain.setValueAtTime(0.2, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.28);
+                osc.start(t);
+                osc.stop(t + 0.28);
+            } else if (type === 'erro') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(320, t);
+                osc.frequency.exponentialRampToValueAtTime(140, t + 0.22);
+                gain.gain.setValueAtTime(0.25, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.25);
+                osc.start(t);
+                osc.stop(t + 0.25);
+            } else if (type === 'combo') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, t); // C5
+                osc.frequency.setValueAtTime(659.25, t + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, t + 0.16); // G5
+                osc.frequency.setValueAtTime(1046.50, t + 0.24); // C6
+                gain.gain.setValueAtTime(0.25, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.45);
+                osc.start(t);
+                osc.stop(t + 0.45);
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            if (somAtivo) {
+                icon.className = 'ph-bold ph-speaker-high';
+                playSound('acerto');
+            } else {
+                icon.className = 'ph-bold ph-speaker-slash text-slate-500';
+            }
+            try { localStorage.setItem('vg_som_latitudes', somAtivo ? '1' : '0'); } catch(e) {}
+        }
+
+        function alternarTelaCheia() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // --- 3. ESTADO GLOBAL DO JOGO ---
+        let modoJogo = 'sobrevivencia'; // 'sobrevivencia' | 'blitz'
+        let modoDirecao = 'misto'; // 'misto' | 'norte' | 'sul'
+        let pontuacaoAtual = 0;
+        let melhorRecorde = 0;
+        let vidas = 3;
+        let tempoRestante = 60;
+        let timerInterval = null;
+        let rodadaAtiva = false;
+        let dueloAtual = null;
+        let direcaoAtual = 'NORTE'; // 'NORTE' | 'SUL'
+        let paresUsadosIndices = [];
+
+        // Inicializar Recorde Salvo
+        try {
+            const salvo = localStorage.getItem('vg_recorde_duelo_latitudes');
+            if (salvo) melhorRecorde = parseInt(salvo, 10) || 0;
+            const somSalvo = localStorage.getItem('vg_som_latitudes');
+            if (somSalvo === '0') somAtivo = false;
+        } catch(e) {}
+
+        function atualizarDisplayRecorde() {
+            document.getElementById('record-display').innerText = `Rec: ${melhorRecorde}`;
+            document.getElementById('final-record').innerText = melhorRecorde;
+        }
+
+        // Formatar Latitude com Letra Cardinal
+        function formatarLatitude(lat) {
+            const abs = Math.abs(lat).toFixed(2);
+            const card = lat >= 0 ? 'N' : 'S';
+            return `${abs}° ${card}`;
+        }
+
+        // Converter ISO2 em Bandeira Emoji ou Imagem
+        function obterBandeiraHTML(iso2) {
+            if (!iso2) return '🌐';
+            return `<img src="https://flagcdn.com/w80/${iso2.toLowerCase()}.png" class="w-9 h-6 sm:w-11 sm:h-7 object-cover rounded shadow-md border border-white/10" alt="${iso2}" onerror="this.outerHTML='🏳️'">`;
+        }
+
+        // Alternar Modo Direção
+        function alternarModoDirecao() {
+            const label = document.getElementById('dir-mode-label');
+            if (modoDirecao === 'misto') {
+                modoDirecao = 'norte';
+                label.innerText = 'Só Norte ⬆️';
+            } else if (modoDirecao === 'norte') {
+                modoDirecao = 'sul';
+                label.innerText = 'Só Sul ⬇️';
+            } else {
+                modoDirecao = 'misto';
+                label.innerText = 'Misto (N/S)';
+            }
+            if (!rodadaAtiva) return;
+            sortearDuelo();
+        }
+
+        // Mudar Modo de Jogo
+        function mudarModoJogo(novoModo) {
+            modoJogo = novoModo;
+            const btnSob = document.getElementById('mode-btn-sob');
+            const btnBlitz = document.getElementById('mode-btn-blitz');
+            const statusLives = document.getElementById('status-lives');
+            const statusTimer = document.getElementById('status-timer');
+
+            if (modoJogo === 'sobrevivencia') {
+                btnSob.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-bold transition bg-sky-400 text-slate-950';
+                btnBlitz.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10';
+                statusLives.classList.remove('hidden');
+                statusTimer.classList.add('hidden');
+                if (timerInterval) clearInterval(timerInterval);
+            } else {
+                btnBlitz.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-bold transition bg-amber-400 text-slate-950';
+                btnSob.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10';
+                statusLives.classList.add('hidden');
+                statusTimer.classList.remove('hidden');
+            }
+            reiniciarJogo();
+        }
+
+        // Atualizar Vidas na UI
+        function renderizarVidas() {
+            const container = document.getElementById('vidas-container');
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    html += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                } else {
+                    html += '<i class="ph-bold ph-heart text-slate-700"></i>';
+                }
+            }
+            container.innerHTML = html;
+        }
+
+        // --- 4. MOTOR DE GERAÇÃO DE DUELOS ---
+        function obterParAleatorio() {
+            // Primeiro prioriza o catálogo curado de 25+ duelos clássicos anti-intuição
+            if (paresUsadosIndices.length >= PARES_CURADOS.length) {
+                paresUsadosIndices = [];
+            }
+
+            const indicesDisponiveis = [];
+            for (let i = 0; i < PARES_CURADOS.length; i++) {
+                if (!paresUsadosIndices.includes(i)) indicesDisponiveis.push(i);
+            }
+
+            const escolhidoIdx = indicesDisponiveis[Math.floor(Math.random() * indicesDisponiveis.length)];
+            paresUsadosIndices.push(escolhidoIdx);
+            const parBase = PARES_CURADOS[escolhidoIdx];
+
+            // Inversão aleatória A/B para não viciar a ordem dos cards
+            const inverter = Math.random() > 0.5;
+            return {
+                a: inverter ? parBase.b : parBase.a,
+                b: inverter ? parBase.a : parBase.b,
+                fato: parBase.fato
+            };
+        }
+
+        // Sortear Novo Duelo
+        function sortearDuelo() {
+            rodadaAtiva = true;
+
+            // Fechar painel de revelação
+            document.getElementById('reveal-panel').classList.add('hidden');
+
+            // Resetar estilos dos cards
+            const cardA = document.getElementById('card-a');
+            const cardB = document.getElementById('card-b');
+            cardA.disabled = false;
+            cardB.disabled = false;
+            cardA.className = "duel-card bg-[#161922] hover:bg-[#1c202d] border-2 border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden group";
+            cardB.className = "duel-card bg-[#161922] hover:bg-[#1c202d] border-2 border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden group";
+            
+            document.getElementById('card-a-badge').style.opacity = '0';
+            document.getElementById('card-b-badge').style.opacity = '0';
+            document.getElementById('card-a-coord').innerText = '??.??° ?';
+            document.getElementById('card-b-coord').innerText = '??.??° ?';
+
+            // Determinar Direção do Alvo
+            if (modoDirecao === 'misto') {
+                direcaoAtual = Math.random() > 0.5 ? 'NORTE' : 'SUL';
+            } else if (modoDirecao === 'norte') {
+                direcaoAtual = 'NORTE';
+            } else {
+                direcaoAtual = 'SUL';
+            }
+
+            // Atualizar Banner do Alvo
+            const targetPill = document.getElementById('target-pill');
+            const targetIcon = document.getElementById('target-icon');
+            const targetText = document.getElementById('target-text');
+
+            if (direcaoAtual === 'NORTE') {
+                targetPill.className = "inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/15 border border-sky-400/40 text-sky-400 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider mb-2 pulse-target";
+                targetIcon.className = "ph-bold ph-arrow-up text-base";
+                targetText.innerText = "QUEM ESTÁ MAIS AO NORTE? ⬆️";
+            } else {
+                targetPill.className = "inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/15 border border-rose-400/40 text-rose-400 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider mb-2 pulse-target";
+                targetIcon.className = "ph-bold ph-arrow-down text-base";
+                targetText.innerText = "QUEM ESTÁ MAIS AO SUL? ⬇️";
+            }
+
+            // Obter e Inserir Dados dos Candidatos
+            dueloAtual = obterParAleatorio();
+
+            document.getElementById('card-a-title').innerText = dueloAtual.a.nome;
+            document.getElementById('card-a-subtitle').innerText = `${dueloAtual.a.pais} · ${dueloAtual.a.regiao}`;
+            document.getElementById('card-a-flag').innerHTML = obterBandeiraHTML(dueloAtual.a.iso2);
+
+            document.getElementById('card-b-title').innerText = dueloAtual.b.nome;
+            document.getElementById('card-b-subtitle').innerText = `${dueloAtual.b.pais} · ${dueloAtual.b.regiao}`;
+            document.getElementById('card-b-flag').innerHTML = obterBandeiraHTML(dueloAtual.b.iso2);
+        }
+
+        // Processar Resposta do Jogador
+        function escolherOpcao(escolha) {
+            if (!rodadaAtiva) return;
+            rodadaAtiva = false;
+
+            const cardA = document.getElementById('card-a');
+            const cardB = document.getElementById('card-b');
+            cardA.disabled = true;
+            cardB.disabled = true;
+
+            const latA = dueloAtual.a.lat;
+            const latB = dueloAtual.b.lat;
+
+            // Determinar o Vencedor Matemático
+            let correto = '';
+            if (direcaoAtual === 'NORTE') {
+                // Mais ao norte = maior valor algébrico de latitude (-90° a +90°)
+                correto = latA > latB ? 'A' : 'B';
+            } else {
+                // Mais ao sul = menor valor algébrico de latitude
+                correto = latA < latB ? 'A' : 'B';
+            }
+
+            const acertou = (escolha === correto);
+
+            // Revelar Coordenadas Reais nos Cards
+            document.getElementById('card-a-coord').innerText = formatarLatitude(latA);
+            document.getElementById('card-b-coord').innerText = formatarLatitude(latB);
+
+            // Estilizar Cards com o Resultado
+            if (correto === 'A') {
+                cardA.className = "duel-card bg-[#122b22] border-2 border-emerald-400 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.3)]";
+                cardB.className = "duel-card bg-[#181a20] border-2 border-white/5 opacity-60 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden";
+            } else {
+                cardB.className = "duel-card bg-[#122b22] border-2 border-emerald-400 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.3)]";
+                cardA.className = "duel-card bg-[#181a20] border-2 border-white/5 opacity-60 rounded-2xl p-4 sm:p-5 flex flex-col justify-between text-left relative overflow-hidden";
+            }
+
+            // Exibir Painel de Revelação com a Régua de Latitudes
+            exibirPainelRevelacao(acertou, correto);
+
+            if (acertou) {
+                pontuacaoAtual += 1;
+                document.getElementById('score-val').innerText = pontuacaoAtual;
+                if (pontuacaoAtual > melhorRecorde) {
+                    melhorRecorde = pontuacaoAtual;
+                    try { localStorage.setItem('vg_recorde_duelo_latitudes', melhorRecorde.toString()); } catch(e) {}
+                    atualizarDisplayRecorde();
+                }
+
+                // Som e Efeitos
+                if (pontuacaoAtual % 5 === 0) {
+                    playSound('combo');
+                    if (typeof confetti === 'function') {
+                        confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+                    }
+                } else {
+                    playSound('acerto');
+                }
+
+            } else {
+                playSound('erro');
+                const stage = document.getElementById('stage-active');
+                stage.classList.add('shake-damage');
+                setTimeout(() => stage.classList.remove('shake-damage'), 400);
+
+                if (modoJogo === 'sobrevivencia') {
+                    vidas -= 1;
+                    renderizarVidas();
+                    if (vidas <= 0) {
+                        setTimeout(finalizarJogo, 1500);
+                        return;
+                    }
+                } else if (modoJogo === 'blitz') {
+                    tempoRestante = Math.max(0, tempoRestante - 2); // Penalidade de 2s
+                    document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+                }
+            }
+        }
+
+        // Montar a Régua e o Texto Explicativo
+        function exibirPainelRevelacao(acertou, correto) {
+            const panel = document.getElementById('reveal-panel');
+            const title = document.getElementById('reveal-title');
+            const icon = document.getElementById('reveal-icon');
+            const diffEl = document.getElementById('reveal-diff');
+            const fact = document.getElementById('reveal-fact');
+
+            if (acertou) {
+                icon.className = "ph-fill ph-check-circle text-emerald-400 text-xl";
+                title.innerText = "Correto! Visão cartográfica precisa.";
+                title.className = "font-heading font-bold text-sm text-emerald-400";
+            } else {
+                icon.className = "ph-fill ph-x-circle text-rose-500 text-xl";
+                title.innerText = "Não foi dessa vez! A intuição engana.";
+                title.className = "font-heading font-bold text-sm text-rose-400";
+            }
+
+            const latA = dueloAtual.a.lat;
+            const latB = dueloAtual.b.lat;
+            const diffGraus = Math.abs(latA - latB).toFixed(2);
+            const diffKm = Math.round(diffGraus * 111.1); // ~111.1 km por grau de latitude
+
+            diffEl.innerText = `Δ ${diffGraus}° (~${diffKm.toLocaleString('pt-BR')} km)`;
+            fact.innerText = dueloAtual.fato;
+
+            // Posicionar Marcadores na Régua Horizontal (-90° a +90°)
+            // 90°N = 0% da régua (esquerda); 0° Equador = 50%; 90°S = 100% da régua (direita)
+            const pctA = ((90 - latA) / 180) * 100;
+            const pctB = ((90 - latB) / 180) * 100;
+
+            const markerA = document.getElementById('marker-a');
+            const markerB = document.getElementById('marker-b');
+            markerA.style.left = `${pctA}%`;
+            markerB.style.left = `${pctB}%`;
+
+            panel.classList.remove('hidden');
+        }
+
+        function proximaRodada() {
+            sortearDuelo();
+        }
+
+        // Timer do Modo Blitz
+        function iniciarTimerBlitz() {
+            tempoRestante = 60;
+            document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+            if (timerInterval) clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+                tempoRestante -= 1;
+                document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+                if (tempoRestante <= 0) {
+                    clearInterval(timerInterval);
+                    finalizarJogo();
+                }
+            }, 1000);
+        }
+
+        // Finalizar Partida / Scorecard
+        function finalizarJogo() {
+            rodadaAtiva = false;
+            if (timerInterval) clearInterval(timerInterval);
+
+            document.getElementById('stage-active').classList.add('hidden');
+            const overStage = document.getElementById('stage-gameover');
+            overStage.classList.remove('hidden');
+            overStage.classList.add('flex');
+
+            document.getElementById('final-score').innerText = pontuacaoAtual;
+            document.getElementById('final-record').innerText = melhorRecorde;
+
+            // Atribuir Título Honorífico Baseado na Pontuação
+            const honorific = document.getElementById('honorific-title');
+            if (pontuacaoAtual >= 25) {
+                honorific.innerText = "👑 Mestre Universal dos Paralelos (Rank S)";
+                if (typeof confetti === 'function') confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+            } else if (pontuacaoAtual >= 15) {
+                honorific.innerText = "🧭 Mente Cartográfica de Elite (Rank A)";
+            } else if (pontuacaoAtual >= 8) {
+                honorific.innerText = "🗺️ Navegador Experiente dos Trópicos (Rank B)";
+            } else {
+                honorific.innerText = "🌍 Aprendiz de Latitude (Rank C)";
+            }
+        }
+
+        // Reiniciar Jogo
+        function reiniciarJogo() {
+            pontuacaoAtual = 0;
+            vidas = 3;
+            document.getElementById('score-val').innerText = "0";
+            renderizarVidas();
+            atualizarDisplayRecorde();
+
+            document.getElementById('stage-gameover').classList.add('hidden');
+            document.getElementById('stage-gameover').classList.remove('flex');
+            document.getElementById('stage-active').classList.remove('hidden');
+
+            if (modoJogo === 'blitz') {
+                iniciarTimerBlitz();
+            }
+
+            sortearDuelo();
+        }
+
+        // Compartilhar Resultado
+        function compartilharResultado() {
+            const texto = `🧭 Duelo de Latitudes — VitaleGeo Arcade\n🔥 Fiz ${pontuacaoAtual} acertos seguidos no modo ${modoJogo === 'blitz' ? 'Blitz 60s' : 'Sobrevivência'}!\nVocê sabia que Roma fica mais ao norte que Nova York?\nJogue grátis em: https://www.vitalegeo.com.br/jogos/duelo-latitudes/`;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(texto).then(() => {
+                    alert('Resultado copiado para a área de transferência! Cole no WhatsApp ou Twitter.');
+                }).catch(() => {
+                    prompt('Copie o seu resultado abaixo:', texto);
+                });
+            } else {
+                prompt('Copie o seu resultado abaixo:', texto);
+            }
+        }
+
+        // Inicialização ao Carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            atualizarDisplayRecorde();
+            renderizarVidas();
+            sortearDuelo();
+        });
+    </script>
+</body>
+</html>

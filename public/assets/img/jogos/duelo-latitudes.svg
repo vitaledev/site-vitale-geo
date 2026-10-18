@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#151b2e" />
+      <stop offset="60%" stop-color="#0a0d17" />
+      <stop offset="100%" stop-color="#05060a" />
+    </radialGradient>
+    <linearGradient id="cyanLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="1" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0" />
+      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2436" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#111420" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Fundo Cósmico Cartográfico -->
+  <rect width="1200" height="750" fill="url(#bgGlow)" />
+
+  <!-- Grade de Paralelos e Meridianos Esféricos -->
+  <g opacity="0.18" stroke="#38bdf8" stroke-width="1.2" fill="none">
+    <!-- Círculo do Globo -->
+    <circle cx="600" cy="375" r="280" stroke="#38bdf8" stroke-width="2" />
+    <circle cx="600" cy="375" r="284" stroke="#38bdf8" stroke-width="0.5" stroke-dasharray="4 8" />
+    
+    <!-- Paralelos de Latitude -->
+    <ellipse cx="600" cy="375" rx="280" ry="0" stroke="url(#goldLine)" stroke-width="2" /> <!-- Equador -->
+    <ellipse cx="600" cy="285" rx="265" ry="45" /> <!-- Trópico Norte 23.5 -->
+    <ellipse cx="600" cy="205" rx="215" ry="40" /> <!-- Círculo Polar Norte -->
+    <ellipse cx="600" cy="465" rx="265" ry="45" /> <!-- Trópico Sul 23.5 -->
+    <ellipse cx="600" cy="545" rx="215" ry="40" /> <!-- Círculo Polar Sul -->
+
+    <!-- Meridianos -->
+    <ellipse cx="600" cy="375" rx="90" ry="280" />
+    <ellipse cx="600" cy="375" rx="190" ry="280" />
+    <line x1="600" y1="95" x2="600" y2="655" stroke="#38bdf8" stroke-width="1.5" />
+  </g>
+
+  <!-- Eixo Vertical de Coordenadas (Bússola Norte/Sul) -->
+  <g transform="translate(600, 375)">
+    <!-- Seta Norte -->
+    <path d="M0 -310 L-14 -270 L0 -280 L14 -270 Z" fill="#38bdf8" filter="url(#glow)" />
+    <text x="0" y="-325" fill="#38bdf8" font-family="'Space Mono', monospace" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="3">NORTE 90°N</text>
+
+    <!-- Seta Sul -->
+    <path d="M0 310 L-14 270 L0 280 L14 270 Z" fill="#f43f5e" filter="url(#glow)" />
+    <text x="0" y="340" fill="#f43f5e" font-family="'Space Mono', monospace" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="3">SUL 90°S</text>
+  </g>
+
+  <!-- Card Esquerdo: Roma (41.9° N) -->
+  <g transform="translate(140, 250)">
+    <rect width="280" height="230" rx="20" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="2" filter="url(#glow)" opacity="0.95" />
+    <circle cx="140" cy="65" r="32" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="140" y="73" fill="#38bdf8" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" text-anchor="middle">🏛️</text>
+    <text x="140" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800" text-anchor="middle">ROMA</text>
+    <text x="140" y="148" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="13" text-anchor="middle">Itália · Europa</text>
+    <rect x="40" y="165" width="200" height="40" rx="10" fill="#38bdf8" fill-opacity="0.1" stroke="#38bdf8" stroke-width="1" />
+    <text x="140" y="191" fill="#38bdf8" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle">41.90° N</text>
+  </g>
+
+  <!-- VS Central Estilizado -->
+  <g transform="translate(600, 365)">
+    <circle cx="0" cy="0" r="44" fill="#090a0f" stroke="#f59e0b" stroke-width="3" filter="url(#glow)" />
+    <text x="0" y="10" fill="#fbbf24" font-family="'Plus Jakarta Sans', sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="1">VS</text>
+  </g>
+
+  <!-- Card Direito: Nova York (40.7° N) -->
+  <g transform="translate(780, 250)">
+    <rect width="280" height="230" rx="20" fill="url(#cardGrad)" stroke="#f59e0b" stroke-width="2" filter="url(#glow)" opacity="0.95" />
+    <circle cx="140" cy="65" r="32" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="140" y="73" fill="#fbbf24" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" text-anchor="middle">🗽</text>
+    <text x="140" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800" text-anchor="middle">NOVA YORK</text>
+    <text x="140" y="148" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="13" text-anchor="middle">EUA · América do Norte</text>
+    <rect x="40" y="165" width="200" height="40" rx="10" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-width="1" />
+    <text x="140" y="191" fill="#fbbf24" font-family="'Space Mono', monospace" font-size="16" font-weight="700" text-anchor="middle">40.71° N</text>
+  </g>
+
+  <!-- Título e Subtítulo Superior -->
+  <g transform="translate(600, 100)">
+    <rect x="-160" y="-35" width="320" height="32" rx="16" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1.2" />
+    <text x="0" y="-14" fill="#34d399" font-family="'Space Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="2">ARCADE VITALEGEO · DIA 01</text>
+    
+    <text x="0" y="45" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="900" text-anchor="middle" letter-spacing="-1">
+      DUELO DE <tspan fill="#38bdf8">LATITUDES</tspan>
+    </text>
+    <text x="0" y="78" fill="#94a3b8" font-family="'Inter', sans-serif" font-size="18" text-anchor="middle">
+      Quem está mais ao Norte? A desmistificação das coordenadas globais.
+    </text>
+  </g>
+</svg>

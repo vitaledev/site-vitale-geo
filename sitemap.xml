@@ -98,6 +98,12 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/ferramentas/simulador-nivel-mar/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/jogos/bandeiras/</loc>
       <lastmod>2026-10-18</lastmod>
       <changefreq>weekly</changefreq>
@@ -105,6 +111,12 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/capitais/</loc>
+      <lastmod>2026-10-18</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/jogos/duelo-latitudes/</loc>
       <lastmod>2026-10-18</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>

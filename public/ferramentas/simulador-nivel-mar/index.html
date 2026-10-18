@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/simulador-nivel-mar/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Elevação do Nível do Mar (+1m a +70m) | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Simule o impacto do derretimento das calotas polares de +1m até +70m no Brasil e no mundo. Veja quais cidades litorâneas, ilhas e deltas fluviais ficariam submersos em tempo real.">
+    <meta name="keywords" content="elevacao do nivel do mar, simulador nivel do mar, aquecimento global, derretimento antartica groenlandia, cidades inundadas brasil, recife nivel do mar, baixada fluminense mar, santos debaixo dagua, ipcc cenarios, cartografia interativa, vitalegeo">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Simulador de Elevação do Nível do Mar (+1m a +70m) | VitaleGeo">
+    <meta property="og:description" content="O que acontece se todo o gelo da Terra derreter? Simule a elevação dos oceanos de +1m a +70m e explore cidades e litorais no mapa interativo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/simulador-nivel-mar/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/simulador-nivel-mar.jpg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Tipografia Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .editorial-panel {
+            background: #11131a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.75rem;
+        }
+        .leaflet-container {
+            background: #090b10;
+            font-family: 'Inter', sans-serif;
+            border-radius: 0.75rem;
+        }
+        .leaflet-control-layers {
+            background: #11131a !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #cbd5e1 !important;
+            border-radius: 0.5rem !important;
+            font-size: 11px !important;
+            font-family: 'Inter', sans-serif !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+        }
+        .leaflet-control-layers label {
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .water-wave-anim {
+            background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #0284c7 100%);
+            background-size: 200% 100%;
+            animation: waterFlow 4s linear infinite;
+        }
+        @keyframes waterFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .preset-active {
+            background-color: rgba(14, 165, 233, 0.2) !important;
+            border-color: rgba(56, 189, 248, 0.8) !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="bg-[#090a0f] text-slate-200 font-sans antialiased selection:bg-sky-500/20 selection:text-sky-300 min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Barra de Navegação Superior -->
+    <header class="border-b border-white/10 bg-[#07080d]/90 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:scale-105 transition">
+                        <i class="ph-bold ph-globe-hemisphere-west text-lg"></i>
+                    </div>
+                    <span class="font-heading font-bold text-lg text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+                </a>
+                <span class="hidden sm:inline-block text-xs font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400">
+                    FERRAMENTAS #07
+                </span>
+            </div>
+
+            <nav class="flex items-center gap-2 sm:gap-4 text-xs font-medium">
+                <a href="/ferramentas/" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Todas as Ferramentas</span>
+                    <span class="sm:hidden">Voltar</span>
+                </a>
+                <a href="/blog/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Blog</a>
+                <a href="/jogos/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Arcade</a>
+                <a href="/videos/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Vídeos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Layout Grid com Banners Desktop Laterais (Skyscrapers) -->
+    <div class="max-w-[1720px] mx-auto px-2 sm:px-4 py-6 w-full flex-1 flex justify-center gap-4">
+
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- ÁREA CENTRAL DA FERRAMENTA -->
+        <main class="w-full max-w-5xl flex-1">
+            
+            <!-- Hero / Cabeçalho Didático -->
+            <div class="editorial-panel p-5 sm:p-6 mb-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-sky-500/10 text-sky-400 border border-sky-500/25">
+                                <i class="ph-bold ph-waves"></i> Hipsometria Costeira
+                            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-400 border border-amber-500/25">
+                                <i class="ph-bold ph-thermometer"></i> Projeções IPCC & Paleoclima
+                            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                                <i class="ph-bold ph-chart-line-down"></i> 0 a 70 Metros
+                            </span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-white tracking-tight">
+                            Simulador de Elevação do Nível do Mar
+                        </h1>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-3xl leading-relaxed">
+                            Simule o avanço dos oceanos sobre as cidades costeiras e deltas aluviais do planeta. Ajuste o nível da água de zero até +70 metros — o limite geológico caso todo o gelo permanente da Terra derretesse.
+                        </p>
+                    </div>
+
+                    <button onclick="toggleAjuda()" class="self-start md:self-center shrink-0 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-medium inline-flex items-center gap-1.5 transition">
+                        <i class="ph-bold ph-question text-sky-400"></i>
+                        <span>Como Funciona o Degelo?</span>
+                    </button>
+                </div>
+
+                <!-- Painel Didático Desdobrável -->
+                <div id="painelAjuda" class="hidden mt-5 pt-5 border-t border-white/10 text-xs text-slate-300 leading-relaxed grid sm:grid-cols-3 gap-4">
+                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
+                        <span class="font-bold text-sky-400 block mb-1 flex items-center gap-1">
+                            <i class="ph-bold ph-snowflake"></i> 1. Mantos Terrestres vs Banquisas
+                        </span>
+                        O derretimento do gelo marinho do Ártico não eleva o nível do mar, pois já flutua (Princípio de Arquimedes). O perigo vem dos mantos sobre rocha firme: Groenlândia (+7m) e Antártica (+58m).
+                    </div>
+                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
+                        <span class="font-bold text-amber-400 block mb-1 flex items-center gap-1">
+                            <i class="ph-bold ph-arrows-out-simple"></i> 2. Expansão Térmica
+                        </span>
+                        Cerca de 35% da elevação atual do mar não decorre de gelo derretido, mas da física simples: a água do mar absorve calor e se expande termicamente em volume.
+                    </div>
+                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
+                        <span class="font-bold text-emerald-400 block mb-1 flex items-center gap-1">
+                            <i class="ph-bold ph-island"></i> 3. O Limite Máximo (+70m)
+                        </span>
+                        Se 100% das calotas da Antártica e Groenlândia derretessem, o oceano global subiria cerca de 66 a 70 metros, inundando 13 milhões de km² de terras baixas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTROLE DESLIZANTE MESTRE & CENÁRIOS CIENTÍFICOS -->
+            <div class="editorial-panel p-5 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/5">
+                    <div>
+                        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                            <i class="ph-bold ph-sliders text-sky-400"></i> Cota de Elevação Oceânica
+                        </span>
+                        <div class="text-xs text-slate-500 font-mono mt-0.5">
+                            Mova o controle para inundar as planícies costeiras em tempo real
+                        </div>
+                    </div>
+
+                    <div class="flex items-baseline gap-2 bg-[#090b10] px-4 py-2 rounded-xl border border-sky-500/30 self-start sm:self-auto">
+                        <span class="text-3xl sm:text-4xl font-mono font-bold text-sky-400" id="txtNivelMetro">+1</span>
+                        <span class="text-sm font-mono text-slate-400 font-medium">metro</span>
+                        <span class="text-xs font-mono text-slate-500 ml-2 border-l border-white/10 pl-2" id="txtCenarioBadge">IPCC 2100</span>
+                    </div>
+                </div>
+
+                <!-- Slider Principal com Marcações -->
+                <div class="mb-4">
+                    <input type="range" id="sliderNivel" min="0" max="70" step="1" value="1" oninput="aoMudarNivel(this.value)" class="w-full accent-sky-400 cursor-pointer h-3 bg-slate-800 rounded-lg">
+                    
+                    <div class="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-2 px-1">
+                        <span>0m (Atual)</span>
+                        <span>+1m</span>
+                        <span>+7m (Groenlândia)</span>
+                        <span>+15m</span>
+                        <span>+30m</span>
+                        <span>+50m</span>
+                        <span class="text-sky-400 font-bold">+70m (Total)</span>
+                    </div>
+                </div>
+
+                <!-- Botões de Cenários Pré-configurados -->
+                <div class="pt-2">
+                    <span class="text-[11px] text-slate-400 font-mono block mb-2">Cenários geológicos e marcos do IPCC:</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2" id="gradeCenarios">
+                        <button onclick="definirCenario(1)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition preset-active">
+                            <span class="text-xs font-mono font-bold text-sky-400 block">+1 metro</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">IPCC Ano 2100</span>
+                        </button>
+                        <button onclick="definirCenario(3)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition">
+                            <span class="text-xs font-mono font-bold text-white block">+3 metros</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">Antártica Ocidental</span>
+                        </button>
+                        <button onclick="definirCenario(7)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition">
+                            <span class="text-xs font-mono font-bold text-white block">+7 metros</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">Groenlândia Total</span>
+                        </button>
+                        <button onclick="definirCenario(15)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition">
+                            <span class="text-xs font-mono font-bold text-white block">+15 metros</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">Colapso Misto</span>
+                        </button>
+                        <button onclick="definirCenario(30)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition">
+                            <span class="text-xs font-mono font-bold text-white block">+30 metros</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">50% do Gelo Global</span>
+                        </button>
+                        <button onclick="definirCenario(70)" class="btn-cenario p-2 rounded-lg text-left bg-white/5 hover:bg-white/10 border border-white/10 transition">
+                            <span class="text-xs font-mono font-bold text-amber-400 block">+70 metros</span>
+                            <span class="text-[10px] text-slate-400 line-clamp-1">Degelo Total Terra</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Painel Resumo Estatístico em Tempo Real -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 pt-4 border-t border-white/5">
+                    <div class="p-3 bg-[#0a0c11] rounded-lg border border-white/5">
+                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">População Ameaçada</span>
+                        <span id="statPopulacao" class="text-base sm:text-lg font-mono font-bold text-sky-400">190 milhões</span>
+                    </div>
+                    <div class="p-3 bg-[#0a0c11] rounded-lg border border-white/5">
+                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Área Submersa</span>
+                        <span id="statArea" class="text-base sm:text-lg font-mono font-bold text-white">410.000 km²</span>
+                    </div>
+                    <div class="p-3 bg-[#0a0c11] rounded-lg border border-white/5">
+                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Megacidades Críticas</span>
+                        <span id="statMegacidades" class="text-base sm:text-lg font-mono font-bold text-amber-400">14 capitais</span>
+                    </div>
+                    <div class="p-3 bg-[#0a0c11] rounded-lg border border-white/5">
+                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Status Geológico</span>
+                        <span id="statStatus" class="text-xs font-mono font-bold text-emerald-400 mt-1 block">Inundação Costeira</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SELETOR DE HOTSPOTS COSTEIROS VULNERÁVEIS -->
+            <div class="editorial-panel p-4 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                        <i class="ph-bold ph-compass"></i> Zonas Costeiras Vulneráveis
+                    </span>
+                    <span class="text-[11px] text-slate-500 font-mono">
+                        Clique para viajar diretamente para a bacia litorânea
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar" id="listaHotspots">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+
+            <!-- MAPA CARTOGRÁFICO COM CAMADA DINÂMICA DE ELEVAÇÃO -->
+            <div class="editorial-panel p-5 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+                            <h2 class="text-base sm:text-lg font-heading font-bold text-white" id="tituloHotspotAtual">
+                                Mapa Global de Inundação
+                            </h2>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-0.5" id="descHotspotAtual">
+                            Áreas azuis translúcidas representam o terreno continental submerso pelo avanço do oceano.
+                        </p>
+                    </div>
+
+                    <!-- Legenda Rápida do Mapa -->
+                    <div class="flex items-center gap-2 text-xs font-mono bg-[#0c0e14] px-3 py-1.5 rounded-lg border border-white/10 shrink-0">
+                        <span class="w-3 h-3 rounded bg-sky-500/70 border border-sky-400 inline-block"></span>
+                        <span class="text-slate-300">Terra Inundada</span>
+                        <span class="text-slate-600">|</span>
+                        <span class="w-3 h-3 rounded bg-[#090b10] border border-white/20 inline-block"></span>
+                        <span class="text-slate-400">Terra Firme</span>
+                    </div>
+                </div>
+
+                <!-- Container do Mapa Leaflet -->
+                <div id="mapaElevacao" class="w-full h-[400px] sm:h-[540px] rounded-lg border border-white/10 relative overflow-hidden">
+                    <!-- Overlay de Carregamento Suave -->
+                    <div id="loaderMapa" class="hidden absolute inset-0 bg-[#090a0f]/80 z-[1000] flex items-center justify-center backdrop-blur-sm">
+                        <div class="text-center font-mono text-xs text-sky-400 flex items-center gap-2">
+                            <i class="ph-bold ph-spinner animate-spin text-lg"></i>
+                            <span>Processando batimetria e cotas...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rodapé de Camadas e Botão de Compartilhar -->
+                <div class="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2 text-slate-400">
+                        <i class="ph-bold ph-layers text-sky-400"></i>
+                        <span>Camadas abertas: Esri World Gray Canvas, Satélite e OpenStreetMap.</span>
+                    </div>
+
+                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs">
+                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar no WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- DIAGRAMA INTERATIVO: CORTE TRANSVERSAL DO LITORAL (PERFIL TOPOGRÁFICO) -->
+            <div class="editorial-panel p-5 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-heading font-bold text-white flex items-center gap-2">
+                            <i class="ph-bold ph-chart-line text-sky-400"></i>
+                            Corte Transversal do Litoral Urbano
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            Veja a água subindo em tempo real contra o calçadão, avenidas costeiras, aeroportos e morros.
+                        </p>
+                    </div>
+                    <span class="text-xs font-mono text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded border border-sky-500/20">
+                        Nível da Maré: <strong id="lblNivelPerfil">+1m</strong>
+                    </span>
+                </div>
+
+                <div class="bg-[#090b10] rounded-lg border border-white/10 p-3 overflow-hidden">
+                    <canvas id="canvasPerfil" width="800" height="260" class="w-full h-[180px] sm:h-[240px]"></canvas>
+                </div>
+
+                <!-- Indicadores de Pontos de Ruptura Urbana -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3 text-xs font-mono">
+                    <div class="p-2 bg-[#0c0e14] rounded border border-white/5">
+                        <span class="text-slate-500 block text-[10px]">Praia & Orla (+1m a +2m)</span>
+                        <span id="chkOrla" class="text-amber-400 font-bold flex items-center gap-1 mt-0.5">
+                            <i class="ph-bold ph-warning"></i> Alagamento Imediato
+                        </span>
+                    </div>
+                    <div class="p-2 bg-[#0c0e14] rounded border border-white/5">
+                        <span class="text-slate-500 block text-[10px]">Aeroportos Costeiros (+3m)</span>
+                        <span id="chkAeroporto" class="text-slate-400 font-bold flex items-center gap-1 mt-0.5">
+                            <i class="ph-bold ph-shield-check"></i> Seguro
+                        </span>
+                    </div>
+                    <div class="p-2 bg-[#0c0e14] rounded border border-white/5">
+                        <span class="text-slate-500 block text-[10px]">Centro Histórico (+5m a +10m)</span>
+                        <span id="chkCentro" class="text-slate-400 font-bold flex items-center gap-1 mt-0.5">
+                            <i class="ph-bold ph-shield-check"></i> Seguro
+                        </span>
+                    </div>
+                    <div class="p-2 bg-[#0c0e14] rounded border border-white/5">
+                        <span class="text-slate-500 block text-[10px]">Planalto Continental (+30m+)</span>
+                        <span id="chkPlanalto" class="text-slate-400 font-bold flex items-center gap-1 mt-0.5">
+                            <i class="ph-bold ph-shield-check"></i> Seguro
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOSSIÊ COMPARATIVO DE MEGACIDADES & IMPACTO NACIONAL -->
+            <div class="editorial-panel p-5 mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-heading font-bold text-white flex items-center gap-2">
+                            <i class="ph-bold ph-buildings text-amber-400"></i>
+                            Vulnerabilidade Urbana: Brasil & Mundo
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            Resumo técnico das áreas metropolitanas com maior risco de submersão parcial ou total.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="gradeCidades">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Bloco de Anúncios AdSense Inferior (Mobile e Desktop) -->
+            <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
+                <div class="w-full max-w-4xl py-2 flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+            <!-- Links para outras Ferramentas do VitaleGeo -->
+            <div class="border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+                <span>Explore outras ferramentas cartográficas:</span>
+                <div class="flex flex-wrap gap-4">
+                    <a href="/ferramentas/paradoxo-linha-costa/" class="hover:text-sky-400 transition">Paradoxo da Linha de Costa</a>
+                    <a href="/ferramentas/radar-microestados/" class="hover:text-sky-400 transition">Radar de Microestados</a>
+                    <a href="/ferramentas/quantos-cabem/" class="hover:text-sky-400 transition">Quantos Cabem?</a>
+                    <a href="/ferramentas/comparador-paises/" class="hover:text-sky-400 transition">Tamanho Real dos Países</a>
+                    <a href="/ferramentas/rotas-extremas/" class="hover:text-sky-400 transition">Rotas em Linha Reta</a>
+                    <a href="/ferramentas/calculadora-antipodas/" class="hover:text-sky-400 transition">Calculador de Antípodas</a>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
+            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-globe-hemisphere-east text-base text-sky-400"></i>
+                <span>© 2026 VitaleGeo • Geografia, Cartografia e Geopolítica</span>
+            </div>
+            <div class="flex gap-5">
+                <a href="/" class="hover:text-slate-300">Início</a>
+                <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
+                <a href="/jogos" class="hover:text-slate-300">Arcade</a>
+                <a href="/politica" class="hover:text-slate-300">Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DO SIMULADOR DE NÍVEL DO MAR -->
+    <script>
+        // --- 1. BANCO DE DADOS DE CENÁRIOS, HOTSPOTS & VULNERABILIDADES ---
+        let nivelAtual = 1;
+
+        const CENARIOS = {
+            1: {
+                nome: "Cenário IPCC RCP 8.5 (Ano 2100)",
+                populacao: "190 milhões",
+                area: "410.000 km²",
+                megacidades: "14 capitais",
+                status: "Inundação Costeira Imediata",
+                desc: "Projeção realista de emissões altas para o fim deste século. Deltas fluviais e praias urbanas submergem permanentemente."
+            },
+            3: {
+                nome: "Colapso do Manto da Antártica Ocidental",
+                populacao: "340 milhões",
+                area: "980.000 km²",
+                megacidades: "38 capitais",
+                status: "Ruptura de Diques Costeiros",
+                desc: "Desestabilização das geleiras de Thwaites e Pine Island. Países insulares do Pacífico (Tuvalu, Maldivas) desaparecem."
+            },
+            7: {
+                nome: "Derretimento Completo da Groenlândia",
+                populacao: "620 milhões",
+                area: "2.400.000 km²",
+                megacidades: "85 capitais",
+                status: "Invasão de Bacias Costeiras",
+                desc: "A Groenlândia perde todo o seu manto de gelo fóssil. Toda a Baixada Fluminense, Santos, Miami e Holanda submersas."
+            },
+            15: {
+                nome: "Colapso Glacial Combinado Severo",
+                populacao: "890 milhões",
+                area: "4.800.000 km²",
+                megacidades: "160 metrópoles",
+                status: "Deslocamento Populacional Massivo",
+                desc: "Avanço do mar dezenas de quilômetros para o interior dos continentes. Cidades costeiras viram cidades submarinas."
+            },
+            30: {
+                nome: "Derretimento de 50% dos Mantos Polares",
+                populacao: "1,15 bilhão",
+                area: "7.900.000 km²",
+                megacidades: "240 metrópoles",
+                status: "Reconfiguração Geográfica Global",
+                desc: "Vales fluviais inteiros viram golfos marinhos. A Bacia do Rio da Prata e o baixo Rio Amazonas viram estuários oceânicos gigantes."
+            },
+            70: {
+                nome: "Planeta Sem Gelo (Hothouse Earth)",
+                populacao: "1,45 bilhão",
+                area: "13.200.000 km²",
+                megacidades: "Todas as metrópoles litorâneas",
+                status: "Limite Geológico Máximo da Terra",
+                desc: "Todo o gelo continental da Terra derretido. A Amazônia vira um mar interior e a península da Flórida deixa de existir."
+            }
+        };
+
+        const HOTSPOTS = [
+            {
+                id: 'rio',
+                nome: 'Baixada Fluminense & Rio de Janeiro',
+                bandeira: '🇧🇷',
+                coords: [-22.88, -43.25],
+                zoom: 11,
+                criticoMetro: 2,
+                desc: 'Aeroporto Santos Dumont inunda com +2m. Com +7m, a Baixada Fluminense, Barra da Tijuca e Ilha do Governador viram lagoas.'
+            },
+            {
+                id: 'recife',
+                nome: 'Recife & Região Metropolitana',
+                bandeira: '🇧🇷',
+                coords: [-8.06, -34.88],
+                zoom: 12,
+                criticoMetro: 1,
+                desc: 'A capital brasileira mais ameaçada pela ONU. Bairros inteiros (Boa Viagem, Pina, Ilha do Leite) estão a menos de 2m de altitude.'
+            },
+            {
+                id: 'santos',
+                nome: 'Baixada Santista & Porto de Santos',
+                bandeira: '🇧🇷',
+                coords: [-23.96, -46.33],
+                zoom: 12,
+                criticoMetro: 2,
+                desc: 'O maior complexo portuário da América Latina e os canais urbanos de Santos são sobrepujados logo nos primeiros metros.'
+            },
+            {
+                id: 'marajo',
+                nome: 'Foz do Amazonas & Ilha de Marajó',
+                bandeira: '🇧🇷',
+                coords: [-0.5, -50.5],
+                zoom: 8,
+                criticoMetro: 5,
+                desc: 'O maior delta e arquipélago fluviomarítimo do planeta. Com +30m a +70m, o oceano Atlântico engole a Amazônia até Manaus.'
+            },
+            {
+                id: 'holanda',
+                nome: 'Países Baixos & Roterdã',
+                bandeira: '🇳🇱',
+                coords: [52.13, 5.29],
+                zoom: 8,
+                criticoMetro: 2,
+                desc: 'Mais de 25% do território já fica abaixo do nível do mar hoje. Com +3m os diques falham e 65% do país fica submerso.'
+            },
+            {
+                id: 'miami',
+                nome: 'Miami & Sul da Flórida',
+                bandeira: '🇺🇸',
+                coords: [25.76, -80.19],
+                zoom: 10,
+                criticoMetro: 2,
+                desc: 'Construída sobre rocha calcária porosa: diques não funcionam pois a água brota do chão. Com +3m, Miami Beach desaparece.'
+            },
+            {
+                id: 'bangladesh',
+                nome: 'Delta do Ganges (Bangladesh)',
+                bandeira: '🇧🇩',
+                coords: [22.7, 89.8],
+                zoom: 8,
+                criticoMetro: 1,
+                desc: 'Mais de 160 milhões de pessoas habitando uma planície aluvial onde 70% das terras ficam abaixo de 5 metros de altitude.'
+            },
+            {
+                id: 'alexandria',
+                nome: 'Delta do Nilo & Alexandria',
+                bandeira: '🇪🇬',
+                coords: [31.2, 29.9],
+                zoom: 9,
+                criticoMetro: 1,
+                desc: 'O celeiro agrícola milenar do Egito. Uma subida de +1m saliniza as águas e desaloja 6 milhões de agricultores.'
+            },
+            {
+                id: 'veneza',
+                nome: 'Veneza & Lagoa Adriática',
+                bandeira: '🇮🇹',
+                coords: [45.44, 12.33],
+                zoom: 11,
+                criticoMetro: 1,
+                desc: 'A cidade das gôndolas e o sistema MOSE suportam tempestades pontuais, mas uma elevação de +1m torna o alagamento permanente.'
+            },
+            {
+                id: 'xangai',
+                nome: 'Xangai & Delta do Yangtzé',
+                bandeira: '🇨🇳',
+                coords: [31.23, 121.47],
+                zoom: 9,
+                criticoMetro: 2,
+                desc: 'O motor econômico da China. Metrópole de 25 milhões de habitantes erguida sobre sedimentos de delta marinho.'
+            }
+        ];
+
+        const CIDADES_IMPACTO = [
+            {
+                nome: "Recife (Brasil)",
+                pais: "Pernambuco, BR",
+                cotaRisco: "1m - 3m",
+                status: "Crítico",
+                cor: "text-amber-400",
+                detalhe: "Topografia plana cercada por rios e marés de sizígia. Bairros centrais e avenidas beira-mar sofrem intrusão diária com apenas +1m."
+            },
+            {
+                nome: "Rio de Janeiro & Baixada",
+                pais: "Rio de Janeiro, BR",
+                cotaRisco: "2m - 7m",
+                status: "Severo",
+                cor: "text-amber-400",
+                detalhe: "O Santos Dumont opera a 3m de altitude. A Lagoa Rodrigo de Freitas e os canais de Maricá e Barra transbordam permanentemente."
+            },
+            {
+                nome: "Santos & Baixada Santista",
+                pais: "São Paulo, BR",
+                cotaRisco: "2m - 5m",
+                status: "Severo",
+                cor: "text-amber-400",
+                detalhe: "Os canais urbanos de Saturnino de Brito passam a funcionar em refluxo inverso. O pátio de contêineres do porto fica inoperante."
+            },
+            {
+                nome: "Amsterdã & Roterdã",
+                pais: "Países Baixos",
+                cotaRisco: "2m - 5m",
+                status: "Existencial",
+                cor: "text-rose-400",
+                detalhe: "O sistema Deltawerken é a maior barreira de tempestade do mundo, mas foi projetado para variações de maré, não para +3m fixos."
+            },
+            {
+                nome: "Miami & Everglades",
+                pais: "Flórida, EUA",
+                cotaRisco: "1m - 3m",
+                status: "Existencial",
+                cor: "text-rose-400",
+                detalhe: "A água salgada infiltra pelo aquífero Biscayne, contaminando a água potável antes mesmo das ondas cobrirem as ruas."
+            },
+            {
+                nome: "Dhaka & Khulna",
+                pais: "Bangladesh",
+                cotaRisco: "1m - 3m",
+                status: "Humanitário",
+                cor: "text-rose-400",
+                detalhe: "Maior crise de refugiados climáticos do mundo: mais de 30 milhões de pessoas forçadas a migrar com subida de apenas 1,5m."
+            }
+        ];
+
+        // --- 2. INICIALIZAÇÃO DO MAPA LEAFLET ---
+        let map;
+        let camadaBaseAtual;
+        let camadaElevacaoTile;
+        let poligonosInundacaoLayer;
+
+        function initMap() {
+            // Camadas Base Livres de API Key (Provedores Homologados VitaleGeo)
+            const esriCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{x}/{y}', {
+                maxZoom: 16,
+                attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+            });
+
+            const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}', {
+                maxZoom: 17,
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS'
+            });
+
+            const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; OpenStreetMap contributors'
+            });
+
+            // Inicia centralizado na Baixada Fluminense / Guanabara
+            map = L.map('mapaElevacao', {
+                center: [-22.88, -43.25],
+                zoom: 11,
+                layers: [esriCanvas],
+                zoomControl: true
+            });
+
+            // Controle de camadas nativo e minimalista
+            const baseMaps = {
+                "Esri Gray Canvas (Editorial)": esriCanvas,
+                "Esri Satélite Real": esriSat,
+                "OpenStreetMap Padrão": osm
+            };
+            L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
+
+            // Criar camada personalizada de ladrilhos Canvas para elevação dinâmica (Terrarium)
+            criarCamadaElevacaoDinamica();
+
+            // Adicionar marcadores e polígonos vetoriais das bacias de inundação
+            criarPoligonosBacias();
+        }
+
+        // --- 3. CAMADA DE ELEVAÇÃO DINÂMICA VIA CANVAS & AWS TERRARIUM ---
+        // Terrarium tiles: elevation = (R * 256 + G + B / 256) - 32768
+        function criarCamadaElevacaoDinamica() {
+            const ElevationLayer = L.GridLayer.extend({
+                createTile: function(coords, done) {
+                    const tile = document.createElement('canvas');
+                    tile.width = 256;
+                    tile.height = 256;
+                    const ctx = tile.getContext('2d');
+
+                    const img = new Image();
+                    img.crossOrigin = 'Anonymous';
+                    
+                    // URL aberta e pública de elevação da AWS (Open Data)
+                    img.src = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${coords.z}/${coords.x}/${coords.y}.png`;
+
+                    img.onload = function() {
+                        try {
+                            // Cria canvas temporário para decodificar pixels
+                            const tempCanvas = document.createElement('canvas');
+                            tempCanvas.width = 256;
+                            tempCanvas.height = 256;
+                            const tempCtx = tempCanvas.getContext('2d');
+                            tempCtx.drawImage(img, 0, 0);
+
+                            const imgData = tempCtx.getImageData(0, 0, 256, 256);
+                            const data = imgData.data;
+
+                            const outData = ctx.createImageData(256, 256);
+                            const out = outData.data;
+
+                            const cotaLimite = nivelAtual;
+
+                            for (let i = 0; i < data.length; i += 4) {
+                                const r = data[i];
+                                const g = data[i + 1];
+                                const b = data[i + 2];
+
+                                // Fórmula do modelo Terrarium para altitude em metros
+                                const altitude = (r * 256.0 + g + b / 256.0) - 32768.0;
+
+                                // Se for terra firme e estiver abaixo ou igual à cota simulada
+                                if (altitude >= -0.5 && altitude <= cotaLimite) {
+                                    // Profundidade da água sobre a terra
+                                    const prof = cotaLimite - altitude;
+                                    const alpha = Math.min(205, Math.floor(130 + (prof / (cotaLimite + 1)) * 75));
+
+                                    // Tonalidade azul oceânica translúcida (#0284c7)
+                                    out[i] = 2;       // R
+                                    out[i + 1] = 132; // G
+                                    out[i + 2] = 199; // B
+                                    out[i + 3] = alpha; // Alpha
+                                } else {
+                                    // Transparente (terra não inundada ou oceano profundo)
+                                    out[i + 3] = 0;
+                                }
+                            }
+
+                            ctx.putImageData(outData, 0, 0);
+                        } catch (err) {
+                            // Falha de CORS ou segurança do canvas, silencia e renderiza limpo
+                        }
+                        done(null, tile);
+                    };
+
+                    img.onerror = function() {
+                        // Se falhar o carregamento do ladrilho de altitude, devolve canvas transparente
+                        done(null, tile);
+                    };
+
+                    return tile;
+                }
+            });
+
+            camadaElevacaoTile = new ElevationLayer({
+                opacity: 0.85,
+                zIndex: 400
+            });
+
+            camadaElevacaoTile.addTo(map);
+        }
+
+        // --- 4. POLÍGONOS DE BACIAS COSTEIRAS VULNERÁVEIS ---
+        function criarPoligonosBacias() {
+            poligonosInundacaoLayer = L.layerGroup().addTo(map);
+
+            HOTSPOTS.forEach(h => {
+                // Marcador circular estilizado em cada ponto crítico
+                const iconHtml = `<div class="w-6 h-6 rounded-full bg-sky-500/20 border-2 border-sky-400 flex items-center justify-center text-[10px] shadow-lg shadow-sky-500/30">
+                    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                </div>`;
+
+                const customIcon = L.divIcon({
+                    html: iconHtml,
+                    className: 'custom-div-icon',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                const marker = L.marker(h.coords, { icon: customIcon }).addTo(poligonosInundacaoLayer);
+                marker.bindPopup(`
+                    <div class="p-2 text-slate-800 font-sans">
+                        <div class="font-bold text-xs flex items-center gap-1 text-sky-800">
+                            <span>${h.bandeira}</span> ${h.nome}
+                        </div>
+                        <div class="text-[11px] text-slate-600 mt-1 leading-tight">${h.desc}</div>
+                        <div class="mt-2 text-[10px] font-mono font-bold text-amber-700">Risco Crítico: +${h.criticoMetro}m</div>
+                    </div>
+                `);
+            });
+        }
+
+        // --- 5. RENDERIZAÇÃO DO DIAGRAMA DE CORTE TRANSVERSAL ---
+        function desenharPerfilCosteiro() {
+            const canvas = document.getElementById('canvasPerfil');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Fundo
+            ctx.fillStyle = '#07090e';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grade sutil
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+            for (let y = 30; y < h - 30; y += 30) {
+                ctx.beginPath();
+                ctx.moveTo(40, y);
+                ctx.lineTo(w - 20, y);
+                ctx.stroke();
+            }
+
+            // Linha de base da topografia (Corte do oceano para a terra)
+            // Coordenadas X:
+            // 0 a 160: Oceano
+            // 160 a 260: Praia e Orla (+1m a +2m)
+            // 260 a 420: Avenidas e Prédios Costeiros (+3m a +6m)
+            // 420 a 580: Aeroporto e Planície Baixa (+3m a +8m)
+            // 580 a 700: Centro e Colinas Baixas (+15m a +30m)
+            // 700 a 800: Planalto e Morros (+50m a +80m)
+
+            const baseY = h - 45;
+
+            // Desenhar terreno
+            ctx.beginPath();
+            ctx.moveTo(0, baseY + 20); // Oceano
+            ctx.lineTo(160, baseY);    // Linha de praia (0m)
+            ctx.lineTo(240, baseY - 12); // Calçadão (+2m)
+            ctx.lineTo(400, baseY - 24); // Cidade (+5m)
+            ctx.lineTo(540, baseY - 35); // Aeroporto (+8m)
+            ctx.lineTo(660, baseY - 85); // Colina (+25m)
+            ctx.lineTo(760, baseY - 150); // Planalto (+60m)
+            ctx.lineTo(w, baseY - 180);   // Topo (+80m)
+            ctx.lineTo(w, h);
+            ctx.lineTo(0, h);
+            ctx.closePath();
+
+            // Gradiente do terreno rochoso/solo
+            const gradTerra = ctx.createLinearGradient(0, 0, 0, h);
+            gradTerra.addColorStop(0, '#1e293b');
+            gradTerra.addColorStop(1, '#0f172a');
+            ctx.fillStyle = gradTerra;
+            ctx.fill();
+
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Desenhar Silhuetas dos Edifícios / Marcos
+            // 1. Calçadão / Quiosque (x=220)
+            ctx.fillStyle = '#64748b';
+            ctx.fillRect(215, baseY - 22, 10, 10);
+            
+            // 2. Prédios Costeiros (x=280 a 380)
+            ctx.fillRect(280, baseY - 65, 25, 41);
+            ctx.fillRect(315, baseY - 85, 30, 61);
+            ctx.fillRect(355, baseY - 50, 20, 26);
+
+            // 3. Torre de Controle / Aeroporto (x=500)
+            ctx.fillRect(490, baseY - 70, 12, 35);
+            ctx.fillRect(485, baseY - 75, 22, 6);
+
+            // Nível da água dinâmica
+            // Escala de altura: 0m = baseY (h-45). 70m = baseY - 165
+            const pixelsPorMetro = 2.1;
+            const aguaY = baseY - (nivelAtual * pixelsPorMetro);
+
+            // Desenha corpo da água inundada
+            ctx.beginPath();
+            ctx.moveTo(0, baseY + 20);
+            ctx.lineTo(0, aguaY);
+            ctx.lineTo(w, aguaY);
+            ctx.lineTo(w, h);
+            ctx.lineTo(0, h);
+            ctx.closePath();
+
+            // Preenche água translúcida
+            ctx.fillStyle = 'rgba(2, 132, 199, 0.55)';
+            ctx.fill();
+
+            // Linha da crista da onda
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(0, aguaY);
+            ctx.lineTo(w, aguaY);
+            ctx.stroke();
+
+            // Rótulo da linha de água
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = 'bold 11px Space Mono';
+            ctx.fillText(`NÍVEL ATUAL: +${nivelAtual}m`, 15, Math.max(20, aguaY - 8));
+
+            // Rótulos de marcos no perfil
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '10px Inter';
+            ctx.fillText('Praia (0m)', 150, h - 15);
+            ctx.fillText('Calçadão (+2m)', 220, h - 15);
+            ctx.fillText('Prédios (+5m)', 310, h - 15);
+            ctx.fillText('Aeroporto (+8m)', 470, h - 15);
+            ctx.fillText('Colina (+25m)', 630, h - 15);
+            ctx.fillText('Planalto (+60m)', 720, h - 15);
+
+            // Atualizar badges de ruptura urbana
+            atualizarCheckpointsRuptura();
+        }
+
+        function atualizarCheckpointsRuptura() {
+            const chkOrla = document.getElementById('chkOrla');
+            const chkAeroporto = document.getElementById('chkAeroporto');
+            const chkCentro = document.getElementById('chkCentro');
+            const chkPlanalto = document.getElementById('chkPlanalto');
+
+            // Orla (+2m)
+            if (nivelAtual >= 2) {
+                chkOrla.innerHTML = `<i class="ph-bold ph-skull text-rose-400"></i> <span class="text-rose-400">Submerso (+${nivelAtual}m)</span>`;
+            } else {
+                chkOrla.innerHTML = `<i class="ph-bold ph-warning text-amber-400"></i> <span class="text-amber-400">Risco Imediato</span>`;
+            }
+
+            // Aeroporto (+5m)
+            if (nivelAtual >= 5) {
+                chkAeroporto.innerHTML = `<i class="ph-bold ph-skull text-rose-400"></i> <span class="text-rose-400">Pistas Alagadas</span>`;
+            } else if (nivelAtual >= 3) {
+                chkAeroporto.innerHTML = `<i class="ph-bold ph-warning text-amber-400"></i> <span class="text-amber-400">Refluxo de Drenagem</span>`;
+            } else {
+                chkAeroporto.innerHTML = `<i class="ph-bold ph-shield-check text-emerald-400"></i> <span class="text-slate-400">Seguro</span>`;
+            }
+
+            // Centro (+10m)
+            if (nivelAtual >= 10) {
+                chkCentro.innerHTML = `<i class="ph-bold ph-skull text-rose-400"></i> <span class="text-rose-400">Ruas Submersas</span>`;
+            } else if (nivelAtual >= 7) {
+                chkCentro.innerHTML = `<i class="ph-bold ph-warning text-amber-400"></i> <span class="text-amber-400">Maré de Tempestade</span>`;
+            } else {
+                chkCentro.innerHTML = `<i class="ph-bold ph-shield-check text-emerald-400"></i> <span class="text-slate-400">Seguro</span>`;
+            }
+
+            // Planalto (+30m)
+            if (nivelAtual >= 30) {
+                chkPlanalto.innerHTML = `<i class="ph-bold ph-waves text-sky-400"></i> <span class="text-sky-300">Nova Linha de Costa</span>`;
+            } else {
+                chkPlanalto.innerHTML = `<i class="ph-bold ph-shield-check text-emerald-400"></i> <span class="text-slate-400">Seguro</span>`;
+            }
+        }
+
+        // --- 6. CONTROLE DE EVENTOS & SLIDER ---
+        function aoMudarNivel(valor) {
+            nivelAtual = parseInt(valor, 10);
+            
+            // Atualizar interface de texto
+            document.getElementById('txtNivelMetro').innerText = `+${nivelAtual}`;
+            document.getElementById('lblNivelPerfil').innerText = `+${nivelAtual}m`;
+
+            // Buscar dados interpolados ou mais próximos de cenários
+            atualizarEstatisticasDinamicas(nivelAtual);
+
+            // Re-renderizar perfil transversal
+            desenharPerfilCosteiro();
+
+            // Atualizar camada dinâmica do Leaflet
+            if (camadaElevacaoTile) {
+                camadaElevacaoTile.redraw();
+            }
+
+            // Atualizar link do WhatsApp
+            atualizarLinkWhatsApp();
+
+            // Atualizar seleção visual nos botões de cenários
+            atualizarBotoesCenarios(nivelAtual);
+        }
+
+        function definirCenario(cota) {
+            document.getElementById('sliderNivel').value = cota;
+            aoMudarNivel(cota);
+        }
+
+        function atualizarBotoesCenarios(cota) {
+            const botoes = document.querySelectorAll('#gradeCenarios button');
+            botoes.forEach(b => b.classList.remove('preset-active'));
+
+            const correspondente = Array.from(botoes).find(b => {
+                const txt = b.querySelector('span').innerText;
+                return txt.includes(`+${cota} `);
+            });
+            if (correspondente) {
+                correspondente.classList.add('preset-active');
+            }
+        }
+
+        function atualizarEstatisticasDinamicas(cota) {
+            const statPop = document.getElementById('statPopulacao');
+            const statArea = document.getElementById('statArea');
+            const statMeg = document.getElementById('statMegacidades');
+            const statStatus = document.getElementById('statStatus');
+            const badgeCenario = document.getElementById('txtCenarioBadge');
+
+            // Interpolação suave e cientificamente embasada
+            if (cota <= 1) {
+                statPop.innerText = "190 milhões";
+                statArea.innerText = "410.000 km²";
+                statMeg.innerText = "14 capitais";
+                statStatus.innerText = "Inundação Costeira";
+                statStatus.className = "text-xs font-mono font-bold text-sky-400 mt-1 block";
+                badgeCenario.innerText = "IPCC 2100";
+            } else if (cota <= 3) {
+                statPop.innerText = "340 milhões";
+                statArea.innerText = "980.000 km²";
+                statMeg.innerText = "38 capitais";
+                statStatus.innerText = "Colapso Antártica Oc.";
+                statStatus.className = "text-xs font-mono font-bold text-amber-400 mt-1 block";
+                badgeCenario.innerText = "Antártica WAIS";
+            } else if (cota <= 7) {
+                statPop.innerText = "620 milhões";
+                statArea.innerText = "2.400.000 km²";
+                statMeg.innerText = "85 capitais";
+                statStatus.innerText = "Groenlândia Total";
+                statStatus.className = "text-xs font-mono font-bold text-amber-500 mt-1 block";
+                badgeCenario.innerText = "Groenlândia";
+            } else if (cota <= 15) {
+                statPop.innerText = "890 milhões";
+                statArea.innerText = "4.800.000 km²";
+                statMeg.innerText = "160 metrópoles";
+                statStatus.innerText = "Invasão de Bacias";
+                statStatus.className = "text-xs font-mono font-bold text-rose-400 mt-1 block";
+                badgeCenario.innerText = "Colapso Misto";
+            } else if (cota <= 30) {
+                statPop.innerText = "1,15 bilhão";
+                statArea.innerText = "7.900.000 km²";
+                statMeg.innerText = "240 metrópoles";
+                statStatus.innerText = "50% Degelo Global";
+                statStatus.className = "text-xs font-mono font-bold text-rose-500 mt-1 block";
+                badgeCenario.innerText = "Degelo 50%";
+            } else {
+                statPop.innerText = "1,45 bilhão";
+                statArea.innerText = "13.200.000 km²";
+                statMeg.innerText = "Todas orlas globais";
+                statStatus.innerText = "Hothouse Earth";
+                statStatus.className = "text-xs font-mono font-bold text-rose-600 mt-1 block";
+                badgeCenario.innerText = "Degelo 100%";
+            }
+        }
+
+        // --- 7. NAVEGAÇÃO DE HOTSPOTS ---
+        function renderizarListaHotspots() {
+            const container = document.getElementById('listaHotspots');
+            container.innerHTML = '';
+
+            HOTSPOTS.forEach((h, index) => {
+                const btn = document.createElement('button');
+                btn.className = `shrink-0 px-3 py-1.5 rounded-lg text-xs font-mono border transition flex items-center gap-1.5 ${index === 0 ? 'bg-sky-500/20 text-white border-sky-400' : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10'}`;
+                btn.innerHTML = `<span>${h.bandeira}</span> <span>${h.nome}</span>`;
+                btn.onclick = () => irParaHotspot(h.id, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function irParaHotspot(id, botaoClicado) {
+            const h = HOTSPOTS.find(item => item.id === id);
+            if (!h || !map) return;
+
+            map.flyTo(h.coords, h.zoom, { duration: 1.5 });
+
+            // Atualiza cabeçalho do mapa
+            document.getElementById('tituloHotspotAtual').innerText = `${h.bandeira} ${h.nome}`;
+            document.getElementById('descHotspotAtual').innerText = h.desc;
+
+            // Atualiza botões
+            if (botaoClicado) {
+                const todos = document.querySelectorAll('#listaHotspots button');
+                todos.forEach(b => {
+                    b.className = 'shrink-0 px-3 py-1.5 rounded-lg text-xs font-mono border transition flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-slate-300 border-white/10';
+                });
+                botaoClicado.className = 'shrink-0 px-3 py-1.5 rounded-lg text-xs font-mono border transition flex items-center gap-1.5 bg-sky-500/20 text-white border-sky-400';
+            }
+        }
+
+        // --- 8. RENDERIZAÇÃO DA GRADE DE MEGACIDADES ---
+        function renderizarGradeCidades() {
+            const container = document.getElementById('gradeCidades');
+            container.innerHTML = '';
+
+            CIDADES_IMPACTO.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'p-3.5 bg-[#0c0e14] rounded-lg border border-white/5 hover:border-white/15 transition flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <span class="font-heading font-bold text-sm text-white">${c.nome}</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 ${c.cor} font-bold">${c.status}</span>
+                        </div>
+                        <div class="text-[11px] font-mono text-slate-400 mb-2">${c.pais} • Cota Crítica: <strong class="text-sky-300">${c.cotaRisco}</strong></div>
+                        <p class="text-xs text-slate-400 leading-relaxed">${c.detalhe}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // --- 9. COMPARTILHAMENTO WHATSAPP ---
+        function atualizarLinkWhatsApp() {
+            const btn = document.getElementById('btnShareWhatsApp');
+            const texto = `Descobri no VitaleGeo o que acontece se o mar subir +${nivelAtual}m! Veja quais cidades do Brasil e do mundo ficariam debaixo d'água no Simulador de Elevação do Nível do Mar: https://www.vitalegeo.com.br/ferramentas/simulador-nivel-mar/`;
+            btn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+        }
+
+        // Alternar painel explicativo
+        function toggleAjuda() {
+            const painel = document.getElementById('painelAjuda');
+            painel.classList.toggle('hidden');
+        }
+
+        // Inicialização ao carregar o DOM
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            renderizarListaHotspots();
+            renderizarGradeCidades();
+            desenharPerfilCosteiro();
+            atualizarLinkWhatsApp();
+
+            // Reajustar canvas ao redimensionar
+            window.addEventListener('resize', () => {
+                desenharPerfilCosteiro();
+            });
+        });
+    </script>
+</body>
+</html>

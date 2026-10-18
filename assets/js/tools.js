@@ -61,5 +61,12 @@ const toolsDB = [
         icon: "ph-bold ph-chart-line-up",
         cover: "/assets/img/ferramentas/paradoxo-linha-costa.jpg",
         link: "/ferramentas/paradoxo-linha-costa/"
+    },
+    {
+        titulo: "Simulador de Elevação do Nível do Mar",
+        desc: "Simule a elevação dos oceanos de +1m até +70m e veja quais litorais, ilhas e cidades do Brasil e do mundo ficariam submersos.",
+        icon: "ph-bold ph-waves",
+        cover: "/assets/img/ferramentas/simulador-nivel-mar.jpg",
+        link: "/ferramentas/simulador-nivel-mar/"
     }
 ];

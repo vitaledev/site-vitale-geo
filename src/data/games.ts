@@ -78,6 +78,17 @@ export const gamesDB: GameItem[] = [
     tags: ["maior ou menor", "duelo", "pib", "populacao", "area", "economia", "comparacao", "estatisticas"]
   },
   {
+    id: "duelo-latitudes",
+    titulo: "Duelo de Latitudes",
+    desc: "Quem está mais ao norte? Quem está mais ao sul? Desmistifique as coordenadas e paralelos climáticos do globo.",
+    icon: "ph-fill ph-compass",
+    cover: "/assets/img/jogos/duelo-latitudes.svg",
+    link: "/jogos/duelo-latitudes/",
+    categoria: "Estatísticas & Dados",
+    badge: "NOVO DUELO",
+    tags: ["latitudes", "paralelos", "norte", "sul", "duelo", "coordenadas", "clima", "comparador"]
+  },
+  {
     id: "quiz",
     titulo: "Quiz Geopolítico",
     desc: "Mais de 1.000 perguntas sobre estreitos, canais, limites territoriais e geografia mundial.",

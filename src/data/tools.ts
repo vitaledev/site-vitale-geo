@@ -109,5 +109,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Ciência & Pesquisa",
     badge: "CIÊNCIA",
     tags: ["linha de costa", "litoral", "fractal", "mandelbrot", "morfologia", "regua", "fronteira", "paradoxo"]
+  },
+  {
+    id: "simulador-nivel-mar",
+    titulo: "Simulador de Elevação do Nível do Mar",
+    desc: "Simule a elevação dos oceanos de +1m até +70m e veja quais litorais, ilhas e cidades do Brasil e do mundo ficariam submersos.",
+    icon: "ph-bold ph-waves",
+    cover: "/assets/img/ferramentas/simulador-nivel-mar.jpg",
+    link: "/ferramentas/simulador-nivel-mar/",
+    categoria: "Ciência & Clima",
+    badge: "CLIMA & COSTAS",
+    tags: ["nivel do mar", "elevacao", "inundacao", "clima", "aquecimento global", "litoral", "brasil", "recife", "rio de janeiro", "holanda", "oceanos", "ipcc"]
   }
 ];
