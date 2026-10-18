@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <!-- Círculo Externo do Globo (Limbo) -->
+  <circle cx="250" cy="250" r="200" stroke="#0A192F" stroke-width="2.5" fill="none"/>
+
+  <!-- Ticks ao redor do círculo externo -->
+  <g opacity="0.6">
+    <line x1="444.0" y1="250.0" x2="450.0" y2="250.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="444.0" y1="284.2" x2="447.0" y2="284.7" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="435.1" y1="317.4" x2="437.9" y2="318.4" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="418.0" y1="347.0" x2="423.2" y2="350.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="400.9" y1="376.6" x2="403.2" y2="378.6" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="376.6" y1="400.9" x2="378.6" y2="403.2" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="347.0" y1="418.0" x2="350.0" y2="423.2" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="317.4" y1="435.1" x2="318.4" y2="437.9" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="284.2" y1="444.0" x2="284.7" y2="447.0" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="250.0" y1="444.0" x2="250.0" y2="450.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="215.8" y1="444.0" x2="215.3" y2="447.0" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="182.6" y1="435.1" x2="181.6" y2="437.9" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="153.0" y1="418.0" x2="150.0" y2="423.2" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="123.4" y1="400.9" x2="121.4" y2="403.2" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="99.1" y1="376.6" x2="96.8" y2="378.6" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="82.0" y1="347.0" x2="76.8" y2="350.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="64.9" y1="317.4" x2="62.1" y2="318.4" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="56.0" y1="284.2" x2="53.0" y2="284.7" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="56.0" y1="250.0" x2="50.0" y2="250.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="56.0" y1="215.8" x2="53.0" y2="215.3" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="64.9" y1="182.6" x2="62.1" y2="181.6" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="82.0" y1="153.0" x2="76.8" y2="150.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="99.1" y1="123.4" x2="96.8" y2="121.4" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="123.4" y1="99.1" x2="121.4" y2="96.8" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="153.0" y1="82.0" x2="150.0" y2="76.8" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="182.6" y1="64.9" x2="181.6" y2="62.1" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="215.8" y1="56.0" x2="215.3" y2="53.0" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="250.0" y1="56.0" x2="250.0" y2="50.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="284.2" y1="56.0" x2="284.7" y2="53.0" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="317.4" y1="64.9" x2="318.4" y2="62.1" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="347.0" y1="82.0" x2="350.0" y2="76.8" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="376.6" y1="99.1" x2="378.6" y2="96.8" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="400.9" y1="123.4" x2="403.2" y2="121.4" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="418.0" y1="153.0" x2="423.2" y2="150.0" stroke="#0A192F" stroke-width="1.5"/>
+    <line x1="435.1" y1="182.6" x2="437.9" y2="181.6" stroke="#0A192F" stroke-width="0.8"/>
+    <line x1="444.0" y1="215.8" x2="447.0" y2="215.3" stroke="#0A192F" stroke-width="0.8"/>
+  </g>
+
+  <!-- Eixo Terrestre Inclinado (23.5°) -->
+  <line x1="170" y1="62" x2="330" y2="438" stroke="#C8102E" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <circle cx="170" cy="62" r="3" fill="#C8102E"/>
+  <circle cx="330" cy="438" r="3" fill="#C8102E"/>
+  <text x="145" y="55" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#C8102E">N (23.5°)</text>
+
+  <!-- Equador (Linha Horizontal Principal) -->
+  <line x1="50" y1="250" x2="450" y2="250" stroke="#0A192F" stroke-width="2.0"/>
+  <text x="455" y="253" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="500" fill="#0A192F">0° EQ</text>
+
+  <!-- Meridiano Central (Prime Meridian) -->
+  <line x1="250" y1="50" x2="250" y2="450" stroke="#0A192F" stroke-width="2.0"/>
+  <text x="240" y="468" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="500" fill="#0A192F">0° GR</text>
+
+  <!-- Paralelos de Latitude -->
+  <ellipse cx="250" cy="180" rx="187" ry="24" stroke="#0A192F" stroke-width="1.0" stroke-dasharray="4 4" opacity="0.5" fill="none"/>
+  <ellipse cx="250" cy="120" rx="152" ry="18" stroke="#A8C3A6" stroke-width="1.2" opacity="0.85" fill="none"/>
+  <ellipse cx="250" cy="75" rx="97" ry="12" stroke="#0A192F" stroke-width="1.0" stroke-dasharray="4 4" opacity="0.5" fill="none"/>
+
+  <ellipse cx="250" cy="320" rx="187" ry="24" stroke="#0A192F" stroke-width="1.0" stroke-dasharray="4 4" opacity="0.5" fill="none"/>
+  <ellipse cx="250" cy="380" rx="152" ry="18" stroke="#A8C3A6" stroke-width="1.2" opacity="0.85" fill="none"/>
+  <ellipse cx="250" cy="425" rx="97" ry="12" stroke="#0A192F" stroke-width="1.0" stroke-dasharray="4 4" opacity="0.5" fill="none"/>
+
+  <!-- Meridianos de Longitude -->
+  <ellipse cx="250" cy="250" rx="60" ry="200" stroke="#0A192F" stroke-width="1.0" opacity="0.55" fill="none"/>
+  <ellipse cx="250" cy="250" rx="120" ry="200" stroke="#A8C3A6" stroke-width="1.2" opacity="0.85" fill="none"/>
+  <ellipse cx="250" cy="250" rx="165" ry="200" stroke="#0A192F" stroke-width="1.0" opacity="0.55" fill="none"/>
+
+  <!-- Nós de Interseção Geodésica -->
+  <circle cx="250" cy="250" r="3" fill="#0A192F"/>
+  <circle cx="310" cy="250" r="2" fill="#0A192F"/>
+  <circle cx="190" cy="250" r="2" fill="#0A192F"/>
+  <circle cx="250" cy="180" r="2" fill="#0A192F"/>
+  <circle cx="250" cy="320" r="2" fill="#0A192F"/>
+</svg>

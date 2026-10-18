@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import TopoLines from '../components/TopoLines.astro';
+import CompassRose from '../components/shapes/CompassRose.astro';
+import ScaleBar from '../components/shapes/ScaleBar.astro';
+import CoordCrosshair from '../components/shapes/CoordCrosshair.astro';
 import HomeBlogFilter from '../components/react/HomeBlogFilter';
 import { toolsDB } from '../data/tools';
 import { gamesDB } from '../data/games';
@@ -32,6 +35,12 @@ const postsData = sortedPosts.map(p => ({
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-4xl mx-auto relative z-10">
+        <!-- Pílula de Telemetria com Rosa dos Ventos -->
+        <div class="inline-flex items-center gap-2.5 mb-6 px-3.5 py-1.5 rounded-full bg-[#0A192F]/[0.03] border border-[#0A192F]/10">
+          <CompassRose size={20} animate={true} />
+          <span class="text-[11px] font-mono font-semibold tracking-wider text-[#0A192F] uppercase">Observatório Cartográfico // WGS 84</span>
+        </div>
+
         <h1 class="text-4xl sm:text-6xl md:text-7xl font-heading font-bold text-[#0A192F] max-w-4xl mx-auto leading-[1.1] tracking-[-0.03em]">
           Geopolítica, fronteiras e a verdadeira escala do mundo.
         </h1>
@@ -47,6 +56,12 @@ const postsData = sortedPosts.map(p => ({
           <a href="/ferramentas/" class="btn-clean-secondary">
             <i class="ph-bold ph-compass text-[#0A192F]"></i> Ferramentas
           </a>
+        </div>
+
+        <!-- Telemetria Cartográfica de Apoio no Hero -->
+        <div class="mt-12 pt-8 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-center sm:justify-between gap-6 max-w-2xl mx-auto opacity-75">
+          <CoordCrosshair coords="23°33'01''S · 46°38'02''W" sublabel="DATUM WGS84 // SP" />
+          <ScaleBar className="hidden sm:inline-flex" />
         </div>
       </div>
     </header>

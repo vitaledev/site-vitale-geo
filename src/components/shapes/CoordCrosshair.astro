@@ -1,0 +1,24 @@
+---
+interface Props {
+  coords?: string;
+  sublabel?: string;
+  className?: string;
+}
+const { coords = "23°33'S · 46°38'W", sublabel = "DATUM WGS84", className = '' } = Astro.props;
+---
+<div class={`inline-flex items-center gap-2 select-none font-mono text-[9px] text-[#53647C] ${className}`}>
+  <!-- Cruzeta Cartográfica com Mira Ótica -->
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#0A192F]/60 flex-shrink-0">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2" />
+    <circle cx="12" cy="12" r="3" stroke="#C8102E" stroke-width="1.2" />
+    <circle cx="12" cy="12" r="1" fill="#C8102E" />
+    <line x1="12" y1="1" x2="12" y2="7" stroke="currentColor" stroke-width="1.2" />
+    <line x1="12" y1="17" x2="12" y2="23" stroke="currentColor" stroke-width="1.2" />
+    <line x1="1" y1="12" x2="7" y2="12" stroke="currentColor" stroke-width="1.2" />
+    <line x1="17" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="1.2" />
+  </svg>
+  <div class="flex flex-col leading-tight">
+    <span class="font-semibold text-[#0A192F] tracking-tight">{coords}</span>
+    {sublabel && <span class="text-[8px] text-[#53647C]/80 uppercase">{sublabel}</span>}
+  </div>
+</div>

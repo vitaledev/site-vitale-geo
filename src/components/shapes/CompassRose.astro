@@ -1,0 +1,62 @@
+---
+interface Props {
+  size?: number;
+  className?: string;
+  animate?: boolean;
+}
+const { size = 44, className = '', animate = false } = Astro.props;
+---
+<div class={`inline-block select-none relative ${className}`} style={`width: ${size}px; height: ${size}px;`} aria-label="Rosa dos Ventos">
+  <svg viewBox="0 0 500 500" class={`w-full h-full ${animate ? 'hover:rotate-45 transition-transform duration-700 ease-out' : ''}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Círculos Graduados -->
+    <circle cx="250" cy="250" r="220" stroke="#0A192F" stroke-width="2.5" opacity="0.6"/>
+    <circle cx="250" cy="250" r="212" stroke="#0A192F" stroke-width="1.0" stroke-dasharray="3 4" opacity="0.4"/>
+    <circle cx="250" cy="250" r="70" stroke="#A8C3A6" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Pontas Colaterais (NE, SE, SW, NW em Sálvia e Navy) -->
+    <g transform="rotate(45 250 250)">
+      <polygon points="250,250 240,250 250,110" fill="#A8C3A6"/>
+      <polygon points="250,250 260,250 250,110" fill="#0A192F" opacity="0.4"/>
+    </g>
+    <g transform="rotate(135 250 250)">
+      <polygon points="250,250 240,250 250,110" fill="#A8C3A6"/>
+      <polygon points="250,250 260,250 250,110" fill="#0A192F" opacity="0.4"/>
+    </g>
+    <g transform="rotate(225 250 250)">
+      <polygon points="250,250 240,250 250,110" fill="#A8C3A6"/>
+      <polygon points="250,250 260,250 250,110" fill="#0A192F" opacity="0.4"/>
+    </g>
+    <g transform="rotate(315 250 250)">
+      <polygon points="250,250 240,250 250,110" fill="#A8C3A6"/>
+      <polygon points="250,250 260,250 250,110" fill="#0A192F" opacity="0.4"/>
+    </g>
+
+    <!-- Pontas Cardeais (E, S, W em Navy e Sálvia) -->
+    <!-- Leste (E) -->
+    <g transform="rotate(90 250 250)">
+      <polygon points="250,250 236,250 250,60" fill="#0A192F"/>
+      <polygon points="250,250 264,250 250,60" fill="#A8C3A6"/>
+    </g>
+    <!-- Sul (S) -->
+    <g transform="rotate(180 250 250)">
+      <polygon points="250,250 236,250 250,60" fill="#0A192F"/>
+      <polygon points="250,250 264,250 250,60" fill="#A8C3A6"/>
+    </g>
+    <!-- Oeste (W) -->
+    <g transform="rotate(270 250 250)">
+      <polygon points="250,250 236,250 250,60" fill="#0A192F"/>
+      <polygon points="250,250 264,250 250,60" fill="#A8C3A6"/>
+    </g>
+
+    <!-- Ponta Norte (Norte em Vermelho VitaleGeo e Navy) -->
+    <polygon points="250,250 236,250 250,50" fill="#0A192F"/>
+    <polygon points="250,250 264,250 250,50" fill="#C8102E"/>
+
+    <!-- Núcleo Central -->
+    <circle cx="250" cy="250" r="14" fill="#F5F2EB" stroke="#0A192F" stroke-width="2.5"/>
+    <circle cx="250" cy="250" r="5" fill="#C8102E"/>
+
+    <!-- 'N' em Orbitron estilizado -->
+    <text x="250" y="34" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="28" font-weight="900" fill="#C8102E">N</text>
+  </svg>
+</div>

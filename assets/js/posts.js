@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Por Que o Lago de Constança é o Único Lugar da Europa Onde Três Países Não Concordam Onde Fica a Fronteira?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Lake_Constance_Edited.png",
+        link: "lago-de-constanca-fronteira-triplice/",
+        resumo: "Entre a Alemanha, a Suíça e a Áustria, as águas de 536 km² do Bodensee não possuem tratado formal de limites: cada nação aplica sua própria teoria jurídica sem disparar um único tiro."
+    },
+    {
+        titulo: "Por Que o Descongelamento da Passagem Noroeste Pode Reduzir a Rota da Ásia para a Europa em 7.000 km?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/2007_Envisat_mosaic_of_Arctic_Ocean_ESA210015.jpg",
+        link: "passagem-noroeste-artico-degelo/",
+        resumo: "O recuo histórico da calota polar ártica está abrindo o mítico labirinto de ilhas do norte canadense, acirrando uma disputa de soberania naval entre Ottawa, Washington e Pequim."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Densamente Povoados do Planeta Onde Cada Metro Quadrado é Disputado?",
+        categoria: "Rankings",
+        data: "19 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Tejgaon_Commercial_Area.jpg",
+        link: "ranking-maiores-densidades-demograficas/",
+        resumo: "De Mônaco e Cingapura à pressão colossal de 170 milhões de pessoas em Bangladesh: conheça o ranking oficial das nações onde o espaço físico é o recurso mais escasso da civilização."
+    },
+    {
+        titulo: "Quais São os Dez Países Com os Maiores Litorais do Mundo e o Paradoxo da Linha de Costa?",
+        categoria: "Rankings",
+        data: "19 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Geirangerfjord_.jpg/1280px-Geirangerfjord_.jpg",
+        link: "ranking-maiores-litorais-do-mundo/",
+        resumo: "Do Canadá com seus 202.080 km de costas ao labirinto de fiordes da Noruega e os arquipélagos da Indonésia: descubra o ranking das maiores costas marítimas e o enigma matemático fractal."
+    },
+    {
+        titulo: "Como a Confluência dos Rios Iguaçu e Paraná Criou a Tríplice Fronteira Mais Movimentada da América do Sul?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Ponte_da_amizade_-_Friendship_bridge-_Paraguay_%289623754507%29.jpg",
+        link: "triplice-fronteira-parana-iguacu/",
+        resumo: "Onde as águas do Rio Iguaçu encontram o Rio Paraná, Brasil, Argentina e Paraguai dividem um triângulo geográfico de hidrelétricas gigantes, pontes internacionais e um fluxo comercial de bilhões."
+    },
+    {
+        titulo: "Por Que a Linha Durand Traçada Pelo Império Britânico Divide Tribos e Incendeia a Fronteira Afegã?",
+        categoria: "História",
+        data: "19 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Afghanistan-Pakistan_border.png",
+        link: "linha-durand-fronteira-afeganistao-paquistao/",
+        resumo: "Traçada a caneta em 1893 por um diplomata britânico, a fronteira de 2.670 km cortou ao meio a nação pashtun, nunca foi aceita por Cabul e transformou o Passo de Khyber no epicentro de insurgências."
+    },
+    {
+        titulo: "Por Que o Estreito de Magalhães Foi a Rota Mais Secreta e Lucrativa dos Impérios Coloniais?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/05/StraitOfMagellan.jpg",
+        link: "estreito-de-magalhaes-patagonia/",
+        resumo: "Com 565 km entre a Patagônia e a Terra do Fogo, o canal natural desbravado em 1520 quebrou o monopólio das rotas orientais, abrigou batalhas navais e moldou a soberania do Chile no extremo sul."
+    },
+    {
+        titulo: "Como a Austrália Se Tornou a Maior Mina do Planeta e o Principal Fornecedor de Ferro da Ásia?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Super_Pit_Gold_Mine%2C_Kalgoorlie%2C_WA%2C_2023%2C_11.jpg/1280px-Super_Pit_Gold_Mine%2C_Kalgoorlie%2C_WA%2C_2023%2C_11.jpg",
+        link: "geoeconomia-da-australia/",
+        resumo: "Das minas colossais de Pilbara aos depósitos de lítio de Greenbushes: descubra como a ilha-continente sustenta a indústria pesada da China enquanto navega tensões estratégicas no Indo-Pacífico."
+    },
+    {
+        titulo: "Por Que a Finlândia Abandonou Décadas de Neutralidade Para Erguer Uma Fortaleza na Fronteira Russa?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/01/Easternmost_finland.jpg",
+        link: "geopolitica-da-finlandia/",
+        resumo: "Com 1.340 km de divisa direta com a Rússia e a memória da Guerra de Inverno, Helsinque abandonou a neutralidade histórica, entrou para a OTAN e ergueu uma das maiores redes de bunkers da Europa."
+    },
+    {
+        titulo: "Como o Japão Se Manteve Isolado Por Dois Séculos e Forjou Suas Fronteiras no Pacífico?",
+        categoria: "História",
+        data: "19 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Satellite_View_of_Japan_1999.jpg",
+        link: "historia-do-japao/",
+        resumo: "Do edito de isolamento Sakoku de 1635 aos 'Navios Negros' do comodoro Perry e a expansão no Pacífico: conheça a saga territorial que transformou o arquipélago nipônico em potência global."
+    },
+    {
         titulo: "Por Que a Linha do Equador Corta o Brasil no Meio e o Marco Zero Fica em Macapá?",
         categoria: "Curiosidades",
         data: "18 Out 2026 - 10:00",

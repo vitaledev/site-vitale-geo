@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import TopoLines from '../components/TopoLines.astro';
+import ScaleBar from '../components/shapes/ScaleBar.astro';
 
 interface RelatedPost {
   slug: string;
@@ -98,10 +99,13 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
           {resumo}
         </p>
 
-        <div class="flex items-center gap-3 text-xs text-[#53647C] border-t border-[#0A192F]/10 pt-4">
-          <span class="text-[#C8102E] font-semibold font-mono">{data}</span>
-          <span class="text-[#0A192F]/30">·</span>
-          <span>Por VitaleGeo</span>
+        <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-[#53647C] border-t border-[#0A192F]/10 pt-4">
+          <div class="flex items-center gap-3">
+            <span class="text-[#C8102E] font-semibold font-mono">{data}</span>
+            <span class="text-[#0A192F]/30">·</span>
+            <span>Por VitaleGeo</span>
+          </div>
+          <ScaleBar className="hidden sm:inline-flex" />
         </div>
       </div>
     </header>

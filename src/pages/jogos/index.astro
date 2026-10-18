@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import TopoLines from '../../components/TopoLines.astro';
+import GlobeGraticule from '../../components/shapes/GlobeGraticule.astro';
+import CoordCrosshair from '../../components/shapes/CoordCrosshair.astro';
 import GamesArchive from '../../components/react/GamesArchive';
 import { gamesDB } from '../../data/games';
 
@@ -30,6 +32,10 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/jogos/';
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-3xl mx-auto relative z-10">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <GlobeGraticule size={28} className="opacity-80" />
+          <CoordCrosshair coords="LAT 00°00' · LON 00°00'" sublabel="MAPA MUDO GLOBAL" />
+        </div>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] tracking-tight leading-tight">
           Desafios de Fronteira
         </h1>

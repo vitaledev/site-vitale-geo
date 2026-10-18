@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" fill="none">
+  <!-- Cantoneira Externa de Moldura (Canto Superior Esquerdo) -->
+  <path d="M 230 30 L 30 30 L 30 230" stroke="#0A192F" stroke-width="2.5" fill="none"/>
+  <path d="M 230 42 L 42 42 L 42 230" stroke="#0A192F" stroke-width="1.0" fill="none"/>
+
+  <!-- Ticks de Minutos / Graus no Topo -->
+  <line x1="70" y1="30" x2="70" y2="42" stroke="#0A192F" stroke-width="1.5"/>
+  <line x1="110" y1="30" x2="110" y2="38" stroke="#0A192F" stroke-width="1.0"/>
+  <line x1="150" y1="30" x2="150" y2="42" stroke="#0A192F" stroke-width="1.5"/>
+  <line x1="190" y1="30" x2="190" y2="38" stroke="#0A192F" stroke-width="1.0"/>
+  <line x1="230" y1="30" x2="230" y2="42" stroke="#0A192F" stroke-width="1.5"/>
+  <text x="70" y="22" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">45°00'W</text>
+  <text x="150" y="22" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">44°30'W</text>
+  <text x="230" y="22" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">44°00'W</text>
+
+  <!-- Ticks na Lateral Esquerda -->
+  <line x1="30" y1="70" x2="42" y2="70" stroke="#0A192F" stroke-width="1.5"/>
+  <line x1="30" y1="110" x2="38" y2="110" stroke="#0A192F" stroke-width="1.0"/>
+  <line x1="30" y1="150" x2="42" y2="150" stroke="#0A192F" stroke-width="1.5"/>
+  <line x1="30" y1="190" x2="38" y2="190" stroke="#0A192F" stroke-width="1.0"/>
+  <line x1="30" y1="230" x2="42" y2="230" stroke="#0A192F" stroke-width="1.5"/>
+  <text x="24" y="73" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">23°00'S</text>
+  <text x="24" y="153" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">23°30'S</text>
+  <text x="24" y="233" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" fill="#0A192F">24°00'S</text>
+
+  <!-- Marcação de Registro no Vértice -->
+  <circle cx="30" cy="30" r="3" fill="#C8102E"/>
+  <line x1="20" y1="30" x2="40" y2="30" stroke="#C8102E" stroke-width="1.2"/>
+  <line x1="30" y1="20" x2="30" y2="40" stroke="#C8102E" stroke-width="1.2"/>
+
+  <text x="56" y="60" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" fill="#0A192F" letter-spacing="0.1em">VITALEGEO ATLAS QUADRANT</text>
+</svg>
