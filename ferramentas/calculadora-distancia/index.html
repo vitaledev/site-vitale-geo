@@ -29,6 +29,10 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -51,6 +55,58 @@
             }
         }
     </script>
+
+    <style>
+        .leaflet-container {
+            background: #E8E4DA;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 0.75rem;
+        }
+        .map-card {
+            transform: none !important;
+        }
+        .map-card:hover {
+            transform: none !important;
+        }
+        .pin-origem {
+            width: 22px;
+            height: 22px;
+            background-color: #C8102E;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(200, 16, 46, 0.5), 0 0 0 3px rgba(200, 16, 46, 0.25);
+            cursor: grab;
+            transition: transform 0.15s ease;
+        }
+        .pin-destino {
+            width: 22px;
+            height: 22px;
+            background-color: #0A192F;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(10, 25, 47, 0.5), 0 0 0 3px rgba(10, 25, 47, 0.25);
+            cursor: grab;
+            transition: transform 0.15s ease;
+        }
+        .pin-origem:active, .pin-destino:active {
+            cursor: grabbing;
+            transform: scale(1.2);
+        }
+
+        .leaflet-control-layers {
+            background: #ffffff !important;
+            border: 1px solid rgba(10, 25, 47, 0.15) !important;
+            color: #0A192F !important;
+            border-radius: 0.5rem !important;
+            font-size: 11px !important;
+            font-family: 'Montserrat', sans-serif !important;
+            box-shadow: 0 2px 8px rgba(10, 25, 47, 0.1) !important;
+        }
+        .leaflet-control-layers label {
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
@@ -136,6 +192,43 @@
                 <button onclick="setPreset(-22.9068, -43.1729, -23.5505, -46.6333, 100)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
                     🇧🇷 Rio ↔ 🇧🇷 São Paulo (357 km)
                 </button>
+                <button onclick="setPreset(30.0444, 31.2357, -33.8688, 151.2093, 850)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇪🇬 Cairo ↔ 🇦🇺 Sydney (14.410 km)
+                </button>
+            </div>
+
+            <!-- Mapa Cartográfico Interativo Geodésico -->
+            <div class="editorial-card map-card p-4 sm:p-5 mb-6">
+                <div class="flex items-center justify-between text-xs mb-2 px-1">
+                    <span class="font-bold text-[#0A192F] inline-flex items-center gap-2">
+                        <i class="ph-bold ph-globe text-[#C8102E]"></i> Traçado Geodésico no Globo (Arco de Grande Círculo)
+                    </span>
+                    <span class="text-[#53647C] font-mono text-[11px] hidden sm:inline">Arraste os marcadores ou clique no mapa para alterar</span>
+                </div>
+                
+                <div id="mapGeodesico" class="h-80 sm:h-[460px] w-full rounded-xl overflow-hidden border border-[#0A192F]/10"></div>
+                
+                <!-- Barra Inferior do Mapa: Legenda e Controles -->
+                <div class="mt-4 pt-3 border-t border-[#0A192F]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-4 flex-wrap text-[11px] font-mono text-[#53647C]">
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-[#C8102E] border border-white shadow-xs"></span> Ponto A (Origem)
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-[#0A192F] border border-white shadow-xs"></span> Ponto B (Destino)
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-4 h-0.5 bg-[#C8102E]"></span> Arco Geodésico
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-4 h-0.5 border-t border-dashed border-[#0A192F]"></span> Linha Reta Plana
+                        </span>
+                    </div>
+
+                    <button type="button" onclick="inverterPontos()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0A192F]/15 hover:border-[#C8102E]/40 text-[#0A192F] font-semibold transition shadow-xs self-start sm:self-auto">
+                        <i class="ph-bold ph-arrows-left-right text-[#C8102E]"></i> Inverter Origem ↔ Destino
+                    </button>
+                </div>
             </div>
 
             <!-- Grid de Configuração & Resultados -->
@@ -158,11 +251,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="start-lat">Latitude (-90 a +90)</label>
-                                <input id="start-lat" type="number" step="0.0001" placeholder="-23.5505" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                                <input id="start-lat" type="number" step="0.0001" value="-23.5505" placeholder="-23.5505" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
                             </div>
                             <div>
                                 <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="start-lng">Longitude (-180 a +180)</label>
-                                <input id="start-lng" type="number" step="0.0001" placeholder="-46.6333" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                                <input id="start-lng" type="number" step="0.0001" value="-46.6333" placeholder="-46.6333" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
                             </div>
                         </div>
                     </div>
@@ -175,11 +268,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="end-lat">Latitude (-90 a +90)</label>
-                                <input id="end-lat" type="number" step="0.0001" placeholder="40.7128" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                                <input id="end-lat" type="number" step="0.0001" value="40.7128" placeholder="40.7128" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
                             </div>
                             <div>
                                 <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="end-lng">Longitude (-180 a +180)</label>
-                                <input id="end-lng" type="number" step="0.0001" placeholder="-74.0060" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                                <input id="end-lng" type="number" step="0.0001" value="-74.0060" placeholder="-74.0060" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
                             </div>
                         </div>
                     </div>
@@ -279,7 +372,7 @@
         </div>
     </footer>
 
-    <!-- Lógica de Cálculo de Haversine -->
+    <!-- Lógica de Cálculo de Haversine & Traçado Geodésico -->
     <script>
         const startLat = document.getElementById('start-lat');
         const startLng = document.getElementById('start-lng');
@@ -293,10 +386,17 @@
         const resEta = document.getElementById('res-eta');
         const resultEmpty = document.getElementById('result-empty');
 
+        let map = null;
+        let markerA = null;
+        let markerB = null;
+        let layerGeodesica = null;
+        let layerPlana = null;
+
         const toRad = (deg) => deg * Math.PI / 180;
+        const toDeg = (rad) => rad * 180 / Math.PI;
 
         const haversineKm = (lat1, lon1, lat2, lon2) => {
-            const R = 6371; // Raio médio da Terra em km
+            const R = 6371; // Raio volumétrico médio da Terra em km
             const dLat = toRad(lat2 - lat1);
             const dLon = toRad(lon2 - lon1);
             const a = Math.sin(dLat / 2) ** 2 +
@@ -314,7 +414,143 @@
             return `${h}h ${m}min`;
         };
 
-        const buildResult = () => {
+        function gerarWaypointsGrandeCirculo(lat1, lon1, lat2, lon2, numPontos = 90) {
+            const phi1 = toRad(lat1), lam1 = toRad(lon1);
+            const phi2 = toRad(lat2), lam2 = toRad(lon2);
+
+            const d = 2 * Math.asin(Math.sqrt(
+                Math.pow(Math.sin((phi1 - phi2) / 2), 2) +
+                Math.cos(phi1) * Math.cos(phi2) * Math.pow(Math.sin((lam1 - lam2) / 2), 2)
+            ));
+
+            if (d === 0) return [[lat1, lon1], [lat2, lon2]];
+
+            const pontos = [];
+            for (let i = 0; i <= numPontos; i++) {
+                const f = i / numPontos;
+                const A = Math.sin((1 - f) * d) / Math.sin(d);
+                const B = Math.sin(f * d) / Math.sin(d);
+
+                const x = A * Math.cos(phi1) * Math.cos(lam1) + B * Math.cos(phi2) * Math.cos(lam2);
+                const y = A * Math.cos(phi1) * Math.sin(lam1) + B * Math.cos(phi2) * Math.sin(lam2);
+                const z = A * Math.sin(phi1) + B * Math.sin(phi2);
+
+                const lat = toDeg(Math.atan2(z, Math.sqrt(x * x + y * y)));
+                const lon = toDeg(Math.atan2(y, x));
+                pontos.push([lat, lon]);
+            }
+            return pontos;
+        }
+
+        function inicializarMapa() {
+            if (map) return;
+
+            const cartoLight = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+            const osm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+            const satelite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
+            map = L.map('mapGeodesico', {
+                center: [15, -20],
+                zoom: 2,
+                minZoom: 1,
+                maxZoom: 18,
+                worldCopyJump: true
+            });
+
+            const lightLayer = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(map);
+            const osmLayer = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
+            const satLayer = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
+
+            L.control.layers({
+                "Mapa Cartográfico": lightLayer,
+                "OpenStreetMap": osmLayer,
+                "Satélite Foto-Real": satLayer
+            }, null, { position: 'topright' }).addTo(map);
+
+            const iconA = L.divIcon({ className: 'pin-origem', iconSize: [22, 22], iconAnchor: [11, 11] });
+            const iconB = L.divIcon({ className: 'pin-destino', iconSize: [22, 22], iconAnchor: [11, 11] });
+
+            const lat1 = parseFloat(startLat.value) || -23.5505;
+            const lon1 = parseFloat(startLng.value) || -46.6333;
+            const lat2 = parseFloat(endLat.value) || 40.7128;
+            const lon2 = parseFloat(endLng.value) || -74.0060;
+
+            markerA = L.marker([lat1, lon1], { icon: iconA, draggable: true }).addTo(map);
+            markerB = L.marker([lat2, lon2], { icon: iconB, draggable: true }).addTo(map);
+
+            markerA.bindTooltip("Ponto A (Origem)", { direction: 'top', offset: [0, -12] });
+            markerB.bindTooltip("Ponto B (Destino)", { direction: 'top', offset: [0, -12] });
+
+            markerA.on('drag', onMarkerDrag);
+            markerB.on('drag', onMarkerDrag);
+            markerA.on('dragend', () => atualizarMapaECalculos(false));
+            markerB.on('dragend', () => atualizarMapaECalculos(false));
+
+            map.on('click', function(e) {
+                const clickPos = e.latlng.wrap();
+                const posA = markerA.getLatLng();
+                const posB = markerB.getLatLng();
+                const distA = map.distance(clickPos, posA);
+                const distB = map.distance(clickPos, posB);
+
+                if (distA <= distB) {
+                    markerA.setLatLng(clickPos);
+                    startLat.value = clickPos.lat.toFixed(4);
+                    startLng.value = clickPos.lng.toFixed(4);
+                } else {
+                    markerB.setLatLng(clickPos);
+                    endLat.value = clickPos.lat.toFixed(4);
+                    endLng.value = clickPos.lng.toFixed(4);
+                }
+                atualizarMapaECalculos(false);
+            });
+
+            setTimeout(() => { if (map) map.invalidateSize(); }, 200);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+
+            atualizarMapaECalculos(true);
+        }
+
+        function onMarkerDrag() {
+            const posA = markerA.getLatLng().wrap();
+            const posB = markerB.getLatLng().wrap();
+
+            startLat.value = posA.lat.toFixed(4);
+            startLng.value = posA.lng.toFixed(4);
+            endLat.value = posB.lat.toFixed(4);
+            endLng.value = posB.lng.toFixed(4);
+
+            redesenharLinhas(posA, posB);
+            calcularMetricas(posA.lat, posA.lng, posB.lat, posB.lng);
+        }
+
+        function redesenharLinhas(posA, posB) {
+            if (!map) return;
+            if (layerGeodesica) map.removeLayer(layerGeodesica);
+            if (layerPlana) map.removeLayer(layerPlana);
+
+            const waypoints = gerarWaypointsGrandeCirculo(posA.lat, posA.lng, posB.lat, posB.lng, 90);
+
+            // Rota esférica em vermelho oficial VitaleGeo
+            layerGeodesica = L.polyline(waypoints, {
+                color: '#C8102E',
+                weight: 3.5,
+                opacity: 0.95,
+                lineCap: 'round'
+            }).addTo(map);
+
+            // Rota plana em traço discreto
+            layerPlana = L.polyline([[posA.lat, posA.lng], [posB.lat, posB.lng]], {
+                color: '#0A192F',
+                weight: 2,
+                opacity: 0.45,
+                dashArray: '6, 6'
+            }).addTo(map);
+        }
+
+        function atualizarMapaECalculos(ajustarZoom = false) {
             const lat1 = parseFloat(startLat.value);
             const lon1 = parseFloat(startLng.value);
             const lat2 = parseFloat(endLat.value);
@@ -326,6 +562,23 @@
             }
 
             resultEmpty.classList.add('hidden');
+
+            const posA = L.latLng(lat1, lon1);
+            const posB = L.latLng(lat2, lon2);
+
+            if (markerA) markerA.setLatLng(posA);
+            if (markerB) markerB.setLatLng(posB);
+
+            redesenharLinhas(posA, posB);
+            calcularMetricas(lat1, lon1, lat2, lon2);
+
+            if (ajustarZoom && map) {
+                const bounds = L.latLngBounds([posA, posB]);
+                map.fitBounds(bounds, { padding: [50, 50], maxZoom: 8 });
+            }
+        }
+
+        function calcularMetricas(lat1, lon1, lat2, lon2) {
             const km = haversineKm(lat1, lon1, lat2, lon2);
             const mi = km * 0.621371;
             const nm = km * 0.539957;
@@ -336,7 +589,17 @@
             resMi.textContent = `${mi.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} mi`;
             resNm.textContent = `${nm.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} nm`;
             resEta.textContent = eta;
-        };
+        }
+
+        function inverterPontos() {
+            const tempLat = startLat.value;
+            const tempLng = startLng.value;
+            startLat.value = endLat.value;
+            startLng.value = endLng.value;
+            endLat.value = tempLat;
+            endLng.value = tempLng;
+            atualizarMapaECalculos(false);
+        }
 
         function setPreset(lat1, lon1, lat2, lon2, spd) {
             startLat.value = lat1;
@@ -344,14 +607,22 @@
             endLat.value = lat2;
             endLng.value = lon2;
             if (spd) speed.value = spd;
-            buildResult();
+            atualizarMapaECalculos(true);
         }
 
-        document.getElementById('btn-calc').addEventListener('click', buildResult);
-        [startLat, startLng, endLat, endLng, speed].forEach(input => input.addEventListener('input', buildResult));
+        document.getElementById('btn-calc').addEventListener('click', () => atualizarMapaECalculos(true));
+        [startLat, startLng, endLat, endLng, speed].forEach(input => {
+            input.addEventListener('input', () => atualizarMapaECalculos(false));
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') atualizarMapaECalculos(true);
+            });
+        });
 
-        // Inicializa com São Paulo ↔ Nova York
-        setPreset(-23.5505, -46.6333, 40.7128, -74.0060, 850);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inicializarMapa);
+        } else {
+            inicializarMapa();
+        }
     </script>
 </body>
 </html>

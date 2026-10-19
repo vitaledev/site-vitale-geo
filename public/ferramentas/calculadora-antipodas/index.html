@@ -62,21 +62,36 @@
             font-family: 'Montserrat', sans-serif;
             border-radius: 0.75rem;
         }
+        .map-card {
+            transform: none !important;
+        }
+        .map-card:hover {
+            transform: none !important;
+        }
         .pin-start {
+            width: 22px;
+            height: 22px;
             background-color: #C8102E;
-            border: 2px solid #ffffff;
+            border: 3px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
+            box-shadow: 0 2px 8px rgba(200, 16, 46, 0.5), 0 0 0 3px rgba(200, 16, 46, 0.25);
             cursor: grab;
+            transition: transform 0.15s ease;
         }
         .pin-anti {
+            width: 22px;
+            height: 22px;
             background-color: #0A192F;
-            border: 2px solid #ffffff;
+            border: 3px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
+            box-shadow: 0 2px 8px rgba(10, 25, 47, 0.5), 0 0 0 3px rgba(10, 25, 47, 0.25);
             cursor: grab;
+            transition: transform 0.15s ease;
         }
-        .pin-start:active, .pin-anti:active { cursor: grabbing; }
+        .pin-start:active, .pin-anti:active {
+            cursor: grabbing;
+            transform: scale(1.2);
+        }
 
         .leaflet-control-layers {
             background: #ffffff !important;
@@ -209,7 +224,7 @@
             </div>
 
             <!-- Dois Mapas Sincronizados Lado a Lado -->
-            <div class="editorial-card p-4 sm:p-5 mb-6">
+            <div class="editorial-card map-card p-4 sm:p-5 mb-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <div class="flex items-center justify-between text-xs mb-2 px-1">
@@ -255,11 +270,11 @@
                     </span>
                     <div class="flex items-center gap-1.5">
                         <span class="font-mono">Lat:</span>
-                        <input id="inputLat" type="number" step="0.01" value="-23.55" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
+                        <input id="inputLat" type="number" step="0.01" value="-23.55" onkeydown="if(event.key === 'Enter') calcularManualmente()" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
                     </div>
                     <div class="flex items-center gap-1.5">
                         <span class="font-mono">Lon:</span>
-                        <input id="inputLng" type="number" step="0.01" value="-46.63" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
+                        <input id="inputLng" type="number" step="0.01" value="-46.63" onkeydown="if(event.key === 'Enter') calcularManualmente()" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
                     </div>
                     <button onclick="calcularManualmente()" class="px-3 py-1 bg-[#0A192F] hover:bg-[#112236] text-white rounded-lg font-semibold transition">
                         Atualizar Mapas
@@ -378,6 +393,8 @@
         }
 
         function inicializarMapas() {
+            if (mapStart && mapAnti) return;
+
             const latInit = -23.5505;
             const lngInit = -46.6333;
             const antiInit = calcularAntipoda(latInit, lngInit);
@@ -386,50 +403,70 @@
             const osm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
             const satelite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
-            // Mapa 1: Partida
-            mapStart = L.map('mapStart', { zoomControl: true }).setView([latInit, lngInit], 4);
-            const light1 = L.tileLayer(cartoLight, { maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapStart);
+            // Mapa 1: Partida (Onde cava)
+            mapStart = L.map('mapStart', {
+                center: [latInit, lngInit],
+                zoom: 4,
+                zoomControl: true,
+                worldCopyJump: true
+            });
+            const light1 = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapStart);
             const osm1 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
             const sat1 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
             L.control.layers({ "Mapa Cartográfico": light1, "OpenStreetMap": osm1, "Satélite": sat1 }, null, { position: 'topright' }).addTo(mapStart);
 
-            const iconStart = L.divIcon({ className: 'pin-start', iconSize: [16, 16], iconAnchor: [8, 8] });
+            const iconStart = L.divIcon({ className: 'pin-start', iconSize: [22, 22], iconAnchor: [11, 11] });
             markerStart = L.marker([latInit, lngInit], { icon: iconStart, draggable: true }).addTo(mapStart);
+            markerStart.bindTooltip("Ponto A (Partida)", { direction: 'top', offset: [0, -12] });
 
-            // Mapa 2: Antípoda
-            mapAnti = L.map('mapAnti', { zoomControl: true }).setView([antiInit.lat, antiInit.lng], 4);
-            const light2 = L.tileLayer(cartoLight, { maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapAnti);
+            // Mapa 2: Antípoda (Onde sai)
+            mapAnti = L.map('mapAnti', {
+                center: [antiInit.lat, antiInit.lng],
+                zoom: 4,
+                zoomControl: true,
+                worldCopyJump: true
+            });
+            const light2 = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapAnti);
             const osm2 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
             const sat2 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
             L.control.layers({ "Mapa Cartográfico": light2, "OpenStreetMap": osm2, "Satélite": sat2 }, null, { position: 'topright' }).addTo(mapAnti);
 
-            const iconAnti = L.divIcon({ className: 'pin-anti', iconSize: [16, 16], iconAnchor: [8, 8] });
+            const iconAnti = L.divIcon({ className: 'pin-anti', iconSize: [22, 22], iconAnchor: [11, 11] });
             markerAnti = L.marker([antiInit.lat, antiInit.lng], { icon: iconAnti, draggable: true }).addTo(mapAnti);
+            markerAnti.bindTooltip("Ponto B (Antípoda)", { direction: 'top', offset: [0, -12] });
 
-            mapStart.on('click', function(e) { atualizarPonto(e.latlng.lat, e.latlng.lng, 'Ponto Selecionado'); });
+            // Interação Mapa A -> Mapa B
+            mapStart.on('click', function(e) {
+                const wrapPos = e.latlng.wrap();
+                atualizarPonto(wrapPos.lat, wrapPos.lng, 'Ponto Selecionado');
+            });
             markerStart.on('drag', function(e) {
-                const pos = markerStart.getLatLng();
-                atualizarDados(pos.lat, pos.lng, 'Ponto Arrastado');
+                const pos = markerStart.getLatLng().wrap();
                 const anti = calcularAntipoda(pos.lat, pos.lng);
                 markerAnti.setLatLng([anti.lat, anti.lng]);
+                mapAnti.panTo([anti.lat, anti.lng], { animate: false });
+                atualizarDados(pos.lat, pos.lng, 'Ponto Arrastado');
             });
             markerStart.on('dragend', function(e) {
-                const pos = markerStart.getLatLng();
+                const pos = markerStart.getLatLng().wrap();
                 atualizarPonto(pos.lat, pos.lng, 'Ponto Arrastado');
             });
 
+            // Interação Mapa B -> Mapa A (Bidirecional)
             mapAnti.on('click', function(e) {
-                const inverso = calcularAntipoda(e.latlng.lat, e.latlng.lng);
+                const wrapPos = e.latlng.wrap();
+                const inverso = calcularAntipoda(wrapPos.lat, wrapPos.lng);
                 atualizarPonto(inverso.lat, inverso.lng, 'Ponto Inverso');
             });
             markerAnti.on('drag', function(e) {
-                const pos = markerAnti.getLatLng();
+                const pos = markerAnti.getLatLng().wrap();
                 const inverso = calcularAntipoda(pos.lat, pos.lng);
-                atualizarDados(inverso.lat, inverso.lng, 'Ponto Inverso Arrastado');
                 markerStart.setLatLng([inverso.lat, inverso.lng]);
+                mapStart.panTo([inverso.lat, inverso.lng], { animate: false });
+                atualizarDados(inverso.lat, inverso.lng, 'Ponto Inverso Arrastado');
             });
             markerAnti.on('dragend', function(e) {
-                const pos = markerAnti.getLatLng();
+                const pos = markerAnti.getLatLng().wrap();
                 const inverso = calcularAntipoda(pos.lat, pos.lng);
                 atualizarPonto(inverso.lat, inverso.lng, 'Ponto Inverso Arrastado');
             });
@@ -437,7 +474,11 @@
             setTimeout(() => {
                 if (mapStart) mapStart.invalidateSize();
                 if (mapAnti) mapAnti.invalidateSize();
-            }, 300);
+            }, 200);
+            setTimeout(() => {
+                if (mapStart) mapStart.invalidateSize();
+                if (mapAnti) mapAnti.invalidateSize();
+            }, 600);
 
             window.addEventListener('resize', () => {
                 if (mapStart) mapStart.invalidateSize();
@@ -452,15 +493,17 @@
             while (lng > 180) lng -= 360;
             while (lng < -180) lng += 360;
 
-            document.getElementById('inputLat').value = lat.toFixed(2);
-            document.getElementById('inputLng').value = lng.toFixed(2);
+            const inLat = document.getElementById('inputLat');
+            const inLng = document.getElementById('inputLng');
+            if (inLat) inLat.value = lat.toFixed(2);
+            if (inLng) inLng.value = lng.toFixed(2);
 
-            markerStart.setLatLng([lat, lng]);
-            mapStart.panTo([lat, lng]);
+            if (markerStart) markerStart.setLatLng([lat, lng]);
+            if (mapStart) mapStart.panTo([lat, lng]);
 
             const anti = calcularAntipoda(lat, lng);
-            markerAnti.setLatLng([anti.lat, anti.lng]);
-            mapAnti.panTo([anti.lat, anti.lng]);
+            if (markerAnti) markerAnti.setLatLng([anti.lat, anti.lng]);
+            if (mapAnti) mapAnti.panTo([anti.lat, anti.lng]);
 
             atualizarDados(lat, lng, label);
         }
@@ -513,7 +556,11 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', inicializarMapas);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inicializarMapas);
+        } else {
+            inicializarMapas();
+        }
     </script>
 </body>
 </html>
