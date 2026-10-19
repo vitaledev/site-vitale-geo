@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/paradoxo-linha-costa/">
@@ -8,12 +8,12 @@
     <title>O Paradoxo da Linha de Costa: O Efeito Mandelbrot | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Descubra por que é matematicamente impossível medir o tamanho exato da costa de um país. Simule o paradoxo fractal de Mandelbrot e Richardson com réguas interativas em litorais do Brasil, Noruega e Grã-Bretanha.">
+    <meta name="description" content="Descubra por que é matematicamente impossível medir o tamanho exato do litoral de um país. Simule o paradoxo fractal de Mandelbrot e Richardson com réguas interativas em litorais do Brasil, Noruega e Grã-Bretanha.">
     <meta name="keywords" content="paradoxo da linha de costa, coastline paradox, benoit mandelbrot, lewis fry richardson, dimensao fractal, tamanho da costa da noruega, litoral do brasil tamanho, geografia interativa, vitalegeo">
 
     <!-- Open Graph -->
     <meta property="og:title" content="O Paradoxo da Linha de Costa: O Efeito Mandelbrot | VitaleGeo">
-    <meta property="og:description" content="Por que o litoral da Noruega parece infinito se medido em detalhes microscópicos? Simule o paradoxo fractal de Mandelbrot com réguas interativas.">
+    <meta property="og:description" content="Por que o litoral da Noruega parece infinito quando medido em escalas microscópicas? Simule o paradoxo fractal com réguas interativas.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/paradoxo-linha-costa/">
     <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/paradoxo-linha-costa.jpg">
@@ -24,10 +24,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Tipografia Oficial -->
+    <!-- Tipografia Oficial VitaleGeo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Leaflet CSS & JS -->
@@ -39,9 +39,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -49,48 +58,16 @@
     </script>
 
     <style>
-        .editorial-panel {
-            background: #11131a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-        }
         .leaflet-container {
-            background: #0d0f15;
-            font-family: 'Inter', sans-serif;
+            background: #E8E4DA;
+            font-family: 'Montserrat', sans-serif;
             border-radius: 0.75rem;
-        }
-        .leaflet-control-layers {
-            background: #11131a !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            color: #cbd5e1 !important;
-            border-radius: 0.5rem !important;
-            font-size: 11px !important;
-            font-family: 'Inter', sans-serif !important;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
-        }
-        .leaflet-control-layers label {
-            margin-bottom: 2px;
-            cursor: pointer;
         }
         .chip-active {
-            background-color: rgba(245, 158, 11, 0.15) !important;
-            border-color: rgba(245, 158, 11, 0.7) !important;
-            color: #ffffff !important;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 9999px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 9999px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background-color: #FAF8F5 !important;
+            border-color: #C8102E !important;
+            color: #C8102E !important;
+            box-shadow: 0 2px 6px rgba(200, 16, 46, 0.15) !important;
         }
         canvas {
             display: block;
@@ -98,189 +75,156 @@
         }
     </style>
 </head>
-<body class="bg-[#090a0f] text-slate-200 font-sans antialiased selection:bg-amber-500/20 selection:text-amber-300 min-h-screen flex flex-col overflow-x-hidden">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-    <!-- Barra de Navegação Superior -->
-    <header class="border-b border-white/10 bg-[#07080d]/90 backdrop-blur sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <a href="/" class="flex items-center gap-2 group">
-                    <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
-                        <i class="ph-bold ph-globe-hemisphere-west text-lg"></i>
-                    </div>
-                    <span class="font-heading font-bold text-lg text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
-                </a>
-                <span class="hidden sm:inline-block text-xs font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400">
-                    FERRAMENTAS #06
-                </span>
-            </div>
-
-            <nav class="flex items-center gap-2 sm:gap-4 text-xs font-medium">
-                <a href="/ferramentas/" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                    <i class="ph-bold ph-arrow-left"></i>
-                    <span class="hidden sm:inline">Todas as Ferramentas</span>
-                    <span class="sm:hidden">Voltar</span>
-                </a>
-                <a href="/blog/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Blog</a>
-                <a href="/jogos/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Arcade</a>
-                <a href="/videos/" class="hidden md:inline px-3 py-1.5 text-slate-400 hover:text-white transition">Vídeos</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Layout Grid com Banners Desktop Laterais (Skyscrapers) -->
-    <div class="max-w-[1720px] mx-auto px-2 sm:px-4 py-6 w-full flex-1 flex justify-center gap-4">
-
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-            <div class="w-full flex-1 flex items-center justify-center">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:160px;height:600px"
-                     data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"></ins>
-                <script>
-                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-                </script>
-            </div>
-        </aside>
-
-        <!-- ÁREA CENTRAL DA FERRAMENTA -->
-        <main class="w-full max-w-5xl flex-1">
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
+            </a>
             
-            <!-- Hero / Cabeçalho Didático -->
-            <div class="editorial-panel p-5 sm:p-6 mb-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex flex-wrap items-center gap-2 mb-2">
-                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-amber-500/10 text-amber-400 border border-amber-500/25">
-                                <i class="ph-bold ph-chart-line-up"></i> Efeito Richardson (1961)
-                            </span>
-                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-sky-500/10 text-sky-400 border border-sky-500/25">
-                                <i class="ph-bold ph-polygon"></i> Benoit Mandelbrot (1967)
-                            </span>
-                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                                <i class="ph-bold ph-infinity"></i> Dimensão Fractal D &gt; 1.0
-                            </span>
-                        </div>
-                        <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-white tracking-tight">
-                            O Paradoxo da Linha de Costa
-                        </h1>
-                        <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-3xl leading-relaxed">
-                            Por que é impossível responder qual é o comprimento exato do litoral de um país? Quanto menor for a régua utilizada para medir, mais curvas, baías, enseadas e grãos de areia são revelados — fazendo o comprimento tender ao infinito.
-                        </p>
-                    </div>
-
-                    <button onclick="toggleAjuda()" class="self-start md:self-center shrink-0 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-medium inline-flex items-center gap-1.5 transition">
-                        <i class="ph-bold ph-question text-amber-400"></i>
-                        <span>Como Funciona o Paradoxo?</span>
-                    </button>
-                </div>
-
-                <!-- Painel Didático Desdobrável -->
-                <div id="painelAjuda" class="hidden mt-5 pt-5 border-t border-white/10 text-xs text-slate-300 leading-relaxed grid sm:grid-cols-3 gap-4">
-                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
-                        <span class="font-bold text-amber-400 block mb-1 flex items-center gap-1">
-                            <i class="ph-bold ph-ruler"></i> 1. A Ilusão da Régua
-                        </span>
-                        Se você medir a costa da Grã-Bretanha com uma régua de 200 km, ela mede 2.400 km. Com uma régua de 50 km, salta para 3.400 km. Com réguas de 10 cm, passa de dezenas de milhares de quilômetros.
-                    </div>
-                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
-                        <span class="font-bold text-sky-400 block mb-1 flex items-center gap-1">
-                            <i class="ph-bold ph-snowflake"></i> 2. A Geometria Fractal
-                        </span>
-                        Costas litorâneas não são círculos ou polígonos euclidianos. Elas possuem autossimilaridade estatística: em qualquer nível de zoom, novas reentrâncias aparecem. Sua dimensão fractal D fica entre 1 e 2.
-                    </div>
-                    <div class="p-3 bg-[#0c0e14] rounded-lg border border-white/5">
-                        <span class="font-bold text-emerald-400 block mb-1 flex items-center gap-1">
-                            <i class="ph-bold ph-scales"></i> 3. Impacto Geopolítico
-                        </span>
-                        Em 1961, Portugal e Espanha registraram tamanhos diferentes para a mesma fronteira comum (1.214 km vs 987 km). Ninguém errou: Portugal usou mapas de escala mais detalhada que a Espanha!
-                    </div>
-                </div>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <!-- SELETOR DE LITORAL PARA SIMULAÇÃO -->
-            <div class="editorial-panel p-4 mb-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                        <i class="ph-bold ph-compass"></i> Escolha o Litoral de Teste
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Geometria Fractal & Cartografia
                     </span>
-                    <span class="text-[11px] text-slate-500 font-mono">
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        O Paradoxo da Linha de Costa
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Por que o comprimento do litoral de um país tende ao infinito quanto menor for a régua utilizada para medir.
+                    </p>
+                </div>
+
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Como Funciona o Paradoxo Fractal?">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>O Que Diz a Matemática?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-infinity text-[#C8102E]"></i> O Efeito Richardson & Mandelbrot
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            Litorais naturais não são formas geométricas lisas, mas estruturas autossimilares que revelam novas curvas em qualquer nível de zoom.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>A Ilusão da Régua:</strong> Na Grã-Bretanha, uma régua de 200 km mede 2.400 km. Uma régua de 50 km mede 3.400 km. Réguas de passos humanos encontram dezenas de milhares de quilômetros.</li>
+                            <li>• <strong>Dimensão Fractal ($D > 1.0$):</strong> Ao contrário de uma linha euclidiana ($D = 1.0$), a costa da Noruega possui $D \approx 1.52$ e a da Grã-Bretanha $D \approx 1.25$.</li>
+                            <li>• <strong>O Caso Portugal vs Espanha (1961):</strong> Portugal registrou 1.214 km para a fronteira comum, e a Espanha registrou 987 km. A diferença de 227 km decorreu unicamente da escala dos mapas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Seletor de Litoral de Teste -->
+            <div class="editorial-card p-4 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#53647C] flex items-center gap-1.5">
+                        <i class="ph-bold ph-compass text-[#C8102E]"></i> Selecione o Litoral para Medição:
+                    </span>
+                    <span class="text-[11px] text-[#53647C] font-mono">
                         Perfis costeiros digitalizados em alta resolução vetorial
                     </span>
                 </div>
 
                 <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar" id="listaLitorais">
-                    <!-- Botões de Litorais populados via JS -->
+                    <!-- Preenchido dinamicamente via JS -->
                 </div>
             </div>
 
-            <!-- SIMULADOR INTERATIVO: CANVAS DA RÉGUA FRACTAL + CONTROLES -->
-            <div class="editorial-panel p-5 mb-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <img id="imgFlagLitoral" src="/assets/flags/gb.svg" alt="Bandeira" class="w-5 h-3.5 object-cover rounded shadow-sm">
-                            <h2 id="tituloLitoralAtivo" class="text-base sm:text-lg font-heading font-bold text-white">
-                                Grã-Bretanha (Reino Unido)
-                            </h2>
-                            <span id="badgeDimensaoD" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                                D ≈ 1.25
-                            </span>
+            <!-- Palco do Simulador da Régua Fractal -->
+            <div class="editorial-card p-5 sm:p-6 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-[#0A192F]/10">
+                    <div class="flex items-center gap-2.5">
+                        <img id="imgFlagLitoral" src="/assets/flags/gb.svg" alt="Bandeira" class="w-6 h-4 object-cover rounded shadow-xs border border-[#0A192F]/15">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h2 id="tituloLitoralAtivo" class="text-base sm:text-lg font-heading font-bold text-[#0A192F]">
+                                    Grã-Bretanha (Reino Unido)
+                                </h2>
+                                <span id="badgeDimensaoD" class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30">
+                                    D ≈ 1.25
+                                </span>
+                            </div>
+                            <p id="descLitoralAtivo" class="text-xs text-[#53647C] mt-0.5">
+                                O caso clássico publicado por Benoit Mandelbrot em 1967 na revista Science.
+                            </p>
                         </div>
-                        <p id="descLitoralAtivo" class="text-xs text-slate-400 mt-1">
-                            O caso canônico publicado por Benoit Mandelbrot em 1967 na revista Science.
-                        </p>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <button id="btnAnimar" onclick="toggleAnimacao()" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 text-xs font-medium inline-flex items-center gap-1.5 transition">
-                            <i id="iconPlay" class="ph-bold ph-play text-amber-400"></i>
+                        <button id="btnAnimar" onclick="toggleAnimacao()" class="px-3.5 py-1.5 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white text-xs font-heading font-bold inline-flex items-center gap-1.5 transition shadow-xs">
+                            <i id="iconPlay" class="ph-bold ph-play"></i>
                             <span id="txtBtnAnimar">Animar Medição</span>
                         </button>
-                        <button onclick="reiniciarRégua()" class="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 text-xs transition" title="Redefinir réguas">
+                        <button onclick="reiniciarRégua()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/15 text-xs font-semibold transition shadow-xs" title="Redefinir réguas">
                             <i class="ph-bold ph-arrow-counter-clockwise"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- HUD / METRICAS DO COMPASSO FRACTAL -->
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mb-4">
-                    <div class="p-2.5 sm:p-3 bg-[#0a0c11] rounded-lg border border-white/5">
-                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Tamanho da Régua (ε)</span>
-                        <span id="statRegua" class="text-base sm:text-lg font-mono font-bold text-amber-400">50 km</span>
+                <!-- HUD / Métricas do Compasso Fractal -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-5">
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 text-center">
+                        <span class="text-[10px] font-mono uppercase text-[#53647C] font-semibold block mb-0.5">Tamanho da Régua (ε)</span>
+                        <span id="statRegua" class="text-base sm:text-lg font-mono font-bold text-[#C8102E]">50 km</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 bg-[#0a0c11] rounded-lg border border-white/5">
-                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Passos Contados (N)</span>
-                        <span id="statPassos" class="text-base sm:text-lg font-mono font-bold text-white">48 passos</span>
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 text-center">
+                        <span class="text-[10px] font-mono uppercase text-[#53647C] font-semibold block mb-0.5">Passos Contados (N)</span>
+                        <span id="statPassos" class="text-base sm:text-lg font-mono font-bold text-[#0A192F]">48 passos</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 bg-[#0a0c11] rounded-lg border border-white/5">
-                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Comprimento Medido (L)</span>
-                        <span id="statComprimento" class="text-base sm:text-lg font-mono font-bold text-sky-400">2.400 km</span>
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 text-center">
+                        <span class="text-[10px] font-mono uppercase text-[#53647C] font-semibold block mb-0.5">Comprimento Medido (L)</span>
+                        <span id="statComprimento" class="text-base sm:text-lg font-mono font-bold text-[#0A192F]">2.400 km</span>
                     </div>
-                    <div class="p-2.5 sm:p-3 bg-[#0a0c11] rounded-lg border border-white/5">
-                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Crescimento Relativo</span>
-                        <span id="statExpansao" class="text-base sm:text-lg font-mono font-bold text-emerald-400">+56%</span>
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 text-center">
+                        <span class="text-[10px] font-mono uppercase text-[#53647C] font-semibold block mb-0.5">Expansão Fractal</span>
+                        <span id="statExpansao" class="text-base sm:text-lg font-mono font-bold text-emerald-700">+56%</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-1 p-2.5 sm:p-3 bg-[#0a0c11] rounded-lg border border-white/5">
-                        <span class="text-[10px] font-mono uppercase text-slate-500 block mb-0.5">Dimensão Fractal D</span>
-                        <span id="statDimensaoCalc" class="text-base sm:text-lg font-mono font-bold text-amber-300">1.253</span>
+                    <div class="col-span-2 sm:col-span-1 p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 text-center">
+                        <span class="text-[10px] font-mono uppercase text-[#53647C] font-semibold block mb-0.5">Dimensão Fractal D</span>
+                        <span id="statDimensaoCalc" class="text-base sm:text-lg font-mono font-bold text-[#C8102E]">1.253</span>
                     </div>
                 </div>
 
-                <!-- CONTROLE DESLIZANTE DA RÉGUA -->
-                <div class="bg-[#0c0e14] p-3.5 rounded-lg border border-white/5 mb-4">
+                <!-- Controle Deslizante da Régua -->
+                <div class="bg-[#FAF8F5] p-4 rounded-xl border border-[#0A192F]/10 mb-5">
                     <div class="flex items-center justify-between text-xs mb-2">
-                        <span class="text-slate-400 font-medium flex items-center gap-1.5">
-                            <i class="ph-bold ph-sliders text-amber-400"></i> Ajustar Comprimento da Régua (Resolução):
+                        <span class="text-[#0A192F] font-semibold flex items-center gap-1.5">
+                            <i class="ph-bold ph-sliders text-[#C8102E]"></i> Ajustar Comprimento da Régua:
                         </span>
-                        <span class="font-mono text-amber-400 font-bold" id="labelSliderRegua">50 km</span>
+                        <span class="font-mono text-[#C8102E] font-bold text-sm" id="labelSliderRegua">50 km</span>
                     </div>
                     
-                    <input type="range" id="sliderRegua" min="10" max="200" step="5" value="50" oninput="aoMudarSlider(this.value)" class="w-full accent-amber-500 cursor-pointer h-2 bg-slate-800 rounded-lg">
+                    <input type="range" id="sliderRegua" min="10" max="200" step="5" value="50" oninput="aoMudarSlider(this.value)" class="w-full accent-[#C8102E] cursor-pointer h-2 bg-[#E8E4DA] rounded-lg">
                     
-                    <div class="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-2">
+                    <div class="flex justify-between items-center text-[10px] font-mono text-[#53647C] mt-2">
                         <span>10 km (Alta resolução)</span>
                         <span>50 km</span>
                         <span>100 km</span>
@@ -288,51 +232,49 @@
                     </div>
 
                     <!-- Presets Rápidos -->
-                    <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-2 border-t border-white/5">
-                        <span class="text-[11px] text-slate-400 mr-1">Atalhos rápidos:</span>
-                        <button onclick="definirRegua(200)" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">200 km</button>
-                        <button onclick="definirRegua(100)" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">100 km</button>
-                        <button onclick="definirRegua(50)" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">50 km</button>
-                        <button onclick="definirRegua(25)" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">25 km</button>
-                        <button onclick="definirRegua(10)" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">10 km</button>
+                    <div class="flex flex-wrap items-center gap-1.5 mt-3 pt-2.5 border-t border-[#0A192F]/10">
+                        <span class="text-[11px] text-[#53647C] font-mono mr-1">Atalhos rápidos:</span>
+                        <button onclick="definirRegua(200)" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-white hover:bg-[#E8E4DA] text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">200 km</button>
+                        <button onclick="definirRegua(100)" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-white hover:bg-[#E8E4DA] text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">100 km</button>
+                        <button onclick="definirRegua(50)" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-white hover:bg-[#E8E4DA] text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">50 km</button>
+                        <button onclick="definirRegua(25)" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-white hover:bg-[#E8E4DA] text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">25 km</button>
+                        <button onclick="definirRegua(10)" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-white hover:bg-[#E8E4DA] text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">10 km</button>
                     </div>
                 </div>
 
-                <!-- ÁREA DUPLA: CANVAS DA COSTA + GRÁFICO LOG-LOG DE RICHARDSON -->
+                <!-- Canvas da Costa & Gráfico Log-Log -->
                 <div class="grid lg:grid-cols-12 gap-4">
-                    <!-- Canvas da Costa & Régua -->
-                    <div class="lg:col-span-8 bg-[#090a0f] rounded-lg border border-white/10 overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 flex items-center gap-2 bg-[#0c0e14]/90 px-2.5 py-1 rounded-md border border-white/10 text-[11px] font-mono">
-                            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400/80 inline-block"></span>
-                            <span class="text-slate-300">Litoral Real</span>
-                            <span class="text-slate-600">|</span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-                            <span class="text-amber-300 font-bold">Régua Fractal</span>
+                    <div class="lg:col-span-8 bg-[#0A192F] rounded-xl overflow-hidden relative shadow-inner">
+                        <div class="absolute top-3 left-3 z-10 flex items-center gap-2 bg-[#0A192F]/90 px-3 py-1 rounded-lg border border-white/15 text-[11px] font-mono">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8] inline-block"></span>
+                            <span class="text-white">Litoral Real</span>
+                            <span class="text-white/40">|</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b] inline-block"></span>
+                            <span class="text-amber-400 font-bold">Régua Fractal</span>
                         </div>
-                        <canvas id="canvasCosta" width="700" height="460" class="w-full h-[320px] sm:h-[420px] bg-[#07090e]"></canvas>
+                        <canvas id="canvasCosta" width="700" height="460" class="w-full h-[320px] sm:h-[420px]"></canvas>
                     </div>
 
-                    <!-- Gráfico Log-Log de Richardson -->
-                    <div class="lg:col-span-4 bg-[#0a0c12] p-3 rounded-lg border border-white/10 flex flex-col justify-between">
+                    <div class="lg:col-span-4 bg-[#FAF8F5] p-3.5 rounded-xl border border-[#0A192F]/10 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-1">
-                                <span class="text-xs font-heading font-bold text-white flex items-center gap-1">
-                                    <i class="ph-bold ph-chart-scatter text-sky-400"></i> Gráfico de Richardson
+                                <span class="text-xs font-heading font-bold text-[#0A192F] flex items-center gap-1.5">
+                                    <i class="ph-bold ph-chart-scatter text-[#C8102E]"></i> Gráfico de Richardson
                                 </span>
-                                <span class="text-[10px] font-mono text-amber-400">Log-Log</span>
+                                <span class="text-[10px] font-mono font-bold text-[#C8102E]">Log-Log</span>
                             </div>
-                            <p class="text-[11px] text-slate-400 leading-snug mb-2">
-                                Inclinação da reta revela a Dimensão Fractal: <code class="text-amber-300">s = D - 1</code>
+                            <p class="text-[11px] text-[#53647C] leading-snug mb-2">
+                                Inclinação da reta revela a Dimensão Fractal: <code class="text-[#0A192F] font-bold">s = D - 1</code>
                             </p>
-                            <canvas id="canvasGrafico" width="300" height="240" class="w-full h-[210px] rounded bg-[#07080d] border border-white/5"></canvas>
+                            <canvas id="canvasGrafico" width="300" height="240" class="w-full h-[210px] rounded-lg bg-[#0A192F] border border-[#0A192F]/10"></canvas>
                         </div>
 
-                        <div class="mt-2.5 pt-2 border-t border-white/5 text-[11px] text-slate-400 leading-relaxed font-mono">
-                            <div class="flex justify-between text-slate-300">
+                        <div class="mt-2.5 pt-2 border-t border-[#0A192F]/10 text-[11px] text-[#53647C] leading-relaxed font-mono">
+                            <div class="flex justify-between text-[#53647C]">
                                 <span>Reta Euclidiana (D = 1.0):</span>
-                                <span class="text-slate-500">Comprimento fixo</span>
+                                <span class="font-bold text-[#0A192F]">Comprimento fixo</span>
                             </div>
-                            <div class="flex justify-between text-amber-300 font-bold">
+                            <div class="flex justify-between text-[#C8102E] font-bold">
                                 <span>Este Litoral (D ≈ <span id="txtDResumo">1.25</span>):</span>
                                 <span>Explosão fractal</span>
                             </div>
@@ -341,190 +283,158 @@
                 </div>
 
                 <!-- Rodapé de Ação e Compartilhamento -->
-                <div class="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-                    <div class="flex items-center gap-2 text-slate-400">
-                        <i class="ph-bold ph-info text-amber-400 text-sm"></i>
-                        <span>Fórmula clássica de Richardson: <strong class="font-mono text-slate-200">L(ε) = k · ε^(1 - D)</strong></span>
+                <div class="mt-4 pt-4 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2 text-[#53647C]">
+                        <i class="ph-bold ph-info text-[#C8102E] text-sm"></i>
+                        <span>Fórmula de Richardson: <strong class="font-mono text-[#0A192F]">L(ε) = k · ε^(1 - D)</strong></span>
                     </div>
 
-                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs">
-                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar no WhatsApp
+                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold transition shadow-xs text-xs">
+                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar Descoberta
                     </a>
                 </div>
             </div>
 
-            <!-- SEÇÃO DE EXPLORAÇÃO EM MAPA REAL (LEAFLET SATELLITE & CANVAS) -->
-            <div class="editorial-panel p-5 mb-6">
+            <!-- Inspeção em Mapa Cartográfico Real -->
+            <div class="editorial-card p-5 mb-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <div>
                         <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <h2 class="text-base sm:text-lg font-heading font-bold text-white">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <h2 class="text-base sm:text-lg font-heading font-bold text-[#0A192F]">
                                 Inspeção em Mapa Cartográfico Real
                             </h2>
                         </div>
-                        <p class="text-xs text-slate-400 mt-0.5">
-                            Observe no satélite de alta definição como baías, fiordes e canais fazem réguas retas saltarem sobre a água.
+                        <p class="text-xs text-[#53647C] mt-0.5">
+                            Observe no satélite como baías, fiordes e canais fazem réguas retas saltarem sobre a água.
                         </p>
                     </div>
 
-                    <!-- Botões de Hotspots Geográficos -->
+                    <!-- Hotspots Geográficos -->
                     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar">
-                        <button onclick="irParaHotspot('sognefjord')" class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+                        <button onclick="irParaHotspot('sognefjord')" class="px-2.5 py-1 rounded-xl text-xs font-mono bg-[#FAF8F5] hover:bg-white text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">
                             🇳🇴 Sognefjord
                         </button>
-                        <button onclick="irParaHotspot('costaverde')" class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+                        <button onclick="irParaHotspot('costaverde')" class="px-2.5 py-1 rounded-xl text-xs font-mono bg-[#FAF8F5] hover:bg-white text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">
                             🇧🇷 Costa Verde
                         </button>
-                        <button onclick="irParaHotspot('skye')" class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+                        <button onclick="irParaHotspot('skye')" class="px-2.5 py-1 rounded-xl text-xs font-mono bg-[#FAF8F5] hover:bg-white text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">
                             🇬🇧 Ilha de Skye
                         </button>
-                        <button onclick="irParaHotspot('patagonia')" class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+                        <button onclick="irParaHotspot('patagonia')" class="px-2.5 py-1 rounded-xl text-xs font-mono bg-[#FAF8F5] hover:bg-white text-[#0A192F] border border-[#0A192F]/10 transition shadow-xs">
                             🇨🇱 Canais Fueguinos
                         </button>
                     </div>
                 </div>
 
-                <div id="mapaReal" class="w-full h-[360px] sm:h-[460px] rounded-lg border border-white/10 relative"></div>
+                <div id="mapaReal" class="w-full h-[360px] sm:h-[460px] rounded-xl border border-[#0A192F]/10 relative"></div>
 
-                <div class="mt-3 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center gap-1 text-sky-400 font-mono">
-                            <i class="ph-bold ph-layers"></i> Camadas abertas:
-                        </span>
-                        <span>Satélite Esri World Imagery, OpenStreetMap e Esri Gray Canvas</span>
-                    </div>
-                    <span id="txtInfoHotspot" class="text-slate-300 font-mono text-[11px]">
+                <div class="mt-3 flex flex-wrap items-center justify-between text-xs text-[#53647C] gap-2 font-mono">
+                    <span>Satélite Esri World Imagery, OpenStreetMap e Esri Gray Canvas</span>
+                    <span id="txtInfoHotspot" class="text-[#0A192F] font-semibold">
                         Navegue com zoom e arraste para explorar os fiordes
                     </span>
                 </div>
             </div>
 
-            <!-- ATLAS MUNDIAL DE DIMENSÕES FRACTAIS DAS NAÇÕES -->
-            <div class="editorial-panel p-5 mb-8">
+            <!-- Atlas Mundial de Dimensões Fractais -->
+            <div class="editorial-card p-5 mb-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <div>
-                        <h2 class="text-base sm:text-lg font-heading font-bold text-white flex items-center gap-2">
-                            <i class="ph-bold ph-chart-bar text-amber-400"></i>
+                        <h2 class="text-base sm:text-lg font-heading font-bold text-[#0A192F] flex items-center gap-2">
+                            <i class="ph-bold ph-chart-bar text-[#C8102E]"></i>
                             Atlas Global da Dimensão Fractal Costeira
                         </h2>
-                        <p class="text-xs text-slate-400 mt-0.5">
+                        <p class="text-xs text-[#53647C] mt-0.5">
                             Compare o nível de recorte geométrico de 14 nações ao redor do planeta.
                         </p>
                     </div>
 
-                    <!-- Filtros Rápidos -->
                     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar" id="filtrosAtlas">
-                        <button onclick="filtrarAtlas('todos')" class="btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/10 text-white border border-white/20 transition active">Todos</button>
-                        <button onclick="filtrarAtlas('hiper')" class="btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-400 border border-white/10 transition">Hiper-Recortados (D &gt; 1.30)</button>
-                        <button onclick="filtrarAtlas('moderado')" class="btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-400 border border-white/10 transition">Moderados (1.10 - 1.30)</button>
-                        <button onclick="filtrarAtlas('liso')" class="btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-400 border border-white/10 transition">Retilíneos (D &lt; 1.10)</button>
-                        <button onclick="filtrarAtlas('fronteira')" class="btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-400 border border-white/10 transition">Fronteiras</button>
+                        <button onclick="filtrarAtlas('todos')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition">Todos</button>
+                        <button onclick="filtrarAtlas('hiper')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Hiper-Recortados (D &gt; 1.30)</button>
+                        <button onclick="filtrarAtlas('moderado')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Moderados (1.10 - 1.30)</button>
+                        <button onclick="filtrarAtlas('liso')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Retilíneos (D &lt; 1.10)</button>
+                        <button onclick="filtrarAtlas('fronteira')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Fronteiras</button>
                     </div>
                 </div>
 
-                <!-- Grade de Cards de Nações -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="gradePaisesAtlas">
-                    <!-- Cards populados dinamicamente via JS -->
-                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="gradePaisesAtlas"></div>
             </div>
 
-            <!-- DESTAQUE HISTÓRICO: O CASO ESPANHA VS PORTUGAL -->
-            <div class="editorial-panel p-5 mb-8 border-l-4 border-l-amber-500">
+            <!-- Registro Histórico: O Caso Espanha vs Portugal -->
+            <div class="editorial-card p-5 mb-8 border-l-4 border-l-[#C8102E]">
                 <div class="flex items-start gap-3">
-                    <div class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                    <div class="w-9 h-9 rounded-xl bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] shrink-0 mt-0.5">
                         <i class="ph-bold ph-landmark text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">Dossiê Histórico da Cartografia</span>
-                        <h3 class="text-base font-heading font-bold text-white mb-2">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-[#C8102E] font-bold block mb-1">Registro Histórico da Cartografia</span>
+                        <h3 class="text-base font-heading font-bold text-[#0A192F] mb-2">
                             O Caso da Fronteira Portugal vs Espanha (1.214 km contra 987 km)
                         </h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Em 1961, o meteorologista britânico <strong>Lewis Fry Richardson</strong> estava pesquisando se a probabilidade de dois países entrarem em guerra dependia do comprimento da fronteira que compartilhavam. Ao compilar dados de atlas oficiais europeus, ele se deparou com uma contradição bizarra: <strong>Portugal reportava que sua fronteira com a Espanha media 1.214 km, enquanto a Espanha registrava a mesmíssima fronteira com apenas 987 km</strong> — um sumiço de 227 km de terra firme!
+                        <p class="text-xs text-[#53647C] leading-relaxed">
+                            Em 1961, o meteorologista britânico <strong>Lewis Fry Richardson</strong> pesquisava se a probabilidade de guerra entre nações vizinhas dependia do comprimento de suas fronteiras. Ao compilar dados de atlas oficiais, deparou-se com uma contradição intrigante: <strong>Portugal reportava que sua fronteira com a Espanha media 1.214 km, enquanto a Espanha registrava a mesmíssima divisa com apenas 987 km</strong> — um sumiço de 227 km de terra firme!
                         </p>
-                        <p class="text-xs text-slate-300 leading-relaxed mt-2">
-                            A diplomacia internacional não tinha nenhum litígio sobre a linha divisória. A resposta estava no método de mensuração: os cartógrafos de Lisboa usaram cartas de escala 1:50.000 (compasso curto contornando cada meandro do Rio Minho e do Rio Guadiana), enquanto os de Madri usaram mapas 1:200.000 (linhas mais retas). Richardson provou que <em>fronteiras geográficas naturais não possuem comprimento absoluto definido</em>.
+                        <p class="text-xs text-[#53647C] leading-relaxed mt-2">
+                            A diplomacia internacional não possuía nenhum litígio territorial. A discrepância derivava puramente da resolução de régua: os cartógrafos de Lisboa utilizaram cartas topográficas detalhadas de escala 1:50.000 contornando cada curva dos rios Minho e Guadiana, enquanto Madri usou mapas 1:200.000 com traçados mais generalizados. Richardson provou matematicamente que <em>fronteiras e linhas de costa naturais não possuem comprimento absoluto definido</em>.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Bloco de Anúncios AdSense Inferior (Mobile e Desktop) -->
-            <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
-                <div class="w-full max-w-4xl py-2 flex items-center justify-center">
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-6879770260785828"
-                         data-ad-slot="5140105675"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-                    </script>
-                </div>
-            </section>
-
-            <!-- Links para outras Ferramentas do VitaleGeo -->
-            <div class="border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
-                <span>Explore outras ferramentas cartográficas:</span>
-                <div class="flex flex-wrap gap-4">
-                    <a href="/ferramentas/radar-microestados/" class="hover:text-amber-400 transition">Radar de Microestados</a>
-                    <a href="/ferramentas/quantos-cabem/" class="hover:text-amber-400 transition">Quantos Cabem?</a>
-                    <a href="/ferramentas/comparador-paises/" class="hover:text-amber-400 transition">Tamanho Real dos Países</a>
-                    <a href="/ferramentas/rotas-extremas/" class="hover:text-amber-400 transition">Rotas em Linha Reta</a>
-                    <a href="/ferramentas/calculadora-antipodas/" class="hover:text-amber-400 transition">Calculador de Antípodas</a>
-                </div>
-            </div>
-
-        </main>
-
-        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-            <div class="w-full flex-1 flex items-center justify-center">
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-6xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
                 <ins class="adsbygoogle"
-                     style="display:inline-block;width:160px;height:600px"
+                     style="display:block"
                      data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"></ins>
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
                 <script>
-                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-        </aside>
-    </div>
 
-    <!-- Rodapé Oficial VitaleGeo -->
-    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-globe-hemisphere-east text-base text-amber-400"></i>
-                <span>© 2026 VitaleGeo • Geografia, Cartografia e Geopolítica</span>
+        </div>
+    </main>
+
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <div class="flex gap-5">
-                <a href="/" class="hover:text-slate-300">Início</a>
-                <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
-                <a href="/jogos" class="hover:text-slate-300">Arcade</a>
-                <a href="/politica" class="hover:text-slate-300">Privacidade</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- LÓGICA DO SIMULADOR FRACTAL & CARTOGRAFIA -->
+    <!-- Lógica do Simulador Fractal & Cartografia -->
     <script>
-        // --- 1. BANCO DE DADOS DE LITORAIS DIGITALIZADOS & CURVAS TEÓRICAS ---
         const LITORAIS = [
             {
                 id: 'britain',
                 nome: 'Grã-Bretanha (Reino Unido)',
                 iso: 'gb',
                 dimensaoEstimada: 1.25,
-                fatorEscalaKm: 4.8, // conversão pixel canvas para km
+                fatorEscalaKm: 4.8,
                 desc: 'O caso clássico publicado por Benoit Mandelbrot em 1967 na revista Science.',
                 hotspotCoords: [56.4907, -4.2026],
                 hotspotZoom: 6,
-                // Polilinha normalizada (0 a 100) do perímetro da Grã-Bretanha
                 gerarPontos: function(largura, altura) {
                     const raw = [
                         [50, 92], [54, 91], [58, 90], [63, 89], [67, 86], [71, 84], [74, 80], [72, 77],
@@ -541,7 +451,7 @@
             },
             {
                 id: 'norway',
-                nome: 'Noruega (Sognefjord & Costa dos Fiordes)',
+                nome: 'Noruega (Sognefjord & Fiordes)',
                 iso: 'no',
                 dimensaoEstimada: 1.52,
                 fatorEscalaKm: 3.2,
@@ -559,7 +469,7 @@
             },
             {
                 id: 'brasil',
-                nome: 'Brasil (Costa Verde & Baía de Todos os Santos)',
+                nome: 'Brasil (Costa Verde & Baía)',
                 iso: 'br',
                 dimensaoEstimada: 1.14,
                 fatorEscalaKm: 7.5,
@@ -575,7 +485,7 @@
             },
             {
                 id: 'chile',
-                nome: 'Chile (Labirinto da Patagônia e Canais Fueguinos)',
+                nome: 'Chile (Patagônia & Canais)',
                 iso: 'cl',
                 dimensaoEstimada: 1.45,
                 fatorEscalaKm: 4.1,
@@ -591,8 +501,8 @@
             },
             {
                 id: 'koch',
-                nome: 'Curva Fractal de Koch (Geometria Pura)',
-                iso: 'va', // símbolo neutro
+                nome: 'Curva Fractal de Koch (Pura)',
+                iso: 'va',
                 dimensaoEstimada: 1.2618,
                 fatorEscalaKm: 1.0,
                 desc: 'Modelo matemático ideal de von Koch (1904) onde D = log(4)/log(3) = 1.2618.',
@@ -604,7 +514,6 @@
             }
         ];
 
-        // --- 2. ATLAS GLOBAL DE NAÇÕES ---
         const ATLAS_PAISES = [
             {
                 nome: 'Noruega', iso: 'no', tipo: 'hiper', d: 1.52,
@@ -654,7 +563,7 @@
             {
                 nome: 'Brasil', iso: 'br', tipo: 'moderado', d: 1.14,
                 oficial: '7.491 km', detalhado: '10.959 km', ratio: '1.5x',
-                motivo: 'Costa relativamente suave na maior parte do litoral arenoso, mas altamente fraturada na Baía de Todos os Santos, Ilha Grande e estuário amazônico.'
+                motivo: 'Costa suave em praias arenosas, mas altamente fraturada na Baía de Todos os Santos, Ilha Grande e estuário amazônico.'
             },
             {
                 nome: 'Austrália', iso: 'au', tipo: 'liso', d: 1.13,
@@ -664,33 +573,30 @@
             {
                 nome: 'África do Sul', iso: 'za', tipo: 'liso', d: 1.02,
                 oficial: '2.798 km', detalhado: '3.100 km', ratio: '1.1x',
-                motivo: 'Uma das costas mais lisas do globo terrestre, com pouquíssimas baías naturais ou fiordes. Mede quase o mesmo valor em qualquer régua!'
+                motivo: 'Uma das costas mais lisas do globo terrestre, medindo quase o mesmo valor em qualquer régua!'
             },
             {
                 nome: 'Fronteira Portugal vs Espanha', iso: 'pt', tipo: 'fronteira', d: 1.22,
                 oficial: '1.214 km (PT) vs 987 km (ES)', detalhado: 'Diferença de 227 km', ratio: '1.23x',
-                motivo: 'O célebre caso de Lewis Fry Richardson (1961): a discrepância histórica foi causada por mapas de escalas diferentes do Rio Minho e Rio Guadiana.'
+                motivo: 'O caso célebre de Lewis Fry Richardson (1961): a discrepância foi gerada pela diferença de escalas de mapas cartográficos.'
             },
             {
                 nome: 'Bolívia & Paraguai', iso: 'bo', tipo: 'fronteira', d: 0.0,
                 oficial: '0 km (Sem litoral)', detalhado: '0 km', ratio: '1.0x',
-                motivo: 'Países encravados não sofrem com o paradoxo costeiro marinho, mas suas fronteiras fluviais e terrestres também são fractais.'
+                motivo: 'Países encravados não possuem linha costeira marinha, mas seus rios fronteiriços exibem natureza fractal idêntica.'
             }
         ];
 
-        // --- 3. ESTADO GLOBAL DA APLICAÇÃO ---
         let litoralAtivo = LITORAIS[0];
         let pontosCosteiros = [];
         let reguaAtualKm = 50;
         let resultadoMedicao = { passos: 0, comprimentoKm: 0, pontosRegua: [] };
-        let pontosGraficoRichardson = []; // dados para o gráfico log-log
+        let pontosGraficoRichardson = [];
         let animando = false;
         let passoAnimacao = 0;
         let idIntervaloAnimacao = null;
         let map = null;
 
-        // --- 4. FUNÇÕES MATEMÁTICAS FRACTAIS ---
-        // Algoritmo de deslocamento do ponto médio para gerar ruído fractal natural
         function fractalizarCurva(pontosBase, largura, altura, iteracoes, rugosidade) {
             let pts = pontosBase.map(p => ({
                 x: (p[0] / 100) * (largura - 80) + 40,
@@ -708,13 +614,11 @@
                     const dy = p2.y - p1.y;
                     const d = Math.hypot(dx, dy);
 
-                    // Ponto médio com perturbação perpendicular proporcional à distância
                     const mx = (p1.x + p2.x) / 2;
                     const my = (p1.y + p2.y) / 2;
                     const nx = -dy / d;
                     const ny = dx / d;
 
-                    // Ruído pseudo-determinístico para manter consistência
                     const seed = Math.sin(i * 997 + it * 1337);
                     const deslocamento = d * rugosidade * seed * 0.45;
 
@@ -729,7 +633,6 @@
             return pts;
         }
 
-        // Gerador da Curva Fractal de Koch pura
         function gerarCurvaKoch(largura, altura, profundidade) {
             let p1 = { x: 50, y: altura * 0.65 };
             let p2 = { x: largura - 50, y: altura * 0.65 };
@@ -747,9 +650,8 @@
                     let pA = { x: a.x + dx / 3, y: a.y + dy / 3 };
                     let pC = { x: a.x + (dx * 2) / 3, y: a.y + (dy * 2) / 3 };
 
-                    // Triângulo equilátero de Koch
                     let cos60 = 0.5;
-                    let sin60 = -Math.sqrt(3) / 2; // aponta para cima
+                    let sin60 = -Math.sqrt(3) / 2;
                     let vx = dx / 3;
                     let vy = dy / 3;
                     let pB = {
@@ -765,7 +667,6 @@
             return pts;
         }
 
-        // Intersecção geométrica exata entre círculo (centro c, raio r) e segmento de reta (p1 -> p2)
         function intersectarCirculoSegmento(c, r, p1, p2) {
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
@@ -788,7 +689,6 @@
             return null;
         }
 
-        // Algoritmo de Medição de Richardson: Caminha com compasso de abertura fixa 'rulerPx'
         function medirCostaComRegua(pontos, rulerPx) {
             if (!pontos || pontos.length < 2) return { passos: 0, comprimentoKm: 0, pontosRegua: [] };
 
@@ -801,7 +701,6 @@
                 let intersec = null;
                 let achouEm = -1;
 
-                // Procura a primeira intersecção do círculo no segmento atual ou nos próximos
                 for (let k = segIdx; k < pontos.length - 1; k++) {
                     const pA = (k === segIdx) ? atual : pontos[k];
                     const pB = pontos[k + 1];
@@ -819,7 +718,6 @@
                     atual = { x: intersec.x, y: intersec.y };
                     segIdx = achouEm;
                 } else {
-                    // Chegou ao fim do litoral (último segmento menor que a régua)
                     const pFim = pontos[pontos.length - 1];
                     const dResto = Math.hypot(pFim.x - atual.x, pFim.y - atual.y);
                     if (dResto > 0.5) {
@@ -838,7 +736,6 @@
             };
         }
 
-        // --- 5. RENDERIZAÇÃO DO CANVAS DA COSTA & RÉGUA ---
         function renderizarCanvasCosta(passoMaximo = null) {
             const canvas = document.getElementById('canvasCosta');
             if (!canvas) return;
@@ -848,26 +745,20 @@
 
             ctx.clearRect(0, 0, w, h);
 
-            // 1. Grade náutica sutil de fundo
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            // Grade sutil
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
             ctx.lineWidth = 1;
             for (let x = 0; x < w; x += 40) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, h);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
             }
             for (let y = 0; y < h; y += 40) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(w, y);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
             }
 
             if (!pontosCosteiros || pontosCosteiros.length === 0) return;
 
-            // 2. Desenho do Litoral Real em alta resolução (Ciano suave)
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+            // 1. Litoral Real
+            ctx.strokeStyle = '#38bdf8';
             ctx.lineWidth = 2.5;
             ctx.beginPath();
             ctx.moveTo(pontosCosteiros[0].x, pontosCosteiros[0].y);
@@ -876,7 +767,7 @@
             }
             ctx.stroke();
 
-            // 3. Desenho da Régua Fractal (Dourado / Âmbar vibrante)
+            // 2. Régua Fractal
             const ptsRegua = resultadoMedicao.pontosRegua;
             const totalPassos = passoMaximo !== null ? Math.min(passoMaximo, ptsRegua.length) : ptsRegua.length;
 
@@ -890,7 +781,6 @@
                 }
                 ctx.stroke();
 
-                // Desenhar vértices e arcos do compasso
                 for (let k = 0; k < totalPassos; k++) {
                     const pt = ptsRegua[k];
                     ctx.fillStyle = '#ffffff';
@@ -903,11 +793,10 @@
                     ctx.stroke();
                 }
 
-                // Círculo translúcido no passo atual para visualizar o compasso
                 if (animando && totalPassos > 0 && totalPassos < ptsRegua.length) {
                     const pAtual = ptsRegua[totalPassos - 1];
                     const rPx = reguaAtualKm / litoralAtivo.fatorEscalaKm;
-                    ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+                    ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.arc(pAtual.x, pAtual.y, rPx, 0, Math.PI * 2);
@@ -916,7 +805,6 @@
             }
         }
 
-        // --- 6. RENDERIZAÇÃO DO GRÁFICO LOG-LOG DE RICHARDSON ---
         function renderizarGraficoRichardson() {
             const canvas = document.getElementById('canvasGrafico');
             if (!canvas) return;
@@ -926,123 +814,87 @@
 
             ctx.clearRect(0, 0, w, h);
 
-            const padLeft = 45;
-            const padRight = 20;
-            const padTop = 20;
-            const padBottom = 35;
-
-            // Eixos cartesianos
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(padLeft, padTop);
-            ctx.lineTo(padLeft, h - padBottom);
-            ctx.lineTo(w - padRight, h - padBottom);
+            ctx.moveTo(35, 10); ctx.lineTo(35, h - 25); ctx.lineTo(w - 10, h - 25);
             ctx.stroke();
 
-            // Rótulos dos eixos
             ctx.fillStyle = '#94a3b8';
-            ctx.font = '9px "Space Mono", monospace';
-            ctx.fillText('log(1/ε)', w - padRight - 38, h - padBottom + 22);
+            ctx.font = '9px "JetBrains Mono", monospace';
+            ctx.fillText('log(L)', 5, 15);
+            ctx.fillText('log(1/ε)', w - 45, h - 10);
 
-            ctx.save();
-            ctx.translate(14, padTop + 50);
-            ctx.rotate(-Math.PI / 2);
-            ctx.fillText('log(L)', 0, 0);
-            ctx.restore();
+            if (pontosGraficoRichardson.length < 2) return;
 
-            if (!pontosGraficoRichardson || pontosGraficoRichardson.length < 2) return;
+            const xVals = pontosGraficoRichardson.map(p => p.logInvEps);
+            const yVals = pontosGraficoRichardson.map(p => p.logL);
 
-            // Encontrar mín e máx para normalizar o gráfico
-            const logX = pontosGraficoRichardson.map(p => Math.log10(1 / p.epsKm));
-            const logY = pontosGraficoRichardson.map(p => Math.log10(p.lKm));
+            const minX = Math.min(...xVals); const maxX = Math.max(...xVals);
+            const minY = Math.min(...yVals); const maxY = Math.max(...yVals);
 
-            const minX = Math.min(...logX);
-            const maxX = Math.max(...logX);
-            const minY = Math.min(...logY);
-            const maxY = Math.max(...logY);
+            const rangeX = maxX - minX || 1;
+            const rangeY = maxY - minY || 1;
 
-            const rangeX = (maxX - minX) || 1;
-            const rangeY = (maxY - minY) || 1;
+            const mapX = (x) => 35 + ((x - minX) / rangeX) * (w - 55);
+            const mapY = (y) => (h - 25) - ((y - minY) / rangeY) * (h - 45);
 
-            function mapX(val) {
-                return padLeft + ((val - minX) / rangeX) * (w - padLeft - padRight);
-            }
-            function mapY(val) {
-                return (h - padBottom) - ((val - minY) / rangeY) * (h - padTop - padBottom);
-            }
-
-            // Regressão Linear: inclinação = s = D - 1
-            let n = logX.length;
-            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-            for (let i = 0; i < n; i++) {
-                sumX += logX[i];
-                sumY += logY[i];
-                sumXY += logX[i] * logY[i];
-                sumX2 += logX[i] * logX[i];
-            }
-            const slope = (n * sumXY - sumX * sumY) / ((n * sumX2 - sumX * sumX) || 1);
-            const intercept = (sumY - slope * sumX) / n;
-            const D_estimado = 1 + Math.max(0, slope);
-
-            // Reta de Regressão (Tracejado ciano)
-            ctx.strokeStyle = '#38bdf8';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(mapX(minX), mapY(slope * minX + intercept));
-            ctx.lineTo(mapX(maxX), mapY(slope * maxX + intercept));
+            ctx.moveTo(mapX(xVals[0]), mapY(yVals[0]));
+            for (let i = 1; i < pontosGraficoRichardson.length; i++) {
+                ctx.lineTo(mapX(xVals[i]), mapY(yVals[i]));
+            }
             ctx.stroke();
-            ctx.setLineDash([]);
 
-            // Plotagem dos Pontos Empíricos
             pontosGraficoRichardson.forEach(p => {
-                const px = mapX(Math.log10(1 / p.epsKm));
-                const py = mapY(Math.log10(p.lKm));
-
-                ctx.fillStyle = (p.epsKm === reguaAtualKm) ? '#f59e0b' : '#38bdf8';
+                const px = mapX(p.logInvEps);
+                const py = mapY(p.logL);
+                ctx.fillStyle = p.eps === reguaAtualKm ? '#ffffff' : '#f59e0b';
                 ctx.beginPath();
-                ctx.arc(px, py, (p.epsKm === reguaAtualKm) ? 5 : 3.5, 0, Math.PI * 2);
+                ctx.arc(px, py, p.eps === reguaAtualKm ? 4.5 : 3, 0, Math.PI * 2);
                 ctx.fill();
-
-                ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 1;
-                ctx.stroke();
             });
-
-            // Atualiza badge de D calculado
-            document.getElementById('statDimensaoCalc').textContent = D_estimado.toFixed(3);
-            document.getElementById('txtDResumo').textContent = D_estimado.toFixed(2);
         }
 
-        // --- 7. CÁLCULO GERAL DA SIMULAÇÃO ---
         function recalcularTudo() {
-            const rulerPx = Math.max(4, reguaAtualKm / litoralAtivo.fatorEscalaKm);
+            const rulerPx = Math.max(5, reguaAtualKm / litoralAtivo.fatorEscalaKm);
             resultadoMedicao = medirCostaComRegua(pontosCosteiros, rulerPx);
 
-            // Atualizar banco de dados para o gráfico de Richardson
-            pontosGraficoRichardson = [200, 150, 100, 75, 50, 35, 20, 10].map(r => {
-                const rPx = Math.max(4, r / litoralAtivo.fatorEscalaKm);
-                const res = medirCostaComRegua(pontosCosteiros, rPx);
-                return { epsKm: r, lKm: res.comprimentoKm };
-            });
-
-            // Atualizar Métricas do HUD
             document.getElementById('statRegua').textContent = `${reguaAtualKm} km`;
             document.getElementById('statPassos').textContent = `${resultadoMedicao.passos} passos`;
             document.getElementById('statComprimento').textContent = `${resultadoMedicao.comprimentoKm.toLocaleString('pt-BR')} km`;
 
-            // Calcular crescimento relativo comparado à régua de 200 km
-            const baseline = pontosGraficoRichardson[0].lKm || 1;
-            const diffPct = Math.round(((resultadoMedicao.comprimentoKm - baseline) / baseline) * 100);
-            const labelExp = diffPct >= 0 ? `+${diffPct}%` : `${diffPct}%`;
-            document.getElementById('statExpansao').textContent = labelExp;
+            const r200 = medirCostaComRegua(pontosCosteiros, Math.max(5, 200 / litoralAtivo.fatorEscalaKm));
+            if (r200.comprimentoKm > 0) {
+                const expansao = Math.round(((resultadoMedicao.comprimentoKm - r200.comprimentoKm) / r200.comprimentoKm) * 100);
+                const statExpEl = document.getElementById('statExpansao');
+                statExpEl.textContent = `${expansao >= 0 ? '+' : ''}${expansao}%`;
+            }
 
-            // Compartilhamento WhatsApp
-            const shareTxt = encodeURIComponent(
-                `Você sabia que é matematicamente impossível medir o tamanho exato da costa de um país? Se você medir a ${litoralAtivo.nome} com régua de 200 km ela mede ${baseline.toLocaleString('pt-BR')} km, mas com régua de ${reguaAtualKm} km salta para ${resultadoMedicao.comprimentoKm.toLocaleString('pt-BR')} km (${labelExp})! Teste o Paradoxo da Linha de Costa no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/paradoxo-linha-costa/`
+            const escalasLog = [200, 100, 50, 25, 10];
+            pontosGraficoRichardson = escalasLog.map(eps => {
+                const px = Math.max(5, eps / litoralAtivo.fatorEscalaKm);
+                const res = medirCostaComRegua(pontosCosteiros, px);
+                return {
+                    eps: eps,
+                    logInvEps: Math.log10(1 / eps),
+                    logL: Math.log10(res.comprimentoKm || 1)
+                };
+            });
+
+            const p1 = pontosGraficoRichardson[0];
+            const pFim = pontosGraficoRichardson[pontosGraficoRichardson.length - 1];
+            const dS = (pFim.logL - p1.logL) / (pFim.logInvEps - p1.logInvEps);
+            const dCalc = 1 + Math.abs(dS);
+            document.getElementById('statDimensaoCalc').textContent = dCalc.toFixed(3);
+            document.getElementById('txtDResumo').textContent = dCalc.toFixed(2);
+
+            const shareMsg = encodeURIComponent(
+                `Medindo o litoral de ${litoralAtivo.nome} com uma régua de ${reguaAtualKm} km, o comprimento salta para ${resultadoMedicao.comprimentoKm.toLocaleString('pt-BR')} km! Veja o Paradoxo da Linha de Costa no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/paradoxo-linha-costa/`
             );
-            document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareTxt}`;
+            document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareMsg}`;
 
             renderizarCanvasCosta();
             renderizarGraficoRichardson();
@@ -1051,14 +903,42 @@
         function aoMudarSlider(val) {
             reguaAtualKm = parseInt(val, 10);
             document.getElementById('labelSliderRegua').textContent = `${reguaAtualKm} km`;
+            pararAnimacao();
             recalcularTudo();
         }
 
         function definirRegua(km) {
-            reguaAtualKm = km;
             document.getElementById('sliderRegua').value = km;
-            document.getElementById('labelSliderRegua').textContent = `${km} km`;
-            recalcularTudo();
+            aoMudarSlider(km);
+        }
+
+        function toggleAnimacao() {
+            if (animando) pararAnimacao();
+            else iniciarAnimacao();
+        }
+
+        function iniciarAnimacao() {
+            animando = true;
+            passoAnimacao = 1;
+            document.getElementById('txtBtnAnimar').textContent = 'Pausar';
+            document.getElementById('iconPlay').className = 'ph-bold ph-pause text-amber-400';
+
+            if (idIntervaloAnimacao) clearInterval(idIntervaloAnimacao);
+            idIntervaloAnimacao = setInterval(() => {
+                passoAnimacao++;
+                renderizarCanvasCosta(passoAnimacao);
+                if (passoAnimacao > resultadoMedicao.pontosRegua.length) {
+                    pararAnimacao();
+                }
+            }, 60);
+        }
+
+        function pararAnimacao() {
+            animando = false;
+            if (idIntervaloAnimacao) clearInterval(idIntervaloAnimacao);
+            document.getElementById('txtBtnAnimar').textContent = 'Animar Medição';
+            document.getElementById('iconPlay').className = 'ph-bold ph-play text-amber-400';
+            renderizarCanvasCosta();
         }
 
         function reiniciarRégua() {
@@ -1066,41 +946,6 @@
             definirRegua(50);
         }
 
-        // --- 8. ANIMAÇÃO PASSO A PASSO ---
-        function toggleAnimacao() {
-            if (animando) {
-                pararAnimacao();
-            } else {
-                iniciarAnimacao();
-            }
-        }
-
-        function iniciarAnimacao() {
-            animando = true;
-            passoAnimacao = 1;
-            document.getElementById('iconPlay').className = 'ph-bold ph-pause text-amber-400';
-            document.getElementById('txtBtnAnimar').textContent = 'Pausar';
-
-            const total = resultadoMedicao.pontosRegua.length;
-            clearInterval(idIntervaloAnimacao);
-            idIntervaloAnimacao = setInterval(() => {
-                passoAnimacao++;
-                renderizarCanvasCosta(passoAnimacao);
-                if (passoAnimacao >= total) {
-                    pararAnimacao();
-                }
-            }, 80);
-        }
-
-        function pararAnimacao() {
-            animando = false;
-            clearInterval(idIntervaloAnimacao);
-            document.getElementById('iconPlay').className = 'ph-bold ph-play text-amber-400';
-            document.getElementById('txtBtnAnimar').textContent = 'Animar Medição';
-            renderizarCanvasCosta();
-        }
-
-        // --- 9. SELEÇÃO DE LITORAL ---
         function selecionarLitoral(id) {
             const lit = LITORAIS.find(l => l.id === id);
             if (!lit) return;
@@ -1113,16 +958,13 @@
             document.getElementById('badgeDimensaoD').textContent = `D ≈ ${lit.dimensaoEstimada.toFixed(2)}`;
             document.getElementById('imgFlagLitoral').src = `/assets/flags/${lit.iso}.svg`;
 
-            // Atualizar botões chips
             document.querySelectorAll('.chip-litoral').forEach(btn => {
                 btn.classList.toggle('chip-active', btn.dataset.id === id);
             });
 
-            // Regenerar geometria vetorial no canvas
             const canvas = document.getElementById('canvasCosta');
             pontosCosteiros = lit.gerarPontos(canvas.width, canvas.height);
 
-            // Mover mapa real
             if (map && lit.hotspotCoords) {
                 map.flyTo(lit.hotspotCoords, lit.hotspotZoom, { duration: 1.2 });
             }
@@ -1130,15 +972,13 @@
             recalcularTudo();
         }
 
-        // --- 10. MAPA LEAFLET COM RÉGUA CARTOGRÁFICA ---
         function inicializarMapaReal() {
             const container = document.getElementById('mapaReal');
             if (!container) return;
 
-            // Provedores 100% gratuitos e livres (ZERO CartoDB)
             const esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 18,
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, USGS, GeoEye, GIS User Community'
+                attribution: 'Tiles &copy; Esri'
             });
 
             const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1146,29 +986,28 @@
                 attribution: '&copy; OpenStreetMap contributors'
             });
 
-            const esriCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-                maxZoom: 16,
-                attribution: 'Tiles &copy; Esri'
+            const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                maxZoom: 19,
+                attribution: '&copy; CARTO &mdash; OpenStreetMap'
             });
 
             map = L.map('mapaReal', {
-                center: [61.1000, 6.8000], // Sognefjord, Noruega
+                center: [61.1000, 6.8000],
                 zoom: 8,
                 layers: [esriImagery]
             });
 
             L.control.layers({
                 "Satélite Foto-Realista": esriImagery,
-                "OpenStreetMap Didático": osmLayer,
-                "Atlas Neutro (Gray)": esriCanvas
+                "Mapa Cartográfico": cartoLight,
+                "OpenStreetMap": osmLayer
             }, null, { position: 'topright' }).addTo(map);
 
-            // Marcador didático no Sognefjord
             const marker = L.circleMarker([61.1000, 6.8000], {
                 radius: 8,
-                color: '#38bdf8',
-                fillColor: '#38bdf8',
-                fillOpacity: 0.8
+                color: '#C8102E',
+                fillColor: '#C8102E',
+                fillOpacity: 0.85
             }).addTo(map);
             marker.bindPopup("<b>Sognefjord (Noruega)</b><br>205 km de penetração no continente e 1.308 metros de profundidade. O maior fiorde da Noruega.");
         }
@@ -1188,7 +1027,6 @@
             }
         }
 
-        // --- 11. ATLAS DE PAÍSES & FILTROS ---
         function renderizarAtlasPaises(filtro = 'todos') {
             const container = document.getElementById('gradePaisesAtlas');
             if (!container) return;
@@ -1199,41 +1037,41 @@
             });
 
             container.innerHTML = lista.map(p => `
-                <div class="p-3.5 bg-[#0c0e14] rounded-lg border border-white/5 hover:border-white/15 transition flex flex-col justify-between">
+                <div class="p-4 bg-white rounded-xl border border-[#0A192F]/10 hover:border-[#C8102E]/40 transition flex flex-col justify-between shadow-xs">
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <div class="flex items-center gap-2">
-                                <img src="/assets/flags/${p.iso}.svg" alt="${p.nome}" class="w-5 h-3.5 object-cover rounded shadow-sm">
-                                <span class="font-heading font-bold text-sm text-white">${p.nome}</span>
+                                <img src="/assets/flags/${p.iso}.svg" alt="${p.nome}" class="w-5 h-3.5 object-cover rounded shadow-xs border border-[#0A192F]/15">
+                                <span class="font-heading font-bold text-sm text-[#0A192F]">${p.nome}</span>
                             </div>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                                p.d >= 1.3 ? 'bg-rose-500/15 text-rose-300 border border-rose-500/30' :
-                                p.d >= 1.1 ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30' :
-                                'bg-sky-500/15 text-sky-300 border border-sky-500/30'
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold ${
+                                p.d >= 1.3 ? 'bg-rose-50 text-rose-800 border border-rose-300' :
+                                p.d >= 1.1 ? 'bg-amber-50 text-amber-800 border border-amber-300' :
+                                'bg-sky-50 text-sky-800 border border-sky-300'
                             }">
                                 ${p.d > 0 ? `D ≈ ${p.d.toFixed(2)}` : 'D = 0 (Sem Mar)'}
                             </span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono bg-[#07090e] p-2 rounded border border-white/5 mb-2.5">
+                        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono bg-[#FAF8F5] p-2.5 rounded-lg border border-[#0A192F]/10 mb-2.5">
                             <div>
-                                <span class="text-slate-500 block text-[9px] uppercase">Oficial (Factbook)</span>
-                                <span class="text-slate-200 font-bold">${p.oficial}</span>
+                                <span class="text-[#53647C] block text-[9px] uppercase font-semibold">Oficial (Factbook)</span>
+                                <span class="text-[#0A192F] font-bold">${p.oficial}</span>
                             </div>
                             <div>
-                                <span class="text-slate-500 block text-[9px] uppercase">Comprimento Detalhado</span>
-                                <span class="text-amber-400 font-bold">${p.detalhado}</span>
+                                <span class="text-[#53647C] block text-[9px] uppercase font-semibold">Comprimento Detalhado</span>
+                                <span class="text-[#C8102E] font-bold">${p.detalhado}</span>
                             </div>
                         </div>
 
-                        <p class="text-xs text-slate-400 leading-relaxed">
+                        <p class="text-xs text-[#53647C] leading-relaxed">
                             ${p.motivo}
                         </p>
                     </div>
 
-                    <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                    <div class="mt-3 pt-2.5 border-t border-[#0A192F]/10 flex items-center justify-between text-[11px] font-mono text-[#53647C]">
                         <span>Multiplicador de Expansão:</span>
-                        <span class="text-emerald-400 font-bold">${p.ratio}</span>
+                        <span class="text-emerald-700 font-bold">${p.ratio}</span>
                     </div>
                 </div>
             `).join('');
@@ -1241,39 +1079,28 @@
 
         function filtrarAtlas(tipo) {
             document.querySelectorAll('#filtrosAtlas button').forEach(b => {
-                b.className = 'btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-400 border border-white/10 transition';
+                b.className = 'btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition';
             });
-            event.target.className = 'btn-filtro px-2.5 py-1 rounded-md text-xs font-mono bg-white/10 text-white border border-white/20 transition active';
+            event.target.className = 'btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition active';
             renderizarAtlasPaises(tipo);
         }
 
-        function toggleAjuda() {
-            const painel = document.getElementById('painelAjuda');
-            painel.classList.toggle('hidden');
-        }
-
-        // --- 12. INICIALIZAÇÃO GERAL AO CARREGAR A PÁGINA ---
         window.addEventListener('DOMContentLoaded', () => {
-            // 1. Popular lista de litorais no topo
             const contLitorais = document.getElementById('listaLitorais');
             contLitorais.innerHTML = LITORAIS.map((lit, idx) => `
-                <button onclick="selecionarLitoral('${lit.id}')" data-id="${lit.id}" class="chip-litoral shrink-0 px-3 py-1.5 rounded-lg border text-xs font-medium inline-flex items-center gap-2 transition ${
-                    idx === 0 ? 'chip-active bg-amber-500/15 border-amber-500/70 text-white' : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                <button onclick="selecionarLitoral('${lit.id}')" data-id="${lit.id}" class="chip-litoral shrink-0 px-3 py-1.5 rounded-xl border text-xs font-semibold inline-flex items-center gap-2 transition shadow-xs ${
+                    idx === 0 ? 'chip-active bg-[#FAF8F5] border-[#C8102E] text-[#C8102E]' : 'bg-white border-[#0A192F]/10 text-[#0A192F] hover:bg-[#FAF8F5]'
                 }">
-                    <img src="/assets/flags/${lit.iso}.svg" alt="${lit.nome}" class="w-4 h-3 object-cover rounded">
+                    <img src="/assets/flags/${lit.iso}.svg" alt="${lit.nome}" class="w-4 h-3 object-cover rounded shadow-xs border border-[#0A192F]/10">
                     <span>${lit.nome}</span>
                 </button>
             `).join('');
 
-            // 2. Inicializar Geometria do Primeiro Litoral
             const canvas = document.getElementById('canvasCosta');
             pontosCosteiros = litoralAtivo.gerarPontos(canvas.width, canvas.height);
 
-            // 3. Inicializar Mapa e Atlas
             inicializarMapaReal();
             renderizarAtlasPaises('todos');
-
-            // 4. Executar primeira rodada de cálculos
             recalcularTudo();
         });
     </script>

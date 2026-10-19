@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#090a0f]">
+<html lang="pt-br" class="bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/onde-fica/">
@@ -23,9 +23,10 @@
 
     <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -42,16 +43,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#181b24',
-                        geoGold: '#f59e0b',
-                        geoBlue: '#38bdf8'
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -59,41 +62,40 @@
     </script>
 
     <style>
-        /* Estilos do Mapa e Elementos Interativos */
         #map {
             cursor: crosshair !important;
-            background-color: #0b0d13;
+            background-color: #E8E4DA;
             touch-action: pan-x pan-y;
         }
         .leaflet-container {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
         .leaflet-control-zoom {
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            background: #11131a !important;
+            border: 1px solid rgba(10, 25, 47, 0.15) !important;
+            background: #FFFFFF !important;
             border-radius: 8px !important;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.08) !important;
         }
         .leaflet-control-zoom a {
-            background: #11131a !important;
-            color: #cbd5e1 !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            background: #FFFFFF !important;
+            color: #0A192F !important;
+            border-bottom: 1px solid rgba(10, 25, 47, 0.08) !important;
         }
         .leaflet-control-zoom a:hover {
-            background: #1e293b !important;
-            color: #ffffff !important;
+            background: #FAF8F5 !important;
+            color: #C8102E !important;
         }
         .leaflet-control-attribution {
-            background: rgba(9, 10, 15, 0.75) !important;
-            color: #64748b !important;
+            background: rgba(245, 242, 235, 0.85) !important;
+            color: #53647C !important;
             font-size: 10px !important;
             border-radius: 4px;
         }
         .leaflet-control-attribution a {
-            color: #94a3b8 !important;
+            color: #0A192F !important;
         }
 
-        /* Marcadores Customizados */
         .pin-guess {
             display: flex;
             align-items: center;
@@ -101,10 +103,10 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: #f59e0b;
-            color: #000000;
+            background: #C8102E;
+            color: #ffffff;
             border: 3px solid #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.35);
             font-weight: bold;
             font-size: 13px;
         }
@@ -128,18 +130,6 @@
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        /* Shell do Arcade */
-        .arcade-shell {
-            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
-        }
-
-        /* Anti-CLS para Slots do AdSense */
-        .ad-slot-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Efeito de impacto quando acerta Na Mosca (< 50 km) */
         @keyframes screen-shake {
             0%, 100% { transform: translate(0, 0); }
             20% { transform: translate(-3px, 2px); }
@@ -151,82 +141,78 @@
             animation: screen-shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
 
-        /* Efeito de impacto quando perde vida (Flash e Tremor Vermelho) */
         @keyframes screen-shake-damage {
-            0%, 100% { transform: translate(0, 0); box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
-            20% { transform: translate(-6px, 4px); box-shadow: 0 0 35px rgba(239, 68, 68, 0.7); }
-            40% { transform: translate(6px, -4px); box-shadow: 0 0 45px rgba(239, 68, 68, 0.9); }
-            60% { transform: translate(-4px, -3px); box-shadow: 0 0 35px rgba(239, 68, 68, 0.7); }
+            0%, 100% { transform: translate(0, 0); box-shadow: 0 0 0 rgba(200, 16, 46, 0); }
+            20% { transform: translate(-6px, 4px); box-shadow: 0 0 35px rgba(200, 16, 46, 0.5); }
+            40% { transform: translate(6px, -4px); box-shadow: 0 0 45px rgba(200, 16, 46, 0.7); }
+            60% { transform: translate(-4px, -3px); box-shadow: 0 0 35px rgba(200, 16, 46, 0.5); }
             80% { transform: translate(4px, 3px); }
         }
         .shake-damage {
             animation: screen-shake-damage 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         }
 
-        /* Animação do Pulso de Combo */
         @keyframes combo-pulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(200, 16, 46, 0.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(200, 16, 46, 0.6)); }
         }
         .combo-active {
             animation: combo-pulse 1.4s ease-in-out infinite;
         }
 
-        /* Card de Destaque da Bandeira */
         .flag-glow-box {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(17, 19, 26, 0.98) 100%);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Corações de Vida Arcade */
-        @keyframes heart-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        .heart-active {
-            animation: heart-pulse 1.8s ease-in-out infinite;
+            background: #FAF8F5;
+            border: 1px solid rgba(10, 25, 47, 0.12);
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.05);
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-[#F5F2EB] text-[#1F334E] select-none min-h-screen flex flex-col justify-between overflow-x-hidden font-sans antialiased selection:bg-[#C8102E] selection:text-white">
 
-    <!-- HEADER DO JOGO -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1.5 px-2 rounded-lg hover:bg-white/5">
-                <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Todos os Jogos</span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
-
-            <div class="flex items-center gap-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Onde Fica no Mapa? <span class="hidden md:inline text-xs text-amber-400/90 font-mono font-normal">// Desafio Arcade</span>
-                </h1>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
+            <!-- Controles do Jogo no Header -->
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="abrirModalConfig()" id="btn-config" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Configurar Modo e Tipos de Perguntas">
-                    <i class="ph-bold ph-faders"></i>
+                <button onclick="abrirModalConfig()" id="btn-config" class="px-3 py-1.5 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-xs font-mono font-semibold flex items-center gap-1.5 transition shadow-xs" title="Configurar Modo e Tipos de Perguntas">
+                    <i class="ph-bold ph-faders text-[#C8102E]"></i>
                     <span class="hidden sm:inline">Modos</span>
                 </button>
-                <button onclick="alternarSom()" id="btn-sound" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Ligar/Desligar Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition shadow-xs" title="Ligar/Desligar Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Modo Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition hidden sm:inline-flex shadow-xs" title="Modo Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
+                <a href="/jogos" class="inline-flex items-center gap-1 text-xs font-semibold text-[#53647C] hover:text-[#0A192F] transition px-2.5 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-xs">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Jogos</span>
+                </a>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 sm:py-3 flex items-start justify-center gap-4 flex-1">
+    <!-- WRAPPER COM 3 COLUNAS (ANÚNCIO ESQUERDO + JOGO CENTRAL + ANÚNCIO DIREITO) -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 pt-24 sm:pt-28 pb-12 flex items-start justify-center gap-4 flex-1">
 
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -238,95 +224,105 @@
             </div>
         </aside>
 
-        <!-- ÁREA CENTRAL DO JOGO (100% RESPONSIVA PARA MOBILE E DESKTOP) -->
-        <main class="w-full flex-1 max-w-5xl flex flex-col gap-2.5 sm:gap-3" id="game-main-container">
+        <!-- ÁREA CENTRAL DO JOGO -->
+        <main class="w-full flex-1 max-w-5xl flex flex-col gap-3" id="game-main-container">
             
             <!-- CARD SUPERIOR: DESAFIO ATUAL & TELEMETRIA -->
-            <div class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl relative overflow-hidden">
+            <div class="editorial-card p-4 sm:p-5 relative overflow-hidden">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
                     
                     <!-- Alvo Atual -->
                     <div class="flex-1">
-                        <div class="flex items-center gap-2 mb-1 flex-wrap">
-                            <span class="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-amber-400 uppercase px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20" id="round-indicator">
+                        <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                            <span class="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-[#C8102E] uppercase px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C8102E]/25" id="round-indicator">
                                 RODADA 1 DE 10
                             </span>
 
-                            <!-- Vidas Arcade (Visível no Modo Arcade) -->
-                            <div class="hidden items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-500/15 border border-red-500/30 text-xs font-mono font-bold text-red-400" id="arcade-lives-badge">
-                                <span class="text-[9px] text-slate-400 uppercase tracking-wider">Vidas:</span>
+                            <!-- Vidas Arcade -->
+                            <div class="hidden items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-50 border border-red-200 text-xs font-mono font-bold text-[#C8102E]" id="arcade-lives-badge">
+                                <span class="text-[9px] text-[#53647C] uppercase tracking-wider">Vidas:</span>
                                 <span id="lives-display">❤️❤️❤️</span>
                             </div>
 
-                            <span class="text-[10px] sm:text-xs font-mono text-slate-300 uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10" id="game-mode-badge">
+                            <span class="text-[10px] sm:text-xs font-mono text-[#53647C] uppercase px-2 py-0.5 rounded-full bg-[#FAF8F5] border border-[#0A192F]/10 font-medium" id="game-mode-badge">
                                 🏆 Clássico
                             </span>
 
-                            <span class="text-xs font-mono text-slate-400" id="target-category">
+                            <span class="text-xs font-mono text-[#53647C]" id="target-category">
                                 Chokepoint Estratégico
                             </span>
                             
                             <!-- Indicador de Progresso sem Repetição -->
-                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-500/20 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição. Clique para reiniciar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
+                            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full cursor-pointer hover:bg-emerald-100 transition" id="catalog-progress-badge" title="Progresso de locais explorados sem repetição. Clique para reiniciar." onclick="if(confirm('Deseja reiniciar seu histórico para começar um ciclo novo de locais?')) reiniciarHistoricoCache();">
                                 <i class="ph-bold ph-compass text-xs"></i>
                                 <span id="catalog-progress-text">Carregando acervo...</span>
                             </div>
 
                             <!-- Badge de Combo Streak -->
-                            <div class="hidden items-center gap-1.5 text-[10px] sm:text-xs font-mono text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full" id="streak-badge">
+                            <div class="hidden items-center gap-1.5 text-[10px] sm:text-xs font-mono text-[#C8102E] bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-full font-bold" id="streak-badge">
                                 <span id="streak-text">🔥 STREAK x1</span>
                             </div>
 
-                            <!-- Dica em Hover / Toque -->
-                            <div class="relative group cursor-pointer inline-flex">
-                                <i class="ph-bold ph-info text-slate-400 hover:text-amber-400 text-sm"></i>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-2.5 bg-slate-900 border border-white/15 rounded-lg text-xs text-slate-300 shadow-xl pointer-events-none z-50 leading-relaxed font-normal">
-                                    <span class="font-semibold text-amber-400 block mb-0.5">Dica:</span>
-                                    <span id="target-hint">Aguardando local...</span>
+                            <!-- Hover Tooltip Informativo do Jogo -->
+                            <div class="hover-info-container">
+                                <button type="button" class="hover-info-trigger" aria-label="Como Funciona o Jogo?">
+                                    <i class="ph-bold ph-info text-[#C8102E]"></i>
+                                    <span>Regras</span>
+                                </button>
+                                <div class="hover-info-popover">
+                                    <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                        <i class="ph-fill ph-crosshair text-[#C8102E]"></i> Precisão & Pontuação
+                                    </h4>
+                                    <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                                        <li>• <strong>Na Mosca (&lt; 50 km):</strong> 5.000 pts (pontuação máxima + bônus de agilidade).</li>
+                                        <li>• <strong>Muito Perto (&lt; 200 km):</strong> 4.000 pts.</li>
+                                        <li>• <strong>Perto (&lt; 500 km):</strong> 2.500 pts.</li>
+                                        <li>• <strong>No Continente (&lt; 1.500 km):</strong> 1.000 pts.</li>
+                                        <li>• <strong>Combos Consecutivos:</strong> Acertos em sequência acumulam multiplicador x1.2, x1.5 e x2.0!</li>
+                                        <li>• <strong>Atalhos:</strong> Pressione Espaço para confirmar o palpite imediatamente.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Box de Destaque para Desafio de Bandeiras -->
-                        <div id="flag-challenge-box" class="hidden my-2 flex items-center gap-3 flag-glow-box p-2.5 rounded-xl border border-amber-400/30 animate-fade-in">
-                            <img id="flag-challenge-img" src="" alt="Bandeira do País" class="w-16 h-11 object-cover rounded shadow-md border border-white/20 shrink-0">
+                        <div id="flag-challenge-box" class="hidden my-2 flex items-center gap-3 flag-glow-box p-2.5 rounded-xl border border-[#0A192F]/10">
+                            <img id="flag-challenge-img" src="" alt="Bandeira do País" class="w-16 h-11 object-cover rounded shadow-sm border border-[#0A192F]/10 shrink-0">
                             <div>
-                                <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">Bandeira</span>
-                                <span class="text-xs sm:text-sm font-heading font-semibold text-white" id="flag-challenge-prompt">Onde fica este país no mapa?</span>
+                                <span class="text-[10px] font-mono font-bold text-[#C8102E] uppercase tracking-wider block">Bandeira</span>
+                                <span class="text-xs sm:text-sm font-heading font-semibold text-[#0A192F]" id="flag-challenge-prompt">Onde fica este país no mapa?</span>
                             </div>
                         </div>
 
-                        <h2 class="text-lg sm:text-2xl md:text-3xl font-heading font-extrabold text-white tracking-tight flex items-center gap-1.5 sm:gap-2" id="target-title">
-                            Onde fica o <span class="text-amber-400 underline decoration-amber-400/30 decoration-wavy">Estreito de Ormuz</span>?
+                        <h2 class="text-lg sm:text-2xl md:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight flex items-center gap-1.5 sm:gap-2" id="target-title">
+                            Onde fica o <span class="text-[#C8102E] underline decoration-[#C8102E]/30 decoration-wavy">Estreito de Ormuz</span>?
                         </h2>
                     </div>
 
                     <!-- Placar e Controles Rápidos -->
-                    <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-4 border-t md:border-t-0 pt-2 md:pt-0 border-white/5">
-                        <!-- Cronômetro de Agilidade da Rodada -->
+                    <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-4 border-t md:border-t-0 pt-2 md:pt-0 border-[#0A192F]/10">
                         <div class="text-left md:text-right hidden sm:block">
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Agilidade</span>
-                            <div class="flex items-center gap-1 text-xs font-mono text-sky-400 font-bold">
-                                <i class="ph-bold ph-timer text-sm"></i>
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block font-medium">Agilidade</span>
+                            <div class="flex items-center gap-1 text-xs font-mono text-[#0A192F] font-bold">
+                                <i class="ph-bold ph-timer text-sm text-[#C8102E]"></i>
                                 <span id="round-timer">0.0s</span>
                             </div>
                         </div>
 
-                        <!-- Pontuação Geral -->
                         <div class="text-left md:text-right">
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Pontuação</span>
-                            <span class="text-lg sm:text-2xl font-mono font-bold text-emerald-400" id="total-score">0 pts</span>
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block font-medium">Pontuação</span>
+                            <span class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F]" id="total-score">0 pts</span>
                         </div>
 
                         <!-- Seletor Discreto de Camadas do Mapa -->
-                        <div class="flex items-center bg-[#171a24] p-1 rounded-xl border border-white/10 text-xs font-mono">
-                            <button onclick="mudarCamada('canvas')" id="btn-layer-canvas" class="px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition">
+                        <div class="flex items-center bg-[#FAF8F5] p-1 rounded-full border border-[#0A192F]/10 text-xs font-mono">
+                            <button onclick="mudarCamada('canvas')" id="btn-layer-canvas" class="px-2.5 py-1 rounded-full bg-[#0A192F] text-white font-bold transition">
                                 Atlas
                             </button>
-                            <button onclick="mudarCamada('sat')" id="btn-layer-sat" class="px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition">
+                            <button onclick="mudarCamada('sat')" id="btn-layer-sat" class="px-2.5 py-1 rounded-full text-[#53647C] hover:text-[#0A192F] transition">
                                 Satélite
                             </button>
-                            <button onclick="mudarCamada('osm')" id="btn-layer-osm" class="px-2 sm:px-2.5 py-1 rounded-lg text-slate-300 hover:text-white transition">
+                            <button onclick="mudarCamada('osm')" id="btn-layer-osm" class="px-2.5 py-1 rounded-full text-[#53647C] hover:text-[#0A192F] transition">
                                 Ruas
                             </button>
                         </div>
@@ -335,80 +331,80 @@
             </div>
 
             <!-- CONTAINER DO MAPA -->
-            <div id="map-wrapper" class="relative w-full h-[50vh] min-h-[340px] max-h-[520px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col transition-transform">
+            <div id="map-wrapper" class="relative w-full h-[50vh] min-h-[340px] max-h-[520px] rounded-2xl overflow-hidden border border-[#0A192F]/15 shadow-sm flex flex-col transition-transform">
                 <div id="map" class="w-full flex-1"></div>
 
                 <!-- Instrução Flutuante Quando Nenhum Ponto Foi Marcado -->
-                <div id="hint-click-banner" class="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md border border-white/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-medium text-slate-200 pointer-events-none shadow-xl flex items-center gap-2 z-[400] text-center max-w-[90%]">
-                    <i class="ph-bold ph-crosshair text-amber-400 text-base shrink-0"></i>
+                <div id="hint-click-banner" class="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-[#0A192F]/15 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-medium text-[#0A192F] pointer-events-none shadow-md flex items-center gap-2 z-[400] text-center max-w-[90%]">
+                    <i class="ph-bold ph-crosshair text-[#C8102E] text-base shrink-0"></i>
                     <span>Navegue pelo mapa e clique onde você acha que fica o alvo</span>
                 </div>
 
                 <!-- BARRA DE AÇÃO FLUTUANTE INFERIOR -->
                 <div id="action-bar" class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[400] flex items-center gap-2 sm:gap-3 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-4">
-                    <button onclick="confirmarPalpite()" class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-base shadow-2xl flex items-center gap-2 hover:scale-105 active:scale-95 transition">
+                    <button onclick="confirmarPalpite()" class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-xs sm:text-sm shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 transition">
                         <i class="ph-bold ph-check-circle text-base sm:text-lg"></i>
                         <span>Confirmar Palpite</span>
                     </button>
-                    <button onclick="limparPalpite()" class="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-mono border border-white/15 backdrop-blur-md transition">
+                    <button onclick="limparPalpite()" class="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] text-xs font-mono font-medium border border-[#0A192F]/15 shadow-md transition">
                         Mudar
                     </button>
                 </div>
 
                 <!-- CARD DE RESULTADO DA RODADA -->
-                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[300px] sm:min-w-[400px] max-w-lg bg-[#11131a]/95 backdrop-blur-md border border-white/20 p-3 sm:p-4 rounded-2xl shadow-2xl z-[500] hidden transition-all animate-fade-in">
-                    <div class="flex items-center justify-between mb-2 border-b border-white/10 pb-2">
-                        <span class="text-xs sm:text-sm font-mono font-bold uppercase text-amber-400 flex items-center gap-1.5" id="result-grade-label">
+                <div id="round-result-card" class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 w-[94%] sm:w-auto min-w-[300px] sm:min-w-[400px] max-w-lg bg-white/95 backdrop-blur-md border border-[#0A192F]/15 p-4 rounded-2xl shadow-xl z-[500] hidden transition-all">
+                    <div class="flex items-center justify-between mb-2 border-b border-[#0A192F]/10 pb-2">
+                        <span class="text-xs sm:text-sm font-mono font-bold uppercase text-[#C8102E] flex items-center gap-1.5" id="result-grade-label">
                             🎯 NA MOSCA!
                         </span>
-                        <span class="text-lg sm:text-xl font-mono font-black text-emerald-400" id="result-round-score">
+                        <span class="text-lg sm:text-xl font-mono font-black text-[#0A192F]" id="result-round-score">
                             +0 pts
                         </span>
                     </div>
 
                     <!-- Breakdown: Base + Combo + Agilidade -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 bg-[#0c0e14]/80 border border-white/10 rounded-xl p-2 mb-2 text-center font-mono text-[10px] sm:text-xs">
+                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-2 mb-2 text-center font-mono text-[10px] sm:text-xs">
                         <div>
-                            <span class="text-slate-400 block text-[9px] uppercase">Base</span>
-                            <strong class="text-slate-200" id="breakdown-base">+0</strong>
+                            <span class="text-[#53647C] block text-[9px] uppercase">Base</span>
+                            <strong class="text-[#0A192F]" id="breakdown-base">+0</strong>
                         </div>
-                        <div class="border-x border-white/10">
-                            <span class="text-slate-400 block text-[9px] uppercase">Combo</span>
-                            <strong class="text-amber-400" id="breakdown-combo">x1.0</strong>
+                        <div class="border-x border-[#0A192F]/10">
+                            <span class="text-[#53647C] block text-[9px] uppercase">Combo</span>
+                            <strong class="text-[#C8102E]" id="breakdown-combo">x1.0</strong>
                         </div>
                         <div>
-                            <span class="text-slate-400 block text-[9px] uppercase">Agilidade</span>
-                            <strong class="text-sky-400" id="breakdown-speed">+0 pts</strong>
+                            <span class="text-[#53647C] block text-[9px] uppercase">Agilidade</span>
+                            <strong class="text-[#0A192F]" id="breakdown-speed">+0 pts</strong>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 text-sm font-bold shrink-0">
+                        <div class="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 flex items-center justify-center text-[#C8102E] text-sm font-bold shrink-0">
                             <i class="ph-bold ph-ruler"></i>
                         </div>
                         <div>
-                            <span class="text-[10px] font-mono text-slate-400 block uppercase">Distância do Alvo</span>
-                            <span class="text-xs sm:text-sm font-heading font-bold text-white" id="result-distance">
+                            <span class="text-[10px] font-mono text-[#53647C] block uppercase">Distância do Alvo</span>
+                            <span class="text-xs sm:text-sm font-heading font-bold text-[#0A192F]" id="result-distance">
                                 0 km de distância
                             </span>
                         </div>
                     </div>
 
                     <!-- Fato sobre o Local -->
-                    <p class="text-xs text-slate-300 leading-relaxed bg-[#181b24] p-2 sm:p-2.5 rounded-xl border border-white/5 mb-2.5 max-h-24 overflow-y-auto" id="result-fact">
+                    <p class="text-xs text-[#53647C] leading-relaxed bg-[#FAF8F5] p-2.5 rounded-xl border border-[#0A192F]/10 mb-3 max-h-24 overflow-y-auto" id="result-fact">
                         Carregando fato sobre este local...
                     </p>
 
-                    <button onclick="proximaRodada()" id="btn-next-round" class="w-full py-2.5 sm:py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
+                    <button onclick="proximaRodada()" id="btn-next-round" class="w-full py-2.5 sm:py-3 rounded-xl bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition hover:scale-[1.01]">
                         <span>Próxima Rodada</span>
                         <i class="ph-bold ph-arrow-right"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- ANÚNCIO INFERIOR (VISÍVEL NO MOBILE E DESKTOP ABAIXO DO JOGO) -->
-            <section class="w-full my-2 sm:my-3 p-2 sm:p-3 bg-[#0c0e14]/70 border border-white/5 rounded-2xl flex flex-col items-center justify-center min-h-[90px] sm:min-h-[120px] ad-slot-container">
-                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1 font-mono">PUBLICIDADE • GOOGLE ADSENSE</span>
+            <!-- ANÚNCIO INFERIOR -->
+            <section class="editorial-card p-3 my-2 text-center min-h-[90px] sm:min-h-[120px] flex flex-col justify-center items-center">
+                <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-1 font-mono">PUBLICIDADE • GOOGLE ADSENSE</span>
                 <div class="w-full max-w-4xl flex items-center justify-center">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -423,9 +419,9 @@
             </section>
         </main>
 
-        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -438,221 +434,226 @@
         </aside>
     </div>
 
-    <!-- MODAL DE RESULTADO FINAL (FIM DE JOGO / SCORECARD ARCADE VIRAL) -->
-    <div id="modal-game-over" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-xl w-full p-5 sm:p-7 shadow-2xl relative overflow-hidden text-center animate-fade-in my-auto">
+    <!-- MODAL DE RESULTADO FINAL (FIM DE JOGO) -->
+    <div id="modal-game-over" class="fixed inset-0 bg-[#0A192F]/60 backdrop-blur-sm z-[1000] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white border border-[#0A192F]/15 rounded-3xl max-w-xl w-full p-5 sm:p-7 shadow-2xl relative overflow-hidden text-center my-auto">
             
-            <!-- Badge Grande de Rank Arcade -->
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-mono uppercase tracking-widest mb-3" id="final-rank-badge">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#C8102E]/25 text-[#C8102E] text-xs font-mono uppercase tracking-widest mb-3" id="final-rank-badge">
                 <i class="ph-bold ph-seal-check"></i>
                 <span id="final-rank-pill">RANK S // ALTA PRECISÃO</span>
             </div>
 
-            <h3 class="text-2xl sm:text-4xl font-heading font-black text-white mb-1 tracking-tight" id="final-rank-title">
+            <h3 class="text-2xl sm:text-4xl font-heading font-black text-[#0A192F] mb-1 tracking-tight" id="final-rank-title">
                 Geógrafo Mestre
             </h3>
-            <p class="text-xs sm:text-sm text-slate-400 mb-4 max-w-md mx-auto leading-relaxed" id="final-rank-desc">
+            <p class="text-xs sm:text-sm text-[#53647C] mb-4 max-w-md mx-auto leading-relaxed" id="final-rank-desc">
                 Sua precisão demonstra excelente domínio sobre a localização e as fronteiras do planeta.
             </p>
 
-            <!-- Placar Central Arcade com 3 Colunas -->
-            <div class="bg-[#181b24] border border-white/10 rounded-2xl p-3 sm:p-4 mb-4 grid grid-cols-3 gap-2 text-center">
+            <!-- Placar Central -->
+            <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-2xl p-3 sm:p-4 mb-4 grid grid-cols-3 gap-2 text-center">
                 <div>
-                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Pontos</span>
-                    <span class="text-lg sm:text-2xl font-mono font-bold text-emerald-400" id="final-score-val">0</span>
-                    <span class="text-[9px] font-mono text-slate-500 block">/ 25.000+</span>
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-[#53647C] block font-medium">Pontos</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F]" id="final-score-val">0</span>
+                    <span class="text-[9px] font-mono text-[#53647C] block">/ 25.000+</span>
                 </div>
-                <div class="border-x border-white/10">
-                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Média</span>
-                    <span class="text-lg sm:text-2xl font-mono font-bold text-amber-400" id="final-avg-dist">0 km</span>
-                    <span class="text-[9px] font-mono text-slate-500 block">Distância</span>
+                <div class="border-x border-[#0A192F]/10">
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-[#53647C] block font-medium">Média</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-[#C8102E]" id="final-avg-dist">0 km</span>
+                    <span class="text-[9px] font-mono text-[#53647C] block">Distância</span>
                 </div>
                 <div>
-                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-slate-400 block">Melhor Streak</span>
-                    <span class="text-lg sm:text-2xl font-mono font-bold text-sky-400" id="final-best-streak">0x</span>
-                    <span class="text-[9px] font-mono text-slate-500 block">Combo 🔥</span>
+                    <span class="text-[9px] sm:text-[10px] font-mono uppercase text-[#53647C] block font-medium">Melhor Streak</span>
+                    <span class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F]" id="final-best-streak">0x</span>
+                    <span class="text-[9px] font-mono text-[#53647C] block">Combo 🔥</span>
                 </div>
             </div>
 
-            <!-- Badges e Conquistas Alcançadas na Partida -->
+            <!-- Badges e Conquistas Alcançadas -->
             <div class="flex items-center justify-center gap-1.5 flex-wrap mb-4" id="final-badges-container">
-                <!-- Inserido dinamicamente via JS -->
             </div>
 
-            <!-- Tabela Resumo das 5 Rodadas -->
+            <!-- Tabela Resumo das Rodadas -->
             <div class="space-y-1.5 mb-4 text-left max-h-40 overflow-y-auto pr-1" id="final-rounds-list">
-                <!-- Inserido dinamicamente via JS -->
             </div>
 
-            <!-- Telemetria do Acervo sem Repetição -->
-            <div class="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400" id="final-cache-progress">
+            <!-- Telemetria do Acervo -->
+            <div class="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-mono text-emerald-700 font-semibold" id="final-cache-progress">
                 <i class="ph-bold ph-compass"></i>
                 <span id="final-cache-text">Explorando novos locais a cada partida!</span>
             </div>
 
-            <!-- BOTÕES DE COMPARTILHAMENTO VIRAL MÁXIMO & AÇÃO -->
+            <!-- BOTÕES DE COMPARTILHAMENTO & AÇÃO -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2">
-                <!-- Botão 1: WhatsApp Direto -->
-                <button onclick="compartilharWhatsApp()" class="w-full py-3 sm:py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                <button onclick="compartilharWhatsApp()" class="w-full py-3 sm:py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-xs">
                     <i class="ph-fill ph-whatsapp-logo text-lg sm:text-xl"></i>
                     <span>Desafiar no WhatsApp</span>
                 </button>
 
-                <!-- Botão 2: Gerar e Baixar Card PNG para Stories/Redes -->
-                <button onclick="baixarCardImagemPNG()" id="btn-download-card" class="w-full py-3 sm:py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-amber-400/20">
+                <button onclick="baixarCardImagemPNG()" id="btn-download-card" class="w-full py-3 sm:py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-xs">
                     <i class="ph-bold ph-download-simple text-base sm:text-lg"></i>
                     <span>Baixar Card (PNG)</span>
                 </button>
 
-                <!-- Botão 3: Copiar Texto Viral -->
-                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-heading font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                <button onclick="copiarResultado()" id="btn-copy-score" class="w-full py-3 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#0A192F]/15 text-[#0A192F] font-heading font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
                     <i class="ph-bold ph-copy text-base"></i>
                     <span>Copiar Texto</span>
                 </button>
 
-                <!-- Botão 4: Jogar Novamente (5 Locais Inéditos) -->
-                <button onclick="reiniciarJogo()" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.01]">
-                    <i class="ph-bold ph-arrow-counter-clockwise text-base text-amber-400"></i>
+                <button onclick="reiniciarJogo()" class="w-full py-3 rounded-xl bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition">
+                    <i class="ph-bold ph-arrow-counter-clockwise text-base"></i>
                     <span>Jogar Novamente</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE CONFIGURAÇÃO DE MODOS & QUESTÕES (GAME LAUNCHER) -->
-    <div id="modal-config" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[1100] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-        <div class="bg-[#11131a] border border-white/15 rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative overflow-hidden text-left animate-fade-in my-auto">
+    <!-- MODAL DE CONFIGURAÇÃO DE MODOS & QUESTÕES -->
+    <div id="modal-config" class="fixed inset-0 bg-[#0A192F]/60 backdrop-blur-sm z-[1100] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white border border-[#0A192F]/15 rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative overflow-hidden text-left my-auto">
             
-            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+            <div class="flex items-center justify-between pb-3 border-b border-[#0A192F]/10 mb-4">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                    <div class="w-8 h-8 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 flex items-center justify-center text-[#C8102E]">
                         <i class="ph-bold ph-faders text-lg"></i>
                     </div>
                     <div>
-                        <h3 class="font-heading font-extrabold text-base sm:text-lg text-white">Configurar Partida</h3>
-                        <p class="text-[10px] sm:text-xs font-mono text-slate-400">Escolha o modo de jogo e os tipos de desafios</p>
+                        <h3 class="font-heading font-extrabold text-base sm:text-lg text-[#0A192F]">Configurar Partida</h3>
+                        <p class="text-[10px] sm:text-xs font-mono text-[#53647C]">Escolha o modo de jogo e os tipos de desafios</p>
                     </div>
                 </div>
-                <button onclick="fecharModalConfig()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition">
+                <button onclick="fecharModalConfig()" class="p-1.5 rounded-lg text-[#53647C] hover:text-[#0A192F] hover:bg-[#FAF8F5] transition">
                     <i class="ph-bold ph-x text-lg"></i>
                 </button>
             </div>
 
             <!-- SELETOR DE MODO DE JOGO -->
             <div class="mb-4">
-                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
-                    <i class="ph-bold ph-game-controller"></i> Modo de Jogo
+                <label class="text-xs font-mono uppercase tracking-wider text-[#0A192F] font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-game-controller text-[#C8102E]"></i> Modo de Jogo
                 </label>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <!-- Opção 1: Clássico -->
-                    <div onclick="selecionarModoJogo('classico')" id="card-modo-classico" class="mode-option-card p-3 rounded-2xl border border-amber-400/50 bg-amber-400/10 cursor-pointer transition relative">
+                    <div onclick="selecionarModoJogo('classico')" id="card-modo-classico" class="mode-option-card p-3 rounded-2xl border border-[#C8102E] bg-[#FAF8F5] cursor-pointer transition relative">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                            <span class="font-heading font-bold text-sm text-[#0A192F] flex items-center gap-1.5">
                                 🏆 Modo Clássico
                             </span>
-                            <span class="w-4 h-4 rounded-full border border-amber-400 bg-amber-400 text-slate-950 flex items-center justify-center text-[10px]" id="check-modo-classico">
+                            <span class="w-4 h-4 rounded-full bg-[#C8102E] text-white flex items-center justify-center text-[10px]" id="check-modo-classico">
                                 <i class="ph-bold ph-check"></i>
                             </span>
                         </div>
-                        <p class="text-[11px] text-slate-400 leading-snug">
+                        <p class="text-[11px] text-[#53647C] leading-snug">
                             Rodadas fixas com pontuação acumulada, combos e ranking de precisão (SSS/S/A/B/C/D).
                         </p>
                     </div>
 
-                    <!-- Opção 2: Arcade de Vidas -->
-                    <div onclick="selecionarModoJogo('arcade')" id="card-modo-arcade" class="mode-option-card p-3 rounded-2xl border border-white/15 bg-[#171a24] cursor-pointer hover:border-amber-400/50 transition relative">
+                    <div onclick="selecionarModoJogo('arcade')" id="card-modo-arcade" class="mode-option-card p-3 rounded-2xl border border-[#0A192F]/15 bg-white cursor-pointer hover:border-[#C8102E]/50 transition relative">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                            <span class="font-heading font-bold text-sm text-[#0A192F] flex items-center gap-1.5">
                                 🕹️ Arcade Sobrevivência
                             </span>
-                            <span class="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center text-[10px] text-amber-400" id="check-modo-arcade">
+                            <span class="w-4 h-4 rounded-full border border-[#0A192F]/30 flex items-center justify-center text-[10px] text-[#C8102E]" id="check-modo-arcade">
                                 <i class="ph-bold ph-check hidden"></i>
                             </span>
                         </div>
-                        <p class="text-[11px] text-slate-400 leading-snug">
+                        <p class="text-[11px] text-[#53647C] leading-snug">
                             3 Vidas ❤️❤️❤️! Erros graves custam vidas; tiros precisos recuperam vidas! Jogue até onde aguentar.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- QUANTIDADE DE RODADAS (APENAS MODO CLÁSSICO) -->
+            <!-- QUANTIDADE DE RODADAS -->
             <div id="secao-qtd-rodadas" class="mb-4">
-                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
-                    <i class="ph-bold ph-hourglass-high"></i> Quantidade de Rodadas
+                <label class="text-xs font-mono uppercase tracking-wider text-[#0A192F] font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-hourglass-high text-[#C8102E]"></i> Quantidade de Rodadas
                 </label>
                 <div class="grid grid-cols-4 gap-2">
-                    <button type="button" onclick="selecionarQtdRodadas(5)" id="btn-rodadas-5" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                    <button type="button" onclick="selecionarQtdRodadas(5)" id="btn-rodadas-5" class="py-2 rounded-xl border border-[#0A192F]/15 bg-white text-xs font-mono font-bold text-[#53647C] hover:text-[#0A192F] transition">
                         5 Rodadas
                     </button>
-                    <button type="button" onclick="selecionarQtdRodadas(10)" id="btn-rodadas-10" class="py-2 rounded-xl border border-amber-400/50 bg-amber-400/10 text-xs font-mono font-bold text-amber-300 transition">
+                    <button type="button" onclick="selecionarQtdRodadas(10)" id="btn-rodadas-10" class="py-2 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-xs font-mono font-bold text-[#C8102E] transition">
                         10 Rodadas ⭐
                     </button>
-                    <button type="button" onclick="selecionarQtdRodadas(15)" id="btn-rodadas-15" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                    <button type="button" onclick="selecionarQtdRodadas(15)" id="btn-rodadas-15" class="py-2 rounded-xl border border-[#0A192F]/15 bg-white text-xs font-mono font-bold text-[#53647C] hover:text-[#0A192F] transition">
                         15 Rodadas
                     </button>
-                    <button type="button" onclick="selecionarQtdRodadas(20)" id="btn-rodadas-20" class="py-2 rounded-xl border border-white/15 bg-[#171a24] text-xs font-mono font-bold text-slate-300 hover:text-white transition">
+                    <button type="button" onclick="selecionarQtdRodadas(20)" id="btn-rodadas-20" class="py-2 rounded-xl border border-[#0A192F]/15 bg-white text-xs font-mono font-bold text-[#53647C] hover:text-[#0A192F] transition">
                         20 Rodadas
                     </button>
                 </div>
             </div>
 
-            <!-- TIPOS DE PERGUNTAS / CATEGORIAS ATIVAS -->
+            <!-- TIPOS DE PERGUNTAS -->
             <div class="mb-5">
-                <label class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold block mb-2 flex items-center gap-1.5">
-                    <i class="ph-bold ph-list-checks"></i> Tipos de Perguntas no Mapa
+                <label class="text-xs font-mono uppercase tracking-wider text-[#0A192F] font-bold block mb-2 flex items-center gap-1.5">
+                    <i class="ph-bold ph-list-checks text-[#C8102E]"></i> Tipos de Perguntas no Mapa
                 </label>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-                    
-                    <!-- 1. Bandeiras -->
-                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
-                        <input type="checkbox" id="filtro-bandeiras" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 cursor-pointer hover:bg-white transition">
+                        <input type="checkbox" id="filtro-bandeiras" checked class="w-4 h-4 rounded text-[#C8102E] focus:ring-0">
                         <div class="flex-1">
-                            <span class="text-white font-bold block">🚩 Bandeiras do Mundo</span>
-                            <span class="text-[10px] text-slate-400 block">Identifique o país da bandeira</span>
+                            <span class="text-[#0A192F] font-bold block">🚩 Bandeiras do Mundo</span>
+                            <span class="text-[10px] text-[#53647C] block">Identifique o país da bandeira</span>
                         </div>
                     </label>
 
-                    <!-- 2. Chokepoints e Rotas -->
-                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
-                        <input type="checkbox" id="filtro-chokepoints" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 cursor-pointer hover:bg-white transition">
+                        <input type="checkbox" id="filtro-chokepoints" checked class="w-4 h-4 rounded text-[#C8102E] focus:ring-0">
                         <div class="flex-1">
-                            <span class="text-white font-bold block">⚓ Chokepoints & Canais</span>
-                            <span class="text-[10px] text-slate-400 block">Ormuz, Suez, Malaca, Bósforo...</span>
+                            <span class="text-[#0A192F] font-bold block">⚓ Chokepoints & Canais</span>
+                            <span class="text-[10px] text-[#53647C] block">Ormuz, Suez, Malaca, Bósforo...</span>
                         </div>
                     </label>
 
-                    <!-- 3. Capitais Mundiais -->
-                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
-                        <input type="checkbox" id="filtro-capitais" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 cursor-pointer hover:bg-white transition">
+                        <input type="checkbox" id="filtro-capitais" checked class="w-4 h-4 rounded text-[#C8102E] focus:ring-0">
                         <div class="flex-1">
-                            <span class="text-white font-bold block">🏛️ Capitais Globais</span>
-                            <span class="text-[10px] text-slate-400 block">Camberra, Ottawa, Ancara...</span>
+                            <span class="text-[#0A192F] font-bold block">🏛️ Capitais Globais</span>
+                            <span class="text-[10px] text-[#53647C] block">Camberra, Ottawa, Ancara...</span>
                         </div>
                     </label>
 
-                    <!-- 4. Extremos Físicos -->
-                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#171a24] border border-white/10 cursor-pointer hover:bg-white/5 transition">
-                        <input type="checkbox" id="filtro-extremos" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-900 border-white/20">
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 cursor-pointer hover:bg-white transition">
+                        <input type="checkbox" id="filtro-extremos" checked class="w-4 h-4 rounded text-[#C8102E] focus:ring-0">
                         <div class="flex-1">
-                            <span class="text-white font-bold block">🏔️ Extremos & Maravilhas</span>
-                            <span class="text-[10px] text-slate-400 block">Ponto Nemo, Atacama, Everest...</span>
+                            <span class="text-[#0A192F] font-bold block">🏔️ Extremos & Maravilhas</span>
+                            <span class="text-[10px] text-[#53647C] block">Ponto Nemo, Atacama, Everest...</span>
                         </div>
                     </label>
                 </div>
             </div>
 
             <!-- BOTÃO SALVAR E JOGAR -->
-            <button onclick="salvarConfigEIniciar()" class="w-full py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition hover:scale-[1.02]">
-                <i class="ph-bold ph-play text-lg"></i>
+            <button onclick="salvarConfigEIniciar()" class="w-full py-3.5 rounded-2xl bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-sm shadow-md flex items-center justify-center gap-2 transition hover:scale-[1.01]">
+                <i class="ph-bold ph-play text-lg text-[#C8102E]"></i>
                 <span>COMEÇAR COM ESSA CONFIGURAÇÃO</span>
             </button>
         </div>
     </div>
 
-    <!-- RODAPÉ COMPACTO -->
-    <footer class="w-full border-t border-white/10 py-3 text-center text-xs text-slate-500 font-mono">
-        VitaleGeo Arcade &copy; 2026 &mdash; Mapas abertos via Esri Canvas & OpenStreetMap. Zero API Keys.
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
+            </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <!-- LÓGICA DO JOGO, DOPAMINA, COMBO STREAKS E COMPARTILHAMENTO -->

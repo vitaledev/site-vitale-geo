@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/quantos-cabem/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantos Cabem? | Comparador de Escala Territorial — VitaleGeo</title>
+    <title>Quantos Cabem? Comparador Territorial | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Descubra visualmente quantos países ou estados cabem dentro de outro território. Compare Japão no Brasil, Portugal em São Paulo, França em Minas Gerais e muito mais!">
+    <meta name="description" content="Descubra visualmente quantos países ou estados cabem dentro de outro território sem a distorção de Mercator. Compare Japão no Brasil, Portugal em São Paulo e muito mais.">
     <meta name="keywords" content="quantos países cabem no brasil, escala real dos países, distorção de mercator, comparador de área geográfica, tamanho dos países, vitalegeo">
     
-    <!-- Open Graph / Redes Sociais -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Quantos Cabem? Comparador Territorial | VitaleGeo">
     <meta property="og:description" content="Você sabia que cabem 92 Portugais dentro do Brasil e que a Bahia é maior que a França? Teste qualquer combinação!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/quantos-cabem/">
-    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/quantos-cabem.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     
     <!-- Fontes Oficiais VitaleGeo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -33,16 +36,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#1e293b',
-                        geoGold: '#f59e0b',
-                        geoBlue: '#38bdf8'
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -50,157 +55,142 @@
     </script>
 
     <style>
-        .editorial-card {
-            background: #11131a;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .editorial-card:hover {
-            border-color: rgba(245, 158, 11, 0.3);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 40px -15px rgba(0, 0, 0, 0.8);
-        }
         .mini-block {
             transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
         }
         .mini-block:hover {
-            transform: scale(1.18);
+            transform: scale(1.15);
             z-index: 10;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 9999px;
         }
     </style>
 </head>
-<body class="bg-[#090a0f] text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black page-shell min-h-screen flex flex-col justify-between">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-    <!-- Navbar Flutuante em Pílula -->
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
             <a href="/" class="flex items-center gap-2.5 group">
-                <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
                     <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
                 </div>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-300 bg-white/[0.03] p-1 rounded-full border border-white/5">
-                <a href="/" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Início</a>
-                <a href="/blog" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Dossiês</a>
-                <a href="/ferramentas" class="px-3.5 py-1.5 rounded-full text-white bg-white/10 font-semibold transition">Ferramentas</a>
-                <a href="/jogos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Simulações</a>
-                <a href="/videos" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Vídeos</a>
-                <a href="/sobre" class="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-200 hover:text-white bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <!-- Botão de Retorno -->
-    <div class="fixed top-24 right-6 z-30">
-        <a href="/ferramentas" class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
-            <i class="ph-bold ph-arrow-left"></i> Todas as Ferramentas
-        </a>
-    </div>
-
     <!-- Conteúdo Principal -->
-    <main class="page-content pt-32 pb-20 px-4 sm:px-6 flex-1">
-        <div class="max-w-5xl mx-auto">
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-4xl mx-auto">
             
-            <!-- Cabeçalho Editorial -->
-            <header class="text-center max-w-3xl mx-auto mb-10">
-                <div class="inline-flex items-center gap-2 text-xs font-mono font-medium text-amber-400 tracking-wider uppercase mb-3 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20">
-                    <i class="ph-bold ph-squares-four text-sm"></i> Proporção Cartográfica
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Projeções & Território
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Quantos Cabem?
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Compare a escala real de países e estados sem a ilusão de Mercator com preenchimento em tempo real.
+                    </p>
                 </div>
-                <h1 class="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight leading-tight mb-4">
-                    Quantos Cabem Dentro de Quem?
-                </h1>
-                <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                    Compare a escala real de países e estados sem a ilusão de Mercator. Descubra quantas vezes um território cabe dentro de outro com preenchimento visual em tempo real.
-                </p>
+
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Informações e Curiosidades">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como Funciona & Curiosidades</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-lightbulb text-[#C8102E]"></i> Por que Mercator Engana?
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            A Projeção de Mercator (1569) foi criada para navegar com bússola reta, esticando as áreas próximas aos polos e encolhendo os trópicos.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Brasil (8,5M km²):</strong> Maior que toda a Europa Ocidental reunida; cabe a França mais de 15 vezes.</li>
+                            <li>• <strong>Bahia (564 mil km²):</strong> Maior que a França metropolitana inteira.</li>
+                            <li>• <strong>São Paulo (248 mil km²):</strong> Do tamanho exato de todo o Reino Unido.</li>
+                            <li>• <strong>África vs Groenlândia:</strong> A África é 14 vezes maior que a Groenlândia na realidade.</li>
+                        </ul>
+                    </div>
+                </div>
             </header>
 
-            <!-- Duelos Rápidos Virais (Quick Picks) -->
-            <div class="mb-8">
-                <p class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-3 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5">
-                    <i class="ph-bold ph-lightning text-amber-400"></i> Duelos Clássicos Populares:
-                </p>
-                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs">
-                    <button onclick="setPreset('pt', 'br')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇵🇹 Portugal no 🇧🇷 Brasil (92x)
-                    </button>
-                    <button onclick="setPreset('jp', 'br_am')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇯🇵 Japão no 🇧🇷 Amazonas (4x)
-                    </button>
-                    <button onclick="setPreset('fr', 'br_ba')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇫🇷 França na 🇧🇷 Bahia (1x)
-                    </button>
-                    <button onclick="setPreset('de', 'br_ma')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇩🇪 Alemanha no 🇧🇷 Maranhão (1x)
-                    </button>
-                    <button onclick="setPreset('gb', 'br_sp')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇬🇧 Reino Unido em 🇧🇷 São Paulo (1x)
-                    </button>
-                    <button onclick="setPreset('it', 'br_rs')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇮🇹 Itália no 🇧🇷 Rio Grande do Sul (0.9x)
-                    </button>
-                    <button onclick="setPreset('ru', 'africa')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇷🇺 Rússia na 🌍 África (0.5x)
-                    </button>
-                    <button onclick="setPreset('br', 'europa')" class="preset-btn px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 hover:border-amber-400/50 hover:bg-slate-800 transition text-slate-300">
-                        🇧🇷 Brasil na 🇪🇺 Europa (0.8x)
-                    </button>
-                </div>
+            <!-- Duelos Rápidos Populares (Compactos em Hover) -->
+            <div class="mb-6 flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar text-xs">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] shrink-0 flex items-center gap-1 font-semibold">
+                    <i class="ph-bold ph-lightning text-[#C8102E]"></i> Duelos:
+                </span>
+                <button onclick="setPreset('pt', 'br')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇵🇹 Portugal no 🇧🇷 Brasil (92x)
+                </button>
+                <button onclick="setPreset('jp', 'br_am')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇯🇵 Japão no 🇧🇷 Amazonas (4x)
+                </button>
+                <button onclick="setPreset('fr', 'br_ba')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇫🇷 França na 🇧🇷 Bahia (1x)
+                </button>
+                <button onclick="setPreset('gb', 'br_sp')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇬🇧 Reino Unido em 🇧🇷 São Paulo (1x)
+                </button>
+                <button onclick="setPreset('ru', 'africa')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇷🇺 Rússia na 🌍 África (0.5x)
+                </button>
             </div>
 
             <!-- Painel de Seleção Principal -->
-            <div class="editorial-card p-5 sm:p-7 mb-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center relative">
+            <div class="editorial-card p-4 sm:p-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-center relative">
                     
                     <!-- Lado A: O que vai caber -->
                     <div class="relative">
-                        <label class="block text-xs font-mono uppercase tracking-wider text-amber-400 mb-2 flex items-center justify-between">
-                            <span>1. Território de Referência (O que entra)</span>
-                            <span id="label-area-a" class="text-slate-400 font-normal">-- km²</span>
+                        <label class="block text-xs font-mono uppercase tracking-wider text-[#C8102E] mb-1.5 flex items-center justify-between font-semibold">
+                            <span>1. Território de Referência (Entra)</span>
+                            <span id="label-area-a" class="text-[#53647C] font-normal font-mono">-- km²</span>
                         </label>
                         <div class="relative">
-                            <select id="select-a" onchange="calcularProporcao()" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-4 py-3.5 text-white font-medium focus:outline-none focus:border-amber-400 appearance-none cursor-pointer pr-10 text-sm sm:text-base">
+                            <select id="select-a" onchange="calcularProporcao()" class="w-full bg-[#FAF8F5] border border-[#0A192F]/15 rounded-xl px-3.5 py-2.5 text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] appearance-none cursor-pointer pr-10 text-xs sm:text-sm shadow-xs">
                                 <!-- Preenchido dinamicamente via JS -->
                             </select>
-                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                <i class="ph-bold ph-caret-down"></i>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#53647C]">
+                                <i class="ph-bold ph-caret-down text-xs"></i>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Divisor com Ícone de Troca -->
-                    <button onclick="inverterSelecao()" title="Inverter posições" class="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 mx-auto w-10 h-10 rounded-full bg-slate-800 border border-white/15 text-amber-400 hover:bg-amber-400 hover:text-black transition flex items-center justify-center z-10 shadow-lg group">
-                        <i class="ph-bold ph-arrows-left-right group-hover:rotate-180 transition duration-300"></i>
+                    <!-- Divisor com Botão de Inverter -->
+                    <button onclick="inverterSelecao()" title="Inverter posições" class="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 mx-auto w-9 h-9 rounded-full bg-white border border-[#0A192F]/15 text-[#0A192F] hover:bg-[#C8102E] hover:text-white hover:border-[#C8102E] transition flex items-center justify-center z-10 shadow-sm group">
+                        <i class="ph-bold ph-arrows-left-right text-sm group-hover:rotate-180 transition duration-300"></i>
                     </button>
 
                     <!-- Lado B: Onde vai caber -->
                     <div class="relative">
-                        <label class="block text-xs font-mono uppercase tracking-wider text-sky-400 mb-2 flex items-center justify-between">
-                            <span>2. Território Alvo (Onde vai entrar)</span>
-                            <span id="label-area-b" class="text-slate-400 font-normal">-- km²</span>
+                        <label class="block text-xs font-mono uppercase tracking-wider text-[#0A192F] mb-1.5 flex items-center justify-between font-semibold">
+                            <span>2. Território Alvo (Recebe)</span>
+                            <span id="label-area-b" class="text-[#53647C] font-normal font-mono">-- km²</span>
                         </label>
                         <div class="relative">
-                            <select id="select-b" onchange="calcularProporcao()" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-4 py-3.5 text-white font-medium focus:outline-none focus:border-sky-400 appearance-none cursor-pointer pr-10 text-sm sm:text-base">
+                            <select id="select-b" onchange="calcularProporcao()" class="w-full bg-[#FAF8F5] border border-[#0A192F]/15 rounded-xl px-3.5 py-2.5 text-[#0A192F] font-semibold focus:outline-none focus:border-[#0A192F] appearance-none cursor-pointer pr-10 text-xs sm:text-sm shadow-xs">
                                 <!-- Preenchido dinamicamente via JS -->
                             </select>
-                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                <i class="ph-bold ph-caret-down"></i>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#53647C]">
+                                <i class="ph-bold ph-caret-down text-xs"></i>
                             </div>
                         </div>
                     </div>
@@ -208,191 +198,155 @@
                 </div>
             </div>
 
-            <!-- Placar de Destaque / Veredito -->
-            <div class="editorial-card p-6 sm:p-8 mb-8 text-center relative overflow-hidden bg-gradient-to-b from-[#161a26] to-[#11131a]">
-                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- Placar de Veredito Minimalista -->
+            <div class="editorial-card p-6 mb-6 text-center">
+                <span class="text-[11px] font-mono uppercase tracking-widest text-[#53647C] block mb-1">
+                    Veredito Territorial
+                </span>
+                
+                <div class="flex items-baseline justify-center gap-2 mb-2">
+                    <span id="resultado-numero" class="text-4xl sm:text-6xl font-display font-extrabold text-[#C8102E] tracking-tight leading-none">
+                        --
+                    </span>
+                    <span class="text-xl sm:text-2xl font-heading font-bold text-[#0A192F]">vezes</span>
+                </div>
 
-                <div class="relative z-10">
-                    <p class="text-xs sm:text-sm font-mono uppercase tracking-widest text-slate-400 mb-2">Veredito da Proporção Territorial</p>
-                    
-                    <div class="flex items-baseline justify-center gap-2 mb-3">
-                        <span id="resultado-numero" class="text-5xl sm:text-7xl font-heading font-black text-white tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
-                            --
-                        </span>
-                        <span class="text-2xl sm:text-3xl font-heading font-bold text-amber-400">vezes</span>
-                    </div>
+                <p id="resultado-frase" class="text-xs sm:text-base font-heading font-medium text-[#1F334E] max-w-xl mx-auto leading-relaxed mb-4">
+                    Carregando comparação...
+                </p>
 
-                    <h2 id="resultado-frase" class="text-base sm:text-xl font-heading font-semibold text-slate-200 max-w-2xl mx-auto leading-snug mb-6">
-                        Carregando comparação...
-                    </h2>
-
-                    <!-- Botão de Ação Viral (Compartilhar no WhatsApp & Copiar) -->
-                    <div class="flex flex-wrap items-center justify-center gap-3">
-                        <button onclick="compartilharWhatsApp()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-semibold transition hover:scale-[1.02]">
-                            <i class="ph-fill ph-whatsapp-logo text-base"></i> Desafiar no WhatsApp
-                        </button>
-                        <button onclick="copiarLinkResultado()" id="btn-copiar" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs sm:text-sm font-semibold transition hover:scale-[1.02]">
-                            <i class="ph-bold ph-copy text-base"></i> Copiar Resultado
-                        </button>
-                    </div>
+                <div class="flex items-center justify-center gap-2">
+                    <button onclick="compartilharWhatsApp()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 text-xs font-medium transition shadow-xs">
+                        <i class="ph-fill ph-whatsapp-logo text-sm text-emerald-600"></i> WhatsApp
+                    </button>
+                    <button onclick="copiarLinkResultado()" id="btn-copiar" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#1F334E] border border-[#0A192F]/12 text-xs font-medium transition shadow-xs">
+                        <i class="ph-bold ph-copy text-sm"></i> Copiar
+                    </button>
                 </div>
             </div>
 
-            <!-- Grade Visual de Preenchimento -->
-            <div class="editorial-card p-6 sm:p-8 mb-8">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/5">
-                    <div>
-                        <h3 class="text-lg font-heading font-bold text-white flex items-center gap-2">
-                            <i class="ph-bold ph-grid-nine text-amber-400"></i> Visualização da Proporção
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-400">Cada bloco abaixo representa 1 unidade inteira de área preenchida dentro do alvo.</p>
-                    </div>
-                    <div id="badge-contagem" class="text-xs font-mono text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-                        0 / 0 Blocos
+            <!-- Grade Visual de Preenchimento em Blocos -->
+            <div class="editorial-card p-5 mb-6">
+                <div class="flex items-center justify-between gap-3 mb-3 pb-3 border-b border-[#0A192F]/10">
+                    <h2 class="text-sm sm:text-base font-heading font-bold text-[#0A192F] flex items-center gap-2">
+                        <i class="ph-bold ph-grid-nine text-[#C8102E]"></i> Visualização em Blocos
+                    </h2>
+                    <div id="badge-contagem" class="text-[11px] font-mono text-[#C8102E] bg-[#C8102E]/10 px-2.5 py-0.5 rounded-full font-semibold">
+                        0 / 0 Unidades
                     </div>
                 </div>
 
                 <!-- Container dos Blocos -->
-                <div id="grid-blocos" class="flex flex-wrap gap-2 sm:gap-2.5 max-h-96 overflow-y-auto p-3 bg-slate-950/60 rounded-xl border border-white/5 custom-scrollbar min-h-[140px] items-center justify-center">
+                <div id="grid-blocos" class="flex flex-wrap gap-2 max-h-72 overflow-y-auto p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 min-h-[110px] items-center justify-center">
                     <!-- Gerado dinamicamente via JS -->
                 </div>
 
                 <!-- Legenda do Grid -->
-                <div class="flex flex-wrap items-center justify-between gap-4 mt-4 pt-4 border-t border-white/5 text-xs text-slate-400">
-                    <div class="flex items-center gap-4">
-                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-400 inline-block"></span> 1x Unidade Inteira</span>
-                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-400/40 border border-dashed border-amber-300 inline-block"></span> Fração Residual</span>
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-3 pt-3 border-t border-[#0A192F]/10 text-[11px] text-[#53647C] font-mono">
+                    <div class="flex items-center gap-3">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-[#C8102E] inline-block"></span> 1x Unidade Inteira</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-[#A8C3A6] inline-block"></span> Fração Residual</span>
                     </div>
-                    <span id="legenda-extra" class="text-slate-500 font-mono">1 bloco = 1x escala</span>
+                    <span id="legenda-extra">1 bloco = 1x escala</span>
                 </div>
             </div>
 
-            <!-- Dados Comparativos Detalhados (Tabela de Métricas) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Métricas Territoriais Compactas -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
                 <!-- Área -->
-                <div class="editorial-card p-5">
-                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Área Territorial</span>
-                    <div class="space-y-3 mt-3">
-                        <div>
-                            <span class="text-xs text-amber-400 block font-mono" id="card-nome-a">Território A</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-area-a">-- km²</p>
+                <div class="editorial-card p-3.5">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1">Área Territorial</span>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-xs font-semibold text-[#C8102E] truncate" id="card-nome-a">Território A</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-area-a">-- km²</span>
                         </div>
-                        <div class="h-px bg-white/5"></div>
-                        <div>
-                            <span class="text-xs text-sky-400 block font-mono" id="card-nome-b">Território B</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-area-b">-- km²</p>
+                        <div class="flex justify-between items-baseline pt-1 border-t border-[#0A192F]/5">
+                            <span class="text-xs font-semibold text-[#0A192F] truncate" id="card-nome-b">Território B</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-area-b">-- km²</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- População Estimada -->
-                <div class="editorial-card p-5">
-                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">População Estimada</span>
-                    <div class="space-y-3 mt-3">
-                        <div>
-                            <span class="text-xs text-amber-400 block font-mono" id="card-pop-label-a">Território A</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-pop-a">--</p>
+                <div class="editorial-card p-3.5">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1">População Estimada</span>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-xs font-semibold text-[#C8102E] truncate" id="card-pop-label-a">Território A</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-pop-a">--</span>
                         </div>
-                        <div class="h-px bg-white/5"></div>
-                        <div>
-                            <span class="text-xs text-sky-400 block font-mono" id="card-pop-label-b">Território B</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-pop-b">--</p>
+                        <div class="flex justify-between items-baseline pt-1 border-t border-[#0A192F]/5">
+                            <span class="text-xs font-semibold text-[#0A192F] truncate" id="card-pop-label-b">Território B</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-pop-b">--</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Densidade Demográfica -->
-                <div class="editorial-card p-5">
-                    <span class="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1">Densidade Demográfica</span>
-                    <div class="space-y-3 mt-3">
-                        <div>
-                            <span class="text-xs text-amber-400 block font-mono" id="card-dens-label-a">Território A</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-dens-a">-- hab/km²</p>
+                <div class="editorial-card p-3.5">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1">Densidade Média</span>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-xs font-semibold text-[#C8102E] truncate" id="card-dens-label-a">Território A</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-dens-a">-- hab/km²</span>
                         </div>
-                        <div class="h-px bg-white/5"></div>
-                        <div>
-                            <span class="text-xs text-sky-400 block font-mono" id="card-dens-label-b">Território B</span>
-                            <p class="text-lg font-heading font-bold text-white" id="card-dens-b">-- hab/km²</p>
+                        <div class="flex justify-between items-baseline pt-1 border-t border-[#0A192F]/5">
+                            <span class="text-xs font-semibold text-[#0A192F] truncate" id="card-dens-label-b">Território B</span>
+                            <span class="text-xs font-mono font-bold text-[#0A192F]" id="card-dens-b">-- hab/km²</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
-            <div class="adsense-slot my-10 mx-auto w-full max-w-4xl min-h-[280px] bg-[#0c0e14] border border-white/5 rounded-2xl flex flex-col items-center justify-center text-xs text-slate-600 font-mono p-4 text-center">
-                <span class="text-slate-500 mb-1">Espaço Publicitário</span>
-                <span class="text-[10px] text-slate-700">Google AdSense Responsivo</span>
-            </div>
-
-            <!-- Dossiê Investigativo / Curiosidade Explicativa -->
-            <section class="editorial-card p-6 sm:p-10 mb-12">
-                <div class="inline-flex items-center gap-2 text-xs font-mono text-sky-400 mb-3 uppercase tracking-wider">
-                    <i class="ph-bold ph-book-open text-base"></i> Entenda o Fenômeno
-                </div>
-                <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mb-4">
-                    Por que nossa percepção de tamanho é tão enganosa?
-                </h3>
-                <div class="text-sm sm:text-base text-slate-300 leading-relaxed space-y-4">
-                    <p>
-                        Por mais de 450 anos, a Projeção de Mercator (desenhada em 1569 para facilitar a navegação marítima em bússolas) tornou-se o padrão nas salas de aula e atlas escolares. O problema? Ao projetar uma esfera tridimensional em um plano cilíndrico reto, **as áreas próximas aos polos são esticadas monstruosamente**, enquanto as regiões tropicais e equatoriais são comprimidas.
-                    </p>
-                    <p>
-                        É por isso que a maioria das pessoas se surpreende ao descobrir que:
-                    </p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-300 pl-2">
-                        <li><strong class="text-white">O Brasil tem 8,5 milhões de km²</strong> e é maior que toda a Europa Ocidental somada (e cabe o território da França mais de 15 vezes).</li>
-                        <li><strong class="text-white">O estado da Bahia (564 mil km²)</strong> é maior que a França metropolitana inteira (551 mil km²).</li>
-                        <li><strong class="text-white">O estado de São Paulo (248 mil km²)</strong> é do tamanho exato de todo o Reino Unido (Inglaterra, Escócia, País de Gales e Irlanda do Norte somados).</li>
-                        <li><strong class="text-white">A Groenlândia</strong> parece do tamanho da África no mapa escolar, mas na realidade a África é **14 vezes maior** que a Groenlândia!</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- CTA Canal do YouTube -->
-            <div class="editorial-card p-6 sm:p-8 text-center bg-gradient-to-r from-red-950/20 via-slate-900 to-slate-950 border-red-500/20">
-                <i class="ph-fill ph-youtube-logo text-4xl text-red-500 mb-3 inline-block"></i>
-                <h4 class="text-lg sm:text-xl font-heading font-bold text-white mb-2">Quer ver mais curiosidades e geopolítica em vídeo?</h4>
-                <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto mb-5">
-                    No canal oficial do VitaleGeo você descobre anomalias territoriais, histórias de fronteiras bizarras e geopolítica sem enrolação.
-                </p>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-500 text-white font-heading font-semibold text-xs sm:text-sm transition hover:scale-105 shadow-lg shadow-red-600/25">
-                    Inscrever-se no Canal <i class="ph-bold ph-arrow-up-right"></i>
-                </a>
+            <div class="adsense-slot my-8 mx-auto w-full max-w-4xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
+                <!-- Google AdSense -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
         </div>
     </main>
 
-    <!-- Rodapé Oficial VitaleGeo -->
-    <footer class="site-footer bg-[#07080c] border-t border-white/5 py-12 px-6 text-center text-xs text-slate-500">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-center gap-4 mb-4 text-base">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <p class="font-heading text-sm text-white font-bold">VitaleGeo</p>
-            <p class="text-slate-400 text-xs mt-1">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
-            <div class="flex flex-wrap items-center justify-center gap-3 mt-4 text-[11px] text-slate-400">
-                <a href="/sobre/" class="hover:text-white transition">Sobre o Projeto</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
                 <span>·</span>
-                <a href="/politica/" class="hover:text-white transition">Política de Privacidade</a>
+                <a href="/politica/">Privacidade</a>
                 <span>·</span>
-                <a href="/ferramentas/" class="hover:text-white transition">Todas as Ferramentas</a>
+                <a href="/ferramentas/">Ferramentas</a>
                 <span>·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-white transition">Canal YouTube</a>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
-            <p class="text-[11px] text-slate-600 mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Dados Territoriais e Lógica da Ferramenta -->
+    <!-- Banco de Dados e Lógica Funcional -->
     <script>
-        // Banco de Dados Consolidado (Países, Continentes e Estados Brasileiros)
         const territorios = [
             // Continentes / Blocos
-            { id: 'africa', nome: '🌍 Continente Africano', area: 30370000, pop: '1,4 bilhão', flag: '🌍', grupo: 'Continentes' },
+            { id: 'africa', nome: '🌍 África', area: 30370000, pop: '1,4 bilhão', flag: '🌍', grupo: 'Continentes' },
             { id: 'america_sul', nome: '🌎 América do Sul', area: 17840000, pop: '430 milhões', flag: '🌎', grupo: 'Continentes' },
-            { id: 'europa', nome: '🇪🇺 Europa (Continente)', area: 10180000, pop: '745 milhões', flag: '🇪🇺', grupo: 'Continentes' },
+            { id: 'europa', nome: '🇪🇺 Europa', area: 10180000, pop: '745 milhões', flag: '🇪🇺', grupo: 'Continentes' },
             { id: 'ue', nome: '🇪🇺 União Europeia', area: 4233262, pop: '448 milhões', flag: '🇪🇺', grupo: 'Continentes' },
 
             // Principais Países do Mundo
@@ -432,11 +386,11 @@
             { id: 'kr', nome: '🇰🇷 Coreia do Sul', area: 100210, pop: '51 milhões', flag: '🇰🇷', grupo: 'Países' },
             { id: 'pt', nome: '🇵🇹 Portugal', area: 92212, pop: '10,3 milhões', flag: '🇵🇹', grupo: 'Países' },
             { id: 'ch', nome: '🇨🇭 Suíça', area: 41285, pop: '8,8 milhões', flag: '🇨🇭', grupo: 'Países' },
-            { id: 'nl', nome: '🇳🇱 Holanda (Países Baixos)', area: 41543, pop: '17,8 milhões', flag: '🇳🇱', grupo: 'Países' },
+            { id: 'nl', nome: '🇳🇱 Holanda', area: 41543, pop: '17,8 milhões', flag: '🇳🇱', grupo: 'Países' },
             { id: 'be', nome: '🇧🇪 Bélgica', area: 30528, pop: '11,7 milhões', flag: '🇧🇪', grupo: 'Países' },
             { id: 'il', nome: '🇮🇱 Israel', area: 20770, pop: '9,5 milhões', flag: '🇮🇱', grupo: 'Países' },
 
-            // Todos os Estados Brasileiros
+            // Estados Brasileiros
             { id: 'br_am', nome: '🇧🇷 Amazonas (AM)', area: 1559146, pop: '4,2 milhões', flag: '🌳', grupo: 'Estados do Brasil' },
             { id: 'br_pa', nome: '🇧🇷 Pará (PA)', area: 1245870, pop: '8,6 milhões', flag: '🌳', grupo: 'Estados do Brasil' },
             { id: 'br_mt', nome: '🇧🇷 Mato Grosso (MT)', area: 903208, pop: '3,6 milhões', flag: '🌱', grupo: 'Estados do Brasil' },
@@ -466,7 +420,6 @@
             { id: 'br_df', nome: '🇧🇷 Distrito Federal (DF)', area: 5760, pop: '2,8 milhões', flag: '🏛️', grupo: 'Estados do Brasil' }
         ];
 
-        // Elementos do DOM
         const selectA = document.getElementById('select-a');
         const selectB = document.getElementById('select-b');
         const labelAreaA = document.getElementById('label-area-a');
@@ -477,7 +430,6 @@
         const badgeContagem = document.getElementById('badge-contagem');
         const btnCopiar = document.getElementById('btn-copiar');
 
-        // Cards de detalhes
         const cardNomeA = document.getElementById('card-nome-a');
         const cardAreaA = document.getElementById('card-area-a');
         const cardNomeB = document.getElementById('card-nome-b');
@@ -493,7 +445,6 @@
         const cardDensLabelA = document.getElementById('card-dens-label-a');
         const cardDensLabelB = document.getElementById('card-dens-label-b');
 
-        // Preenche os Selects agrupados
         function popularSelects() {
             const grupos = [...new Set(territorios.map(t => t.grupo))];
             
@@ -502,30 +453,27 @@
                 grupos.forEach(grupo => {
                     const optgroup = document.createElement('optgroup');
                     optgroup.label = grupo;
-                    optgroup.className = 'bg-slate-900 text-amber-400 font-bold';
+                    optgroup.className = 'font-bold text-[#0A192F]';
 
                     territorios.filter(t => t.grupo === grupo).forEach(item => {
                         const opt = document.createElement('option');
                         opt.value = item.id;
                         opt.textContent = `${item.nome}`;
-                        opt.className = 'text-white font-normal';
+                        opt.className = 'text-[#1F334E] font-normal';
                         optgroup.appendChild(opt);
                     });
                     sel.appendChild(optgroup);
                 });
             });
 
-            // Seleção Padrão Viral Inicial: Portugal (PT) no Brasil (BR)
             selectA.value = 'pt';
             selectB.value = 'br';
         }
 
-        // Formatação Numérica Padrão BR
         function formatarNumero(num) {
             return num.toLocaleString('pt-BR');
         }
 
-        // Calcula a Densidade aproximada
         function calcularDensidade(popStr, areaKm2) {
             let numPessoas = 0;
             if (popStr.includes('bilhão') || popStr.includes('bilhões')) {
@@ -545,31 +493,26 @@
             return formatarNumero(parseFloat(dens));
         }
 
-        // Função de Cálculo e Atualização Visual
         function calcularProporcao() {
             const tA = territorios.find(t => t.id === selectA.value);
             const tB = territorios.find(t => t.id === selectB.value);
 
             if (!tA || !tB) return;
 
-            // Labels de Área nos inputs
             labelAreaA.textContent = `${formatarNumero(tA.area)} km²`;
             labelAreaB.textContent = `${formatarNumero(tB.area)} km²`;
 
-            // Proporção
             const proporcao = tB.area / tA.area;
             const proporcaoFormatada = proporcao >= 100 ? proporcao.toFixed(1) : proporcao >= 10 ? proporcao.toFixed(1) : proporcao.toFixed(2);
             resultadoNumero.textContent = proporcaoFormatada.replace('.', ',');
 
-            // Frase do Veredito
             if (proporcao >= 1) {
-                resultadoFrase.innerHTML = `<span class="text-amber-400 font-bold">${tA.nome}</span> cabe <strong class="text-white font-extrabold text-lg">${proporcaoFormatada.replace('.', ',')} vezes</strong> dentro de <span class="text-sky-400 font-bold">${tB.nome}</span>!`;
+                resultadoFrase.innerHTML = `<span class="text-[#C8102E] font-bold">${tA.nome}</span> cabe <strong class="text-[#0A192F] font-extrabold text-base sm:text-lg">${proporcaoFormatada.replace('.', ',')} vezes</strong> dentro de <span class="text-[#0A192F] font-bold">${tB.nome}</span>!`;
             } else {
                 const inverso = (1 / proporcao).toFixed(1).replace('.', ',');
-                resultadoFrase.innerHTML = `<span class="text-amber-400 font-bold">${tA.nome}</span> é <strong class="text-white font-extrabold text-lg">${inverso} vezes maior</strong> que <span class="text-sky-400 font-bold">${tB.nome}</span> (ocupa ${(proporcao * 100).toFixed(1).replace('.', ',')}% dele).`;
+                resultadoFrase.innerHTML = `<span class="text-[#C8102E] font-bold">${tA.nome}</span> é <strong class="text-[#0A192F] font-extrabold text-base sm:text-lg">${inverso} vezes maior</strong> que <span class="text-[#0A192F] font-bold">${tB.nome}</span> (ocupa ${(proporcao * 100).toFixed(1).replace('.', ',')}% dele).`;
             }
 
-            // Atualiza os Cards Detalhados
             cardNomeA.textContent = tA.nome;
             cardAreaA.textContent = `${formatarNumero(tA.area)} km²`;
             cardNomeB.textContent = tB.nome;
@@ -585,73 +528,63 @@
             cardDensLabelB.textContent = tB.nome;
             cardDensB.textContent = `${calcularDensidade(tB.pop, tB.area)} hab/km²`;
 
-            // Renderizar os Blocos Visuais
             renderizarGradeVisual(proporcao, tA, tB);
         }
 
-        // Renderiza a grade de blocos gráficos
         function renderizarGradeVisual(proporcao, tA, tB) {
             gridBlocos.innerHTML = '';
             const totalInteiro = Math.floor(proporcao);
             const fracao = proporcao - totalInteiro;
 
-            badgeContagem.textContent = `${proporcao.toFixed(1).replace('.', ',')}x unidades de ${tA.flag || '📍'}`;
+            badgeContagem.textContent = `${proporcao.toFixed(1).replace('.', ',')}x ${tA.flag || '📍'}`;
 
-            // Limite de segurança de renderização no DOM para não travar o browser
             const maxBlocos = 150;
             const blocosParaRenderizar = Math.min(totalInteiro, maxBlocos);
 
             if (proporcao < 1) {
-                // Caso menor que 1: renderiza uma barra proporcional
                 const perc = Math.max(1, (proporcao * 100).toFixed(1));
                 gridBlocos.innerHTML = `
-                    <div class="w-full max-w-md my-6 text-center">
-                        <div class="h-6 w-full bg-slate-900 rounded-full border border-white/10 overflow-hidden relative">
-                            <div class="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full transition-all duration-700" style="width: ${perc}%"></div>
+                    <div class="w-full max-w-md my-4 text-center">
+                        <div class="h-4 w-full bg-[#EDE8DF] rounded-full overflow-hidden relative">
+                            <div class="h-full bg-[#C8102E] rounded-full transition-all duration-700" style="width: ${perc}%"></div>
                         </div>
-                        <p class="text-xs text-slate-400 font-mono mt-3">${tA.nome} preenche exatamente <strong class="text-amber-400 font-bold">${perc}%</strong> da área de ${tB.nome}.</p>
+                        <p class="text-xs text-[#53647C] font-mono mt-2">${tA.nome} preenche <strong class="text-[#C8102E] font-bold">${perc}%</strong> de ${tB.nome}.</p>
                     </div>
                 `;
                 return;
             }
 
-            // Cria os blocos inteiros
             for (let i = 0; i < blocosParaRenderizar; i++) {
                 const el = document.createElement('div');
-                el.className = 'mini-block w-8 h-8 sm:w-9 sm:h-9 bg-amber-400 text-black font-bold text-xs rounded-lg flex items-center justify-center shadow-md select-none border border-amber-300/40 cursor-default';
+                el.className = 'mini-block w-7 h-7 sm:w-8 sm:h-8 bg-[#C8102E] text-white font-mono font-bold text-[11px] rounded-lg flex items-center justify-center shadow-xs select-none cursor-default';
                 el.title = `${tA.nome} #${i + 1}`;
                 el.textContent = `${i + 1}`;
                 gridBlocos.appendChild(el);
             }
 
-            // Bloco fracionado residual
             if (fracao > 0.05 && totalInteiro < maxBlocos) {
                 const fracEl = document.createElement('div');
-                fracEl.className = 'mini-block w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-[10px] font-mono font-bold text-amber-300 border border-dashed border-amber-400 bg-amber-400/25 select-none';
+                fracEl.className = 'mini-block w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[10px] font-mono font-bold text-[#0A192F] border border-dashed border-[#A8C3A6] bg-[#A8C3A6]/40 select-none';
                 fracEl.title = `Fração restante: ${(fracao * 100).toFixed(0)}%`;
                 fracEl.textContent = `+${(fracao * 100).toFixed(0)}%`;
                 gridBlocos.appendChild(fracEl);
             }
 
-            // Aviso se ultrapassou o limite gráfico de 150 blocos
             if (totalInteiro > maxBlocos) {
                 const extraEl = document.createElement('div');
-                extraEl.className = 'w-full text-center text-xs text-slate-500 font-mono pt-3';
-                extraEl.innerHTML = `... exibindo os primeiros 150 blocos de um total de <strong class="text-amber-400">${totalInteiro}</strong> unidades completas.`;
+                extraEl.className = 'w-full text-center text-[11px] text-[#53647C] font-mono pt-2';
+                extraEl.innerHTML = `... exibindo os primeiros 150 blocos de um total de <strong class="text-[#C8102E]">${totalInteiro}</strong> unidades completas.`;
                 gridBlocos.appendChild(extraEl);
             }
         }
 
-        // Botões de Preset Rápido
         function setPreset(idA, idB) {
             selectA.value = idA;
             selectB.value = idB;
             calcularProporcao();
-            // Scroll suave até o placar
             resultadoNumero.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // Inverte seleção A com B
         function inverterSelecao() {
             const temp = selectA.value;
             selectA.value = selectB.value;
@@ -659,18 +592,16 @@
             calcularProporcao();
         }
 
-        // Compartilhamento no WhatsApp
         function compartilharWhatsApp() {
             const tA = territorios.find(t => t.id === selectA.value);
             const tB = territorios.find(t => t.id === selectB.value);
             const proporcao = (tB.area / tA.area).toFixed(1).replace('.', ',');
 
-            const texto = `Você sabia que ${tA.nome} cabe ${proporcao} vezes dentro de ${tB.nome}? 🌍\nTeste agora no Comparador de Escala do VitaleGeo:\nhttps://www.vitalegeo.com.br/ferramentas/quantos-cabem/`;
+            const texto = `Você sabia que ${tA.nome} cabe ${proporcao} vezes dentro de ${tB.nome}? 🌍\nVeja no Comparador Territorial do VitaleGeo:\nhttps://www.vitalegeo.com.br/ferramentas/quantos-cabem/`;
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
         }
 
-        // Copiar Link e Resultado
         function copiarLinkResultado() {
             const tA = territorios.find(t => t.id === selectA.value);
             const tB = territorios.find(t => t.id === selectB.value);
@@ -679,16 +610,15 @@
             const texto = `${tA.nome} cabe ${proporcao} vezes dentro de ${tB.nome}! Veja no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/quantos-cabem/`;
 
             navigator.clipboard.writeText(texto).then(() => {
-                btnCopiar.innerHTML = '<i class="ph-bold ph-check text-base text-emerald-400"></i> Copiado!';
-                btnCopiar.classList.add('border-emerald-500/50', 'text-emerald-400');
+                btnCopiar.innerHTML = '<i class="ph-bold ph-check text-xs text-emerald-600"></i> Copiado!';
+                btnCopiar.classList.add('border-emerald-500', 'text-emerald-700');
                 setTimeout(() => {
-                    btnCopiar.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar Resultado';
-                    btnCopiar.classList.remove('border-emerald-500/50', 'text-emerald-400');
-                }, 2500);
+                    btnCopiar.innerHTML = '<i class="ph-bold ph-copy text-sm"></i> Copiar';
+                    btnCopiar.classList.remove('border-emerald-500', 'text-emerald-700');
+                }, 2000);
             });
         }
 
-        // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             popularSelects();
             calcularProporcao();

@@ -1,151 +1,302 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/calculadora-distancia/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medidor de Rotas | VitaleGeo</title>
+    <title>Calculadora de Distância Geodésica (Haversine) | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Calcule a distancia entre dois pontos no globo.">
-    <meta property="og:title" content="Medidor de Rotas | VitaleGeo">
-    <meta property="og:description" content="Calcule a distancia entre dois pontos no globo.">
+    <meta name="description" content="Calcule a distância geodésica exata entre quaisquer coordenadas do globo usando a fórmula de Haversine, com conversão para quilômetros, milhas e tempo de viagem.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Distância Geodésica | VitaleGeo">
+    <meta property="og:description" content="Calcule a distância de Grande Círculo na esfera terrestre entre duas coordenadas geográficas.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/calculadora-distancia">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/calculadora-distancia/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/calculadora-distancia.jpg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Fontes Oficiais VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
+                    }
                 }
             }
         }
     </script>
-
 </head>
-<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black page-shell">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 right-6 z-30">
-        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
-        </a>
-    </div>
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Cálculos Geodésicos & Navegação
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Medidor de Distância Geodésica
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Calcule a menor distância sobre a curvatura da Terra (Grande Círculo) com a fórmula trigonométrica de Haversine.
+                    </p>
+                </div>
 
-    <main class="page-content pt-32 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
-                <i class="ph-bold ph-path"></i> Ferramenta
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Informações sobre a Fórmula de Haversine">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Fórmula de Haversine & Geodésia</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-compass text-[#C8102E]"></i> Trigonometria Esférica
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            Em mapas planos, uma régua mede uma linha reta incorreta (loxodromia). No globo esférico real, a menor distância é um arco de <strong>Grande Círculo</strong>.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Raio da Terra (R):</strong> Modelado em 6.371 km de raio médio volumétrico.</li>
+                            <li>• <strong>Milha Náutica:</strong> 1 milha náutica (1.852 metros) equivale a exatamente 1 minuto de arco de latitude.</li>
+                            <li>• <strong>Rotas Polares:</strong> Voos entre Ásia e América do Norte passam perto do Polo Norte porque é o caminho mais curto na esfera.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Rotas Rápidas Populares (Presets) -->
+            <div class="mb-6 flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar text-xs">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] shrink-0 flex items-center gap-1 font-semibold">
+                    <i class="ph-bold ph-lightning text-[#C8102E]"></i> Rotas Pré-definidas:
+                </span>
+                <button onclick="setPreset(-23.5505, -46.6333, 35.6762, 139.6503, 850)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇧🇷 São Paulo ↔ 🇯🇵 Tóquio (18.540 km)
+                </button>
+                <button onclick="setPreset(-15.7975, -47.8919, 38.7223, -9.1393, 850)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇧🇷 Brasília ↔ 🇵🇹 Lisboa (7.290 km)
+                </button>
+                <button onclick="setPreset(40.7128, -74.0060, 51.5074, -0.1278, 850)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇺🇸 Nova York ↔ 🇬🇧 Londres (5.570 km)
+                </button>
+                <button onclick="setPreset(-22.9068, -43.1729, -23.5505, -46.6333, 100)" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇧🇷 Rio ↔ 🇧🇷 São Paulo (357 km)
+                </button>
             </div>
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Medidor de Rotas</h1>
-            <p class="text-slate-400 max-w-2xl mb-10">
-                Calcule a distancia entre dois pontos usando coordenadas geograficas.
-            </p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-heading text-white">Coordenadas</h2>
-                        <div class="text-xs text-slate-500 uppercase tracking-widest">Haversine</div>
+            <!-- Grid de Configuração & Resultados -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Coluna Esquerda: Coordenadas de Entrada -->
+                <div class="editorial-card p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-[#0A192F]/10">
+                        <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-2">
+                            <i class="ph-bold ph-navigation-arrow text-[#C8102E]"></i> Coordenadas Geográficas
+                        </h2>
+                        <span class="text-[10px] font-mono text-[#53647C]">Graus Decimais (DD)</span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lat">Lat inicio</label>
-                            <input id="start-lat" type="number" step="0.0001" placeholder="-23.5505" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="start-lng">Lon inicio</label>
-                            <input id="start-lng" type="number" step="0.0001" placeholder="-46.6333" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lat">Lat destino</label>
-                            <input id="end-lat" type="number" step="0.0001" placeholder="40.7128" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="end-lng">Lon destino</label>
-                            <input id="end-lng" type="number" step="0.0001" placeholder="-74.0060" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+                    <!-- Ponto de Origem -->
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#C8102E] flex items-center gap-1">
+                            <i class="ph-bold ph-map-pin"></i> Ponto A (Origem)
+                        </span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="start-lat">Latitude (-90 a +90)</label>
+                                <input id="start-lat" type="number" step="0.0001" placeholder="-23.5505" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="start-lng">Longitude (-180 a +180)</label>
+                                <input id="start-lng" type="number" step="0.0001" placeholder="-46.6333" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
                         </div>
                     </div>
 
-                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="speed">Velocidade media (km/h)</label>
-                    <input id="speed" type="number" step="1" placeholder="800" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6">
+                    <!-- Ponto de Destino -->
+                    <div class="space-y-2 pt-2 border-t border-[#0A192F]/10">
+                        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#A8C3A6] flex items-center gap-1">
+                            <i class="ph-bold ph-map-pin"></i> Ponto B (Destino)
+                        </span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="end-lat">Latitude (-90 a +90)</label>
+                                <input id="end-lat" type="number" step="0.0001" placeholder="40.7128" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-mono text-[#53647C] mb-1" for="end-lng">Longitude (-180 a +180)</label>
+                                <input id="end-lng" type="number" step="0.0001" placeholder="-74.0060" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                        </div>
+                    </div>
 
-                    <button id="btn-calc" class="bg-geoGold text-geoNavy text-xs font-bold px-4 py-2 rounded uppercase hover:bg-white transition shadow-lg">
-                        Calcular
+                    <!-- Velocidade Média Opcional -->
+                    <div class="pt-2 border-t border-[#0A192F]/10">
+                        <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="speed">
+                            Velocidade Média Estimada (km/h)
+                        </label>
+                        <input id="speed" type="number" step="1" value="850" placeholder="850 (avião de passageiros)" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-mono font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        <span class="text-[10px] text-[#53647C] block mt-1">Exemplos: Avião (~850 km/h), Navio (~40 km/h), Carro (~100 km/h)</span>
+                    </div>
+
+                    <button id="btn-calc" class="w-full py-3 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-sm">
+                        <i class="ph-bold ph-calculator text-sm"></i> Calcular Distância
                     </button>
                 </div>
 
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <h2 class="text-xl font-heading text-white mb-4">Resultado</h2>
-                    <div class="space-y-3" id="result-box"></div>
-                    <p id="result-empty" class="text-sm text-slate-500">Informe os pontos para calcular.</p>
+                <!-- Coluna Direita: Métricas de Distância e Tempo -->
+                <div class="editorial-card p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#0A192F]/10">
+                            <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-2">
+                                <i class="ph-bold ph-path text-[#C8102E]"></i> Resultados da Geodésica
+                            </h2>
+                            <span class="text-[10px] font-mono text-[#53647C]">Grande Círculo</span>
+                        </div>
+
+                        <div class="space-y-3" id="result-box">
+                            <div class="flex items-center justify-between bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl px-4 py-3 shadow-xs">
+                                <div class="text-[11px] font-mono uppercase tracking-wider text-[#53647C] font-semibold">Quilômetros (km)</div>
+                                <div class="text-xl font-mono font-bold text-[#0A192F]" id="res-km">--</div>
+                            </div>
+                            <div class="flex items-center justify-between bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl px-4 py-3 shadow-xs">
+                                <div class="text-[11px] font-mono uppercase tracking-wider text-[#53647C] font-semibold">Milhas Terrestres (mi)</div>
+                                <div class="text-lg font-mono font-bold text-[#0A192F]" id="res-mi">--</div>
+                            </div>
+                            <div class="flex items-center justify-between bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl px-4 py-3 shadow-xs">
+                                <div class="text-[11px] font-mono uppercase tracking-wider text-[#53647C] font-semibold">Milhas Náuticas (nm)</div>
+                                <div class="text-lg font-mono font-bold text-[#0A192F]" id="res-nm">--</div>
+                            </div>
+                            <div class="flex items-center justify-between bg-[#FAF8F5] border border-[#C8102E]/20 rounded-xl px-4 py-3 shadow-xs">
+                                <div class="text-[11px] font-mono uppercase tracking-wider text-[#53647C] font-semibold">Tempo de Deslocamento</div>
+                                <div class="text-xl font-mono font-bold text-[#C8102E]" id="res-eta">--</div>
+                            </div>
+                        </div>
+
+                        <p id="result-empty" class="text-xs text-[#53647C] font-mono py-8 text-center hidden">
+                            Insira coordenadas válidas de latitude e longitude para calcular.
+                        </p>
+                    </div>
+
+                    <p class="text-[11px] text-[#53647C] font-mono text-center mt-6">
+                        Distância em arco esférico. A distância real em solo pode variar de acordo com curvas orográficas e relevo.
+                    </p>
                 </div>
+
             </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-5xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
         </div>
     </main>
 
-                    <footer class="site-footer">
-        <div class="max-w-6xl mx-auto">
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
             <div class="site-footer__social">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
-            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <div class="site-footer__links text-xs mt-4">
-                <a href="/sobre/">Sobre o Projeto</a>
-                <span class="text-slate-700">·</span>
-                <a href="/politica/">Política de Privacidade</a>
-                <span class="text-slate-700">·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
-            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <!-- Lógica de Cálculo de Haversine -->
     <script>
         const startLat = document.getElementById('start-lat');
         const startLng = document.getElementById('start-lng');
         const endLat = document.getElementById('end-lat');
         const endLng = document.getElementById('end-lng');
         const speed = document.getElementById('speed');
-        const resultBox = document.getElementById('result-box');
+
+        const resKm = document.getElementById('res-km');
+        const resMi = document.getElementById('res-mi');
+        const resNm = document.getElementById('res-nm');
+        const resEta = document.getElementById('res-eta');
         const resultEmpty = document.getElementById('result-empty');
 
         const toRad = (deg) => deg * Math.PI / 180;
 
         const haversineKm = (lat1, lon1, lat2, lon2) => {
-            const R = 6371;
+            const R = 6371; // Raio médio da Terra em km
             const dLat = toRad(lat2 - lat1);
             const dLon = toRad(lon2 - lon1);
             const a = Math.sin(dLat / 2) ** 2 +
@@ -156,11 +307,11 @@
         };
 
         const formatTime = (hours) => {
-            if (!isFinite(hours)) return 'n/a';
+            if (!isFinite(hours) || hours <= 0) return 'n/a';
             const h = Math.floor(hours);
             const m = Math.round((hours - h) * 60);
             if (h <= 0) return `${m} min`;
-            return `${h} h ${m} min`;
+            return `${h}h ${m}min`;
         };
 
         const buildResult = () => {
@@ -168,71 +319,39 @@
             const lon1 = parseFloat(startLng.value);
             const lat2 = parseFloat(endLat.value);
             const lon2 = parseFloat(endLng.value);
-            if ([lat1, lon1, lat2, lon2].some(n => Number.isNaN(n))) return;
 
+            if ([lat1, lon1, lat2, lon2].some(n => Number.isNaN(n))) {
+                resultEmpty.classList.remove('hidden');
+                return;
+            }
+
+            resultEmpty.classList.add('hidden');
             const km = haversineKm(lat1, lon1, lat2, lon2);
             const mi = km * 0.621371;
             const nm = km * 0.539957;
             const spd = parseFloat(speed.value);
             const eta = spd && spd > 0 ? formatTime(km / spd) : 'n/a';
 
-            resultEmpty.classList.add('hidden');
-            resultBox.innerHTML = `
-                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
-                    <div class="text-sm text-slate-500 uppercase tracking-widest">Distancia</div>
-                    <div class="text-lg font-bold text-white">${km.toFixed(2)} km</div>
-                </div>
-                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
-                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas</div>
-                    <div class="text-lg font-bold text-white">${mi.toFixed(2)} mi</div>
-                </div>
-                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
-                    <div class="text-sm text-slate-500 uppercase tracking-widest">Milhas nauticas</div>
-                    <div class="text-lg font-bold text-white">${nm.toFixed(2)} nm</div>
-                </div>
-                <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
-                    <div class="text-sm text-slate-500 uppercase tracking-widest">Tempo estimado</div>
-                    <div class="text-lg font-bold text-geoGold">${eta}</div>
-                </div>
-            `;
+            resKm.textContent = `${km.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km`;
+            resMi.textContent = `${mi.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} mi`;
+            resNm.textContent = `${nm.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} nm`;
+            resEta.textContent = eta;
         };
 
+        function setPreset(lat1, lon1, lat2, lon2, spd) {
+            startLat.value = lat1;
+            startLng.value = lon1;
+            endLat.value = lat2;
+            endLng.value = lon2;
+            if (spd) speed.value = spd;
+            buildResult();
+        }
+
         document.getElementById('btn-calc').addEventListener('click', buildResult);
+        [startLat, startLng, endLat, endLng, speed].forEach(input => input.addEventListener('input', buildResult));
+
+        // Inicializa com São Paulo ↔ Nova York
+        setPreset(-23.5505, -46.6333, 40.7128, -74.0060, 850);
     </script>
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
-

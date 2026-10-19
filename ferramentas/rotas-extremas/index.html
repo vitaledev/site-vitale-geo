@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/rotas-extremas/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotas em Linha Reta no Globo | VitaleGeo</title>
+    <title>Rotas em Linha Reta no Globo (Grande Círculo) | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Explore a maior linha reta navegável da Terra (32.090 km) e rotas geodésicas de grande círculo comparadas com a distorção do mapa plano.">
+    <meta name="description" content="Explore a maior linha reta navegável da Terra (32.090 km) e rotas geodésicas de Grande Círculo comparadas com a distorção do mapa plano de Mercator.">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Rotas em Linha Reta no Globo | VitaleGeo">
-    <meta property="og:description" content="Descubra por que a linha mais curta na Terra parece uma curva no mapa plano.">
+    <meta property="og:description" content="Descubra por que o caminho mais curto na Terra parece uma curva no mapa plano de Mercator.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/rotas-extremas/">
-    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/rotas-extremas.jpg">
 
     <!-- Google AdSense Oficial VitaleGeo -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
@@ -23,10 +23,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Tipografia Oficial -->
+    <!-- Fontes Oficiais VitaleGeo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Leaflet CSS & JS -->
@@ -38,9 +38,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -48,42 +57,35 @@
     </script>
 
     <style>
-        .editorial-panel {
-            background: #11131a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-        }
         .leaflet-container {
-            background: #0d0f15;
-            font-family: 'Inter', sans-serif;
+            background: #E8E4DA;
+            font-family: 'Montserrat', sans-serif;
             border-radius: 0.75rem;
         }
-        /* Pinos escolares nítidos e limpos, sem brilho neon */
         .pin-a {
-            background-color: #f59e0b;
+            background-color: #C8102E;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
             cursor: grab;
         }
         .pin-b {
-            background-color: #38bdf8;
+            background-color: #0A192F;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
             cursor: grab;
         }
         .pin-a:active, .pin-b:active { cursor: grabbing; }
 
-        /* Estilo sutil do controle de camadas */
         .leaflet-control-layers {
-            background: #11131a !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            color: #cbd5e1 !important;
+            background: #ffffff !important;
+            border: 1px solid rgba(10, 25, 47, 0.15) !important;
+            color: #0A192F !important;
             border-radius: 0.5rem !important;
             font-size: 11px !important;
-            font-family: 'Inter', sans-serif !important;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+            font-family: 'Montserrat', sans-serif !important;
+            box-shadow: 0 2px 8px rgba(10, 25, 47, 0.1) !important;
         }
         .leaflet-control-layers label {
             margin-bottom: 2px;
@@ -91,182 +93,164 @@
         }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-    <!-- Navegação Oficial -->
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Arcade</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIOS LATERAIS + FERRAMENTA CENTRAL) -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 flex items-start justify-center gap-4 flex-grow pt-24 pb-8">
-
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-            <div class="w-full flex-1 flex items-center justify-center">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:160px;height:600px"
-                     data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"></ins>
-                <script>
-                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-                </script>
-            </div>
-        </aside>
-
-        <!-- Conteúdo Principal -->
-        <main class="max-w-5xl mx-auto flex-grow w-full">
-        <!-- Cabeçalho Limpo e Educativo -->
-        <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
-                    Rotas em Linha Reta no Globo
-                </h1>
-                <p class="mt-1 text-slate-400 text-sm max-w-xl">
-                    Compare a menor rota real em uma esfera (Grande Círculo) com a distorção do mapa plano. Arraste os pinos para traçar qualquer caminho.
-                </p>
-            </div>
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-6xl mx-auto">
             
-            <!-- Botão de Ajuda / Informações Rápidas -->
-            <button onclick="toggleAjuda()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 border border-white/10 transition self-start sm:self-auto">
-                <i class="ph-bold ph-info text-amber-400 text-sm"></i>
-                <span>Por que a reta parece curva?</span>
-            </button>
-        </div>
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Grande Círculo & Geodésia
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Rotas em Linha Reta no Globo
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Compare o menor caminho real em uma esfera (Grande Círculo) com a distorção plana do mapa de Mercator.
+                    </p>
+                </div>
 
-        <!-- Painel Explicativo Opcional (Toggle / Hover) -->
-        <div id="painelAjuda" class="hidden mb-6 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-slate-300 leading-relaxed">
-            <div class="flex items-start justify-between gap-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <strong class="text-sky-300 font-semibold block mb-1">Linha Azul (Grande Círculo):</strong>
-                        É o menor caminho real na superfície da Terra. Aviões e navios seguem esse traçado para economizar tempo e combustível.
-                    </div>
-                    <div>
-                        <strong class="text-amber-300 font-semibold block mb-1">Linha Tracejada (Plana):</strong>
-                        É a linha reta no mapa de Mercator. Parece reta no papel, mas no mundo real é mais longa porque o mapa estica as áreas próximas aos polos.
-                    </div>
-                    <div>
-                        <strong class="text-slate-100 font-semibold block mb-1">Rota Recorde Náutica:</strong>
-                        A reta de Sonmiani (Paquistão) até Kamchatka (Rússia) cruza 32.090 km de mar contínuo sem tocar terra firme (estudo de 2018).
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Por Que a Reta Parece Curva?">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Por Que a Reta Parece Curva?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-navigation-arrow text-[#C8102E]"></i> Geodésica vs Projeção
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            Em uma esfera, a rota mais curta entre dois pontos sempre se curva em direção ao polo quando projetada em um plano retangular.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Linha Vermelha (Grande Círculo):</strong> Menor distância real na esfera. É o traçado que aviões de longo curso seguem para economizar combustível.</li>
+                            <li>• <strong>Linha Tracejada (Plana):</strong> Reta geométrica no papel. Parece menor à primeira vista, mas na realidade percorre uma distância consideravelmente maior.</li>
+                            <li>• <strong>Recorde Náutico Mundial:</strong> A reta de Sonmiani (Paquistão) até Kamchatka (Rússia) cruza 32.090 km contínuos de oceano sem tocar terra firme.</li>
+                        </ul>
                     </div>
                 </div>
-                <button onclick="toggleAjuda()" class="text-slate-500 hover:text-white text-base">
-                    <i class="ph-bold ph-x"></i>
+            </header>
+
+            <!-- Seletor de Rotas Recordes Pré-configuradas -->
+            <div class="mb-5 flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar text-xs">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] shrink-0 flex items-center gap-1 font-semibold">
+                    <i class="ph-bold ph-lightning text-[#C8102E]"></i> Recordes:
+                </span>
+                <button onclick="carregarRotaRecorde('nautica')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-boat text-[#C8102E]"></i> Rota Náutica (32.090 km)
+                </button>
+                <button onclick="carregarRotaRecorde('terrestre')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-path text-[#0A192F]"></i> Rota Terrestre (11.241 km)
+                </button>
+                <button onclick="carregarRotaRecorde('brasil')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-map-pin text-[#A8C3A6]"></i> Brasil: Caburaí ao Chuí
+                </button>
+                <button onclick="carregarRotaRecorde('transiberiana')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-train text-[#53647C]"></i> Transiberiana (8 Fusos)
+                </button>
+                <button onclick="carregarRotaRecorde('mediterraneo')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs inline-flex items-center gap-1.5">
+                    <i class="ph-bold ph-compass text-[#C8102E]"></i> Mar Mediterrâneo
                 </button>
             </div>
-        </div>
 
-        <!-- Seletor de Rotas Pré-configuradas (Chips Simples e Diretos) -->
-        <div class="mb-5 flex flex-wrap items-center gap-2 text-xs">
-            <span class="text-slate-400 text-xs font-medium mr-1">Exemplos:</span>
-            <button onclick="carregarRotaRecorde('nautica')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                <i class="ph-bold ph-boat text-sky-400"></i> Rota Náutica (32.090 km)
-            </button>
-            <button onclick="carregarRotaRecorde('terrestre')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                <i class="ph-bold ph-path text-amber-400"></i> Rota Terrestre (11.241 km)
-            </button>
-            <button onclick="carregarRotaRecorde('brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                <i class="ph-bold ph-map-pin text-emerald-400"></i> Brasil: Caburaí ao Chuí
-            </button>
-            <button onclick="carregarRotaRecorde('transiberiana')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                <i class="ph-bold ph-train text-violet-400"></i> Transiberiana (8 Fusos)
-            </button>
-            <button onclick="carregarRotaRecorde('mediterraneo')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition inline-flex items-center gap-1.5">
-                <i class="ph-bold ph-compass text-rose-400"></i> Mar Mediterrâneo
-            </button>
-        </div>
-
-        <!-- Painel de Métricas Essenciais -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-            <div class="editorial-panel p-3.5 text-center" title="Menor distância na superfície da esfera">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Distância Real</span>
-                <span id="resDistKm" class="text-xl sm:text-2xl font-mono font-bold text-white block mt-0.5">32.090 km</span>
-                <span id="resDistNm" class="text-[11px] text-slate-500 font-mono">17.327 milhas náuticas</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Porcentagem dos 40.075 km da circunferência equatorial da Terra">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Tamanho da Terra</span>
-                <span id="resPctTerra" class="text-xl sm:text-2xl font-mono font-bold text-sky-400 block mt-0.5">79,8%</span>
-                <span class="text-[11px] text-slate-500">da circunferência global</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Tempo aproximado voando a 850 km/h sem escalas">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Tempo de Voo</span>
-                <span id="resTempoAviao" class="text-xl sm:text-2xl font-mono font-bold text-slate-200 block mt-0.5">~38 horas</span>
-                <span class="text-[11px] text-slate-500">a 850 km/h</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Direção inicial da bússola em graus">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Rumo Inicial</span>
-                <span id="resAzimute" class="text-xl sm:text-2xl font-mono font-bold text-amber-400 block mt-0.5">142° (SE)</span>
-                <span class="text-[11px] text-slate-500">azimute de partida</span>
-            </div>
-        </div>
-
-        <!-- Mapa Principal -->
-        <div class="editorial-panel p-3 mb-6">
-            <div id="mapContainer" class="h-[420px] sm:h-[500px] w-full rounded-lg overflow-hidden"></div>
-            
-            <!-- Barra Inferior do Mapa: Legenda e Compartilhamento -->
-            <div class="mt-3 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
-                <div class="flex items-center gap-4">
-                    <span class="inline-flex items-center gap-1.5 text-sky-300">
-                        <span class="w-3 h-0.5 bg-sky-400 rounded"></span> Rota real (Grande Círculo)
-                    </span>
-                    <span class="inline-flex items-center gap-1.5 text-amber-300">
-                        <span class="w-3 h-0.5 border-b border-dashed border-amber-400"></span> Linha reta plana
-                    </span>
+            <!-- Painel de Métricas Essenciais -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Distância Real</span>
+                    <span id="resDistKm" class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F] block mt-0.5">32.090 km</span>
+                    <span id="resDistNm" class="text-[10px] text-[#53647C] font-mono">17.327 milhas náuticas</span>
                 </div>
-
-                <div class="flex items-center gap-3">
-                    <span id="txtDescricaoRota" class="text-slate-400 text-xs hidden md:inline">Sonmiani (Paquistão) → Kamchatka (Rússia)</span>
-                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs">
-                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar
-                    </a>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Tamanho da Terra</span>
+                    <span id="resPctTerra" class="text-lg sm:text-2xl font-mono font-bold text-[#C8102E] block mt-0.5">79,8%</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">da circunferência equatorial</span>
+                </div>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Tempo de Voo</span>
+                    <span id="resTempoAviao" class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F] block mt-0.5">~38 horas</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">em cruzeiro (850 km/h)</span>
+                </div>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Rumo Inicial</span>
+                    <span id="resAzimute" class="text-lg sm:text-2xl font-mono font-bold text-[#0A192F] block mt-0.5">142° (SE)</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">azimute de bússola</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Controles Compactos de Ponto A e Ponto B (Opcional para quem quiser digitar) -->
-        <div class="editorial-panel p-4 mb-8 text-xs">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="flex items-center gap-3 w-full sm:w-auto">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-                    <span class="text-slate-400 font-medium">Partida (A):</span>
-                    <span id="labelPontoA" class="text-white font-mono">Sonmiani</span>
-                </div>
-                <div class="flex items-center gap-3 w-full sm:w-auto">
-                    <span class="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span>
-                    <span class="text-slate-400 font-medium">Destino (B):</span>
-                    <span id="labelPontoB" class="text-white font-mono">Kamchatka</span>
-                </div>
-                <div class="text-slate-500 text-[11px]">
-                    Arraste os círculos A e B no mapa para recalcular instantaneamente.
+            <!-- Mapa Principal -->
+            <div class="editorial-card p-4 sm:p-5 mb-6">
+                <div id="mapContainer" class="h-[420px] sm:h-[500px] w-full rounded-xl overflow-hidden border border-[#0A192F]/10"></div>
+                
+                <!-- Barra Inferior do Mapa: Legenda e Compartilhamento -->
+                <div class="mt-4 pt-3 border-t border-[#0A192F]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <span class="inline-flex items-center gap-1.5 text-[#C8102E] font-semibold">
+                            <span class="w-3.5 h-1 bg-[#C8102E] rounded"></span> Rota Real (Grande Círculo)
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 text-[#53647C] font-semibold">
+                            <span class="w-3.5 h-0.5 border-b-2 border-dashed border-[#53647C]"></span> Linha Reta Plana (Mercator)
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span id="txtDescricaoRota" class="text-[#53647C] font-mono text-xs hidden md:inline">Sonmiani (Paquistão) → Kamchatka (Rússia)</span>
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold transition shadow-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Anúncio Oficial Google AdSense (Visível no Mobile e Desktop Abaixo da Ferramenta) -->
-        <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
-            <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
-            <div class="w-full max-w-4xl py-2 flex items-center justify-center">
+            <!-- Controles Compactos de Ponto A e Ponto B -->
+            <div class="editorial-card p-4 mb-8 text-xs text-[#53647C]">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#C8102E] inline-block"></span>
+                        <span class="font-semibold text-[#0A192F]">Partida (A):</span>
+                        <span id="labelPontoA" class="font-mono text-[#0A192F]">Sonmiani, Paquistão</span>
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#0A192F] inline-block"></span>
+                        <span class="font-semibold text-[#0A192F]">Destino (B):</span>
+                        <span id="labelPontoB" class="font-mono text-[#0A192F]">Kamchatka, Rússia</span>
+                    </div>
+                    <div class="text-[11px] text-[#53647C] font-mono">
+                        Arraste os marcadores A e B para recalcular em tempo real.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-6xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-6879770260785828"
@@ -274,54 +258,38 @@
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
                 <script>
-                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-        </section>
 
-        <!-- Links Limpos para Outras Ferramentas -->
-        <div class="border-t border-white/10 pt-6 flex items-center justify-between text-xs text-slate-400">
-            <span>Outras ferramentas:</span>
-            <div class="flex gap-4">
-                <a href="/ferramentas/calculadora-antipodas/" class="hover:text-amber-400 transition">Calculador de Antípodas</a>
-                <a href="/ferramentas/quantos-cabem/" class="hover:text-amber-400 transition">Quantos Cabem?</a>
-                <a href="/ferramentas/comparador-paises/" class="hover:text-amber-400 transition">Tamanho Real dos Países</a>
-            </div>
         </div>
     </main>
 
-    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-        <div class="w-full flex-1 flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-6879770260785828"
-                 data-ad-slot="5140105675"></ins>
-            <script>
-                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-            </script>
-        </div>
-    </aside>
-</div>
-
-    <!-- Rodapé Oficial VitaleGeo -->
-    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-globe-hemisphere-east text-base text-amber-400"></i>
-                <span>© 2026 VitaleGeo • Geografia e Cartografia</span>
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <div class="flex gap-5">
-                <a href="/" class="hover:text-slate-300">Início</a>
-                <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
-                <a href="/jogos" class="hover:text-slate-300">Arcade</a>
-                <a href="/politica" class="hover:text-slate-300">Privacidade</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Lógica da Ferramenta -->
+    <!-- Lógica de Traçado Geodésico e Grande Círculo -->
     <script>
         let map = null;
         let markerA = null;
@@ -437,10 +405,9 @@
                 worldCopyJump: true
             });
 
-            // Camadas 100% gratuitas
-            const camadaDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-                maxZoom: 16,
-                attribution: 'Tiles &copy; Esri &mdash; &copy; OpenStreetMap'
+            const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                maxZoom: 19,
+                attribution: '&copy; CARTO &mdash; OpenStreetMap'
             });
 
             const camadaOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -453,10 +420,10 @@
                 attribution: 'Tiles &copy; Esri'
             });
 
-            camadaDark.addTo(map);
+            cartoLight.addTo(map);
 
             L.control.layers({
-                "Noturno": camadaDark,
+                "Mapa Cartográfico": cartoLight,
                 "OpenStreetMap": camadaOSM,
                 "Satélite": camadaSatelite
             }, null, { position: 'topright' }).addTo(map);
@@ -501,20 +468,20 @@
 
             const waypoints = gerarWaypointsGrandeCirculo(posA.lat, posA.lng, posB.lat, posB.lng, 90);
 
-            // Rota esférica em azul suave
+            // Rota esférica em vermelho oficial VitaleGeo
             layerGeodesica = L.polyline(waypoints, {
-                color: '#38bdf8',
-                weight: 3,
-                opacity: 0.9,
+                color: '#C8102E',
+                weight: 3.5,
+                opacity: 0.95,
                 lineCap: 'round'
             }).addTo(map);
 
             // Rota plana em traço discreto
             layerPlana = L.polyline([[posA.lat, posA.lng], [posB.lat, posB.lng]], {
-                color: '#f59e0b',
-                weight: 1.5,
+                color: '#0A192F',
+                weight: 2,
                 opacity: 0.5,
-                dashArray: '5, 5'
+                dashArray: '6, 6'
             }).addTo(map);
 
             const distKm = calcularHaversineKm(posA.lat, posA.lng, posB.lat, posB.lng);
@@ -533,7 +500,7 @@
             const labelA = document.getElementById('labelPontoA').textContent;
             const labelB = document.getElementById('labelPontoB').textContent;
             const shareText = encodeURIComponent(
-                `A menor rota no globo de ${labelA} até ${labelB} tem ${distKm.toLocaleString('pt-BR')} km (${pctTerra}% da Terra). Veja o traçado: https://www.vitalegeo.com.br/ferramentas/rotas-extremas/`
+                `A menor rota no globo de ${labelA} até ${labelB} tem ${distKm.toLocaleString('pt-BR')} km (${pctTerra}% da Terra). Veja no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/rotas-extremas/`
             );
             document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareText}`;
         }
@@ -553,11 +520,6 @@
 
             const bounds = L.latLngBounds([rota.coordA, rota.coordB]);
             map.fitBounds(bounds, { padding: [40, 40], maxZoom: 4 });
-        }
-
-        function toggleAjuda() {
-            const el = document.getElementById('painelAjuda');
-            el.classList.toggle('hidden');
         }
 
         window.addEventListener('DOMContentLoaded', inicializarMapa);

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/calculadora-antipodas/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculador de Antípodas | VitaleGeo</title>
+    <title>Calculador de Antípodas: Onde Você Sairia? | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Descubra o ponto antípoda exato na Terra. Veja onde você sairia se atravessasse o planeta pelo centro.">
+    <meta name="description" content="Descubra o ponto antípoda diametralmente oposto na Terra. Veja onde você sairia se atravessasse o planeta pelo centro em dois mapas sincronizados.">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Calculador de Antípodas | VitaleGeo">
-    <meta property="og:description" content="Se você cavar um túnel reto atravessando a Terra, onde você sairia? Veja em dois mapas sincronizados.">
+    <meta property="og:description" content="Se você cavar um túnel reto atravessando a Terra pelo centro, onde você sairia? Veja em dois mapas sincronizados.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/calculadora-antipodas/">
-    <meta property="og:image" content="https://www.vitalegeo.com.br/favicon.svg">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/calculadora-antipodas.jpg">
 
     <!-- Google AdSense Oficial VitaleGeo -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
@@ -23,10 +23,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Tipografia Oficial -->
+    <!-- Fontes Oficiais VitaleGeo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Leaflet CSS & JS -->
@@ -38,9 +38,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -48,41 +57,35 @@
     </script>
 
     <style>
-        .editorial-panel {
-            background: #11131a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.75rem;
-        }
         .leaflet-container {
-            background: #0d0f15;
-            font-family: 'Inter', sans-serif;
+            background: #E8E4DA;
+            font-family: 'Montserrat', sans-serif;
             border-radius: 0.75rem;
         }
-        /* Pinos escolares nítidos e limpos, sem brilho neon */
         .pin-start {
-            background-color: #f59e0b;
+            background-color: #C8102E;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
             cursor: grab;
         }
         .pin-anti {
-            background-color: #38bdf8;
+            background-color: #0A192F;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(10, 25, 47, 0.4);
             cursor: grab;
         }
         .pin-start:active, .pin-anti:active { cursor: grabbing; }
 
         .leaflet-control-layers {
-            background: #11131a !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            color: #cbd5e1 !important;
+            background: #ffffff !important;
+            border: 1px solid rgba(10, 25, 47, 0.15) !important;
+            color: #0A192F !important;
             border-radius: 0.5rem !important;
             font-size: 11px !important;
-            font-family: 'Inter', sans-serif !important;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+            font-family: 'Montserrat', sans-serif !important;
+            box-shadow: 0 2px 8px rgba(10, 25, 47, 0.1) !important;
         }
         .leaflet-control-layers label {
             margin-bottom: 2px;
@@ -90,203 +93,182 @@
         }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased selection:bg-amber-400 selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-    <!-- Navegação Oficial -->
-    <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Arcade</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <!-- WRAPPER COM 3 COLUNAS NO DESKTOP (ANÚNCIOS LATERAIS + FERRAMENTA CENTRAL) -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 flex items-start justify-center gap-4 flex-grow pt-24 pb-8">
-
-        <!-- ANÚNCIO DESKTOP LATERAL ESQUERDO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-            <div class="w-full flex-1 flex items-center justify-center">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:160px;height:600px"
-                     data-ad-client="ca-pub-6879770260785828"
-                     data-ad-slot="5140105675"></ins>
-                <script>
-                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-                </script>
-            </div>
-        </aside>
-
-        <!-- Conteúdo Principal -->
-        <main class="max-w-5xl mx-auto flex-grow w-full">
-        <!-- Cabeçalho Limpo e Educativo -->
-        <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight">
-                    Calculador de Antípodas
-                </h1>
-                <p class="mt-1 text-slate-400 text-sm max-w-xl">
-                    Descubra onde você sairia se atravessasse a Terra em linha reta pelo centro. Clique ou arraste em qualquer mapa.
-                </p>
-            </div>
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-6xl mx-auto">
             
-            <button onclick="toggleAjuda()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 border border-white/10 transition self-start sm:self-auto">
-                <i class="ph-bold ph-info text-amber-400 text-sm"></i>
-                <span>Por que não saio no Japão?</span>
-            </button>
-        </div>
-
-        <!-- Painel Explicativo Opcional (Toggle) -->
-        <div id="painelAjuda" class="hidden mb-6 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-slate-300 leading-relaxed">
-            <div class="flex items-start justify-between gap-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <strong class="text-amber-300 font-semibold block mb-1">O Mito do Japão:</strong>
-                        Quase todo brasileiro acha que sairia no Japão. Na realidade, 95% do Brasil tem como antípoda o Oceano Pacífico Norte, perto das Filipinas e ao sul de Okinawa.
-                    </div>
-                    <div>
-                        <strong class="text-sky-300 font-semibold block mb-1">A Maioria Cai no Mar:</strong>
-                        Como 71% da Terra é água, cerca de 85% de todas as terras emersas do planeta caem direto no oceano do outro lado.
-                    </div>
-                    <div>
-                        <strong class="text-slate-100 font-semibold block mb-1">Raras Antípodas Terrestres:</strong>
-                        Pouquíssimos lugares conectam terra firme com terra firme: Espanha ↔ Nova Zelândia, Argentina/Chile ↔ China/Mongólia e Amazônia ↔ Indonésia.
-                    </div>
-                </div>
-                <button onclick="toggleAjuda()" class="text-slate-500 hover:text-white text-base">
-                    <i class="ph-bold ph-x"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Atalhos Rápidos de Cidades (Sem Emojis Quebrados) -->
-        <div class="mb-5 flex flex-wrap items-center gap-2 text-xs">
-            <span class="text-slate-400 text-xs font-medium mr-1">Atalhos:</span>
-            <button onclick="carregarLocal(-23.5505, -46.6333, 'São Paulo, Brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">
-                São Paulo
-            </button>
-            <button onclick="carregarLocal(-15.7975, -47.8919, 'Brasília, Brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">
-                Brasília
-            </button>
-            <button onclick="carregarLocal(-22.9068, -43.1729, 'Rio de Janeiro, Brasil')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">
-                Rio de Janeiro
-            </button>
-            <button onclick="carregarLocal(40.4168, -3.7038, 'Madri, Espanha')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition" title="Cai na Nova Zelândia (Terra firme)">
-                Madri (cai na N. Zelândia)
-            </button>
-            <button onclick="carregarLocal(-34.6037, -58.3816, 'Buenos Aires, Argentina')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition" title="Cai na China (Terra firme)">
-                Buenos Aires (cai na China)
-            </button>
-            <button onclick="carregarLocal(38.7223, -9.1393, 'Lisboa, Portugal')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">
-                Lisboa
-            </button>
-            <button onclick="carregarLocal(35.6762, 139.6503, 'Tóquio, Japão')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">
-                Tóquio
-            </button>
-            <button onclick="carregarLocal(21.3069, -157.8583, 'Honolulu, Havaí')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition" title="Cai em Botsuana, África">
-                Havaí (cai na África)
-            </button>
-        </div>
-
-        <!-- Painel de Resumo Objetivo -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-            <div class="editorial-panel p-3.5 text-center" title="Coordenada geográfica diametralmente oposta">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Antípoda Exata</span>
-                <span id="resCoord" class="text-base sm:text-lg font-mono font-bold text-white block mt-0.5 truncate">23.55° N, 133.37° L</span>
-                <span class="text-[11px] text-slate-500">latitude e longitude</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Região aproximada onde o túnel emerge">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Localização Oposta</span>
-                <span id="resDescricao" class="text-xs sm:text-sm font-semibold text-sky-400 block mt-1 line-clamp-2">Oceano Pacífico Norte</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Natureza da superfície no ponto oposto">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Tipo de Superfície</span>
-                <span id="badgeSuperficie" class="text-xs sm:text-sm font-mono font-bold text-sky-300 block mt-1">OCEANO / MAR</span>
-                <span class="text-[11px] text-slate-500">85% das terras caem no mar</span>
-            </div>
-            <div class="editorial-panel p-3.5 text-center" title="Diferença horária solar em relação à partida">
-                <span class="text-[11px] text-slate-400 uppercase tracking-wide block">Fuso Solar</span>
-                <span class="text-base sm:text-lg font-mono font-bold text-amber-400 block mt-0.5">12h opostas</span>
-                <span class="text-[11px] text-slate-500">noite ↔ dia</span>
-            </div>
-        </div>
-
-        <!-- Dois Mapas Sincronizados Lado a Lado -->
-        <div class="editorial-panel p-3 mb-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
                 <div>
-                    <div class="flex items-center justify-between text-xs px-1 mb-2">
-                        <span class="font-medium text-amber-300 inline-flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Onde você cava (Partida)
-                        </span>
-                        <span class="text-slate-500 text-[11px]">arraste ou clique</span>
-                    </div>
-                    <div id="mapStart" class="h-80 sm:h-[420px] w-full rounded-lg overflow-hidden"></div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Geodésia Diametral & Coordenadas
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Calculador de Antípodas
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Descubra exatamente onde você emergiria se perfurasse um túnel reto atravessando o núcleo da Terra.
+                    </p>
                 </div>
 
-                <div>
-                    <div class="flex items-center justify-between text-xs px-1 mb-2">
-                        <span class="font-medium text-sky-300 inline-flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Onde você sai (Antípoda)
-                        </span>
-                        <span class="text-slate-500 text-[11px]">arraste ou clique</span>
-                    </div>
-                    <div id="mapAnti" class="h-80 sm:h-[420px] w-full rounded-lg overflow-hidden"></div>
-                </div>
-            </div>
-
-            <!-- Rodapé do Mapa com Controles e Compartilhamento -->
-            <div class="mt-3 px-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
-                <div class="flex items-center gap-2">
-                    <button onclick="usarGeolocalizacao()" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-xs border border-white/10 transition">
-                        <i class="ph-bold ph-crosshair text-amber-400"></i> Usar meu GPS
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Por Que Não Saio no Japão?">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>O Mito do Japão & Antípodas</span>
                     </button>
-                    <span class="text-slate-500 text-[11px] hidden sm:inline">Diâmetro pelo centro: 12.742 km</span>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-globe-hemisphere-west text-[#C8102E]"></i> Fatos da Geodésia Oposta
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            Quase todo brasileiro cresce ouvindo que sairia no Japão se cavasse um buraco reto. Isso é um mito geográfico!
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Brasil cai no mar:</strong> Mais de 95% do território brasileiro tem como antípoda as águas do Oceano Pacífico Norte, ao sul de Okinawa e Taiwan.</li>
+                            <li>• <strong>85% das terras caem na água:</strong> Como 71% do planeta é coberto por oceanos, a imensa maioria dos países cai direto em alto-mar do outro lado.</li>
+                            <li>• <strong>Raras Antípodas Terrestres:</strong> Apenas poucos pontos conectam terra firme: Espanha ↔ Nova Zelândia, Argentina/Chile ↔ China/Mongólia e Havaí ↔ Botsuana.</li>
+                        </ul>
+                    </div>
                 </div>
+            </header>
 
-                <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-700/80 hover:bg-emerald-600 text-white font-medium transition text-xs self-start sm:self-auto">
-                    <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar descoberta
-                </a>
-            </div>
-        </div>
-
-        <!-- Entrada Manual Discreta (Lat / Lon) -->
-        <div class="editorial-panel p-3 mb-8 text-xs text-slate-400">
-            <div class="flex flex-wrap items-center gap-3">
-                <span class="font-medium text-slate-300">Coordenadas manuais:</span>
-                <div class="flex items-center gap-1">
-                    <span>Lat:</span>
-                    <input id="inputLat" type="number" step="0.01" value="-23.55" class="w-20 bg-[#090a0f] border border-white/10 rounded px-2 py-0.5 text-white font-mono text-xs">
-                </div>
-                <div class="flex items-center gap-1">
-                    <span>Lon:</span>
-                    <input id="inputLng" type="number" step="0.01" value="-46.63" class="w-20 bg-[#090a0f] border border-white/10 rounded px-2 py-0.5 text-white font-mono text-xs">
-                </div>
-                <button onclick="calcularManualmente()" class="px-2.5 py-0.5 bg-white/5 hover:bg-white/10 text-white rounded border border-white/10 transition">
-                    Ir
+            <!-- Atalhos Rápidos de Cidades -->
+            <div class="mb-5 flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar text-xs">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] shrink-0 flex items-center gap-1 font-semibold">
+                    <i class="ph-bold ph-lightning text-[#C8102E]"></i> Exemplos:
+                </span>
+                <button onclick="carregarLocal(-23.5505, -46.6333, 'São Paulo, Brasil')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇧🇷 São Paulo (Pacífico)
+                </button>
+                <button onclick="carregarLocal(-15.7975, -47.8919, 'Brasília, Brasil')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇧🇷 Brasília (Pacífico)
+                </button>
+                <button onclick="carregarLocal(40.4168, -3.7038, 'Madri, Espanha')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs" title="Cai na Nova Zelândia (Terra firme)">
+                    🇪🇸 Madri ↔ 🇳🇿 N. Zelândia (Terra)
+                </button>
+                <button onclick="carregarLocal(-34.6037, -58.3816, 'Buenos Aires, Argentina')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs" title="Cai na China (Terra firme)">
+                    🇦🇷 B. Aires ↔ 🇨🇳 China (Terra)
+                </button>
+                <button onclick="carregarLocal(21.3069, -157.8583, 'Honolulu, Havaí')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs" title="Cai em Botsuana, África">
+                    🇺🇸 Havaí ↔ 🇧🇼 Botsuana (Terra)
+                </button>
+                <button onclick="carregarLocal(35.6762, 139.6503, 'Tóquio, Japão')" class="px-2.5 py-1 rounded-full bg-white border border-[#0A192F]/10 hover:border-[#C8102E]/40 hover:text-[#C8102E] transition text-[#1F334E] shrink-0 shadow-xs">
+                    🇯🇵 Tóquio (Atlântico Sul)
                 </button>
             </div>
-        </div>
 
-        <!-- Anúncio Oficial Google AdSense (Visível no Mobile e Desktop Abaixo da Ferramenta) -->
-        <section class="editorial-panel p-4 mb-8 text-center min-h-[140px] sm:min-h-[280px] flex flex-col justify-center items-center bg-[#0d0f15]/80 border border-white/5 rounded-2xl">
-            <span class="text-[9px] font-mono uppercase tracking-widest text-slate-600 mb-2">Publicidade • Google AdSense</span>
-            <div class="w-full max-w-4xl py-2 flex items-center justify-center">
+            <!-- Painel de Resumo Objetivo -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Antípoda Exata</span>
+                    <span id="resCoord" class="text-sm sm:text-base font-mono font-bold text-[#0A192F] block mt-0.5 truncate">23.55° N, 133.37° L</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">Latitude & Longitude</span>
+                </div>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Localização Oposta</span>
+                    <span id="resDescricao" class="text-xs sm:text-sm font-semibold text-[#0A192F] block mt-1 line-clamp-2">Oceano Pacífico Norte</span>
+                </div>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Tipo de Superfície</span>
+                    <span id="badgeSuperficie" class="text-xs sm:text-sm font-mono font-bold text-[#C8102E] block mt-1">OCEANO / MAR</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">85% das terras caem no mar</span>
+                </div>
+                <div class="editorial-card p-3.5 text-center">
+                    <span class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider block font-semibold">Fuso Solar</span>
+                    <span class="text-sm sm:text-base font-mono font-bold text-[#0A192F] block mt-0.5">12h Opostas</span>
+                    <span class="text-[10px] text-[#53647C] font-mono">Noite ↔ Dia</span>
+                </div>
+            </div>
+
+            <!-- Dois Mapas Sincronizados Lado a Lado -->
+            <div class="editorial-card p-4 sm:p-5 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-2 px-1">
+                            <span class="font-bold text-[#C8102E] inline-flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#C8102E]"></span> Ponto A: Onde você cava
+                            </span>
+                            <span class="text-[#53647C] font-mono text-[11px]">Clique ou arraste</span>
+                        </div>
+                        <div id="mapStart" class="h-80 sm:h-[420px] w-full rounded-xl overflow-hidden border border-[#0A192F]/10"></div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-2 px-1">
+                            <span class="font-bold text-[#0A192F] inline-flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#0A192F]"></span> Ponto B: Onde você sai
+                            </span>
+                            <span class="text-[#53647C] font-mono text-[11px]">Sincronização instantânea</span>
+                        </div>
+                        <div id="mapAnti" class="h-80 sm:h-[420px] w-full rounded-xl overflow-hidden border border-[#0A192F]/10"></div>
+                    </div>
+                </div>
+
+                <!-- Rodapé dos Mapas com Controles -->
+                <div class="mt-4 pt-3 border-t border-[#0A192F]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button onclick="usarGeolocalizacao()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0A192F]/15 hover:border-[#C8102E]/40 text-[#0A192F] font-semibold transition shadow-xs">
+                            <i class="ph-bold ph-crosshair text-[#C8102E]"></i> Usar Meu GPS
+                        </button>
+                        <span class="text-[#53647C] font-mono text-[11px]">Diâmetro linear pelo centro: 12.742 km</span>
+                    </div>
+
+                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold transition shadow-xs self-start sm:self-auto">
+                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar Descoberta
+                    </a>
+                </div>
+            </div>
+
+            <!-- Entrada Manual de Coordenadas -->
+            <div class="editorial-card p-4 mb-8 text-xs text-[#53647C]">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="font-semibold text-[#0A192F] flex items-center gap-1">
+                        <i class="ph-bold ph-faders text-[#C8102E]"></i> Coordenadas Manuais:
+                    </span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-mono">Lat:</span>
+                        <input id="inputLat" type="number" step="0.01" value="-23.55" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-mono">Lon:</span>
+                        <input id="inputLng" type="number" step="0.01" value="-46.63" class="w-24 bg-[#FAF8F5] border border-[#0A192F]/15 rounded-lg px-2.5 py-1 text-[#0A192F] font-mono font-semibold text-xs focus:outline-none focus:border-[#C8102E]">
+                    </div>
+                    <button onclick="calcularManualmente()" class="px-3 py-1 bg-[#0A192F] hover:bg-[#112236] text-white rounded-lg font-semibold transition">
+                        Atualizar Mapas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-6xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-6879770260785828"
@@ -294,50 +276,34 @@
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
                 <script>
-                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-        </section>
 
-        <!-- Links Limpos para Outras Ferramentas -->
-        <div class="border-t border-white/10 pt-6 flex items-center justify-between text-xs text-slate-400">
-            <span>Outras ferramentas:</span>
-            <div class="flex gap-4">
-                <a href="/ferramentas/rotas-extremas/" class="hover:text-amber-400 transition">Rotas em Linha Reta</a>
-                <a href="/ferramentas/quantos-cabem/" class="hover:text-amber-400 transition">Quantos Cabem?</a>
-                <a href="/ferramentas/comparador-paises/" class="hover:text-amber-400 transition">Tamanho Real dos Países</a>
-            </div>
         </div>
     </main>
 
-    <!-- ANÚNCIO DESKTOP LATERAL DIREITO (SKYSCRAPER 160x600) - OCULTO NO MOBILE -->
-    <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500">
-        <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
-        <div class="w-full flex-1 flex items-center justify-center">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-6879770260785828"
-                 data-ad-slot="5140105675"></ins>
-            <script>
-                try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-            </script>
-        </div>
-    </aside>
-</div>
-
-    <!-- Rodapé Oficial VitaleGeo -->
-    <footer class="border-t border-white/10 py-8 px-6 bg-[#07080d] mt-12 text-xs text-slate-500">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-globe-hemisphere-east text-base text-amber-400"></i>
-                <span>© 2026 VitaleGeo • Geografia e Cartografia</span>
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <div class="flex gap-5">
-                <a href="/" class="hover:text-slate-300">Início</a>
-                <a href="/ferramentas" class="hover:text-slate-300">Ferramentas</a>
-                <a href="/jogos" class="hover:text-slate-300">Arcade</a>
-                <a href="/politica" class="hover:text-slate-300">Privacidade</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -355,7 +321,6 @@
         }
 
         function descreverRegiao(lat, lng) {
-            // Detecção precisa e limpa
             if (lat >= -48 && lat <= -34 && lng >= 166 && lng <= 179) {
                 return "Nova Zelândia (Wellington / Auckland) — Terra Firme";
             }
@@ -375,7 +340,6 @@
                 return "Península Ibérica (Espanha / Portugal) — Terra Firme";
             }
 
-            // Bacias oceânicas
             if (lat > 5 && lat < 35 && lng > 120 && lng < 155) {
                 return "Oceano Pacífico Norte (sul do Japão e leste de Taiwan)";
             }
@@ -418,26 +382,26 @@
             const lngInit = -46.6333;
             const antiInit = calcularAntipoda(latInit, lngInit);
 
-            const esriDark = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+            const cartoLight = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
             const osm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
             const satelite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
             // Mapa 1: Partida
             mapStart = L.map('mapStart', { zoomControl: true }).setView([latInit, lngInit], 4);
-            const dark1 = L.tileLayer(esriDark, { maxZoom: 16, attribution: 'Tiles &copy; Esri &mdash; OpenStreetMap' }).addTo(mapStart);
+            const light1 = L.tileLayer(cartoLight, { maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapStart);
             const osm1 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
             const sat1 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
-            L.control.layers({ "Noturno": dark1, "OpenStreetMap": osm1, "Satélite": sat1 }, null, { position: 'topright' }).addTo(mapStart);
+            L.control.layers({ "Mapa Cartográfico": light1, "OpenStreetMap": osm1, "Satélite": sat1 }, null, { position: 'topright' }).addTo(mapStart);
 
             const iconStart = L.divIcon({ className: 'pin-start', iconSize: [16, 16], iconAnchor: [8, 8] });
             markerStart = L.marker([latInit, lngInit], { icon: iconStart, draggable: true }).addTo(mapStart);
 
             // Mapa 2: Antípoda
             mapAnti = L.map('mapAnti', { zoomControl: true }).setView([antiInit.lat, antiInit.lng], 4);
-            const dark2 = L.tileLayer(esriDark, { maxZoom: 16, attribution: 'Tiles &copy; Esri &mdash; OpenStreetMap' }).addTo(mapAnti);
+            const light2 = L.tileLayer(cartoLight, { maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapAnti);
             const osm2 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
             const sat2 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
-            L.control.layers({ "Noturno": dark2, "OpenStreetMap": osm2, "Satélite": sat2 }, null, { position: 'topright' }).addTo(mapAnti);
+            L.control.layers({ "Mapa Cartográfico": light2, "OpenStreetMap": osm2, "Satélite": sat2 }, null, { position: 'topright' }).addTo(mapAnti);
 
             const iconAnti = L.divIcon({ className: 'pin-anti', iconSize: [16, 16], iconAnchor: [8, 8] });
             markerAnti = L.marker([antiInit.lat, antiInit.lng], { icon: iconAnti, draggable: true }).addTo(mapAnti);
@@ -513,14 +477,14 @@
             const badge = document.getElementById('badgeSuperficie');
             if (desc.includes('Terra Firme')) {
                 badge.textContent = 'TERRA FIRME';
-                badge.className = 'text-xs sm:text-sm font-mono font-bold text-emerald-400 block mt-1';
+                badge.className = 'text-xs sm:text-sm font-mono font-bold text-emerald-700 block mt-1';
             } else {
                 badge.textContent = 'OCEANO / MAR';
-                badge.className = 'text-xs sm:text-sm font-mono font-bold text-sky-400 block mt-1';
+                badge.className = 'text-xs sm:text-sm font-mono font-bold text-[#C8102E] block mt-1';
             }
 
             const shareText = encodeURIComponent(
-                `Se você cavar um buraco em linha reta a partir de ${label || 'minha cidade'}, você sai em: ${desc}! Veja a antípoda: https://www.vitalegeo.com.br/ferramentas/calculadora-antipodas/`
+                `Se você cavar um buraco em linha reta a partir de ${label || 'minha cidade'}, você sai em: ${desc}! Veja no VitaleGeo: https://www.vitalegeo.com.br/ferramentas/calculadora-antipodas/`
             );
             document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${shareText}`;
         }
@@ -547,11 +511,6 @@
             } else {
                 alert("Geolocalização não suportada.");
             }
-        }
-
-        function toggleAjuda() {
-            const el = document.getElementById('painelAjuda');
-            el.classList.toggle('hidden');
         }
 
         window.addEventListener('DOMContentLoaded', inicializarMapas);

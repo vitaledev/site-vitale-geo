@@ -1,136 +1,228 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/calculadora-fuso/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Fuso Horario | VitaleGeo</title>
+    <title>Calculadora de Fuso Horário Mundial | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Compare horarios entre cidades e fusos do mundo.">
-    <meta property="og:title" content="Calculadora de Fuso Horario | VitaleGeo">
-    <meta property="og:description" content="Compare horarios entre cidades e fusos do mundo.">
+    <meta name="description" content="Compare horários e fusos entre as principais cidades e fusos horários do mundo com conversão instantânea.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calculadora de Fuso Horário Mundial | VitaleGeo">
+    <meta property="og:description" content="Compare horários em tempo real entre cidades do mundo para planejar reuniões e viagens.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/calculadora-fuso">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/calculadora-fuso/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/calculadora-fuso.jpg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Fontes Oficiais VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
+                    }
                 }
             }
         }
     </script>
-
 </head>
-<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black page-shell">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 right-6 z-30">
-        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
-        </a>
-    </div>
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Fusos Horários & Cronometria
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Calculadora de Fuso Horário
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Compare horários de múltiplas cidades em relação a um ponto de referência com cálculo instantâneo de deltas.
+                    </p>
+                </div>
 
-    <main class="page-content pt-32 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
-                <i class="ph-bold ph-clock"></i> Ferramenta
-            </div>
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Calculadora de Fuso Horario</h1>
-            <p class="text-slate-400 max-w-2xl mb-10">
-                Compare horarios entre cidades do mundo usando um fuso base. Ideal para planejar reunioes e viagens.
-            </p>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-heading text-white">Base</h2>
-                        <a href="/ferramentas" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition">Voltar</a>
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Informações sobre Fusos">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como Funcionam os Fusos</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-clock-clockwise text-[#C8102E]"></i> Curiosidades & Regras UTC
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            A Terra tem 360° de longitude e gira em 24h, criando 24 zonas teóricas de 15° de largura (1 hora cada).
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Greenwich (UTC±0):</strong> O meridiano de referência zero em Londres.</li>
+                            <li>• <strong>Linha Internacional de Data (180°):</strong> Cruzar esta linha no Pacífico muda o calendário em um dia inteiro.</li>
+                            <li>• <strong>China tem só 1 fuso:</strong> Apesar de ter tamanho continental e cruzar 5 fusos geográficos, Pequim unificou todo o país em UTC+8.</li>
+                            <li>• <strong>Brasil (4 fusos):</strong> Varia de Fernando de Noronha (UTC-2) ao Acre (UTC-5), sendo Brasília (UTC-3) a hora oficial.</li>
+                        </ul>
                     </div>
+                </div>
+            </header>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-date">Data</label>
-                            <input id="base-date" type="date" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-time">Hora</label>
-                            <input id="base-time" type="time" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
+            <!-- Grid da Ferramenta -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Coluna Esquerda: Configuração Base & Cidades -->
+                <div class="editorial-card p-5 sm:p-6 space-y-5">
+                    <div>
+                        <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="ph-bold ph-calendar-blank text-[#C8102E]"></i> Ponto de Partida
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="base-date">Data</label>
+                                <input id="base-date" type="date" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="base-time">Hora</label>
+                                <input id="base-time" type="time" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
                         </div>
                     </div>
-
-                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="base-zone">Fuso base</label>
-                    <select id="base-zone" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6"></select>
 
                     <div>
-                        <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-slate-500 mb-3">
-                            <i class="ph-bold ph-map-trifold"></i> Cidades para comparar
+                        <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="base-zone">Fuso Horário Base</label>
+                        <div class="relative">
+                            <select id="base-zone" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2.5 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] appearance-none cursor-pointer pr-10 shadow-xs"></select>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#53647C]">
+                                <i class="ph-bold ph-caret-down text-xs"></i>
+                            </div>
                         </div>
-                        <div id="zones-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    </div>
+
+                    <div class="pt-2 border-t border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] flex items-center gap-1.5">
+                                <i class="ph-bold ph-map-pin text-[#C8102E]"></i> Cidades para Comparar
+                            </span>
+                            <span class="text-[10px] font-mono text-[#53647C]">Marque para ativar</span>
+                        </div>
+                        <div id="zones-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1"></div>
                     </div>
                 </div>
 
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <h2 class="text-xl font-heading text-white mb-4">Resultados</h2>
-                    <div id="results" class="space-y-3"></div>
-                    <p id="empty" class="text-slate-500 text-sm hidden">Selecione ao menos uma cidade para comparar.</p>
+                <!-- Coluna Direita: Resultados em Tempo Real -->
+                <div class="editorial-card p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#0A192F]/10">
+                            <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-2">
+                                <i class="ph-bold ph-clock text-[#C8102E]"></i> Quadro de Horários
+                            </h2>
+                            <span class="text-[10px] font-mono text-[#53647C]">Sincronização em tempo real</span>
+                        </div>
+                        <div id="results" class="space-y-2.5"></div>
+                        <p id="empty" class="text-[#53647C] text-xs font-mono py-8 text-center hidden">
+                            Nenhuma cidade selecionada. Marque ao menos uma na coluna ao lado.
+                        </p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-5xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
         </div>
     </main>
 
-                    <footer class="site-footer">
-        <div class="max-w-6xl mx-auto">
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
             <div class="site-footer__social">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
-            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <div class="site-footer__links text-xs mt-4">
-                <a href="/sobre/">Sobre o Projeto</a>
-                <span class="text-slate-700">·</span>
-                <a href="/politica/">Política de Privacidade</a>
-                <span class="text-slate-700">·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
-            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <!-- Lógica Funcional -->
     <script>
         const ZONES = [
-            { id: 'America/Sao_Paulo', label: 'Sao Paulo' },
+            { id: 'America/Sao_Paulo', label: 'São Paulo' },
             { id: 'America/Buenos_Aires', label: 'Buenos Aires' },
             { id: 'America/New_York', label: 'Nova York' },
             { id: 'America/Chicago', label: 'Chicago' },
@@ -143,7 +235,7 @@
             { id: 'Asia/Dubai', label: 'Dubai' },
             { id: 'Asia/Kolkata', label: 'Nova Delhi' },
             { id: 'Asia/Shanghai', label: 'Xangai' },
-            { id: 'Asia/Tokyo', label: 'Toquio' },
+            { id: 'Asia/Tokyo', label: 'Tóquio' },
             { id: 'Australia/Sydney', label: 'Sydney' },
             { id: 'Pacific/Auckland', label: 'Auckland' }
         ];
@@ -216,19 +308,22 @@
                 const ymd = `${parts.year}-${parts.month}-${parts.day}`;
                 const dayDiff = ymd > baseYmd ? '+1' : (ymd < baseYmd ? '-1' : '0');
                 const diffHours = (offsetMinutes(utcDate, id) - baseOffset) / 60;
-                const diffLabel = diffHours === 0 ? '0h' : `${diffHours > 0 ? '+' : ''}${diffHours}h`;
+                const diffLabel = diffHours === 0 ? 'Referência' : `${diffHours > 0 ? '+' : ''}${diffHours}h`;
+                const isBase = id === baseTz;
 
                 results.innerHTML += `
-                    <div class="flex items-center justify-between bg-slate-900/60 border border-white/5 rounded-xl px-4 py-3">
+                    <div class="flex items-center justify-between ${isBase ? 'bg-[#FAF8F5] border-[#C8102E]/30' : 'bg-white border-[#0A192F]/10'} border rounded-xl px-4 py-3 shadow-xs">
                         <div>
-                            <div class="text-sm text-slate-500 uppercase tracking-widest">${z ? z.label : id}</div>
-                            <div class="text-lg font-bold text-white">${parts.hour}:${parts.minute}</div>
-                            <div class="text-xs text-slate-400">${parts.weekday} ${parts.day}/${parts.month}/${parts.year}</div>
+                            <div class="text-[10px] font-mono font-semibold uppercase tracking-wider ${isBase ? 'text-[#C8102E]' : 'text-[#53647C]'}">
+                                ${z ? z.label : id} ${isBase ? '• BASE' : ''}
+                            </div>
+                            <div class="text-xl font-mono font-bold text-[#0A192F] mt-0.5">${parts.hour}:${parts.minute}</div>
+                            <div class="text-xs text-[#53647C] font-mono capitalize">${parts.weekday}, ${parts.day}/${parts.month}/${parts.year}</div>
                         </div>
                         <div class="text-right">
-                            <div class="text-xs text-slate-500 uppercase tracking-widest">Delta</div>
-                            <div class="text-lg font-bold text-geoGold">${diffLabel}</div>
-                            <div class="text-xs text-slate-400">Dia ${dayDiff}</div>
+                            <div class="text-[10px] font-mono text-[#53647C] uppercase tracking-wider font-semibold">Diferença</div>
+                            <div class="text-base font-mono font-bold ${isBase ? 'text-[#0A192F]' : 'text-[#C8102E]'}">${diffLabel}</div>
+                            <div class="text-[11px] text-[#53647C] font-mono">Dia ${dayDiff}</div>
                         </div>
                     </div>
                 `;
@@ -251,9 +346,9 @@
             ]);
 
             zonesList.innerHTML = ZONES.map(z => `
-                <label class="flex items-center gap-3 bg-slate-900/60 border border-white/5 rounded-xl px-3 py-2 cursor-pointer">
-                    <input type="checkbox" value="${z.id}" class="accent-yellow-400" ${defaults.has(z.id) ? 'checked' : ''}>
-                    <span class="text-sm text-slate-200">${z.label}</span>
+                <label class="flex items-center gap-2.5 bg-[#FAF8F5] border border-[#0A192F]/10 hover:border-[#C8102E]/40 rounded-xl px-3 py-2 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" value="${z.id}" class="accent-[#C8102E] w-3.5 h-3.5 rounded" ${defaults.has(z.id) ? 'checked' : ''}>
+                    <span class="text-xs font-semibold text-[#0A192F]">${z.label}</span>
                 </label>
             `).join('');
         };
@@ -273,40 +368,5 @@
         setDefaults();
         buildResults();
     </script>
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
-

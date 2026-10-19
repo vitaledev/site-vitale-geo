@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#090a0f]">
+<html lang="pt-br" class="bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/fronteiras/">
@@ -21,11 +21,11 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -37,16 +37,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#181b24',
-                        geoGold: '#f59e0b',
-                        geoBlue: '#38bdf8'
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -54,26 +56,19 @@
     </script>
 
     <style>
-        .arcade-shell {
-            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
-        }
         .flag-frame {
-            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         .option-btn {
-            transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             min-height: 52px;
         }
         .option-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 16px -4px rgba(10, 25, 47, 0.12);
         }
         .option-btn:active:not(:disabled) {
             transform: scale(0.98);
-        }
-        .ad-slot-container {
-            position: relative;
-            overflow: hidden;
         }
         @keyframes screen-shake-damage {
             0%, 100% { transform: translate(0, 0); }
@@ -87,44 +82,52 @@
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-[#F5F2EB] text-[#1F334E] select-none min-h-screen flex flex-col justify-between overflow-x-hidden font-sans antialiased selection:bg-[#C8102E] selection:text-white">
 
-    <!-- HEADER DO ARCADE -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
-                <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Jogos</span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
-
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-map-trifold text-amber-400 text-lg"></i>
-                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Fronteiras do <span class="text-amber-400">Mundo</span>
-                </h1>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
+            <!-- Controles do Jogo no Header -->
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Modos e Continente">
-                    <i class="ph-bold ph-sliders-horizontal"></i>
+                <button onclick="abrirModalModos()" class="px-3 py-1.5 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-xs font-mono font-semibold flex items-center gap-1.5 transition shadow-xs" title="Modos e Continente">
+                    <i class="ph-bold ph-sliders-horizontal text-[#C8102E]"></i>
                     <span id="header-mode-label" class="hidden sm:inline">Sobrevivência</span>
                 </button>
-                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition shadow-xs" title="Som" aria-label="Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition hidden sm:inline-flex shadow-xs" title="Tela Cheia" aria-label="Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
+                <a href="/jogos" class="inline-flex items-center gap-1 text-xs font-semibold text-[#53647C] hover:text-[#0A192F] transition px-2.5 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-xs">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Jogos</span>
+                </a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- WRAPPER 3 COLUNAS DESKTOP -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 flex items-start justify-center gap-4 flex-1">
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 pt-24 sm:pt-28 pb-12 flex items-start justify-center gap-4 flex-1">
 
         <!-- ANÚNCIO LATERAL ESQUERDO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -140,125 +143,144 @@
         <main class="w-full max-w-2xl px-1 sm:px-2 py-1 flex-1 flex flex-col justify-center" id="game-stage-container">
         
             <!-- PALCO DO JOGO ATIVO -->
-            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-4 sm:p-5 w-full flex flex-col items-center justify-between text-center relative shadow-2xl">
+            <div id="stage-active" class="editorial-card p-4 sm:p-6 w-full flex flex-col items-center justify-between text-center relative shadow-sm">
                 
                 <!-- Barra de Status Compacta -->
-                <div class="w-full flex items-center justify-between gap-2 text-xs font-mono pb-2 border-b border-white/10">
+                <div class="w-full flex items-center justify-between gap-2 text-xs font-mono pb-3 border-b border-[#0A192F]/10">
                     <div id="status-left-pill" class="flex items-center gap-1.5">
-                        <span class="text-slate-400 text-[11px] uppercase" id="status-left-label">Vidas:</span>
-                        <span id="vidas-container" class="flex gap-1 text-sm text-rose-500">
+                        <span class="text-[#53647C] text-[11px] uppercase font-medium" id="status-left-label">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-sm text-[#C8102E]">
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
                         </span>
-                        <span id="round-indicator" class="hidden font-bold text-amber-400 text-xs">1 / 10</span>
+                        <span id="round-indicator" class="hidden font-bold text-[#C8102E] text-xs">1 / 10</span>
                     </div>
 
-                    <div class="flex items-center gap-1.5 text-slate-300">
-                        <i class="ph-bold ph-check-circle text-emerald-400"></i>
-                        <span><strong id="score-val" class="text-emerald-400">0</strong> acertos</span>
+                    <div class="flex items-center gap-1.5 text-[#0A192F] font-semibold">
+                        <i class="ph-bold ph-check-circle text-emerald-600"></i>
+                        <span><strong id="score-val" class="text-[#0A192F]">0</strong> acertos</span>
                     </div>
 
-                    <div id="streak-pill" class="flex items-center gap-1 text-slate-400">
-                        <i class="ph-fill ph-fire text-amber-400"></i>
-                        <span><strong id="streak-val" class="text-white">0</strong></span>
+                    <div id="streak-pill" class="flex items-center gap-1 text-[#53647C]">
+                        <i class="ph-fill ph-fire text-[#C8102E]"></i>
+                        <span><strong id="streak-val" class="text-[#0A192F]">0</strong></span>
                     </div>
 
-                    <div class="flex items-center gap-1 text-slate-400">
-                        <i class="ph-fill ph-trophy text-amber-400"></i>
-                        <span><strong id="best-score" class="text-amber-400">0</strong></span>
+                    <div class="flex items-center gap-1 text-[#53647C]">
+                        <i class="ph-fill ph-trophy text-emerald-600"></i>
+                        <span><strong id="best-score" class="text-emerald-700">0</strong></span>
+                    </div>
+
+                    <!-- Hover Popover de Regras do Jogo -->
+                    <div class="hover-info-container">
+                        <button type="button" class="hover-info-trigger" aria-label="Como Funciona o Jogo?">
+                            <i class="ph-bold ph-info text-[#C8102E]"></i>
+                            <span>Regras</span>
+                        </button>
+                        <div class="hover-info-popover">
+                            <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i class="ph-fill ph-map-trifold text-[#C8102E]"></i> Regras de Fronteiras
+                            </h4>
+                            <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2 text-left">
+                                <li>• <strong>Fronteiras Terrestres:</strong> Apenas limites territoriais contíguos em terra contam. Linhas marítimas e águas territoriais não são consideradas.</li>
+                                <li>• <strong>Enclaves e Territórios:</strong> Territórios contíguos oficiais (como Guiana Francesa para a França) contam na cartografia oficial.</li>
+                                <li>• <strong>Sobrevivência:</strong> Você começa com 3 vidas. Cada erro consome 1 vida.</li>
+                                <li>• <strong>Atalhos de Teclado:</strong> Use as teclas numéricas 1, 2, 3 e 4 para responder rapidamente.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Barra de Progresso Fina -->
-                <div class="w-full h-1 bg-slate-950 rounded-full overflow-hidden mt-1 mb-2">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                <div class="w-full h-1.5 bg-[#FAF8F5] rounded-full overflow-hidden mt-1.5 mb-3 border border-[#0A192F]/10">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-[#0A192F] to-[#C8102E] transition-all duration-300 w-0"></div>
                 </div>
 
                 <!-- Sub-barra com Modo e Categoria -->
-                <div class="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
-                    <span id="region-badge" class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                <div class="w-full flex items-center justify-between text-[11px] font-mono text-[#53647C] mb-2">
+                    <span id="region-badge" class="px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#0A192F]/10 text-[#0A192F] font-medium">
                         Mundo Inteiro
                     </span>
-                    <span id="challenge-type-badge" class="px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 font-bold">
+                    <span id="challenge-type-badge" class="px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C8102E]/20 text-[#C8102E] font-medium">
                         Fronteira Terrestre
                     </span>
                 </div>
 
                 <!-- País Central e Pergunta -->
-                <div class="flex flex-col items-center w-full my-auto py-1">
-                    <div class="flex items-center justify-center gap-3 mb-1.5" id="target-country-row">
-                        <div class="flag-frame w-14 h-9 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 shrink-0 shadow">
+                <div class="flex flex-col items-center w-full my-auto py-2">
+                    <div class="flex items-center justify-center gap-3 mb-2" id="target-country-row">
+                        <div class="flag-frame w-14 h-9 rounded-lg overflow-hidden border border-[#0A192F]/15 bg-white p-0.5 shrink-0 shadow-xs">
                             <img id="flag-img" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
                         </div>
                         <div class="text-left">
-                            <span class="text-[10px] font-mono uppercase text-slate-400 block" id="target-continent">América do Sul</span>
-                            <h2 class="text-lg sm:text-2xl font-heading font-black text-white leading-tight" id="country-name">Carregando...</h2>
+                            <span class="text-[10px] font-mono uppercase text-[#53647C] block" id="target-continent">América do Sul</span>
+                            <h2 class="text-xl sm:text-2xl font-heading font-black text-[#0A192F] leading-tight" id="country-name">Carregando...</h2>
                         </div>
                     </div>
 
-                    <p class="text-xs sm:text-sm font-heading font-medium text-slate-200 mt-1 mb-1 max-w-lg" id="question-prompt">
+                    <p class="text-xs sm:text-sm font-heading font-medium text-[#0A192F] mt-1 mb-1 max-w-lg" id="question-prompt">
                         Qual destes países faz fronteira terrestre com o país acima?
                     </p>
 
                     <!-- Feedback Estável (Sem Layout Shift) -->
-                    <div id="feedback-msg" class="h-8 text-xs sm:text-sm font-mono text-slate-300 flex items-center justify-center px-2 text-center w-full">
+                    <div id="feedback-msg" class="h-8 text-xs sm:text-sm font-mono text-[#53647C] flex items-center justify-center px-2 text-center w-full">
                         Selecione a alternativa correta abaixo
                     </div>
                 </div>
 
                 <!-- Grade de 4 Alternativas 2x2 (Sempre Visível) -->
-                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mt-1.5"></div>
+                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full mt-2"></div>
 
             </div>
 
             <!-- TELA DE FIM DE JOGO -->
-            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-7 w-full hidden flex-col items-center justify-center text-center shadow-2xl">
-                <div class="w-12 h-12 rounded-full bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 text-2xl mb-2">
+            <div id="stage-gameover" class="editorial-card p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-lg">
+                <div class="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-[#C8102E] text-2xl mb-2.5">
                     <i class="ph-bold ph-map-trifold"></i>
                 </div>
                 
-                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-0.5" id="gameover-kicker">Desafio Concluído</span>
-                <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-1" id="gameover-title">Fim de Jogo</h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#C8102E] font-bold mb-1" id="gameover-kicker">Desafio Concluído</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-[#0A192F] mb-1" id="gameover-title">Fim de Jogo</h2>
                 
-                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto mb-3">
+                <p id="gameover-motivo" class="text-xs sm:text-sm text-[#53647C] max-w-md mx-auto mb-4">
                     Resultado final da partida.
                 </p>
 
                 <!-- Placar -->
-                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-3.5 max-w-sm w-full mb-3 shadow-xl grid grid-cols-3 gap-2 text-center">
+                <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-2xl p-4 sm:p-5 max-w-sm w-full mb-5 shadow-xs grid grid-cols-3 gap-2 text-center">
                     <div>
-                        <span class="text-[10px] font-mono text-slate-400 uppercase block">Acertos</span>
-                        <strong class="text-2xl font-heading font-black text-emerald-400" id="final-score">0</strong>
+                        <span class="text-[10px] font-mono text-[#53647C] uppercase block font-medium">Acertos</span>
+                        <strong class="text-2xl font-heading font-black text-emerald-700" id="final-score">0</strong>
                     </div>
-                    <div class="border-x border-white/10">
-                        <span class="text-[10px] font-mono text-slate-400 uppercase block">Streak</span>
-                        <strong class="text-2xl font-heading font-black text-amber-400" id="final-streak">0x</strong>
+                    <div class="border-x border-[#0A192F]/10">
+                        <span class="text-[10px] font-mono text-[#53647C] uppercase block font-medium">Streak</span>
+                        <strong class="text-2xl font-heading font-black text-[#C8102E]" id="final-streak">0x</strong>
                     </div>
                     <div>
-                        <span class="text-[10px] font-mono text-slate-400 uppercase block">Precisão</span>
-                        <strong class="text-2xl font-heading font-black text-sky-400" id="final-accuracy">0%</strong>
+                        <span class="text-[10px] font-mono text-[#53647C] uppercase block font-medium">Precisão</span>
+                        <strong class="text-2xl font-heading font-black text-[#0A192F]" id="final-accuracy">0%</strong>
                     </div>
                 </div>
 
                 <!-- Ações e Compartilhamento -->
-                <div class="flex flex-wrap items-center justify-center gap-2 w-full max-w-sm">
-                    <button onclick="compartilharWhatsApp()" class="flex-1 min-w-[150px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition">
-                        <i class="ph-fill ph-whatsapp-logo text-base"></i> Desafiar no WhatsApp
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharWhatsApp()" class="flex-1 bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i> Desafiar no WhatsApp
                     </button>
-                    <button onclick="baixarScorecardPNG()" id="btn-download-card" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs py-2.5 px-3 rounded-xl flex items-center gap-1.5" title="Baixar Card PNG">
-                        <i class="ph-bold ph-download-simple text-base"></i> Card PNG
+                    <button onclick="baixarScorecardPNG()" id="btn-download-card" class="bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center gap-2 shadow-xs" title="Baixar Card PNG">
+                        <i class="ph-bold ph-download-simple"></i> Card PNG
                     </button>
-                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 mt-0.5">
+                    <button onclick="reiniciarJogo()" class="w-full bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
                         <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
                     </button>
                 </div>
             </div>
 
             <!-- PUBLICIDADE INFERIOR -->
-            <section class="w-full mt-2 p-2 bg-[#0c0e14]/70 border border-white/5 rounded-2xl flex flex-col items-center justify-center min-h-[90px] sm:min-h-[110px] ad-slot-container">
-                <span class="text-[8px] uppercase tracking-widest text-slate-600 block mb-1 font-mono">PUBLICIDADE</span>
-                <div class="w-full max-w-4xl flex items-center justify-center">
+            <section class="editorial-card p-3 text-center min-h-[90px] sm:min-h-[120px] flex flex-col justify-center items-center mt-3">
+                <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-1 font-mono font-medium">PUBLICIDADE • GOOGLE ADSENSE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-6879770260785828"
@@ -274,8 +296,8 @@
         </main>
 
         <!-- ANÚNCIO LATERAL DIREITO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -290,62 +312,81 @@
     </div>
 
     <!-- MODAL DE CONFIGURAÇÃO E MODOS -->
-    <div id="modal-modos" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-3">
-        <div class="bg-[#11131a] border border-white/15 rounded-2xl max-w-md w-full p-4 sm:p-5 shadow-2xl relative text-left">
-            <div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
-                <h3 class="font-heading font-bold text-white text-base flex items-center gap-2">
-                    <i class="ph-bold ph-sliders-horizontal text-amber-400"></i> Modos de Jogo
+    <div id="modal-modos" class="fixed inset-0 z-50 bg-[#0A192F]/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white border border-[#0A192F]/15 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative text-left">
+            <div class="flex items-center justify-between mb-4 border-b border-[#0A192F]/10 pb-3">
+                <h3 class="font-heading font-bold text-[#0A192F] text-base flex items-center gap-2">
+                    <i class="ph-bold ph-sliders-horizontal text-[#C8102E]"></i> Modos de Jogo
                 </h3>
-                <button onclick="fecharModalModos()" class="text-slate-400 hover:text-white text-lg">
+                <button onclick="fecharModalModos()" class="text-[#53647C] hover:text-[#0A192F] text-lg">
                     <i class="ph-bold ph-x"></i>
                 </button>
             </div>
 
             <!-- Seleção de Modo -->
-            <label class="block text-xs font-mono text-slate-400 mb-1.5 uppercase tracking-wider">Formato da Partida</label>
-            <div class="grid grid-cols-2 gap-2 mb-3">
-                <button onclick="selecionarModo('sobrevivencia')" id="opt-modo-sobrevivencia" class="p-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-white font-medium text-xs text-left transition">
-                    <strong class="block text-amber-400 text-sm">Sobrevivência</strong>
-                    <span class="text-[11px] text-slate-400">3 vidas. Vá o mais longe possível.</span>
+            <label class="block text-xs font-mono text-[#0A192F] font-bold mb-2 uppercase tracking-wider">Formato da Partida</label>
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <button onclick="selecionarModo('sobrevivencia')" id="opt-modo-sobrevivencia" class="p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-[#0A192F] font-medium text-xs text-left transition">
+                    <strong class="block text-[#C8102E] text-sm">Sobrevivência</strong>
+                    <span class="text-[11px] text-[#53647C]">3 vidas. Vá o mais longe possível.</span>
                 </button>
-                <button onclick="selecionarModo('classico')" id="opt-modo-classico" class="p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 font-medium text-xs text-left transition hover:border-white/30">
-                    <strong class="block text-white text-sm">Clássico (10R)</strong>
-                    <span class="text-[11px] text-slate-400">10 perguntas rápidas com pontuação.</span>
+                <button onclick="selecionarModo('classico')" id="opt-modo-classico" class="p-3 rounded-xl border border-[#0A192F]/10 bg-white text-[#53647C] font-medium text-xs text-left transition hover:border-[#0A192F]/30">
+                    <strong class="block text-[#0A192F] text-sm">Clássico (10R)</strong>
+                    <span class="text-[11px] text-[#53647C]">10 perguntas rápidas com pontuação.</span>
                 </button>
             </div>
 
             <!-- Seleção de Região -->
-            <label class="block text-xs font-mono text-slate-400 mb-1.5 uppercase tracking-wider">Filtro Geográfico</label>
-            <div class="grid grid-cols-3 gap-1.5 mb-4 text-xs">
-                <button onclick="selecionarRegiao('mundo')" id="opt-regiao-mundo" class="py-1.5 px-2 rounded-lg border border-amber-400 bg-amber-400/10 text-amber-300 font-bold transition text-center">
+            <label class="block text-xs font-mono text-[#0A192F] font-bold mb-2 uppercase tracking-wider">Filtro Geográfico</label>
+            <div class="grid grid-cols-3 gap-2 mb-5 text-xs font-mono">
+                <button onclick="selecionarRegiao('mundo')" id="opt-regiao-mundo" class="py-2 px-2 rounded-lg border border-[#C8102E] bg-[#FAF8F5] text-[#C8102E] font-bold transition text-center">
                     Mundo
                 </button>
-                <button onclick="selecionarRegiao('América do Sul')" id="opt-regiao-amsul" class="py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20">
+                <button onclick="selecionarRegiao('América do Sul')" id="opt-regiao-amsul" class="py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30">
                     América Sul
                 </button>
-                <button onclick="selecionarRegiao('Europa')" id="opt-regiao-europa" class="py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20">
+                <button onclick="selecionarRegiao('Europa')" id="opt-regiao-europa" class="py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30">
                     Europa
                 </button>
-                <button onclick="selecionarRegiao('Ásia')" id="opt-regiao-asia" class="py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20">
+                <button onclick="selecionarRegiao('Ásia')" id="opt-regiao-asia" class="py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30">
                     Ásia
                 </button>
-                <button onclick="selecionarRegiao('África')" id="opt-regiao-africa" class="py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20">
+                <button onclick="selecionarRegiao('África')" id="opt-regiao-africa" class="py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30">
                     África
                 </button>
-                <button onclick="selecionarRegiao('América do Norte')" id="opt-regiao-amnorte" class="py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20">
+                <button onclick="selecionarRegiao('América do Norte')" id="opt-regiao-amnorte" class="py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30">
                     América Norte
                 </button>
             </div>
 
-            <button onclick="aplicarModosEReiniciar()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-heading font-bold text-xs transition">
+            <button onclick="aplicarModosEReiniciar()" class="w-full py-3.5 rounded-xl bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-sm transition">
                 Confirmar e Iniciar Jogo
             </button>
         </div>
     </div>
 
-    <!-- RODAPÉ COMPACTO -->
-    <footer class="w-full border-t border-white/10 py-2.5 text-center text-xs text-slate-500 font-mono">
-        VitaleGeo Arcade &copy; 2026 &mdash; Limites territoriais baseados em dados geopolíticos soberanos.
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
+            </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <!-- LÓGICA DO JOGO -->
@@ -586,8 +627,8 @@
                 let coracoes = '';
                 for (let i = 0; i < 3; i++) {
                     coracoes += i < estado.vidas 
-                        ? '<i class="ph-fill ph-heart text-rose-500"></i>' 
-                        : '<i class="ph-bold ph-heart text-slate-700"></i>';
+                        ? '<i class="ph-fill ph-heart text-[#C8102E]"></i>' 
+                        : '<i class="ph-bold ph-heart text-slate-300"></i>';
                 }
                 vidasContainer.innerHTML = coracoes;
 
@@ -607,7 +648,7 @@
             document.getElementById('challenge-type-badge').innerText = desafio.badge;
             document.getElementById('question-prompt').innerText = desafio.prompt;
 
-            // Mostra ou esconde o país-alvo (se for pergunta de ilha, usa ícone de globo)
+            // Mostra ou esconde o país-alvo
             const targetRow = document.getElementById('target-country-row');
             const flagImg = document.getElementById('flag-img');
             const countryName = document.getElementById('country-name');
@@ -623,13 +664,12 @@
                 countryName.innerText = desafio.targetPais.nome;
                 targetContinent.innerText = desafio.targetPais.continente || 'Planeta Terra';
             } else {
-                // Pergunta genérica (ex: país insular)
                 targetRow.classList.add('hidden');
             }
 
             // Reset do feedback
             const feedback = document.getElementById('feedback-msg');
-            feedback.className = 'h-8 text-xs sm:text-sm font-mono text-slate-400 flex items-center justify-center px-2 text-center w-full';
+            feedback.className = 'h-8 text-xs sm:text-sm font-mono text-[#53647C] flex items-center justify-center px-2 text-center w-full';
             feedback.innerText = 'Clique na opção correta ou use teclas 1 a 4';
 
             // Monta as 4 opções 2x2
@@ -640,12 +680,12 @@
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.id = `btn-opt-${idx}`;
-                btn.className = 'option-btn flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl bg-[#181b24] hover:bg-[#202532] border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm text-left transition w-full';
+                btn.className = 'option-btn flex items-center gap-2.5 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-[#FAF8F5] border border-[#0A192F]/15 text-[#0A192F] font-heading font-semibold text-xs sm:text-sm text-left transition w-full shadow-xs';
                 
                 const iso = opcao.iso2.toLowerCase();
                 btn.innerHTML = `
-                    <span class="w-5 h-5 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[10px] font-mono text-slate-400 shrink-0">${idx + 1}</span>
-                    <img src="/assets/flags/${iso}.svg" onerror="this.src='https://flagcdn.com/w80/${iso}.png'" class="w-7 h-5 object-contain rounded border border-white/15 shrink-0 bg-slate-950" alt="${opcao.nome}">
+                    <span class="w-5 h-5 rounded-md bg-[#FAF8F5] border border-[#0A192F]/10 flex items-center justify-center text-[10px] font-mono text-[#53647C] shrink-0">${idx + 1}</span>
+                    <img src="/assets/flags/${iso}.svg" onerror="this.src='https://flagcdn.com/w80/${iso}.png'" class="w-7 h-5 object-contain rounded border border-[#0A192F]/15 shrink-0 bg-white" alt="${opcao.nome}">
                     <span class="truncate flex-1">${opcao.nome}</span>
                 `;
 
@@ -682,11 +722,11 @@
                     localStorage.setItem(STORAGE_KEY_RECORD, recordeLocal.toString());
                 }
 
-                botaoClicado.classList.remove('bg-[#181b24]', 'hover:bg-[#202532]');
-                botaoClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
+                botaoClicado.classList.remove('bg-white', 'hover:bg-[#FAF8F5]');
+                botaoClicado.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
 
-                feedback.className = 'h-8 text-xs sm:text-sm font-mono text-emerald-400 font-bold flex items-center justify-center px-2 text-center w-full animate-fade-in';
-                feedback.innerHTML = `<i class="ph-bold ph-check-circle mr-1.5 text-base"></i> ${desafio.explicacao}`;
+                feedback.className = 'h-8 text-xs sm:text-sm font-mono text-emerald-700 font-bold flex items-center justify-center px-2 text-center w-full animate-fade-in';
+                feedback.innerHTML = `<i class="ph-bold ph-check-circle mr-1.5 text-base text-emerald-600"></i> ${desafio.explicacao}`;
 
                 estado.historicoPartida.push({ acertou: true, desafio: desafio.prompt, resposta: opcaoEscolhida.nome });
 
@@ -706,17 +746,18 @@
                 estado.streak = 0;
                 estado.erros++;
 
-                botaoClicado.classList.remove('bg-[#181b24]', 'hover:bg-[#202532]');
-                botaoClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
+                botaoClicado.classList.remove('bg-white', 'hover:bg-[#FAF8F5]');
+                botaoClicado.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-800');
 
                 // Destaque do botão correto
                 botoes.forEach(b => {
                     if (b.innerText.includes(desafio.opcaoCorreta.nome)) {
-                        b.classList.add('bg-emerald-500/20', 'border-emerald-500/60', 'text-emerald-300');
+                        b.classList.remove('bg-white', 'hover:bg-[#FAF8F5]');
+                        b.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
                     }
                 });
 
-                feedback.className = 'h-8 text-xs sm:text-sm font-mono text-rose-400 font-bold flex items-center justify-center px-2 text-center w-full animate-fade-in';
+                feedback.className = 'h-8 text-xs sm:text-sm font-mono text-[#C8102E] font-bold flex items-center justify-center px-2 text-center w-full animate-fade-in';
                 feedback.innerHTML = `<i class="ph-bold ph-x-circle mr-1.5 text-base"></i> Resposta correta: ${desafio.opcaoCorreta.nome}`;
 
                 estado.historicoPartida.push({ acertou: false, desafio: desafio.prompt, resposta: opcaoEscolhida.nome, correta: desafio.opcaoCorreta.nome });
@@ -814,11 +855,15 @@
 
         // MODAL DE MODOS
         function abrirModalModos() {
-            document.getElementById('modal-modos').classList.remove('hidden');
+            const m = document.getElementById('modal-modos');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
         }
 
         function fecharModalModos() {
-            document.getElementById('modal-modos').classList.add('hidden');
+            const m = document.getElementById('modal-modos');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
         }
 
         let modoTemp = estado.modo;
@@ -829,11 +874,11 @@
             const btnSobrev = document.getElementById('opt-modo-sobrevivencia');
             const btnClassico = document.getElementById('opt-modo-classico');
             if (m === 'sobrevivencia') {
-                btnSobrev.className = 'p-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-white font-medium text-xs text-left transition';
-                btnClassico.className = 'p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 font-medium text-xs text-left transition hover:border-white/30';
+                btnSobrev.className = 'p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-[#0A192F] font-medium text-xs text-left transition';
+                btnClassico.className = 'p-3 rounded-xl border border-[#0A192F]/10 bg-white text-[#53647C] font-medium text-xs text-left transition hover:border-[#0A192F]/30';
             } else {
-                btnClassico.className = 'p-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-white font-medium text-xs text-left transition';
-                btnSobrev.className = 'p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 font-medium text-xs text-left transition hover:border-white/30';
+                btnClassico.className = 'p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-[#0A192F] font-medium text-xs text-left transition';
+                btnSobrev.className = 'p-3 rounded-xl border border-[#0A192F]/10 bg-white text-[#53647C] font-medium text-xs text-left transition hover:border-[#0A192F]/30';
             }
         }
 
@@ -851,9 +896,9 @@
                 const el = document.getElementById(ids[key]);
                 if (el) {
                     if (key === r) {
-                        el.className = 'py-1.5 px-2 rounded-lg border border-amber-400 bg-amber-400/10 text-amber-300 font-bold transition text-center';
+                        el.className = 'py-2 px-2 rounded-lg border border-[#C8102E] bg-[#FAF8F5] text-[#C8102E] font-bold transition text-center';
                     } else {
-                        el.className = 'py-1.5 px-2 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition text-center hover:border-white/20';
+                        el.className = 'py-2 px-2 rounded-lg border border-[#0A192F]/10 bg-white text-[#53647C] transition text-center hover:border-[#0A192F]/30';
                     }
                 }
             });
@@ -905,66 +950,62 @@
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            // Fundo Gradiente Escuro
-            const bgGrad = ctx.createRadialGradient(450, 150, 40, 450, 450, 620);
-            bgGrad.addColorStop(0, '#1c2233');
-            bgGrad.addColorStop(0.6, '#0d1017');
-            bgGrad.addColorStop(1, '#07080c');
-            ctx.fillStyle = bgGrad;
+            // Fundo Branco Cartográfico / Bege
+            ctx.fillStyle = '#F5F2EB';
             ctx.fillRect(0, 0, 900, 900);
 
-            // Borda Externa
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-            ctx.lineWidth = 3;
+            // Borda Externa Navy
+            ctx.strokeStyle = 'rgba(10, 25, 47, 0.15)';
+            ctx.lineWidth = 4;
             ctx.strokeRect(24, 24, 852, 852);
 
             // Cabeçalho
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#0A192F';
+            ctx.font = 'bold 32px "Orbitron", sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('VITALEGEO ARCADE', 450, 95);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = '14px "Space Mono", monospace';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 15px "JetBrains Mono", monospace';
             ctx.fillText('DESAFIO GEOPOLÍTICO: FRONTEIRAS DO MUNDO', 450, 130);
 
-            // Card Central
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+            // Card Central Branco
+            ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(80, 170, 740, 200);
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+            ctx.strokeStyle = 'rgba(10, 25, 47, 0.12)';
             ctx.lineWidth = 2;
             ctx.strokeRect(80, 170, 740, 200);
 
-            ctx.fillStyle = '#10b981';
-            ctx.font = 'bold 76px "Plus Jakarta Sans", sans-serif';
-            ctx.fillText(`${estado.pontos}`, 450, 275);
+            ctx.fillStyle = '#0A192F';
+            ctx.font = 'bold 84px "Montserrat", sans-serif';
+            ctx.fillText(`${estado.pontos}`, 450, 280);
 
-            ctx.fillStyle = '#cbd5e1';
-            ctx.font = '16px "Space Mono", monospace';
-            ctx.fillText('FRONTEIRAS E LIMITES CORRETOS', 450, 320);
+            ctx.fillStyle = '#53647C';
+            ctx.font = '16px "JetBrains Mono", monospace';
+            ctx.fillText('FRONTEIRAS E LIMITES CORRETOS', 450, 325);
 
             // Estatísticas
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.fillStyle = '#FAF8F5';
             ctx.fillRect(80, 400, 740, 150);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+            ctx.strokeStyle = 'rgba(10, 25, 47, 0.1)';
             ctx.strokeRect(80, 400, 740, 150);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = '12px "Space Mono", monospace';
+            ctx.fillStyle = '#53647C';
+            ctx.font = '13px "JetBrains Mono", monospace';
             ctx.fillText('MELHOR STREAK', 260, 445);
             ctx.fillText('MODO DE JOGO', 640, 445);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 36px "Space Mono", monospace';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 36px "JetBrains Mono", monospace';
             ctx.fillText(`${estado.melhorStreak}x`, 260, 495);
 
-            ctx.fillStyle = '#38bdf8';
-            ctx.font = 'bold 24px "Space Mono", monospace';
+            ctx.fillStyle = '#0A192F';
+            ctx.font = 'bold 22px "JetBrains Mono", monospace';
             ctx.fillText(estado.modo === 'sobrevivencia' ? 'SOBREVIVÊNCIA' : 'CLÁSSICO (10R)', 640, 495);
 
             // Rodapé do Card
-            ctx.fillStyle = '#64748b';
-            ctx.font = '13px "Space Mono", monospace';
+            ctx.fillStyle = '#53647C';
+            ctx.font = '13px "JetBrains Mono", monospace';
             ctx.fillText('JOGUE GRÁTIS EM VITALEGEO.COM.BR/JOGOS/FRONTEIRAS', 450, 830);
 
             // Download automático
@@ -974,9 +1015,9 @@
             link.click();
 
             if (btn) {
-                btn.innerHTML = `<i class="ph-bold ph-check text-emerald-400"></i> Baixado!`;
+                btn.innerHTML = `<i class="ph-bold ph-check text-emerald-600"></i> Baixado!`;
                 setTimeout(() => {
-                    btn.innerHTML = `<i class="ph-bold ph-download-simple text-base"></i> Card PNG`;
+                    btn.innerHTML = `<i class="ph-bold ph-download-simple"></i> Card PNG`;
                 }, 2000);
             }
         }

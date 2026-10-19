@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#090a0f]">
+<html lang="pt-br" class="bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/maior-menor/">
@@ -21,11 +21,11 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -37,16 +37,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#181b24',
-                        geoGold: '#f59e0b',
-                        geoBlue: '#38bdf8'
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -54,13 +56,6 @@
     </script>
 
     <style>
-        .arcade-shell {
-            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
-        }
-        .ad-slot-container {
-            position: relative;
-            overflow: hidden;
-        }
         @keyframes screen-shake-damage {
             0%, 100% { transform: translate(0, 0); }
             20% { transform: translate(-5px, 3px); }
@@ -73,40 +68,48 @@
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-[#F5F2EB] text-[#1F334E] select-none min-h-screen flex flex-col justify-between overflow-x-hidden font-sans antialiased selection:bg-[#C8102E] selection:text-white">
 
-    <!-- HEADER DO ARCADE -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
-                <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Jogos</span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
-
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-scales text-amber-400 text-lg"></i>
-                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Maior ou <span class="text-amber-400">Menor</span>
-                </h1>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
+            <!-- Controles do Jogo no Header -->
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition shadow-xs" title="Som" aria-label="Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition hidden sm:inline-flex shadow-xs" title="Tela Cheia" aria-label="Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
+                <a href="/jogos" class="inline-flex items-center gap-1 text-xs font-semibold text-[#53647C] hover:text-[#0A192F] transition px-2.5 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-xs">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Jogos</span>
+                </a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- WRAPPER 3 COLUNAS DESKTOP -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 flex items-start justify-center gap-4 flex-1">
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 pt-24 sm:pt-28 pb-12 flex items-start justify-center gap-4 flex-1">
 
         <!-- ANÚNCIO LATERAL ESQUERDO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -122,41 +125,61 @@
         <main class="w-full max-w-3xl px-1 sm:px-2 py-1 flex-1 flex flex-col justify-center" id="game-stage-container">
         
             <!-- PALCO DE DUELO ATIVO -->
-            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-3 sm:p-5 w-full flex flex-col justify-between relative shadow-2xl overflow-hidden">
+            <div id="stage-active" class="editorial-card p-4 sm:p-6 w-full flex flex-col justify-between relative shadow-sm overflow-hidden">
                 
                 <!-- Barra de Status e Seletor Compactos -->
-                <div class="w-full flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-2 border-b border-white/10">
-                    <div class="flex items-center gap-1">
-                        <button onclick="mudarCategoria('area')" id="cat-btn-area" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition bg-amber-400 text-slate-950">
+                <div class="w-full flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-3 border-b border-[#0A192F]/10">
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="mudarCategoria('area')" id="cat-btn-area" class="px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1 bg-[#C8102E] text-white shadow-xs">
                             Área
                         </button>
-                        <button onclick="mudarCategoria('pop')" id="cat-btn-pop" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <button onclick="mudarCategoria('pop')" id="cat-btn-pop" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1 bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10">
                             População
                         </button>
-                        <button onclick="mudarCategoria('pib')" id="cat-btn-pib" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <button onclick="mudarCategoria('pib')" id="cat-btn-pib" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1 bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10">
                             PIB
                         </button>
-                        <button onclick="mudarCategoria('caos')" id="cat-btn-caos" class="px-2.5 py-1 rounded-full text-xs font-mono font-medium transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <button onclick="mudarCategoria('caos')" id="cat-btn-caos" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1 bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10">
                             Caos
                         </button>
                     </div>
 
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-3">
                         <div class="flex items-center gap-1">
-                            <span id="vidas-container" class="flex gap-0.5 text-sm text-rose-500">
+                            <span id="vidas-container" class="flex gap-1 text-sm text-[#C8102E]">
                                 <i class="ph-fill ph-heart"></i>
                                 <i class="ph-fill ph-heart"></i>
                                 <i class="ph-fill ph-heart"></i>
                             </span>
                         </div>
-                        <span class="text-slate-300 text-xs">Vitórias: <strong id="score" class="text-amber-400">0</strong></span>
-                        <span class="text-slate-400 text-xs hidden sm:inline">Recorde: <strong id="best-score" class="text-emerald-400">0</strong></span>
+                        <span class="text-[#0A192F] font-semibold text-xs">Vitórias: <strong id="score" class="text-[#C8102E]">0</strong></span>
+                        <span class="text-[#53647C] text-xs hidden sm:inline">Recorde: <strong id="best-score" class="text-emerald-700 font-bold">0</strong></span>
+
+                        <!-- Hover Popover de Regras do Duelo -->
+                        <div class="hover-info-container">
+                            <button type="button" class="hover-info-trigger" aria-label="Como Funciona o Duelo?">
+                                <i class="ph-bold ph-info text-[#C8102E]"></i>
+                                <span>Regras</span>
+                            </button>
+                            <div class="hover-info-popover">
+                                <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="ph-fill ph-scales text-[#C8102E]"></i> Guerra de Escala & Números
+                                </h4>
+                                <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2 text-left">
+                                    <li>• <strong>Área Territorial Real:</strong> Desmistifica a Projeção de Mercator comparando a área oficial soberana em km².</li>
+                                    <li>• <strong>População:</strong> Censo e projeções oficiais das Nações Unidas para 198 países.</li>
+                                    <li>• <strong>PIB Nominal:</strong> Dados oficiais do FMI/Banco Mundial em bilhões de dólares.</li>
+                                    <li>• <strong>Modo Caos:</strong> Alterna aleatoriamente a cada rodada entre área, habitantes ou economia!</li>
+                                    <li>• <strong>Atalhos:</strong> Teclas ↑ (Maior) e ↓ (Menor); Espaço ou Enter para avançar.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Pergunta da Rodada -->
-                <div class="w-full py-1.5 text-center my-1 bg-slate-950/60 rounded-lg border border-white/5">
-                    <h2 class="text-xs sm:text-sm font-mono uppercase tracking-wider text-amber-300 font-bold" id="round-metric-title">
+                <div class="w-full py-2 text-center my-2 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10">
+                    <h2 class="text-xs sm:text-sm font-heading uppercase tracking-wider text-[#0A192F] font-bold" id="round-metric-title">
                         Quem tem maior área territorial?
                     </h2>
                 </div>
@@ -165,45 +188,45 @@
                 <div class="grid grid-cols-2 gap-2 sm:gap-3 my-auto py-1 relative">
                     
                     <!-- CARTA DA ESQUERDA (Referência) -->
-                    <div class="relative overflow-hidden bg-slate-900/90 rounded-xl border border-white/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center">
-                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-1.5 shadow">
+                    <div class="relative overflow-hidden bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center shadow-xs">
+                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-[#0A192F]/15 bg-white p-0.5 mb-1.5 shadow-xs">
                             <img id="left-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
                         </div>
-                        <span class="text-[10px] font-mono text-slate-400 truncate max-w-full mb-0.5" id="left-continent">Referência</span>
-                        <h3 class="text-base sm:text-xl font-heading font-black text-white leading-tight mb-2 truncate max-w-full" id="left-name">Carregando...</h3>
-                        <div class="text-base sm:text-2xl text-amber-400 font-mono font-bold tracking-tight" id="left-value">---</div>
-                        <p class="text-[10px] sm:text-xs font-mono text-slate-400 mt-0.5" id="left-unit">Área real</p>
+                        <span class="text-[10px] font-mono text-[#53647C] truncate max-w-full mb-0.5" id="left-continent">Referência</span>
+                        <h3 class="text-base sm:text-xl font-heading font-black text-[#0A192F] leading-tight mb-2 truncate max-w-full" id="left-name">Carregando...</h3>
+                        <div class="text-base sm:text-2xl text-[#0A192F] font-mono font-bold tracking-tight" id="left-value">---</div>
+                        <p class="text-[10px] sm:text-xs font-mono text-[#53647C] mt-0.5" id="left-unit">Área real</p>
                     </div>
 
                     <!-- BADGE VS CENTRAL -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-amber-400 text-slate-950 font-black font-mono rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[10px] sm:text-xs shadow-xl border border-white/40 pointer-events-none">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-[#C8102E] text-white font-black font-mono rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-[10px] sm:text-xs shadow-md border border-white pointer-events-none">
                         VS
                     </div>
 
                     <!-- CARTA DA DIREITA (Desafiante) -->
-                    <div class="relative overflow-hidden bg-slate-900/90 rounded-xl border border-white/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center">
-                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-white/20 bg-slate-950 p-0.5 mb-1.5 shadow">
+                    <div class="relative overflow-hidden bg-white rounded-xl border border-[#0A192F]/10 p-3 sm:p-5 flex flex-col items-center justify-center text-center shadow-xs">
+                        <div class="w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border border-[#0A192F]/15 bg-white p-0.5 mb-1.5 shadow-xs">
                             <img id="right-flag-mini" src="" class="w-full h-full object-contain rounded" alt="Bandeira">
                         </div>
-                        <span class="text-[10px] font-mono text-slate-400 truncate max-w-full mb-0.5" id="right-prompt-label">Comparado ao lado</span>
-                        <h3 class="text-base sm:text-xl font-heading font-black text-white leading-tight mb-2 truncate max-w-full" id="right-name">Carregando...</h3>
+                        <span class="text-[10px] font-mono text-[#53647C] truncate max-w-full mb-0.5" id="right-prompt-label">Comparado ao lado</span>
+                        <h3 class="text-base sm:text-xl font-heading font-black text-[#0A192F] leading-tight mb-2 truncate max-w-full" id="right-name">Carregando...</h3>
                         
                         <!-- Controles de Palpite -->
-                        <div id="game-controls" class="flex flex-col gap-1.5 w-full max-w-[180px]">
-                            <button onclick="guess('higher')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm">
-                                <i class="ph-bold ph-caret-up text-emerald-400"></i> <span id="btn-higher-text">MAIOR</span>
+                        <div id="game-controls" class="flex flex-col gap-2 w-full max-w-[180px]">
+                            <button onclick="guess('higher')" class="w-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-500/40 text-emerald-800 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm shadow-xs">
+                                <i class="ph-bold ph-caret-up text-emerald-600"></i> <span id="btn-higher-text">MAIOR</span>
                             </button>
-                            <button onclick="guess('lower')" class="w-full bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm">
-                                <i class="ph-bold ph-caret-down text-rose-400"></i> <span id="btn-lower-text">MENOR</span>
+                            <button onclick="guess('lower')" class="w-full bg-rose-50 hover:bg-rose-100 border border-rose-500/40 text-rose-800 font-heading font-bold py-2 sm:py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition text-xs sm:text-sm shadow-xs">
+                                <i class="ph-bold ph-caret-down text-rose-600"></i> <span id="btn-lower-text">MENOR</span>
                             </button>
                         </div>
 
                         <!-- Overlay de Revelação -->
                         <div id="result-overlay" class="hidden flex-col items-center w-full">
-                            <div class="text-base sm:text-2xl text-amber-400 font-mono font-bold" id="right-value-reveal">---</div>
-                            <div id="scale-ratio-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300 mt-0.5 mb-1 truncate max-w-full"></div>
-                            <div id="result-message" class="font-heading font-bold text-xs uppercase mb-1.5"></div>
-                            <button onclick="nextRound()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-2 px-4 rounded-lg transition shadow flex items-center justify-center gap-1">
+                            <div class="text-base sm:text-2xl text-[#0A192F] font-mono font-bold" id="right-value-reveal">---</div>
+                            <div id="scale-ratio-badge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#0A192F]/10 text-[#53647C] mt-1 mb-1 truncate max-w-full font-medium"></div>
+                            <div id="result-message" class="font-heading font-bold text-xs uppercase mb-2"></div>
+                            <button onclick="nextRound()" class="bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-xs py-2 px-4 rounded-lg transition shadow-xs flex items-center justify-center gap-1">
                                 Próximo <i class="ph-bold ph-arrow-right"></i>
                             </button>
                         </div>
@@ -211,51 +234,50 @@
                 </div>
 
                 <!-- Rodapé Discreto -->
-                <div id="dossier-footer" class="bg-slate-950/70 border-t border-white/10 px-3 py-1.5 text-[11px] text-slate-400 font-mono text-center truncate rounded-b-xl mt-1">
-                    <span id="dossier-text">Teclas ↑ (Maior) e ↓ (Menor) disponíveis</span>
+                <div id="curiosity-footer" class="bg-[#FAF8F5] border-t border-[#0A192F]/10 px-3 py-2 text-[11px] text-[#53647C] font-mono text-center truncate rounded-b-xl mt-2">
+                    <span id="curiosity-text">Teclas ↑ (Maior) e ↓ (Menor) disponíveis</span>
                 </div>
             </div>
 
             <!-- TELA DE GAME OVER -->
-            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-2xl">
-                <div class="w-14 h-14 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-2xl mb-2.5">
+            <div id="stage-gameover" class="editorial-card p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-lg">
+                <div class="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-[#C8102E] text-2xl mb-2.5">
                     <i class="ph-bold ph-scales"></i>
                 </div>
                 
-                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1">Fim de Jogo</span>
-                <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-2">Suas Vidas Acabaram</h2>
-                <h2 class="text-2xl sm:text-4xl font-heading font-black text-white mb-2">Sequência Interrompida</h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#C8102E] font-bold mb-1">Fim de Jogo</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-[#0A192F] mb-2">Sequência Interrompida</h2>
                 
-                <p id="gameover-comparison" class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto mb-4">--</p>
+                <p id="gameover-comparison" class="text-xs sm:text-sm text-[#53647C] max-w-lg mx-auto mb-4">--</p>
 
-                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
-                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Duelos Vencidos na Partida</span>
-                    <div class="text-5xl font-heading font-black text-amber-400 mb-1" id="final-score">0</div>
-                    <p class="text-xs font-mono text-emerald-400 mb-2" id="final-mode-label">Modo: Área Real (km²)</p>
-                    <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200" id="final-rank">
+                <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xs">
+                    <span class="text-[11px] font-mono text-[#53647C] uppercase tracking-widest block mb-1 font-medium">Duelos Vencidos na Partida</span>
+                    <div class="text-5xl font-heading font-black text-[#0A192F] mb-1" id="final-score">0</div>
+                    <p class="text-xs font-mono text-emerald-700 font-bold mb-2" id="final-mode-label">Modo: Área Real (km²)</p>
+                    <div class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white border border-[#0A192F]/10 text-[#0A192F] font-semibold" id="final-rank">
                         Rank: Analista Geográfico
                     </div>
                 </div>
 
-                <div class="flex flex-wrap items-center justify-center gap-2.5 w-full max-w-md">
-                    <button onclick="compartilharWhatsApp()" class="flex-1 min-w-[180px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharWhatsApp()" class="flex-1 min-w-[170px] bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
                         <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
                     </button>
-                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                    <button onclick="baixarScorecardPNG()" class="bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5 shadow-xs">
                         <i class="ph-bold ph-download-simple text-base"></i> Card PNG
                     </button>
-                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-white hover:bg-[#FAF8F5] border border-[#0A192F]/15 text-[#0A192F] font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5 shadow-xs">
                         <i class="ph-bold ph-copy text-base"></i> Copiar
                     </button>
-                    <button onclick="initGame()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-1 shadow-lg shadow-amber-400/20">
+                    <button onclick="initGame()" class="w-full bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2 mt-1 shadow-sm">
                         <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
                     </button>
                 </div>
             </div>
 
             <!-- BANNER INFERIOR -->
-            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
-                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+            <section class="editorial-card p-3 text-center min-h-[90px] sm:min-h-[120px] flex flex-col justify-center items-center mt-3">
+                <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-1 font-mono font-medium">PUBLICIDADE • GOOGLE ADSENSE</span>
                 <div class="w-full min-h-[90px] flex items-center justify-center">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -272,8 +294,8 @@
         </main>
 
         <!-- ANÚNCIO LATERAL DIREITO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -286,8 +308,28 @@
         </aside>
     </div>
 
-    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Guerra de Escala & Números · 198 Nações
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
+            </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script>
@@ -386,7 +428,7 @@
         function alternarSom() {
             somAtivo = !somAtivo;
             const icon = document.getElementById('sound-icon');
-            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high' : 'ph-bold ph-speaker-slash text-slate-400';
         }
 
         // Estado do Jogo
@@ -439,9 +481,9 @@
             ['area', 'pop', 'pib', 'caos'].forEach(c => {
                 const btn = document.getElementById(`cat-btn-${c}`);
                 if (c === cat) {
-                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1.5 bg-amber-400 text-slate-950";
+                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-bold transition flex items-center gap-1 bg-[#C8102E] text-white shadow-xs";
                 } else {
-                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1.5 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10";
+                    btn.className = "px-3 py-1.5 rounded-full text-xs font-mono font-medium transition flex items-center gap-1 bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10";
                 }
             });
             initGame();
@@ -451,9 +493,9 @@
             let html = '';
             for (let i = 0; i < 3; i++) {
                 if (i < vidas) {
-                    html += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                    html += '<i class="ph-fill ph-heart text-[#C8102E]"></i>';
                 } else {
-                    html += '<i class="ph-bold ph-heart-break text-slate-700"></i>';
+                    html += '<i class="ph-bold ph-heart text-slate-300"></i>';
                 }
             }
             document.getElementById('vidas-container').innerHTML = html;
@@ -469,26 +511,22 @@
 
             const titleEl = document.getElementById('round-metric-title');
             const unitLeft = document.getElementById('left-unit');
-            const unitRight = document.getElementById('right-unit-reveal');
             const btnHigher = document.getElementById('btn-higher-text');
             const btnLower = document.getElementById('btn-lower-text');
 
             if (metricaRodada === 'area') {
                 titleEl.innerText = 'Quem tem maior área territorial (km²)?';
                 unitLeft.innerText = 'Área real';
-                unitRight.innerText = 'Área real';
                 btnHigher.innerText = 'MAIOR';
                 btnLower.innerText = 'MENOR';
             } else if (metricaRodada === 'pop') {
                 titleEl.innerText = 'Quem tem mais habitantes?';
                 unitLeft.innerText = 'População estimada';
-                unitRight.innerText = 'População estimada';
                 btnHigher.innerText = 'MAIS';
                 btnLower.innerText = 'MENOS';
             } else {
                 titleEl.innerText = 'Quem tem maior economia (PIB)?';
                 unitLeft.innerText = 'PIB Nominal';
-                unitRight.innerText = 'PIB Nominal';
                 btnHigher.innerText = 'MAIOR';
                 btnLower.innerText = 'MENOR';
             }
@@ -519,7 +557,6 @@
             sortearMetricaDaRodada();
             const pool = obterPoolParaMetrica(metricaRodada);
 
-            // Garante que leftItem tenha valor válido na métrica sorteada (caso Caos mude para PIB)
             if (metricaRodada === 'pib' && !leftItem.pib) {
                 leftItem = pool[Math.floor(Math.random() * pool.length)];
             }
@@ -532,20 +569,19 @@
         }
 
         function configurarBandeira(imgEl, code) {
+            if (!imgEl) return;
             imgEl.src = `/assets/flags/${code}.svg`;
-            imgEl.onerror = () => { imgEl.src = `https://flagcdn.com/w640/${code}.png`; };
+            imgEl.onerror = () => { imgEl.src = `https://flagcdn.com/w160/${code}.png`; };
         }
 
         function render() {
             document.getElementById("left-name").innerText = leftItem.name;
             document.getElementById("left-continent").innerText = `${leftItem.continente} · Capital: ${leftItem.capital}`;
             document.getElementById("left-value").innerText = formatarValor(leftItem, metricaRodada);
-            configurarBandeira(document.getElementById("left-img"), leftItem.code);
             configurarBandeira(document.getElementById("left-flag-mini"), leftItem.code);
 
             document.getElementById("right-name").innerText = rightItem.name;
             document.getElementById("right-prompt-label").innerText = `${rightItem.continente} · Capital: ${rightItem.capital}`;
-            configurarBandeira(document.getElementById("right-img"), rightItem.code);
             configurarBandeira(document.getElementById("right-flag-mini"), rightItem.code);
 
             document.getElementById("game-controls").classList.remove("hidden");
@@ -590,7 +626,7 @@
             ratioBadge.innerText = `${nomeMaior} é ${multiplo}x maior que ${nomeMenor}`;
 
             if (rightItem.fato) {
-                document.getElementById('dossier-text').innerHTML = `<i class="ph-bold ph-book-open text-amber-400"></i> <strong>${rightItem.name}:</strong> ${rightItem.fato}`;
+                document.getElementById('curiosity-text').innerHTML = `<i class="ph-bold ph-book-open text-[#C8102E]"></i> <strong>${rightItem.name}:</strong> ${rightItem.fato}`;
             }
 
             ultimoResultadoVitoria = win;
@@ -605,11 +641,11 @@
                     vidas++;
                     tocarSom('cura');
                     atualizarVidasUI();
-                    extra = ' · +1 ESCUDO RECUPERADO!';
+                    extra = ' · +1 VIDA RECUPERADA!';
                 }
 
                 message.innerText = `Correto! Vitória no Duelo!${extra}`;
-                message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-emerald-400 mb-3";
+                message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-emerald-700 mb-2";
 
                 if (score > bestScore) {
                     bestScore = score;
@@ -632,12 +668,12 @@
                 stage.classList.add('shake-damage');
 
                 if (vidas <= 0) {
-                    message.innerText = "Escudos Esgotados! Fim da Partida!";
-                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-rose-500 mb-3";
+                    message.innerText = "Vidas Esgotadas! Fim da Partida!";
+                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-[#C8102E] mb-2";
                     setTimeout(finalizarGameOver, 1400);
                 } else {
-                    message.innerText = `Incorreto! Restam ${vidas} escudo(s)!`;
-                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-rose-400 mb-3";
+                    message.innerText = `Incorreto! Restam ${vidas} vida(s)!`;
+                    message.className = "font-heading font-bold uppercase tracking-wider text-xs sm:text-sm text-[#C8102E] mb-2";
                 }
             }
             document.getElementById("score").innerText = score;
@@ -709,7 +745,7 @@
             const texto = `Venci ${score} duelos na Guerra de Escala & Números (${obterNomeCategoria(categoriaSelecionada)}) do VitaleGeo! Jogue em: https://www.vitalegeo.com.br/jogos/maior-menor/`;
             const btn = document.getElementById('btn-copiar');
             navigator.clipboard.writeText(texto).then(() => {
-                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
+                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-600"></i> Copiado!';
                 setTimeout(() => { btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar'; }, 2000);
             });
         }
@@ -720,53 +756,50 @@
             canvas.height = 900;
             const ctx = canvas.getContext('2d');
 
-            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
-            grad.addColorStop(0, '#171c2b');
-            grad.addColorStop(1, '#090a0f');
-            ctx.fillStyle = grad;
+            ctx.fillStyle = '#F5F2EB';
             ctx.fillRect(0, 0, 900, 900);
 
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.strokeStyle = 'rgba(10, 25, 47, 0.15)';
             ctx.lineWidth = 4;
             ctx.strokeRect(36, 36, 828, 828);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.fillStyle = '#0A192F';
+            ctx.font = 'bold 22px "Orbitron", sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('VITALEGEO ARCADE · DUELO DE ESCALA REAL', 450, 110);
 
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '900 44px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = '900 38px "Montserrat", sans-serif';
             ctx.fillText('GUERRA DE ESCALA & NÚMEROS', 450, 175);
 
-            ctx.fillStyle = '#11131a';
+            ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(110, 230, 680, 340);
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.strokeStyle = 'rgba(10, 25, 47, 0.1)';
             ctx.lineWidth = 2;
             ctx.strokeRect(110, 230, 680, 340);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillStyle = '#53647C';
+            ctx.font = 'bold 18px "JetBrains Mono", monospace';
             ctx.fillText(`MODO: ${obterNomeCategoria(categoriaSelecionada).toUpperCase()}`, 450, 290);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = '900 110px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#0A192F';
+            ctx.font = '900 110px "Montserrat", sans-serif';
             ctx.fillText(`${score}`, 450, 415);
 
             ctx.fillStyle = '#10b981';
-            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.font = 'bold 22px "JetBrains Mono", monospace';
             ctx.fillText(`DUELOS VENCIDOS · RECORDE: ${bestScore}`, 450, 480);
 
-            ctx.fillStyle = '#e2e8f0';
-            ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#0A192F';
+            ctx.font = 'bold 22px "Montserrat", sans-serif';
             ctx.fillText(obterRank(score), 450, 535);
 
-            ctx.fillStyle = '#cbd5e1';
-            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillStyle = '#53647C';
+            ctx.font = '500 20px "Montserrat", sans-serif';
             ctx.fillText('Compare área real, população e PIB das nações em:', 450, 710);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 24px "JetBrains Mono", monospace';
             ctx.fillText('www.vitalegeo.com.br/jogos/maior-menor', 450, 760);
 
             const link = document.createElement('a');

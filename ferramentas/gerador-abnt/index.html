@@ -1,181 +1,283 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth bg-[#090a0f]">
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/gerador-abnt/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador ABNT | VitaleGeo</title>
+    <title>Gerador de Referências ABNT NBR 6023 | VitaleGeo</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
-    <meta name="description" content="Gerador rapido de referencias no padrao ABNT.">
-    <meta property="og:title" content="Gerador ABNT | VitaleGeo">
-    <meta property="og:description" content="Gerador rapido de referencias no padrao ABNT.">
+    <meta name="description" content="Gere referências bibliográficas automáticas e formatadas segundo a norma ABNT NBR 6023 para livros e sites da web.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gerador de Referências ABNT NBR 6023 | VitaleGeo">
+    <meta property="og:description" content="Formate citações e referências bibliográficas de livros e sites instantaneamente no padrão acadêmico oficial.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vitalegeo.com.br/ferramentas/gerador-abnt">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/gerador-abnt/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/gerador-abnt.jpg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Fontes Oficiais VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Plus Jakarta Sans', 'sans-serif'] },
-                    colors: { geoNavy: '#0f172a', geoBlue: '#3b82f6', geoGold: '#f59e0b', geoPaper: '#1e293b' }
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
+                    }
                 }
             }
         }
     </script>
-
 </head>
-<body class="text-slate-300 font-sans antialiased  selection:bg-amber-400 selection:text-black page-shell">
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between">
 
-        <nav class="glass-nav fixed w-full z-40 top-0">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2 group">
-                <i class="ph-fill ph-globe-hemisphere-east text-2xl text-amber-400 group-hover:rotate-45 transition duration-500"></i>
-                <span class="text-xl font-heading font-bold text-white tracking-tight">Vitale<span class="text-amber-400">Geo</span></span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="/" class="hover:text-white transition">Início</a>
-                <a href="/blog" class="hover:text-white transition">Dossiês</a>
-                <a href="/ferramentas" class="text-white">Ferramentas</a>
-                <a href="/jogos" class="hover:text-white transition">Simulações</a>
-                <a href="/videos" class="hover:text-white transition">Vídeos</a>
-                <a href="/sobre" class="hover:text-white transition">Sobre</a>
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
-            <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-300 hover:text-white border border-white/10 hover:border-white/20 px-4 py-2 rounded-full transition">
-                <i class="ph-fill ph-youtube-logo text-base text-red-500"></i> Canal no YouTube
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
             </a>
         </div>
     </nav>
 
-    <div class="fixed top-24 right-6 z-30">
-        <a href="/ferramentas" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition group">
-            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition"></i> Voltar
-        </a>
-    </div>
-
-    <main class="page-content pt-32 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-geoGold mb-4">
-                <i class="ph-bold ph-quotes"></i> Ferramenta
-            </div>
-            <h1 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">Gerador ABNT</h1>
-            <p class="text-slate-400 max-w-2xl mb-10">
-                Preencha os campos e copie a referencia pronta. Padrao simples para livros e sites.
-            </p>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-heading text-white">Dados</h2>
-                        <div class="text-xs text-slate-500 uppercase tracking-widest">ABNT NBR 6023</div>
-                    </div>
-
-                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="ref-type">Tipo</label>
-                    <select id="ref-type" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white mb-6">
-                        <option value="book">Livro</option>
-                        <option value="site">Site</option>
-                    </select>
-
-                    <div class="grid grid-cols-1 gap-4 mb-6">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="author">Autor</label>
-                            <input id="author" type="text" placeholder="Nome Sobrenome" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="title">Titulo</label>
-                            <input id="title" type="text" placeholder="Titulo principal" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="subtitle">Subtitulo</label>
-                            <input id="subtitle" type="text" placeholder="Opcional" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                    </div>
-
-                    <div id="book-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="edition">Edicao</label>
-                            <input id="edition" type="text" placeholder="2" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="year">Ano</label>
-                            <input id="year" type="text" placeholder="2026" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="city">Cidade</label>
-                            <input id="city" type="text" placeholder="Sao Paulo" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="publisher">Editora</label>
-                            <input id="publisher" type="text" placeholder="Nome da editora" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                    </div>
-
-                    <div id="site-fields" class="grid grid-cols-1 gap-4 mb-6 hidden">
-                        <div>
-                            <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="url">URL</label>
-                            <input id="url" type="text" placeholder="https://exemplo.com" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="access-date">Acesso</label>
-                                <input id="access-date" type="date" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                            </div>
-                            <div>
-                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-2" for="year-site">Ano</label>
-                                <input id="year-site" type="text" placeholder="2026" class="w-full rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2 text-white">
-                            </div>
-                        </div>
-                    </div>
+    <!-- Conteúdo Principal -->
+    <main class="page-content pt-28 sm:pt-32 pb-16 px-4 sm:px-6 flex-1">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Cabeçalho Minimalista com Hover Informativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Metodologia & Citações
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Gerador ABNT NBR 6023
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-xl">
+                        Formate citações acadêmicas e bibliográficas no padrão nacional para livros e websites com um clique.
+                    </p>
                 </div>
 
-                <div class="glass-container p-6 border border-white/5 rounded-2xl">
-                    <h2 class="text-xl font-heading text-white mb-4">Referencia</h2>
-                    <div class="bg-slate-900/60 border border-white/5 rounded-xl p-4 mb-4">
-                        <p id="result" class="text-sm text-slate-200 leading-relaxed">Preencha os campos para gerar a referencia.</p>
-                    </div>
-                    <button id="btn-copy" class="bg-geoGold text-geoNavy text-xs font-bold px-4 py-2 rounded uppercase hover:bg-white transition shadow-lg">
-                        Copiar
+                <!-- Hover Tooltip Informativo -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Normas e Regras da ABNT">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Regras da NBR 6023</span>
                     </button>
-                    <p id="copy-msg" class="text-xs text-slate-500 mt-3"></p>
-                    <p class="text-xs text-slate-600 mt-6">Revise sempre os dados conforme sua instituicao.</p>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-book-open text-[#C8102E]"></i> Padrões Oficiais
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            A norma ABNT NBR 6023 estabelece os elementos obrigatórios e complementares de referências em pesquisas e artigos:
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Autoria:</strong> SOBRENOME em letras maiúsculas, seguido do prenome abreviado ou por extenso.</li>
+                            <li>• <strong>Título:</strong> Em destaque tipográfico (negrito ou itálico). O subtítulo <em>não</em> leva destaque.</li>
+                            <li>• <strong>Documentos Online:</strong> É mandatório informar o endereço eletrônico ("Disponível em: &lt;URL&gt;") e a data de acesso ("Acesso em: DD mmm. AAAA").</li>
+                        </ul>
+                    </div>
                 </div>
+            </header>
+
+            <!-- Grid da Ferramenta -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Formulário de Entrada -->
+                <div class="editorial-card p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-[#0A192F]/10">
+                        <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-2">
+                            <i class="ph-bold ph-pencil-simple text-[#C8102E]"></i> Dados da Obra
+                        </h2>
+                        <span class="text-[10px] font-mono text-[#53647C]">NBR 6023:2018</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="ref-type">Tipo de Documento</label>
+                        <div class="relative">
+                            <select id="ref-type" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2.5 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] appearance-none cursor-pointer pr-10 shadow-xs">
+                                <option value="book">Livro / Publicação Impressa</option>
+                                <option value="site">Website / Artigo Online</option>
+                            </select>
+                            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#53647C]">
+                                <i class="ph-bold ph-caret-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="author">Autor (Nome Sobrenome)</label>
+                            <input id="author" type="text" placeholder="Ex: Milton Santos" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="title">Título Principal</label>
+                                <input id="title" type="text" placeholder="Ex: Por uma outra globalização" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="subtitle">Subtítulo (Opcional)</label>
+                                <input id="subtitle" type="text" placeholder="Ex: do pensamento único à consciência" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos Específicos para Livro -->
+                    <div id="book-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-[#0A192F]/10">
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="edition">Edição</label>
+                            <input id="edition" type="text" placeholder="Ex: 5" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="year">Ano de Publicação</label>
+                            <input id="year" type="text" placeholder="Ex: 2000" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="city">Cidade</label>
+                            <input id="city" type="text" placeholder="Ex: Rio de Janeiro" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="publisher">Editora</label>
+                            <input id="publisher" type="text" placeholder="Ex: Record" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                    </div>
+
+                    <!-- Campos Específicos para Website -->
+                    <div id="site-fields" class="grid grid-cols-1 gap-3 pt-2 border-t border-[#0A192F]/10 hidden">
+                        <div>
+                            <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="url">URL do Artigo / Página</label>
+                            <input id="url" type="text" placeholder="https://www.vitalegeo.com.br/blog/..." class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="access-date">Data de Acesso</label>
+                                <input id="access-date" type="date" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-mono font-semibold uppercase tracking-wider text-[#53647C] mb-1.5" for="year-site">Ano de Publicação</label>
+                                <input id="year-site" type="text" placeholder="2026" class="w-full rounded-xl border border-[#0A192F]/15 bg-[#FAF8F5] px-3.5 py-2 text-xs sm:text-sm text-[#0A192F] font-semibold focus:outline-none focus:border-[#C8102E] shadow-xs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel de Referência Gerada -->
+                <div class="editorial-card p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#0A192F]/10">
+                            <h2 class="text-sm font-heading font-bold text-[#0A192F] uppercase tracking-wider flex items-center gap-2">
+                                <i class="ph-bold ph-quotes text-[#C8102E]"></i> Citação Formatada
+                            </h2>
+                            <span class="text-[10px] font-mono text-[#53647C]">Pronta para uso</span>
+                        </div>
+
+                        <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-4 sm:p-5 mb-5 shadow-inner min-h-[140px] flex items-center">
+                            <p id="result" class="text-xs sm:text-sm text-[#0A192F] leading-relaxed font-sans">
+                                Preencha os campos ao lado para gerar a referência bibliográfica formatada automaticamente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button id="btn-copy" class="w-full py-3 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-sm">
+                            <i class="ph-bold ph-copy text-sm"></i> Copiar Referência
+                        </button>
+                        <p id="copy-msg" class="text-xs font-mono text-emerald-700 font-semibold text-center mt-2.5 h-4"></p>
+                        <p class="text-[11px] text-[#53647C] font-mono text-center mt-2">
+                            Revise sempre os dados conforme os requisitos específicos da sua instituição de ensino.
+                        </p>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Bloco de Monetização AdSense (Anti-CLS com Altura Reservada) -->
+            <div class="adsense-slot my-8 mx-auto w-full max-w-5xl min-h-[250px] bg-white border border-[#0A192F]/10 rounded-xl flex items-center justify-center text-xs text-[#53647C] font-mono">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
         </div>
     </main>
 
-                    <footer class="site-footer">
-        <div class="max-w-6xl mx-auto">
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
             <div class="site-footer__social">
-                <a href="https://github.com/vitaledev" target="_blank" class="hover:text-white transition" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank" class="hover:text-red-500 transition" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
             </div>
-            <p class="site-footer__brand font-heading text-base text-white">VitaleGeo</p>
-            <p class="text-slate-400 text-xs">Arquivo independente de geopolítica e cartografia investigativa.</p>
-            <div class="site-footer__links text-xs mt-4">
-                <a href="/sobre/">Sobre o Projeto</a>
-                <span class="text-slate-700">·</span>
-                <a href="/politica/">Política de Privacidade</a>
-                <span class="text-slate-700">·</span>
-                <a href="https://www.youtube.com/@vitalegeo" target="_blank">Canal YouTube</a>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
             </div>
-            <p class="text-[11px] text-slate-600 mt-8">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <!-- Lógica de Formatação ABNT NBR 6023 -->
     <script>
         const refType = document.getElementById('ref-type');
         const bookFields = document.getElementById('book-fields');
         const siteFields = document.getElementById('site-fields');
         const result = document.getElementById('result');
         const copyMsg = document.getElementById('copy-msg');
+        const btnCopy = document.getElementById('btn-copy');
 
         const fields = {
             author: document.getElementById('author'),
@@ -212,6 +314,11 @@
             const subtitle = fields.subtitle.value.trim();
             const titleBlock = subtitle ? `${title}: ${subtitle}` : title;
 
+            if (!author && !title) {
+                result.textContent = 'Preencha os campos ao lado para gerar a referência bibliográfica formatada automaticamente.';
+                return;
+            }
+
             if (refType.value === 'book') {
                 const edition = fields.edition.value.trim();
                 const ed = edition ? `${edition}. ed.` : '';
@@ -222,7 +329,7 @@
                     author,
                     titleBlock,
                     ed,
-                    city && publisher ? `${city}: ${publisher}, ${year}.` : ''
+                    city && publisher ? `${city}: ${publisher}, ${year}.` : (year ? `${year}.` : '')
                 ].filter(Boolean);
                 result.textContent = parts.join(' ');
                 return;
@@ -235,7 +342,7 @@
                 author,
                 titleBlock,
                 yearSite ? `${yearSite}.` : '',
-                url ? `Disponivel em: ${url}.` : '',
+                url ? `Disponível em: <${url}>.` : '',
                 access ? `Acesso em: ${access}.` : ''
             ].filter(Boolean);
             result.textContent = siteParts.join(' ');
@@ -254,52 +361,26 @@
 
         document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', buildReference));
         refType.addEventListener('change', toggleType);
+        
+        // Define data de acesso default como hoje
+        const today = new Date().toISOString().slice(0, 10);
+        fields.accessDate.value = today;
+
         toggleType();
 
-        document.getElementById('btn-copy').addEventListener('click', async () => {
+        btnCopy.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(result.textContent);
-                copyMsg.textContent = 'Referencia copiada.';
+                copyMsg.textContent = '✓ Referência copiada com sucesso!';
+                btnCopy.classList.add('bg-emerald-600');
+                setTimeout(() => {
+                    copyMsg.textContent = '';
+                    btnCopy.classList.remove('bg-emerald-600');
+                }, 2500);
             } catch (err) {
-                copyMsg.textContent = 'Nao foi possivel copiar.';
+                copyMsg.textContent = 'Não foi possível copiar automaticamente.';
             }
-            setTimeout(() => { copyMsg.textContent = ''; }, 2000);
         });
     </script>
-    <div class="h-20 md:hidden"></div>
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden mobile-app-nav">
-        <div class="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#090a0f]/95 backdrop-blur shadow-2xl">
-            <div class="grid grid-cols-4 gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="/" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-house text-xl text-geoGold"></i> Home
-                </a>
-                <a href="/jogos" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-game-controller text-xl"></i> Jogos
-                </a>
-                <a href="/ferramentas" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-wrench text-xl"></i> Ferramentas
-                </a>
-                <a href="/blog" class="flex flex-col items-center gap-1 hover:text-white transition">
-                    <i class="ph-fill ph-newspaper text-xl"></i> Blog
-                </a>
-            </div>
-        </div>
-    </nav>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6879770260785828"
-     data-ad-slot="5140105675"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </body>
 </html>
-
-
-
-
-
-

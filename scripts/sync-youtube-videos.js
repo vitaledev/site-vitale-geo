@@ -200,8 +200,13 @@ async function run() {
     }
   }
 
-  const rssItems = await syncFromRss();
-  console.log(`📥 ${rssItems.length} vídeos recentes encontrados no feed RSS.`);
+  let rssItems = [];
+  try {
+    rssItems = await syncFromRss();
+    console.log(`📥 ${rssItems.length} vídeos recentes encontrados no feed RSS.`);
+  } catch (err) {
+    console.warn(`⚠️ [VitaleGeo] Aviso: Não foi possível obter feed RSS do YouTube (${err.message}). Mantendo banco local existente.`);
+  }
 
   // Process items in reverse (oldest from feed first) so that unshift places newest at index 0
   const reversedRss = [...rssItems].reverse();

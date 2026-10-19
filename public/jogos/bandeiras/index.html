@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="bg-[#090a0f]">
+<html lang="pt-br" class="bg-[#F5F2EB]">
 <head>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/bandeiras/">
@@ -22,11 +22,11 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -38,16 +38,18 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace']
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        geoBg: '#090a0f',
-                        geoCard: '#11131a',
-                        geoSlate: '#181b24',
-                        geoGold: '#f59e0b',
-                        geoBlue: '#38bdf8'
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
                     }
                 }
             }
@@ -55,11 +57,8 @@
     </script>
 
     <style>
-        .arcade-shell {
-            background: radial-gradient(circle at 50% 0%, #151824 0%, #090a0f 75%);
-        }
         .flag-frame {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 25px -5px rgba(10, 25, 47, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         .option-btn {
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,14 +66,10 @@
         }
         .option-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 16px -4px rgba(10, 25, 47, 0.12);
         }
         .option-btn:active:not(:disabled) {
             transform: scale(0.98);
-        }
-        .ad-slot-container {
-            position: relative;
-            overflow: hidden;
         }
         @keyframes screen-shake-damage {
             0%, 100% { transform: translate(0, 0); }
@@ -88,44 +83,52 @@
         }
     </style>
 </head>
-<body class="arcade-shell text-slate-200 select-none min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-[#F5F2EB] text-[#1F334E] select-none min-h-screen flex flex-col justify-between overflow-x-hidden font-sans antialiased selection:bg-[#C8102E] selection:text-white">
 
-    <!-- HEADER DO ARCADE -->
-    <header class="w-full bg-[#0d0f17]/90 border-b border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-[1700px] mx-auto flex items-center justify-between">
-            <a href="/jogos" class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-400 hover:text-white transition py-1 px-2 rounded-lg hover:bg-white/5">
-                <i class="ph-bold ph-arrow-left"></i>
-                <span class="hidden sm:inline">Jogos</span>
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group">
+                <div class="w-8 h-8 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/20 flex items-center justify-center text-[#C8102E] group-hover:scale-105 transition">
+                    <i class="ph-fill ph-globe-hemisphere-east text-lg group-hover:rotate-45 transition duration-500"></i>
+                </div>
+                <span class="text-lg font-heading font-bold text-[#0A192F] tracking-tight">Vitale<span class="text-[#C8102E]">Geo</span></span>
             </a>
-
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-flag-banner text-amber-400 text-lg"></i>
-                <h1 class="font-heading font-bold text-xs sm:text-base text-white tracking-tight">
-                    Bandeiras do <span class="text-amber-400">Mundo</span>
-                </h1>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
             </div>
 
+            <!-- Controles do Jogo no Header -->
             <div class="flex items-center gap-1.5 sm:gap-2">
-                <button onclick="abrirModalModos()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 border border-amber-400/30 text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Modos e Continente">
-                    <i class="ph-bold ph-sliders-horizontal"></i>
+                <button onclick="abrirModalModos()" class="px-3 py-1.5 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-xs font-mono font-semibold flex items-center gap-1.5 transition shadow-xs" title="Modos e Continente">
+                    <i class="ph-bold ph-sliders-horizontal text-[#C8102E]"></i>
                     <span id="header-mode-label" class="hidden sm:inline">Mundo (198)</span>
                 </button>
-                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition" title="Som" aria-label="Som">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition shadow-xs" title="Som" aria-label="Som">
                     <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
                 </button>
-                <button onclick="alternarTelaCheia()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-base transition hidden sm:inline-flex" title="Tela Cheia" aria-label="Tela Cheia">
+                <button onclick="alternarTelaCheia()" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition hidden sm:inline-flex shadow-xs" title="Tela Cheia" aria-label="Tela Cheia">
                     <i class="ph-bold ph-arrows-out-simple"></i>
                 </button>
+                <a href="/jogos" class="inline-flex items-center gap-1 text-xs font-semibold text-[#53647C] hover:text-[#0A192F] transition px-2.5 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-xs">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Jogos</span>
+                </a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- WRAPPER 3 COLUNAS DESKTOP -->
-    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 py-2 flex items-start justify-center gap-4 flex-1">
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 pt-24 sm:pt-28 pb-12 flex items-start justify-center gap-4 flex-1">
 
-        <!-- ANÚNCIO LATERAL ESQUERDO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-14 min-h-[500px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <!-- ANÚNCIO LATERAL ESQUERDO (SKYSCRAPER 160x600) -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -141,133 +144,121 @@
         <main class="w-full max-w-2xl px-1 sm:px-2 py-1 flex-1 flex flex-col justify-center" id="game-stage-container">
         
             <!-- PALCO ATIVO -->
-            <div id="stage-active" class="bg-[#11131a] border border-white/10 rounded-2xl p-4 sm:p-6 w-full flex flex-col items-center justify-between text-center relative shadow-2xl">
+            <div id="stage-active" class="editorial-card p-4 sm:p-6 w-full flex flex-col items-center justify-between text-center relative shadow-sm">
                 
                 <!-- Barra de Status Compacta -->
-                <div class="w-full flex items-center justify-between gap-2 text-xs font-mono pb-2.5 border-b border-white/10">
+                <div class="w-full flex items-center justify-between gap-2 text-xs font-mono pb-3 border-b border-[#0A192F]/10">
                     <div id="status-left-pill" class="flex items-center gap-1.5">
-                        <span class="text-slate-400 text-[11px] uppercase" id="status-left-label">Vidas:</span>
-                        <span id="vidas-container" class="flex gap-1 text-sm text-rose-500">
+                        <span class="text-[#53647C] text-[11px] uppercase font-medium" id="status-left-label">Vidas:</span>
+                        <span id="vidas-container" class="flex gap-1 text-sm text-[#C8102E]">
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
                             <i class="ph-fill ph-heart"></i>
                         </span>
-                        <span id="timer-val" class="hidden font-bold text-amber-400 text-sm">60s</span>
+                        <span id="timer-val" class="hidden font-bold text-[#C8102E] text-sm">60s</span>
                     </div>
 
-                    <div class="flex items-center gap-1.5 text-slate-300">
-                        <i class="ph-bold ph-flag text-amber-400"></i>
-                        <span><strong id="score-val" class="text-amber-400">0</strong> / <span id="total-val">198</span></span>
+                    <div class="flex items-center gap-1.5 text-[#0A192F] font-semibold">
+                        <i class="ph-bold ph-flag text-[#C8102E]"></i>
+                        <span><strong id="score-val" class="text-[#0A192F]">0</strong> / <span id="total-val">198</span></span>
                     </div>
 
-                    <div id="streak-pill" class="flex items-center gap-1 text-slate-400">
-                        <i class="ph-fill ph-fire text-amber-400"></i>
-                        <span><strong id="streak-val" class="text-white">0</strong></span>
+                    <div id="streak-pill" class="flex items-center gap-1 text-[#53647C]">
+                        <i class="ph-fill ph-fire text-[#C8102E]"></i>
+                        <span><strong id="streak-val" class="text-[#0A192F]">0</strong></span>
                     </div>
 
-                    <div class="flex items-center gap-1 text-slate-400">
-                        <i class="ph-fill ph-trophy text-emerald-400"></i>
-                        <span><strong id="best-score" class="text-emerald-400">0</strong></span>
+                    <div class="flex items-center gap-1 text-[#53647C]">
+                        <i class="ph-fill ph-trophy text-emerald-600"></i>
+                        <span><strong id="best-score" class="text-emerald-700">0</strong></span>
+                    </div>
+
+                    <!-- Hover Popover de Regras do Jogo -->
+                    <div class="hover-info-container">
+                        <button type="button" class="hover-info-trigger" aria-label="Como Funciona o Jogo?">
+                            <i class="ph-bold ph-info text-[#C8102E]"></i>
+                            <span>Regras</span>
+                        </button>
+                        <div class="hover-info-popover">
+                            <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <i class="ph-fill ph-flag-banner text-[#C8102E]"></i> Regras de Vexilologia
+                            </h4>
+                            <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2 text-left">
+                                <li>• <strong>Modo Sobrevivência:</strong> Você começa com 3 vidas. A cada 10 acertos seguidos, recupera 1 vida!</li>
+                                <li>• <strong>Modo Blitz 60s:</strong> Corrida contra o relógio! A cada 5 acertos seguidos você ganha +3 segundos.</li>
+                                <li>• <strong>Atalhos de Teclado:</strong> Use as teclas numéricas 1, 2, 3 e 4 para responder rapidamente pelo teclado.</li>
+                                <li>• <strong>Recorte Regional:</strong> Filtre por continentes específicos no botão Modos acima.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Barra de Progresso Fina -->
-                <div class="w-full h-1 bg-slate-950 rounded-full overflow-hidden mt-1 mb-2.5">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-300 w-0"></div>
+                <div class="w-full h-1.5 bg-[#FAF8F5] rounded-full overflow-hidden mt-1.5 mb-3 border border-[#0A192F]/10">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-[#0A192F] to-[#C8102E] transition-all duration-300 w-0"></div>
                 </div>
 
                 <!-- Sub-barra com Região e Dica -->
-                <div class="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
-                    <span id="region-badge" class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                <div class="w-full flex items-center justify-between text-[11px] font-mono text-[#53647C] mb-2">
+                    <span id="region-badge" class="px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#0A192F]/10 text-[#0A192F] font-medium">
                         Mundo Inteiro
                     </span>
-                    <button onclick="revelarDica()" id="btn-hint" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/20 transition">
+                    <button onclick="revelarDica()" id="btn-hint" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] hover:bg-white text-[#C8102E] border border-[#C8102E]/20 transition font-medium">
                         <i class="ph-bold ph-lightbulb"></i> Dica
                     </button>
                 </div>
 
-                <!-- Bandeira Central (Compacta e Nítida) -->
+                <!-- Bandeira Central -->
                 <div class="flex flex-col items-center w-full my-auto py-1">
-                    <div class="flag-frame w-44 h-28 sm:w-56 sm:h-36 bg-slate-950 rounded-xl overflow-hidden border-2 border-white/15 flex items-center justify-center relative p-1.5 shadow-lg">
+                    <div class="flag-frame w-44 h-28 sm:w-56 sm:h-36 bg-white rounded-xl overflow-hidden border border-[#0A192F]/15 flex items-center justify-center relative p-1.5 shadow-sm">
                         <img id="flag-img" src="" class="w-full h-full object-contain rounded-lg transition-transform duration-300" alt="Bandeira">
                     </div>
 
                     <!-- Caixa de Dica Opcional -->
-                    <div id="hint-box" class="hidden mt-2 px-3 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs font-mono"></div>
+                    <div id="hint-box" class="hidden mt-2 px-3 py-1.5 rounded-lg bg-[#FAF8F5] border border-[#0A192F]/10 text-[#0A192F] text-xs font-mono"></div>
 
-                    <!-- Feedback Estável e Sem Pulo de Layout -->
-                    <div id="feedback-msg" class="h-8 mt-2 text-xs sm:text-sm font-mono text-slate-300 flex items-center justify-center px-2 text-center">
+                    <!-- Feedback Estável -->
+                    <div id="feedback-msg" class="h-8 mt-2 text-xs sm:text-sm font-mono text-[#53647C] flex items-center justify-center px-2 text-center">
                         Qual é o país desta bandeira?
                     </div>
                 </div>
 
-                <!-- Grade de 4 Alternativas (Sempre Visível) -->
+                <!-- Grade de 4 Alternativas -->
                 <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full mt-2"></div>
 
             </div>
 
             <!-- TELA DE GAME OVER -->
-            <div id="stage-gameover" class="bg-[#11131a] border border-white/10 rounded-2xl p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-2xl">
-                <div class="w-14 h-14 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 text-2xl mb-2.5">
+            <div id="stage-gameover" class="editorial-card p-5 sm:p-8 w-full hidden flex-col items-center justify-center text-center shadow-lg">
+                <div class="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-[#C8102E] text-2xl mb-2.5">
                     <i class="ph-bold ph-flag-banner"></i>
                 </div>
                 
-                <span class="text-xs font-mono uppercase tracking-widest text-rose-400 mb-1" id="gameover-kicker">Fim de Jogo</span>
-                <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mb-2" id="gameover-title">Suas Vidas Acabaram</h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#C8102E] font-bold mb-1" id="gameover-kicker">Fim de Jogo</span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-[#0A192F] mb-2" id="gameover-title">Suas Vidas Acabaram</h2>
                 
-                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-3">
-                    A última bandeira era de <strong id="last-correct-country" class="text-amber-400">--</strong>.
-                </p>
-
-                <!-- Placar -->
-                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-4 max-w-sm w-full mb-4 shadow-xl">
-                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Acertos</span>
-                    <div class="text-3xl sm:text-4xl font-heading font-black text-amber-400 mb-1">
-                        <span id="final-score">0</span> <span class="text-base text-slate-400 font-normal">/ <span id="final-total">198</span></span>
-                    </div>
-                    <div class="flex items-center justify-center gap-2 flex-wrap text-xs font-mono">
-                        <span class="px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300" id="final-streak">
-                            Sequência: 0
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Ações e Compartilhamento -->
-                <div class="flex flex-wrap items-center justify-center gap-2 w-full max-w-sm">
-                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[160px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition">
-                        <i class="ph-fill ph-whatsapp-logo text-base"></i> WhatsApp
-                    </button>
-                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs py-3 px-3.5 rounded-xl flex items-center gap-1.5" title="Baixar Card PNG">
-                        <i class="ph-bold ph-download-simple text-base"></i> PNG
-                    </button>
-                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-xs py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 mt-1">
-                        <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
-                    </button>
-                </div>
-            </div>
-                
-                <p id="gameover-motivo" class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-4">
-                    A última bandeira pertencia a <strong id="last-correct-country" class="text-amber-400">--</strong>.
+                <p id="gameover-motivo" class="text-xs sm:text-sm text-[#53647C] max-w-md mx-auto mb-3">
+                    A última bandeira pertencia a <strong id="last-correct-country" class="text-[#0A192F]">--</strong>.
                 </p>
 
                 <!-- Último Fato -->
-                <div id="gameover-fact-box" class="bg-slate-900/70 border border-white/10 rounded-xl p-3.5 max-w-md w-full mb-5 text-left text-xs text-slate-300">
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">Arquivo de Inteligência:</span>
+                <div id="gameover-fact-box" class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-3.5 max-w-md w-full mb-4 text-left text-xs text-[#53647C]">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#C8102E] font-bold block mb-1">Curiosidade:</span>
                     <p id="gameover-fact-text">--</p>
                 </div>
 
                 <!-- Placar -->
-                <div class="bg-slate-900/90 border border-white/10 rounded-2xl p-5 max-w-md w-full mb-6 shadow-xl">
-                    <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest block mb-1">Bandeiras Identificadas</span>
-                    <div class="text-4xl sm:text-5xl font-heading font-black text-amber-400 mb-1">
-                        <span id="final-score">0</span> <span class="text-lg text-slate-400 font-normal">/ <span id="final-total">198</span></span>
+                <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-2xl p-5 max-w-md w-full mb-5 shadow-xs">
+                    <span class="text-[11px] font-mono text-[#53647C] uppercase tracking-widest block mb-1 font-medium">Bandeiras Identificadas</span>
+                    <div class="text-4xl sm:text-5xl font-heading font-black text-[#0A192F] mb-1">
+                        <span id="final-score">0</span> <span class="text-lg text-[#53647C] font-normal">/ <span id="final-total">198</span></span>
                     </div>
-                    <p id="final-porcentagem" class="text-xs font-mono text-emerald-400 mb-2">0% do catálogo dominado</p>
+                    <p id="final-porcentagem" class="text-xs font-mono text-emerald-700 font-bold mb-2">0% do catálogo dominado</p>
                     <div class="flex items-center justify-center gap-2 flex-wrap">
-                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200" id="final-rank">
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white border border-[#0A192F]/10 text-[#0A192F] font-semibold" id="final-rank">
                             Rank: Observador
                         </span>
-                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300" id="final-streak">
+                        <span class="inline-block text-xs font-mono px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#C8102E]/25 text-[#C8102E] font-bold" id="final-streak">
                             Maior Sequência: 0
                         </span>
                     </div>
@@ -275,56 +266,56 @@
 
                 <!-- Ações e Compartilhamento -->
                 <div class="flex flex-wrap items-center justify-center gap-2.5 w-full max-w-md">
-                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[180px] bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-lg shadow-emerald-500/20">
-                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Desafiar no WhatsApp
+                    <button onclick="compartilharResultadoWhatsApp()" class="flex-1 min-w-[170px] bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-xs sm:text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> WhatsApp
                     </button>
-                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/30 text-amber-300 font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5" title="Baixar Card de Pontuação em PNG para Stories">
+                    <button onclick="baixarScorecardPNG()" class="bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5 shadow-xs" title="Baixar Card de Pontuação em PNG para Stories">
                         <i class="ph-bold ph-download-simple text-base"></i> Card PNG
                     </button>
-                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5">
+                    <button onclick="copiarResultado()" id="btn-copiar" class="bg-white hover:bg-[#FAF8F5] border border-[#0A192F]/15 text-[#0A192F] font-heading font-semibold text-xs sm:text-sm py-3.5 px-4 rounded-xl transition flex items-center gap-1.5 shadow-2xs">
                         <i class="ph-bold ph-copy text-base"></i> Copiar
                     </button>
-                    <button onclick="reiniciarJogo()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition hover:scale-[1.02] flex items-center justify-center gap-2 mt-1 shadow-lg shadow-amber-400/20">
+                    <button onclick="reiniciarJogo()" class="w-full bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2 mt-1 shadow-sm">
                         <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Novamente
                     </button>
                 </div>
             </div>
 
             <!-- TELA DE VITÓRIA SUPREMA -->
-            <div id="stage-victory" class="bg-[#11131a] border border-white/10 rounded-2xl p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[520px] shadow-2xl">
-                <div class="w-20 h-20 rounded-full bg-amber-400/20 border-2 border-amber-400 flex items-center justify-center text-amber-400 text-4xl mb-4 animate-bounce">
+            <div id="stage-victory" class="editorial-card p-6 sm:p-10 w-full hidden flex-col items-center justify-center text-center min-h-[500px] shadow-lg">
+                <div class="w-20 h-20 rounded-full bg-amber-50 border-2 border-amber-400 flex items-center justify-center text-amber-500 text-4xl mb-4 animate-bounce">
                     <i class="ph-fill ph-trophy"></i>
                 </div>
 
-                <span class="text-xs font-mono uppercase tracking-widest text-amber-400 mb-1">CONQUISTA LENDÁRIA!</span>
-                <h2 class="text-3xl sm:text-5xl font-heading font-black text-white mb-3">DOMÍNIO VEXILOLÓGICO TOTAL!</h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-[#C8102E] font-bold mb-1">CONQUISTA LENDÁRIA!</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-[#0A192F] mb-3">DOMÍNIO VEXILOLÓGICO TOTAL!</h2>
                 
-                <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto mb-6">
-                    Você identificou perfeitamente todas as <strong id="victory-total-text" class="text-amber-400">198 bandeiras</strong> selecionadas. Seu domínio visual das soberanias mundiais é absoluto!
+                <p class="text-sm sm:text-base text-[#53647C] max-w-lg mx-auto mb-6">
+                    Você identificou perfeitamente todas as <strong id="victory-total-text" class="text-[#0A192F]">198 bandeiras</strong> selecionadas. Seu domínio visual das soberanias mundiais é absoluto!
                 </p>
 
-                <div class="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 border border-amber-400/40 rounded-2xl p-6 max-w-md w-full mb-6 shadow-2xl">
-                    <span class="text-xs font-mono uppercase text-slate-300">Score Máximo Absoluto</span>
-                    <div class="text-4xl sm:text-5xl font-black text-amber-400 my-1" id="victory-score-box">198 / 198 (100%)</div>
-                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Rank SSS: Mestre da Vexilologia</span>
+                <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-2xl p-6 max-w-md w-full mb-6 shadow-xs">
+                    <span class="text-xs font-mono uppercase text-[#53647C]">Score Máximo Absoluto</span>
+                    <div class="text-4xl sm:text-5xl font-black text-[#0A192F] my-1" id="victory-score-box">198 / 198 (100%)</div>
+                    <span class="text-xs font-mono text-emerald-700 uppercase tracking-widest font-bold">Rank SSS: Mestre da Vexilologia</span>
                 </div>
 
                 <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
-                    <button onclick="compartilharVitoriaWhatsApp()" class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.02] shadow-xl">
+                    <button onclick="compartilharVitoriaWhatsApp()" class="flex-1 bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
                         <i class="ph-fill ph-whatsapp-logo text-xl"></i> Compartilhar
                     </button>
-                    <button onclick="baixarScorecardPNG()" class="bg-slate-800 hover:bg-slate-700 border border-amber-400/40 text-amber-300 font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center gap-2">
+                    <button onclick="baixarScorecardPNG()" class="bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center gap-2 shadow-xs">
                         <i class="ph-bold ph-download-simple"></i> Baixar Card PNG
                     </button>
-                    <button onclick="reiniciarJogo()" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                    <button onclick="reiniciarJogo()" class="w-full bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-sm py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
                         <i class="ph-bold ph-arrow-counter-clockwise text-base"></i> Jogar Outro Modo
                     </button>
                 </div>
             </div>
 
             <!-- BANNER INFERIOR -->
-            <section class="w-full bg-[#0c0e14]/60 border border-white/5 rounded-2xl p-2 sm:p-3 text-center text-xs font-mono text-slate-500 ad-slot-container mt-4">
-                <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-1">PUBLICIDADE</span>
+            <section class="editorial-card p-3 text-center min-h-[90px] sm:min-h-[120px] flex flex-col justify-center items-center mt-3">
+                <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-1 font-mono font-medium">PUBLICIDADE • GOOGLE ADSENSE</span>
                 <div class="w-full min-h-[90px] flex items-center justify-center">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -340,9 +331,9 @@
 
         </main>
 
-        <!-- ANÚNCIO LATERAL DIREITO -->
-        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-16 min-h-[600px] bg-[#0c0e14]/50 border border-white/5 rounded-2xl p-2 text-center text-xs font-mono text-slate-500 ad-slot-container">
-            <span class="text-[9px] uppercase tracking-widest text-slate-600 block mb-2">PUBLICIDADE</span>
+        <!-- ANÚNCIO LATERAL DIREITO (SKYSCRAPER 160x600) -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
             <div class="w-full flex-1 flex items-center justify-center">
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:160px;height:600px"
@@ -356,62 +347,81 @@
     </div>
 
     <!-- MODAL DE CONFIGURAÇÃO DE MODO E CONTINENTE -->
-    <div id="modal-modos" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-[#11131a] border border-white/15 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
-            <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+    <div id="modal-modos" class="fixed inset-0 z-50 bg-[#0A192F]/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white border border-[#0A192F]/15 rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4 border-b border-[#0A192F]/10 pb-3">
                 <div class="flex items-center gap-2">
-                    <i class="ph-fill ph-sliders-horizontal text-amber-400 text-xl"></i>
-                    <h3 class="font-heading font-bold text-lg text-white">Configurar Missão de Bandeiras</h3>
+                    <i class="ph-fill ph-sliders-horizontal text-[#C8102E] text-xl"></i>
+                    <h3 class="font-heading font-bold text-lg text-[#0A192F]">Configurar Missão de Bandeiras</h3>
                 </div>
-                <button onclick="fecharModalModos()" class="text-slate-400 hover:text-white p-1">
+                <button onclick="fecharModalModos()" class="text-[#53647C] hover:text-[#0A192F] p-1">
                     <i class="ph-bold ph-x text-lg"></i>
                 </button>
             </div>
 
             <!-- Modo de Jogo -->
             <div class="mb-5">
-                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">1. Mecânica da Partida</label>
+                <label class="block text-xs font-mono uppercase tracking-wider text-[#0A192F] font-bold mb-2">1. Mecânica da Partida</label>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <button onclick="selecionarModo('survival')" id="mode-btn-survival" class="p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition">
-                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
-                            <i class="ph-fill ph-heart text-rose-500"></i> Sobrevivência (3 Vidas)
+                    <button onclick="selecionarModo('survival')" id="mode-btn-survival" class="p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-left transition">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-[#0A192F] mb-0.5">
+                            <i class="ph-fill ph-heart text-[#C8102E]"></i> Sobrevivência (3 Vidas)
                         </div>
-                        <p class="text-[11px] text-slate-400">Tente zerar o catálogo. A cada 10 acertos seguidos você recupera 1 vida.</p>
+                        <p class="text-[11px] text-[#53647C]">Tente zerar o catálogo. A cada 10 acertos seguidos você recupera 1 vida.</p>
                     </button>
-                    <button onclick="selecionarModo('blitz')" id="mode-btn-blitz" class="p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30">
-                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-white mb-0.5">
-                            <i class="ph-fill ph-lightning text-amber-400"></i> Blitz 60 Segundos
+                    <button onclick="selecionarModo('blitz')" id="mode-btn-blitz" class="p-3 rounded-xl border border-[#0A192F]/15 bg-white text-left transition hover:border-[#C8102E]/40">
+                        <div class="flex items-center gap-2 font-heading font-bold text-sm text-[#0A192F] mb-0.5">
+                            <i class="ph-fill ph-lightning text-amber-500"></i> Blitz 60 Segundos
                         </div>
-                        <p class="text-[11px] text-slate-400">Corrida contra o relógio! Combos dão +2s extras no cronômetro.</p>
+                        <p class="text-[11px] text-[#53647C]">Corrida contra o relógio! Combos dão +3s extras no cronômetro.</p>
                     </button>
                 </div>
             </div>
 
             <!-- Filtro de Continente -->
             <div class="mb-6">
-                <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">2. Recorte Continental</label>
+                <label class="block text-xs font-mono uppercase tracking-wider text-[#0A192F] font-bold mb-2">2. Recorte Continental</label>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="continent-buttons">
-                    <button onclick="selecionarContinente('todos')" data-cont="todos" class="cont-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300">Mundo (198)</button>
-                    <button onclick="selecionarContinente('Américas')" data-cont="Américas" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Américas</button>
-                    <button onclick="selecionarContinente('Europa')" data-cont="Europa" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Europa</button>
-                    <button onclick="selecionarContinente('Ásia')" data-cont="Ásia" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Ásia</button>
-                    <button onclick="selecionarContinente('África')" data-cont="África" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">África</button>
-                    <button onclick="selecionarContinente('Oceania')" data-cont="Oceania" class="cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30">Oceania</button>
+                    <button onclick="selecionarContinente('todos')" data-cont="todos" class="cont-btn px-3 py-2.5 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-xs font-mono font-bold text-[#C8102E]">Mundo (198)</button>
+                    <button onclick="selecionarContinente('Américas')" data-cont="Américas" class="cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30">Américas</button>
+                    <button onclick="selecionarContinente('Europa')" data-cont="Europa" class="cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30">Europa</button>
+                    <button onclick="selecionarContinente('Ásia')" data-cont="Ásia" class="cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30">Ásia</button>
+                    <button onclick="selecionarContinente('África')" data-cont="África" class="cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30">África</button>
+                    <button onclick="selecionarContinente('Oceania')" data-cont="Oceania" class="cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30">Oceania</button>
                 </div>
             </div>
 
-            <button onclick="aplicarModosEReiniciar()" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm py-3.5 rounded-xl transition flex items-center justify-center gap-2">
-                <i class="ph-bold ph-play"></i> Iniciar com estas Configurações
+            <button onclick="aplicarModosEReiniciar()" class="w-full bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-sm py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                <i class="ph-bold ph-play text-[#C8102E]"></i> Iniciar com estas Configurações
             </button>
         </div>
     </div>
 
-    <footer class="py-3 px-6 text-center text-[11px] font-mono text-slate-600 border-t border-white/5">
-        VitaleGeo Arcade &copy; 2026 · Desafio Mundial de Vexilologia · Motor CerebroGeo
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
+            </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        // Inicialização da Base via CerebroGeo (198 Nações) com fallback seguro
         const basePaises = (window.CerebroGeo && Array.isArray(window.CerebroGeo.paises) && window.CerebroGeo.paises.length > 0)
             ? window.CerebroGeo.paises.map(p => ({
                 name: p.nome,
@@ -427,7 +437,6 @@
                 { name: "Japão", code: "jp", capital: "Tóquio", continente: "Ásia", subregiao: "Ásia Oriental", fato: "Arquipélago vulcânico com mais de 6.800 ilhas." }
             ];
 
-        // Sintetizador de Áudio Nativo (Web Audio API)
         let somAtivo = true;
         let audioCtx = null;
 
@@ -451,38 +460,38 @@
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
                     osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
-                    gain.gain.setValueAtTime(0.11, now + idx * 0.06);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.18);
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+                    gain.gain.setValueAtTime(0.09, now + idx * 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.18);
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.start(now + idx * 0.06);
-                    osc.stop(now + idx * 0.06 + 0.19);
+                    osc.start(now + idx * 0.05);
+                    osc.stop(now + idx * 0.05 + 0.19);
                 });
             } else if (tipo === 'erro') {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(160, now);
-                osc.frequency.linearRampToValueAtTime(95, now + 0.28);
-                gain.gain.setValueAtTime(0.14, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.frequency.exponentialRampToValueAtTime(90, now + 0.22);
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 osc.start(now);
-                osc.stop(now + 0.31);
+                osc.stop(now + 0.25);
             } else if (tipo === 'cura') {
-                [587.33, 783.99, 987.77, 1174.66].forEach((freq, idx) => {
+                [440, 554.37, 659.25, 880].forEach((freq, idx) => {
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
                     osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, now + idx * 0.07);
-                    gain.gain.setValueAtTime(0.12, now + idx * 0.07);
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+                    gain.gain.setValueAtTime(0.08, now + idx * 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.2);
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.start(now + idx * 0.07);
-                    osc.stop(now + idx * 0.07 + 0.23);
+                    osc.start(now + idx * 0.06);
+                    osc.stop(now + idx * 0.06 + 0.21);
                 });
             }
         }
@@ -490,10 +499,9 @@
         function alternarSom() {
             somAtivo = !somAtivo;
             const icon = document.getElementById('sound-icon');
-            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-amber-400' : 'ph-bold ph-speaker-slash text-slate-500';
+            icon.className = somAtivo ? 'ph-bold ph-speaker-high text-[#C8102E]' : 'ph-bold ph-speaker-slash text-[#53647C]';
         }
 
-        // Estado do Jogo
         let modoAtual = 'survival'; // 'survival' | 'blitz'
         let continenteFiltro = 'todos';
         let catalogoFiltrado = [];
@@ -506,37 +514,29 @@
         let tempoRestante = 60;
         let timerInterval = null;
         let aguardandoProxima = false;
-
         let recordeMaximo = parseInt(localStorage.getItem('vg_recorde_todas_bandeiras') || '0', 10);
 
-        // Elementos DOM
         const stageActive = document.getElementById('stage-active');
         const stageGameOver = document.getElementById('stage-gameover');
         const stageVictory = document.getElementById('stage-victory');
-
+        const flagImg = document.getElementById('flag-img');
+        const optionsGrid = document.getElementById('options-grid');
+        const feedbackMsg = document.getElementById('feedback-msg');
         const scoreVal = document.getElementById('score-val');
         const totalVal = document.getElementById('total-val');
-        const bestScoreVal = document.getElementById('best-score');
         const streakVal = document.getElementById('streak-val');
-        const progressBar = document.getElementById('progress-bar');
+        const bestScoreVal = document.getElementById('best-score');
         const vidasContainer = document.getElementById('vidas-container');
         const timerVal = document.getElementById('timer-val');
         const statusLeftLabel = document.getElementById('status-left-label');
-
-        const flagImg = document.getElementById('flag-img');
-        const feedbackMsg = document.getElementById('feedback-msg');
-        const optionsGrid = document.getElementById('options-grid');
+        const progressBar = document.getElementById('progress-bar');
         const hintBox = document.getElementById('hint-box');
-        const factDrawer = document.getElementById('fact-drawer');
 
         bestScoreVal.innerText = recordeMaximo;
 
-        function filtrarPorContinente(cont) {
-            if (cont === 'todos') return [...basePaises];
-            if (cont === 'Américas') {
-                return basePaises.filter(p => p.continente && p.continente.includes('América'));
-            }
-            return basePaises.filter(p => p.continente === cont);
+        function filtrarPorContinente(continente) {
+            if (continente === 'todos') return [...basePaises];
+            return basePaises.filter(p => p.continente === continente);
         }
 
         function abrirModalModos() {
@@ -556,11 +556,11 @@
             const btnSurv = document.getElementById('mode-btn-survival');
             const btnBlitz = document.getElementById('mode-btn-blitz');
             if (modo === 'survival') {
-                btnSurv.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
-                btnBlitz.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+                btnSurv.className = "p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-left transition";
+                btnBlitz.className = "p-3 rounded-xl border border-[#0A192F]/15 bg-white text-left transition hover:border-[#C8102E]/40";
             } else {
-                btnBlitz.className = "p-3 rounded-xl border border-amber-400 bg-amber-400/10 text-left transition";
-                btnSurv.className = "p-3 rounded-xl border border-white/10 bg-slate-900/80 text-left transition hover:border-white/30";
+                btnBlitz.className = "p-3 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-left transition";
+                btnSurv.className = "p-3 rounded-xl border border-[#0A192F]/15 bg-white text-left transition hover:border-[#C8102E]/40";
             }
         }
 
@@ -568,9 +568,9 @@
             continenteFiltro = cont;
             document.querySelectorAll('.cont-btn').forEach(btn => {
                 if (btn.getAttribute('data-cont') === cont) {
-                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-amber-400 bg-amber-400/10 text-xs font-mono font-bold text-amber-300";
+                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-[#C8102E] bg-[#FAF8F5] text-xs font-mono font-bold text-[#C8102E]";
                 } else {
-                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-mono text-slate-300 hover:border-white/30";
+                    btn.className = "cont-btn px-3 py-2.5 rounded-xl border border-[#0A192F]/10 bg-white text-xs font-mono text-[#53647C] hover:border-[#0A192F]/30";
                 }
             });
         }
@@ -606,9 +606,9 @@
                     tempoRestante--;
                     timerVal.innerText = `${tempoRestante}s`;
                     if (tempoRestante <= 10) {
-                        timerVal.className = 'font-bold text-rose-500 text-sm animate-pulse';
+                        timerVal.className = 'font-bold text-[#C8102E] text-sm animate-pulse';
                     } else {
-                        timerVal.className = 'font-bold text-amber-400 text-sm';
+                        timerVal.className = 'font-bold text-[#0A192F] text-sm';
                     }
                     if (tempoRestante <= 0) {
                         clearInterval(timerInterval);
@@ -642,9 +642,9 @@
             let coracoesHTML = '';
             for (let i = 0; i < 3; i++) {
                 if (i < vidas) {
-                    coracoesHTML += '<i class="ph-fill ph-heart text-rose-500"></i>';
+                    coracoesHTML += '<i class="ph-fill ph-heart text-[#C8102E]"></i>';
                 } else {
-                    coracoesHTML += '<i class="ph-bold ph-heart-break text-slate-700"></i>';
+                    coracoesHTML += '<i class="ph-bold ph-heart-break text-[#53647C]/40"></i>';
                 }
             }
             vidasContainer.innerHTML = coracoesHTML;
@@ -653,7 +653,7 @@
         function revelarDica() {
             if (!paisAtual) return;
             hintBox.classList.remove('hidden');
-            hintBox.innerHTML = `<i class="ph-bold ph-compass text-amber-400"></i> Sub-região: <strong>${paisAtual.subregiao || paisAtual.continente}</strong> · Capital: <strong>${paisAtual.capital}</strong>`;
+            hintBox.innerHTML = `<i class="ph-bold ph-compass text-[#C8102E]"></i> Sub-região: <strong>${paisAtual.subregiao || paisAtual.continente}</strong> · Capital: <strong>${paisAtual.capital}</strong>`;
         }
 
         function proximaRodada() {
@@ -668,7 +668,6 @@
 
             paisAtual = paisesRestantes.pop();
 
-            // Distratores inteligentes (prioriza países do mesmo continente para aumentar o desafio)
             const mesmoContinente = basePaises.filter(p => p.continente === paisAtual.continente && p.code !== paisAtual.code);
             const poolDistratores = mesmoContinente.length >= 6 ? mesmoContinente : basePaises;
 
@@ -688,18 +687,18 @@
             };
 
             feedbackMsg.innerText = "Qual é o país desta bandeira?";
-            feedbackMsg.className = "h-8 mt-2 text-xs sm:text-sm font-mono text-slate-300 flex items-center justify-center px-2 text-center";
+            feedbackMsg.className = "h-8 mt-2 text-xs sm:text-sm font-mono text-[#53647C] flex items-center justify-center px-2 text-center";
 
             optionsGrid.innerHTML = '';
             opcoes.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn bg-slate-900/90 border border-white/10 hover:border-amber-400 hover:bg-slate-800/95 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-semibold text-slate-200 text-xs sm:text-sm text-left flex items-center justify-between group shadow-sm transition";
+                btn.className = "option-btn bg-white border border-[#0A192F]/15 hover:border-[#C8102E] hover:bg-[#FAF8F5] py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-semibold text-[#0A192F] text-xs sm:text-sm text-left flex items-center justify-between group shadow-2xs transition";
                 btn.innerHTML = `
                     <span class="flex items-center gap-2 truncate">
-                        <span class="w-5 h-5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center justify-center shrink-0">${idx + 1}</span>
+                        <span class="w-5 h-5 rounded bg-[#FAF8F5] border border-[#0A192F]/10 text-[11px] font-mono text-[#53647C] flex items-center justify-center shrink-0">${idx + 1}</span>
                         <span class="truncate">${opt.name}</span>
                     </span>
-                    <i class="ph-bold ph-caret-right text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition"></i>
+                    <i class="ph-bold ph-caret-right text-[#53647C] group-hover:text-[#C8102E] group-hover:translate-x-0.5 transition"></i>
                 `;
                 btn.onclick = () => verificarResposta(opt, btn);
                 optionsGrid.appendChild(btn);
@@ -715,8 +714,7 @@
 
             if (selecionado.code === paisAtual.code) {
                 tocarSom('acerto');
-                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
-                btnClicado.classList.add('bg-emerald-500/20', 'border-emerald-500', 'text-emerald-300');
+                btnClicado.className = "option-btn bg-emerald-50 border-2 border-emerald-600 text-emerald-800 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-left flex items-center justify-between shadow-xs";
 
                 acertos++;
                 streakAtual++;
@@ -732,8 +730,8 @@
                     msgExtra = '+3s';
                 }
 
-                const bonusText = msgExtra ? ` · <span class="text-amber-300">${msgExtra}</span>` : '';
-                feedbackMsg.innerHTML = `<span class="text-emerald-400 font-bold">Correto!</span> <span class="text-slate-300 ml-1.5 font-normal">Capital: ${paisAtual.capital}${bonusText}</span>`;
+                const bonusText = msgExtra ? ` · <span class="text-[#C8102E] font-bold">${msgExtra}</span>` : '';
+                feedbackMsg.innerHTML = `<span class="text-emerald-700 font-bold">Correto!</span> <span class="text-[#53647C] ml-1.5 font-normal">Capital: ${paisAtual.capital}${bonusText}</span>`;
 
                 if (acertos > recordeMaximo) {
                     recordeMaximo = acertos;
@@ -755,14 +753,13 @@
                 void stageActive.offsetWidth;
                 stageActive.classList.add('shake-damage');
 
-                btnClicado.classList.remove('bg-slate-900/90', 'border-white/10');
-                btnClicado.classList.add('bg-rose-500/20', 'border-rose-500', 'text-rose-300');
+                btnClicado.className = "option-btn bg-red-50 border-2 border-red-500 text-red-800 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-left flex items-center justify-between shadow-xs";
 
-                feedbackMsg.innerHTML = `<span class="text-rose-400 font-bold">Incorreto!</span> <span class="text-slate-300 ml-1.5 font-normal">Bandeira de <strong>${paisAtual.name}</strong> (Capital: ${paisAtual.capital})</span>`;
+                feedbackMsg.innerHTML = `<span class="text-[#C8102E] font-bold">Incorreto!</span> <span class="text-[#53647C] ml-1.5 font-normal">Bandeira de <strong>${paisAtual.name}</strong> (Capital: ${paisAtual.capital})</span>`;
 
                 allBtns.forEach(b => {
                     if (b.innerText.includes(paisAtual.name)) {
-                        b.classList.add('border-emerald-500', 'text-emerald-400', 'border-2');
+                        b.className = "option-btn bg-emerald-50 border-2 border-emerald-600 text-emerald-800 py-2.5 sm:py-3 px-3.5 sm:px-4 rounded-xl font-heading font-bold text-xs sm:text-sm text-left flex items-center justify-between shadow-xs";
                     }
                 });
 
@@ -783,7 +780,6 @@
             }
         }
 
-        // Atalhos de Teclado (1, 2, 3, 4)
         window.addEventListener('keydown', (e) => {
             if (aguardandoProxima || stageActive.classList.contains('hidden')) return;
             const idx = parseInt(e.key, 10) - 1;
@@ -857,70 +853,66 @@
             const texto = `Identifiquei ${acertos}/${total} bandeiras (${perc}%) · Streak ${maiorStreak}x no VitaleGeo Arcade! Jogue em: https://www.vitalegeo.com.br/jogos/bandeiras/`;
             const btn = document.getElementById('btn-copiar');
             navigator.clipboard.writeText(texto).then(() => {
-                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-400"></i> Copiado!';
+                btn.innerHTML = '<i class="ph-bold ph-check text-emerald-600"></i> Copiado!';
                 setTimeout(() => {
                     btn.innerHTML = '<i class="ph-bold ph-copy text-base"></i> Copiar';
                 }, 2000);
             });
         }
 
-        // Gerador de Scorecard PNG 900x900 Nativo
         function baixarScorecardPNG() {
             const canvas = document.createElement('canvas');
             canvas.width = 900;
             canvas.height = 900;
             const ctx = canvas.getContext('2d');
 
-            const grad = ctx.createRadialGradient(450, 150, 50, 450, 450, 750);
-            grad.addColorStop(0, '#171c2b');
-            grad.addColorStop(1, '#090a0f');
-            ctx.fillStyle = grad;
+            ctx.fillStyle = '#0A192F';
             ctx.fillRect(0, 0, 900, 900);
 
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
+            ctx.strokeStyle = 'rgba(200, 16, 46, 0.4)';
             ctx.lineWidth = 4;
             ctx.strokeRect(36, 36, 828, 828);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 22px "Space Mono", monospace';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 22px Orbitron';
             ctx.textAlign = 'center';
-            ctx.fillText('VITALEGEO ARCADE · DOSSIÊ VEXILOLÓGICO', 450, 110);
+            ctx.fillText('VITALEGEO ARCADE · DESAFIO VEXILOLÓGICO', 450, 110);
 
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '900 48px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 48px Montserrat';
             ctx.fillText('DESAFIO DAS BANDEIRAS', 450, 175);
 
             const total = catalogoFiltrado.length || 198;
             const perc = ((acertos / total) * 100).toFixed(1);
 
-            ctx.fillStyle = '#11131a';
+            ctx.fillStyle = '#112236';
             ctx.fillRect(110, 230, 680, 340);
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.strokeStyle = 'rgba(255,255,255,0.15)';
             ctx.lineWidth = 2;
             ctx.strokeRect(110, 230, 680, 340);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.font = 'bold 20px "Space Mono", monospace';
+            ctx.fillStyle = '#CBD5E1';
+            ctx.font = 'bold 20px JetBrains Mono';
             ctx.fillText(`RECORTE: ${continenteFiltro.toUpperCase()} (${modoAtual.toUpperCase()})`, 450, 290);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = '900 105px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = '900 105px Montserrat';
             ctx.fillText(`${acertos} / ${total}`, 450, 415);
 
-            ctx.fillStyle = '#10b981';
-            ctx.font = 'bold 26px "Space Mono", monospace';
+            ctx.fillStyle = '#A8C3A6';
+            ctx.font = 'bold 26px JetBrains Mono';
             ctx.fillText(`${perc}% DO MAPA DOMINADO · STREAK MÁX: ${maiorStreak}x`, 450, 480);
 
-            ctx.fillStyle = '#e2e8f0';
-            ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 24px Montserrat';
             ctx.fillText(obterRank(acertos, total), 450, 535);
 
-            ctx.fillStyle = '#cbd5e1';
-            ctx.font = '500 22px "Inter", sans-serif';
+            ctx.fillStyle = '#CBD5E1';
+            ctx.font = '500 22px Montserrat';
             ctx.fillText('Teste sua precisão geográfica e supere este recorde em:', 450, 710);
 
-            ctx.fillStyle = '#f59e0b';
-            ctx.font = 'bold 28px "Space Mono", monospace';
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 28px JetBrains Mono';
             ctx.fillText('www.vitalegeo.com.br/jogos/bandeiras', 450, 760);
 
             const link = document.createElement('a');
