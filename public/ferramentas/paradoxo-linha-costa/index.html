@@ -30,9 +30,15 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Leaflet CSS & JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet CSS & JS (CDN Primário Cloudflare cdnjs com Fallback jsDelivr) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">');
+            document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
 
     <script>
         tailwind.config = {
@@ -975,20 +981,24 @@
         function inicializarMapaReal() {
             const container = document.getElementById('mapaReal');
             if (!container) return;
+            if (typeof L === 'undefined') {
+                setTimeout(inicializarMapaReal, 100);
+                return;
+            }
 
             const esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 18,
-                attribution: 'Tiles &copy; Esri'
+                attribution: 'Tiles &copy; Esri &mdash; Satélite'
             });
 
             const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; OpenStreetMap contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> colaboradores'
             });
 
-            const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                maxZoom: 19,
-                attribution: '&copy; CARTO &mdash; OpenStreetMap'
+            const esriStreet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 18,
+                attribution: 'Tiles &copy; Esri &mdash; Street Map'
             });
 
             map = L.map('mapaReal', {
@@ -998,9 +1008,9 @@
             });
 
             L.control.layers({
-                "Satélite Foto-Realista": esriImagery,
-                "Mapa Cartográfico": cartoLight,
-                "OpenStreetMap": osmLayer
+                "Satélite Foto-Realista (Esri)": esriImagery,
+                "OpenStreetMap (Padrão Gratuito)": osmLayer,
+                "Mapa Urbano (Esri Street)": esriStreet
             }, null, { position: 'topright' }).addTo(map);
 
             const marker = L.circleMarker([61.1000, 6.8000], {
@@ -1011,12 +1021,10 @@
             }).addTo(map);
             marker.bindPopup("<b>Sognefjord (Noruega)</b><br>205 km de penetração no continente e 1.308 metros de profundidade. O maior fiorde da Noruega.");
 
-            setTimeout(() => {
-                if (map) map.invalidateSize();
-            }, 300);
-            window.addEventListener('resize', () => {
-                if (map) map.invalidateSize();
-            });
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 500);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 1200);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
         }
 
         function irParaHotspot(tipo) {

@@ -29,9 +29,15 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Leaflet CSS & JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet CSS & JS (CDN Primário Cloudflare cdnjs com Fallback jsDelivr) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">');
+            document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
 
     <script>
         tailwind.config = {
@@ -444,10 +450,16 @@
 
         function inicializarMapa() {
             if (map) return;
+            if (typeof L === 'undefined') {
+                setTimeout(inicializarMapa, 100);
+                return;
+            }
 
-            const cartoLight = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+            // Provedores de Cartografia 100% Gratuitos e Sem Chave de API
             const osm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+            const streetEsri = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
             const satelite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+            const hotOsm = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
 
             map = L.map('mapGeodesico', {
                 center: [15, -20],
@@ -457,14 +469,32 @@
                 worldCopyJump: true
             });
 
-            const lightLayer = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(map);
-            const osmLayer = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
-            const satLayer = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
+            // Camada Primária Padrão: OpenStreetMap (Gratuita, Pública, Sem necessidade de Token/API Key)
+            const osmLayer = L.tileLayer(osm, {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> colaboradores'
+            }).addTo(map);
+
+            const streetLayer = L.tileLayer(streetEsri, {
+                maxZoom: 18,
+                attribution: 'Tiles &copy; Esri &mdash; Street Map'
+            });
+
+            const satLayer = L.tileLayer(satelite, {
+                maxZoom: 18,
+                attribution: 'Tiles &copy; Esri &mdash; Imagens Satélite'
+            });
+
+            const hotLayer = L.tileLayer(hotOsm, {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap &mdash; Humanitário (HOT)'
+            });
 
             L.control.layers({
-                "Mapa Cartográfico": lightLayer,
-                "OpenStreetMap": osmLayer,
-                "Satélite Foto-Real": satLayer
+                "OpenStreetMap (Padrão Gratuito)": osmLayer,
+                "Mapa Urbano (Esri Street)": streetLayer,
+                "Satélite Foto-Real (Esri)": satLayer,
+                "OSM Humanitário (HOT)": hotLayer
             }, null, { position: 'topright' }).addTo(map);
 
             const iconA = L.divIcon({ className: 'pin-origem', iconSize: [22, 22], iconAnchor: [11, 11] });
@@ -505,8 +535,9 @@
                 atualizarMapaECalculos(false);
             });
 
-            setTimeout(() => { if (map) map.invalidateSize(); }, 200);
-            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 500);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 1200);
 
             window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
 

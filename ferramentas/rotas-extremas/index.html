@@ -29,9 +29,15 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Leaflet CSS & JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet CSS & JS (CDN Primário Cloudflare cdnjs com Fallback jsDelivr) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">');
+            document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
 
     <script>
         tailwind.config = {
@@ -397,6 +403,12 @@
         }
 
         function inicializarMapa() {
+            if (map) return;
+            if (typeof L === 'undefined') {
+                setTimeout(inicializarMapa, 100);
+                return;
+            }
+
             map = L.map('mapContainer', {
                 center: [20, 20],
                 zoom: 2,
@@ -405,27 +417,25 @@
                 worldCopyJump: true
             });
 
-            const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                maxZoom: 19,
-                attribution: '&copy; CARTO &mdash; OpenStreetMap'
-            });
-
             const camadaOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; OpenStreetMap contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> colaboradores'
+            }).addTo(map);
+
+            const camadaStreet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 18,
+                attribution: 'Tiles &copy; Esri &mdash; Street Map'
             });
 
             const camadaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 maxZoom: 18,
-                attribution: 'Tiles &copy; Esri'
+                attribution: 'Tiles &copy; Esri &mdash; Satélite'
             });
 
-            cartoLight.addTo(map);
-
             L.control.layers({
-                "Mapa Cartográfico": cartoLight,
-                "OpenStreetMap": camadaOSM,
-                "Satélite": camadaSatelite
+                "OpenStreetMap (Padrão Gratuito)": camadaOSM,
+                "Mapa Urbano (Esri Street)": camadaStreet,
+                "Satélite Foto-Real (Esri)": camadaSatelite
             }, null, { position: 'topright' }).addTo(map);
 
             const iconA = L.divIcon({ className: 'pin-a', iconSize: [16, 16], iconAnchor: [8, 8] });

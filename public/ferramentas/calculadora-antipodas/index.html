@@ -29,9 +29,15 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Leaflet CSS & JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet CSS & JS (CDN Primário Cloudflare cdnjs com Fallback jsDelivr) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        if (typeof L === 'undefined') {
+            document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">');
+            document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
 
     <script>
         tailwind.config = {
@@ -394,14 +400,20 @@
 
         function inicializarMapas() {
             if (mapStart && mapAnti) return;
+            if (typeof L === 'undefined') {
+                setTimeout(inicializarMapas, 100);
+                return;
+            }
 
             const latInit = -23.5505;
             const lngInit = -46.6333;
             const antiInit = calcularAntipoda(latInit, lngInit);
 
-            const cartoLight = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+            // Provedores 100% Gratuitos e Sem Chave de API
             const osm = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+            const streetEsri = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
             const satelite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+            const hotOsm = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
 
             // Mapa 1: Partida (Onde cava)
             mapStart = L.map('mapStart', {
@@ -410,10 +422,19 @@
                 zoomControl: true,
                 worldCopyJump: true
             });
-            const light1 = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapStart);
-            const osm1 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
+            const osm1 = L.tileLayer(osm, {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+            }).addTo(mapStart);
+            const street1 = L.tileLayer(streetEsri, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
             const sat1 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
-            L.control.layers({ "Mapa Cartográfico": light1, "OpenStreetMap": osm1, "Satélite": sat1 }, null, { position: 'topright' }).addTo(mapStart);
+            const hot1 = L.tileLayer(hotOsm, { maxZoom: 19, attribution: '&copy; OSM HOT' });
+            L.control.layers({
+                "OpenStreetMap (Padrão Gratuito)": osm1,
+                "Mapa Urbano (Esri Street)": street1,
+                "Satélite Foto-Real (Esri)": sat1,
+                "OSM Humanitário (HOT)": hot1
+            }, null, { position: 'topright' }).addTo(mapStart);
 
             const iconStart = L.divIcon({ className: 'pin-start', iconSize: [22, 22], iconAnchor: [11, 11] });
             markerStart = L.marker([latInit, lngInit], { icon: iconStart, draggable: true }).addTo(mapStart);
@@ -426,10 +447,19 @@
                 zoomControl: true,
                 worldCopyJump: true
             });
-            const light2 = L.tileLayer(cartoLight, { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; CARTO &mdash; OpenStreetMap' }).addTo(mapAnti);
-            const osm2 = L.tileLayer(osm, { maxZoom: 19, attribution: '&copy; OpenStreetMap' });
+            const osm2 = L.tileLayer(osm, {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+            }).addTo(mapAnti);
+            const street2 = L.tileLayer(streetEsri, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
             const sat2 = L.tileLayer(satelite, { maxZoom: 18, attribution: 'Tiles &copy; Esri' });
-            L.control.layers({ "Mapa Cartográfico": light2, "OpenStreetMap": osm2, "Satélite": sat2 }, null, { position: 'topright' }).addTo(mapAnti);
+            const hot2 = L.tileLayer(hotOsm, { maxZoom: 19, attribution: '&copy; OSM HOT' });
+            L.control.layers({
+                "OpenStreetMap (Padrão Gratuito)": osm2,
+                "Mapa Urbano (Esri Street)": street2,
+                "Satélite Foto-Real (Esri)": sat2,
+                "OSM Humanitário (HOT)": hot2
+            }, null, { position: 'topright' }).addTo(mapAnti);
 
             const iconAnti = L.divIcon({ className: 'pin-anti', iconSize: [22, 22], iconAnchor: [11, 11] });
             markerAnti = L.marker([antiInit.lat, antiInit.lng], { icon: iconAnti, draggable: true }).addTo(mapAnti);
@@ -474,11 +504,15 @@
             setTimeout(() => {
                 if (mapStart) mapStart.invalidateSize();
                 if (mapAnti) mapAnti.invalidateSize();
-            }, 200);
+            }, 150);
             setTimeout(() => {
                 if (mapStart) mapStart.invalidateSize();
                 if (mapAnti) mapAnti.invalidateSize();
-            }, 600);
+            }, 500);
+            setTimeout(() => {
+                if (mapStart) mapStart.invalidateSize();
+                if (mapAnti) mapAnti.invalidateSize();
+            }, 1200);
 
             window.addEventListener('resize', () => {
                 if (mapStart) mapStart.invalidateSize();
