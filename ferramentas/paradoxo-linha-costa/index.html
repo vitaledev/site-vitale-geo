@@ -351,11 +351,11 @@
                     </div>
 
                     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar" id="filtrosAtlas">
-                        <button onclick="filtrarAtlas('todos')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition">Todos</button>
-                        <button onclick="filtrarAtlas('hiper')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Hiper-Recortados (D &gt; 1.30)</button>
-                        <button onclick="filtrarAtlas('moderado')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Moderados (1.10 - 1.30)</button>
-                        <button onclick="filtrarAtlas('liso')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Retilíneos (D &lt; 1.10)</button>
-                        <button onclick="filtrarAtlas('fronteira')" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Fronteiras</button>
+                        <button onclick="filtrarAtlas('todos', this)" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition active">Todos</button>
+                        <button onclick="filtrarAtlas('hiper', this)" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Hiper-Recortados (D &gt; 1.30)</button>
+                        <button onclick="filtrarAtlas('moderado', this)" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Moderados (1.10 - 1.30)</button>
+                        <button onclick="filtrarAtlas('liso', this)" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Retilíneos (D &lt; 1.10)</button>
+                        <button onclick="filtrarAtlas('fronteira', this)" class="btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition">Fronteiras</button>
                     </div>
                 </div>
 
@@ -1010,6 +1010,13 @@
                 fillOpacity: 0.85
             }).addTo(map);
             marker.bindPopup("<b>Sognefjord (Noruega)</b><br>205 km de penetração no continente e 1.308 metros de profundidade. O maior fiorde da Noruega.");
+
+            setTimeout(() => {
+                if (map) map.invalidateSize();
+            }, 300);
+            window.addEventListener('resize', () => {
+                if (map) map.invalidateSize();
+            });
         }
 
         function irParaHotspot(tipo) {
@@ -1077,11 +1084,14 @@
             `).join('');
         }
 
-        function filtrarAtlas(tipo) {
+        function filtrarAtlas(tipo, btn) {
             document.querySelectorAll('#filtrosAtlas button').forEach(b => {
                 b.className = 'btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-white text-[#53647C] border border-[#0A192F]/10 transition';
             });
-            event.target.className = 'btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition active';
+            const targetBtn = btn || (typeof event !== 'undefined' && event ? event.target : null);
+            if (targetBtn) {
+                targetBtn.className = 'btn-filtro px-2.5 py-1 rounded-full text-xs font-mono bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/30 font-semibold transition active';
+            }
             renderizarAtlasPaises(tipo);
         }
 

@@ -173,7 +173,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     transform: translateX(-50%);
     width: calc(100% - 2rem);
     max-width: 64rem;
-    z-index: 50;
+    z-index: 1100;
     border-radius: 9999px;
     background: rgba(245, 242, 235, 0.92);
     backdrop-filter: blur(16px);
@@ -379,7 +379,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
                 visibility 0.25s;
-    z-index: 100;
+    z-index: 1200;
     pointer-events: none;
     font-size: 0.75rem;
     line-height: 1.6;
@@ -388,11 +388,38 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 .hover-info-container:hover .hover-info-popover,
-.hover-info-container:focus-within .hover-info-popover {
+.hover-info-container:focus-within .hover-info-popover,
+.hover-info-container.is-active .hover-info-popover {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+/* Evitar que o popover seja cortado à esquerda em telas móveis */
+@media (max-width: 640px) {
+    .hover-info-popover {
+        left: 0;
+        right: auto;
+        width: min(calc(100vw - 2.5rem), 340px);
+    }
+}
+
+/* Popover dentro de painéis e cards com rolagem interna (evita clipping) */
+.card .hover-info-popover {
+    bottom: calc(100% + 8px);
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    transform: translateY(-6px);
+}
+
+.card .hover-info-container:hover .hover-info-popover,
+.card .hover-info-container:focus-within .hover-info-popover,
+.card .hover-info-container.is-active .hover-info-popover {
+    transform: translateY(0);
 }
 
 /* Tooltip customizado suave */

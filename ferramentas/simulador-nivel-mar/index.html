@@ -675,6 +675,13 @@
 
             criarCamadaElevacaoDinamica();
             criarPoligonosBacias();
+
+            setTimeout(() => {
+                if (map) map.invalidateSize();
+            }, 300);
+            window.addEventListener('resize', () => {
+                if (map) map.invalidateSize();
+            });
         }
 
         // --- CAMADA DE ELEVAÇÃO DINÂMICA VIA CANVAS & AWS TERRARIUM ---
@@ -688,7 +695,7 @@
 
                     const img = new Image();
                     img.crossOrigin = 'Anonymous';
-                    img.src = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${coords.z}/${coords.x}/${coords.y}.png`;
+                    img.src = `https://elevation-tiles-prod.s3.amazonaws.com/terrarium/${coords.z}/${coords.x}/${coords.y}.png`;
 
                     img.onload = function() {
                         try {
@@ -939,8 +946,8 @@
             botoes.forEach(b => b.classList.remove('preset-active'));
 
             const correspondente = Array.from(botoes).find(b => {
-                const txt = b.querySelector('span').innerText;
-                return txt.includes(`+${cota} `);
+                const txt = b.querySelector('span')?.innerText || b.innerText || '';
+                return txt.includes(`+${cota} `) || txt.includes(`+${cota}m`);
             });
             if (correspondente) {
                 correspondente.classList.add('preset-active');

@@ -84,7 +84,7 @@
         .ui-container {
             position: absolute; top: 88px; left: 20px; z-index: 1000;
             display: flex; align-items: flex-start; gap: 10px;
-            height: calc(100% - 110px); pointer-events: none;
+            height: calc(100vh - 110px); pointer-events: none;
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .ui-container.collapsed { transform: translateX(calc(-1 * var(--panel-width) - 20px)); }
@@ -348,6 +348,14 @@
         map.on('mousemove', onMapMouseMove);
         map.on('mouseup', onMapMouseUp);
         map.on('click', (e) => { if(e.originalEvent.target.id === 'map') deselectAll(); });
+
+        setTimeout(() => { if (map) map.invalidateSize(); }, 300);
+        window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+    }
+
+    function safeIso(iso) {
+        if (!iso || iso === '-99' || iso.length !== 2) return 'un';
+        return iso.toLowerCase();
     }
 
     function getDistBearing(lat1, lng1, lat2, lng2) {
@@ -393,7 +401,7 @@
 
     function addCountry(feature) {
         if (activeLayers.find(l => l.name === feature.properties.name)) return;
-        const iso = feature.properties.iso_a2.toLowerCase();
+        const iso = safeIso(feature.properties.iso_a2);
         const flagUrl = `https://flagcdn.com/w40/${iso}.png`;
         const color = `hsl(${Math.random() * 360}, 70%, 50%)`;
 
@@ -564,7 +572,7 @@
                 matches.forEach(m => {
                     const d = document.createElement('div');
                     d.className = 'suggestion-item';
-                    d.innerHTML = `<img src="https://flagcdn.com/w20/${m.properties.iso_a2.toLowerCase()}.png" class="flag-mini"> ${m.properties.name}`;
+                    d.innerHTML = `<img src="https://flagcdn.com/w20/${safeIso(m.properties.iso_a2)}.png" class="flag-mini"> ${m.properties.name}`;
                     d.onclick = () => { addCountry(m); inp.value = ''; box.style.display = 'none'; };
                     box.appendChild(d);
                 });
@@ -588,8 +596,8 @@
         const btnA = document.getElementById('opt-a'), btnB = document.getElementById('opt-b');
         btnA.disabled = false; btnB.disabled = false;
         btnA.className = 'game-btn'; btnB.className = 'game-btn';
-        btnA.innerHTML = `<img src="https://flagcdn.com/w80/${c1.properties.iso_a2.toLowerCase()}.png"> ${c1.properties.name}`;
-        btnB.innerHTML = `<img src="https://flagcdn.com/w80/${c2.properties.iso_a2.toLowerCase()}.png"> ${c2.properties.name}`;
+        btnA.innerHTML = `<img src="https://flagcdn.com/w80/${safeIso(c1.properties.iso_a2)}.png"> ${c1.properties.name}`;
+        btnB.innerHTML = `<img src="https://flagcdn.com/w80/${safeIso(c2.properties.iso_a2)}.png"> ${c2.properties.name}`;
         btnA.onclick = () => guess(0);
         btnB.onclick = () => guess(1);
     }
