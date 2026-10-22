@@ -3,7 +3,7 @@ titulo: "Ceuta e Melilla: Os Dois Pedaços da Europa Cravados no Norte da Áfric
 resumo: "Cercadas por muralhas triplas e pelo território do Marrocos, Ceuta e Melilla são as únicas fronteiras terrestres diretas da UE na África."
 categoria: "História"
 data: "11 Out 2026 - 12:45"
-img: "/assets/img/blog/ceuta-e-melilla.jpg"
+img: "/assets/img/blog/ceuta-e-melilla.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

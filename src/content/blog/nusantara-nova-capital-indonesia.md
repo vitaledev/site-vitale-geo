@@ -3,7 +3,7 @@ titulo: "Por que a Indonésia Está Abandonando Jacarta para Construir uma Capit
 resumo: "Afundando até 25 cm por ano sob o peso de 10 milhões de habitantes, Jacarta está sendo substituída por uma megalópole planejada no meio da selva de Bornéu."
 categoria: "Urbanismo"
 data: "11 Out 2026 - 19:30"
-img: "/assets/img/blog/nusantara-nova-capital-indonesia.jpg"
+img: "/assets/img/blog/nusantara-nova-capital-indonesia.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

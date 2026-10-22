@@ -3,7 +3,7 @@ titulo: "O Gigante Encurralado: Por que a Etiópia Busca Desesperadamente o Mar?
 resumo: "Com mais de 125 milhões de habitantes, a Etiópia é o país sem litoral mais populoso do mundo. Entenda a crise que ameaça o Chifre da África."
 categoria: "Geopolítica"
 data: "10 Out 2026"
-img: "/assets/img/blog/etiopia-sem-mar.jpg"
+img: "/assets/img/blog/etiopia-sem-mar.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

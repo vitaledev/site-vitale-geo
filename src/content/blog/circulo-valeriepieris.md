@@ -3,7 +3,7 @@ titulo: "O Círculo de Valeriepieris: Onde Vive Metade da Humanidade"
 resumo: "Um círculo de 4.000 km no Sudeste Asiático concentra mais gente do que todo o resto do planeta. Entenda por quê."
 categoria: "Cartografia"
 data: "14 Fev 2026"
-img: "/assets/img/blog/circulo-valeriepieris.jpg"
+img: "/assets/img/blog/circulo-valeriepieris.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

@@ -3,7 +3,7 @@ titulo: "A Farsa de Mercator"
 resumo: "Por que a Groenlândia parece maior que a África? Entenda a distorção matemática dos mapas."
 categoria: "Cartografia"
 data: "20 Jan 2026"
-img: "/assets/img/blog/farsa-mercator.jpg"
+img: "/assets/img/blog/farsa-mercator.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

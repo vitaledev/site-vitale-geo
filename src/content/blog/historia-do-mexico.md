@@ -3,7 +3,7 @@ titulo: "Como o México Perdeu Mais de Metade de Seu Território para os Estados
 resumo: "Do esplendor de Tenochtitlán à perda de 2 milhões de km² no Tratado de Guadalupe Hidalgo em 1848, entenda como as fronteiras mexicanas foram forjadas."
 categoria: "História"
 data: "17 Out 2026 - 07:30"
-img: "/assets/img/blog/historia-do-mexico.jpg"
+img: "/assets/img/blog/historia-do-mexico.webp"
 tempoLeitura: "8 min"
 destaque: false
 ---

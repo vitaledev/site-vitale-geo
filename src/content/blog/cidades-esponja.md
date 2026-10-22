@@ -3,7 +3,7 @@ titulo: "Cidades-Esponja: O Fim das Enchentes?"
 resumo: "Por que o concreto precisa dar lugar à natureza. Entenda a tecnologia e a geopolítica por trás das Sponge Cities."
 categoria: "Urbanismo"
 data: "15 Jan 2026"
-img: "/assets/img/blog/cidades-esponja.jpg"
+img: "/assets/img/blog/cidades-esponja.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

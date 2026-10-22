@@ -3,7 +3,7 @@ titulo: "Como o Vietnã Resistiu a Três Superpotências e Forjou Suas Fronteira
 resumo: "De mil anos de dominação chinesa à partilha no Paralelo 17 e a vitória sobre franceses e americanos, entenda como o Vietnã forjou seu território em forma de 'S'."
 categoria: "História"
 data: "18 Out 2026 - 07:30"
-img: "/assets/img/blog/historia-do-vietna.jpg"
+img: "/assets/img/blog/historia-do-vietna.webp"
 tempoLeitura: "9 min"
 destaque: false
 ---

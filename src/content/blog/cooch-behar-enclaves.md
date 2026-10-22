@@ -3,7 +3,7 @@ titulo: "Cooch Behar: Onde Existiu o Único Enclave de 3ª Ordem da História Hu
 resumo: "Um pedaço da Índia dentro de Bangladesh, dentro da Índia, dentro de Bangladesh: conheça o quebra-cabeça de Dahala Khagrabari."
 categoria: "História"
 data: "11 Out 2026 - 11:00"
-img: "/assets/img/blog/cooch-behar-enclaves.jpg"
+img: "/assets/img/blog/cooch-behar-enclaves.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

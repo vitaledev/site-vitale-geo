@@ -3,7 +3,7 @@ titulo: "A Guerra do Uísque: Canadá vs Dinamarca"
 resumo: "Durante décadas, duas nações disputaram uma ilha deixando garrafas de uísque e schnapps para os 'invasores'."
 categoria: "História"
 data: "30 Mar 2026"
-img: "/assets/img/blog/guerra-uisque.jpg"
+img: "/assets/img/blog/guerra-uisque.webp"
 tempoLeitura: "10 min"
 destaque: false
 ---

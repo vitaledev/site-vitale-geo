@@ -3,7 +3,7 @@ titulo: "Como o Congo Monopolizou 70% do Cobalto Mundial Sem Conseguir Enriquece
 resumo: "No coração da África, o cinturão mineral de Katanga detém as maiores reservas de cobalto e coltan da Terra, vitais para baterias e celulares em meio à maldição dos recursos."
 categoria: "Geopolítica"
 data: "18 Out 2026 - 11:00"
-img: "/assets/img/blog/geoeconomia-da-rd-congo.jpg"
+img: "/assets/img/blog/geoeconomia-da-rd-congo.webp"
 tempoLeitura: "8 min"
 destaque: false
 ---

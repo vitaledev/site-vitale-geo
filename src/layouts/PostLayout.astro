@@ -115,6 +115,9 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
           <img
             src={img}
             alt={titulo}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             referrerpolicy="no-referrer"
             class="w-full h-full object-cover"
           />

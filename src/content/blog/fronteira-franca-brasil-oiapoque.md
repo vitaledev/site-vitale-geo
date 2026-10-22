@@ -3,7 +3,7 @@ titulo: "Por Que a Maior Fronteira Terrestre da França Fica na Floresta Amazôn
 resumo: "Com 730 km ao longo do Amapá e do Rio Oiapoque, a França compartilha com o Brasil sua mais extensa fronteira contínua, superando vizinhos europeus."
 categoria: "Fronteiras"
 data: "17 Out 2026 - 18:00"
-img: "/assets/img/blog/fronteira-franca-brasil-oiapoque.jpg"
+img: "/assets/img/blog/fronteira-franca-brasil-oiapoque.webp"
 tempoLeitura: "8 min"
 destaque: false
 ---
