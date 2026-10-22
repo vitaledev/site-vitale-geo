@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Quais São os Dez Maiores Rios do Planeta Que Alimentam Civilizações e Redesenham Fronteiras?",
+        categoria: "Rankings",
+        data: "21 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Beautiful_nature_along_Nile_River_01.jpg",
+        link: "ranking-maiores-rios-do-mundo/",
+        resumo: "Do duelo entre Amazonas e Nilo ao Yangtzé, Mississipi, Mekong e Amur, descubra os 10 maiores rios da Terra em extensão, vazão e poder geopolítico."
+    },
+    {
+        titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde o Ar Rarefeito Molda a Vida Humana?",
+        categoria: "Rankings",
+        data: "21 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Vista_del_centro_de_La_Paz.jpg",
+        link: "ranking-capitais-mais-altas-do-mundo/",
+        resumo: "De La Paz e Quito a Sucre, Bogotá e Adis Abeba, compare dez capitais e sedes de governo em altitude — com os critérios e as diferenças entre listas."
+    },
+    {
+        titulo: "Por Que a Transnístria é o País Fantasma Que Ainda Vive na União Soviética Dentro da Europa?",
+        categoria: "Curiosidades",
+        data: "21 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Moldova_Transnistria_Locator.png",
+        link: "transnistria-pais-fantasma/",
+        resumo: "Espremida entre o Rio Dniester na Moldávia e a Ucrânia, conheça a faixa separatista com foice e martelo na bandeira e o arsenal de Cobasna."
+    },
+    {
+        titulo: "Por Que a Fronteira Entre o Haiti e a República Dominicana Pode Ser Vista do Espaço?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/03/ISS027-E-17333_-_View_of_Dominican_Republic.jpg",
+        link: "ilha-de-hispaniola-fronteira/",
+        resumo: "Na Ilha de Hispaniola, os tratados de Ryswick e Aranjuez e o contraste de cobertura vegetal ajudam a explicar uma fronteira visível em imagens de satélite."
+    },
+    {
+        titulo: "Por Que as Colinas de Golã São o Planalto de Água e Radar Mais Disputado do Oriente Médio?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Golan_Heights_Map-SVG.svg/1280px-Golan_Heights_Map-SVG.svg.png",
+        link: "colinas-de-gola-fronteira/",
+        resumo: "Da Linha de 1967 à zona de separação da ONU, entenda a importância do Golã e as mudanças ocorridas após dezembro de 2024."
+    },
+    {
+        titulo: "Por Que o Estreito de Gibraltar Separa a Europa da África Por Apenas 14 Km de Mar?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e8/STS059-238-074_Strait_of_Gibraltar.jpg",
+        link: "estreito-de-gibraltar-chokepoint/",
+        resumo: "Do tráfego marítimo às rotas de contêineres, conheça o estreito entre Europa e África e os estudos ainda preliminares para uma ligação ferroviária."
+    },
+    {
+        titulo: "Por Que o Corredor de Siliguri é o Gargalo de 22 Km Que Pode Cortar a Índia ao Meio?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Chickensneckindia.jpg",
+        link: "corredor-de-siliguri-india/",
+        resumo: "O corredor liga os oito estados do Nordeste ao restante da Índia; o Censo de 2011 registrou 45,8 milhões de habitantes na região."
+    },
+    {
+        titulo: "Como as Areias Betuminosas de Alberta e o Urânio Transformaram o Canadá em Superpotência de Recursos?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Athabasca_Oil_Sands_map.png",
+        link: "geoeconomia-do-canada/",
+        resumo: "Com 163 bilhões de barris em reservas provadas de petróleo, 1,1 bilhão de toneladas de potássio e urânio de alto teor, entenda a geoeconomia do Canadá."
+    },
+    {
+        titulo: "Como a posição insular do Japão condiciona o acesso naval ao Pacífico?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/30/First_island_chain_perimeter_%28marked_in_red%29.jpg",
+        link: "geopolitica-do-japao/",
+        resumo: "Das Ilhas Curilas a Okinawa, veja como a posição insular do Japão influencia as rotas entre o Mar da China Oriental e o Pacífico."
+    },
+    {
+        titulo: "Como a Linha Radcliffe Retalhou o Império Britânico e Desenhou as Fronteiras da Índia Moderna?",
+        categoria: "História",
+        data: "21 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/47/Brit_IndianEmpireReligions3.jpg",
+        link: "historia-da-india/",
+        resumo: "Da civilização do Vale do Indo à Partição de 1947 e à anexação de 565 Estados Principescos, entenda como nasceu o mapa da nação mais populosa do planeta."
+    },
+    {
         titulo: "Quais São as Dez Nações Mais Jovens do Planeta Que Ganharam Assento na ONU?",
         categoria: "Rankings",
         data: "20 Out 2026 - 22:30",
@@ -194,14 +274,7 @@ const blogPosts = [
         link: "ranking-maiores-paises-sem-mar/",
         resumo: "Do gigante Cazaquistão com seus 2,7 milhões de km² à Mongólia e Bolívia: descubra o ranking das nações encravadas e o imposto invisível que pagam sobre o comércio global."
     },
-    {
-        titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?",
-        categoria: "Rankings",
-        data: "18 Out 2026 - 10:00",
-        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg",
-        link: "ranking-capitais-mais-altas-do-mundo/",
-        resumo: "De La Paz e Quito a Thimphu e Bogotá: conheça o ranking das sedes de governo situadas a mais de 2.000 metros de altitude e os desafios da vida com pouco oxigênio."
-    },
+
     {
         titulo: "Quais São os Dez Menores Países Soberanos da Terra e Como Suas Fronteiras Sobrevivem?",
         categoria: "Rankings",

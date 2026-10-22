@@ -3,6 +3,246 @@
 
 const blogPosts = [
     {
+        titulo: "Quais São os Dez Maiores Rios do Planeta Que Alimentam Civilizações e Redesenham Fronteiras?",
+        categoria: "Rankings",
+        data: "21 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Beautiful_nature_along_Nile_River_01.jpg",
+        link: "ranking-maiores-rios-do-mundo/",
+        resumo: "Do duelo entre Amazonas e Nilo ao Yangtzé, Mississipi, Mekong e Amur, descubra os 10 maiores rios da Terra em extensão, vazão e poder geopolítico."
+    },
+    {
+        titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde o Ar Rarefeito Molda a Vida Humana?",
+        categoria: "Rankings",
+        data: "21 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Vista_del_centro_de_La_Paz.jpg",
+        link: "ranking-capitais-mais-altas-do-mundo/",
+        resumo: "De La Paz e Quito a Sucre, Bogotá e Adis Abeba, compare dez capitais e sedes de governo em altitude — com os critérios e as diferenças entre listas."
+    },
+    {
+        titulo: "Por Que a Transnístria é o País Fantasma Que Ainda Vive na União Soviética Dentro da Europa?",
+        categoria: "Curiosidades",
+        data: "21 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Moldova_Transnistria_Locator.png",
+        link: "transnistria-pais-fantasma/",
+        resumo: "Espremida entre o Rio Dniester na Moldávia e a Ucrânia, conheça a faixa separatista com foice e martelo na bandeira e o arsenal de Cobasna."
+    },
+    {
+        titulo: "Por Que a Fronteira Entre o Haiti e a República Dominicana Pode Ser Vista do Espaço?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/03/ISS027-E-17333_-_View_of_Dominican_Republic.jpg",
+        link: "ilha-de-hispaniola-fronteira/",
+        resumo: "Na Ilha de Hispaniola, os tratados de Ryswick e Aranjuez e o contraste de cobertura vegetal ajudam a explicar uma fronteira visível em imagens de satélite."
+    },
+    {
+        titulo: "Por Que as Colinas de Golã São o Planalto de Água e Radar Mais Disputado do Oriente Médio?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Golan_Heights_Map-SVG.svg/1280px-Golan_Heights_Map-SVG.svg.png",
+        link: "colinas-de-gola-fronteira/",
+        resumo: "Da Linha de 1967 à zona de separação da ONU, entenda a importância do Golã e as mudanças ocorridas após dezembro de 2024."
+    },
+    {
+        titulo: "Por Que o Estreito de Gibraltar Separa a Europa da África Por Apenas 14 Km de Mar?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e8/STS059-238-074_Strait_of_Gibraltar.jpg",
+        link: "estreito-de-gibraltar-chokepoint/",
+        resumo: "Do tráfego marítimo às rotas de contêineres, conheça o estreito entre Europa e África e os estudos ainda preliminares para uma ligação ferroviária."
+    },
+    {
+        titulo: "Por Que o Corredor de Siliguri é o Gargalo de 22 Km Que Pode Cortar a Índia ao Meio?",
+        categoria: "Fronteiras",
+        data: "21 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Chickensneckindia.jpg",
+        link: "corredor-de-siliguri-india/",
+        resumo: "O corredor liga os oito estados do Nordeste ao restante da Índia; o Censo de 2011 registrou 45,8 milhões de habitantes na região."
+    },
+    {
+        titulo: "Como as Areias Betuminosas de Alberta e o Urânio Transformaram o Canadá em Superpotência de Recursos?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Athabasca_Oil_Sands_map.png",
+        link: "geoeconomia-do-canada/",
+        resumo: "Com 163 bilhões de barris em reservas provadas de petróleo, 1,1 bilhão de toneladas de potássio e urânio de alto teor, entenda a geoeconomia do Canadá."
+    },
+    {
+        titulo: "Como a posição insular do Japão condiciona o acesso naval ao Pacífico?",
+        categoria: "Geopolítica",
+        data: "21 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/30/First_island_chain_perimeter_%28marked_in_red%29.jpg",
+        link: "geopolitica-do-japao/",
+        resumo: "Das Ilhas Curilas a Okinawa, veja como a posição insular do Japão influencia as rotas entre o Mar da China Oriental e o Pacífico."
+    },
+    {
+        titulo: "Como a Linha Radcliffe Retalhou o Império Britânico e Desenhou as Fronteiras da Índia Moderna?",
+        categoria: "História",
+        data: "21 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/47/Brit_IndianEmpireReligions3.jpg",
+        link: "historia-da-india/",
+        resumo: "Da civilização do Vale do Indo à Partição de 1947 e à anexação de 565 Estados Principescos, entenda como nasceu o mapa da nação mais populosa do planeta."
+    },
+    {
+        titulo: "Quais São as Dez Nações Mais Jovens do Planeta Que Ganharam Assento na ONU?",
+        categoria: "Rankings",
+        data: "20 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/bf/SouthSudanOMC.png",
+        link: "ranking-paises-mais-jovens-do-mundo/",
+        resumo: "Do Sudão do Sul em 2011 a Kosovo, Montenegro, Timor-Leste e o colapso soviético, veja os 10 países mais novos do mundo que redesenharam as fronteiras globais."
+    },
+    {
+        titulo: "Quais São as Dez Ilhas Mais Povoadas do Planeta Onde Centenas de Milhões Vivem Cercados Pelo Mar?",
+        categoria: "Rankings",
+        data: "20 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/43/Java_Topography.png",
+        link: "ranking-ilhas-mais-povoadas-do-mundo/",
+        resumo: "De Java com 156 milhões de pessoas a Honshu e Grã-Bretanha, veja as 10 ilhas mais populosas do globo e como a geografia insular condiciona nações inteiras."
+    },
+    {
+        titulo: "Por Que a Ponte do Estreito de Kerch é o Ponto Mais Vigiado da Guerra no Mar Negro?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Kerch_Strait%2C_Ukraine%2C_Russia%2C_near_natural_colors_satellite_image%2C_LandSat-5%2C_2011-08-30.jpg",
+        link: "estreito-de-kerch-crimeia/",
+        resumo: "Com 19 km de extensão, a megaestrutura construída por Putin conecta a Rússia à Crimeia, controlando a entrada do Mar de Azov como a maior artéria de guerra."
+    },
+    {
+        titulo: "Como o Tratado da Antártida Congelou as Disputas Territoriais de Sete Países no Fim do Mundo?",
+        categoria: "Fronteiras",
+        data: "20 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Antarctica%2C_territorial_claims.svg/1280px-Antarctica%2C_territorial_claims.svg.png",
+        link: "tratado-da-antartida-territorios/",
+        resumo: "Assinado em 1959 no auge da Guerra Fria, o tratado desmilitarizou 14 milhões de km², baniu armas nucleares e congelou pretensões territoriais soberanas."
+    },
+    {
+        titulo: "Como o Eurotúnel Quebrou Oito Mil Anos de Isolamento Insular da Grã-Bretanha?",
+        categoria: "Curiosidades",
+        data: "20 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Chargement_voiture_Eurotunnel.jpg",
+        link: "eurotunel-canal-da-mancha/",
+        resumo: "Com 50,4 km de trilhos sob o mar, o túnel ligou Folkestone a Coquelles em 1994, quebrando o fosso geológico que separava a Grã-Bretanha da Europa desde a Era do Gelo."
+    },
+    {
+        titulo: "Por Que a Menor Ilha Habitada Dividida Entre Dois Países Fica no Caribe?",
+        categoria: "Fronteiras",
+        data: "20 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Saint_Martin_map.svg/1280px-Saint_Martin_map.svg.png",
+        link: "ilha-de-sao-martinho-fronteira/",
+        resumo: "Com apenas 87 km², a ilha caribenha abriga a única fronteira terrestre entre França e Países Baixos, aberta e pacífica desde o Tratado de Concórdia de 1648."
+    },
+    {
+        titulo: "Por Que o Estreito de Dardanelos Foi Palco da Batalha Mais Sangrenta Pelo Controle dos Mares?",
+        categoria: "Curiosidades",
+        data: "20 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Dardanelles_map2.png",
+        link: "estreito-de-dardanelos-chokepoint/",
+        resumo: "Com 61 km de comprimento e apenas 1,2 km de largura em Çanakkale, Dardanelos é a porta de saída do Mar Negro regida pelo Tratado de Montreux."
+    },
+    {
+        titulo: "Como o Chile Monopolizou as Maiores Reservas de Cobre e Lítio da Terra no Deserto de Atacama?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Copper_mines_in_Chile_-_3.PNG",
+        link: "geoeconomia-do-chile/",
+        resumo: "Com a maior mina de cobre do mundo e os salares mais secos de lítio em Atacama, o Chile domina as matérias-primas essenciais da eletrificação global."
+    },
+    {
+        titulo: "Por Que Singapura é Uma Ilha Sem Água Doce Nem Recursos Que Domina o Comércio Mundial?",
+        categoria: "Geopolítica",
+        data: "20 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/07/CIA_World_Factbook_map_of_Singapore_%28English%29.png",
+        link: "geopolitica-de-singapura/",
+        resumo: "Expulsa da Malásia em 1965 sem petróleo ou água potável, a microilha transformou sua posição no Estreito de Malaca no maior entreposto marítimo da Terra."
+    },
+    {
+        titulo: "Como o Egito Manteve as Mesmas Fronteiras Naturais Por Cinco Mil Anos de História?",
+        categoria: "História",
+        data: "20 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Egypt_relief_location_map.jpg",
+        link: "historia-do-egito/",
+        resumo: "Da unificação pelo faraó Menés em 3100 a.C. ao Canal de Suez e à era moderna, entenda como o Nilo e os desertos preservaram a nação mais antiga do planeta."
+    },
+    {
+        titulo: "Por Que o Lago de Constança é o Único Lugar da Europa Onde Três Países Não Concordam Onde Fica a Fronteira?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/cc/Lake_Constance_Edited.png",
+        link: "lago-de-constanca-fronteira-triplice/",
+        resumo: "Entre a Alemanha, a Suíça e a Áustria, as águas de 536 km² do Bodensee não possuem tratado formal de limites: cada nação aplica sua própria teoria jurídica sem disparar um único tiro."
+    },
+    {
+        titulo: "Por Que o Descongelamento da Passagem Noroeste Pode Reduzir a Rota da Ásia para a Europa em 7.000 km?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/2007_Envisat_mosaic_of_Arctic_Ocean_ESA210015.jpg",
+        link: "passagem-noroeste-artico-degelo/",
+        resumo: "O recuo histórico da calota polar ártica está abrindo o mítico labirinto de ilhas do norte canadense, acirrando uma disputa de soberania naval entre Ottawa, Washington e Pequim."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Densamente Povoados do Planeta Onde Cada Metro Quadrado é Disputado?",
+        categoria: "Rankings",
+        data: "19 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Tejgaon_Commercial_Area.jpg",
+        link: "ranking-maiores-densidades-demograficas/",
+        resumo: "De Mônaco e Cingapura à pressão colossal de 170 milhões de pessoas em Bangladesh: conheça o ranking oficial das nações onde o espaço físico é o recurso mais escasso da civilização."
+    },
+    {
+        titulo: "Quais São os Dez Países Com os Maiores Litorais do Mundo e o Paradoxo da Linha de Costa?",
+        categoria: "Rankings",
+        data: "19 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Geirangerfjord_.jpg/1280px-Geirangerfjord_.jpg",
+        link: "ranking-maiores-litorais-do-mundo/",
+        resumo: "Do Canadá com seus 202.080 km de costas ao labirinto de fiordes da Noruega e os arquipélagos da Indonésia: descubra o ranking das maiores costas marítimas e o enigma matemático fractal."
+    },
+    {
+        titulo: "Como a Confluência dos Rios Iguaçu e Paraná Criou a Tríplice Fronteira Mais Movimentada da América do Sul?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Ponte_da_amizade_-_Friendship_bridge-_Paraguay_%289623754507%29.jpg",
+        link: "triplice-fronteira-parana-iguacu/",
+        resumo: "Onde as águas do Rio Iguaçu encontram o Rio Paraná, Brasil, Argentina e Paraguai dividem um triângulo geográfico de hidrelétricas gigantes, pontes internacionais e um fluxo comercial de bilhões."
+    },
+    {
+        titulo: "Por Que a Linha Durand Traçada Pelo Império Britânico Divide Tribos e Incendeia a Fronteira Afegã?",
+        categoria: "História",
+        data: "19 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Afghanistan-Pakistan_border.png",
+        link: "linha-durand-fronteira-afeganistao-paquistao/",
+        resumo: "Traçada a caneta em 1893 por um diplomata britânico, a fronteira de 2.670 km cortou ao meio a nação pashtun, nunca foi aceita por Cabul e transformou o Passo de Khyber no epicentro de insurgências."
+    },
+    {
+        titulo: "Por Que o Estreito de Magalhães Foi a Rota Mais Secreta e Lucrativa dos Impérios Coloniais?",
+        categoria: "Curiosidades",
+        data: "19 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/05/StraitOfMagellan.jpg",
+        link: "estreito-de-magalhaes-patagonia/",
+        resumo: "Com 565 km entre a Patagônia e a Terra do Fogo, o canal natural desbravado em 1520 quebrou o monopólio das rotas orientais, abrigou batalhas navais e moldou a soberania do Chile no extremo sul."
+    },
+    {
+        titulo: "Como a Austrália Se Tornou a Maior Mina do Planeta e o Principal Fornecedor de Ferro da Ásia?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Super_Pit_Gold_Mine%2C_Kalgoorlie%2C_WA%2C_2023%2C_11.jpg/1280px-Super_Pit_Gold_Mine%2C_Kalgoorlie%2C_WA%2C_2023%2C_11.jpg",
+        link: "geoeconomia-da-australia/",
+        resumo: "Das minas colossais de Pilbara aos depósitos de lítio de Greenbushes: descubra como a ilha-continente sustenta a indústria pesada da China enquanto navega tensões estratégicas no Indo-Pacífico."
+    },
+    {
+        titulo: "Por Que a Finlândia Abandonou Décadas de Neutralidade Para Erguer Uma Fortaleza na Fronteira Russa?",
+        categoria: "Geopolítica",
+        data: "19 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/01/Easternmost_finland.jpg",
+        link: "geopolitica-da-finlandia/",
+        resumo: "Com 1.340 km de divisa direta com a Rússia e a memória da Guerra de Inverno, Helsinque abandonou a neutralidade histórica, entrou para a OTAN e ergueu uma das maiores redes de bunkers da Europa."
+    },
+    {
+        titulo: "Como o Japão Se Manteve Isolado Por Dois Séculos e Forjou Suas Fronteiras no Pacífico?",
+        categoria: "História",
+        data: "19 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Satellite_View_of_Japan_1999.jpg",
+        link: "historia-do-japao/",
+        resumo: "Do edito de isolamento Sakoku de 1635 aos 'Navios Negros' do comodoro Perry e a expansão no Pacífico: conheça a saga territorial que transformou o arquipélago nipônico em potência global."
+    },
+    {
         titulo: "Por Que a Linha do Equador Corta o Brasil no Meio e o Marco Zero Fica em Macapá?",
         categoria: "Curiosidades",
         data: "18 Out 2026 - 10:00",
@@ -34,14 +274,7 @@ const blogPosts = [
         link: "ranking-maiores-paises-sem-mar/",
         resumo: "Do gigante Cazaquistão com seus 2,7 milhões de km² à Mongólia e Bolívia: descubra o ranking das nações encravadas e o imposto invisível que pagam sobre o comércio global."
     },
-    {
-        titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?",
-        categoria: "Rankings",
-        data: "18 Out 2026 - 10:00",
-        img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg",
-        link: "ranking-capitais-mais-altas-do-mundo/",
-        resumo: "De La Paz e Quito a Thimphu e Bogotá: conheça o ranking das sedes de governo situadas a mais de 2.000 metros de altitude e os desafios da vida com pouco oxigênio."
-    },
+
     {
         titulo: "Quais São os Dez Menores Países Soberanos da Terra e Como Suas Fronteiras Sobrevivem?",
         categoria: "Rankings",

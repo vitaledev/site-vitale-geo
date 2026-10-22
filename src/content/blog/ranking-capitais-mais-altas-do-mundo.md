@@ -1,131 +1,162 @@
 ---
-titulo: "Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?"
-resumo: "De La Paz e Quito a Thimphu e Bogotá: conheça o ranking das sedes de governo situadas a mais de 2.000 metros de altitude e os desafios da vida com pouco oxigênio."
+titulo: "Quais Capitais e Sedes de Governo Estão Entre as Mais Altas do Mundo?"
+resumo: "De La Paz e Quito a Sucre, Bogotá e Adis Abeba, compare dez capitais e sedes de governo em altitude — com os critérios e as diferenças entre listas."
 categoria: "Rankings"
-data: "18 Out 2026 - 10:00"
-img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg"
-tempoLeitura: "8 min"
+data: "21 Out 2026 - 21:00"
+img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Vista_del_centro_de_La_Paz.jpg"
+tempoLeitura: "9 min"
+destaque: false
 ---
 
-<p class="lead text-lg sm:text-xl text-slate-200 leading-relaxed font-normal mb-8">
-Para a grande maioria da humanidade concentrada em planícies costeiras e deltas de rios ao nível do mar, a altitude é um destino de férias ou uma barreira geográfica intransponível. No entanto, para dezenas de milhões de cidadãos na América do Sul, Ásia e África, o centro político, econômico e cultural de suas nações situa-se a altitudes onde o oxigênio é rarefeito, a água ferve abaixo dos 90 graus Celsius e os aviões precisam de pistas com quilômetros extras de extensão para decolar no ar fino. Viver nessas capitais de altitude moldou línguas, arquiteturas de montanha e uma fisiologia humana singular adaptada a suportar a hipóxia crônica.
-</p>
-
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-8 not-prose">
-  <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Capital Mais Alta</span>
-    <span class="text-sm sm:text-base font-semibold text-white">La Paz (Bolívia, 3.640m)</span>
-  </div>
-  <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Segunda Colocada</span>
-    <span class="text-sm sm:text-base font-semibold text-amber-400">Quito (Equador, 2.850m)</span>
-  </div>
-  <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Pressão Atmosférica</span>
-    <span class="text-sm sm:text-base font-semibold text-white">Até 40% menor que o mar</span>
-  </div>
-  <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-    <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">Teleférico Urbano</span>
-    <span class="text-sm sm:text-base font-semibold text-sky-400">Mi Teleférico La Paz (33 km)</span>
-  </div>
-</div>
+Ao longo da história da civilização, a esmagadora maioria das capitais nacionais foi fundada ao nível do mar, em baías abrigadas ou estuários de rios navegáveis como Londres, Tóquio, Lisboa e Buenos Aires. No entanto, na faixa intertropical dos <strong>Andes sul-americanos</strong>, no <strong>Planalto da Etiópia</strong> e nas encostas do <strong>Himalaia</strong>, uma anomalia bioclimática inverteu essa regra. Para escapar do calor sufocante, da umidade das selvas baixas e dos mosquitos transmissores da malária e da febre amarela, impérios pré-colombianos e colonizadores europeus ergueram suas sedes de poder acima das nuvens. Conheça a investigação física, biológica e urbana por trás do <strong>lista comparativa de capitais constitucionais e sedes de governo em grande altitude</strong>.
 
 
-## 1. La Paz (Bolívia, 3.640 m) e 2. Quito (Equador, 2.850 m): As Gigantes dos Andes
+## 1º Lugar: La Paz, sede do governo, a cerca de 3.640 m
 
-A liderança incontestável do ranking global de capitais mais elevadas pertence a La Paz, sede do governo e do legislativo da Bolívia (embora a capital constitucional histórica seja Sucre, a 2.810 m). Situada em um cânion profundo sob a imponente montanha Illimani, o centro de La Paz fica a 3.640 metros, enquanto sua cidade contínua, El Alto, atinge inacreditáveis 4.150 metros. Em segundo lugar está Quito, no Equador, erguida nas encostas do vulcão ativo Pichincha a 2.850 metros, abrigando o centro histórico colonial mais bem preservado das Américas.
+No topo absoluto do planeta está <strong>Nuestra Señora de La Paz</strong>, na <strong>Bolívia</strong>, situada a uma altitude média de <strong>3.640 metros acima do nível do mar</strong> (variando de 3.200 metros nos bairros baixos de Zona Sur até <strong>4.150 metros</strong> na cidade contígua de El Alto, onde fica o Aeroporto Internacional mais alto do mundo para voos comerciais regulares).
 
-## 3. Thimphu (Butão, 2.334 m) e 4. Bogotá (Colômbia, 2.640 m)
+Aqui cabe uma distinção jurídica fundamental da geografia política: pela Constituição da Bolívia, a capital histórica e constitucional do país (onde funciona apenas a Suprema Corte de Justiça) é a cidade de <strong>Sucre</strong>, que ocupa o <strong>3º lugar nesta lista, a cerca de 2.790 metros de altitude</strong>. Contudo, desde a Guerra Federal Boliviana de 1899, toda a sede do Poder Executivo (Palácio Quemado) e do Poder Legislativo funciona em <strong>La Paz</strong>, consagrando-a como a capital administrativa mais alta da Terra.
 
-Na Cordilheira do Himalaia encontra-se Thimphu, a capital do Reino do Butão, cravada em um vale verdejante a 2.334 metros de altitude. Famosa por medir o desenvolvimento pelo Índice de Felicidade Interna Bruta em vez do PIB, Thimphu é uma das únicas capitais do mundo sem um único semáforo de trânsito. De volta aos Andes colombianos, a megacidade de Bogotá ocupa a terceira posição entre as capitais de alta densidade: situada em um altiplano a 2.640 metros de altitude, abriga mais de 8 milhões de pessoas em um clima temperado perpétuo a apenas 4 graus ao norte da Linha do Equador.
-
-## 5. Adis Abeba (Etiópia, 2.355 m) e 6. Asmara (Eritreia, 2.325 m)
-
-O Chifre da África abriga duas das capitais mais elevadas da Terra. Adis Abeba, a metrópole de mais de 5 milhões de habitantes e capital diplomática da União Africana, localiza-se nos planaltos da Etiópia a 2.355 metros, o que explica os treinos de elite dos fundistas e maratonistas do país. Ao norte, Asmara, a capital da Eritreia a 2.325 metros, é famosa por seu patrimônio de arquitetura futurista e Art Déco dos anos 1930, preservada intacta desde o período colonial italiano.
-
-## Do México ao Iêmen: As Posições Restantes do Top 10
-
-Completam o ranking oficial: Cidade do México (2.240 m, erguida sobre a antiga bacia lacustre de Tenochtitlan); Sanaa (Iêmen, 2.250 m, com seus arranha-céus históricos de adobe de mil anos); Thimphu no Butão; Teerã (Irã, cujos bairros ao norte tocam 1.800 m aos pés da cordilheira Alborz); e Cabul (Afeganistão, a 1.790 m, encravada entre as montanhas do Hindu Kush).
+A 3.640 metros, a física cotidiana muda: a pressão atmosférica é cerca de 35% menor que ao nível do mar, fazendo com que a água ferva a apenas <strong>87 °C</strong> (exigindo panelas de pressão para cozinhar batatas ou arroz). Como as ruas em formato de cânion são íngremes demais para linhas de metrô subterrâneo, La Paz e El Alto construíram a maior rede de <strong>teleféricos urbanos de transporte de massa do mundo (Mi Teleférico)</strong>, com 10 linhas suspensas por cabos que transportam centenas de milhares de passageiros diariamente sobre os abismos andinos.
 
 
-<blockquote class="my-8 p-5 rounded-xl border-l-4 border-amber-400 bg-white/[0.02] italic text-slate-300">
-"Aqui em cima, a montanha nos ensina a respirar devagar e a pensar com a paciência das rochas."
-<footer class="mt-2 text-xs font-mono text-slate-400 not-italic">— Jaime Paz Zamora, Ex-Presidente da Bolívia</footer>
+## 2º e 3º Lugares: Quito (2.850 m) e Sucre (cerca de 2.790 m)
+
+Quito ocupa o segundo lugar. <strong>Sucre</strong>, capital constitucional da Bolívia, aparece em terceiro; a sede do governo boliviano, La Paz, foi contada separadamente. A Constituição boliviana distingue a capital da sede governamental na prática institucional.
+
+Se considerarmos estritamente as capitais únicas de direito constitucional, o recorde mundial pertence a <strong>Quito</strong>, capital do <strong>Equador</strong>, cravada a <strong>2.850 metros de altitude</strong> nas encostas orientais do vulcão ativo <strong>Pichincha (4.784 m)</strong>.
+
+Embora esteja muito próxima à Linha do Equador, Quito jamais sofre o calor equatorial amazônico: sua altitude garante uma "primavera perpétua" com temperaturas médias de 14 °C a 19 °C durante todos os meses do ano, abrigando o centro histórico colonial mais bem preservado das Américas.
+
+Em quarto lugar nesta lista (terceiro se Sucre não for contada separadamente) surge o gigante demográfico das alturas: <strong>Bogotá</strong>, capital da <strong>Colômbia</strong>, situada a <strong>2.640 metros de altitude</strong> no amplo planalto da Sabana de Bogotá, na Cordilheira Oriental dos Andes.
+
+Originalmente habitada pela civilização Muísca (que deu origem à lenda do <em>El Dorado</em> na vizinha Lagoa de Guatavita) e refundada pelo conquistador espanhol Gonzalo Jiménez de Quesada em 1538, Bogotá é hoje uma metrópole de mais de <strong>8 milhões de habitantes</strong> — de longe a maior e mais populosa cidade acima de 2.500 metros em todo o globo terrestre.
+
+
+## 4º e 5º Lugares: Bogotá (2.640 m) e Adis Abeba (2.355 m)
+
+Saindo da América do Sul e cruzando o Atlântico até o Grande Vale do Rift na África Oriental, o Planalto Etíope — conhecido como o <strong>"Teto da África"</strong> — abriga as duas capitais mais altas do continente africano.
+
+Na quinta posição desta lista está <strong>Adis Abeba</strong> ("Nova Flor" em amárico), capital da <strong>Etiópia</strong> e sede da União Africana, erguida em 1886 pelo imperador Menelik II a <strong>2.355 metros de altitude</strong> aos pés do Monte Entoto (3.200 m).
+
+Foi nessa altitude rarefeita que gerações de corredores etíopes desenvolveram uma adaptação fisiológica extraordinária — maior volume pulmonar e concentração elevada de glóbulos vermelhos e hemoglobina no sangue —, explicando por que a Etiópia domina as maratonas olímpicas mundiais.
+
+Logo atrás, a apenas 30 metros de diferença altimétrica, aparece <strong>Asmara</strong>, capital da <strong>Eritreia</strong>, situada a <strong>2.325 metros de altitude</strong> na borda da escarpa do Planalto Eritreu, famosa mundialmente por preservar intacta a arquitetura modernista e futurista italiana construída na década de 1930.
+
+
+## 6º e 7º Lugares: Asmara (2.325 m) e Thimphu (2.320 m)
+
+Na sétima posição está <strong>Thimphu</strong>, no <strong>Reino do Butão</strong>, a cerca de <strong>2.320 metros de altitude</strong> no vale do Rio Raidāk, no Himalaia Oriental.
+
+Thimphu ostenta duas curiosidades urbanas singulares: é a única capital nacional do mundo que <strong>não possui um único semáforo luminoso de trânsito</strong> (policiais com luvas brancas comandam os cruzamentos manualmente com gestos coreografados em cabines pintadas à mão) e, devido aos picos de 5.000 metros que cercam a cidade, Thimphu não tem aeroporto próprio — os aviões precisam pousar em <strong>Paro</strong>, considerado um dos aeroportos mais difíceis do planeta, onde apenas algumas dezenas de pilotos certificados no mundo têm autorização para manobrar entre as montanhas.
+
+Na oitava posição vem Saná, no Iêmen: <strong>Saná (Sana'a)</strong>, capital histórica do <strong>Iêmen</strong>, situada a <strong>2.250 metros de altitude</strong> nas montanhas de Jabal al-Nabi Shu'ayb, habitada continuamente há mais de 2.500 anos com seus arranha-céus de tijolos de barro decorados com gesso branco.
+
+
+## 8º a 10º Lugares: Saná, Cidade do México e Nairóbi
+
+No nono lugar desta lista está <strong>Cidade do México (CDMX)</strong>, situada a <strong>2.240 metros de altitude</strong> no Vale do México.
+
+Fundada pelos astecas em 1325 como <strong>Tenochtitlan</strong> sobre uma ilha no meio do antigo Lago de Texcoco e cercada pelos vulcões nevados Popocatépetl (5.426 m) e Iztaccíhuatl, a capital mexicana reúne mais de 22 milhões de habitantes em sua região metropolitana. A drenagem artificial do lago ao longo dos séculos e o bombeamento de água do aquífero subterrâneo fazem com que partes da Cidade do México afundem (subsidência) até 30 a 50 centímetros por ano.
+
+A décima posição fica com <strong>Nairóbi</strong>, capital do <strong>Quênia</strong>, situada a cerca de <strong>1.795 metros de altitude</strong>. <strong>Cabul</strong>, no Afeganistão, aparece logo depois, a aproximadamente 1.790 metros; sua posição pode mudar conforme o ponto de medição.
+
+
+<blockquote>
+“Quito, the capital of Ecuador […] stands at an altitude of 2,850 m.”
+<footer class="font-mono text-xs text-[#53647C] mt-2">— UNESCO, Centro Histórico de Quito.</footer>
 </blockquote>
 
-## Dados Técnicos e Comparativos
-
-| Posição | Capital | País | Altitude Oficial | Cordilheira / Região |
-| --- | --- | --- | --- | --- |
-| 1º | La Paz (Sede de Governo) | Bolívia | 3.640 metros | Cordilheira dos Andes
-2º | Quito | Equador | 2.850 metros | Cordilheira dos Andes
-3º | Bogotá | Colômbia | 2.640 metros | Altiplano Cundiboyacense
-4º | Adis Abeba | Etiópia | 2.355 metros | Planalto Etíope
-5º | Thimphu | Butão | 2.334 metros | Cordilheira do Himalaia
-6º | Asmara | Eritreia | 2.325 metros | Planalto da Eritreia
-7º | Sanaa | Iêmen | 2.250 metros | Montanhas Sarawat
-8º | Cidade do México | México | 2.240 metros | Vale do México
-9º | Teerã (Zonas Altas) | Irã | 1.800 metros | Cordilheira Alborz
-10º | Cabul | Afeganistão | 1.790 metros | Cordilheira Hindu Kush |
-
-<div class="my-8 p-6 rounded-2xl bg-[#0f172a]/70 border border-white/10 not-prose">
-  <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm mb-2">
-    <i class="ph-bold ph-compass"></i>
-    <span>Investigação Cartográfica: O Maior Metrô de Cabos do Mundo em La Paz</span>
-  </div>
-  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-    Diante da geografia acidentada com desníveis de quase 1.000 metros entre o vale e o planalto, La Paz e El Alto construíram a maior rede de transporte por teleférico do planeta: a rede 'Mi Teleférico' possui 10 linhas, 36 estações e 33 km de extensão, transportando 300 mil passageiros diários sem trânsito.
-  </p>
+<div class="my-10 overflow-x-auto not-prose">
+<table class="w-full text-left text-xs font-mono border border-white/10 rounded-xl overflow-hidden bg-slate-900/60">
+<thead class="bg-slate-800 text-amber-400 uppercase border-b border-white/10">
+<tr>
+<th class="p-3">Posição</th>
+<th class="p-3">Capital Nacional</th>
+<th class="p-3">País</th>
+<th class="p-3">Altitude Média</th>
+<th class="p-3">Cordilheira / Planalto</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-slate-300">
+<tr><td class="p-3 font-bold text-white">1º Lugar</td>
+<td class="p-3 text-amber-400">La Paz (sede do governo)</td>
+<td class="p-3 text-slate-300">Bolívia</td>
+<td class="p-3 text-slate-300">▲ 3.640 m</td>
+<td class="p-3 text-slate-300">Altiplano da Cordilheira dos Andes</td></tr>
+<tr><td class="p-3 font-bold text-white">2º Lugar</td>
+<td class="p-3 text-amber-400">Quito</td>
+<td class="p-3 text-slate-300">Equador</td>
+<td class="p-3 text-slate-300">▲ 2.850 m</td>
+<td class="p-3 text-slate-300">Cordilheira Ocidental dos Andes (Pichincha)</td></tr>
+<tr><td class="p-3 font-bold text-white">3º Lugar</td>
+<td class="p-3 text-amber-400">Sucre (capital constitucional)</td>
+<td class="p-3 text-slate-300">Bolívia</td>
+<td class="p-3 text-slate-300">▲ 2.790 m</td>
+<td class="p-3 text-slate-300">Altiplano de Chuquisaca</td></tr>
+<tr><td class="p-3 font-bold text-white">4º Lugar</td>
+<td class="p-3 text-amber-400">Bogotá</td>
+<td class="p-3 text-slate-300">Colômbia</td>
+<td class="p-3 text-slate-300">▲ 2.640 m</td>
+<td class="p-3 text-slate-300">Sabana de Bogotá (Andes Orientais)</td></tr>
+<tr><td class="p-3 font-bold text-white">5º Lugar</td>
+<td class="p-3 text-amber-400">Adis Abeba</td>
+<td class="p-3 text-slate-300">Etiópia</td>
+<td class="p-3 text-slate-300">▲ 2.355 m</td>
+<td class="p-3 text-slate-300">Planalto Etíope (Monte Entoto)</td></tr>
+<tr><td class="p-3 font-bold text-white">6º Lugar</td>
+<td class="p-3 text-amber-400">Asmara</td>
+<td class="p-3 text-slate-300">Eritreia</td>
+<td class="p-3 text-slate-300">▲ 2.325 m</td>
+<td class="p-3 text-slate-300">Escarpa do Planalto do Mar Vermelho</td></tr>
+<tr><td class="p-3 font-bold text-white">7º Lugar</td>
+<td class="p-3 text-amber-400">Thimphu</td>
+<td class="p-3 text-slate-300">Butão</td>
+<td class="p-3 text-slate-300">▲ 2.320 m</td>
+<td class="p-3 text-slate-300">Cordilheira do Himalaia Oriental</td></tr>
+<tr><td class="p-3 font-bold text-white">8º Lugar</td>
+<td class="p-3 text-amber-400">Saná</td>
+<td class="p-3 text-slate-300">Iêmen</td>
+<td class="p-3 text-slate-300">▲ 2.250 m</td>
+<td class="p-3 text-slate-300">Montanhas de Sarawat (Arábia do Sul)</td></tr>
+<tr><td class="p-3 font-bold text-white">9º Lugar</td>
+<td class="p-3 text-amber-400">Cidade do México</td>
+<td class="p-3 text-slate-300">México</td>
+<td class="p-3 text-slate-300">▲ 2.240 m</td>
+<td class="p-3 text-slate-300">Vale do México (Eixo Neovulcânico)</td></tr>
+<tr><td class="p-3 font-bold text-white">10º Lugar</td>
+<td class="p-3 text-amber-400">Nairóbi</td>
+<td class="p-3 text-slate-300">Quênia</td>
+<td class="p-3 text-slate-300">▲ 1.795 m</td>
+<td class="p-3 text-slate-300">Planalto do Grande Vale do Rift Oriental</td></tr>
+</tbody>
+</table>
 </div>
 
-<div class="my-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-white/10 not-prose flex flex-col sm:flex-row items-center justify-between gap-4">
-  <div>
-    <span class="text-xs font-mono text-amber-400 uppercase tracking-wider block mb-1">Simulação Interativa</span>
-    <h3 class="text-base font-heading font-semibold text-white">Desafio das Capitais do Mundo (Jogo Interativo)</h3>
-    <p class="text-xs text-slate-400 mt-1">Explore os cálculos no laboratório cartográfico do VitaleGeo.</p>
-  </div>
-  <a href="/jogos/capitais/" class="btn-clean-primary whitespace-nowrap text-xs">
-    Acessar Simulador <i class="ph-bold ph-arrow-right text-xs"></i>
-  </a>
+<div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
+<h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">
+<i class="ph-bold ph-compass"></i> La Rinconada (5.100 m): O Assentamento Humano Permanente Mais Alto da Terra
+</h4>
+<p class="text-sm text-slate-300 leading-relaxed">Embora La Paz (3.640 m) seja a sede de governo mais elevada entre as cidades incluídas nesta lista, ela está longe de ser a cidade mais elevada habitada pelo ser humano. Nos Andes peruanos, na região de Puno, próxima à fronteira com a Bolívia, existe a cidade mineradora de ouro de <strong>La Rinconada</strong>, construída a impressionantes <strong>5.100 metros de altitude</strong> sob a geleira de Monte Ananea. A essa altura — quase na mesma elevação do Acampamento Base do Monte Everest —, a pressão de oxigênio é metade da registrada ao nível do mar, não crescem árvores e nenhuma rede hidráulica comum resiste ao congelamento, sendo o limite biológico absoluto para a habitação humana permanente.</p>
 </div>
 
-## Perguntas Frequentes
+
+## Continue a leitura
+Leia também <a href="/blog/etiopia-sem-mar/" class="text-[#C8102E] underline underline-offset-2">A Etiópia e a saída para o mar</a>. Para comparar dimensões territoriais entre países, use o <a href="/ferramentas/comparador-paises/" class="text-[#C8102E] underline underline-offset-2">comparador de países do VitaleGeo</a>.
+
+## Perguntas rápidas
+
+### La Paz ou Sucre é a capital da Bolívia?
+
+A Constituição boliviana designa Sucre como capital. La Paz é a sede do governo; por isso, rankings que incluem sedes administrativas a listam entre as capitais mais altas.
+
+### O ranking tem uma única lista oficial?
+
+Não. Altitudes variam conforme o ponto medido e listas diferem sobre incluir capitais constitucionais e sedes de governo. Aqui, Sucre e La Paz aparecem separadamente: Sucre como capital constitucional, La Paz como sede do governo. Os valores são aproximados e variam conforme o ponto medido.
 
 
-### Qual a diferença entre La Paz e Sucre na Bolívia?
-Sucre é a capital constitucional e sede do Poder Judiciário (a 2.810 m). La Paz é a sede de fato dos poderes Executivo e Legislativo, sendo considerada a capital governamental.
+## Fontes e documentos
 
-### A água ferve em temperatura mais baixa nessas capitais?
-Sim. Pela menor pressão atmosférica em La Paz (3.640 m), a água ferve a cerca de 87°C em vez de 100°C, alterando receitas culinárias e o tempo de cozimento.
-
-### Por que os atletas sentem tanto a altitude nessas cidades?
-Pela baixa pressão barométrica, o oxigênio está mais disperso no ar. O organismo humano precisa de semanas de aclimatação para aumentar a contagem de glóbulos vermelhos.
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Quais São as Dez Capitais Mais Altas do Planeta Onde Viver Acima das Nuvens é a Regra?",
-  "description": "De La Paz e Quito a Thimphu e Bogotá: conheça o ranking das sedes de governo situadas a mais de 2.000 metros de altitude e os desafios da vida com pouco oxigênio.",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/La_Paz_Skyline.jpg/1280px-La_Paz_Skyline.jpg",
-  "author": {
-    "@type": "Person",
-    "name": "VitaleGeo",
-    "url": "https://www.vitalegeo.com.br/sobre/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "VitaleGeo",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.vitalegeo.com.br/assets/icons/favicon.svg"
-    }
-  },
-  "datePublished": "2026-10-18",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.vitalegeo.com.br/blog/ranking-capitais-mais-altas-do-mundo/"
-  }
-}
-</script>
+- [UNESCO — Quito, altitude de 2.850 m](https://whc.unesco.org/en/list/2/)
+- [WIPO Lex — Constituição da Bolívia de 2009, Artigo 6](https://www.wipo.int/wipolex/en/legislation/details/5430)
+- [ONU — informação sobre capital constitucional e sede do governo da Bolívia](https://digitallibrary.un.org/record/605281/files/CMW_C_BOL_1-EN.pdf)
