@@ -120,5 +120,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Ciência & Clima",
     badge: "CLIMA & COSTAS",
     tags: ["nivel do mar", "elevacao", "inundacao", "clima", "aquecimento global", "litoral", "brasil", "recife", "rio de janeiro", "holanda", "oceanos", "ipcc"]
+  },
+  {
+    id: "horarios-russia",
+    titulo: "Que horas são na Rússia?",
+    desc: "Veja a hora atual nas 11 zonas de horário russas e compare cada cidade com Brasília.",
+    icon: "ph-bold ph-clock-countdown",
+    cover: "/assets/img/ferramentas/horarios-russia.svg",
+    link: "/ferramentas/horarios-russia/",
+    categoria: "Tempo & Fusos",
+    badge: "RÚSSIA",
+    tags: ["horario russia", "que horas são na rússia", "fusos horários", "moscou", "brasilia", "diferença de horário"]
   }
 ];

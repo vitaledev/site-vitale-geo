@@ -68,5 +68,12 @@ const toolsDB = [
         icon: "ph-bold ph-waves",
         cover: "/assets/img/ferramentas/simulador-nivel-mar.jpg",
         link: "/ferramentas/simulador-nivel-mar/"
+    },
+    {
+        titulo: "Que horas são na Rússia?",
+        desc: "Veja a hora atual nas 11 zonas de horário russas e compare cada cidade com Brasília.",
+        icon: "ph-bold ph-clock-countdown",
+        cover: "/assets/img/ferramentas/horarios-russia.svg",
+        link: "/ferramentas/horarios-russia/"
     }
 ];

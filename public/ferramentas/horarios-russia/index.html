@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR" class="bg-[#F5F2EB]">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Que horas são na Rússia agora? Veja os 11 fusos | VitaleGeo</title>
+  <meta name="description" content="Veja a hora atual nas 11 zonas de horário da Rússia e compare cada cidade com Brasília. Relógio atualizado automaticamente.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/horarios-russia/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Que horas são na Rússia agora?">
+  <meta property="og:description" content="Consulte os horários de 11 cidades russas e veja a diferença para Brasília.">
+  <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/horarios-russia/">
+  <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/horarios-russia.svg">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"Relógio dos fusos da Rússia","url":"https://www.vitalegeo.com.br/ferramentas/horarios-russia/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","description":"Relógio com a hora atual nas 11 zonas de horário da Rússia e comparação com Brasília."}
+  </script>
+  <style>
+    body{font-family:Montserrat,system-ui,sans-serif;color:#1F334E} .mono{font-family:"JetBrains Mono",monospace}
+    .clock-card{background:#fff;border:1px solid rgba(10,25,47,.12);border-radius:16px;padding:18px 20px}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#F5F2EB]">
+  <nav class="floating-pill-nav">
+    <div class="px-5 h-16 flex items-center justify-between max-w-7xl mx-auto w-full">
+      <a href="/" class="font-['Orbitron',sans-serif] font-black tracking-wider text-[#0A192F]" aria-label="VitaleGeo início">VITALEGEO</a>
+      <div class="hidden sm:flex gap-5 text-sm text-[#53647C]"><a href="/blog/" class="hover:text-[#0A192F]">Posts</a><a href="/ferramentas/" class="hover:text-[#0A192F]">Ferramentas</a></div>
+      <a href="/ferramentas/calculadora-fuso/" class="text-sm font-semibold text-[#0A192F] hover:text-[#C8102E]">Fusos mundiais <i class="ph-bold ph-arrow-right"></i></a>
+    </div>
+  </nav>
+  <main class="flex-1 pt-28 sm:pt-32 pb-12 px-4 sm:px-6">
+    <div class="max-w-[1700px] mx-auto xl:flex xl:justify-center xl:gap-4">
+      <aside class="hidden xl:flex w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center rounded-xl bg-white/70 border border-[#0A192F]/10" aria-label="Publicidade">
+        <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6879770260785828" data-ad-slot="5140105675"></ins>
+        <script>try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}</script>
+      </aside>
+      <div class="max-w-5xl mx-auto w-full">
+      <header class="mb-6 border-b border-[#0A192F]/15 pb-5">
+        <p class="mono text-xs uppercase tracking-[.16em] text-[#C8102E] mb-2">Rússia · Horário atual</p>
+        <h1 class="font-['Orbitron',sans-serif] text-2xl sm:text-4xl font-bold text-[#0A192F] tracking-tight">Que horas são na Rússia?</h1>
+        <p class="text-sm sm:text-base text-[#53647C] mt-2">A Rússia tem 11 fusos horários. Compare a hora local de cada cidade com Brasília.</p>
+      </header>
+
+      <section class="rounded-2xl bg-[#0A192F] text-white p-5 sm:p-7 mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" aria-live="polite">
+        <div>
+          <p class="mono text-xs uppercase tracking-widest text-white/65">Brasília · UTC−3</p>
+          <p id="brasilia-time" class="font-['Orbitron',sans-serif] text-4xl sm:text-5xl font-bold mt-2">--:--</p>
+          <p id="brasilia-date" class="mono text-sm text-white/75 mt-1">Atualizando…</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="share-whatsapp" type="button" class="min-h-11 rounded-xl bg-[#C8102E] hover:bg-[#a70d26] px-4 py-2 text-sm font-semibold inline-flex items-center gap-2"><i class="ph-bold ph-whatsapp-logo text-lg"></i> Compartilhar</button>
+          <button id="copy-link" type="button" class="min-h-11 rounded-xl border border-white/30 hover:bg-white/10 px-4 py-2 text-sm font-semibold inline-flex items-center gap-2"><i class="ph-bold ph-link-simple text-lg"></i> Copiar link</button>
+        </div>
+      </section>
+
+      <section aria-label="Horário atual nas cidades da Rússia">
+        <div id="russia-clocks" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </section>
+
+      <div class="adsense-slot my-7 mx-auto w-full min-h-[120px] bg-white/70 border border-[#0A192F]/10 rounded-xl flex items-center justify-center">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6879770260785828" data-ad-slot="5140105675" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}</script>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 border-t border-[#0A192F]/10 pt-5">
+        <a href="/blog/fusos-russia/" class="text-sm font-semibold text-[#0A192F] hover:text-[#C8102E]"><i class="ph-bold ph-arrow-up-right mr-1"></i>Por que a Rússia tem 11 fusos?</a>
+        <a href="/ferramentas/calculadora-fuso/" class="text-sm font-semibold text-[#0A192F] hover:text-[#C8102E]"><i class="ph-bold ph-clock mr-1"></i>Comparar outros fusos horários</a>
+      </div>
+      </div>
+      <aside class="hidden xl:flex w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center rounded-xl bg-white/70 border border-[#0A192F]/10" aria-label="Publicidade">
+        <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6879770260785828" data-ad-slot="5140105675"></ins>
+        <script>try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}</script>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="max-w-5xl mx-auto px-5"><div class="site-footer__social"><a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" aria-label="YouTube VitaleGeo"><i class="ph-fill ph-youtube-logo"></i></a></div><p class="site-footer__brand">VitaleGeo</p><p class="text-[#CBD5E1] text-xs">Geopolítica, cartografia e dados territoriais.</p><div class="site-footer__links"><a href="/sobre/">Sobre</a><span>·</span><a href="/politica/">Privacidade</a><span>·</span><a href="/ferramentas/">Ferramentas</a><span>·</span><a href="/blog/">Posts</a></div></div></footer>
+  <script>
+    const zones = [
+      { city: 'Kaliningrado', zone: 'Europe/Kaliningrad' },
+      { city: 'Moscou', zone: 'Europe/Moscow' },
+      { city: 'Samara', zone: 'Europe/Samara' },
+      { city: 'Ecaterimburgo', zone: 'Asia/Yekaterinburg' },
+      { city: 'Omsk', zone: 'Asia/Omsk' },
+      { city: 'Krasnoiarsk', zone: 'Asia/Krasnoyarsk' },
+      { city: 'Irkutsk', zone: 'Asia/Irkutsk' },
+      { city: 'Iacutsk', zone: 'Asia/Yakutsk' },
+      { city: 'Vladivostok', zone: 'Asia/Vladivostok' },
+      { city: 'Magadan', zone: 'Asia/Magadan' },
+      { city: 'Petropavlovsk-Kamtchatski', zone: 'Asia/Kamchatka' }
+    ];
+    const clocks = document.getElementById('russia-clocks');
+    const fmt = (date, zone, options) => new Intl.DateTimeFormat('pt-BR', { timeZone: zone, ...options }).format(date);
+    const offsetMinutes = (date, zone) => {
+      const parts = new Intl.DateTimeFormat('en-US', { timeZone: zone, timeZoneName: 'longOffset' }).formatToParts(date);
+      const offset = parts.find(part => part.type === 'timeZoneName')?.value || 'GMT';
+      const match = offset.match(/GMT([+-])(\d{1,2})(?::(\d{2}))?/);
+      if (!match) return 0;
+      return (match[1] === '+' ? 1 : -1) * (Number(match[2]) * 60 + Number(match[3] || 0));
+    };
+    const render = () => {
+      const now = new Date();
+      document.getElementById('brasilia-time').textContent = fmt(now, 'America/Sao_Paulo', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+      document.getElementById('brasilia-date').textContent = fmt(now, 'America/Sao_Paulo', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+      const brazilOffset = offsetMinutes(now, 'America/Sao_Paulo');
+      clocks.innerHTML = zones.map(({ city, zone }) => {
+        const local = fmt(now, zone, { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+        const date = fmt(now, zone, { weekday: 'short', day: '2-digit', month: 'short' });
+        const delta = (offsetMinutes(now, zone) - brazilOffset) / 60;
+        const difference = delta === 0 ? 'mesmo horário' : `${delta > 0 ? '+' : '−'}${Math.abs(delta)}h em relação a Brasília`;
+        return `<article class="clock-card"><div class="flex items-start justify-between gap-2"><h2 class="font-semibold text-[#0A192F]">${city}</h2><span class="mono text-[11px] text-[#53647C]">${difference}</span></div><p class="mono text-3xl font-bold text-[#0A192F] mt-3">${local}</p><p class="mono text-xs text-[#53647C] mt-1 capitalize">${date}</p></article>`;
+      }).join('');
+    };
+    render();
+    setInterval(render, 30000);
+    document.getElementById('share-whatsapp').addEventListener('click', () => {
+      const text = `Veja a hora atual nas 11 zonas da Rússia e compare com Brasília: ${location.href}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    });
+    document.getElementById('copy-link').addEventListener('click', async event => {
+      const button = event.currentTarget;
+      try {
+        await navigator.clipboard.writeText(location.href);
+        button.innerHTML = '<i class="ph-bold ph-check text-lg"></i> Link copiado';
+        setTimeout(() => { button.innerHTML = '<i class="ph-bold ph-link-simple text-lg"></i> Copiar link'; }, 1800);
+      } catch {
+        window.prompt('Copie o link da ferramenta:', location.href);
+      }
+    });
+  </script>
+</body>
+</html>
