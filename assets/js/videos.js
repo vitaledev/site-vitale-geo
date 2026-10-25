@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 164 Shorts
+// Total: 14 Longos + 165 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Como o megaporto do Peru pode mudar a rota do Brasil?", id: "gHW1y43velA", link: "https://www.youtube.com/watch?v=gHW1y43velA" },
     { titulo: "Qual o país onde as pessoas se aposentam mais cedo?", id: "dEgPcvSb9H8", link: "https://www.youtube.com/watch?v=dEgPcvSb9H8" },
     { titulo: "E se você cavar um buraco até o outro lado do planeta?", id: "xddt__ypUlQ", link: "https://www.youtube.com/watch?v=xddt__ypUlQ" },
     { titulo: "Qual o país onde a capital não é a maior cidade?", id: "i4TSQpwpdKY", link: "https://www.youtube.com/watch?v=i4TSQpwpdKY" },
