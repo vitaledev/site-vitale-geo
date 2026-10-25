@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getBlogPosts } from './scripts/blog-content.js';
 
 const DOMINIO = 'https://www.vitalegeo.com.br';
 const __filename = fileURLToPath(import.meta.url);
@@ -8,45 +9,9 @@ const PASTA_RAIZ = path.dirname(__filename);
 
 const dataHoje = new Date().toISOString().split('T')[0];
 
-// Carregar posts do posts.js para enriquecer com imagens (Google Images SEO)
-const postsJsFile = path.join(PASTA_RAIZ, 'assets', 'js', 'posts.js');
-let postsMap = new Map();
-
-if (fs.existsSync(postsJsFile)) {
-    try {
-        const postsContent = fs.readFileSync(postsJsFile, 'utf8');
-        const fn = new Function(postsContent + '; return typeof blogPosts !== "undefined" ? blogPosts : [];');
-        const blogPosts = fn();
-        blogPosts.forEach(post => {
-            const cleanSlug = post.link.replace(/^\/?blog\//, '').replace(/\/$/, '');
-            postsMap.set(cleanSlug, post);
-        });
-        console.log(`📑 Encontrados ${postsMap.size} posts em posts.js para o sitemap.`);
-    } catch (e) {
-        console.warn('⚠️ Não foi possível ler posts.js:', e.message);
-    }
-}
-
-// Ler artigos da pasta src/content/blog caso existam
-const contentBlogDir = path.join(PASTA_RAIZ, 'src', 'content', 'blog');
-if (fs.existsSync(contentBlogDir)) {
-    const mdFiles = fs.readdirSync(contentBlogDir).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
-    mdFiles.forEach(file => {
-        const slug = file.replace(/\.(md|mdx)$/, '');
-        if (!postsMap.has(slug)) {
-            try {
-                const content = fs.readFileSync(path.join(contentBlogDir, file), 'utf8');
-                const titleMatch = content.match(/titulo:\s*["']?([^"'\n\r]+)["']?/);
-                const imgMatch = content.match(/img:\s*["']?([^"'\n\r]+)["']?/);
-                postsMap.set(slug, {
-                    titulo: titleMatch ? titleMatch[1].trim() : slug,
-                    img: imgMatch ? imgMatch[1].trim() : '',
-                    link: `blog/${slug}/`
-                });
-            } catch (err) {}
-        }
-    });
-}
+// O Markdown do Astro é a fonte canônica de metadados, imagens e slugs.
+const postsMap = new Map(getBlogPosts(PASTA_RAIZ).map(post => [post.slug, post]));
+console.log(`📑 Encontrados ${postsMap.size} posts na coleção Markdown do Astro.`);
 
 function escapeXml(str) {
     if (!str) return '';
@@ -89,6 +54,9 @@ paginasEstaticas.forEach(p => {
 `;
 });
 
+let ferramentasIncluidas = 0;
+let jogosIncluidos = 0;
+
 // 2. Ferramentas Interativas (Procurar em public/ferramentas ou ferramentas/)
 const ferramentasDir = fs.existsSync(path.join(PASTA_RAIZ, 'ferramentas')) 
     ? path.join(PASTA_RAIZ, 'ferramentas') 
@@ -101,6 +69,7 @@ if (fs.existsSync(ferramentasDir)) {
         } catch { return false; }
     });
     fFolders.forEach(folder => {
+        ferramentasIncluidas++;
         xmlContent += `   <url>
       <loc>${DOMINIO}/ferramentas/${folder}/</loc>
       <lastmod>${dataHoje}</lastmod>
@@ -123,6 +92,7 @@ if (fs.existsSync(jogosDir)) {
         } catch { return false; }
     });
     jFolders.forEach(folder => {
+        jogosIncluidos++;
         xmlContent += `   <url>
       <loc>${DOMINIO}/jogos/${folder}/</loc>
       <lastmod>${dataHoje}</lastmod>
@@ -137,10 +107,13 @@ if (fs.existsSync(jogosDir)) {
 for (const [slug, post] of postsMap.entries()) {
     const urlArtigo = `${DOMINIO}/blog/${slug}/`;
     let imageXml = '';
-    if (post.img && post.img.startsWith('http')) {
+    if (post.img) {
+        const imageUrl = post.img.startsWith('http')
+            ? post.img
+            : `${DOMINIO}${post.img.startsWith('/') ? '' : '/'}${post.img}`;
         imageXml = `
       <image:image>
-         <image:loc>${escapeXml(post.img)}</image:loc>
+         <image:loc>${escapeXml(imageUrl)}</image:loc>
          <image:title>${escapeXml(post.titulo)}</image:title>
       </image:image>`;
     }
@@ -175,4 +148,5 @@ destinos.forEach(dest => {
     }
 });
 
-console.log(`🎉 Sucesso! Sitemap gerado com ${postsMap.size + paginasEstaticas.length} URLs indexáveis.`);
+const totalUrls = postsMap.size + paginasEstaticas.length + ferramentasIncluidas + jogosIncluidos;
+console.log(`🎉 Sucesso! Sitemap gerado com ${totalUrls} URLs indexáveis.`);

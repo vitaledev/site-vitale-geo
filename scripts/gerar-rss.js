@@ -1,24 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getBlogPosts } from './blog-content.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rootDir = path.join(__dirname, '..');
-const postsJsFile = path.join(rootDir, 'assets', 'js', 'posts.js');
 const outputRssRoot = path.join(rootDir, 'rss.xml');
 const outputRssPublic = path.join(rootDir, 'public', 'rss.xml');
 
-// 1. Ler o banco de dados de posts
-if (!fs.existsSync(postsJsFile)) {
-    console.error('❌ Erro: Arquivo posts.js não encontrado em', postsJsFile);
-    process.exit(1);
-}
-
-const postsContent = fs.readFileSync(postsJsFile, 'utf8');
-const fn = new Function(postsContent + '; return typeof blogPosts !== "undefined" ? blogPosts : [];');
-const blogPosts = fn();
+// A coleção Markdown alimenta o feed para manter títulos, datas e resumos alinhados ao site.
+const blogPosts = getBlogPosts(rootDir);
 
 console.log(`📡 Processando ${blogPosts.length} artigos para o Feed RSS...`);
 
@@ -76,7 +69,9 @@ for (const post of blogPosts) {
     const tituloEscaped = escapeXml(post.titulo);
     const categoriaEscaped = escapeXml(post.categoria || 'Geopolítica');
     const resumo = post.resumo || '';
-    const imagem = post.img || `${siteUrl}/assets/img/publisher/logo-publisher-square-1000.png`;
+    const imagem = post.img
+        ? (post.img.startsWith('http') ? post.img : `${siteUrl}${post.img.startsWith('/') ? '' : '/'}${post.img}`)
+        : `${siteUrl}/assets/img/publisher/logo-publisher-square-1000.png`;
 
     itemsXml += `    <item>
       <title>${tituloEscaped}</title>
