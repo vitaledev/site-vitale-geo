@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/alternador-projecoes/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternador de Projeções Cartográficas: Compare Mercator, Peters e Robinson | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Compare o mapa-múndi instantaneamente sob 8 projeções cartográficas: Mercator, Gall-Peters, Robinson, Winkel-Tripel, Mollweide, Globo 3D e Polar. Visualize as elipses de Tissot e descubra a distorção real dos continentes.">
+    <meta name="keywords" content="projeções cartográficas, mercator vs peters, indicatriz de tissot, projeção de robinson, winkel tripel, distorção de mapas, tamanho real dos países, cartografia interativa, vitalegeo">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Alternador de Projeções Cartográficas | VitaleGeo">
+    <meta property="og:description" content="Alterne entre Mercator, Gall-Peters, Robinson e Globo 3D em tempo real. Veja a deformação de Tissot e a escala real dos continentes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/alternador-projecoes/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/alternador-projecoes.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7, D3 Geo Projection e TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .proj-active {
+            background-color: #0A192F !important;
+            color: #FFFFFF !important;
+            border-color: #C8102E !important;
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.25) !important;
+        }
+        .sphere-bg {
+            fill: #0D1E38;
+        }
+        .graticule-line {
+            fill: none;
+            stroke: #53647C;
+            stroke-width: 0.6;
+            stroke-dasharray: 2, 3;
+            opacity: 0.45;
+        }
+        .country-path {
+            fill: #E2DBD0;
+            stroke: #0A192F;
+            stroke-width: 0.5;
+            transition: fill 0.15s ease, stroke-width 0.15s ease;
+            cursor: pointer;
+        }
+        .country-path:hover {
+            fill: #C8102E;
+            stroke: #FFFFFF;
+            stroke-width: 1.2;
+        }
+        .country-selected {
+            fill: #C8102E !important;
+            stroke: #FFFFFF !important;
+            stroke-width: 1.5 !important;
+        }
+        .tissot-ellipse {
+            fill: #C8102E;
+            fill-opacity: 0.35;
+            stroke: #C8102E;
+            stroke-width: 1.2;
+            pointer-events: none;
+        }
+        .outline-path {
+            fill: none;
+            stroke: #A8C3A6;
+            stroke-width: 1.5;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todas as Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Layout com Skyscraper AdSense Desktop (Grade max-w-[1700px]) -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-16">
+        
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/40 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Container Central da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full">
+            
+            <!-- Cabeçalho Minimalista com Drawer "Como Funciona?" -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/10">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block mb-1">
+                        Laboratório Cartográfico & Geodésia
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Alternador de Projeções Cartográficas
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Descubra como o planeta é distorcido sob diferentes lentes matemáticas e compare áreas reais com a Projeção de Mercator, Peters e Robinson.
+                    </p>
+                </div>
+
+                <!-- Hover / Botão Didático de Explicação -->
+                <div class="hover-info-container self-start sm:self-end">
+                    <button type="button" class="hover-info-trigger" aria-label="Entenda as Projeções">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>O Que É a Deformação?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-compass text-[#C8102E]"></i> O Teorema de Gauss (1828)
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            É matematicamente impossível aplanar uma esfera tridimensional em uma folha plana sem rasgar ou esticar áreas. Todo mapa escolhe uma concessão:
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li>• <strong>Conforme (Mercator):</strong> Preserva os ângulos e as formas de ilhas, mas infla áreas polares em até 1.500%.</li>
+                            <li>• <strong>Equivalente (Peters, Mollweide):</strong> Preserva a área real dos países com precisão, mas deforma suas formas.</li>
+                            <li>• <strong>Compromisso (Robinson, Winkel-Tripel):</strong> Equilibra área e forma para atlas e livros escolares.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Seletor de Projeção em Cards Interativos -->
+            <div class="bg-white p-4 rounded-xl border border-[#0A192F]/10 shadow-sm mb-6">
+                <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#53647C] flex items-center gap-1.5">
+                        <i class="ph-bold ph-globe-stand text-[#C8102E]"></i> Escolha a Projeção do Mapa:
+                    </span>
+                    <span class="text-[11px] text-[#53647C] font-mono hidden sm:inline">
+                        8 Projeções Matemáticas em Tempo Real
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="gridProjecoes">
+                    <!-- Botões gerados via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Palco Interativo do Mapa SVG -->
+            <div class="bg-white p-4 sm:p-6 rounded-xl border border-[#0A192F]/10 shadow-sm mb-6">
+                
+                <!-- Barra de Ferramentas / Toggles da Camada -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-[#0A192F]/10">
+                    <div class="flex items-center gap-2">
+                        <span id="badgeTipoProjecao" class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[#FAF8F5] text-[#C8102E] border border-[#C8102E]/25">
+                            Cilíndrica Conforme
+                        </span>
+                        <span id="labelNomeProjecao" class="text-sm font-heading font-bold text-[#0A192F]">
+                            Projeção de Mercator (1569)
+                        </span>
+                    </div>
+
+                    <!-- Toggles de Camada Cartográfica -->
+                    <div class="flex items-center gap-2">
+                        <button id="btnToggleTissot" onclick="alternarTissot()" class="px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-[#FAF8F5] border-[#C8102E] text-[#C8102E]" title="Mostra os círculos de distorção de Tissot a cada 30 graus">
+                            <i class="ph-bold ph-circle"></i>
+                            <span>Indicatriz de Tissot</span>
+                        </button>
+
+                        <button id="btnToggleGrade" onclick="alternarGrade()" class="px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-white border-[#0A192F]/15 text-[#53647C] hover:text-[#0A192F]" title="Mostra os paralelos e meridianos a cada 15 graus">
+                            <i class="ph-bold ph-grid-four"></i>
+                            <span>Meridianos</span>
+                        </button>
+
+                        <button onclick="centralizarMapa()" class="px-3 py-1.5 rounded-lg border border-[#0A192F]/15 bg-white hover:bg-[#FAF8F5] text-xs font-semibold text-[#0A192F] transition shadow-xs" title="Resetar rotação">
+                            <i class="ph-bold ph-arrows-clockwise"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas SVG do Mapa D3 -->
+                <div class="relative bg-[#0A192F] rounded-xl overflow-hidden shadow-inner border border-[#0A192F]/20 flex items-center justify-center min-h-[380px] sm:min-h-[500px]">
+                    <div id="loadingMap" class="absolute inset-0 bg-[#0A192F] flex flex-col items-center justify-center gap-3 text-white z-20">
+                        <div class="w-8 h-8 border-3 border-[#A8C3A6] border-t-[#C8102E] rounded-full animate-spin"></div>
+                        <span class="text-xs font-mono text-[#A8C3A6]">Calculando malha geodésica...</span>
+                    </div>
+
+                    <svg id="svgMapa" class="w-full h-[380px] sm:h-[520px] block cursor-grab active:cursor-grabbing"></svg>
+
+                    <!-- HUD Flutuante de País Inspecionado -->
+                    <div id="hudPais" class="absolute bottom-4 left-4 z-10 bg-[#0A192F]/95 backdrop-blur-md border border-white/15 p-3 rounded-xl text-white text-xs max-w-xs shadow-xl hidden">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span id="hudPaisNome" class="font-heading font-bold text-sm text-white">Brasil</span>
+                            <span id="hudPaisContinente" class="text-[10px] font-mono text-[#A8C3A6] uppercase">América do Sul</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono text-slate-300 border-t border-white/10 pt-1.5 mt-1">
+                            <div>Área Real: <strong id="hudPaisArea" class="text-white">8.515.767 km²</strong></div>
+                            <div>Distorção: <strong id="hudPaisDistorcao" class="text-amber-400">× 1.0 (Real)</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Dica Flutuante de Rotação (Apenas na Ortográfica) -->
+                    <div id="dicaRotacaoGlobo" class="absolute top-4 right-4 z-10 bg-black/60 px-3 py-1 rounded-full text-[11px] font-mono text-white/90 pointer-events-none hidden">
+                        <i class="ph-bold ph-hand-pointing"></i> Arraste o globo para girar
+                    </div>
+                </div>
+
+                <!-- Barra de Explicação da Projeção Ativa -->
+                <div class="mt-4 p-4 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+                    <div>
+                        <span class="font-heading font-bold text-[#0A192F] block mb-0.5" id="infoTitulo">
+                            Por que a Projeção de Mercator deforma os polos?
+                        </span>
+                        <p class="text-[#53647C] leading-relaxed" id="infoDescricao">
+                            Criada em 1569 por Gerardus Mercator para navegação por bússola com linhas loxodrômicas retas. A escala se expande para o infinito próximo aos polos, fazendo a Groenlândia parecer do tamanho da África.
+                        </p>
+                    </div>
+                    
+                    <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener" class="shrink-0 px-3.5 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-1.5 transition shadow-xs">
+                        <i class="ph-bold ph-whatsapp-logo text-sm"></i> Compartilhar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tabela Comparativa das 8 Projeções -->
+            <div class="bg-white p-5 rounded-xl border border-[#0A192F]/10 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="ph-bold ph-table text-[#C8102E] text-base"></i>
+                    <h3 class="font-heading font-bold text-[#0A192F] text-base">
+                        Matriz de Comparação das Projeções Cartográficas
+                    </h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-[#0A192F] text-white font-mono">
+                                <th class="p-2.5 rounded-l-lg">Projeção</th>
+                                <th class="p-2.5">Ano</th>
+                                <th class="p-2.5">Propriedade</th>
+                                <th class="p-2.5">Distorção de Área</th>
+                                <th class="p-2.5 rounded-r-lg">Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#0A192F]/10 text-[#1F334E] font-mono">
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Mercator</td>
+                                <td class="p-2.5">1569</td>
+                                <td class="p-2.5 text-blue-700">Conforme (Preserva ângulos)</td>
+                                <td class="p-2.5 text-rose-700 font-bold">Extrema nos polos (+1.500%)</td>
+                                <td class="p-2.5">Navegação náutica e Google Maps</td>
+                            </tr>
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Gall-Peters</td>
+                                <td class="p-2.5">1855/1973</td>
+                                <td class="p-2.5 text-emerald-700">Equivalente (Área igual)</td>
+                                <td class="p-2.5 text-emerald-700 font-bold">Zero (Áreas 100% reais)</td>
+                                <td class="p-2.5">Educação e justiça territorial</td>
+                            </tr>
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Robinson</td>
+                                <td class="p-2.5">1963</td>
+                                <td class="p-2.5 text-amber-700">Afilática (Compromisso)</td>
+                                <td class="p-2.5">Moderada</td>
+                                <td class="p-2.5">Atlas mundiais e escolas</td>
+                            </tr>
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Winkel-Tripel</td>
+                                <td class="p-2.5">1921</td>
+                                <td class="p-2.5 text-amber-700">Afilática (Mínimo erro global)</td>
+                                <td class="p-2.5">Muito Baixa</td>
+                                <td class="p-2.5">Padrão National Geographic (1998+)</td>
+                            </tr>
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Ortográfica (Globo 3D)</td>
+                                <td class="p-2.5">Antiguidade</td>
+                                <td class="p-2.5 text-purple-700">Perspectiva Espacial</td>
+                                <td class="p-2.5">Alta nas bordas do hemisfério</td>
+                                <td class="p-2.5">Visualização astronômica e relevo</td>
+                            </tr>
+                            <tr class="hover:bg-[#FAF8F5]">
+                                <td class="p-2.5 font-bold text-[#0A192F]">Azimutal Polar</td>
+                                <td class="p-2.5">1581</td>
+                                <td class="p-2.5 text-indigo-700">Equidistante do Polo</td>
+                                <td class="p-2.5">Extrema no hemisfério sul</td>
+                                <td class="p-2.5">Emblema da ONU e rotas polares</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/40 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box de Retenção Interativa -->
+            <div class="p-5 rounded-xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Quer testar seu conhecimento geográfico no mapa?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Encontre países e marcos mundiais sem rótulos no jogo oficial de mapa mudo.</p>
+                </div>
+                <a href="/jogos/onde-fica/" class="px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-crosshair"></i> Jogar Onde Fica?
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/40 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Inteligência Geográfica // Arquivo e Investigação</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica Interativa D3.js e TopoJSON -->
+    <script>
+        // Definição das 8 Projeções Cartográficas
+        const PROJECOES = [
+            {
+                id: 'mercator',
+                nome: 'Mercator',
+                ano: '1569',
+                tipo: 'Cilíndrica Conforme',
+                autor: 'Gerardus Mercator',
+                desc: 'Preserva perfeitamente os ângulos locais para navegação marítima por bússola, mas infla áreas polares de forma colossal (a Groenlândia parece do tamanho da África).',
+                getProj: (w, h) => d3.geoMercator().scale(w / (2 * Math.PI)).translate([w / 2, h / 1.5]),
+                isGlobe: false
+            },
+            {
+                id: 'peters',
+                nome: 'Gall-Peters',
+                ano: '1855/1973',
+                tipo: 'Cilíndrica Equivalente',
+                autor: 'James Gall & Arno Peters',
+                desc: 'Preserva a proporção de área exata de todos os países (a África é 14 vezes maior que a Groenlândia), mas estica os trópicos e achata os polos.',
+                getProj: (w, h) => d3.geoCylindricalEqualArea ? d3.geoCylindricalEqualArea().parallel(45).fitSize([w, h], {type: "Sphere"}) : d3.geoEquirectangular().fitSize([w, h], {type: "Sphere"}),
+                isGlobe: false
+            },
+            {
+                id: 'robinson',
+                nome: 'Robinson',
+                ano: '1963',
+                tipo: 'Pseudocilíndrica de Compromisso',
+                autor: 'Arthur H. Robinson',
+                desc: 'Projetada para atlas e escolas, equilibra a distorção de área e forma sem nenhuma aberração extrema, curvando os meridianos suavemente.',
+                getProj: (w, h) => d3.geoRobinson ? d3.geoRobinson().fitSize([w, h], {type: "Sphere"}) : d3.geoNaturalEarth1().fitSize([w, h], {type: "Sphere"}),
+                isGlobe: false
+            },
+            {
+                id: 'winkel3',
+                nome: 'Winkel-Tripel',
+                ano: '1921',
+                tipo: 'Azimutal de Compromisso (Afilática)',
+                autor: 'Oswald Winkel',
+                desc: 'Minimiza conjuntamente os três erros cartográficos (área, direção e distância). Padrão oficial adotado pela National Geographic Society em 1998.',
+                getProj: (w, h) => d3.geoWinkel3 ? d3.geoWinkel3().fitSize([w, h], {type: "Sphere"}) : d3.geoNaturalEarth1().fitSize([w, h], {type: "Sphere"}),
+                isGlobe: false
+            },
+            {
+                id: 'mollweide',
+                nome: 'Mollweide',
+                ano: '1805',
+                tipo: 'Pseudocilíndrica Equivalente',
+                autor: 'Karl Mollweide',
+                desc: 'Representa o mundo inteiro dentro de uma elipse perfeita de proporção 2:1 preservando áreas reais. Muito utilizada em mapas de astronomia e clima.',
+                getProj: (w, h) => d3.geoMollweide ? d3.geoMollweide().fitSize([w, h], {type: "Sphere"}) : d3.geoEquirectangular().fitSize([w, h], {type: "Sphere"}),
+                isGlobe: false
+            },
+            {
+                id: 'orthographic',
+                nome: 'Globo 3D (Ortográfica)',
+                ano: 'Antiguidade',
+                tipo: 'Perspectiva Azimutal',
+                autor: 'Hiparco de Niceia',
+                desc: 'Simula a visão do planeta Terra visto do espaço a uma distância infinita. Arraste o globo com o mouse para girar em qualquer ângulo.',
+                getProj: (w, h) => d3.geoOrthographic().scale(Math.min(w, h) / 2.2).translate([w / 2, h / 2]).clipAngle(90),
+                isGlobe: true
+            },
+            {
+                id: 'azimuthalEquidistant',
+                nome: 'Azimutal Polar',
+                ano: '1581',
+                tipo: 'Equidistante Polar',
+                autor: 'Postel',
+                desc: 'Projeção circular centrada no Polo Norte onde todas as distâncias radiais são proporcionais. É a projeção oficial estampada na bandeira das Nações Unidas.',
+                getProj: (w, h) => d3.geoAzimuthalEquidistant().scale(Math.min(w, h) / 3.8).translate([w / 2, h / 2]).rotate([0, -90]),
+                isGlobe: false
+            },
+            {
+                id: 'naturalEarth1',
+                nome: 'Natural Earth',
+                ano: '2007',
+                tipo: 'Pseudocilíndrica de Compromisso',
+                autor: 'Tom Patterson',
+                desc: 'Desenhada especificamente para mapas de satélite contemporâneos e visualizações web com bordas arredondadas e cantos suaves.',
+                getProj: (w, h) => d3.geoNaturalEarth1().fitSize([w, h], {type: "Sphere"}),
+                isGlobe: false
+            }
+        ];
+
+        let projecaoAtiva = PROJECOES[0];
+        let exibirTissot = true;
+        let exibirGrade = false;
+        let rotacaoGlobo = [0, -20, 0];
+        let geoDataMundo = null;
+        let svg, gEsfera, gGrade, gPaises, gTissot, gContorno;
+        let projAtual, pathAtual;
+
+        // Dados de referência para países
+        const DADOS_PAISES = {
+            'Brazil': { nome: 'Brasil', area: '8.515.767 km²', dist: '× 1.0 (Referência Tropical)' },
+            'Greenland': { nome: 'Groenlândia (Dinamarca)', area: '2.166.086 km²', dist: '× 4.5 em Mercator' },
+            'Russia': { nome: 'Rússia', area: '17.098.246 km²', dist: '× 2.8 em Mercator' },
+            'Canada': { nome: 'Canadá', area: '9.984.670 km²', dist: '× 2.2 em Mercator' },
+            'United States of America': { nome: 'Estados Unidos', area: '9.833.517 km²', dist: '× 1.4 em Mercator' },
+            'China': { nome: 'China', area: '9.596.960 km²', dist: '× 1.3 em Mercator' },
+            'Australia': { nome: 'Austrália', area: '7.692.024 km²', dist: '× 1.2 em Mercator' },
+            'India': { nome: 'Índia', area: '3.287.263 km²', dist: '× 1.0 (Área Real)' },
+            'Argentina': { nome: 'Argentina', area: '2.780.400 km²', dist: '× 1.3 em Mercator' },
+            'Algeria': { nome: 'Argélia', area: '2.381.741 km²', dist: '× 1.0 (Área Real)' },
+            'Democratic Republic of the Congo': { nome: 'RD do Congo', area: '2.344.858 km²', dist: '× 1.0 (Área Real)' }
+        };
+
+        // Renderiza os botões de projeção
+        function renderizarBotoesProjecoes() {
+            const container = document.getElementById('gridProjecoes');
+            container.innerHTML = PROJECOES.map(p => `
+                <button onclick="selecionarProjecao('${p.id}')" data-id="${p.id}" class="btn-proj p-2.5 rounded-xl border text-left transition flex flex-col justify-between ${
+                    p.id === projecaoAtiva.id ? 'proj-active bg-[#0A192F] text-white border-[#C8102E]' : 'bg-[#FAF8F5] border-[#0A192F]/10 text-[#0A192F] hover:bg-white'
+                }">
+                    <div class="flex items-center justify-between gap-1 w-full mb-1">
+                        <span class="font-heading font-bold text-xs truncate">${p.nome}</span>
+                        <span class="text-[9px] font-mono px-1 py-0.2 rounded ${p.id === projecaoAtiva.id ? 'bg-[#C8102E] text-white' : 'bg-[#0A192F]/10 text-[#53647C]'}">${p.ano}</span>
+                    </div>
+                    <span class="text-[10px] font-mono ${p.id === projecaoAtiva.id ? 'text-[#A8C3A6]' : 'text-[#53647C]'} truncate">${p.tipo}</span>
+                </button>
+            `).join('');
+        }
+
+        // Gera círculos geodésicos para a indicatriz de Tissot (raio 5 graus a cada 30 graus)
+        function gerarGeometriaTissot() {
+            const circulos = [];
+            const raioGraus = 4.5;
+            for (let lat = -60; lat <= 60; lat += 30) {
+                for (let lon = -180; lon < 180; lon += 30) {
+                    circulos.push(d3.geoCircle().center([lon, lat]).radius(raioGraus)());
+                }
+            }
+            return { type: "FeatureCollection", features: circulos.map(c => ({ type: "Feature", geometry: c })) };
+        }
+
+        function selecionarProjecao(id) {
+            const proj = PROJECOES.find(p => p.id === id);
+            if (!proj) return;
+            projecaoAtiva = proj;
+
+            // Atualiza botões
+            document.querySelectorAll('.btn-proj').forEach(btn => {
+                const bId = btn.getAttribute('data-id');
+                if (bId === id) {
+                    btn.className = 'btn-proj p-2.5 rounded-xl border text-left transition flex flex-col justify-between proj-active bg-[#0A192F] text-white border-[#C8102E]';
+                    btn.querySelector('span.font-mono').className = 'text-[9px] font-mono px-1 py-0.2 rounded bg-[#C8102E] text-white';
+                } else {
+                    btn.className = 'btn-proj p-2.5 rounded-xl border text-left transition flex flex-col justify-between bg-[#FAF8F5] border-[#0A192F]/10 text-[#0A192F] hover:bg-white';
+                    btn.querySelector('span.font-mono').className = 'text-[9px] font-mono px-1 py-0.2 rounded bg-[#0A192F]/10 text-[#53647C]';
+                }
+            });
+
+            // Atualiza labels de informação
+            document.getElementById('badgeTipoProjecao').textContent = proj.tipo;
+            document.getElementById('labelNomeProjecao').textContent = `${proj.nome} (${proj.ano})`;
+            document.getElementById('infoTitulo').textContent = `Como funciona a Projeção ${proj.nome}? (${proj.ano} // ${proj.autor})`;
+            document.getElementById('infoDescricao').textContent = proj.desc;
+
+            // Exibe dica de arrastar se for globo
+            const dica = document.getElementById('dicaRotacaoGlobo');
+            if (proj.isGlobe) {
+                dica.classList.remove('hidden');
+            } else {
+                dica.classList.add('hidden');
+            }
+
+            // Atualiza link de compartilhamento
+            const urlAtual = encodeURIComponent(window.location.href);
+            const msg = encodeURIComponent(`Veja a comparação entre a Projeção de ${proj.nome} e o tamanho real dos países no VitaleGeo:`);
+            document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${msg}%20${urlAtual}`;
+
+            renderizarMapa();
+        }
+
+        function alternarTissot() {
+            exibirTissot = !exibirTissot;
+            const btn = document.getElementById('btnToggleTissot');
+            if (exibirTissot) {
+                btn.className = 'px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-[#FAF8F5] border-[#C8102E] text-[#C8102E]';
+            } else {
+                btn.className = 'px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-white border-[#0A192F]/15 text-[#53647C] hover:text-[#0A192F]';
+            }
+            if (gTissot) {
+                gTissot.style('display', exibirTissot ? 'inline' : 'none');
+            }
+        }
+
+        function alternarGrade() {
+            exibirGrade = !exibirGrade;
+            const btn = document.getElementById('btnToggleGrade');
+            if (exibirGrade) {
+                btn.className = 'px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-[#FAF8F5] border-[#C8102E] text-[#C8102E]';
+            } else {
+                btn.className = 'px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-xs bg-white border-[#0A192F]/15 text-[#53647C] hover:text-[#0A192F]';
+            }
+            if (gGrade) {
+                gGrade.style('display', exibirGrade ? 'inline' : 'none');
+            }
+        }
+
+        function centralizarMapa() {
+            rotacaoGlobo = [0, -20, 0];
+            renderizarMapa();
+        }
+
+        // Renderiza o SVG com D3
+        function renderizarMapa() {
+            if (!geoDataMundo) return;
+
+            const svgNode = document.getElementById('svgMapa');
+            const w = svgNode.clientWidth || 800;
+            const h = svgNode.clientHeight || 500;
+
+            projAtual = projecaoAtiva.getProj(w, h);
+
+            if (projecaoAtiva.isGlobe) {
+                projAtual.rotate(rotacaoGlobo);
+            }
+
+            pathAtual = d3.geoPath().projection(projAtual);
+
+            // Fundo da esfera oceânica
+            gEsfera.selectAll('*').remove();
+            gEsfera.append('path')
+                .datum({type: "Sphere"})
+                .attr('class', 'sphere-bg')
+                .attr('d', pathAtual);
+
+            // Grade de meridianos e paralelos
+            gGrade.selectAll('*').remove();
+            const graticule = d3.geoGraticule().step([15, 15]);
+            gGrade.append('path')
+                .datum(graticule)
+                .attr('class', 'graticule-line')
+                .attr('d', pathAtual);
+            gGrade.style('display', exibirGrade ? 'inline' : 'none');
+
+            // Países do Mundo
+            gPaises.selectAll('*').remove();
+            gPaises.selectAll('path')
+                .data(geoDataMundo.features)
+                .enter()
+                .append('path')
+                .attr('class', 'country-path')
+                .attr('d', pathAtual)
+                .on('mouseenter', (event, d) => {
+                    const nome = d.properties.name || 'Território';
+                    const dados = DADOS_PAISES[nome] || {
+                        nome: nome,
+                        area: 'Dados sob consulta',
+                        dist: 'Projeção ' + projecaoAtiva.nome
+                    };
+                    const hud = document.getElementById('hudPais');
+                    document.getElementById('hudPaisNome').textContent = dados.nome;
+                    document.getElementById('hudPaisContinente').textContent = d.properties.continent || 'Soberania Reconhecida';
+                    document.getElementById('hudPaisArea').textContent = dados.area;
+                    document.getElementById('hudPaisDistorcao').textContent = dados.dist;
+                    hud.classList.remove('hidden');
+                })
+                .on('mouseleave', () => {
+                    document.getElementById('hudPais').classList.add('hidden');
+                });
+
+            // Indicatrizes de Tissot
+            gTissot.selectAll('*').remove();
+            const tissotData = gerarGeometriaTissot();
+            gTissot.selectAll('path')
+                .data(tissotData.features)
+                .enter()
+                .append('path')
+                .attr('class', 'tissot-ellipse')
+                .attr('d', pathAtual);
+            gTissot.style('display', exibirTissot ? 'inline' : 'none');
+
+            // Borda externa / Contorno da Esfera
+            gContorno.selectAll('*').remove();
+            gContorno.append('path')
+                .datum({type: "Sphere"})
+                .attr('class', 'outline-path')
+                .attr('d', pathAtual);
+        }
+
+        // Inicialização do D3 e Carregamento do TopoJSON
+        window.addEventListener('DOMContentLoaded', async () => {
+            renderizarBotoesProjecoes();
+
+            svg = d3.select('#svgMapa');
+            gEsfera = svg.append('g').attr('class', 'layer-esfera');
+            gGrade = svg.append('g').attr('class', 'layer-grade');
+            gPaises = svg.append('g').attr('class', 'layer-paises');
+            gTissot = svg.append('g').attr('class', 'layer-tissot');
+            gContorno = svg.append('g').attr('class', 'layer-contorno');
+
+            // Arraste tátil no globo 3D
+            let m0, o0;
+            const drag = d3.drag()
+                .on("start", function(event) {
+                    if (!projecaoAtiva.isGlobe) return;
+                    m0 = [event.x, event.y];
+                    o0 = projAtual.rotate();
+                })
+                .on("drag", function(event) {
+                    if (!projecaoAtiva.isGlobe) return;
+                    if (!m0) return;
+                    const m1 = [event.x, event.y];
+                    const o1 = [o0[0] + (m1[0] - m0[0]) * 0.4, o0[1] + (m0[1] - m1[1]) * 0.4, o0[2]];
+                    rotacaoGlobo = o1;
+                    projAtual.rotate(rotacaoGlobo);
+                    svg.selectAll('.sphere-bg, .graticule-line, .country-path, .tissot-ellipse, .outline-path')
+                       .attr('d', pathAtual);
+                });
+
+            svg.call(drag);
+
+            // Carrega TopoJSON dos países
+            try {
+                // Tenta carregar o arquivo local espelhado
+                let response = await fetch('/data/maps/countries-110m.json');
+                if (!response.ok) {
+                    response = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                }
+                const world = await response.json();
+                geoDataMundo = topojson.feature(world, world.objects.countries);
+                document.getElementById('loadingMap').style.display = 'none';
+                selecionarProjecao('mercator');
+            } catch (err) {
+                console.error('Falha ao carregar mapa, tentando CDN de fallback...', err);
+                try {
+                    const resFallback = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+                    const worldFallback = await resFallback.json();
+                    geoDataMundo = topojson.feature(worldFallback, worldFallback.objects.countries);
+                    document.getElementById('loadingMap').style.display = 'none';
+                    selecionarProjecao('mercator');
+                } catch (e) {
+                    document.getElementById('loadingMap').innerHTML = '<span class="text-rose-400 font-mono text-xs">Erro ao carregar dados vetoriais do mapa.</span>';
+                }
+            }
+
+            // Redimensionamento responsivo
+            window.addEventListener('resize', () => {
+                if (geoDataMundo) renderizarMapa();
+            });
+        });
+    </script>
+</body>
+</html>

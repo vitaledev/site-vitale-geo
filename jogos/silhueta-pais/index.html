@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/silhueta-pais/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silhueta do País: Adivinhe o Território no Mapa | VitaleGeo Arcade</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Você reconhece as fronteiras dos países apenas pela sua silhueta isolada? Jogue Silhueta do País nos modos Clássico e Sobrevivência (3 Vidas). Desafie amigos e compartilhe seu scorecard.">
+    <meta name="keywords" content="silhueta do pais, jogo de geografia, adivinhe o pais, mapa mudo, quiz de paises, geoguessr de silhuetas, vitalegeo arcade">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Silhueta do País: O Desafio Visual de Geografia | VitaleGeo">
+    <meta property="og:description" content="Você consegue identificar uma nação apenas pelo formato do seu território? Teste seus olhos nos modos Clássico e Sobrevivência!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/silhueta-pais/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/silhueta-pais.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js e TopoJSON para renderização vetorial das silhuetas -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .shake-damage {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+        .pop-correct {
+            animation: popSuccess 0.45s ease-out both;
+        }
+        @keyframes popSuccess {
+            0% { transform: scale(0.96); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .btn-opcao {
+            transition: all 0.15s ease-in-out;
+        }
+        .btn-opcao:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.12);
+        }
+        .btn-correto {
+            background-color: #065F46 !important;
+            border-color: #10B981 !important;
+            color: #FFFFFF !important;
+        }
+        .btn-errado {
+            background-color: #991B1B !important;
+            border-color: #EF4444 !important;
+            color: #FFFFFF !important;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#1F334E] font-sans antialiased selection:bg-[#C8102E] selection:text-white page-shell min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/jogos" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Todos os Jogos</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Layout com Skyscraper AdSense Desktop (Grade max-w-[1700px]) -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-16">
+        
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/40 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Arena Central do Jogo -->
+        <main class="max-w-4xl flex-1 w-full" id="gameContainer">
+            
+            <!-- Barra Superior do Jogo: Modo, Vidas e Placar -->
+            <div class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/10 shadow-sm mb-5 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-xl bg-[#0A192F] text-white flex items-center justify-center text-lg font-bold shadow-xs">
+                        <i class="ph-bold ph-globe-stand"></i>
+                    </span>
+                    <div>
+                        <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#C8102E] block">VitaleGeo Arcade</span>
+                        <h1 class="text-lg sm:text-xl font-heading font-extrabold text-[#0A192F]">Silhueta do País</h1>
+                    </div>
+                </div>
+
+                <!-- Seletor de Modo & Estatísticas -->
+                <div class="flex items-center gap-4">
+                    <!-- Vidas (Modo Sobrevivência) -->
+                    <div id="boxVidas" class="flex items-center gap-1 bg-[#FAF8F5] px-3 py-1.5 rounded-xl border border-[#0A192F]/10 text-xs font-mono">
+                        <span class="text-[10px] text-[#53647C] mr-1 uppercase">Vidas:</span>
+                        <span id="vidasDisplay" class="flex items-center gap-1 text-[#C8102E] text-sm">
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                            <i class="ph-fill ph-heart"></i>
+                        </span>
+                    </div>
+
+                    <!-- Rodada / Contador -->
+                    <div class="bg-[#FAF8F5] px-3 py-1.5 rounded-xl border border-[#0A192F]/10 text-xs font-mono">
+                        <span class="text-[10px] text-[#53647C] uppercase block">Rodada</span>
+                        <span id="txtRodada" class="font-bold text-[#0A192F]">1 / 10</span>
+                    </div>
+
+                    <!-- Pontos -->
+                    <div class="bg-[#FAF8F5] px-3.5 py-1.5 rounded-xl border border-[#0A192F]/10 text-xs font-mono text-right">
+                        <span class="text-[10px] text-[#53647C] uppercase block">Pontuação</span>
+                        <span id="txtPontos" class="font-bold text-[#C8102E] text-sm">0 pts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Palco Principal: Silhueta Isolada em SVG -->
+            <div id="palcoSilhueta" class="bg-white p-5 sm:p-7 rounded-2xl border border-[#0A192F]/10 shadow-sm mb-5 relative overflow-hidden transition duration-300">
+                
+                <!-- Miras Geodésicas e Rosa dos Ventos -->
+                <div class="flex items-center justify-between text-xs text-[#53647C] font-mono mb-2">
+                    <span class="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-[#53647C]">
+                        <i class="ph-bold ph-crosshair text-[#C8102E]"></i> Orientação Geográfica: Norte para Cima
+                    </span>
+                    <span id="badgeContinenteDica" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10">
+                        Dica 1 Disponível
+                    </span>
+                </div>
+
+                <!-- Container SVG da Silhueta -->
+                <div class="relative bg-[#0A192F] rounded-2xl p-4 flex items-center justify-center h-[280px] sm:h-[360px] overflow-hidden shadow-inner border border-[#0A192F]/20">
+                    <div id="loadingSilhueta" class="absolute inset-0 bg-[#0A192F] flex flex-col items-center justify-center gap-2 text-white z-10">
+                        <div class="w-8 h-8 border-3 border-[#A8C3A6] border-t-[#C8102E] rounded-full animate-spin"></div>
+                        <span class="text-xs font-mono text-[#A8C3A6]">Carregando vetor cartográfico...</span>
+                    </div>
+
+                    <svg id="svgSilhueta" class="w-full h-full block filter drop-shadow(0 6px 16px rgba(0,0,0,0.4))"></svg>
+
+                    <!-- Rosa dos ventos sutil no canto do mapa -->
+                    <div class="absolute top-3 right-3 text-[#53647C] opacity-40 pointer-events-none text-2xl">
+                        <i class="ph-bold ph-compass"></i>
+                    </div>
+
+                    <!-- Feedback de Acerto / Erro Sobreposto -->
+                    <div id="overlayFeedback" class="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none opacity-0 transition duration-200">
+                        <div id="boxFeedbackMsg" class="px-6 py-3 rounded-2xl text-white font-heading font-extrabold text-base sm:text-lg shadow-2xl flex items-center gap-2.5">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel de Dicas Progressivas (Hints) -->
+                <div class="mt-4 pt-3 border-t border-[#0A192F]/10">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-heading font-bold text-[#0A192F] flex items-center gap-1.5">
+                            <i class="ph-bold ph-lightbulb text-amber-500 text-sm"></i> Pistas & Dados do Território:
+                        </span>
+                        <button id="btnPedirDica" onclick="revelarProximaDica()" class="px-3 py-1 rounded-xl bg-[#FAF8F5] hover:bg-white text-[#C8102E] border border-[#C8102E]/30 text-xs font-mono font-bold transition shadow-xs flex items-center gap-1">
+                            <i class="ph-bold ph-plus"></i> Revelar Pista (<span id="txtDicasRestantes">3</span> restantes)
+                        </button>
+                    </div>
+
+                    <div id="containerDicas" class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
+                        <div id="dica1" class="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 text-[#53647C]">
+                            <span class="text-[9px] uppercase font-bold text-[#0A192F] block">Pista 1: Região</span>
+                            <span id="txtDica1">Clique em "Revelar Pista"</span>
+                        </div>
+                        <div id="dica2" class="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 text-[#53647C]">
+                            <span class="text-[9px] uppercase font-bold text-[#0A192F] block">Pista 2: Escala</span>
+                            <span id="txtDica2">Bloqueada (-100 pts)</span>
+                        </div>
+                        <div id="dica3" class="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/10 text-[#53647C]">
+                            <span class="text-[9px] uppercase font-bold text-[#0A192F] block">Pista 3: Capital</span>
+                            <span id="txtDica3">Bloqueada (-100 pts)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade de Opções de Resposta (4 Botões em Grid) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="gridOpcoes">
+                <!-- Preenchido via JavaScript -->
+            </div>
+
+            <!-- Modal / Tela Final de Fim de Jogo (Game Over / Vitória) -->
+            <div id="modalFimJogo" class="hidden bg-white p-6 sm:p-8 rounded-2xl border border-[#0A192F]/10 shadow-2xl text-center">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-[#FAF8F5] border border-[#0A192F]/10 flex items-center justify-center text-3xl" id="iconFimJogo">
+                    <i class="ph-fill ph-trophy text-amber-500"></i>
+                </div>
+
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#C8102E]" id="subtituloFimJogo">
+                    Desafio Concluído
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-heading font-black text-[#0A192F] mt-1" id="tituloFimJogo">
+                    Excelente Pontaria Visual!
+                </h2>
+                <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-md mx-auto" id="descFimJogo">
+                    Você analisou 10 silhuetas soberanas e provou seu domínio cartográfico.
+                </p>
+
+                <!-- HUD de Estatísticas Finais -->
+                <div class="grid grid-cols-3 gap-3 my-6 max-w-lg mx-auto font-mono text-center">
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10">
+                        <span class="text-[10px] uppercase text-[#53647C] block">Acertos</span>
+                        <strong id="finalAcertos" class="text-lg text-emerald-700">8 / 10</strong>
+                    </div>
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10">
+                        <span class="text-[10px] uppercase text-[#53647C] block">Pontuação</span>
+                        <strong id="finalPontos" class="text-lg text-[#C8102E]">8.450</strong>
+                    </div>
+                    <div class="p-3 bg-[#FAF8F5] rounded-xl border border-[#0A192F]/10">
+                        <span class="text-[10px] uppercase text-[#53647C] block">Patente</span>
+                        <strong id="finalPatente" class="text-lg text-[#0A192F]">Cartógrafo S</strong>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação Final -->
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <button onclick="reiniciarJogo()" class="px-5 py-2.5 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-md">
+                        <i class="ph-bold ph-arrows-clockwise"></i> Jogar Novamente
+                    </button>
+                    
+                    <button onclick="baixarScorecardPNG()" class="px-5 py-2.5 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/20 font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                        <i class="ph-bold ph-download-simple"></i> Baixar Scorecard (PNG)
+                    </button>
+
+                    <a id="btnShareFimWhatsApp" href="#" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                        <i class="ph-bold ph-whatsapp-logo"></i> Desafiar no WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/40 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Canvas Invisível para Geração do Scorecard PNG (900x900) -->
+            <canvas id="canvasScorecard" width="900" height="900" class="hidden"></canvas>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/40 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé Oficial VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Inteligência Geográfica // Arquivo e Investigação</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mecânica e Banco de Dados do Jogo -->
+    <script>
+        // Banco de Dados Oficial de Países para Silhueta (40 Nações Icônicas Sem Enclaves)
+        const PAISES_JOGO = [
+            { id: "076", nome: "Brasil", continente: "América do Sul", capital: "Brasília", area: "8.515.767 km²", pop: "215 mi", fato: "Maior país da América do Sul, faz divisa com 10 vizinhos.", iso: "br" },
+            { id: "380", nome: "Itália", continente: "Europa", capital: "Roma", area: "301.340 km²", pop: "59 mi", fato: "Formato clássico em bota peninsular que avança pelo Mediterrâneo.", iso: "it" },
+            { id: "392", nome: "Japão", continente: "Ásia", capital: "Tóquio", area: "377.975 km²", pop: "125 mi", fato: "Arquipélago vulcânico curvado no Anel de Fogo do Pacífico.", iso: "jp" },
+            { id: "152", nome: "Chile", continente: "América do Sul", capital: "Santiago", area: "756.102 km²", pop: "19 mi", fato: "A nação mais estreita e longa do planeta, com 4.300 km de costa.", iso: "cl" },
+            { id: "578", nome: "Noruega", continente: "Europa", capital: "Oslo", area: "385.207 km²", pop: "5,4 mi", fato: "Litoral recortado por milhares de fiordes profundos na Escandinávia.", iso: "no" },
+            { id: "036", nome: "Austrália", continente: "Oceania", capital: "Camberra", area: "7.692.024 km²", pop: "26 mi", fato: "Único país soberano que ocupa um continente inteiro.", iso: "au" },
+            { id: "450", nome: "Madagascar", continente: "África", capital: "Antananarivo", area: "587.041 km²", pop: "29 mi", fato: "Quarta maior ilha da Terra, isolada no Oceano Índico.", iso: "mg" },
+            { id: "300", nome: "Grécia", continente: "Europa", capital: "Atenas", area: "131.957 km²", pop: "10,4 mi", fato: "Península balcânica fragmentada em mais de duas mil ilhas no Egeu.", iso: "gr" },
+            { id: "818", nome: "Egito", continente: "África", capital: "Cairo", area: "1.002.450 km²", pop: "105 mi", fato: "Cruzamento transcontinental cortado pelo Rio Nilo e pelo Canal de Suez.", iso: "eg" },
+            { id: "356", nome: "Índia", continente: "Ásia", capital: "Nova Deli", area: "3.287.263 km²", pop: "1,4 bilhão", fato: "Subcontinente triangular que penetra profundamente no Oceano Índico.", iso: "in" },
+            { id: "710", nome: "África do Sul", continente: "África", capital: "Pretória", area: "1.219.090 km²", pop: "60 mi", fato: "Extremo sul africano entre o Atlântico e o Índico no Cabo da Boa Esperança.", iso: "za" },
+            { id: "032", nome: "Argentina", continente: "América do Sul", capital: "Buenos Aires", area: "2.780.400 km²", pop: "46 mi", fato: "Oitavo maior país do mundo, estendendo-se dos Andes à Patagônia.", iso: "ar" },
+            { id: "124", nome: "Canadá", continente: "América do Norte", capital: "Ottawa", area: "9.984.670 km²", pop: "40 mi", fato: "Segundo maior território do globo, com o maior litoral da Terra.", iso: "ca" },
+            { id: "484", nome: "México", continente: "América do Norte", capital: "Cidade do México", area: "1.964.375 km²", pop: "128 mi", fato: "Formato em cornucópia com a Península de Baja California e Yucatán.", iso: "mx" },
+            { id: "250", nome: "França", continente: "Europa", capital: "Paris", area: "551.695 km²", pop: "68 mi", fato: "O clássico formato de hexágono entre o Atlântico e o Mediterrâneo.", iso: "fr" },
+            { id: "724", nome: "Espanha", continente: "Europa", capital: "Madri", area: "505.990 km²", pop: "48 mi", fato: "Ocupa a maior parte da Península Ibérica com os arquipélagos Balear e Canário.", iso: "es" },
+            { id: "792", nome: "Turquia", continente: "Ásia / Europa", capital: "Ancara", area: "783.562 km²", pop: "85 mi", fato: "Ponte eurasiana entre a Anatólia e a Trácia cortada pelos Estreitos.", iso: "tr" },
+            { id: "360", nome: "Indonésia", continente: "Ásia", capital: "Jacarta", area: "1.904.569 km²", pop: "275 mi", fato: "Maior estado arquipelágico do mundo com mais de 17.000 ilhas equatoriais.", iso: "id" },
+            { id: "826", nome: "Reino Unido", continente: "Europa", capital: "Londres", area: "242.495 km²", pop: "67 mi", fato: "Ilha da Grã-Bretanha e parte norte da Irlanda no Canal da Mancha.", iso: "gb" },
+            { id: "752", nome: "Suécia", continente: "Europa", capital: "Estocolmo", area: "450.295 km²", pop: "10,5 mi", fato: "Longa faixa escandinava banhada pelo Mar Báltico e Golfo de Bótnia.", iso: "se" },
+            { id: "246", nome: "Finlândia", continente: "Europa", capital: "Helsinque", area: "338.424 km²", pop: "5,5 mi", fato: "A terra dos 180.000 lagos no norte da Europa.", iso: "fi" },
+            { id: "352", nome: "Islândia", continente: "Europa", capital: "Reykjavík", area: "103.000 km²", pop: "380 mil", fato: "Ilha vulcânica isolada no Atlântico Norte sobre a Dorsal Mesoatlântica.", iso: "is" },
+            { id: "554", nome: "Nova Zelândia", continente: "Oceania", capital: "Wellington", area: "268.021 km²", pop: "5,1 mi", fato: "Duas ilhas principais montanhosas isoladas no Mar da Tasmânia.", iso: "nz" },
+            { id: "192", nome: "Cuba", continente: "América Central", capital: "Havana", area: "109.884 km²", pop: "11 mi", fato: "Formato sinuoso de crocodilo na entrada do Golfo do México.", iso: "cu" },
+            { id: "410", nome: "Coreia do Sul", continente: "Ásia", capital: "Seul", area: "100.210 km²", pop: "51 mi", fato: "Metade meridional da península coreana no Mar Amarelo.", iso: "kr" },
+            { id: "764", nome: "Tailândia", continente: "Ásia", capital: "Bangkok", area: "513.120 km²", pop: "71 mi", fato: "Formato característico de cabeça de elefante na península da Indochina.", iso: "th" },
+            { id: "704", nome: "Vietnã", continente: "Ásia", capital: "Hanói", area: "331.212 km²", pop: "98 mi", fato: "Território esguio em forma de 'S' ao longo do Mar da China Meridional.", iso: "vn" },
+            { id: "620", nome: "Portugal", continente: "Europa", capital: "Lisboa", area: "92.212 km²", pop: "10,3 mi", fato: "Fachada ocidental da Península Ibérica com extensa costa atlântica.", iso: "pt" },
+            { id: "604", nome: "Peru", continente: "América do Sul", capital: "Lima", area: "1.285.216 km²", pop: "34 mi", fato: "Berço do Império Inca abrangendo costa desértica, Andes e selva amazônica.", iso: "pe" },
+            { id: "170", nome: "Colômbia", continente: "América do Sul", capital: "Bogotá", area: "1.141.748 km²", pop: "52 mi", fato: "Único país da América do Sul com costas no Pacífico e no Caribe.", iso: "co" },
+            { id: "276", nome: "Alemanha", continente: "Europa", capital: "Berlim", area: "357.022 km²", pop: "84 mi", fato: "Coração industrial da Europa Central entre os Alpes e o Mar do Norte.", iso: "de" },
+            { id: "682", nome: "Arábia Saudita", continente: "Ásia / Oriente Médio", capital: "Riad", area: "2.149.690 km²", pop: "36 mi", fato: "Ocupa a maior parte da Península Arábica entre o Mar Vermelho e o Golfo Pérsico.", iso: "sa" },
+            { id: "608", nome: "Filipinas", continente: "Ásia", capital: "Manila", area: "300.000 km²", pop: "115 mi", fato: "Mais de 7.600 ilhas tropicais divididas entre Luzon, Visayas e Mindanao.", iso: "ph" },
+            { id: "504", nome: "Marrocos", continente: "África", capital: "Rabat", area: "446.550 km²", pop: "37 mi", fato: "Sentinela do Estreito de Gibraltar entre a Europa e o Deserto do Saara.", iso: "ma" },
+            { id: "404", nome: "Quênia", continente: "África", capital: "Nairóbi", area: "580.367 km²", pop: "54 mi", fato: "Cortado ao meio pelo Equador e pelo Grande Vale do Rifte.", iso: "ke" },
+            { id: "372", nome: "Irlanda", continente: "Europa", capital: "Dublin", area: "70.273 km²", pop: "5,1 mi", fato: "A Ilha Esmeralda com sua costa ocidental recortada no Atlântico Norte.", iso: "ie" }
+        ];
+
+        // Estado do Jogo
+        let mundoTopoJSON = null;
+        let rodadaAtual = 0;
+        let totalRodadas = 10;
+        let pontuacaoTotal = 0;
+        let vidas = 3;
+        let comboConsecutivo = 0;
+        let paisSorteado = null;
+        let dicasReveladas = 0;
+        let travaClique = false;
+        let filaPartida = [];
+
+        // Áudio Sintetizado Web Audio API (Zero Arquivos Externos)
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSomAcerto() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                // Acorde arpejado pentatônico ascendente (C5 -> E5 -> G5)
+                [523.25, 659.25, 783.99].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    gain.gain.setValueAtTime(0.2, now + idx * 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 0.4);
+                });
+            } catch (e) {}
+        }
+
+        function playSomErro() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(140, now);
+                osc.frequency.exponentialRampToValueAtTime(55, now + 0.35);
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.38);
+            } catch (e) {}
+        }
+
+        function playSomCura() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                [440, 880].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+                    gain.gain.setValueAtTime(0.18, now + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now + idx * 0.1);
+                    osc.stop(now + idx * 0.1 + 0.45);
+                });
+            } catch (e) {}
+        }
+
+        // Embaralhamento Fisher-Yates
+        function embaralhar(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Inicia ou Reinicia a Partida
+        function iniciarPartida() {
+            rodadaAtual = 0;
+            pontuacaoTotal = 0;
+            vidas = 3;
+            comboConsecutivo = 0;
+            filaPartida = embaralhar(PAISES_JOGO).slice(0, totalRodadas);
+
+            document.getElementById('modalFimJogo').classList.add('hidden');
+            document.getElementById('palcoSilhueta').classList.remove('hidden');
+            document.getElementById('gridOpcoes').classList.remove('hidden');
+
+            atualizarHUD();
+            proximaRodada();
+        }
+
+        function atualizarHUD() {
+            document.getElementById('txtRodada').textContent = `${rodadaAtual + 1} / ${totalRodadas}`;
+            document.getElementById('txtPontos').textContent = `${pontuacaoTotal.toLocaleString('pt-BR')} pts`;
+
+            // Atualiza corações
+            const hearts = [];
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    hearts.push('<i class="ph-fill ph-heart text-[#C8102E]"></i>');
+                } else {
+                    hearts.push('<i class="ph-bold ph-heart text-[#53647C]/40"></i>');
+                }
+            }
+            document.getElementById('vidasDisplay').innerHTML = hearts.join('');
+        }
+
+        // Desenha a silhueta do país no SVG isolado com D3
+        function desenharSilhueta(paisId) {
+            const svg = d3.select('#svgSilhueta');
+            svg.selectAll('*').remove();
+
+            if (!mundoTopoJSON) return;
+
+            const svgNode = document.getElementById('svgSilhueta');
+            const w = svgNode.clientWidth || 600;
+            const h = svgNode.clientHeight || 320;
+
+            const countries = topojson.feature(mundoTopoJSON, mundoTopoJSON.objects.countries);
+            const feature = countries.features.find(f => String(f.id).padStart(3, '0') === String(paisId).padStart(3, '0'));
+
+            if (!feature) {
+                console.warn('Feature não localizada para id:', paisId);
+                return;
+            }
+
+            // Projeção ajustada para centralizar o país perfeitamente na caixa
+            const proj = d3.geoMercator().fitExtent([[24, 24], [w - 24, h - 24]], feature);
+            const path = d3.geoPath().projection(proj);
+
+            // Grade cartográfica sutil de fundo
+            const gGrid = svg.append('g').attr('opacity', 0.25);
+            for (let x = 40; x < w; x += 40) {
+                gGrid.append('line').attr('x1', x).attr('y1', 0).attr('x2', x).attr('y2', h).attr('stroke', '#53647C').attr('stroke-width', 0.5).attr('stroke-dasharray', '3,3');
+            }
+            for (let y = 40; y < h; y += 40) {
+                gGrid.append('line').attr('x1', 0).attr('y1', y).attr('x2', w).attr('y2', y).attr('stroke', '#53647C').attr('stroke-width', 0.5).attr('stroke-dasharray', '3,3');
+            }
+
+            // Silhueta Principal com Efeito Neon Sutil e Borda
+            svg.append('path')
+                .datum(feature)
+                .attr('d', path)
+                .attr('fill', '#C8102E')
+                .attr('stroke', '#FFFFFF')
+                .attr('stroke-width', 1.8)
+                .attr('stroke-linejoin', 'round')
+                .attr('filter', 'drop-shadow(0 4px 12px rgba(200, 16, 46, 0.45))');
+        }
+
+        // Carrega a próxima rodada
+        function proximaRodada() {
+            if (rodadaAtual >= totalRodadas || vidas <= 0) {
+                encerrarJogo();
+                return;
+            }
+
+            travaClique = false;
+            dicasReveladas = 0;
+            paisSorteado = filaPartida[rodadaAtual];
+
+            atualizarHUD();
+            resetarDicas();
+
+            // Desenha a silhueta
+            desenharSilhueta(paisSorteado.id);
+
+            // Gera 3 opções falsas do mesmo continente ou globais
+            const outros = PAISES_JOGO.filter(p => p.id !== paisSorteado.id);
+            const mesmoContinente = outros.filter(p => p.continente.includes(paisSorteado.continente));
+            const poolFalsos = mesmoContinente.length >= 3 ? mesmoContinente : outros;
+            const falsosSorteados = embaralhar(poolFalsos).slice(0, 3);
+
+            const opcoes = embaralhar([paisSorteado, ...falsosSorteados]);
+
+            // Renderiza os 4 botões de opção
+            const grid = document.getElementById('gridOpcoes');
+            grid.innerHTML = opcoes.map(op => `
+                <button onclick="responder('${op.id}', this)" class="btn-opcao p-4 rounded-xl border border-[#0A192F]/15 bg-white text-[#0A192F] font-heading font-bold text-sm sm:text-base flex items-center justify-between shadow-xs">
+                    <span class="flex items-center gap-2">
+                        <i class="ph-bold ph-caret-right text-[#C8102E]"></i>
+                        <span>${op.nome}</span>
+                    </span>
+                    <span class="text-xs font-mono text-[#53647C] font-normal uppercase">${op.continente}</span>
+                </button>
+            `).join('');
+        }
+
+        function resetarDicas() {
+            document.getElementById('txtDicasRestantes').textContent = '3';
+            document.getElementById('txtDica1').textContent = 'Clique em "Revelar Pista"';
+            document.getElementById('txtDica2').textContent = 'Bloqueada (-100 pts)';
+            document.getElementById('txtDica3').textContent = 'Bloqueada (-100 pts)';
+            document.getElementById('btnPedirDica').disabled = false;
+            document.getElementById('btnPedirDica').classList.remove('opacity-50');
+        }
+
+        function revelarProximaDica() {
+            if (dicasReveladas >= 3 || travaClique) return;
+
+            dicasReveladas++;
+            if (dicasReveladas === 1) {
+                document.getElementById('txtDica1').innerHTML = `<strong class="text-[#0A192F]">${paisSorteado.continente}</strong>`;
+                document.getElementById('txtDicasRestantes').textContent = '2';
+            } else if (dicasReveladas === 2) {
+                document.getElementById('txtDica2').innerHTML = `<strong class="text-[#0A192F]">${paisSorteado.area}</strong> // Pop: ${paisSorteado.pop}`;
+                document.getElementById('txtDicasRestantes').textContent = '1';
+            } else if (dicasReveladas === 3) {
+                document.getElementById('txtDica3').innerHTML = `Capital começa com <strong class="text-[#C8102E]">"${paisSorteado.capital.charAt(0)}"</strong>`;
+                document.getElementById('txtDicasRestantes').textContent = '0';
+                document.getElementById('btnPedirDica').disabled = true;
+                document.getElementById('btnPedirDica').classList.add('opacity-50');
+            }
+        }
+
+        function exibirFeedback(sucesso, msg) {
+            const overlay = document.getElementById('overlayFeedback');
+            const box = document.getElementById('boxFeedbackMsg');
+            box.className = `px-6 py-3 rounded-2xl text-white font-heading font-extrabold text-base sm:text-lg shadow-2xl flex items-center gap-2.5 ${sucesso ? 'bg-emerald-600' : 'bg-[#C8102E]'}`;
+            box.innerHTML = sucesso 
+                ? `<i class="ph-bold ph-check-circle text-2xl"></i> <span>${msg}</span>` 
+                : `<i class="ph-bold ph-x-circle text-2xl"></i> <span>${msg}</span>`;
+            
+            overlay.classList.remove('opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('opacity-0');
+            }, 1200);
+        }
+
+        function responder(idEscolhido, btnElemento) {
+            if (travaClique) return;
+            travaClique = true;
+
+            const acertou = (idEscolhido === paisSorteado.id);
+
+            // Destaca botões
+            document.querySelectorAll('.btn-opcao').forEach(b => {
+                b.disabled = true;
+            });
+
+            if (acertou) {
+                btnElemento.classList.add('btn-correto');
+                playSomAcerto();
+
+                // Cálculo de pontos: 1.000 pts base - (dicas * 150) + bônus de combo
+                comboConsecutivo++;
+                const bonusCombo = (comboConsecutivo - 1) * 100;
+                const pontosGanhos = Math.max(400, 1000 - (dicasReveladas * 150)) + bonusCombo;
+                pontuacaoTotal += pontosGanhos;
+
+                // Recupera 1 vida em streak de 3 acertos
+                if (comboConsecutivo % 3 === 0 && vidas < 3) {
+                    vidas++;
+                    playSomCura();
+                }
+
+                // Dispara confetes em acerto de primeira sem dicas
+                if (dicasReveladas === 0 && typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 50,
+                        spread: 60,
+                        origin: { y: 0.6 }
+                    });
+                }
+
+                exibirFeedback(true, `Correto! +${pontosGanhos} pts (${paisSorteado.nome})`);
+            } else {
+                btnElemento.classList.add('btn-errado');
+                playSomErro();
+                comboConsecutivo = 0;
+                vidas--;
+
+                // Balanço de tela (shake)
+                const palco = document.getElementById('palcoSilhueta');
+                palco.classList.add('shake-damage');
+                setTimeout(() => palco.classList.remove('shake-damage'), 400);
+
+                // Destaca qual era o correto
+                document.querySelectorAll('.btn-opcao').forEach(b => {
+                    if (b.innerText.includes(paisSorteado.nome)) {
+                        b.classList.add('btn-correto');
+                    }
+                });
+
+                exibirFeedback(false, `Incorreto! Era ${paisSorteado.nome}`);
+            }
+
+            atualizarHUD();
+
+            setTimeout(() => {
+                rodadaAtual++;
+                proximaRodada();
+            }, 1600);
+        }
+
+        function encerrarJogo() {
+            document.getElementById('palcoSilhueta').classList.add('hidden');
+            document.getElementById('gridOpcoes').classList.add('hidden');
+            document.getElementById('modalFimJogo').classList.remove('hidden');
+
+            const acertos = Math.round(pontuacaoTotal / 850);
+            document.getElementById('finalAcertos').textContent = `${Math.min(acertos, totalRodadas)} / ${totalRodadas}`;
+            document.getElementById('finalPontos').textContent = pontuacaoTotal.toLocaleString('pt-BR');
+
+            // Determina Patente
+            let patente = 'Cartógrafo D';
+            let iconHtml = '<i class="ph-fill ph-compass text-slate-500"></i>';
+            if (pontuacaoTotal >= 8500) {
+                patente = 'Patente SSS (Grão-Mestre)';
+                iconHtml = '<i class="ph-fill ph-crown text-amber-500"></i>';
+                if (typeof confetti === 'function') confetti({ particleCount: 120, spread: 80 });
+            } else if (pontuacaoTotal >= 6500) {
+                patente = 'Patente S (Cartógrafo Sênior)';
+                iconHtml = '<i class="ph-fill ph-trophy text-amber-500"></i>';
+            } else if (pontuacaoTotal >= 4500) {
+                patente = 'Patente A (Agrimensor)';
+                iconHtml = '<i class="ph-fill ph-medal text-blue-500"></i>';
+            } else if (pontuacaoTotal >= 2500) {
+                patente = 'Patente B (Navegador)';
+                iconHtml = '<i class="ph-fill ph-map-pin text-emerald-500"></i>';
+            }
+            document.getElementById('finalPatente').textContent = patente;
+            document.getElementById('iconFimJogo').innerHTML = iconHtml;
+
+            // Link WhatsApp
+            const urlAtual = encodeURIComponent(window.location.href);
+            const msg = encodeURIComponent(`Fiz ${pontuacaoTotal.toLocaleString('pt-BR')} pontos no Silhueta do País no VitaleGeo (${patente})! Você consegue me vencer?`);
+            document.getElementById('btnShareFimWhatsApp').href = `https://api.whatsapp.com/send?text=${msg}%20${urlAtual}`;
+        }
+
+        function reiniciarJogo() {
+            iniciarPartida();
+        }
+
+        // Gerador do Scorecard PNG (900x900) via HTML5 Canvas
+        function baixarScorecardPNG() {
+            const canvas = document.getElementById('canvasScorecard');
+            const ctx = canvas.getContext('2d');
+
+            // Fundo Bege Cartográfico
+            ctx.fillStyle = '#F5F2EB';
+            ctx.fillRect(0, 0, 900, 900);
+
+            // Moldura Navy
+            ctx.strokeStyle = '#0A192F';
+            ctx.lineWidth = 12;
+            ctx.strokeRect(30, 30, 840, 840);
+
+            // Fundo interno escuro
+            ctx.fillStyle = '#0A192F';
+            ctx.fillRect(45, 45, 810, 810);
+
+            // Textura sutil
+            ctx.strokeStyle = '#53647C';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.strokeRect(70, 70, 760, 760);
+            ctx.setLineDash([]);
+
+            // Marca VitaleGeo
+            ctx.fillStyle = '#C8102E';
+            ctx.font = 'bold 22px "Orbitron", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('VITALEGEO ARCADE // CERTIFICADO', 450, 130);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 38px "Orbitron", sans-serif';
+            ctx.fillText('SILHUETA DO PAÍS', 450, 185);
+
+            ctx.fillStyle = '#A8C3A6';
+            ctx.font = '16px "JetBrains Mono", monospace';
+            ctx.fillText('INTELIGÊNCIA GEOGRÁFICA & RECONHECIMENTO TERRITORIAL', 450, 225);
+
+            // Card Central de Pontuação
+            ctx.fillStyle = '#112236';
+            ctx.fillRect(150, 280, 600, 320);
+            ctx.strokeStyle = '#C8102E';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(150, 280, 600, 320);
+
+            ctx.fillStyle = '#53647C';
+            ctx.font = 'bold 18px "Montserrat", sans-serif';
+            ctx.fillText('PONTUAÇÃO TOTAL', 450, 335);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 64px "JetBrains Mono", monospace';
+            ctx.fillText(`${pontuacaoTotal.toLocaleString('pt-BR')} PTS`, 450, 415);
+
+            ctx.fillStyle = '#A8C3A6';
+            ctx.font = 'bold 24px "Orbitron", sans-serif';
+            ctx.fillText(document.getElementById('finalPatente').textContent, 450, 480);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '16px "Montserrat", sans-serif';
+            ctx.fillText(`Desafio de 10 Nações Soberanas Sem Enclaves`, 450, 540);
+
+            // Rodapé do Certificado
+            ctx.fillStyle = '#53647C';
+            ctx.font = '14px "JetBrains Mono", monospace';
+            ctx.fillText('Jogue grátis em www.vitalegeo.com.br/jogos/silhueta-pais/', 450, 780);
+
+            // Download automático
+            const link = document.createElement('a');
+            link.download = `scorecard-silhueta-vitalegeo-${pontuacaoTotal}pts.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Inicialização do Jogo e Carregamento do Mapa
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                let res = await fetch('/data/maps/countries-110m.json');
+                if (!res.ok) {
+                    res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                }
+                mundoTopoJSON = await res.json();
+                document.getElementById('loadingSilhueta').style.display = 'none';
+                iniciarPartida();
+            } catch (err) {
+                console.error('Falha ao carregar TopoJSON:', err);
+                try {
+                    let fallbackRes = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+                    mundoTopoJSON = await fallbackRes.json();
+                    document.getElementById('loadingSilhueta').style.display = 'none';
+                    iniciarPartida();
+                } catch (e) {
+                    document.getElementById('loadingSilhueta').innerHTML = '<span class="text-rose-400 font-mono text-xs">Erro ao carregar mapa do jogo.</span>';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

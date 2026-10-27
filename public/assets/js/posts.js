@@ -3,6 +3,406 @@
 
 const blogPosts = [
     {
+        titulo: "Quais São as Dez Menores Nações Insulares da Terra Ameaçadas Pela Subida dos Oceanos?",
+        categoria: "Rankings",
+        data: "27 Out 2026 - 19:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Funafuti_airport_-_Fiji_Airways.jpg/1280px-Funafuti_airport_-_Fiji_Airways.jpg",
+        link: "ranking-menores-paises-insulares-do-mundo/",
+        resumo: "De Nauru e Tuvalu às Maldivas e Malta: conheça os dez menores países formados exclusivamente por ilhas e atóis e seus desafios existenciais de soberania."
+    },
+    {
+        titulo: "Por Que o Mapa Icosaédrico de Buckminster Fuller Mostra a Humanidade Vivendo em Uma Única Ilha Contínua?",
+        categoria: "Cartografia",
+        data: "27 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/53/Dymaxion_projection.png",
+        link: "mapa-dymaxion-buckminster-fuller-projecao-icosaedro/",
+        resumo: "Projetada nas 20 faces de um icosaedro em 1943, a projeção Dymaxion de Buckminster Fuller desfaz o viés colonial e revela a Terra como uma ilha conectada."
+    },
+    {
+        titulo: "Como os Círculos Matemáticos de Tissot Provam que Nenhum Mapa-Múndi Plano Jamais Poderá Ser Perfeito?",
+        categoria: "Cartografia",
+        data: "27 Out 2026 - 16:50",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Tissot_world_from_space.png",
+        link: "indicatriz-de-tissot-distorcao-projecoes-cartograficas/",
+        resumo: "Criada pelo matemático Nicolas Auguste Tissot em 1859, a elipse indicatriz revela visualmente como toda projeção deforma áreas, ângulos ou distâncias na Terra."
+    },
+    {
+        titulo: "Por Que Montreal Construiu uma Cidade Subterrânea de Trinta e Três Quilômetros para Vencer o Inverno Polar?",
+        categoria: "Urbanismo",
+        data: "27 Out 2026 - 15:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Place_des_Arts_-_m%C3%A9tro_de_Montr%C3%A9al.jpg",
+        link: "cidade-subterranea-de-montreal-reso-urbanismo-inverno/",
+        resumo: "Com mais de 33 km de túneis climatizados conectando metrô, escritórios e praças, o RÉSO permite que 500 mil pessoas circulem diariamente sob temperaturas de -30°C."
+    },
+    {
+        titulo: "Como Curitiba Revolucionou o Transporte Público Mundial ao Inventar o Sistema BRT nos Anos Setenta?",
+        categoria: "Urbanismo",
+        data: "27 Out 2026 - 14:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Curitiba_PublicTransport.png/1280px-Curitiba_PublicTransport.png",
+        link: "sistema-brt-curitiba-mobilidade-urbana-jaime-lerner/",
+        resumo: "Canaletas exclusivas, estações-tubo e ônibus expressos: como o arquiteto Jaime Lerner criou em Curitiba o modelo de BRT replicado em mais de 200 metrópoles."
+    },
+    {
+        titulo: "Como Uma Canetada Diplomática em 1750 Quase Triplicou o Tamanho do Brasil e Enterrou o Meridiano de Tordesilhas?",
+        categoria: "História",
+        data: "27 Out 2026 - 13:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Frontisp%C3%ADcio_do_Tratado_de_Madrid.jpg",
+        link: "tratado-de-madri-1750-uti-possidetis-fronteiras-brasil/",
+        resumo: "Articulado pelo diplomata santista Alexandre de Gusmão, o Tratado de Madri aplicou o princípio de posse efetiva para desenhar a silhueta moderna do mapa do Brasil."
+    },
+    {
+        titulo: "Como Uma Disputa de Agrimensores no Século Dezoito Dividiu os Estados Unidos Cultural e Politicamente em Dois Mundos?",
+        categoria: "História",
+        data: "27 Out 2026 - 12:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Mason-dixon-line.gif",
+        link: "linha-mason-dixon-fronteira-geodesica-estados-unidos/",
+        resumo: "Traçada com astrolábios e telescópios entre 1763 e 1767 por Charles Mason e Jeremiah Dixon, a linha de divisa colonial virou o divisor histórico entre Norte e Sul."
+    },
+    {
+        titulo: "Por Que Este Ponto a Cento e Vinte e Cinco Metros Abaixo do Nível do Mar Está Partindo a África e Criando um Novo Oceano?",
+        categoria: "Curiosidades",
+        data: "27 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Map_Danakil.jpg/1280px-Map_Danakil.jpg",
+        link: "depressao-de-danakil-triplice-juncao-afar-etiopia/",
+        resumo: "Na Depressão de Danakil, na Etiópia, três placas tectônicas se afastam em um caldeirão de vulcões de lava permanente e fontes hidrotermais ácidas de enxofre."
+    },
+    {
+        titulo: "Por Que o Governo Brasileiro Proíbe Terminantemente o Desembarque Civil Nesta Ilha a Trinta e Cinco Quilômetros de São Paulo?",
+        categoria: "Curiosidades",
+        data: "27 Out 2026 - 09:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Ilha_da_Queimada_Grande_-_Itanha%C3%A9m3.jpg",
+        link: "ilha-da-queimada-grande-ilha-das-cobras-brasil/",
+        resumo: "A 35 km da costa paulista, a Ilha da Queimada Grande concentra a mais perigosa densidade de jararacas-ilhoas da Terra em um ecossistema isolado na Era do Gelo."
+    },
+    {
+        titulo: "Por Que o Lugar Mais Seco do Planeta Abriga a Maior Escavação Feita Pela Humanidade?",
+        categoria: "Curiosidades",
+        data: "27 Out 2026 - 08:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mina_de_Chuquicamata%2C_Calama%2C_Chile%2C_2016-02-01%2C_DD_110-112_PAN.JPG/1280px-Mina_de_Chuquicamata%2C_Calama%2C_Chile%2C_2016-02-01%2C_DD_110-112_PAN.JPG",
+        link: "deserto-do-atacama-chuquicamata-lugar-mais-seco/",
+        resumo: "No coração do Deserto do Atacama, onde estações meteorológicas nunca registraram chuva, opera a colossal mina de Chuquicamata a 2.870 metros de altitude."
+    },
+    {
+        titulo: "Quais São os Dez Países com Mais Ilhas no Mundo Onde Pequenos Arquipélagos Somam Centenas de Milhares de Territórios?",
+        categoria: "Rankings",
+        data: "27 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d8/%C3%85land_Islands.jpg",
+        link: "ranking-paises-com-mais-ilhas-do-mundo/",
+        resumo: "Por que Suécia, Noruega e Finlândia superam Indonésia e Filipinas na contagem insular global: entenda o relevo pós-glacial e os números reais dos maiores arquipélagos."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Ilhas do Planeta Que Somadas Ocupam Uma Área Maior Que Toda a Europa Ocidental?",
+        categoria: "Rankings",
+        data: "27 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Landsat_sees_Greenland%27s_Ice_Cap.jpg",
+        link: "ranking-maiores-ilhas-do-mundo/",
+        resumo: "Da gigantesca Groenlândia e as selvas da Nova Guiné aos desertos de gelo de Baffin e Ellesmere: o ranking comparativo das 10 maiores massas insulares da Terra."
+    },
+    {
+        titulo: "Por Que Índia e China Disputam Uma Linha Desenhada em Um Mapa de 1914 no Himalaia Oriental?",
+        categoria: "Fronteiras",
+        data: "27 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/62/McMahon_Line_Simla_Accord_Treaty_1914_Map1.jpg",
+        link: "linha-mcmahon-fronteira-india-china/",
+        resumo: "Da Convenção de Simla negociada por Sir Henry McMahon à guerra de 1962 e a militarização de Arunachal Pradesh: a história da linha contestada no Himalaia."
+    },
+    {
+        titulo: "Como Três Países Soberanos Dividem a Terceira Maior Ilha do Planeta Coberta por Florestas Tropicais?",
+        categoria: "Curiosidades",
+        data: "27 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/40/Administrative_map_of_Borneo_%28Indonesian%29.png",
+        link: "ilha-de-borneo-tres-paises/",
+        resumo: "Da Convenção de Londres de 1891 entre holandeses e britânicos à ascensão de Nusantara: a partilha de Bornéu entre Indonésia, Malásia e o Sultanato de Brunei."
+    },
+    {
+        titulo: "Por Que o Reino Unido Mantém Duas Bases Militares Soberanas no Território do Chipre Desde 1960?",
+        categoria: "Fronteiras",
+        data: "27 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Akrotiri_and_Dhekelia_location_map.svg",
+        link: "bases-soberanas-akrotiri-e-dhekelia-chipre/",
+        resumo: "Do Tratado de Estabelecimento de 1960 aos postos de inteligência de Ayios Nikolaos e RAF Akrotiri: como Londres preservou 254 km² de território soberano no Mediterrâneo."
+    },
+    {
+        titulo: "Como Uma Fronteira de Apenas Dezessete Quilômetros Entre a Rússia e a Coreia do Norte Desafia a Geopolítica da Ásia?",
+        categoria: "Fronteiras",
+        data: "27 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/7d/North_Korea_-_Russia_border_map.jpg",
+        link: "fronteira-russia-coreia-do-norte-rio-tumen/",
+        resumo: "Do Tratado de Pequim de 1860 à Ponte da Amizade no Rio Tumen: a menor fronteira internacional da Rússia e o corredor militar estratégico com Pyongyang."
+    },
+    {
+        titulo: "Por Que o Corredor GIUK Entre a Groenlândia e a Grã-Bretanha É o Ponto Mais Vigiado da Guerra Submarina Global?",
+        categoria: "Geopolítica",
+        data: "27 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/GIUK_gap.png",
+        link: "corredor-giuk-gap-guerra-submarina/",
+        resumo: "A passagem naval entre Groenlândia, Islândia e Reino Unido: entenda a hidrografia estratégica, as redes de hidrofones SOSUS e a rota de submarinos no Atlântico Norte."
+    },
+    {
+        titulo: "Como a Descoberta de Onze Bilhões de Barris de Petróleo Transformou a Guiana no País que Mais Cresce no Planeta?",
+        categoria: "Geopolítica",
+        data: "27 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/45/Stabroek_and_Block_58_in_Suriname-Guyana_Basin_Offshore_map.png",
+        link: "geoeconomia-da-guiana/",
+        resumo: "Do Bloco Stabroek e o salto do PIB superior a 30% ao ano à disputa territorial pelo Essequibo com a Venezuela: o xadrez geoeconômico da Guiana."
+    },
+    {
+        titulo: "Por Que as Filipinas Tornaram-se o Ponto Mais Crítico da Batalha Naval Entre Estados Unidos e China no Mar do Sul?",
+        categoria: "Geopolítica",
+        data: "27 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/57/South_China_Sea_Claims_and_Boundary_Agreements_2012.jpg",
+        link: "geopolitica-das-filipinas/",
+        resumo: "Do navio encalhado BRP Sierra Madre e o Canal de Bashi às bases militares do EDCA: entenda o valor geoestratégico das Filipinas no Indo-Pacífico."
+    },
+    {
+        titulo: "Como a Grécia Reconquistou Seu Território e Mais de Três Mil Ilhas Após Quatro Séculos de Domínio Otomano?",
+        categoria: "História",
+        data: "27 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/10/Territorial_Evolution_of_Greece.png",
+        link: "historia-da-grecia/",
+        resumo: "Da Guerra de Independência de 1821 e o Tratado de Londres aos tratados de Lausanne e Paris: a reconstituição cartográfica do território grego contemporâneo."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Aglomerados Urbanos do Planeta Onde Vivem Mais de Trezentos Milhões de Pessoas?",
+        categoria: "Rankings",
+        data: "25 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
+        link: "ranking-maiores-megacidades-do-mundo/",
+        resumo: "De Tóquio-Yokohama e Deli a São Paulo e Xangai: compare as dez maiores megacidades da Terra por população, densidade demográfica e desafios logísticos."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Países do Planeta Que Ocupam Quase Metade de Todas as Terras Emersas?",
+        categoria: "Rankings",
+        data: "25 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/70/The_Blue_Marble%2C_AS17-148-22727.jpg",
+        link: "ranking-maiores-paises-do-mundo/",
+        resumo: "Da imensidão transcontinental da Rússia e os arquipélagos do Canadá aos desertos da Argélia e o cerrado brasileiro: conheça os 10 gigantes territoriais da Terra."
+    },
+    {
+        titulo: "Por Que Cinco Nações Estão Mapeando o Fundo do Oceano Ártico Para Reivindicar o Polo Norte Submarino?",
+        categoria: "Geopolítica",
+        data: "25 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/IBCAO_betamap.jpg",
+        link: "disputa-do-artico-dorsal-de-lomonosov/",
+        resumo: "A batalha científica e militar pela Dorsal de Lomonosov: como Rússia, Canadá, Dinamarca, EUA e Noruega disputam a extensão de suas plataformas sob o gelo polar."
+    },
+    {
+        titulo: "Por Que Índia e Paquistão Lutam Há Quarenta Anos Pelo Controle de Uma Geleira Congelada a Seis Mil Metros de Altitude?",
+        categoria: "Fronteiras",
+        data: "25 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Siachen_Glacier_Satellite_Image%2C_1.jpg",
+        link: "geleira-de-siachen-campo-batalha-mais-alto/",
+        resumo: "Da Operação Meghdoot em 1984 e a indefinição do marco NJ9842 a postos militares a -50°C: a disputa pelo campo de batalha mais alto do planeta em Siachen."
+    },
+    {
+        titulo: "Como Uma Faixa Estreita de Quatorze Quilômetros de Areia Tornou-se o Ponto Mais Tenso do Oriente Médio?",
+        categoria: "Fronteiras",
+        data: "25 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Road_to_Gaza_060_-_Flickr_-_Al_Jazeera_English.jpg",
+        link: "corredor-de-philadelphi-fronteira-egito-gaza/",
+        resumo: "Criada pelo tratado de paz de Camp David em 1979 entre Egito e Israel: entenda a importância militar e territorial do Corredor de Philadelphi na fronteira com Gaza."
+    },
+    {
+        titulo: "Como Uma Faixa de Vinte Quilômetros de Litoral Cortou a Croácia em Duas Partes e Isolou Dubrovnik?",
+        categoria: "Fronteiras",
+        data: "25 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/8/86/Pelje%C5%A1ac_Bridge_1.jpg",
+        link: "corredor-de-neum-bosnia-croacia/",
+        resumo: "Do Tratado de Karlowitz de 1699 entre Ragusa e o Império Otomano à inauguração da monumental Ponte de Pelješac: a história do corredor costeiro de Neum."
+    },
+    {
+        titulo: "Por Que Mais de Dez Por Cento do Comércio Global Depende de Uma Valeta de Cento e Noventa Quilômetros no Egito?",
+        categoria: "Geopolítica",
+        data: "25 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Iss016e019375.jpg",
+        link: "canal-de-suez-arteria-maritima/",
+        resumo: "Da inauguração em 1869 e as guerras de nacionalização ao encalhe do Ever Given e os desvios marítimos: a geopolítica e a economia do Canal de Suez."
+    },
+    {
+        titulo: "Como o Maior Exportador de Petróleo do Mundo Usa Um Fundo Soberano de Quase Um Trilhão de Dólares Para Sobreviver ao Fim da Era Fóssil?",
+        categoria: "Geopolítica",
+        data: "25 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Kingdom_Centre_Riyadh_2024.jpeg",
+        link: "geoeconomia-da-arabia-saudita/",
+        resumo: "Do megacampo de Ghawar e a gigante Saudi Aramco aos projetos monumentais da Visão 2030 e minerais críticos: a corrida geoeconômica da Arábia Saudita."
+    },
+    {
+        titulo: "Por Que a Península Coreana Permanece Dividida no Paralelo 38 com Mais de Um Milhão de Soldados em Alerta Máximo?",
+        categoria: "Geopolítica",
+        data: "25 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/070401_Panmunjeom3.jpg",
+        link: "geopolitica-da-coreia-do-sul/",
+        resumo: "Entre a artilharia norte-coreana a quarenta quilômetros de Seul, a Zona Desmilitarizada e as superpotências: entenda o xadrez geopolítico da Coreia do Sul."
+    },
+    {
+        titulo: "Como Três Partilhas Apagaram a Polônia do Mapa por Mais de Um Século Antes de Seu Renascimento Territorial?",
+        categoria: "História",
+        data: "25 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Polish-Lithuanian_Commonwealth_in_1772.PNG",
+        link: "historia-da-polonia/",
+        resumo: "Da Comunidade Polaco-Lituana e as partilhas de 1772, 1793 e 1795 ao renascimento em 1918 e a migração de fronteiras em Potsdam: conheça a saga cartográfica da Polônia."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Lagos do Planeta Que Concentram a Maior Parte da Água Doce e Salgada da Terra?",
+        categoria: "Rankings",
+        data: "24 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/98/Caspian_Sea_from_orbit.jpg",
+        link: "ranking-maiores-lagos-do-mundo/",
+        resumo: "Do gigantesco Mar Cáspio e os Grandes Lagos da América do Norte ao Lago Vitória e o profundo Baikal: compare os 10 maiores corpos d'água lacustres do mundo."
+    },
+    {
+        titulo: "Por Que o Lago Baikal na Sibéria Guarda Vinte Por Cento de Toda a Água Doce Não Congelada da Terra?",
+        categoria: "Curiosidades",
+        data: "24 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Baikal.A2001296.0420.250m-NASA.jpg",
+        link: "lago-baikal-maior-reserva-agua-doce/",
+        resumo: "Com 1.642 metros de profundidade e 25 milhões de anos de idade geológica, conheça o abismo fóssil que armazena mais água doce líquida que todos os Grandes Lagos juntos."
+    },
+    {
+        titulo: "Como Nove Mil Quilômetros de Trilhos Pela Taiga e Montanhas Conectaram Dois Continentes na Maior Ferrovia da Terra?",
+        categoria: "Curiosidades",
+        data: "24 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/05/VL_85-022_container_train.jpg",
+        link: "ferrovia-transiberiana-maior-linha-do-mundo/",
+        resumo: "De Moscou a Vladivostok através de 8 fusos horários e contornando o Lago Baikal: saiba como a Ferrovia Transiberiana unificou a eurásia russa desde 1891."
+    },
+    {
+        titulo: "Como a Engenharia Territorial Soviética Criou o Labirinto de Oito Enclaves no Vale de Fergana?",
+        categoria: "Fronteiras",
+        data: "24 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/ValleDeFergan%C3%A1Topogr%C3%A1fico_en.svg",
+        link: "enclaves-do-vale-de-fergana/",
+        resumo: "As fronteiras entre Quirguistão, Tajiquistão e Uzbequistão desenhadas nas décadas de 1920 e 1930: veja a disputa por água, estradas e terras em Sokh e Vorukh."
+    },
+    {
+        titulo: "Como Uma Cidade na Áustria Ficou Conectada ao Resto do País por Um Ponto de Rocha de Apenas Um Milímetro?",
+        categoria: "Fronteiras",
+        data: "24 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/BlickAufJungholz.jpg",
+        link: "jungholz-enclave-austria-alemanha/",
+        resumo: "No cume do Monte Sorgschrofen, descubra como o vilarejo alpino de Jungholz forma um quadripoint geográfico único cercado inteiramente pela Baviera alemã."
+    },
+    {
+        titulo: "Como um Erro de Cartografia de 1783 Deixou Uma Fatia dos Estados Unidos Isolada Dentro do Território Canadense?",
+        categoria: "Fronteiras",
+        data: "24 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e4/NORTHWEST_Angle.png",
+        link: "angulo-noroeste-minnesota-fronteira/",
+        resumo: "Ao norte do paralelo 49° no Lago dos Bosques, conheça o Ângulo Noroeste de Minnesota, o único exclave dos EUA contíguos onde os moradores cruzam o Canadá para ir à escola."
+    },
+    {
+        titulo: "Por Que a Passagem de Vinte e Seis Quilômetros em Bab el-Mandeb Forçou Navios a Contornar Todo o Continente Africano?",
+        categoria: "Geopolítica",
+        data: "24 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bab-el-Mandeb_And_Red_Sea_NASA_photo.webp",
+        link: "estreito-de-bab-el-mandeb-chokepoint/",
+        resumo: "A Porta das Lágrimas entre o Mar Vermelho e o Oceano Índico: entenda como um estrangulamento naval de 26 km reordenou as rotas mundiais de frete marítimo."
+    },
+    {
+        titulo: "Como Mais de Setenta Por Cento do Fosfato do Planeta Transformou o Marrocos no Guardião da Agricultura Global?",
+        categoria: "Geopolítica",
+        data: "24 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d1/ISS056-E-32453_-_View_of_Western_Sahara.jpg",
+        link: "geoeconomia-do-marrocos/",
+        resumo: "Das jazidas de Khouribga à esteira transportadora de 100 km de Bou Craa no Saara Ocidental: descubra como o fosfato marroquino sustenta a alimentação humana."
+    },
+    {
+        titulo: "Por Que a Primeira Cadeia de Ilhas e o Escudo de Silício Transformaram Taiwan no Ponto Mais Disputado do Mundo?",
+        categoria: "Geopolítica",
+        data: "24 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/00/101.portrait.altonthompson.jpg",
+        link: "geopolitica-de-taiwan/",
+        resumo: "A 160 km do continente chinês, saiba como o controle de 90% dos microchips avançados e a geografia do Estreito de Taiwan definem o equilíbrio militar do Pacífico."
+    },
+    {
+        titulo: "Como Nove Séculos de Guerras e Tratados Fizeram de Portugal o País com as Fronteiras Mais Antigas da Europa?",
+        categoria: "História",
+        data: "24 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/01/Torre_belem.jpg",
+        link: "historia-de-portugal/",
+        resumo: "Do Tratado de Zamora em 1143 e a Linha de Alcanizes em 1297 até as grandes navegações e as fronteiras modernas: conheça a trajetória territorial de Portugal."
+    },
+    {
+        titulo: "Quais São os Dez Países com Mais Fusos Horários do Planeta Onde o Sol Nunca Se Põe?",
+        categoria: "Rankings",
+        data: "23 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/95/World_Time_Zones_Map%281%29.png",
+        link: "ranking-paises-mais-fusos-horarios/",
+        resumo: "Por que a França lidera o ranking mundial com 12 fusos horários à frente da Rússia e dos Estados Unidos? Veja os 10 países com mais zonas de tempo na Terra."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Desertos do Planeta Onde o Clima Extremo Desafia a Vida Humana?",
+        categoria: "Rankings",
+        data: "23 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Antarctica_6400px_from_Blue_Marble.jpg",
+        link: "ranking-maiores-desertos-do-mundo/",
+        resumo: "Da imensidão gelada da Antártida e do Ártico às dunas do Saara, Arábia, Gobi e Patagônia: conheça os dez maiores desertos da Terra e a ciência da aridez."
+    },
+    {
+        titulo: "Como Uma Mina de Zinco Criou o País Esquecido de Moresnet no Ponto de Quatro Fronteiras da Europa?",
+        categoria: "História",
+        data: "23 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/58/Zinkwerke_Neutral-Moresnet_%282%29.jpg",
+        link: "moresnet-neutro-quatro-fronteiras/",
+        resumo: "Entre 1816 e 1920, uma disputa por minério entre a Prússia e a Holanda gerou um microestado independente de 3,4 km² que quase adotou o Esperanto como língua."
+    },
+    {
+        titulo: "Por Que o Cume do Vulcão Chimborazo Fica Mais Perto do Espaço do Que o Topo do Monte Everest?",
+        categoria: "Curiosidades",
+        data: "23 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Chimborazo_04.jpg",
+        link: "vulcao-chimborazo-centro-da-terra/",
+        resumo: "Pela curvatura e achatamento da Terra no Equador, o vulcão Chimborazo está a 6.384,4 km do núcleo do planeta — 2 km mais próximo das estrelas que o Everest."
+    },
+    {
+        titulo: "Como a Holanda Drenou o Oceano e Criou Uma Província Inteira Abaixo do Nível do Mar?",
+        categoria: "Curiosidades",
+        data: "23 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/17/Afsluitdijk.jpg",
+        link: "polderes-holanda-flevolandia/",
+        resumo: "Com o dique Afsluitdijk de 32 km e bombas de drenagem contínuas, os Países Baixos criaram Flevolândia sobre o leito marinho. Veja a engenharia dos pôlderes."
+    },
+    {
+        titulo: "Por Que o Uruguai Ainda Reivindica Oficialmente Duas Áreas de Fronteira Dentro do Território do Brasil?",
+        categoria: "Fronteiras",
+        data: "23 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Puente_Bella_Union_Barra_Quarai.jpg",
+        link: "disputa-fronteira-brasil-uruguai/",
+        resumo: "A Ilha Brasileira na foz do Rio Quaraí e o Rincão de Artigas com 237 km²: conheça as duas disputas de limites ativas na fronteira sul do Brasil."
+    },
+    {
+        titulo: "Como Três Ilhas Minúsculas no Canal de Beagle Quase Levaram Argentina e Chile a Uma Guerra Total?",
+        categoria: "Fronteiras",
+        data: "23 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/44/Ushuaia_-_Costa_del_Canal_de_Beagle_2.JPG",
+        link: "canal-de-beagle-fronteira/",
+        resumo: "Em dezembro de 1978, a Operação Soberania colocou frotas de guerra frente a frente por Picton, Lennox e Nueva. Saiba como o Papa evitou o conflito."
+    },
+    {
+        titulo: "Como as Maiores Reservas de Níquel do Planeta Transformaram a Indonésia no Pivô Global dos Carros Elétricos?",
+        categoria: "Geopolítica",
+        data: "23 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Sulawesi%2C_Indonesia_%28PIA26007%29.jpg",
+        link: "geoeconomia-da-indonesia/",
+        resumo: "Com 21 milhões de toneladas de níquel em Sulawesi e Molucas e a proibição de exportar minério bruto, descubra a revolução geoeconômica de Jacarta."
+    },
+    {
+        titulo: "Por Que a Ilha de Gotland Transforma a Suécia na Chave de Controle Militar de Todo o Mar Báltico?",
+        categoria: "Geopolítica",
+        data: "23 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ef/GotlandFromSpace.jpg",
+        link: "geopolitica-da-suecia/",
+        resumo: "A 90 km do litoral sueco e 130 km de Kaliningrado, veja por que a Ilha de Gotland é chamada de porta-aviões inafundável e o pivô da OTAN no Báltico."
+    },
+    {
+        titulo: "Como a Prússia, as Guerras Mundiais e a Linha Oder-Neisse Desenharam as Fronteiras da Alemanha Moderna?",
+        categoria: "História",
+        data: "23 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Brandenburger_Tor_nachts.jpg",
+        link: "historia-da-alemanha/",
+        resumo: "Do Sacro Império e ascensão prussiana à Conferência de Potsdam, divisão pelo Muro de Berlim e reunificação de 1990: entenda a evolução territorial alemã."
+    },
+    {
         titulo: "Quais São os Dez Maiores Rios do Planeta Que Alimentam Civilizações e Redesenham Fronteiras?",
         categoria: "Rankings",
         data: "21 Out 2026 - 22:30",

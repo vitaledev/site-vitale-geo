@@ -75,5 +75,12 @@ const toolsDB = [
         icon: "ph-bold ph-clock-countdown",
         cover: "/assets/img/ferramentas/horarios-russia.svg",
         link: "/ferramentas/horarios-russia/"
+    },
+    {
+        titulo: "Alternador de Projeções Cartográficas",
+        desc: "Compare o mapa-múndi sob 8 projeções (Mercator, Peters, Robinson, Globo 3D), veja as elipses de Tissot e descubra a distorção real dos continentes.",
+        icon: "ph-bold ph-globe-stand",
+        cover: "/assets/img/ferramentas/alternador-projecoes.svg",
+        link: "/ferramentas/alternador-projecoes/"
     }
 ];

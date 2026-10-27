@@ -9,6 +9,7 @@ interface PostItem {
   data: string;
   img: string;
   tempoLeitura?: string;
+  destaque?: boolean;
 }
 
 interface Props {
@@ -82,9 +83,14 @@ export default function HomeBlogFilter({ posts }: Props) {
     };
   }, []);
 
+  const curatedPosts = useMemo(
+    () => [...posts].sort((a, b) => Number(Boolean(b.destaque)) - Number(Boolean(a.destaque))),
+    [posts],
+  );
+
   const filtered = activeCategory === 'all'
-    ? posts.slice(0, 6)
-    : posts.filter(p => p.categoria.toLowerCase() === activeCategory.toLowerCase()).slice(0, 6);
+    ? curatedPosts.slice(0, 6)
+    : curatedPosts.filter(p => p.categoria.toLowerCase() === activeCategory.toLowerCase()).slice(0, 6);
 
   return (
     <div>

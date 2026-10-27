@@ -98,5 +98,16 @@ export const gamesDB: GameItem[] = [
     categoria: "Quiz & Geopolítica",
     badge: "TRIVIA",
     tags: ["quiz", "trivia", "geopolitica", "perguntas", "estreitos", "historia", "conhecimento", "provas"]
+  },
+  {
+    id: "silhueta-pais",
+    titulo: "Silhueta do País",
+    desc: "Identifique nações soberanas do planeta apenas pelo contorno da sua silhueta isolada com pistas progressivas.",
+    icon: "ph-fill ph-globe-stand",
+    cover: "/assets/img/jogos/silhueta-pais.svg",
+    link: "/jogos/silhueta-pais/",
+    categoria: "Mapa Mudo & Localização",
+    badge: "NOVO ARCADE",
+    tags: ["silhueta", "contorno", "paises", "mapa mudo", "adivinhacao", "arcade", "dopamina", "territorio"]
   }
 ];

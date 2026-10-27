@@ -131,5 +131,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Tempo & Fusos",
     badge: "RÚSSIA",
     tags: ["horario russia", "que horas são na rússia", "fusos horários", "moscou", "brasilia", "diferença de horário"]
+  },
+  {
+    id: "alternador-projecoes",
+    titulo: "Alternador de Projeções Cartográficas",
+    desc: "Compare o mapa-múndi sob 8 projeções (Mercator, Peters, Robinson, Globo 3D), veja as elipses de Tissot e descubra a distorção real dos continentes.",
+    icon: "ph-bold ph-globe-stand",
+    cover: "/assets/img/ferramentas/alternador-projecoes.svg",
+    link: "/ferramentas/alternador-projecoes/",
+    categoria: "Projeções & Território",
+    badge: "PROJEÇÃO & TISSOT",
+    tags: ["projecao", "mercator", "peters", "robinson", "tissot", "globo 3d", "cartografia", "distorcao", "mapa"]
   }
 ];

@@ -3,163 +3,681 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
    <url>
       <loc>https://www.vitalegeo.com.br/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>daily</changefreq>
       <priority>0.9</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/videos/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/sobre/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/politica/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/ferramentas/alternador-projecoes/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/calculadora-antipodas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/calculadora-distancia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/calculadora-fuso/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/comparador-paises/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/gerador-abnt/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/ferramentas/horarios-russia/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/paradoxo-linha-costa/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/quantos-cabem/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/radar-microestados/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/rotas-extremas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/ferramentas/simulador-nivel-mar/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/bandeiras/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/capitais/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/duelo-latitudes/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/fronteiras/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/maior-menor/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/onde-fica/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/pais-secreto/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/quiz/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/jogos/silhueta-pais/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/jogos/vizinho-intruso/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-paises-com-mais-ilhas-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/d/d8/%C3%85land_Islands.jpg</image:loc>
+         <image:title>Quais São os Dez Países com Mais Ilhas no Mundo Onde Pequenos Arquipélagos Somam Centenas de Milhares de Territórios?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-ilhas-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/d/d3/Landsat_sees_Greenland%27s_Ice_Cap.jpg</image:loc>
+         <image:title>Quais São as Dez Maiores Ilhas do Planeta Que Somadas Ocupam Uma Área Maior Que Toda a Europa Ocidental?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/linha-mcmahon-fronteira-india-china/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/62/McMahon_Line_Simla_Accord_Treaty_1914_Map1.jpg</image:loc>
+         <image:title>Por Que Índia e China Disputam Uma Linha Desenhada em Um Mapa de 1914 no Himalaia Oriental?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-menores-paises-insulares-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Funafuti_airport_-_Fiji_Airways.jpg/1280px-Funafuti_airport_-_Fiji_Airways.jpg</image:loc>
+         <image:title>Quais São as Dez Menores Nações Insulares da Terra Ameaçadas Pela Subida dos Oceanos?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ilha-de-borneo-tres-paises/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/4/40/Administrative_map_of_Borneo_%28Indonesian%29.png</image:loc>
+         <image:title>Como Três Países Soberanos Dividem a Terceira Maior Ilha do Planeta Coberta por Florestas Tropicais?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/mapa-dymaxion-buckminster-fuller-projecao-icosaedro/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/5/53/Dymaxion_projection.png</image:loc>
+         <image:title>Por Que o Mapa Icosaédrico de Buckminster Fuller Mostra a Humanidade Vivendo em Uma Única Ilha Contínua?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/indicatriz-de-tissot-distorcao-projecoes-cartograficas/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/0e/Tissot_world_from_space.png</image:loc>
+         <image:title>Como os Círculos Matemáticos de Tissot Provam que Nenhum Mapa-Múndi Plano Jamais Poderá Ser Perfeito?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/bases-soberanas-akrotiri-e-dhekelia-chipre/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/8/82/Akrotiri_and_Dhekelia_location_map.svg</image:loc>
+         <image:title>Por Que o Reino Unido Mantém Duas Bases Militares Soberanas no Território do Chipre Desde 1960?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/cidade-subterranea-de-montreal-reso-urbanismo-inverno/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/cd/Place_des_Arts_-_m%C3%A9tro_de_Montr%C3%A9al.jpg</image:loc>
+         <image:title>Por Que Montreal Construiu uma Cidade Subterrânea de Trinta e Três Quilômetros para Vencer o Inverno Polar?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/sistema-brt-curitiba-mobilidade-urbana-jaime-lerner/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Curitiba_PublicTransport.png/1280px-Curitiba_PublicTransport.png</image:loc>
+         <image:title>Como Curitiba Revolucionou o Transporte Público Mundial ao Inventar o Sistema BRT nos Anos Setenta?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/fronteira-russia-coreia-do-norte-rio-tumen/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/7d/North_Korea_-_Russia_border_map.jpg</image:loc>
+         <image:title>Como Uma Fronteira de Apenas Dezessete Quilômetros Entre a Rússia e a Coreia do Norte Desafia a Geopolítica da Ásia?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/tratado-de-madri-1750-uti-possidetis-fronteiras-brasil/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/2/2e/Frontisp%C3%ADcio_do_Tratado_de_Madrid.jpg</image:loc>
+         <image:title>Como Uma Canetada Diplomática em 1750 Quase Triplicou o Tamanho do Brasil e Enterrou o Meridiano de Tordesilhas?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-giuk-gap-guerra-submarina/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/f7/GIUK_gap.png</image:loc>
+         <image:title>Por Que o Corredor GIUK Entre a Groenlândia e a Grã-Bretanha É o Ponto Mais Vigiado da Guerra Submarina Global?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/linha-mason-dixon-fronteira-geodesica-estados-unidos/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6d/Mason-dixon-line.gif</image:loc>
+         <image:title>Como Uma Disputa de Agrimensores no Século Dezoito Dividiu os Estados Unidos Cultural e Politicamente em Dois Mundos?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/depressao-de-danakil-triplice-juncao-afar-etiopia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Map_Danakil.jpg/1280px-Map_Danakil.jpg</image:loc>
+         <image:title>Por Que Este Ponto a Cento e Vinte e Cinco Metros Abaixo do Nível do Mar Está Partindo a África e Criando um Novo Oceano?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-guiana/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/4/45/Stabroek_and_Block_58_in_Suriname-Guyana_Basin_Offshore_map.png</image:loc>
+         <image:title>Como a Descoberta de Onze Bilhões de Barris de Petróleo Transformou a Guiana no País que Mais Cresce no Planeta?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ilha-da-queimada-grande-ilha-das-cobras-brasil/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/4/4d/Ilha_da_Queimada_Grande_-_Itanha%C3%A9m3.jpg</image:loc>
+         <image:title>Por Que o Governo Brasileiro Proíbe Terminantemente o Desembarque Civil Nesta Ilha a Trinta e Cinco Quilômetros de São Paulo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-das-filipinas/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/5/57/South_China_Sea_Claims_and_Boundary_Agreements_2012.jpg</image:loc>
+         <image:title>Por Que as Filipinas Tornaram-se o Ponto Mais Crítico da Batalha Naval Entre Estados Unidos e China no Mar do Sul?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/deserto-do-atacama-chuquicamata-lugar-mais-seco/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mina_de_Chuquicamata%2C_Calama%2C_Chile%2C_2016-02-01%2C_DD_110-112_PAN.JPG/1280px-Mina_de_Chuquicamata%2C_Calama%2C_Chile%2C_2016-02-01%2C_DD_110-112_PAN.JPG</image:loc>
+         <image:title>Por Que o Lugar Mais Seco do Planeta Abriga a Maior Escavação Feita Pela Humanidade?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-da-grecia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/1/10/Territorial_Evolution_of_Greece.png</image:loc>
+         <image:title>Como a Grécia Reconquistou Seu Território e Mais de Três Mil Ilhas Após Quatro Séculos de Domínio Otomano?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-megacidades-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg</image:loc>
+         <image:title>Quais São os Dez Maiores Aglomerados Urbanos do Planeta Onde Vivem Mais de Trezentos Milhões de Pessoas?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-paises-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/70/The_Blue_Marble%2C_AS17-148-22727.jpg</image:loc>
+         <image:title>Quais São os Dez Maiores Países do Planeta Que Ocupam Quase Metade de Todas as Terras Emersas?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/disputa-do-artico-dorsal-de-lomonosov/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/d/d5/IBCAO_betamap.jpg</image:loc>
+         <image:title>Por Que Cinco Nações Estão Mapeando o Fundo do Oceano Ártico Para Reivindicar o Polo Norte Submarino?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geleira-de-siachen-campo-batalha-mais-alto/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/f5/Siachen_Glacier_Satellite_Image%2C_1.jpg</image:loc>
+         <image:title>Por Que Índia e Paquistão Lutam Há Quarenta Anos Pelo Controle de Uma Geleira Congelada a Seis Mil Metros de Altitude?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-de-philadelphi-fronteira-egito-gaza/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/bf/Road_to_Gaza_060_-_Flickr_-_Al_Jazeera_English.jpg</image:loc>
+         <image:title>Como Uma Faixa Estreita de Quatorze Quilômetros de Areia Tornou-se o Ponto Mais Tenso do Oriente Médio?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-de-neum-bosnia-croacia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/8/86/Pelje%C5%A1ac_Bridge_1.jpg</image:loc>
+         <image:title>Como Uma Faixa de Vinte Quilômetros de Litoral Cortou a Croácia em Duas Partes e Isolou Dubrovnik?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/canal-de-suez-arteria-maritima/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/c9/Iss016e019375.jpg</image:loc>
+         <image:title>Por Que Mais de Dez Por Cento do Comércio Global Depende de Uma Valeta de Cento e Noventa Quilômetros no Egito?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-arabia-saudita/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/b2/Kingdom_Centre_Riyadh_2024.jpeg</image:loc>
+         <image:title>Como o Maior Exportador de Petróleo do Mundo Usa Um Fundo Soberano de Quase Um Trilhão de Dólares Para Sobreviver ao Fim da Era Fóssil?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-da-coreia-do-sul/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/ea/070401_Panmunjeom3.jpg</image:loc>
+         <image:title>Por Que a Península Coreana Permanece Dividida no Paralelo 38 com Mais de Um Milhão de Soldados em Alerta Máximo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-da-polonia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/b0/Polish-Lithuanian_Commonwealth_in_1772.PNG</image:loc>
+         <image:title>Como Três Partilhas Apagaram a Polônia do Mapa por Mais de Um Século Antes de Seu Renascimento Territorial?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-lagos-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/98/Caspian_Sea_from_orbit.jpg</image:loc>
+         <image:title>Quais São os Dez Maiores Lagos do Planeta Que Concentram a Maior Parte da Água Doce e Salgada da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/lago-baikal-maior-reserva-agua-doce/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6a/Baikal.A2001296.0420.250m-NASA.jpg</image:loc>
+         <image:title>Por Que o Lago Baikal na Sibéria Guarda Vinte Por Cento de Toda a Água Doce Não Congelada da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ferrovia-transiberiana-maior-linha-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/05/VL_85-022_container_train.jpg</image:loc>
+         <image:title>Como Nove Mil Quilômetros de Trilhos Pela Taiga e Montanhas Conectaram Dois Continentes na Maior Ferrovia da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/enclaves-do-vale-de-fergana/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e1/ValleDeFergan%C3%A1Topogr%C3%A1fico_en.svg</image:loc>
+         <image:title>Como a Engenharia Territorial Soviética Criou o Labirinto de Oito Enclaves no Vale de Fergana?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/jungholz-enclave-austria-alemanha/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/0c/BlickAufJungholz.jpg</image:loc>
+         <image:title>Como Uma Cidade na Áustria Ficou Conectada ao Resto do País por Um Ponto de Rocha de Apenas Um Milímetro?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/angulo-noroeste-minnesota-fronteira/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e4/NORTHWEST_Angle.png</image:loc>
+         <image:title>Como um Erro de Cartografia de 1783 Deixou Uma Fatia dos Estados Unidos Isolada Dentro do Território Canadense?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-bab-el-mandeb-chokepoint/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/1/1f/Bab-el-Mandeb_And_Red_Sea_NASA_photo.webp</image:loc>
+         <image:title>Por Que a Passagem de Vinte e Seis Quilômetros em Bab el-Mandeb Forçou Navios a Contornar Todo o Continente Africano?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-do-marrocos/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/d/d1/ISS056-E-32453_-_View_of_Western_Sahara.jpg</image:loc>
+         <image:title>Como Mais de Setenta Por Cento do Fosfato do Planeta Transformou o Marrocos no Guardião da Agricultura Global?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-de-taiwan/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/00/101.portrait.altonthompson.jpg</image:loc>
+         <image:title>Por Que a Primeira Cadeia de Ilhas e o Escudo de Silício Transformaram Taiwan no Ponto Mais Disputado do Mundo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-de-portugal/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/01/Torre_belem.jpg</image:loc>
+         <image:title>Como Nove Séculos de Guerras e Tratados Fizeram de Portugal o País com as Fronteiras Mais Antigas da Europa?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-paises-mais-fusos-horarios/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/95/World_Time_Zones_Map%281%29.png</image:loc>
+         <image:title>Quais São os Dez Países com Mais Fusos Horários do Planeta Onde o Sol Nunca Se Põe?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-desertos-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e0/Antarctica_6400px_from_Blue_Marble.jpg</image:loc>
+         <image:title>Quais São os Dez Maiores Desertos do Planeta Onde o Clima Extremo Desafia a Vida Humana?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/moresnet-neutro-quatro-fronteiras/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/5/58/Zinkwerke_Neutral-Moresnet_%282%29.jpg</image:loc>
+         <image:title>Como Uma Mina de Zinco Criou o País Esquecido de Moresnet no Ponto de Quatro Fronteiras da Europa?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/vulcao-chimborazo-centro-da-terra/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/9c/Chimborazo_04.jpg</image:loc>
+         <image:title>Por Que o Cume do Vulcão Chimborazo Fica Mais Perto do Espaço do Que o Topo do Monte Everest?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/polderes-holanda-flevolandia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/1/17/Afsluitdijk.jpg</image:loc>
+         <image:title>Como a Holanda Drenou o Oceano e Criou Uma Província Inteira Abaixo do Nível do Mar?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/disputa-fronteira-brasil-uruguai/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/f0/Puente_Bella_Union_Barra_Quarai.jpg</image:loc>
+         <image:title>Por Que o Uruguai Ainda Reivindica Oficialmente Duas Áreas de Fronteira Dentro do Território do Brasil?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/canal-de-beagle-fronteira/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/4/44/Ushuaia_-_Costa_del_Canal_de_Beagle_2.JPG</image:loc>
+         <image:title>Como Três Ilhas Minúsculas no Canal de Beagle Quase Levaram Argentina e Chile a Uma Guerra Total?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-indonesia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/1/1d/Sulawesi%2C_Indonesia_%28PIA26007%29.jpg</image:loc>
+         <image:title>Como as Maiores Reservas de Níquel do Planeta Transformaram a Indonésia no Pivô Global dos Carros Elétricos?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-da-suecia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/ef/GotlandFromSpace.jpg</image:loc>
+         <image:title>Por Que a Ilha de Gotland Transforma a Suécia na Chave de Controle Militar de Todo o Mar Báltico?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-da-alemanha/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/b9/Brandenburger_Tor_nachts.jpg</image:loc>
+         <image:title>Como a Prússia, as Guerras Mundiais e a Linha Oder-Neisse Desenharam as Fronteiras da Alemanha Moderna?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-rios-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -169,17 +687,17 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-capitais-mais-altas-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
          <image:loc>https://upload.wikimedia.org/wikipedia/commons/3/3f/Vista_del_centro_de_La_Paz.jpg</image:loc>
-         <image:title>Quais São as Dez Capitais Mais Altas do Planeta Onde o Ar Rarefeito Molda a Vida Humana?</image:title>
+         <image:title>Quais Capitais e Sedes de Governo Estão Entre as Mais Altas do Mundo?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/transnistria-pais-fantasma/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -189,7 +707,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ilha-de-hispaniola-fronteira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -199,7 +717,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/colinas-de-gola-fronteira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -209,7 +727,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-gibraltar-chokepoint/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -219,7 +737,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/corredor-de-siliguri-india/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -229,7 +747,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geoeconomia-do-canada/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -239,7 +757,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-do-japao/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -249,7 +767,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-da-india/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -259,7 +777,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-paises-mais-jovens-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -269,7 +787,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-ilhas-mais-povoadas-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -279,7 +797,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-kerch-crimeia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -289,7 +807,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/tratado-da-antartida-territorios/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -299,7 +817,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/eurotunel-canal-da-mancha/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -309,7 +827,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ilha-de-sao-martinho-fronteira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -319,7 +837,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-dardanelos-chokepoint/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -329,7 +847,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geoeconomia-do-chile/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -339,7 +857,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-de-singapura/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -349,7 +867,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-do-egito/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -359,7 +877,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/lago-de-constanca-fronteira-triplice/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -369,7 +887,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/passagem-noroeste-artico-degelo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -379,7 +897,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-densidades-demograficas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -389,7 +907,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-litorais-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -399,7 +917,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/triplice-fronteira-parana-iguacu/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -409,7 +927,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/linha-durand-fronteira-afeganistao-paquistao/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -419,7 +937,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-magalhaes-patagonia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -429,7 +947,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-australia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -439,7 +957,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-da-finlandia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -449,7 +967,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-do-japao/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -458,8 +976,118 @@
       </image:image>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-fronteiras-do-mundo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ranking-maiores-fronteiras-do-mundo.jpg</image:loc>
+         <image:title>Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-de-lobito-ferrovia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/corredor-de-lobito-ferrovia.jpg</image:loc>
+         <image:title>Por Que os Estados Unidos Estão Financiando uma Ferrovia de Bilhões no Porto de Lobito?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/rio-danubio-arteria-europa/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/rio-danubio-arteria-europa.jpg</image:loc>
+         <image:title>Por Que o Rio Danúbio Cruza Dez Países e Quatro Capitais Como a Maior Artéria da Europa?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/enclave-de-cabinda-angola/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/enclave-de-cabinda-angola.jpg</image:loc>
+         <image:title>Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/canal-de-corinto-grecia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/canal-de-corinto-grecia.jpg</image:loc>
+         <image:title>Por Que o Canal de Corinto é Uma Trincheira na Rocha Onde Navios Quase Tocam as Paredes?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/faixa-de-caprivi-namibia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/faixa-de-caprivi-namibia.webp</image:loc>
+         <image:title>Por Que a Namíbia Tem um Dedo de Terra de 450 km Que Corta Quatro Países na África?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/passagem-de-drake-maritima/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/passagem-de-drake-maritima.jpg</image:loc>
+         <image:title>Por Que a Passagem de Drake é a Rota Marítima Mais Perigosa e Temida do Planeta?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-rd-congo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geoeconomia-da-rd-congo.webp</image:loc>
+         <image:title>Como o Congo Monopolizou 70% do Cobalto Mundial Sem Conseguir Enriquecer Seu Povo?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/barcelona-superquarteiroes-urbanismo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerda-quadricula_eixample_compara.jpg/1280px-Cerda-quadricula_eixample_compara.jpg</image:loc>
+         <image:title>Como Barcelona Inventou os Superquarteirões para Tirar o Domínio dos Carros na Cidade?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/brasilia-plano-piloto-urbanismo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG/1280px-BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG</image:loc>
+         <image:title>Por Que Brasília Foi Desenhada em Formato de Cruz e Quais São os Limites do Plano Piloto?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/distorcao-projecoes-cartograficas/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg</image:loc>
+         <image:title>Por Que Todo Mapa Mundi Plano Mente e Qual Projeção é a Mais Precisa da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/marco-zero-equador-macapa/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -468,8 +1096,18 @@
       </image:image>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/meridiano-de-greenwich-historia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6b/Greenwich_observatory_laser.jpg</image:loc>
+         <image:title>Como o Meridiano de Greenwich Venceu Paris e Jerusalém Para Dividir os Fusos do Planeta?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/queda-de-constantinopla-rotas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -478,18 +1116,8 @@
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/tratado-de-tordesilhas-fronteiras/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e9/El_reparto_del_espacio_terrestre_en_Tordesillas_y_Zaragoza%2C_1494-1529.jpg</image:loc>
-         <image:title>Como o Tratado de Tordesilhas Dividiu o Planeta Entre Portugal e Espanha Antes de Sabermos o Tamanho da Terra?</image:title>
-      </image:image>
-   </url>
-   <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-paises-sem-mar/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -499,7 +1127,7 @@
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-menores-paises-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -508,48 +1136,8 @@
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/meridiano-de-greenwich-historia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6b/Greenwich_observatory_laser.jpg</image:loc>
-         <image:title>Como o Meridiano de Greenwich Venceu Paris e Jerusalém Para Dividir os Fusos do Planeta?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/distorcao-projecoes-cartograficas/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Gall%E2%80%93Peters_projection_SW.jpg/1280px-Gall%E2%80%93Peters_projection_SW.jpg</image:loc>
-         <image:title>Por Que Todo Mapa Mundi Plano Mente e Qual Projeção é a Mais Precisa da Terra?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/brasilia-plano-piloto-urbanismo/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG/1280px-BSB_02_2006_Esplanada_dos_Ministerios_02_2006_39.JPG</image:loc>
-         <image:title>Por Que Brasília Foi Desenhada em Formato de Cruz e Quais São os Limites do Plano Piloto?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/barcelona-superquarteiroes-urbanismo/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Cerda-quadricula_eixample_compara.jpg/1280px-Cerda-quadricula_eixample_compara.jpg</image:loc>
-         <image:title>Como Barcelona Inventou os Superquarteirões para Tirar o Domínio dos Carros na Cidade?</image:title>
-      </image:image>
-   </url>
-   <url>
       <loc>https://www.vitalegeo.com.br/blog/toquio-urbanismo-ferroviario/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
@@ -558,835 +1146,773 @@
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-fronteiras-do-mundo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/tratado-de-tordesilhas-fronteiras/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg/1280px-Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg</image:loc>
-         <image:title>Quais São as Dez Maiores Fronteiras Terrestres Contínuas do Planeta Terra?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/corredor-de-lobito-ferrovia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/91/Benguela_Bahn.jpg</image:loc>
-         <image:title>Por Que os Estados Unidos Estão Financiando uma Ferrovia de Bilhões no Porto de Lobito?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/rio-danubio-arteria-europa/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg/1280px-View_from_Gell%C3%A9rt_Hill_to_the_Danube%2C_Hungary_-_Budapest_%2828493220635%29.jpg</image:loc>
-         <image:title>Por Que o Rio Danúbio Cruza Dez Países e Quatro Capitais Como a Maior Artéria da Europa?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/enclave-de-cabinda-angola/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/ee/Angola-Cabinda_border_map.png</image:loc>
-         <image:title>Por Que o Enclave de Cabinda Foi Separado de Angola Pela Saída para o Mar do Congo?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/canal-de-corinto-grecia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Korinth_Canal_N_2019.jpg/1280px-Korinth_Canal_N_2019.jpg</image:loc>
-         <image:title>Por Que o Canal de Corinto é Uma Trincheira na Rocha Onde Navios Quase Tocam as Paredes?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/faixa-de-caprivi-namibia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dito_di_Caprivi_-_mappa.svg/1280px-Dito_di_Caprivi_-_mappa.svg.png</image:loc>
-         <image:title>Por Que a Namíbia Tem um Dedo de Terra de 450 km Que Corta Quatro Países na África?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/passagem-de-drake-maritima/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/ce/Drake_passage_en.png</image:loc>
-         <image:title>Por Que a Passagem de Drake é a Rota Marítima Mais Perigosa e Temida do Planeta?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-rd-congo/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Artisanal_cobalt_miners_in_the_Democratic_Republic_of_Congo.jpg/1280px-Artisanal_cobalt_miners_in_the_Democratic_Republic_of_Congo.jpg</image:loc>
-         <image:title>Como o Congo Monopolizou 70% do Cobalto Mundial Sem Conseguir Enriquecer Seu Povo?</image:title>
+         <image:loc>https://upload.wikimedia.org/wikipedia/commons/e/e9/El_reparto_del_espacio_terrestre_en_Tordesillas_y_Zaragoza%2C_1494-1529.jpg</image:loc>
+         <image:title>Como o Tratado de Tordesilhas Dividiu o Planeta Entre Portugal e Espanha Antes de Sabermos o Tamanho da Terra?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-do-ira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/94/IranOMC.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geopolitica-do-ira.jpg</image:loc>
          <image:title>Por Que a Geografia Montanhosa Faz do Irã Uma Fortaleza Quase Impossível de Invadir?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-do-vietna/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/75/Vietnam_Topography.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/historia-do-vietna.webp</image:loc>
          <image:title>Como o Vietnã Resistiu a Três Superpotências e Forjou Suas Fronteiras em Mil Anos de Guerra?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ilha-market-fronteira-ziguezague/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg/1280px-M%C3%A4rket_Lighthouse%2C_Finland_IMG_3355.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ilha-market-fronteira-ziguezague.jpg</image:loc>
          <image:title>Por Que um Farol Errado Criou a Fronteira em Zigue-Zague Mais Estranha da Europa na Ilha de Märket?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreitos-sunda-lombok/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Selat_Sunda_2014_%283%29.jpg/1280px-Selat_Sunda_2014_%283%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreitos-sunda-lombok.jpg</image:loc>
          <image:title>Por Que Submarinos Nucleares Preferem Cruzar os Estreitos de Sunda e Lombok em Vez de Malaca?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/mongolia-vazio-demografico/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mongolian_Steppes_%286228096139%29.jpg/1280px-Mongolian_Steppes_%286228096139%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/mongolia-vazio-demografico.jpg</image:loc>
          <image:title>Por Que a Mongólia Tem o Menor Povoamento do Planeta Espalhado em Três Espanhas de Terra?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/fronteira-franca-brasil-oiapoque/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Pont_depuis_l%27_Oyapock.jpg/1280px-Pont_depuis_l%27_Oyapock.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fronteira-franca-brasil-oiapoque.webp</image:loc>
          <image:title>Por Que a Maior Fronteira Terrestre da França Fica na Floresta Amazônica com o Brasil?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/cabos-submarinos-fortaleza/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/JADEQUEIROZ_PRAIA_DO_FUTURO_FORTALEZA_CE_%2840209530245%29.jpg/1280px-JADEQUEIROZ_PRAIA_DO_FUTURO_FORTALEZA_CE_%2840209530245%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/cabos-submarinos-fortaleza.jpg</image:loc>
          <image:title>Por Que 18 Cabos Submarinos da Internet Mundial Cruzam a Mesma Praia no Brasil?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/couto-misto-microestado/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Couto_Misto.JPG/1280px-Couto_Misto.JPG</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/couto-misto-microestado.jpg</image:loc>
          <image:title>Como o Couto Misto Sobreviveu 700 Anos Como um Microestado Sem Rei Entre Portugal e Espanha?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/canal-de-kiel-alemanha/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg/1280px-Altenholz%2C_Nord-Ostsee-Kanal%2C_Kreuzfahrtschiff_%22Amadea%22_--_2023_--_1129.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/canal-de-kiel-alemanha.jpg</image:loc>
          <image:title>Por Que o Canal de Kiel é a Rota Marítima Artificial Mais Movimentada do Planeta?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geoeconomia-do-cazaquistao/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg/1280px-Night_at_Esil_District%2C_Astana_%28P1190721%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geoeconomia-do-cazaquistao.jpg</image:loc>
          <image:title>Como o Cazaquistão Monopolizou Quase Metade de Todo o Urânio do Planeta?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-da-polonia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/05/Suwalki_Gap-de-cropped.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geopolitica-da-polonia.jpg</image:loc>
          <image:title>Por Que a Polônia Está Se Armando para Ter o Maior Exército Terrestre da Europa?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-do-mexico/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mexican_Cession.png/1280px-Mexican_Cession.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/historia-do-mexico.webp</image:loc>
          <image:title>Como o México Perdeu Mais de Metade de Seu Território para os Estados Unidos?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/vennbahn-enclaves-belgas/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Vennbahn_Karte.svg/1280px-Vennbahn_Karte.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/vennbahn-enclaves-belgas.jpg</image:loc>
          <image:title>Vennbahn: A Linha de Trem Belga Que Isolou 5 Pedaços de Território Alemão</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/djibuti-bases-militares/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg/1280px-Bab-el-Mandeb_Strait%2C_Africa-Arabia_%28ASTER%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/djibuti-bases-militares.jpg</image:loc>
          <image:title>O Menor Gigante Geopolítico: Por Que as Superpotências Disputam o Djibuti?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/derby-line-biblioteca-fronteira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Haskell_Free_Library_and_Opera_House_2008.jpg/1280px-Haskell_Free_Library_and_Opera_House_2008.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/derby-line-biblioteca-fronteira.jpg</image:loc>
          <image:title>A Biblioteca Cortada ao Meio: Onde EUA e Canadá se Cruzam na Sala de Leitura</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/canada-pais-dos-lagos/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moraine_Lake_17092005.jpg/1280px-Moraine_Lake_17092005.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/canada-pais-dos-lagos.jpg</image:loc>
          <image:title>Por Que o Canadá Tem Mais Lagos Que o Resto do Mundo Inteiro Junto?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/capitais-saara-ocidental-berm/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Western_Sahara_walls_en.svg/1280px-Western_Sahara_walls_en.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/capitais-saara-ocidental-berm.jpg</image:loc>
          <image:title>As Duas Capitais do Saara Ocidental: Por Que uma Cidade Fica Atrás de um Muro de 2.700 km?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-bering-tunel/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bering_Strait.jpeg/1280px-Bering_Strait.jpeg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-de-bering-tunel.jpg</image:loc>
          <image:title>Túnel do Estreito de Bering: A Megaconexão de 100 km Que Uniria a Ásia às Américas</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/triangulo-de-ilemi/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Ilemi_triangle_map.png/1280px-Ilemi_triangle_map.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/triangulo-de-ilemi.webp</image:loc>
          <image:title>O Triângulo de Ilemi: O Pedaço Esquecido da África Que Três Países Reclamam</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-noruega/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Troll_A_Platform.jpg/1280px-Troll_A_Platform.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geoeconomia-da-noruega.jpg</image:loc>
          <image:title>A Geoeconomia da Noruega: Como o Petróleo Criou o Maior Fundo Soberano da Terra</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/geopolitica-da-turquia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg/1280px-The_Bosphorus_Strait%2C_Turkey_ESA418914.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geopolitica-da-turquia.jpg</image:loc>
          <image:title>A Geopolítica da Turquia: A Sentinela dos Estreitos Entre o Oriente e o Ocidente</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/historia-da-colombia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Gran_Colombia_in_1824.svg/1280px-Gran_Colombia_in_1824.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/historia-da-colombia.webp</image:loc>
          <image:title>A História Completa da Colômbia: De Eldorado e Grã-Colômbia ao País dos Três Andes</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/fronteira-egito-libia-meridiano-25/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Egypt_Libya_Border.jpg/1280px-Egypt_Libya_Border.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fronteira-egito-libia-meridiano-25.jpg</image:loc>
          <image:title>A Fronteira Mais Reta do Mundo: Os 1.000 km do Meridiano 25 Entre Egito e Líbia</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/lago-tanganica-fronteiras/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Lake_Tanganyika.jpg/1280px-Lake_Tanganyika.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/lago-tanganica-fronteiras.jpg</image:loc>
          <image:title>O Lago Tanganica: O Segundo Mais Fundo do Mundo Onde 4 Países Dividem uma Fenda</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/llivia-enclave-espanhol/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Llivia_aerial_view.jpg/1280px-Llivia_aerial_view.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/llivia-enclave-espanhol.jpg</image:loc>
          <image:title>O Enclave de Llívia: A Ilha de Solo Espanhol Cercada pela França nos Pirineus</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/represa-tres-gargantas-impacto/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/ThreeGorgesDam-China2009.jpg/1280px-ThreeGorgesDam-China2009.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/represa-tres-gargantas-impacto.jpg</image:loc>
          <image:title>A Represa das Três Gargantas: Como a Megaconstrução da China Desacelerou a Terra</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/bolivia-marinha-sem-mar/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Armada_Boliviana_Titicaca.jpg/1280px-Armada_Boliviana_Titicaca.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/bolivia-marinha-sem-mar.jpg</image:loc>
          <image:title>Por que a Bolívia Mantém uma Marinha de Guerra Sem Ter Acesso ao Mar?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/divisao-da-ilha-hans/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hans_Island.jpg/1280px-Hans_Island.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/divisao-da-ilha-hans.jpg</image:loc>
          <image:title>A Ilha de Hans: A Guerra do Uísque Que Terminou em Uma Fronteira de 1,2 km</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/svalbard-tratado-artico/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Longyearbyen_2011.jpg/1280px-Longyearbyen_2011.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/svalbard-tratado-artico.jpg</image:loc>
          <image:title>Svalbard: O Arquipélago no Ártico Onde Qualquer Pessoa Pode Morar Sem Visto</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/corredor-de-wakhan/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wakhan_corridor.jpg/1280px-Wakhan_corridor.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/corredor-de-wakhan.jpg</image:loc>
          <image:title>O Corredor de Wakhan: O Dedo de 350 km do Afeganistão que Toca a China</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/kiribati-fuso-horario/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/International_Date_Line.png/1280px-International_Date_Line.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/kiribati-fuso-horario.jpg</image:loc>
          <image:title>A Linha Internacional de Data e Kiribati: O País Que &apos;Pulou&apos; um Dia Inteiro</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/gibraltar-reino-unido/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Gibraltar_View_of_the_Rock_from_La_Linea.jpg/1280px-Gibraltar_View_of_the_Rock_from_La_Linea.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/gibraltar-reino-unido.webp</image:loc>
          <image:title>Gibraltar: Por que 6 km² de Rocha no Sul da Espanha Pertencem ao Reino Unido?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/dilema-de-malaca/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Strait_of_Malacca_%2836759635615%29.jpg/1280px-Strait_of_Malacca_%2836759635615%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/dilema-de-malaca.jpg</image:loc>
          <image:title>Por que 80% do Petróleo da Ásia Pode Ser Bloqueado no Estreito de Malaca?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/mar-do-sul-da-china/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/fronteira-eua-canada-the-slash/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/c3/Mar_de_China_Meridional_-_BM_WMS_2004.jpg?utm_source=en.wikipedia.org&amp;utm_campaign=api&amp;utm_content=thumbnail_unscaled</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fronteira-eua-canada-the-slash.webp</image:loc>
+         <image:title>The Slash: A Clareira de 6 Metros que Corta 8.891 km Entre os EUA e o Canadá</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/mar-do-sul-da-china/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/mar-do-sul-da-china.jpg</image:loc>
          <image:title>Como a Linha dos Nove Traços Criou uma Disputa de US$ 3 Trilhões no Mar do Sul da China</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/corredor-de-zangezur/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/busingen-enclave-alemao/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/7d/Zangezur_corridor_red_arrow.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/busingen-enclave-alemao.webp</image:loc>
+         <image:title>Büsingen am Hochrhein: A Cidade Alemã Que Vive Sob as Leis da Suíça</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-de-zangezur/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/corredor-de-zangezur.jpg</image:loc>
          <image:title>Por que uma Faixa de 43 km no Cáucaso Pode Incendiar a Região?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/crise-canal-do-panama/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/nusantara-nova-capital-indonesia/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Panama_Canal_Map_EN.svg/500px-Panama_Canal_Map_EN.svg.png?utm_source=en.wikipedia.org&amp;utm_campaign=api&amp;utm_content=thumbnail</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/nusantara-nova-capital-indonesia.webp</image:loc>
+         <image:title>Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/crise-canal-do-panama/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/crise-canal-do-panama.jpg</image:loc>
          <image:title>Por que o Canal do Panamá Secou e Travou os Navios do Mundo?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/estreito-de-taiwan/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/crise-mar-vermelho-rotas/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/2020-04-23_Seaman_Xi_Chan_stands_lookout_on_the_flight_deck_as_USS_Barry_%28DDG_52%29_transits_the_Taiwan_Strait.jpg/1280px-2020-04-23_Seaman_Xi_Chan_stands_lookout_on_the_flight_deck_as_USS_Barry_%28DDG_52%29_transits_the_Taiwan_Strait.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/crise-mar-vermelho-rotas.svg</image:loc>
+         <image:title>Cabo da Boa Esperança vs Suez: Como o Mar Vermelho Redesenhou o Comércio Global</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-taiwan/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-de-taiwan.jpg</image:loc>
          <image:title>A Primeira Cadeia de Ilhas: Por que o Estreito de Taiwan é o Lugar Mais Perigoso da Terra</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/triangulo-do-litio/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/desaparecimento-mar-de-aral/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Salar_de_Atacama%2C_Chile.jpg/1280px-Salar_de_Atacama%2C_Chile.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/desaparecimento-mar-de-aral.webp</image:loc>
+         <image:title>O Mar de Aral: A Catástrofe Cartográfica do 4º Maior Lago que Virou Deserto</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/triangulo-do-litio/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/triangulo-do-litio.jpg</image:loc>
          <image:title>Por que o Triângulo do Lítio Virou o Maior Alvo Geopolítico dos Andes?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/estreito-de-bosforo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/campione-d-italia/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Turkish_Strait_disambig.svg/500px-Turkish_Strait_disambig.svg.png?utm_source=en.wikipedia.org&amp;utm_campaign=api&amp;utm_content=thumbnail</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/campione-d-italia.jpg</image:loc>
+         <image:title>Campione d&apos;Italia: O Enclave Italiano Onde Quase Tudo Funciona na Suíça</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-bosforo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-de-bosforo.jpg</image:loc>
          <image:title>Como a Turquia Trancou a Entrada do Mar Negro com a Convenção de Montreux</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/rota-maritima-do-artico/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yamal_icebreaker_%282225309%29.jpg/1280px-Yamal_icebreaker_%282225309%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/rota-maritima-do-artico.jpg</image:loc>
          <image:title>Por que o Ártico Virou o Atalho Naval Mais Disputado do Planeta?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/disputa-fronteira-himalaia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/8/82/China_India_CIA_map_border_disputes.jpg?utm_source=en.wikipedia.org&amp;utm_campaign=api&amp;utm_content=thumbnail_unscaled</image:loc>
-         <image:title>Por que Soldados Lutam Sem Armas de Fogo na Fronteira Nuclear do Himalaia?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/nicosia-cidade-dividida/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/96/Cyprus_districts_named.png?utm_source=en.wikipedia.org&amp;utm_campaign=api&amp;utm_content=thumbnail_unscaled</image:loc>
-         <image:title>Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/fronteira-eua-canada-the-slash/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/US-Canada_Border_The_Slash.jpg/1280px-US-Canada_Border_The_Slash.jpg</image:loc>
-         <image:title>The Slash: A Clareira de 6 Metros que Corta 8.891 km Entre os EUA e o Canadá</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/busingen-enclave-alemao/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Buesingen_am_Hochrhein_aerial.jpg/1280px-Buesingen_am_Hochrhein_aerial.jpg</image:loc>
-         <image:title>Büsingen am Hochrhein: A Cidade Alemã Que Vive Sob as Leis da Suíça</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/nusantara-nova-capital-indonesia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/IKN_Nusantara_aerial_view_2024.jpg/1280px-IKN_Nusantara_aerial_view_2024.jpg</image:loc>
-         <image:title>Por que a Indonésia Está Abandonando Jacarta para Construir uma Capital na Selva?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/crise-mar-vermelho-rotas/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Suez_Canal_and_Cape_Route.png/1280px-Suez_Canal_and_Cape_Route.png</image:loc>
-         <image:title>Cabo da Boa Esperança vs Suez: Como o Mar Vermelho Redesenhou o Comércio Global</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/desaparecimento-mar-de-aral/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Aral_Sea_1989-2014.jpg/1280px-Aral_Sea_1989-2014.jpg</image:loc>
-         <image:title>O Mar de Aral: A Catástrofe Cartográfica do 4º Maior Lago que Virou Deserto</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/campione-d-italia/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Campione_d%27Italia_view_from_Lugano.jpg/1280px-Campione_d%27Italia_view_from_Lugano.jpg</image:loc>
-         <image:title>Campione d&apos;Italia: O Enclave Italiano Onde Quase Tudo Funciona na Suíça</image:title>
-      </image:image>
-   </url>
-   <url>
       <loc>https://www.vitalegeo.com.br/blog/ceuta-e-melilla/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg/1280px-Plazas_de_soberan%C3%ADa_%28Espa%C3%B1a%29.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ceuta-e-melilla.webp</image:loc>
          <image:title>Ceuta e Melilla: Os Dois Pedaços da Europa Cravados no Norte da África</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/cooch-behar-enclaves/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/disputa-fronteira-himalaia/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/India_Bangladesh_border_%28enclaves%29.svg/1280px-India_Bangladesh_border_%28enclaves%29.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/disputa-fronteira-himalaia.jpg</image:loc>
+         <image:title>Por que Soldados Lutam Sem Armas de Fogo na Fronteira Nuclear do Himalaia?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/cooch-behar-enclaves/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/cooch-behar-enclaves.webp</image:loc>
          <image:title>Cooch Behar: Onde Existiu o Único Enclave de 3ª Ordem da História Humana</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/corredor-de-suwalki/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/nicosia-cidade-dividida/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Suwalki_Gap_in_Europe.svg/1280px-Suwalki_Gap_in_Europe.svg.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/nicosia-cidade-dividida.jpg</image:loc>
+         <image:title>Por que Nicósia Continua Sendo a Última Capital Dividida da Europa?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/corredor-de-suwalki/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/corredor-de-suwalki.jpg</image:loc>
          <image:title>O Corredor de Suwalki: A Faixa de 65 km que Tira o Sono da OTAN</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/estreito-de-ormuz/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Strait_of_hormuz_full.jpg/1280px-Strait_of_hormuz_full.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-de-ormuz.jpg</image:loc>
          <image:title>O Estreito de Ormuz: Por que 20% do Petróleo Mundial Passa por um Gargalo de 39 km?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/disputa-essequibo/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Guyana_Venezuela_Locator.png/1280px-Guyana_Venezuela_Locator.png</image:loc>
-         <image:title>A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/nahwa-madha/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Nahwa_-_Map.png/1280px-Nahwa_-_Map.png</image:loc>
-         <image:title>A Boneca Russa Cartográfica: O Enclave Dentro de Outro Enclave em Nahwa e Madha</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/kaliningrado-enclave/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Kaliningrad_Oblast_within_Europe.svg/1280px-Kaliningrad_Oblast_within_Europe.svg.png</image:loc>
-         <image:title>Kaliningrado: O Enclave Armado da Rússia Cravado no Coração da OTAN</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/canal-de-kra/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Thai_Canal_map-de.jpg/1280px-Thai_Canal_map-de.jpg</image:loc>
-         <image:title>O Canal de Kra na Tailândia: O Megaprojeto de US$ 28 Bilhões que Pode Falir Cingapura</image:title>
-      </image:image>
-   </url>
-   <url>
       <loc>https://www.vitalegeo.com.br/blog/baarle-fronteira/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Baarle-Hertog_and_Baarle-Nassau_border.jpg/1280px-Baarle-Hertog_and_Baarle-Nassau_border.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/baarle-fronteira.jpg</image:loc>
          <image:title>Baarle: A Cidade Onde a Fronteira Corta a Sua Sala de Estar</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/porto-chancay/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/canal-de-kra/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg/1280px-Juan_Brignardello_Vela_en_el_Puerto_de_Chancay_Al_Culminar_las_Obras-cut.jpg</image:loc>
-         <image:title>O Megaporto de Chancay: Como a China Está Redesenhando o Comércio da América do Sul</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/canal-de-kra.jpg</image:loc>
+         <image:title>O Canal de Kra na Tailândia: O Megaprojeto de US$ 28 Bilhões que Pode Falir Cingapura</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/disputa-essequibo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/disputa-essequibo.png</image:loc>
+         <image:title>A Disputa do Essequibo: Por que Dois Terços da Guiana Viraram Alvo da Venezuela?</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/etiopia-sem-mar/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/circulo-valeriepieris/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/a/a3/Valeriepieris_Circle.jpg</image:loc>
-         <image:title>O Círculo de Valeriepieris: Onde Vive Metade da Humanidade</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/etiopia-sem-mar.webp</image:loc>
+         <image:title>O Gigante Encurralado: Por que a Etiópia Busca Desesperadamente o Mar?</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/fusos-russia/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/kaliningrado-enclave/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://mf.b37mrtl.ru/rbthmedia/images/2020.02/original/5e57b97285600a6c9b45082c.jpg</image:loc>
-         <image:title>Fusos Horários da Rússia: 11 Relógios em um País</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/kaliningrado-enclave.png</image:loc>
+         <image:title>Kaliningrado: O Enclave Armado da Rússia Cravado no Coração da OTAN</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/nahwa-madha/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/nahwa-madha.webp</image:loc>
+         <image:title>A Boneca Russa Cartográfica: O Enclave Dentro de Outro Enclave em Nahwa e Madha</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/porto-chancay/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/porto-chancay.jpg</image:loc>
+         <image:title>O Megaporto de Chancay: Como a China Está Redesenhando o Comércio da América do Sul</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/fronteira-mais-curta/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://mega.ibxk.com.br/2024/04/10/10181558422191.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fronteira-mais-curta.jpg</image:loc>
          <image:title>A Fronteira Mais Curta do Mundo: 85 Metros</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/guerra-uisque/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://mega.ibxk.com.br/2018/01/24/24174917163561.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/guerra-uisque.webp</image:loc>
          <image:title>A Guerra do Uísque: Canadá vs Dinamarca</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/enclaves/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://cdn.britannica.com/47/19747-050-02FEF79F/Vatican-City.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/enclaves.jpg</image:loc>
          <image:title>Os Prisioneiros Geográficos: Países dentro de Países</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/point-roberts/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://quirkytravelguy.com/wp-content/uploads/2024/08/point-roberts-map.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/point-roberts.jpg</image:loc>
          <image:title>Point Roberts: A Cidade Americana Presa no Canadá</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/ilha-faisoes/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://conteudo.imguol.com.br/blogsbol/2/2022/12/ilha-2-300x225.png</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ilha-faisoes.webp</image:loc>
          <image:title>A Ilha que Troca de Dono: Ilha dos Faisões</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/bir-tawil/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://i.guim.co.uk/img/media/5ebf8e25c9fd8c7cdbf46e9d9aa89b05617a1f7f/0_145_4072_2445/master/4072.jpg?width=700&amp;quality=85&amp;auto=format&amp;fit=max&amp;s=387582e0008572dc062ebcf9729511c5</image:loc>
-         <image:title>O Reino da Areia: A História de Bir Tawil</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/cidades-esponja/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://images.pexels.com/photos/13170267/pexels-photo-13170267.jpeg</image:loc>
-         <image:title>Cidades-Esponja: O Fim das Enchentes?</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/hipercidades-2100/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg</image:loc>
-         <image:title>O Crepúsculo das Nações e as Hipercidades de 2100</image:title>
-      </image:image>
-   </url>
-   <url>
-      <loc>https://www.vitalegeo.com.br/blog/sealand/</loc>
-      <lastmod>2026-10-22</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.85</priority>
-      <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/f9/Sealand_fortress.jpg</image:loc>
-         <image:title>Principado de Sealand: A Menor Nação</image:title>
-      </image:image>
-   </url>
-   <url>
       <loc>https://www.vitalegeo.com.br/blog/whittier/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/71/Back_to_Whittier...Sun_is_out...Water_is_Rough_%282571032531%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/whittier.webp</image:loc>
          <image:title>Whittier: A Cidade de Um Prédio Só</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/farsa-mercator/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/bir-tawil/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mercator_projection_SW.jpg/640px-Mercator_projection_SW.jpg</image:loc>
-         <image:title>A Farsa de Mercator</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/bir-tawil.jpg</image:loc>
+         <image:title>O Reino da Areia: A História de Bir Tawil</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/ponto-nemo/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/sealand/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/f/fd/Oceanic_pole_of_inaccessibility.png</image:loc>
-         <image:title>Ponto Nemo: O lugar mais solitário da Terra</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/sealand.jpg</image:loc>
+         <image:title>Principado de Sealand: A Menor Nação</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/ilhas-diomedes/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/circulo-valeriepieris/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg</image:loc>
-         <image:title>Ilhas Diomedes: A Fronteira do Tempo</image:title>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/circulo-valeriepieris.webp</image:loc>
+         <image:title>O Círculo de Valeriepieris: Onde Vive Metade da Humanidade</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/hipercidades-2100/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/hipercidades-2100.jpg</image:loc>
+         <image:title>O Crepúsculo das Nações e as Hipercidades de 2100</image:title>
       </image:image>
    </url>
    <url>
       <loc>https://www.vitalegeo.com.br/blog/area-51/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
       <image:image>
-         <image:loc>https://upload.wikimedia.org/wikipedia/commons/3/3e/Area_51_Main_Gate_%28cropped%29.jpg</image:loc>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/area-51.webp</image:loc>
          <image:title>Arquivo Confidencial: Área 51</image:title>
       </image:image>
    </url>
    <url>
-      <loc>https://www.vitalegeo.com.br/blog/fronteira-mais-louca/</loc>
-      <lastmod>2026-10-22</lastmod>
+      <loc>https://www.vitalegeo.com.br/blog/ilhas-diomedes/</loc>
+      <lastmod>2026-10-27</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ilhas-diomedes.jpg</image:loc>
+         <image:title>Ilhas Diomedes: A Fronteira do Tempo</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/fronteira-mais-louca/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fronteira-mais-louca.jpg</image:loc>
+         <image:title>A Fronteira Mais Louca do Mundo</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ponto-nemo/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ponto-nemo.png</image:loc>
+         <image:title>Ponto Nemo: O lugar mais solitário da Terra</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/farsa-mercator/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/farsa-mercator.webp</image:loc>
+         <image:title>A Farsa de Mercator</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/fusos-russia/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/fusos-russia.jpg</image:loc>
+         <image:title>Quantos fusos horários tem a Rússia? Veja os 11 fusos</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/cidades-esponja/</loc>
+      <lastmod>2026-10-27</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/cidades-esponja.webp</image:loc>
+         <image:title>Cidades-Esponja: O Fim das Enchentes?</image:title>
+      </image:image>
    </url>
 </urlset>

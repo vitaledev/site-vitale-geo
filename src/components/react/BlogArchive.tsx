@@ -9,6 +9,7 @@ interface PostItem {
   data: string;
   img: string;
   tempoLeitura?: string;
+  destaque?: boolean;
 }
 
 interface Props {
@@ -16,6 +17,12 @@ interface Props {
 }
 
 const ITEMS_PER_PAGE = 12; // Quantidade padrão e fixa por camada/página para carregamento leve e veloz
+type BodySearchIndex = { slugs: string[]; words: Record<string, number[]> };
+
+const normalizeSearch = (value: string) => value
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLocaleLowerCase('pt-BR');
 
 const categoryIcons: Record<string, string> = {
   all: 'ph-bold ph-squares-four',
@@ -55,11 +62,29 @@ export default function BlogArchive({ posts }: Props) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [bodyIndex, setBodyIndex] = useState<BodySearchIndex | null>(null);
+  const [isBodyIndexLoading, setIsBodyIndexLoading] = useState(false);
+  const bodyIndexRequestedRef = useRef(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const gridAnchorRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!searchTerm.trim() || bodyIndex || bodyIndexRequestedRef.current) return;
+    bodyIndexRequestedRef.current = true;
+    setIsBodyIndexLoading(true);
+
+    fetch('/search-index.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Não foi possível carregar o índice de busca.');
+        return response.json() as Promise<BodySearchIndex>;
+      })
+      .then(setBodyIndex)
+      .catch(() => setBodyIndex({}))
+      .finally(() => setIsBodyIndexLoading(false));
+  }, [searchTerm, bodyIndex]);
 
   // Sincronização inicial com Query Params da URL (ex: ?cat=geopolitica&p=2&q=termo)
   useEffect(() => {
@@ -138,15 +163,25 @@ export default function BlogArchive({ posts }: Props) {
   }, []);
 
   const filteredPosts = useMemo(() => {
-    const term = searchTerm.toLowerCase().trim();
+    const term = normalizeSearch(searchTerm.trim());
+    const searchTerms = term.match(/[a-z0-9]{3,}/g) || [];
+    const bodyIndexBySlug = bodyIndex
+      ? new Map(bodyIndex.slugs.map((slug, index) => [slug, index]))
+      : null;
     return posts.filter(post => {
       const matchesCat = selectedCategory === 'all' || post.categoria.toLowerCase() === selectedCategory.toLowerCase();
-      const matchesSearch = !term || 
-        post.titulo.toLowerCase().includes(term) ||
-        post.resumo.toLowerCase().includes(term);
+      const bodyMatches = bodyIndexBySlug && searchTerms.length > 0 && searchTerms.every(searchTerm => {
+        const indexedSlugs = bodyIndex.words[searchTerm];
+        const postIndex = bodyIndexBySlug.get(post.slug);
+        return postIndex !== undefined && indexedSlugs?.includes(postIndex);
+      });
+      const matchesSearch = !term ||
+        normalizeSearch(post.titulo).includes(term) ||
+        normalizeSearch(post.resumo).includes(term) ||
+        Boolean(bodyMatches);
       return matchesCat && matchesSearch;
     });
-  }, [posts, selectedCategory, searchTerm]);
+  }, [posts, selectedCategory, searchTerm, bodyIndex]);
 
   const isDefaultView = !searchTerm && selectedCategory === 'all';
   const featured = posts[0];
@@ -391,7 +426,9 @@ export default function BlogArchive({ posts }: Props) {
 
       {/* Camada 3: Grade Paginada de Posts */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {paginatedPosts.length === 0 ? (
+        {paginatedPosts.length === 0 && isBodyIndexLoading ? (
+          <div className="col-span-full py-10 text-center text-sm text-[#53647C]" role="status">Buscando nos artigos…</div>
+        ) : paginatedPosts.length === 0 ? (
           <div className="col-span-full text-center py-16 text-[#53647C] bg-white rounded-2xl border border-[#0A192F]/10 p-8 shadow-sm">
             <i className="ph-duotone ph-map-pin-line text-3xl mb-2 block text-[#C8102E]/60"></i>
             <p className="text-base font-heading font-semibold text-[#0A192F] mb-1">Nenhum post localizado.</p>

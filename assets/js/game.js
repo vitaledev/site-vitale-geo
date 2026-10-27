@@ -63,6 +63,14 @@ const gamesDB = [
         cover: "/assets/img/jogos/quiz.jpg",
         link: "/jogos/quiz/",
         badge: "TRIVIA"
+    },
+    {
+        titulo: "Silhueta do País",
+        desc: "Identifique nações soberanas do planeta apenas pelo contorno da sua silhueta isolada com pistas progressivas.",
+        icon: "ph-fill ph-globe-stand",
+        cover: "/assets/img/jogos/silhueta-pais.svg",
+        link: "/jogos/silhueta-pais/",
+        badge: "NOVO ARCADE"
     }
 ];
 

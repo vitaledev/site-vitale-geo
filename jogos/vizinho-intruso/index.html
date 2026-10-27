@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K62X299R');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-6879770260785828">
+    <title>Qual é o Vizinho Intruso? | Jogos Geográficos — VitaleGeo</title>
+    <meta name="description" content="Três países fazem fronteira terrestre real com o país-alvo e um é um impostor geográfico. Teste seu domínio sobre as fronteiras do mundo no VitaleGeo.">
+    <link rel="canonical" href="https://vitalegeo.com.br/jogos/vizinho-intruso/" />
+    <meta property="og:title" content="Qual é o Vizinho Intruso? | VitaleGeo" />
+    <meta property="og:description" content="Três países fazem fronteira terrestre real com o país-alvo e um é um impostor geográfico. Descubra o intruso antes que suas vidas acabem!" />
+    <meta property="og:url" content="https://vitalegeo.com.br/jogos/vizinho-intruso/" />
+    <meta property="og:type" content="website" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .game-shell { max-width: 980px; margin: 2rem auto 4rem; padding: 0 1.25rem; }
+        .hud-bar {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin-bottom: 1.5rem;
+        }
+        .hud-stat {
+            background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 12px;
+            padding: 0.85rem 1rem; text-align: center; box-shadow: 0 4px 12px rgba(10, 25, 47, 0.05);
+        }
+        .hud-label {
+            font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-muted); display: block; margin-bottom: 0.25rem;
+        }
+        .hud-value {
+            font-family: var(--font-titles); font-size: 1.35rem; font-weight: 800; color: var(--text-main);
+        }
+        .mode-bar {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+            margin-bottom: 1.5rem; background: var(--bg-secondary); padding: 0.75rem 1rem;
+            border-radius: 12px; border: 1px solid var(--border-color);
+        }
+        .mode-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .mode-btn {
+            font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
+            padding: 0.5rem 0.95rem; border-radius: 8px; border: 1.5px solid var(--border-color);
+            background: var(--bg-primary); color: var(--text-main); cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 0.4rem;
+        }
+        .mode-btn.active {
+            background: var(--accent-crimson); color: #ffffff; border-color: var(--accent-crimson);
+        }
+        .target-banner {
+            background: var(--bg-secondary); border: 2.5px solid var(--text-main); border-radius: 16px;
+            padding: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;
+            gap: 1.5rem; flex-wrap: wrap; position: relative; overflow: hidden;
+            box-shadow: 0 10px 24px rgba(10, 25, 47, 0.06);
+        }
+        .target-left { display: flex; align-items: center; gap: 1.25rem; }
+        .target-flag {
+            width: 84px; height: 58px; object-fit: cover; border-radius: 8px;
+            border: 2px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .target-tag {
+            font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--accent-crimson); display: block; margin-bottom: 0.2rem;
+        }
+        .target-name {
+            font-family: var(--font-titles); font-size: 1.65rem; font-weight: 900; color: var(--text-main);
+            margin: 0; line-height: 1.15;
+        }
+        .target-meta {
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;
+        }
+        .target-instruction {
+            background: var(--bg-primary); border: 1.5px dashed var(--accent-crimson); border-radius: 12px;
+            padding: 0.85rem 1.15rem; font-size: 0.88rem; font-weight: 600; color: var(--text-main);
+            max-width: 340px; line-height: 1.4;
+        }
+        .options-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.15rem; margin-bottom: 1.5rem;
+        }
+        .option-card {
+            background: var(--bg-secondary); border: 2.5px solid var(--border-color); border-radius: 16px;
+            padding: 1.35rem 1.25rem; cursor: pointer; transition: all 0.22s ease;
+            display: flex; align-items: center; gap: 1.1rem; text-align: left; width: 100%;
+            box-shadow: 0 6px 16px rgba(10, 25, 47, 0.04); position: relative;
+        }
+        .option-card:hover:not(.locked) {
+            transform: translateY(-3px); border-color: var(--accent-crimson);
+            box-shadow: 0 12px 24px rgba(200, 16, 46, 0.12);
+        }
+        .option-card.correct-intruder {
+            border-color: #15803d; background: rgba(21, 128, 61, 0.08);
+        }
+        .option-card.wrong-neighbor {
+            border-color: var(--accent-crimson); background: rgba(200, 16, 46, 0.08);
+        }
+        .option-flag {
+            width: 64px; height: 44px; object-fit: cover; border-radius: 6px;
+            border: 1.5px solid var(--border-color); flex-shrink: 0;
+        }
+        .option-info { flex: 1; min-width: 0; }
+        .option-title {
+            font-family: var(--font-titles); font-size: 1.12rem; font-weight: 800; color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+        .option-sub {
+            font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);
+        }
+        .option-status-badge {
+            font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800;
+            padding: 0.3rem 0.65rem; border-radius: 999px; display: none; text-transform: uppercase;
+        }
+        .option-card.revealed .option-status-badge { display: inline-block; }
+        .badge-intruder { background: #15803d; color: #ffffff; }
+        .badge-neighbor { background: var(--text-main); color: var(--bg-primary); }
+        .feedback-box {
+            background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 14px;
+            padding: 1.35rem 1.5rem; margin-bottom: 1.5rem; display: none;
+        }
+        .feedback-box.visible { display: block; animation: fadeIn 0.25s ease; }
+        .feedback-header {
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            flex-wrap: wrap; margin-bottom: 0.65rem;
+        }
+        .feedback-title { font-family: var(--font-titles); font-weight: 800; font-size: 1.1rem; }
+        .neighbors-list {
+            display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem;
+        }
+        .neighbor-chip {
+            font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700;
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            padding: 0.25rem 0.6rem; border-radius: 6px; color: var(--text-main);
+        }
+        .lives-row { display: inline-flex; gap: 0.35rem; color: var(--accent-crimson); font-size: 1.25rem; }
+        @media (max-width: 720px) {
+            .hud-bar { grid-template-columns: repeat(2, 1fr); }
+            .options-grid { grid-template-columns: 1fr; }
+            .target-banner { flex-direction: column; align-items: flex-start; }
+            .target-instruction { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K62X299R" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="/" class="brand-logo" aria-label="VitaleGeo Início">
+                <span class="brand-v">V</span><span class="brand-text">ITALE<span class="brand-geo">GEO</span></span>
+            </a>
+            <nav class="main-nav">
+                <a href="/blog/" class="nav-link">Posts</a>
+                <a href="/jogos/" class="nav-link active">Jogos</a>
+                <a href="/ferramentas/" class="nav-link">Ferramentas</a>
+                <a href="/videos/" class="nav-link">Vídeos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="game-shell">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-family: var(--font-mono); font-size: 0.8rem;">
+            <a href="/" style="color: var(--text-muted); text-decoration: none;">Início</a> &rsaquo;
+            <a href="/jogos/" style="color: var(--text-muted); text-decoration: none;">Jogos</a> &rsaquo;
+            <span style="color: var(--accent-crimson); font-weight: 700;">Vizinho Intruso</span>
+        </nav>
+
+        <header style="margin-bottom: 1.5rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-crimson); font-weight: 700;">
+                <i class="ph-bold ph-detective"></i> Desafio de Fronteiras Terrestres
+            </span>
+            <h1 style="font-family: var(--font-titles); font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin: 0.35rem 0 0.5rem;">
+                Qual é o Vizinho Intruso?
+            </h1>
+            <p style="color: var(--text-muted); max-width: 720px; margin: 0;">
+                Abaixo está um país-alvo e quatro candidatos. Três deles compartilham fronteira terrestre oficial com o país-alvo; <strong>apenas um é o intruso</strong> que não toca suas fronteiras. Clique no impostor!
+            </p>
+        </header>
+
+        <!-- Top AdSense Slot -->
+        <div class="ad-slot-container" style="margin: 1.25rem 0; text-align: center; min-height: 90px;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="mode-bar">
+            <div class="mode-group">
+                <button class="mode-btn active" id="modeSurvivalBtn" onclick="setGameMode('survival')">
+                    <i class="ph-bold ph-heart"></i> Sobrevivência (3 Vidas)
+                </button>
+                <button class="mode-btn" id="modeBlitzBtn" onclick="setGameMode('blitz')">
+                    <i class="ph-bold ph-timer"></i> Blitz 60s
+                </button>
+            </div>
+            <div class="mode-group">
+                <button class="mode-btn" id="soundToggleBtn" onclick="toggleSound()" title="Alternar efeitos sonoros">
+                    <i class="ph-bold ph-speaker-high" id="soundIcon"></i> Som Ativo
+                </button>
+                <button class="mode-btn" onclick="shareScore()">
+                    <i class="ph-bold ph-share-network"></i> Compartilhar
+                </button>
+            </div>
+        </div>
+
+        <div class="hud-bar">
+            <div class="hud-stat">
+                <span class="hud-label">Pontuação</span>
+                <span class="hud-value" id="hudScore">0</span>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-label">Sequência</span>
+                <span class="hud-value" id="hudStreak">0</span>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-label">Recorde Pessoal</span>
+                <span class="hud-value" id="hudBest">0</span>
+            </div>
+            <div class="hud-stat">
+                <span class="hud-label" id="hudStatusLabel">Vidas Restantes</span>
+                <div class="hud-value" id="hudStatusValue">
+                    <span class="lives-row" id="livesDisplay">
+                        <i class="ph-bold ph-heart"></i><i class="ph-bold ph-heart"></i><i class="ph-bold ph-heart"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Target Country Banner -->
+        <section class="target-banner" id="targetBanner">
+            <div class="target-left">
+                <img id="targetFlag" class="target-flag" src="https://flagcdn.com/w160/br.png" alt="Bandeira do país-alvo">
+                <div>
+                    <span class="target-tag"><i class="ph-bold ph-crosshair"></i> País-Alvo em Análise</span>
+                    <h2 class="target-name" id="targetName">Brasil</h2>
+                    <div class="target-meta" id="targetMeta">América do Sul &bull; 10 Fronteiras Terrestres</div>
+                </div>
+            </div>
+            <div class="target-instruction">
+                <i class="ph-bold ph-warning-circle" style="color: var(--accent-crimson);"></i>
+                Qual dos 4 países abaixo <strong>NÃO faz fronteira terrestre</strong> com <span id="targetNameInline">o Brasil</span>?
+            </div>
+        </section>
+
+        <!-- 4 Candidate Countries Grid -->
+        <div class="options-grid" id="optionsGrid"></div>
+
+        <!-- Pedagogical Feedback Panel -->
+        <div class="feedback-box" id="feedbackBox">
+            <div class="feedback-header">
+                <div class="feedback-title" id="feedbackTitle"></div>
+                <button class="mode-btn active" id="nextRoundBtn" onclick="nextRound()">
+                    Próxima Rodada <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+            <p id="feedbackBody" style="margin: 0; font-size: 0.94rem; color: var(--text-main); line-height: 1.55;"></p>
+            <div class="neighbors-list" id="neighborsList"></div>
+        </div>
+
+        <!-- Game Over Modal Card -->
+        <div class="feedback-box" id="gameOverBox" style="text-align: center; padding: 2.25rem 1.5rem;">
+            <i class="ph-bold ph-trophy" style="font-size: 3rem; color: var(--accent-crimson);"></i>
+            <h2 style="font-family: var(--font-titles); font-size: 1.8rem; margin: 0.5rem 0;" id="gameOverTitle">Fim de Partida</h2>
+            <p id="gameOverSummary" style="color: var(--text-muted); max-width: 520px; margin: 0 auto 1.5rem;"></p>
+            <div style="display: flex; justify-content: center; gap: 0.85rem; flex-wrap: wrap;">
+                <button class="mode-btn active" onclick="restartGame()" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+                    <i class="ph-bold ph-arrows-clockwise"></i> Jogar Novamente
+                </button>
+                <button class="mode-btn" onclick="shareScore()" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+                    <i class="ph-bold ph-whatsapp-logo"></i> Desafiar Amigos
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom AdSense Slot -->
+        <div class="ad-slot-container" style="margin: 2.5rem 0 1rem; text-align: center; min-height: 90px;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <script src="/assets/js/cerebro-geo.js"></script>
+    <script>
+        // Curated high-level border traps + automatic generator from CerebroGeo
+        const CURATED_TRAPS = [
+            {
+                targetIso: 'br',
+                neighborsIso: ['fr', 'sr', 'bo'],
+                intruderIso: 'cl',
+                explanation: 'O Brasil faz fronteira terrestre com 10 territórios na América do Sul (incluindo a França, via Guiana Francesa!). Os dois únicos países sul-americanos que NÃO tocam o Brasil são o Chile e o Equador.'
+            },
+            {
+                targetIso: 'br',
+                neighborsIso: ['gy', 'py', 'pe'],
+                intruderIso: 'ec',
+                explanation: 'O Equador e o Chile são os únicos países da América do Sul que não compartilham fronteira terrestre com o Brasil — o Peru e a Colômbia fecham o cinturão amazônico antes do Equador.'
+            },
+            {
+                targetIso: 'fr',
+                neighborsIso: ['br', 'es', 'ch'],
+                intruderIso: 'pt',
+                explanation: 'Pegadinha clássica: a França faz fronteira com o Brasil (730 km na Guiana Francesa), mas na Península Ibérica a Espanha separa totalmente a França de Portugal!'
+            },
+            {
+                targetIso: 'ru',
+                neighborsIso: ['kp', 'no', 'pl'],
+                intruderIso: 'se',
+                explanation: 'A Rússia tem 14 vizinhos terrestres — incluindo a Coreia do Norte (17 km no Rio Tumen), a Noruega (no Ártico) e a Polônia (via enclave de Kaliningrado). Porém, a Finlândia e a Noruega isolam a Suécia da Rússia!'
+            },
+            {
+                targetIso: 'cn',
+                neighborsIso: ['af', 'ru', 'vn'],
+                intruderIso: 'th',
+                explanation: 'A China divide fronteira terrestre com 14 nações — incluindo o Afeganistão (pelo estreito Corredor de Wakhan, de 76 km). Já a Tailândia não toca a China porque Laos e Mianmar se encontram no Triângulo Dourado.'
+            },
+            {
+                targetIso: 'de',
+                neighborsIso: ['dk', 'cz', 'lu'],
+                intruderIso: 'hu',
+                explanation: 'A Alemanha possui 9 vizinhos terrestres no coração da Europa, mas não toca a Hungria — a Áustria e a Eslováquia ficam entre elas.'
+            },
+            {
+                targetIso: 'ar',
+                neighborsIso: ['bo', 'py', 'uy'],
+                intruderIso: 'pe',
+                explanation: 'A Argentina faz fronteira com 5 países (Chile, Bolívia, Paraguai, Brasil e Uruguai). O Peru não toca a Argentina porque o norte do Chile e o oeste da Bolívia se encontram nos Andes.'
+            },
+            {
+                targetIso: 'es',
+                neighborsIso: ['ma', 'ad', 'pt'],
+                intruderIso: 'it',
+                explanation: 'A Espanha possui fronteira terrestre direta com o Marrocos na África (pelos enclaves de Ceuta, Melilla e Peñón de Vélez de la Gomera), além de Andorra, França, Portugal e Gibraltar — mas não toca a Itália!'
+            },
+            {
+                targetIso: 'tr',
+                neighborsIso: ['gr', 'ir', 'ge'],
+                intruderIso: 'sa',
+                explanation: 'A Turquia conecta a Europa (Grécia e Bulgária) ao Cáucaso e Oriente Médio (Geórgia, Armênia, Azerbaijão/Nakhchivan, Irã, Iraque e Síria), mas está separada da Arábia Saudita pelo Iraque e pela Jordânia.'
+            },
+            {
+                targetIso: 'in',
+                neighborsIso: ['mm', 'bt', 'pk'],
+                intruderIso: 'af',
+                explanation: 'Na cartografia efetiva das zonas de controle, a Índia compartilha longas fronteiras com Paquistão, China, Nepal, Butão, Bangladesh e Mianmar, enquanto o Afeganistão fica além da Caxemira controlada pelo Paquistão.'
+            },
+            {
+                targetIso: 'at',
+                neighborsIso: ['li', 'si', 'sk'],
+                intruderIso: 'hr',
+                explanation: 'A Áustria tem 8 vizinhos alpinos e centro-europeus (incluindo Liechtenstein, Eslovênia e Eslováquia), mas a Eslovênia e a Hungria bloqueiam qualquer contato terrestre entre Áustria e Croácia.'
+            },
+            {
+                targetIso: 'sa',
+                neighborsIso: ['jo', 'om', 'iq'],
+                intruderIso: 'ir',
+                explanation: 'A Arábia Saudita domina a Península Arábica fazendo fronteira terrestre com Jordânia, Iraque, Kuwait, Catar, Emirados Árabes Unidos, Omã e Iêmen, mas é separada do Irã pelas águas do Golfo Pérsico.'
+            }
+        ];
+
+        let countryByIso = {};
+        let allCountries = [];
+        let gameMode = 'survival';
+        let score = 0;
+        let streak = 0;
+        let bestScore = parseInt(localStorage.getItem('vg_vizinho_intruso_rec') || '0', 10);
+        let lives = 3;
+        let timeLeft = 60;
+        let timerInterval = null;
+        let soundEnabled = true;
+        let roundLocked = false;
+        let usedTrapIndices = new Set();
+        let currentRound = null;
+
+        const audioCtx = typeof (window.AudioContext || window.webkitAudioContext) !== 'undefined'
+            ? new (window.AudioContext || window.webkitAudioContext)()
+            : null;
+
+        function playTone(type) {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.16);
+                    gain.gain.setValueAtTime(0.14, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+                    osc.start(now);
+                    osc.stop(now + 0.24);
+                } else {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(130, now + 0.22);
+                    gain.gain.setValueAtTime(0.14, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+                    osc.start(now);
+                    osc.stop(now + 0.26);
+                }
+            } catch (e) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            const btn = document.getElementById('soundToggleBtn');
+            if (soundEnabled) {
+                btn.innerHTML = '<i class="ph-bold ph-speaker-high" id="soundIcon"></i> Som Ativo';
+            } else {
+                btn.innerHTML = '<i class="ph-bold ph-speaker-slash" id="soundIcon"></i> Mudo';
+            }
+        }
+
+        function initDatabase() {
+            if (window.CerebroGeo && typeof window.CerebroGeo.obterPaisesAleatorios === 'function') {
+                allCountries = window.CerebroGeo.obterPaisesAleatorios(300);
+            }
+            allCountries.forEach(c => {
+                countryByIso[c.iso2.toLowerCase()] = c;
+            });
+            // Ensure French Guiana ("gf") maps cleanly to France if referenced
+            if (!countryByIso['gf'] && countryByIso['fr']) {
+                countryByIso['gf'] = countryByIso['fr'];
+            }
+        }
+
+        function shuffle(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function buildDynamicRound() {
+            const eligibleTargets = allCountries.filter(c => {
+                const validNeighbors = (c.fronteiras || []).filter(iso => countryByIso[iso]);
+                return validNeighbors.length >= 3;
+            });
+            const target = eligibleTargets[Math.floor(Math.random() * eligibleTargets.length)];
+            const validNeighborIsos = shuffle((target.fronteiras || []).filter(iso => countryByIso[iso] && iso !== target.iso2));
+            const chosenNeighbors = validNeighborIsos.slice(0, 3).map(iso => countryByIso[iso]);
+
+            // Pick a plausible intruder from the same continent (or nearby) that does NOT share a border with target
+            const borderSet = new Set((target.fronteiras || []).map(x => x.toLowerCase()));
+            borderSet.add(target.iso2.toLowerCase());
+            if (target.iso2 === 'br') borderSet.add('fr');
+            if (target.iso2 === 'fr') borderSet.add('br');
+
+            let sameContPool = allCountries.filter(c => c.continente === target.continente && !borderSet.has(c.iso2.toLowerCase()));
+            if (sameContPool.length === 0) {
+                sameContPool = allCountries.filter(c => !borderSet.has(c.iso2.toLowerCase()));
+            }
+            const intruder = sameContPool[Math.floor(Math.random() * sameContPool.length)];
+
+            const allTrueNames = (target.fronteiras || [])
+                .map(iso => countryByIso[iso] ? countryByIso[iso].nome : null)
+                .filter(Boolean);
+
+            return {
+                target,
+                options: shuffle([
+                    ...chosenNeighbors.map(c => ({ country: c, isIntruder: false })),
+                    { country: intruder, isIntruder: true }
+                ]),
+                intruder,
+                allTrueNames,
+                explanation: `${intruder.nome} fica em ${intruder.continente} (${intruder.subregiao}), mas NÃO compartilha fronteira terrestre com ${target.nome}.`
+            };
+        }
+
+        function generateRound() {
+            // Mix curated high-IQ traps with dynamic rounds from the 198-country graph
+            const availableCurated = CURATED_TRAPS
+                .map((t, idx) => ({ t, idx }))
+                .filter(item => !usedTrapIndices.has(item.idx));
+
+            if (availableCurated.length > 0 && Math.random() < 0.65) {
+                const pick = availableCurated[Math.floor(Math.random() * availableCurated.length)];
+                usedTrapIndices.add(pick.idx);
+                const t = pick.t;
+                const target = countryByIso[t.targetIso];
+                const intruder = countryByIso[t.intruderIso];
+                const chosenNeighbors = t.neighborsIso.map(iso => countryByIso[iso]).filter(Boolean);
+
+                if (target && intruder && chosenNeighbors.length === 3) {
+                    const allTrueNames = (target.fronteiras || [])
+                        .map(iso => countryByIso[iso] ? countryByIso[iso].nome : null)
+                        .filter(Boolean);
+                    return {
+                        target,
+                        options: shuffle([
+                            ...chosenNeighbors.map(c => ({ country: c, isIntruder: false })),
+                            { country: intruder, isIntruder: true }
+                        ]),
+                        intruder,
+                        allTrueNames,
+                        explanation: t.explanation
+                    };
+                }
+            }
+            return buildDynamicRound();
+        }
+
+        function updateHUD() {
+            document.getElementById('hudScore').textContent = score;
+            document.getElementById('hudStreak').textContent = streak;
+            document.getElementById('hudBest').textContent = bestScore;
+
+            const labelEl = document.getElementById('hudStatusLabel');
+            const valEl = document.getElementById('hudStatusValue');
+
+            if (gameMode === 'survival') {
+                labelEl.textContent = 'Vidas Restantes';
+                let heartsHtml = '<span class="lives-row">';
+                for (let i = 0; i < 3; i++) {
+                    if (i < lives) {
+                        heartsHtml += '<i class="ph-bold ph-heart"></i>';
+                    } else {
+                        heartsHtml += '<i class="ph-bold ph-heart-break" style="opacity:0.3;"></i>';
+                    }
+                }
+                heartsHtml += '</span>';
+                valEl.innerHTML = heartsHtml;
+            } else {
+                labelEl.textContent = 'Cronômetro';
+                valEl.innerHTML = `<span style="color:${timeLeft <= 10 ? 'var(--accent-crimson)' : 'var(--text-main)'}">${timeLeft}s</span>`;
+            }
+        }
+
+        function renderRound() {
+            roundLocked = false;
+            document.getElementById('feedbackBox').classList.remove('visible');
+            document.getElementById('gameOverBox').classList.remove('visible');
+
+            currentRound = generateRound();
+            const target = currentRound.target;
+
+            document.getElementById('targetFlag').src = `https://flagcdn.com/w160/${target.iso2.toLowerCase()}.png`;
+            document.getElementById('targetFlag').alt = `Bandeira de ${target.nome}`;
+            document.getElementById('targetName').textContent = target.nome;
+            document.getElementById('targetNameInline').textContent = target.nome;
+            document.getElementById('targetMeta').textContent = `${target.continente} • Capital: ${target.capital} • ${(target.fronteiras || []).length} Fronteiras Terrestres`;
+
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+
+            currentRound.options.forEach((opt, idx) => {
+                const c = opt.country;
+                const btn = document.createElement('button');
+                btn.className = 'option-card';
+                btn.setAttribute('type', 'button');
+                btn.onclick = () => handleChoice(idx);
+
+                const badgeClass = opt.isIntruder ? 'badge-intruder' : 'badge-neighbor';
+                const badgeText = opt.isIntruder ? 'Intruso (Sem Fronteira)' : 'Vizinho Real';
+
+                btn.innerHTML = `
+                    <img class="option-flag" src="https://flagcdn.com/w80/${c.iso2.toLowerCase()}.png" alt="Bandeira de ${c.nome}">
+                    <div class="option-info">
+                        <div class="option-title">${c.nome}</div>
+                        <div class="option-sub">Capital: ${c.capital} &bull; ${c.subregiao}</div>
+                    </div>
+                    <span class="option-status-badge ${badgeClass}">${badgeText}</span>
+                `;
+                grid.appendChild(btn);
+            });
+
+            updateHUD();
+        }
+
+        function handleChoice(chosenIdx) {
+            if (roundLocked) return;
+            roundLocked = true;
+
+            const chosen = currentRound.options[chosenIdx];
+            const cards = document.querySelectorAll('.option-card');
+
+            cards.forEach((card, i) => {
+                card.classList.add('locked', 'revealed');
+                if (currentRound.options[i].isIntruder) {
+                    card.classList.add('correct-intruder');
+                } else if (i === chosenIdx && !chosen.isIntruder) {
+                    card.classList.add('wrong-neighbor');
+                }
+            });
+
+            const fbBox = document.getElementById('feedbackBox');
+            const fbTitle = document.getElementById('feedbackTitle');
+            const fbBody = document.getElementById('feedbackBody');
+            const neighborsList = document.getElementById('neighborsList');
+
+            if (chosen.isIntruder) {
+                playTone('correct');
+                streak++;
+                const bonus = Math.min(streak, 5) * 25;
+                score += 100 + bonus;
+                if (score > bestScore) {
+                    bestScore = score;
+                    localStorage.setItem('vg_vizinho_intruso_rec', String(bestScore));
+                    if (typeof confetti === 'function' && streak % 5 === 0) {
+                        confetti({ particleCount: 55, spread: 65, origin: { y: 0.65 } });
+                    }
+                }
+                fbTitle.innerHTML = `<span style="color:#15803d;"><i class="ph-bold ph-check-circle"></i> Precisão Cartográfica! (+${100 + bonus} pts)</span>`;
+            } else {
+                playTone('wrong');
+                streak = 0;
+                if (gameMode === 'survival') {
+                    lives--;
+                }
+                fbTitle.innerHTML = `<span style="color:var(--accent-crimson);"><i class="ph-bold ph-x-circle"></i> Armadilha de Fronteira! ${chosen.country.nome} faz fronteira com ${currentRound.target.nome}.</span>`;
+            }
+
+            fbBody.textContent = currentRound.explanation;
+            neighborsList.innerHTML = `<span style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-muted); width:100%; margin-bottom:0.2rem;">Fronteiras terrestres oficiais de ${currentRound.target.nome}:</span>` +
+                currentRound.allTrueNames.map(n => `<span class="neighbor-chip">${n}</span>`).join('');
+
+            updateHUD();
+
+            if (gameMode === 'survival' && lives <= 0) {
+                fbBox.classList.add('visible');
+                document.getElementById('nextRoundBtn').innerHTML = 'Ver Resultado Final <i class="ph-bold ph-flag-checkered"></i>';
+                document.getElementById('nextRoundBtn').onclick = triggerGameOver;
+            } else {
+                fbBox.classList.add('visible');
+                document.getElementById('nextRoundBtn').innerHTML = 'Próxima Rodada <i class="ph-bold ph-arrow-right"></i>';
+                document.getElementById('nextRoundBtn').onclick = nextRound;
+            }
+        }
+
+        function nextRound() {
+            if (gameMode === 'survival' && lives <= 0) {
+                triggerGameOver();
+                return;
+            }
+            renderRound();
+        }
+
+        function triggerGameOver() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            document.getElementById('feedbackBox').classList.remove('visible');
+            const goBox = document.getElementById('gameOverBox');
+            goBox.classList.add('visible');
+            document.getElementById('gameOverSummary').textContent =
+                `Você alcançou ${score} pontos identificando fronteiras falsas pelo globo. Seu recorde pessoal no VitaleGeo é de ${bestScore} pontos.`;
+        }
+
+        function setGameMode(mode) {
+            gameMode = mode;
+            document.getElementById('modeSurvivalBtn').classList.toggle('active', mode === 'survival');
+            document.getElementById('modeBlitzBtn').classList.toggle('active', mode === 'blitz');
+            restartGame();
+        }
+
+        function restartGame() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            score = 0;
+            streak = 0;
+            lives = 3;
+            timeLeft = 60;
+            usedTrapIndices.clear();
+
+            if (gameMode === 'blitz') {
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updateHUD();
+                    if (timeLeft <= 0) {
+                        triggerGameOver();
+                    }
+                }, 1000);
+            }
+            renderRound();
+        }
+
+        function shareScore() {
+            const text = `Fiz ${score} pontos (Recorde: ${bestScore}) caçando fronteiras falsas no jogo "Qual é o Vizinho Intruso?" do VitaleGeo! Duvido você bater: https://vitalegeo.com.br/jogos/vizinho-intruso/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initDatabase();
+            restartGame();
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { parsePostDate } from '../utils/dates';
+
+const recentPosts = (await getCollection('blog'))
+  .sort((a, b) => parsePostDate(b.data.data) - parsePostDate(a.data.data))
+  .slice(0, 3);
 ---
 
 <Layout
@@ -22,7 +28,26 @@ import Layout from '../layouts/Layout.astro';
         <a href="/blog/" class="btn-clean-secondary">
           Ver Posts
         </a>
+        <a href="/ferramentas/" class="btn-clean-secondary">
+          Explorar ferramentas
+        </a>
+        <a href="/jogos/" class="btn-clean-secondary">
+          Jogar
+        </a>
       </div>
+      <section class="mt-12 text-left">
+        <h2 class="text-lg font-heading font-semibold text-[#0A192F] mb-4">Posts recentes</h2>
+        <ul class="divide-y divide-[#0A192F]/10 border-y border-[#0A192F]/10">
+          {recentPosts.map(post => (
+            <li>
+              <a href={`/blog/${post.id}/`} class="flex items-center justify-between gap-4 py-3 text-sm text-[#1F334E] hover:text-[#C8102E] transition">
+                <span>{post.data.titulo}</span>
+                <i class="ph-bold ph-arrow-up-right shrink-0" aria-hidden="true"></i>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   </main>
 </Layout>

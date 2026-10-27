@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" fill="none">
+  <!-- Fundo Bege Cartográfico -->
+  <rect width="800" height="450" fill="#F5F2EB"/>
+  
+  <!-- Curvas de Nível Topográficas Sutis -->
+  <path d="M-50 100 Q 220 50, 460 130 T 850 80" stroke="#A8C3A6" stroke-width="1.5" stroke-opacity="0.35" fill="none"/>
+  <path d="M-50 350 Q 260 280, 540 370 T 850 310" stroke="#A8C3A6" stroke-width="1.5" stroke-opacity="0.3" fill="none"/>
+  
+  <!-- Moldura Graduada Externa Dark Navy -->
+  <rect x="24" y="24" width="752" height="402" rx="16" fill="#0A192F" stroke="#0A192F" stroke-width="2"/>
+  <rect x="28" y="28" width="744" height="394" rx="12" fill="#0D1E38"/>
+
+  <!-- Miras Geodésicas de Canto (coord-crosshairs) -->
+  <g stroke="#53647C" stroke-width="1.5" opacity="0.4">
+    <line x1="60" y1="50" x2="60" y2="70"/>
+    <line x1="50" y1="60" x2="70" y2="60"/>
+    <line x1="740" y1="50" x2="740" y2="70"/>
+    <line x1="730" y1="60" x2="750" y2="60"/>
+    <line x1="60" y1="380" x2="60" y2="400"/>
+    <line x1="50" y1="390" x2="70" y2="390"/>
+    <line x1="740" y1="380" x2="740" y2="400"/>
+    <line x1="730" y1="390" x2="750" y2="390"/>
+  </g>
+
+  <!-- Ponto de Interrogação / Silhueta Mistério em Destaque Central -->
+  <circle cx="400" cy="210" r="120" fill="#0A192F" stroke="#C8102E" stroke-width="2" stroke-dasharray="6 4" opacity="0.8"/>
+  <circle cx="400" cy="210" r="95" fill="#112236" stroke="#A8C3A6" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Silhueta Vetorial Estilizada (Itália / Bota Clássica) -->
+  <path d="M 370 135 
+           C 385 130, 400 132, 415 138 
+           C 425 142, 430 155, 428 165 
+           C 422 178, 410 190, 420 205 
+           C 425 212, 435 220, 442 230 
+           C 455 245, 460 258, 452 265 
+           C 440 270, 432 260, 425 255 
+           C 418 250, 405 258, 395 268 
+           C 388 275, 380 270, 385 260 
+           C 392 250, 405 240, 402 230 
+           C 398 218, 385 208, 380 195 
+           C 375 180, 368 165, 362 150 Z" 
+        fill="#C8102E" stroke="#FFFFFF" stroke-width="2" filter="drop-shadow(0 4px 8px rgba(200,16,46,0.4))"/>
+
+  <!-- Ilha Sicília Estilizada -->
+  <polygon points="365,268 385,262 375,280" fill="#C8102E" stroke="#FFFFFF" stroke-width="1.5"/>
+
+  <!-- Ponto de Interrogação Tecnológico -->
+  <text x="445" y="165" font-family="'Orbitron', sans-serif" font-size="38" font-weight="900" fill="#A8C3A6" opacity="0.9">?</text>
+
+  <!-- Rosa dos Ventos Minimalista -->
+  <g transform="translate(670, 90) scale(0.65)">
+    <circle cx="0" cy="0" r="30" stroke="#53647C" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <polygon points="0,-26 5,-5 26,0 5,5 0,26 -5,5 -26,0 -5,-5" fill="#0A192F" stroke="#A8C3A6" stroke-width="1"/>
+    <polygon points="0,-26 5,-5 0,0" fill="#C8102E"/>
+    <text x="0" y="-32" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#C8102E" text-anchor="middle">N</text>
+  </g>
+
+  <!-- Badge Superior -->
+  <text x="400" y="65" font-family="'Orbitron', sans-serif" font-size="13" font-weight="800" fill="#C8102E" letter-spacing="3" text-anchor="middle">VITALEGEO ARCADE // DESAFIO VISUAL</text>
+
+  <!-- Caixa de Título Principal Inferior -->
+  <rect x="200" y="335" width="400" height="52" rx="10" fill="#0A192F" stroke="#C8102E" stroke-width="1.5"/>
+  <text x="400" y="367" font-family="'Orbitron', sans-serif" font-size="19" font-weight="900" fill="#FFFFFF" letter-spacing="2" text-anchor="middle">SILHUETA DO PAÍS</text>
+</svg>

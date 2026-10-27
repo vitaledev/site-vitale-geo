@@ -21,6 +21,7 @@ const postsData = sortedPosts.map(p => ({
   data: p.data.data,
   img: p.data.img,
   tempoLeitura: p.data.tempoLeitura,
+  destaque: p.data.destaque,
 }));
 ---
 
@@ -68,12 +69,12 @@ const postsData = sortedPosts.map(p => ({
           <p class="text-xs sm:text-sm text-[#53647C] mt-1">Investigações sobre limites soberanos e disputas territoriais.</p>
         </div>
         <a href="/blog/" class="text-xs font-semibold text-[#C8102E] hover:text-[#0A192F] transition flex items-center gap-1">
-          Ver todos os posts ({postsData.length}) <i class="ph-bold ph-arrow-right text-xs"></i>
+          Ver todos os posts <i class="ph-bold ph-arrow-right text-xs"></i>
         </a>
       </div>
 
       <!-- Ilha de React: Filtro Dinâmico com Cards Limpos -->
-      <HomeBlogFilter client:load posts={postsData} />
+      <HomeBlogFilter client:visible={{ rootMargin: '200px' }} posts={postsData} />
     </section>
 
     <!-- Transição Editorial -->
