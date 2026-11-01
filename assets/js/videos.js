@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 167 Shorts
+// Total: 14 Longos + 168 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Qual país mais aplica a pena de morte no mundo?", id: "7xT5ADTQwYM", link: "https://www.youtube.com/watch?v=7xT5ADTQwYM" },
     { titulo: "Qual país tem mais lagos em todo o planeta?", id: "tMWrVm6ZDKk", link: "https://www.youtube.com/watch?v=tMWrVm6ZDKk" },
     { titulo: "Qual o país com a melhor educação do mundo?", id: "voaomiVrWLk", link: "https://www.youtube.com/watch?v=voaomiVrWLk" },
     { titulo: "Como o megaporto do Peru pode mudar a rota do Brasil?", id: "gHW1y43velA", link: "https://www.youtube.com/watch?v=gHW1y43velA" },
