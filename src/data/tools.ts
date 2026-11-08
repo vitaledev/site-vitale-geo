@@ -34,6 +34,18 @@ export const toolsDB: ToolItem[] = [
     tags: ["mercator", "distorcao", "projecao", "tamanho real", "paises", "area", "mapa", "groenlandia"]
   },
   {
+    id: "que-horas-sao",
+    titulo: "Que Horas São no Mundo? (Conversor por País)",
+    desc: "Descubra que horas são em qualquer país do mundo em tempo real, veja a diferença de fuso para Brasília e simule reuniões.",
+    icon: "ph-bold ph-globe-hemisphere-east",
+    cover: "/assets/img/ferramentas/que-horas-sao.svg",
+    link: "/ferramentas/que-horas-sao/",
+    categoria: "Tempo & Fusos",
+    badge: "198 PAÍSES",
+    tags: ["que horas sao", "horario mundial", "fuso horario", "conversor de horas", "relogio mundial", "diferenca de horario", "japao", "estados unidos", "portugal", "alemanha", "paises"]
+  },
+
+  {
     id: "calculadora-fuso",
     titulo: "Fuso Horário Global",
     desc: "Calculadora de fusos horários, meridianos internacionais e diferença horária entre capitais.",

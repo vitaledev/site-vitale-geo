@@ -14,6 +14,14 @@ const toolsDB = [
         link: "/ferramentas/comparador-paises/"
     },
     {
+        titulo: "Que Horas São no Mundo? (Conversor por País)",
+        desc: "Descubra que horas são em qualquer país do mundo em tempo real, veja a diferença de fuso para Brasília e simule reuniões.",
+        icon: "ph-bold ph-globe-hemisphere-east",
+        cover: "/assets/img/ferramentas/que-horas-sao.svg",
+        link: "/ferramentas/que-horas-sao/"
+    },
+
+    {
         titulo: "Fuso Horário Global",
         desc: "Calculadora de fusos horários e meridianos internacionais.",
         icon: "ph-bold ph-clock",
