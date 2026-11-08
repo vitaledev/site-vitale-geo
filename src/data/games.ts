@@ -109,5 +109,16 @@ export const gamesDB: GameItem[] = [
     categoria: "Mapa Mudo & Localização",
     badge: "NOVO ARCADE",
     tags: ["silhueta", "contorno", "paises", "mapa mudo", "adivinhacao", "arcade", "dopamina", "territorio"]
+  },
+  {
+    id: "vizinho-intruso",
+    titulo: "Qual é o Vizinho Intruso?",
+    desc: "Três países fazem fronteira terrestre real com o país-alvo e um é um impostor geográfico. Descubra o intruso antes que suas vidas acabem!",
+    icon: "ph-fill ph-prohibit",
+    cover: "/assets/img/jogos/vizinho-intruso.svg",
+    link: "/jogos/vizinho-intruso/",
+    categoria: "Fronteiras & Território",
+    badge: "NOVO ARCADE",
+    tags: ["vizinho intruso", "fronteiras", "impostor", "paises", "limites", "arcade", "vizinhos", "quiz"]
   }
 ];

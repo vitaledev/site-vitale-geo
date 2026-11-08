@@ -71,6 +71,14 @@ const gamesDB = [
         cover: "/assets/img/jogos/silhueta-pais.svg",
         link: "/jogos/silhueta-pais/",
         badge: "NOVO ARCADE"
+    },
+    {
+        titulo: "Qual é o Vizinho Intruso?",
+        desc: "Três países fazem fronteira terrestre real com o país-alvo e um é um impostor geográfico. Descubra o intruso antes que suas vidas acabem!",
+        icon: "ph-fill ph-prohibit",
+        cover: "/assets/img/jogos/vizinho-intruso.svg",
+        link: "/jogos/vizinho-intruso/",
+        badge: "NOVO ARCADE"
     }
 ];
 
