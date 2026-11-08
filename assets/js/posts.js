@@ -3,6 +3,327 @@
 
 const blogPosts = [
     {
+        titulo: "Como a Conquista do Deserto e os Tratados de Fronteira Forjaram o Gigantesco Território da Argentina?",
+        categoria: "História",
+        data: "08 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-argentina-formacao-territorial-fronteiras.jpg",
+        link: "historia-da-argentina-formacao-territorial-fronteiras/",
+        resumo: "Do Vice-Reino do Rio da Prata e da perda do Alto Peru à Conquista do Deserto de Julio Argentino Roca e ao Tratado de 1881 com o Chile: a sangrenta consolidação de 2,78 milhões de km²."
+    },
+    {
+        titulo: "Por Que a Posição Naval da Índia no Oceano Índico Pode Asfixiar as Rotas de Petróleo da China?",
+        categoria: "Geopolítica",
+        data: "08 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-india-oceano-indico-himalaia-rotas-estrategicas.jpg",
+        link: "geopolitica-da-india-oceano-indico-himalaia-rotas-estrategicas/",
+        resumo: "Do posto avançado nas Ilhas Andamão a 150 km de Malaca ao confronto na Linha de Controle Real no Himalaia: como Nova Délhi articula o QUAD para conter o colar de pérolas chinês."
+    },
+    {
+        titulo: "Como Uma Península Menor Que Sergipe Tornou-se o Maior Exportador de Gás Liquefeito e Uma Potência Financeira Global?",
+        categoria: "Geoeconomia",
+        data: "08 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-do-catar-gas-natural-liquefeito-gnl-riquezas.jpg",
+        link: "geoeconomia-do-catar-gas-natural-liquefeito-gnl-riquezas/",
+        resumo: "Do Campo Norte submarino compartilhado com o Irã ao monopólio de 900 trilhões de pés cúbicos de gás e ao fundo QIA de meio trilhão de dólares: a geoeconomia do megacomplexo de Ras Laffan."
+    },
+    {
+        titulo: "Por Que o Estreito de Tsushima É a Rota Naval Mais Vigiada do Leste Asiático Desde a Batalha de 1905?",
+        categoria: "Geopolítica",
+        data: "08 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-tsushima-japao-coreia-chokepoint-naval.jpg",
+        link: "estreito-de-tsushima-japao-coreia-chokepoint-naval/",
+        resumo: "Cinquenta quilômetros de águas estratégicas entre a Coreia do Sul e o Japão que decidiram a Guerra Russo-Japonesa e hoje canalizam frotas nucleares sob redes de hidrofones e radares 24 horas."
+    },
+    {
+        titulo: "Como Três Países Sul-Americanos Convivem Sem Fronteiras Físicas no Coração da Floresta Amazônica?",
+        categoria: "Fronteiras",
+        data: "08 Nov 2026 - 14:30",
+        img: "/assets/img/blog/triplice-fronteira-brasil-colombia-peru-tabatinga-leticia.jpg",
+        link: "triplice-fronteira-brasil-colombia-peru-tabatinga-leticia/",
+        resumo: "Na confluência do Solimões com o Javari, Tabatinga, Letícia e Santa Rosa de Yavarí dividem três soberanias, três moedas e zero barreiras alfandegárias a mil quilômetros de qualquer capital."
+    },
+    {
+        titulo: "Por Que Uma Linha Reta no Meio da Selva Divide a Segunda Maior Ilha do Planeta?",
+        categoria: "Fronteiras",
+        data: "08 Nov 2026 - 16:15",
+        img: "/assets/img/blog/ilha-de-nova-guine-fronteira-meridiano-141-indonesia-papua.jpg",
+        link: "ilha-de-nova-guine-fronteira-meridiano-141-indonesia-papua/",
+        resumo: "Cortando florestas impenetráveis e picos nevados a 4.884 metros de altitude, o meridiano 141° Leste separa a Indonésia da Papua-Nova Guiné com uma única curva negociada no Rio Fly em 1895."
+    },
+    {
+        titulo: "Por Que a Nigéria Entregou Uma Península Petrolífera Bilionária Para Camarões Sem Disparar Um Tiro?",
+        categoria: "Fronteiras",
+        data: "08 Nov 2026 - 18:00",
+        img: "/assets/img/blog/peninsula-de-bakassi-fronteira-nigeria-camaroes-petroleo.jpg",
+        link: "peninsula-de-bakassi-fronteira-nigeria-camaroes-petroleo/",
+        resumo: "Mil quilômetros quadrados de manguezais ricos em petróleo e habitados por 300 mil nigerianos foram transferidos para a soberania camaronesa após a histórica sentença da Corte de Haia em 2002."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Populosos do Mundo Onde Mais de Quatro Bilhões de Habitantes Redefinem a Demografia da Terra?",
+        categoria: "Rankings",
+        data: "08 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-paises-mais-populosos-do-mundo.jpg",
+        link: "ranking-paises-mais-populosos-do-mundo/",
+        resumo: "Da virada histórica da Índia com 1,43 bilhão de habitantes ultrapassando a China aos gigantes demográficos Indonésia, Paquistão, Nigéria e Brasil: o mapa da concentração humana planetária."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Gás Natural do Mundo Onde Trilhões de Metros Cúbicos Movem a Energia Global?",
+        categoria: "Rankings",
+        data: "08 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-gas-natural-do-mundo.jpg",
+        link: "ranking-maiores-reservas-de-gas-natural-do-mundo/",
+        resumo: "Da Sibéria russa com 37 trilhões de metros cúbicos a South Pars no Irã, ao Campo Norte do Catar e às bacias de xisto dos Estados Unidos: o ranking dos maiores depósitos de gás fóssil da Terra."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Economias do Mundo Medidas Pelo Produto Interno Bruto Nominal em Trilhões de Dólares?",
+        categoria: "Rankings",
+        data: "08 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-economias-do-mundo.jpg",
+        link: "ranking-maiores-economias-do-mundo/",
+        resumo: "Dos 28 trilhões de dólares dos Estados Unidos à manufatura maciça da China, à ascensão fulgurante da Índia e ao retorno do Brasil ao grupo de elite: o ranking do PIB nominal segundo o FMI."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Penínsulas do Planeta Onde Línguas de Terra Gigantescas Avançam Pelos Oceanos?",
+        categoria: "Rankings",
+        data: "07 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-peninsulas-do-mundo.jpg",
+        link: "ranking-maiores-peninsulas-do-mundo/",
+        resumo: "Da Península Arábica com mais de 3,2 milhões de km² à Península Antártica, Indochina, Labrador e Escandinávia: conheça as dez maiores projeções continentais cercadas por mares."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Petróleo do Mundo Onde Trilhões de Barris Definem a Geopolítica Global?",
+        categoria: "Rankings",
+        data: "07 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-petroleo-do-mundo.jpg",
+        link: "ranking-maiores-reservas-de-petroleo-do-mundo/",
+        resumo: "Da Faixa do Orinoco na Venezuela com 303 bilhões de barris a Ghawar na Arábia Saudita e às areias do Canadá: o ranking dos dez maiores depósitos comprovados de óleo bruto da Terra."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Países Sem Saída Para o Mar e Como Eles Vencem o Isolamento Geográfico?",
+        categoria: "Rankings",
+        data: "07 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-maiores-paises-sem-saida-para-o-mar.jpg",
+        link: "ranking-maiores-paises-sem-saida-para-o-mar/",
+        resumo: "Do Cazaquistão com 2,72 milhões de km² à Mongólia, Chade, Níger, Mali e Bolívia: o ranking das maiores nações sem costa oceânica e suas batalhas logísticas bilionárias por portos vizinhos."
+    },
+    {
+        titulo: "Como os Estados Unidos Mantêm Uma Base Militar Soberana de Cento e Dezessete Quilômetros Quadrados Cravada no Leste de Cuba?",
+        categoria: "Fronteiras",
+        data: "07 Nov 2026 - 18:00",
+        img: "/assets/img/blog/baia-de-guantanamo-enclave-militar-eua-cuba.jpg",
+        link: "baia-de-guantanamo-enclave-militar-eua-cuba/",
+        resumo: "Arrendada em 1903 sob a Emenda Platt por um cheque anual que Cuba recusa descontar há sessenta anos, a base naval de Guantánamo é o enclave extraterritorial mais tenso das Américas."
+    },
+    {
+        titulo: "Como Uma Fronteira Murada na Grécia Mantém a República Monástica de Monte Athos Proibida Para Mulheres Há Mais de Mil Anos?",
+        categoria: "Curiosidades",
+        data: "07 Nov 2026 - 16:15",
+        img: "/assets/img/blog/monte-athos-grecia-fronteira-republica-monastica-avaton.jpg",
+        link: "monte-athos-grecia-fronteira-republica-monastica-avaton/",
+        resumo: "Reconhecida no Tratado de Lausanne e na União Europeia, a península teocrática de Athos abriga vinte mosteiros soberanos regidos pela lei bizantina do Avaton desde 1046."
+    },
+    {
+        titulo: "Por Que Uma Selva de Cem Quilômetros Entre a Colômbia e o Panamá É o Único Ponto Onde a Rodovia Pan-Americana Foi Interrompida?",
+        categoria: "Fronteiras",
+        data: "07 Nov 2026 - 14:30",
+        img: "/assets/img/blog/tampao-de-darien-selva-colombia-panama-rodovia-pan-americana.jpg",
+        link: "tampao-de-darien-selva-colombia-panama-rodovia-pan-americana/",
+        resumo: "Entre Yaviza e Turbo, o pântano de Atrato e a densa selva tropical de Darién formam o único hiato de 106 km na maior rodovia do planeta, dividindo o continente americano."
+    },
+    {
+        titulo: "Por Que o Estreito de Dover É a Rota Marítima Mais Movimentada do Mundo Onde Mais de Quinhentos Cargueiros Cruzam Diariamente?",
+        categoria: "Geopolítica",
+        data: "07 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-dover-canal-da-mancha-chokepoint-maritimo.jpg",
+        link: "estreito-de-dover-canal-da-mancha-chokepoint-maritimo/",
+        resumo: "Com apenas 34 km de largura entre o Reino Unido e a França, o Estreito de Dover canaliza um quarto do comércio marítimo do norte da Europa sobre o Eurotúnel submarino."
+    },
+    {
+        titulo: "Como o Quase Monopólio das Terras Raras Deu à China o Controle da Cadeia Tecnológica Global?",
+        categoria: "Geoeconomia",
+        data: "07 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-china-terras-raras-monopolio-tecnologico.jpg",
+        link: "geoeconomia-da-china-terras-raras-monopolio-tecnologico/",
+        resumo: "De Bayan Obo ao refino de 70% dos elementos críticos do planeta: como o domínio de ímãs de neodímio, gálio e germânio colocou caças, carros elétricos e semicondutores sob controle chinês."
+    },
+    {
+        titulo: "Por Que o Porto de Gwadar e o Corredor com a China Fazem do Paquistão o Ponto Mais Crítico do Sul da Ásia?",
+        categoria: "Geopolítica",
+        data: "07 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-do-paquistao-porto-gwadar-cpec-caxemira.jpg",
+        link: "geopolitica-do-paquistao-porto-gwadar-cpec-caxemira/",
+        resumo: "A saída chinesa para o Mar da Arábia desviando de Malaca, o Corredor Econômico de US$ 62 bilhões, a fronteira hostil da Linha Durand e a rivalidade nuclear com a Índia na Caxemira."
+    },
+    {
+        titulo: "Como a Guerra do Pacífico e os Tratados Andinos Forjaram o Formato Estreito e Extremo do Chile?",
+        categoria: "História",
+        data: "07 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-do-chile-formacao-territorial-guerra-do-pacifico.jpg",
+        link: "historia-do-chile-formacao-territorial-guerra-do-pacifico/",
+        resumo: "De capitania geral isolada entre os Andes e o oceano à Guerra do Pacífico que retirou o mar da Bolívia e ao Tratado de 1881 com a Argentina: a formação da fita territorial chilena."
+    },
+
+    {
+        titulo: "Quais São as Dez Cidades Mais Altas do Mundo Onde Populações Inteiras Vivem Acima de Três Mil Metros de Altitude?",
+        categoria: "Rankings",
+        data: "29 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Rinconadapuno.JPG",
+        link: "ranking-cidades-mais-altas-do-mundo/",
+        resumo: "De La Rinconada no Peru a 5.100 metros de altitude a El Alto na Bolívia e Lhasa no Tibete: o ranking das dez cidades mais altas habitadas permanentemente pela humanidade."
+    },
+    {
+        titulo: "Quais São as Dez Capitais Mais Frias do Mundo Onde o Inverno Despenca Abaixo de Quarenta Graus Negativos?",
+        categoria: "Rankings",
+        data: "29 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c2/UB_downtown.jpg",
+        link: "ranking-capitais-mais-frias-do-mundo/",
+        resumo: "De Ulaanbaatar na Mongólia com média de -24°C em janeiro a Astana no Cazaquistão e Ottawa no Canadá: conheça as dez capitais nacionais mais gélidas do globo."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Menores Densidades Demográficas e os Maiores Vazios Humanos do Planeta?",
+        categoria: "Rankings",
+        data: "29 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Population_density_map_of_the_world.svg/1280px-Population_density_map_of_the_world.svg.png",
+        link: "ranking-menores-densidades-demograficas-do-mundo/",
+        resumo: "Da estepe sem cercas da Mongólia com 2 hab/km² aos desertos da Namíbia e do Outback australiano: o ranking dos 10 países soberanos mais vazios e isolados da Terra."
+    },
+    {
+        titulo: "Por Que É Matematicamente Impossível Medir o Tamanho Exato do Litoral de Um País?",
+        categoria: "Cartografia",
+        data: "29 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Britain-fractal-coastline-100km.png",
+        link: "paradoxo-da-linha-de-costa-geometria-fractal-mandelbrot/",
+        resumo: "Publicado por Benoit Mandelbrot em 1967, o Paradoxo da Linha de Costa prova que quanto menor a régua utilizada, mais o perímetro litorâneo tende ao infinito."
+    },
+    {
+        titulo: "Como Quatro Países Se Encontram em Um Único Ponto de Cento e Cinquenta Metros no Rio Zambeze?",
+        categoria: "Fronteiras",
+        data: "29 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Kazungula_Bridge.jpg",
+        link: "quadriponto-de-kazungula-fronteira-quatro-paises-rio-zambeze/",
+        resumo: "No leito do Rio Zambeze, as fronteiras de Botsuana, Zâmbia, Zimbábue e Namíbia convergem em uma das anomalias geodésicas mais complexas da África, resolvida por uma ponte curva."
+    },
+    {
+        titulo: "Como Quatro Quilômetros de Terra de Ninguém Mantêm Dois Milhões de Soldados Separados na Coreia?",
+        categoria: "Fronteiras",
+        data: "29 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/070401_Panmunjeom3.jpg",
+        link: "zona-desmilitarizada-coreia-dmz-paralelo-38/",
+        resumo: "Com 250 km de extensão ao longo da Linha de Demarcação Militar de 1953, a Zona Desmilitarizada coreana abriga dois milhões de minas terrestres e um paradoxal refúgio ecológico."
+    },
+    {
+        titulo: "Por Que a Frota Russa do Báltico Está Encurralada em Três Canais Rasos na Dinamarca?",
+        categoria: "Geopolítica",
+        data: "29 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/77/Storeb%C3%A6ltsbroen_from_Sj%C3%A6lland.jpg",
+        link: "estreitos-dinamarqueses-chokepoint-baltico-otan-russia/",
+        resumo: "Com apenas 15 metros de profundidade navegável no Grande Belt, os Estreitos Dinamarqueses são a garganta obrigatória vigiada pela OTAN que trava o acesso naval russo ao Atlântico."
+    },
+    {
+        titulo: "Como o Brasil Se Tornou a Maior Superpotência de Terras Agricultáveis e Energia Limpa do Planeta?",
+        categoria: "Geoeconomia",
+        data: "29 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/48/Agricultural_Fields_near_Perdizes%2C_Minas_Gerais%2C_Brazil.JPG",
+        link: "geoeconomia-do-brasil-agronegocio-minerais-energia/",
+        resumo: "Da correção do solo ácido do Cerrado pela Embrapa à matriz de 88% de eletricidade renovável e as maiores reservas mundiais de nióbio e minério de ferro em Carajás."
+    },
+    {
+        titulo: "Por Que a Geografia do Egito Depende de Uma Valeta Artificial e de Um Rio Sob Ameaça?",
+        categoria: "Geopolítica",
+        data: "29 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Iss016e019375.jpg",
+        link: "geopolitica-do-egito-canal-de-suez-rio-nilo/",
+        resumo: "O controle do Canal de Suez gerando bilhões em pedágios marítimos e a dependência existencial de 97% das águas do Rio Nilo diante da mega-represa da Etiópia."
+    },
+    {
+        titulo: "Como Mil Anos de Guerras e Tratados Forjaram o Hexágono Perfeito das Fronteiras da França?",
+        categoria: "História",
+        data: "29 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Satellite_image_of_France_in_August_2002.jpg",
+        link: "historia-da-franca-formacao-territorial-fronteiras/",
+        resumo: "Do Tratado de Verdun em 843 e o fim da Guerra dos Cem Anos à anexação da Alsácia e o Tratado de Turim em 1860: a formação territorial do hexágono francês."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Fronteiras Terrestres do Mundo Onde Milhares de Quilômetros Dividem Continentes e Nações?",
+        categoria: "Rankings",
+        data: "28 Out 2026 - 22:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/09/Peace_Arch_%28Canada%E2%80%93United_States_border%29.jpg",
+        link: "ranking-maiores-fronteiras-terrestres-do-mundo/",
+        resumo: "Do paralelo 49 entre Canadá e EUA com 8.891 km à estepe entre Rússia e Cazaquistão e os Andes entre Argentina e Chile: o ranking das 10 maiores divisas terrestres."
+    },
+    {
+        titulo: "Por Que a Ilha de Taiwan É o Território Mais Perigoso e Disputado do Tabuleiro Militar Global?",
+        categoria: "Geopolítica",
+        data: "28 Out 2026 - 21:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/8/82/Bathymetry_and_ocean_currents_of_the_Taiwan_Strait_and_nearby_areas.png",
+        link: "taiwan-geopolitica-estreito-semicondutores-primeira-cadeia/",
+        resumo: "Primeira cadeia de ilhas, controle da rota de semicondutores e a barreira naval no Pacífico: por que a geografia de Taiwan impede o avanço irrestrito de superpotências."
+    },
+    {
+        titulo: "Por Que Vinte Por Cento de Todo o Petróleo Consumido no Mundo Precisa Atravessar Uma Valeta Naval de Trinta e Três Quilômetros?",
+        categoria: "Geopolítica",
+        data: "28 Out 2026 - 19:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/16/Strait_of_Hormuz_and_Musandam_Peninsula_%28MODIS_2018-12-10%29.jpg",
+        link: "estreito-de-ormuz-chokepoint-petroleo-geopolitica-golfo/",
+        resumo: "Com canais de navegação de apenas 3 km em cada sentido, o Estreito de Ormuz entre o Irã e Omã é a artéria energética mais vigiada e vulnerável de todo o planeta."
+    },
+    {
+        titulo: "Por Que Este Estreito de Vinte e Seis Quilômetros no Mar Vermelho Pode Interromper Doze Por Cento do Comércio Marítimo Mundial?",
+        categoria: "Geopolítica",
+        data: "28 Out 2026 - 18:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bab-el-Mandeb_And_Red_Sea_NASA_photo.webp",
+        link: "estreito-bab-el-mandeb-chokepoint-mar-vermelho-djibuti/",
+        resumo: "Entre o Iêmen e o Djibuti, o Estreito de Bab-el-Mandeb é a garganta marítima que conecta a Ásia à Europa. Uma interrupção aqui desvia milhares de navios para o Cabo."
+    },
+    {
+        titulo: "Como as Maiores Reservas de Cobalto do Planeta Transformaram a República Democrática do Congo no Epicentro da Geoeconomia Global?",
+        categoria: "Geoeconomia",
+        data: "28 Out 2026 - 16:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/DRC_mineral_resources_-_en_version.png",
+        link: "congo-geoeconomia-cobalto-coltan-riquezas-minerais/",
+        resumo: "Com mais de setenta por cento da produção mundial de cobalto no cinturão de Katanga, a República Democrática do Congo é a chave da transição energética do século XXI."
+    },
+    {
+        titulo: "Como a Espanha Mantém a Menor Fronteira Terrestre do Planeta em um Rochedo de Oitenta e Cinco Metros no Norte da África?",
+        categoria: "Fronteiras",
+        data: "28 Out 2026 - 14:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Velez_de_la_Gomera.jpg",
+        link: "penon-de-velez-de-la-gomera-menor-fronteira-espanha-marrocos/",
+        resumo: "Com exatos 85 metros de extensão em um tômbolo de areia, o Peñón de Vélez de la Gomera abriga a menor fronteira internacional contínua entre Espanha e Marrocos."
+    },
+    {
+        titulo: "Como Uma Faixa de Trezentos e Cinquenta Quilômetros de Montanhas Foi Criada para Impedir que Duas Superpotências Entrassem em Guerra?",
+        categoria: "Fronteiras",
+        data: "28 Out 2026 - 12:45",
+        img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Wakhan.png",
+        link: "corredor-de-wakhan-fronteira-afeganistao-grande-jogo/",
+        resumo: "Encravado entre o Tadjiquistão, Paquistão e China, o Corredor de Wakhan foi desenhado em 1895 no Grande Jogo para separar o Império Britânico do Império Russo."
+    },
+    {
+        titulo: "Como Duas Ilhas Separadas por Menos de Quatro Quilômetros Vivem com Vinte e Uma Horas de Diferença no Relógio?",
+        categoria: "Curiosidades",
+        data: "28 Out 2026 - 11:00",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/BeringSt-close-VE.jpg",
+        link: "ilhas-diomedes-estreito-de-bering-fuso-horario-russia-estados-unidos/",
+        resumo: "No Estreito de Bering, Big Diomede na Rússia e Little Diomede nos Estados Unidos distam apenas 3,8 km, mas estão divididas pela Linha Internacional de Data."
+    },
+    {
+        titulo: "Por Que o Ponto Mais Isolado de Todos os Oceanos Fica Mais Próximo dos Astronautas no Espaço do Que de Qualquer Ser Humano na Terra?",
+        categoria: "Curiosidades",
+        data: "28 Out 2026 - 09:15",
+        img: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Distancia_a_la_costa.png",
+        link: "ponto-nemo-polo-de-inacessibilidade-oceanica-cemiterio-espacial/",
+        resumo: "A 2.688 km de qualquer pedaço de terra no Pacífico Sul, o Ponto Nemo é o polo de inacessibilidade oceânica e o maior cemitério de espaçonaves do planeta."
+    },
+    {
+        titulo: "Como a Queda do Império Otomano e o Tratado de Lausanne Redesenharam as Fronteiras da Turquia Moderna?",
+        categoria: "História",
+        data: "28 Out 2026 - 07:30",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/58/Turkey-Greece-Bulgaria_on_Treaty_of_Lausanne.png",
+        link: "turquia-historia-formacao-fronteiras-tratado-lausanne/",
+        resumo: "Da partilha colonial de Sèvres em 1920 à guerra de independência de Atatürk e o Tratado de Lausanne de 1923: como as fronteiras da Turquia foram forjadas."
+    },
+    {
         titulo: "Quais São as Dez Menores Nações Insulares da Terra Ameaçadas Pela Subida dos Oceanos?",
         categoria: "Rankings",
         data: "27 Out 2026 - 19:15",
