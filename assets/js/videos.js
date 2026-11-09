@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 170 Shorts
+// Total: 14 Longos + 172 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,8 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "O megaprojeto de canal que pode falir Singapura", id: "xX9INPCOhz0", link: "https://www.youtube.com/watch?v=xX9INPCOhz0" },
+    { titulo: "Qual país tem a maior taxa de nascimentos do mundo?", id: "-cTpAPe8cVk", link: "https://www.youtube.com/watch?v=-cTpAPe8cVk" },
     { titulo: "O pedaço da Rússia na Europa!", id: "W-BJ-kziWGw", link: "https://www.youtube.com/watch?v=W-BJ-kziWGw" },
     { titulo: "Qual o país com o custo de vida mais caro da América do Sul?", id: "TttnOhbdEYY", link: "https://www.youtube.com/watch?v=TttnOhbdEYY" },
     { titulo: "Qual país mais aplica a pena de morte no mundo?", id: "7xT5ADTQwYM", link: "https://www.youtube.com/watch?v=7xT5ADTQwYM" },
