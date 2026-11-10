@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 173 Shorts
+// Total: 14 Longos + 174 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Por que a Indonésia está construindo uma capital no meio da selva?", id: "AVyExYcofMc", link: "https://www.youtube.com/watch?v=AVyExYcofMc" },
     { titulo: "A fronteira mais bizarra do mundo?", id: "ymbUSFzDHUw", link: "https://www.youtube.com/watch?v=ymbUSFzDHUw" },
     { titulo: "O megaprojeto de canal que pode falir Singapura", id: "xX9INPCOhz0", link: "https://www.youtube.com/watch?v=xX9INPCOhz0" },
     { titulo: "Qual país tem a maior taxa de nascimentos do mundo?", id: "-cTpAPe8cVk", link: "https://www.youtube.com/watch?v=-cTpAPe8cVk" },
