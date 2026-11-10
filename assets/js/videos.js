@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 172 Shorts
+// Total: 14 Longos + 173 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "A fronteira mais bizarra do mundo?", id: "ymbUSFzDHUw", link: "https://www.youtube.com/watch?v=ymbUSFzDHUw" },
     { titulo: "O megaprojeto de canal que pode falir Singapura", id: "xX9INPCOhz0", link: "https://www.youtube.com/watch?v=xX9INPCOhz0" },
     { titulo: "Qual país tem a maior taxa de nascimentos do mundo?", id: "-cTpAPe8cVk", link: "https://www.youtube.com/watch?v=-cTpAPe8cVk" },
     { titulo: "O pedaço da Rússia na Europa!", id: "W-BJ-kziWGw", link: "https://www.youtube.com/watch?v=W-BJ-kziWGw" },
