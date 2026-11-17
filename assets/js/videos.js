@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 176 Shorts
+// Total: 14 Longos + 177 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Como a China construiu uma muralha de areia militar no Mar do Sul?", id: "uX_QJHI1i6E", link: "https://www.youtube.com/watch?v=uX_QJHI1i6E" },
     { titulo: "Por que a Irlanda é um dos países mais ricos do mundo?", id: "QtQOK5-XpUk", link: "https://www.youtube.com/watch?v=QtQOK5-XpUk" },
     { titulo: "Por que a Venezuela quer invadir a Guiana?", id: "NnyRjHztf6I", link: "https://www.youtube.com/watch?v=NnyRjHztf6I" },
     { titulo: "Por que a Indonésia está construindo uma capital no meio da selva?", id: "AVyExYcofMc", link: "https://www.youtube.com/watch?v=AVyExYcofMc" },
