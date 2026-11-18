@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 179 Shorts
+// Total: 14 Longos + 180 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -21,6 +21,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.", id: "pYNyWyhVFr0", link: "https://www.youtube.com/watch?v=pYNyWyhVFr0" },
     { titulo: "Você imaginava que a chuva tinha um papel tão importante nessa rota?", id: "ffdNAeQltfo", link: "https://www.youtube.com/watch?v=ffdNAeQltfo" },
     { titulo: "Por que o mundo tem medo do Estreito de Ormuz?", id: "SNYjIJG-Mdw", link: "https://www.youtube.com/watch?v=SNYjIJG-Mdw" },
     { titulo: "Como a China construiu uma muralha de areia militar no Mar do Sul?", id: "uX_QJHI1i6E", link: "https://www.youtube.com/watch?v=uX_QJHI1i6E" },
