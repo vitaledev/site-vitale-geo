@@ -79,6 +79,81 @@ export const videosLongos: VideoItem[] = [
 
 export const videosShorts: VideoItem[] = [
   {
+    "titulo": "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.",
+    "id": "pYNyWyhVFr0",
+    "link": "https://www.youtube.com/watch?v=pYNyWyhVFr0"
+  },
+  {
+    "titulo": "Você imaginava que a chuva tinha um papel tão importante nessa rota?",
+    "id": "ffdNAeQltfo",
+    "link": "https://www.youtube.com/watch?v=ffdNAeQltfo"
+  },
+  {
+    "titulo": "Por que o mundo tem medo do Estreito de Ormuz?",
+    "id": "SNYjIJG-Mdw",
+    "link": "https://www.youtube.com/watch?v=SNYjIJG-Mdw"
+  },
+  {
+    "titulo": "Como a China construiu uma muralha de areia militar no Mar do Sul?",
+    "id": "uX_QJHI1i6E",
+    "link": "https://www.youtube.com/watch?v=uX_QJHI1i6E"
+  },
+  {
+    "titulo": "Por que a Irlanda é um dos países mais ricos do mundo?",
+    "id": "QtQOK5-XpUk",
+    "link": "https://www.youtube.com/watch?v=QtQOK5-XpUk"
+  },
+  {
+    "titulo": "Por que a Venezuela quer invadir a Guiana?",
+    "id": "NnyRjHztf6I",
+    "link": "https://www.youtube.com/watch?v=NnyRjHztf6I"
+  },
+  {
+    "titulo": "Por que a Indonésia está construindo uma capital no meio da selva?",
+    "id": "AVyExYcofMc",
+    "link": "https://www.youtube.com/watch?v=AVyExYcofMc"
+  },
+  {
+    "titulo": "A fronteira mais bizarra do mundo?",
+    "id": "ymbUSFzDHUw",
+    "link": "https://www.youtube.com/watch?v=ymbUSFzDHUw"
+  },
+  {
+    "titulo": "O megaprojeto de canal que pode falir Singapura",
+    "id": "xX9INPCOhz0",
+    "link": "https://www.youtube.com/watch?v=xX9INPCOhz0"
+  },
+  {
+    "titulo": "Qual país tem a maior taxa de nascimentos do mundo?",
+    "id": "-cTpAPe8cVk",
+    "link": "https://www.youtube.com/watch?v=-cTpAPe8cVk"
+  },
+  {
+    "titulo": "O pedaço da Rússia na Europa!",
+    "id": "W-BJ-kziWGw",
+    "link": "https://www.youtube.com/watch?v=W-BJ-kziWGw"
+  },
+  {
+    "titulo": "Qual o país com o custo de vida mais caro da América do Sul?",
+    "id": "TttnOhbdEYY",
+    "link": "https://www.youtube.com/watch?v=TttnOhbdEYY"
+  },
+  {
+    "titulo": "Qual país mais aplica a pena de morte no mundo?",
+    "id": "7xT5ADTQwYM",
+    "link": "https://www.youtube.com/watch?v=7xT5ADTQwYM"
+  },
+  {
+    "titulo": "Qual país tem mais lagos em todo o planeta?",
+    "id": "tMWrVm6ZDKk",
+    "link": "https://www.youtube.com/watch?v=tMWrVm6ZDKk"
+  },
+  {
+    "titulo": "Qual o país com a melhor educação do mundo?",
+    "id": "voaomiVrWLk",
+    "link": "https://www.youtube.com/watch?v=voaomiVrWLk"
+  },
+  {
     "titulo": "Como o megaporto do Peru pode mudar a rota do Brasil?",
     "id": "gHW1y43velA",
     "link": "https://www.youtube.com/watch?v=gHW1y43velA"

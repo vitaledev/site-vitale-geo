@@ -12,6 +12,46 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/videos/';
   description="Análises cartográficas e narrativas geopolíticas do VitaleGeo organizadas com carregamento ultraleve."
   canonical={canonicalUrl}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.vitalegeo.com.br/videos/#collection",
+        "url": canonicalUrl,
+        "name": "Vídeos & Documentários | VitaleGeo",
+        "description": "Análises cartográficas e narrativas geopolíticas do VitaleGeo.",
+        "inLanguage": "pt-BR",
+        "isPartOf": { "@id": "https://www.vitalegeo.com.br/#website" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": videosLongos.length,
+          "itemListElement": videosLongos.slice(0, 20).map((v, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "item": {
+              "@type": "VideoObject",
+              "name": v.titulo,
+              "description": v.titulo,
+              "thumbnailUrl": `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+              "embedUrl": `https://www.youtube.com/embed/${v.id}`,
+              "contentUrl": v.link,
+              "inLanguage": "pt-BR",
+              "publisher": { "@id": "https://www.vitalegeo.com.br/#organization" }
+            }
+          }))
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.vitalegeo.com.br/" },
+          { "@type": "ListItem", "position": 2, "name": "Vídeos", "item": canonicalUrl }
+        ]
+      }
+    ]
+  })} />
+
   <main class="page-content">
     <header class="relative pt-36 sm:pt-44 pb-8 px-6 overflow-hidden">
       <TopoLines strokeColor="#A8C3A6" />

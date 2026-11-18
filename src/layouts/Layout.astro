@@ -39,6 +39,7 @@ const fullImageUrl = image.startsWith('http')
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml" />
+  <link rel="alternate" type="text/plain" title="VitaleGeo LLM Context (llms.txt)" href="https://www.vitalegeo.com.br/llms.txt" />
 
   <!-- Verificação de Motores de Busca -->
   <meta name="msvalidate.01" content="E7F00CCD24D2356D8B5DCB967D43C223" />
@@ -74,13 +75,32 @@ const fullImageUrl = image.startsWith('http')
         "publisher": {
           "@id": "https://www.vitalegeo.com.br/#organization"
         },
-        "inLanguage": "pt-BR"
+        "inLanguage": "pt-BR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.vitalegeo.com.br/blog/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "Organization",
         "@id": "https://www.vitalegeo.com.br/#organization",
         "name": "VitaleGeo",
         "url": "https://www.vitalegeo.com.br/",
+        "description": "Observatório independente de inteligência geográfica, geopolítica, fronteiras internacionais, cartografia investigativa e simuladores geoespaciais.",
+        "publishingPrinciples": "https://www.vitalegeo.com.br/sobre/",
+        "knowsAbout": [
+          "Geopolítica",
+          "Cartografia",
+          "Fronteiras Internacionais",
+          "Enclaves e Exclaves",
+          "Chokepoints Marítimos",
+          "Projeções Cartográficas",
+          "Geodésia"
+        ],
         "logo": {
           "@type": "ImageObject",
           "@id": "https://www.vitalegeo.com.br/#logo",

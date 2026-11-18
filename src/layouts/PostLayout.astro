@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import TopoLines from '../components/TopoLines.astro';
+import { toIsoDate, parseReadingTimeIso } from '../utils/dates';
 
 interface RelatedPost {
   slug: string;
@@ -37,6 +38,8 @@ const {
 const siteUrl = 'https://www.vitalegeo.com.br';
 const canonicalUrl = slug ? `${siteUrl}/blog/${slug}/` : Astro.url.href;
 const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/') ? '' : '/'}${img}`;
+const isoDate = toIsoDate(data);
+const isoDuration = parseReadingTimeIso(tempoLeitura);
 ---
 
 <Layout
@@ -46,32 +49,75 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
   canonical={canonicalUrl}
   type="article"
 >
-  <!-- Schema.org JSON-LD para Artigo/Post -->
+  <!-- Schema.org JSON-LD para Artigo/Post & BreadcrumbList (GEO) -->
   <script type="application/ld+json" is:inline set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": titulo,
-    "description": resumo,
-    "image": fullImgUrl,
-    "inLanguage": "pt-BR",
-    "author": {
-      "@type": "Organization",
-      "name": "VitaleGeo",
-      "url": "https://www.vitalegeo.com.br/sobre/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "VitaleGeo",
-      "url": "https://www.vitalegeo.com.br/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.vitalegeo.com.br/assets/img/publisher/logo-publisher-square-1000.png"
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${canonicalUrl}#article`,
+        "headline": titulo,
+        "description": resumo,
+        "image": fullImgUrl,
+        "datePublished": isoDate,
+        "dateModified": isoDate,
+        "articleSection": categoria,
+        "timeRequired": isoDuration,
+        "isAccessibleForFree": true,
+        "inLanguage": "pt-BR",
+        "isPartOf": {
+          "@id": "https://www.vitalegeo.com.br/#website"
+        },
+        "author": {
+          "@type": "Organization",
+          "@id": "https://www.vitalegeo.com.br/#organization",
+          "name": "VitaleGeo",
+          "url": "https://www.vitalegeo.com.br/sobre/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.vitalegeo.com.br/#organization",
+          "name": "VitaleGeo",
+          "url": "https://www.vitalegeo.com.br/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.vitalegeo.com.br/assets/img/publisher/logo-publisher-square-1000.png"
+          }
+        },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".article-summary", ".article-body p:first-of-type"]
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://www.vitalegeo.com.br/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Posts",
+            "item": "https://www.vitalegeo.com.br/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": titulo,
+            "item": canonicalUrl
+          }
+        ]
       }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": canonicalUrl
-    }
+    ]
   })} />
 
   <main class="page-content">
@@ -80,7 +126,7 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
       <TopoLines strokeColor="#A8C3A6" />
 
       <div class="max-w-4xl mx-auto relative z-10">
-        <div class="flex flex-wrap items-center gap-2.5 mb-5">
+        <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2.5 mb-5">
           <a href="/blog/" class="inline-flex items-center gap-1.5 text-xs text-[#53647C] hover:text-[#0A192F] transition">
             <i class="ph-bold ph-arrow-left"></i> Posts
           </a>
@@ -88,19 +134,19 @@ const fullImgUrl = img.startsWith('http') ? img : `${siteUrl}${img.startsWith('/
           <span class="category-pill">{categoria}</span>
           <span class="text-[#0A192F]/30">·</span>
           <span class="text-xs text-[#53647C] font-mono">{tempoLeitura} de leitura</span>
-        </div>
+        </nav>
 
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-bold text-[#0A192F] leading-[1.15] tracking-tight mb-5">
           {titulo}
         </h1>
 
-        <p class="text-base sm:text-lg text-[#1F334E] leading-relaxed font-normal mb-6 max-w-3xl">
+        <p class="article-summary text-base sm:text-lg text-[#1F334E] leading-relaxed font-normal mb-6 max-w-3xl">
           {resumo}
         </p>
 
         <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-[#53647C] border-t border-[#0A192F]/10 pt-4">
           <div class="flex items-center gap-3">
-            <span class="text-[#C8102E] font-semibold font-mono">{data}</span>
+            <time datetime={isoDate} class="text-[#C8102E] font-semibold font-mono">{data}</time>
             <span class="text-[#0A192F]/30">·</span>
             <span>Por VitaleGeo</span>
           </div>

@@ -154,5 +154,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Projeções & Território",
     badge: "PROJEÇÃO & TISSOT",
     tags: ["projecao", "mercator", "peters", "robinson", "tissot", "globo 3d", "cartografia", "distorcao", "mapa"]
+  },
+  {
+    id: "graus-fronteiras",
+    titulo: "Graus de Separação de Fronteiras",
+    desc: "Calcule o menor caminho terrestre entre quaisquer dois países do planeta e visualize as fronteiras cruzadas no mapa.",
+    icon: "ph-bold ph-signpost",
+    cover: "/assets/img/ferramentas/graus-fronteiras.svg",
+    link: "/ferramentas/graus-fronteiras/",
+    categoria: "Geodésia & Rotas",
+    badge: "FRONTEIRAS",
+    tags: ["fronteiras", "caminho terrestre", "graus de separacao", "vizinhos", "rota terrestre", "geopolitica", "guiana francesa", "paises"]
   }
 ];

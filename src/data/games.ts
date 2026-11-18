@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "conexoes-geograficas",
+    titulo: "Conexões Geográficas",
+    desc: "Agrupe 16 países em 4 conjuntos secretos ligados por fronteiras, coordenadas, bandeiras ou anomalias territoriais.",
+    icon: "ph-fill ph-squares-four",
+    cover: "/assets/img/jogos/conexoes-geograficas.svg",
+    link: "/jogos/conexoes-geograficas/",
+    categoria: "Quiz & Geopolítica",
+    badge: "DESAFIO DIÁRIO",
+    tags: ["conexoes", "geoconnections", "puzzle", "diario", "grupos", "paises", "fronteiras", "logica"]
+  },
+  {
     id: "onde-fica",
     titulo: "Onde Fica no Mapa?",
     desc: "Ache estreitos, canais marítimos e marcos no mapa mudo. Quanto mais perto o clique, maior a pontuação.",

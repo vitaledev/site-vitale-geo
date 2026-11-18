@@ -6,7 +6,31 @@ import TopoLines from '../../components/TopoLines.astro';
 <Layout
   title="Sobre o VitaleGeo | Geopolítica, Fronteiras & Cartografia"
   description="Conheça o propósito, a metodologia editorial e as origens do projeto VitaleGeo."
+  canonical="https://www.vitalegeo.com.br/sobre/"
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://www.vitalegeo.com.br/sobre/#about",
+        "url": "https://www.vitalegeo.com.br/sobre/",
+        "name": "Sobre o VitaleGeo | Geopolítica, Fronteiras & Cartografia",
+        "description": "Propósito, diretrizes editoriais e metodologia cartográfica do VitaleGeo.",
+        "inLanguage": "pt-BR",
+        "isPartOf": { "@id": "https://www.vitalegeo.com.br/#website" },
+        "mainEntity": { "@id": "https://www.vitalegeo.com.br/#organization" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.vitalegeo.com.br/" },
+          { "@type": "ListItem", "position": 2, "name": "Sobre", "item": "https://www.vitalegeo.com.br/sobre/" }
+        ]
+      }
+    ]
+  })} />
+
   <main class="page-content pt-36 sm:pt-44 pb-20 px-6 relative overflow-hidden">
     <TopoLines strokeColor="#A8C3A6" />
 

@@ -28,7 +28,24 @@ const postsData = sortedPosts.map(p => ({
 <Layout
   title="VitaleGeo | Geopolítica, Fronteiras & Cartografia"
   description="Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores interativos."
+  canonical="https://www.vitalegeo.com.br/"
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.vitalegeo.com.br/#webpage",
+    "url": "https://www.vitalegeo.com.br/",
+    "name": "VitaleGeo | Geopolítica, Fronteiras & Cartografia",
+    "description": "Investigações territoriais, anomalias de fronteiras, rotas navais estratégicas e simuladores interativos.",
+    "inLanguage": "pt-BR",
+    "isPartOf": { "@id": "https://www.vitalegeo.com.br/#website" },
+    "about": { "@id": "https://www.vitalegeo.com.br/#organization" },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "header p"]
+    }
+  })} />
+
   <main class="page-content">
     <!-- Hero Editorial Cartográfico Arejado sobre Fundo Bege -->
     <header class="relative pt-36 sm:pt-44 pb-20 px-6 text-center overflow-hidden">

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/graus-fronteiras/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graus de Separação de Fronteiras: Menor Caminho Terrestre | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Calcule o menor número de fronteiras terrestres entre quaisquer dois países do mundo. Visualize a rota passo a passo no mapa interativo com bandeiras e distâncias reais.">
+    <meta name="keywords" content="graus de separacao fronteiras, menor caminho terrestre paises, quantas fronteiras entre paises, fronteiras do mundo, rota terrestre paises, brasil franca guiana, vitalegeo">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Graus de Separação de Fronteiras: Menor Caminho Terrestre | VitaleGeo">
+    <meta property="og:description" content="Quantos países você precisa atravessar para ir de Portugal à Coreia do Norte ou do Brasil aos Estados Unidos sem pisar no mar? Calcule no mapa.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/graus-fronteiras/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/graus-fronteiras.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Graus de Separação de Fronteiras | VitaleGeo">
+    <meta name="twitter:description" content="Descubra o menor caminho terrestre entre dois países do planeta no mapa interativo.">
+    <meta name="twitter:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/graus-fronteiras.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Estilos VitaleGeo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7 & TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Base Geográfica Local (CerebroGeo) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <!-- Schema.org Estruturado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Graus de Separação de Fronteiras",
+      "url": "https://www.vitalegeo.com.br/ferramentas/graus-fronteiras/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-BR",
+      "description": "Calculadora topológica de menor caminho terrestre entre 198 países e territórios com visualização cartográfica interativa.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .country-poly {
+            fill: #FFFFFF;
+            stroke: #0A192F;
+            stroke-width: 0.45;
+            stroke-opacity: 0.35;
+            transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.18s ease;
+            cursor: pointer;
+        }
+        .country-poly:hover {
+            fill: #EDE8DF;
+            stroke-opacity: 0.85;
+        }
+        .country-origin {
+            fill: #0A192F !important;
+            stroke: #F5F2EB !important;
+            stroke-width: 1.1 !important;
+            stroke-opacity: 1 !important;
+        }
+        .country-step {
+            fill: #A8C3A6 !important;
+            stroke: #0A192F !important;
+            stroke-width: 0.9 !important;
+            stroke-opacity: 0.9 !important;
+        }
+        .country-dest {
+            fill: #C8102E !important;
+            stroke: #0A192F !important;
+            stroke-width: 1.1 !important;
+            stroke-opacity: 1 !important;
+        }
+        .route-arc {
+            fill: none;
+            stroke: #0A192F;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-dasharray: 5 4;
+            pointer-events: none;
+        }
+        .route-arc-bridge {
+            stroke: #C8102E;
+            stroke-dasharray: 3 5;
+        }
+        .dropdown-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+            background: rgba(10, 25, 47, 0.25);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#0A192F] font-sans antialiased selection:bg-[#C8102E] selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-4 sm:px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/75 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 min-h-[44px] sm:min-h-[36px] rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Grade Desktop 3 Colunas com AdSense Lateral Não Intrusivo -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-12">
+
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Área Principal da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full min-w-0">
+
+            <!-- Cabeçalho Enxuto com Popover Explicativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/12">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-[0.15em] text-[#C8102E] block mb-1">
+                        Geopolítica &amp; Topologia Terrestre
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Graus de Separação de Fronteiras
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Calcule o menor caminho terrestre entre dois países e descubra quantas fronteiras internacionais separam a origem do destino.
+                    </p>
+                </div>
+
+                <div class="hover-info-container self-start sm:self-end shrink-0">
+                    <button type="button" id="btnInfoPopover" class="hover-info-trigger min-h-[44px] sm:min-h-[38px]" aria-label="Como funciona o cálculo">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como funciona?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-graph text-[#C8102E]"></i> Busca em Largura (BFS)
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            O algoritmo percorre o grafo de fronteiras terrestres entre 198 países para encontrar o trajeto com o menor número de divisas cruzadas.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li><strong>Contínuo a Pé:</strong> Exige continuidade física continental, ignorando saltos marítimos ou territórios ultramarinos.</li>
+                            <li><strong>Soberania Completa:</strong> Considera fronteiras legais em exclaves e territórios ultramarinos (como Brasil e França via Guiana Francesa, ou Espanha e Marrocos via Ceuta e Melilla).</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Painel de Controles (Acima da Dobra) -->
+            <section class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Seleção de países e modo de rota">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-end">
+
+                    <!-- Seletor de Origem -->
+                    <div class="relative" id="wrapOrigem">
+                        <label for="inputOrigem" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F] mb-1.5">
+                            País de Origem
+                        </label>
+                        <div class="relative flex items-center">
+                            <img id="flagOrigem" src="/assets/flags/pt.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputOrigem" type="text" autocomplete="off" placeholder="Buscar país de origem..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/30 focus:border-[#0A192F] transition">
+                            <button type="button" id="clearOrigem" aria-label="Limpar origem" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listOrigem" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+
+                    <!-- Botão Inverter -->
+                    <div class="flex justify-center">
+                        <button type="button" id="btnInverter" aria-label="Inverter origem e destino"
+                                class="min-h-[44px] min-w-[44px] px-3 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 transition flex items-center justify-center gap-1.5 text-xs font-mono font-bold">
+                            <i class="ph-bold ph-arrows-left-right text-base"></i>
+                            <span class="md:hidden">Inverter</span>
+                        </button>
+                    </div>
+
+                    <!-- Seletor de Destino -->
+                    <div class="relative" id="wrapDestino">
+                        <label for="inputDestino" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8102E] mb-1.5">
+                            País de Destino
+                        </label>
+                        <div class="relative flex items-center">
+                            <img id="flagDestino" src="/assets/flags/kp.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputDestino" type="text" autocomplete="off" placeholder="Buscar país de destino..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#C8102E]/30 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] transition">
+                            <button type="button" id="clearDestino" aria-label="Limpar destino" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listDestino" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+                </div>
+
+                <!-- Barra de Modo & Rotas Rápidas -->
+                <div class="mt-4 pt-3.5 border-t border-[#0A192F]/10 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                    <!-- Seletor de Modo Topológico -->
+                    <div class="inline-flex p-1 rounded-xl bg-[#F5F2EB] border border-[#0A192F]/10 self-start">
+                        <button type="button" id="modeWalk" class="min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#0A192F] text-white shadow-xs">
+                            <i class="ph-bold ph-footprints"></i>
+                            <span>Contínuo a Pé</span>
+                        </button>
+                        <button type="button" id="modeSovereign" class="min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 text-[#53647C] hover:text-[#0A192F]">
+                            <i class="ph-bold ph-flag"></i>
+                            <span>Soberania Completa</span>
+                        </button>
+                    </div>
+
+                    <!-- Atalhos de Rotas Clássicas + Aleatório -->
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <button type="button" data-preset="pt:kp" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Portugal → Coreia do Norte
+                        </button>
+                        <button type="button" data-preset="br:us" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil → EUA
+                        </button>
+                        <button type="button" data-preset="es:za" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Espanha → África do Sul
+                        </button>
+                        <button type="button" data-preset="br:kr:sovereign" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil → Coreia do Sul
+                        </button>
+                        <button type="button" id="btnAleatorio" class="min-h-[36px] px-3 py-1 rounded-lg bg-[#C8102E]/10 hover:bg-[#C8102E] text-[#C8102E] hover:text-white border border-[#C8102E]/25 text-[11px] font-mono font-bold transition inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-shuffle"></i>
+                            <span>Aleatório</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Faixa de Resultado & Telemetria Monumental -->
+            <section id="painelResultado" class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-5">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 sm:gap-5">
+                        <div class="min-w-[84px] h-[84px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#C8102E]">
+                            <span id="statFronteiras" class="font-display text-3xl sm:text-4xl font-black leading-none tracking-tight">7</span>
+                            <span id="statFronteirasLabel" class="font-mono text-[10px] uppercase tracking-wider text-[#A8C3A6] mt-1">fronteiras</span>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span id="badgeModoAtivo" class="px-2 py-0.5 rounded-md bg-[#F5F2EB] border border-[#0A192F]/12 font-mono text-[10px] font-bold uppercase text-[#0A192F]">
+                                    Contínuo a Pé
+                                </span>
+                                <span id="badgePonteSoberana" class="hidden px-2 py-0.5 rounded-md bg-[#C8102E]/10 border border-[#C8102E]/25 font-mono text-[10px] font-bold text-[#C8102E]"></span>
+                            </div>
+                            <h2 id="resumoTitulo" class="text-base sm:text-xl font-heading font-bold text-[#0A192F]">
+                                Portugal até Coreia do Norte
+                            </h2>
+                            <div id="resumoMetricas" class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs font-mono text-[#53647C]">
+                                <span><strong id="statPaises" class="text-[#0A192F]">8</strong> países no trajeto</span>
+                                <span><strong id="statDistancia" class="text-[#0A192F]">10.420 km</strong> geodésicos</span>
+                                <span><strong id="statArea" class="text-[#0A192F]">20,4 mi km²</strong> somados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ações de Compartilhamento -->
+                    <div class="flex flex-wrap items-center gap-2 shrink-0">
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener"
+                           class="min-h-[44px] px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-base"></i>
+                            <span>Compartilhar no WhatsApp</span>
+                        </a>
+                        <button type="button" id="btnCopiarLink"
+                                class="min-h-[44px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-link"></i>
+                            <span id="txtCopiarLink">Copiar link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Alerta de Sem Rota Terrestre (exibido quando null) -->
+                <div id="alertaSemRota" class="hidden mt-4 p-4 rounded-xl bg-[#F5F2EB] border border-[#C8102E]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-start gap-3">
+                        <i class="ph-bold ph-waves text-[#C8102E] text-xl shrink-0 mt-0.5"></i>
+                        <div>
+                            <h3 class="font-heading font-bold text-sm text-[#0A192F]" id="semRotaTitulo">Sem conexão terrestre contínua</h3>
+                            <p class="text-xs text-[#53647C] mt-0.5" id="semRotaDesc">Os territórios estão separados por oceanos ou mares sem fronteira terrestre contínua.</p>
+                        </div>
+                    </div>
+                    <button type="button" id="btnSugerirSoberania" class="hidden shrink-0 min-h-[40px] px-3.5 py-1.5 rounded-lg bg-[#C8102E] hover:bg-[#A00D24] text-white text-xs font-bold transition">
+                        Testar Soberania Completa
+                    </button>
+                </div>
+            </section>
+
+            <!-- Palco do Mapa Vetorial Interativo (Atlas Diurno Bege Cartográfico) -->
+            <section class="bg-white p-3 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Mapa interativo da rota terrestre">
+                <!-- Barra do Mapa -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3 pb-3 border-b border-[#0A192F]/10">
+                    <!-- Controle de Seleção Direta no Mapa -->
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-[#53647C]">Selecionar no mapa:</span>
+                        <div class="inline-flex rounded-lg bg-[#F5F2EB] p-0.5 border border-[#0A192F]/10">
+                            <button type="button" id="mapTargetOrigem" class="min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition bg-[#0A192F] text-white">
+                                Origem
+                            </button>
+                            <button type="button" id="mapTargetDestino" class="min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]">
+                                Destino
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Legenda & Controles de Zoom -->
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <div class="hidden sm:flex items-center gap-3 text-[11px] font-mono text-[#53647C]">
+                            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-[#0A192F] inline-block"></span> Origem</span>
+                            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-[#A8C3A6] border border-[#0A192F]/40 inline-block"></span> Trajeto</span>
+                            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E] inline-block"></span> Destino</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button type="button" id="btnZoomIn" aria-label="Aproximar mapa" class="min-h-[36px] min-w-[36px] rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 flex items-center justify-center transition">
+                                <i class="ph-bold ph-plus"></i>
+                            </button>
+                            <button type="button" id="btnZoomOut" aria-label="Afastar mapa" class="min-h-[36px] min-w-[36px] rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 flex items-center justify-center transition">
+                                <i class="ph-bold ph-minus"></i>
+                            </button>
+                            <button type="button" id="btnFitRoute" title="Ajustar à rota" class="min-h-[36px] px-2.5 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 text-[11px] font-mono font-bold flex items-center gap-1 transition">
+                                <i class="ph-bold ph-corners-out"></i>
+                                <span class="hidden sm:inline">Enquadrar</span>
+                            </button>
+                            <button type="button" id="btnResetZoom" title="Ver globo completo" class="min-h-[36px] px-2.5 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 text-[11px] font-mono font-bold flex items-center gap-1 transition">
+                                <i class="ph-bold ph-globe-hemisphere-west"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container SVG D3 -->
+                <div class="relative bg-[#EAE4D7] rounded-xl overflow-hidden border border-[#0A192F]/15">
+                    <div id="loadingMap" class="absolute inset-0 bg-[#EAE4D7] flex flex-col items-center justify-center gap-2 z-20">
+                        <div class="w-8 h-8 border-2 border-[#A8C3A6] border-t-[#C8102E] rounded-full animate-spin"></div>
+                        <span class="text-xs font-mono text-[#0A192F]">Carregando malha territorial...</span>
+                    </div>
+
+                    <svg id="svgMapa" class="w-full h-[380px] sm:h-[500px] block cursor-grab active:cursor-grabbing select-none"></svg>
+
+                    <!-- Bússola Minimalista Canto Superior Direito -->
+                    <div class="absolute top-3 right-3 pointer-events-none opacity-80">
+                        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="24" stroke="#0A192F" stroke-width="1.2" opacity="0.35"/>
+                            <polygon points="32,12 36,32 32,52 28,32" fill="#0A192F"/>
+                            <polygon points="32,12 36,32 28,32" fill="#C8102E"/>
+                            <text x="32" y="9" fill="#C8102E" font-family="'Orbitron', sans-serif" font-size="9" font-weight="800" text-anchor="middle">N</text>
+                        </svg>
+                    </div>
+
+                    <!-- Tooltip Flutuante de País -->
+                    <div id="mapTooltip" class="hidden absolute bottom-3 left-3 z-10 bg-white/95 backdrop-blur-md border border-[#0A192F]/15 rounded-xl p-3 shadow-lg max-w-xs pointer-events-none">
+                        <div class="flex items-center gap-2 mb-1">
+                            <img id="ttFlag" src="" alt="" class="w-6 h-4 object-cover rounded-[2px] border border-[#0A192F]/15 hidden">
+                            <span id="ttNome" class="font-heading font-bold text-sm text-[#0A192F]"></span>
+                        </div>
+                        <div class="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] font-mono text-[#53647C]">
+                            <span id="ttCapital"></span>
+                            <span id="ttFronteiras"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cadeia Passo a Passo da Rota -->
+            <section id="secaoPassos" class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-6" aria-label="Países atravessados na rota">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-2.5 border-b border-[#0A192F]/10">
+                    <h3 class="font-heading font-bold text-sm sm:text-base text-[#0A192F] flex items-center gap-2">
+                        <i class="ph-bold ph-signpost text-[#C8102E]"></i>
+                        <span>Sequência de Fronteiras</span>
+                    </h3>
+                    <span id="passosSubtitulo" class="text-[11px] font-mono text-[#53647C]"></span>
+                </div>
+
+                <div id="listaPassos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <!-- Cards inseridos via JS -->
+                </div>
+            </section>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/50 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box Discreto de Retenção -->
+            <div class="p-5 rounded-2xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Domina as fronteiras de cabeça?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Teste seus reflexos geográficos identificando vizinhos reais e pegadinhas territoriais.</p>
+                </div>
+                <a href="/jogos/fronteiras/" class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-map-trifold"></i>
+                    <span>Jogar Fronteiras do Mundo</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Observatório &amp; Cartografia Independente</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const PAISES = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const paisByIso = new Map(PAISES.map(p => [p.iso2.toLowerCase(), p]));
+
+            // Normalização de texto para busca sem acentos
+            const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // Pares que dependem de territórios ultramarinos, estreitos ou exclaves não contíguos a pé
+            const ARESTAS_EXCLUIDAS_A_PE = new Set([
+                'br-fr', 'fr-sr', 'es-ma', 'es-gb', 'lt-ru', 'pl-ru', 'ao-cg', 'az-tr'
+            ]);
+
+            // Notas explicativas para pontes soberanas específicas
+            const NOTAS_PONTES = {
+                'br-fr': 'Fronteira terrestre via Guiana Francesa',
+                'fr-sr': 'Fronteira terrestre via Guiana Francesa',
+                'es-ma': 'Fronteira via enclaves de Ceuta e Melilla',
+                'es-gb': 'Fronteira via Território Britânico de Gibraltar',
+                'lt-ru': 'Fronteira via exclave de Kaliningrado',
+                'pl-ru': 'Fronteira via exclave de Kaliningrado',
+                'ao-cg': 'Fronteira via exclave de Cabinda',
+                'az-tr': 'Fronteira via exclave de Naquichevão'
+            };
+
+            const edgeKey = (a, b) => [a, b].sort().join('-');
+
+            // Mapeamento explícito de códigos territoriais especiais (gf -> fr, gi -> gb)
+            const aliasTerritorio = (code) => {
+                if (code === 'gf') return 'fr';
+                if (code === 'gi') return 'gb';
+                return code;
+            };
+
+            // Monta lista de adjacência simétrica para o modo escolhido
+            function construirGrafo(modo) {
+                const adj = new Map();
+                PAISES.forEach(p => adj.set(p.iso2, new Set()));
+
+                PAISES.forEach(p => {
+                    const a = p.iso2;
+                    (p.fronteiras || []).forEach(rawB => {
+                        const b = aliasTerritorio(rawB);
+                        if (!paisByIso.has(b) || a === b) return;
+                        const k = edgeKey(a, b);
+                        if (modo === 'walk' && ARESTAS_EXCLUIDAS_A_PE.has(k)) return;
+                        adj.get(a).add(b);
+                        adj.get(b).add(a);
+                    });
+                });
+                return adj;
+            }
+
+            const grafoWalk = construirGrafo('walk');
+            const grafoSovereign = construirGrafo('sovereign');
+
+            // Algoritmo BFS (Breadth-First Search)
+            function calcularMenorCaminho(origemIso, destinoIso, modo) {
+                if (origemIso === destinoIso) return [origemIso];
+                const adj = modo === 'sovereign' ? grafoSovereign : grafoWalk;
+                const fila = [[origemIso]];
+                const visitados = new Set([origemIso]);
+
+                while (fila.length > 0) {
+                    const caminho = fila.shift();
+                    const atual = caminho[caminho.length - 1];
+                    const vizinhos = Array.from(adj.get(atual) || []);
+
+                    // Ordena vizinhos por proximidade geográfica ao destino para desempates mais naturais
+                    const destPais = paisByIso.get(destinoIso);
+                    if (destPais) {
+                        vizinhos.sort((v1, v2) => {
+                            const p1 = paisByIso.get(v1);
+                            const p2 = paisByIso.get(v2);
+                            const d1 = distanciaHaversineKm(p1.lat, p1.lng, destPais.lat, destPais.lng);
+                            const d2 = distanciaHaversineKm(p2.lat, p2.lng, destPais.lat, destPais.lng);
+                            return d1 - d2;
+                        });
+                    }
+
+                    for (const prox of vizinhos) {
+                        if (visitados.has(prox)) continue;
+                        const novoCaminho = [...caminho, prox];
+                        if (prox === destinoIso) return novoCaminho;
+                        visitados.add(prox);
+                        fila.push(novoCaminho);
+                    }
+                }
+                return null;
+            }
+
+            function distanciaHaversineKm(lat1, lon1, lat2, lon2) {
+                const R = 6371;
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLon = (lon2 - lon1) * Math.PI / 180;
+                const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                          Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+            }
+
+            function formatarArea(km2) {
+                if (!km2) return '—';
+                if (km2 >= 1000000) return (km2 / 1000000).toFixed(1).replace('.', ',') + ' mi km²';
+                return km2.toLocaleString('pt-BR') + ' km²';
+            }
+
+            // Estado da Aplicação
+            const estado = {
+                origem: 'pt',
+                destino: 'kp',
+                modo: 'walk', // 'walk' | 'sovereign'
+                alvoCliqueMapa: 'destino', // 'origem' | 'destino'
+                caminho: []
+            };
+
+            // Lê Query Params iniciais (?de=pt&para=kp&modo=walk)
+            (function lerQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                const de = (params.get('de') || '').toLowerCase();
+                const para = (params.get('para') || '').toLowerCase();
+                const modo = params.get('modo');
+                if (paisByIso.has(de)) estado.origem = de;
+                if (paisByIso.has(para)) estado.destino = para;
+                if (modo === 'sovereign' || modo === 'walk') estado.modo = modo;
+            })();
+
+            // Elementos DOM
+            const inputOrigem = document.getElementById('inputOrigem');
+            const inputDestino = document.getElementById('inputDestino');
+            const flagOrigem = document.getElementById('flagOrigem');
+            const flagDestino = document.getElementById('flagDestino');
+            const listOrigem = document.getElementById('listOrigem');
+            const listDestino = document.getElementById('listDestino');
+
+            // Combobox pesquisável reutilizável
+            function configurarCombobox(tipo, inputEl, listEl) {
+                const paisesOrdenados = [...PAISES].sort((a, b) => a.nome.localeCompare(b.nome, 'pt'));
+
+                function renderLista(filtro) {
+                    const q = norm(filtro);
+                    const filtrados = q
+                        ? paisesOrdenados.filter(p => norm(p.nome).includes(q) || norm(p.capital).includes(q) || norm(p.continente).includes(q))
+                        : paisesOrdenados;
+
+                    if (filtrados.length === 0) {
+                        listEl.innerHTML = '<div class="px-3 py-2 text-xs font-mono text-[#53647C]">Nenhum país encontrado.</div>';
+                        return;
+                    }
+
+                    listEl.innerHTML = filtrados.slice(0, 60).map(p => {
+                        const qtdFront = (grafoSovereign.get(p.iso2) || new Set()).size;
+                        const selecionado = estado[tipo] === p.iso2;
+                        return `
+                            <button type="button" data-iso="${p.iso2}"
+                                    class="w-full px-2.5 py-2 rounded-lg text-left flex items-center justify-between gap-2 text-xs transition ${selecionado ? 'bg-[#0A192F] text-white' : 'hover:bg-[#F5F2EB] text-[#0A192F]'}">
+                                <span class="flex items-center gap-2 min-w-0">
+                                    <img src="/assets/flags/${p.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                    <span class="font-semibold truncate">${p.nome}</span>
+                                </span>
+                                <span class="font-mono text-[10px] shrink-0 ${selecionado ? 'text-[#A8C3A6]' : 'text-[#53647C]'}">
+                                    ${qtdFront === 0 ? 'Ilha' : qtdFront + (qtdFront === 1 ? ' vizinho' : ' vizinhos')}
+                                </span>
+                            </button>
+                        `;
+                    }).join('');
+
+                    listEl.querySelectorAll('button[data-iso]').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            estado[tipo] = btn.getAttribute('data-iso');
+                            listEl.classList.add('hidden');
+                            atualizarTudo(true);
+                        });
+                    });
+                }
+
+                inputEl.addEventListener('focus', () => {
+                    inputEl.select();
+                    renderLista('');
+                    listEl.classList.remove('hidden');
+                });
+
+                inputEl.addEventListener('input', () => {
+                    renderLista(inputEl.value);
+                    listEl.classList.remove('hidden');
+                });
+
+                document.getElementById(tipo === 'origem' ? 'clearOrigem' : 'clearDestino').addEventListener('click', () => {
+                    if (listEl.classList.contains('hidden')) {
+                        renderLista('');
+                        listEl.classList.remove('hidden');
+                        inputEl.focus();
+                    } else {
+                        listEl.classList.add('hidden');
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    const wrapId = tipo === 'origem' ? 'wrapOrigem' : 'wrapDestino';
+                    if (!document.getElementById(wrapId).contains(e.target)) {
+                        listEl.classList.add('hidden');
+                        const p = paisByIso.get(estado[tipo]);
+                        if (p) inputEl.value = p.nome;
+                    }
+                });
+            }
+
+            configurarCombobox('origem', inputOrigem, listOrigem);
+            configurarCombobox('destino', inputDestino, listDestino);
+
+            // Controles de modo
+            const btnWalk = document.getElementById('modeWalk');
+            const btnSovereign = document.getElementById('modeSovereign');
+
+            function atualizarBotoesModo() {
+                if (estado.modo === 'walk') {
+                    btnWalk.className = 'min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#0A192F] text-white shadow-xs';
+                    btnSovereign.className = 'min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 text-[#53647C] hover:text-[#0A192F]';
+                } else {
+                    btnSovereign.className = 'min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#C8102E] text-white shadow-xs';
+                    btnWalk.className = 'min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 text-[#53647C] hover:text-[#0A192F]';
+                }
+            }
+
+            btnWalk.addEventListener('click', () => {
+                estado.modo = 'walk';
+                atualizarTudo(true);
+            });
+            btnSovereign.addEventListener('click', () => {
+                estado.modo = 'sovereign';
+                atualizarTudo(true);
+            });
+
+            // Inverter
+            document.getElementById('btnInverter').addEventListener('click', () => {
+                const tmp = estado.origem;
+                estado.origem = estado.destino;
+                estado.destino = tmp;
+                atualizarTudo(true);
+            });
+
+            // Presets
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const [de, para, modo] = btn.getAttribute('data-preset').split(':');
+                    estado.origem = de;
+                    estado.destino = para;
+                    estado.modo = modo || 'walk';
+                    atualizarTudo(true);
+                });
+            });
+
+            // Aleatório (garante par com caminho válido)
+            document.getElementById('btnAleatorio').addEventListener('click', () => {
+                const comFronteira = PAISES.filter(p => (grafoWalk.get(p.iso2) || new Set()).size > 0);
+                for (let tent = 0; tent < 30; tent++) {
+                    const a = comFronteira[Math.floor(Math.random() * comFronteira.length)].iso2;
+                    const b = comFronteira[Math.floor(Math.random() * comFronteira.length)].iso2;
+                    if (a === b) continue;
+                    const c = calcularMenorCaminho(a, b, estado.modo);
+                    if (c && c.length >= 3) {
+                        estado.origem = a;
+                        estado.destino = b;
+                        atualizarTudo(true);
+                        return;
+                    }
+                }
+            });
+
+            // Alternar alvo do clique no mapa
+            const btnMapOrigem = document.getElementById('mapTargetOrigem');
+            const btnMapDestino = document.getElementById('mapTargetDestino');
+            function atualizarAlvoMapa() {
+                if (estado.alvoCliqueMapa === 'origem') {
+                    btnMapOrigem.className = 'min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition bg-[#0A192F] text-white';
+                    btnMapDestino.className = 'min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]';
+                } else {
+                    btnMapDestino.className = 'min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition bg-[#C8102E] text-white';
+                    btnMapOrigem.className = 'min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]';
+                }
+            }
+            btnMapOrigem.addEventListener('click', () => { estado.alvoCliqueMapa = 'origem'; atualizarAlvoMapa(); });
+            btnMapDestino.addEventListener('click', () => { estado.alvoCliqueMapa = 'destino'; atualizarAlvoMapa(); });
+
+            // Sugerir Soberania Completa
+            document.getElementById('btnSugerirSoberania').addEventListener('click', () => {
+                estado.modo = 'sovereign';
+                atualizarTudo(true);
+            });
+
+            // Copiar Link
+            document.getElementById('btnCopiarLink').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const txt = document.getElementById('txtCopiarLink');
+                    txt.textContent = 'Copiado!';
+                    setTimeout(() => { txt.textContent = 'Copiar link'; }, 1800);
+                } catch (e) {}
+            });
+
+            // =========================================================================
+            // MOTOR CARTOGRÁFICO D3 + TOPOJSON
+            // =========================================================================
+            let svg, gMapa, gPaises, gRotas, gPins, projecao, pathGen, zoomBehavior;
+            let featuresMundo = [];
+            let featureByIso = new Map();
+            let isoByFeature = new Map();
+
+            const MICROESTADOS_PINS = new Set([
+                'mc','ad','sm','va','li','sg','mt','bh','mv','sc','kn','ag','dm','lc','vc','gd','bb','ws','to','fm','pw','mh','ki','tv','nr'
+            ]);
+
+            function mapearFeaturesParaPaises(features) {
+                featureByIso.clear();
+                isoByFeature.clear();
+                const usados = new Set();
+
+                // Casos explícitos especiais no countries-110m
+                const fCyprus = features.find(f => String(f.id) === '196');
+                if (fCyprus) { featureByIso.set('cy', fCyprus); isoByFeature.set(fCyprus, 'cy'); usados.add(fCyprus); }
+                const fKosovo = features.find(f => f.properties && f.properties.name === 'Kosovo');
+                if (fKosovo) { featureByIso.set('xk', fKosovo); isoByFeature.set(fKosovo, 'xk'); usados.add(fKosovo); }
+
+                PAISES.forEach(p => {
+                    if (MICROESTADOS_PINS.has(p.iso2) || featureByIso.has(p.iso2)) return;
+                    let match = features.find(ft => !usados.has(ft) && d3.geoContains(ft, [p.lng, p.lat]));
+                    if (!match) {
+                        let best = null, bestD = Infinity;
+                        features.forEach(ft => {
+                            if (usados.has(ft)) return;
+                            const c = d3.geoCentroid(ft);
+                            const d = Math.hypot(c[0] - p.lng, c[1] - p.lat);
+                            if (d < bestD) { bestD = d; best = ft; }
+                        });
+                        if (bestD < 4.5) match = best;
+                    }
+                    if (match) {
+                        featureByIso.set(p.iso2, match);
+                        isoByFeature.set(match, p.iso2);
+                        usados.add(match);
+                    }
+                });
+            }
+
+            function inicializarMapa(world) {
+                featuresMundo = topojson.feature(world, world.objects.countries).features
+                    .filter(f => !(f.properties && f.properties.name === 'Antarctica'));
+                mapearFeaturesParaPaises(featuresMundo);
+
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 500;
+
+                svg = d3.select('#svgMapa').attr('viewBox', `0 0 ${w} ${h}`);
+                svg.selectAll('*').remove();
+
+                projecao = d3.geoNaturalEarth1().fitExtent([[18, 18], [w - 18, h - 18]], {
+                    type: 'FeatureCollection',
+                    features: featuresMundo
+                });
+                pathGen = d3.geoPath().projection(projecao);
+
+                gMapa = svg.append('g');
+
+                // Grade sutil de meridianos e paralelos
+                const graticule = d3.geoGraticule().step([20, 20]);
+                gMapa.append('path')
+                    .datum(graticule)
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.4)
+                    .attr('stroke-opacity', 0.12)
+                    .attr('stroke-dasharray', '3,4');
+
+                gPaises = gMapa.append('g');
+                gRotas = gMapa.append('g');
+                gPins = gMapa.append('g');
+
+                const tooltip = document.getElementById('mapTooltip');
+
+                gPaises.selectAll('path')
+                    .data(featuresMundo)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'country-poly')
+                    .attr('d', pathGen)
+                    .on('mouseenter', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        const p = iso ? paisByIso.get(iso) : null;
+                        const ttFlag = document.getElementById('ttFlag');
+                        if (p) {
+                            ttFlag.src = `/assets/flags/${p.iso2}.svg`;
+                            ttFlag.classList.remove('hidden');
+                            document.getElementById('ttNome').textContent = p.nome;
+                            document.getElementById('ttCapital').textContent = `Capital: ${p.capital}`;
+                            const qViz = (grafoSovereign.get(p.iso2) || new Set()).size;
+                            document.getElementById('ttFronteiras').textContent = qViz === 0 ? 'Território insular' : `${qViz} fronteiras`;
+                        } else {
+                            ttFlag.classList.add('hidden');
+                            document.getElementById('ttNome').textContent = (d.properties && d.properties.name) || 'Território';
+                            document.getElementById('ttCapital').textContent = '';
+                            document.getElementById('ttFronteiras').textContent = '';
+                        }
+                        tooltip.classList.remove('hidden');
+                    })
+                    .on('mouseleave', () => {
+                        tooltip.classList.add('hidden');
+                    })
+                    .on('click', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        if (!iso || !paisByIso.has(iso)) return;
+                        estado[estado.alvoCliqueMapa] = iso;
+                        atualizarTudo(true);
+                    });
+
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 9])
+                    .on('zoom', (event) => {
+                        gMapa.attr('transform', event.transform);
+                        const k = event.transform.k;
+                        gPaises.selectAll('path').style('stroke-width', (0.6 / Math.sqrt(k)) + 'px');
+                        gRotas.selectAll('path').style('stroke-width', (2.4 / Math.sqrt(k)) + 'px');
+                    });
+
+                svg.call(zoomBehavior);
+
+                document.getElementById('btnZoomIn').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 1.5);
+                document.getElementById('btnZoomOut').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 0.67);
+                document.getElementById('btnResetZoom').onclick = () => svg.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+                document.getElementById('btnFitRoute').onclick = () => enquadrarRota();
+
+                atualizarMapaVisual(true);
+            }
+
+            function enquadrarRota() {
+                if (!svg || !zoomBehavior) return;
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 500;
+
+                const lista = (estado.caminho && estado.caminho.length > 0)
+                    ? estado.caminho
+                    : [estado.origem, estado.destino];
+
+                const pts = [];
+                lista.forEach(iso => {
+                    const ft = featureByIso.get(iso);
+                    if (ft) {
+                        const b = pathGen.bounds(ft);
+                        pts.push(b[0], b[1]);
+                    } else {
+                        const p = paisByIso.get(iso);
+                        if (p) {
+                            const xy = projecao([p.lng, p.lat]);
+                            if (xy) pts.push(xy);
+                        }
+                    }
+                });
+
+                if (pts.length === 0) return;
+
+                let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+                pts.forEach(([x, y]) => {
+                    if (x < x0) x0 = x;
+                    if (y < y0) y0 = y;
+                    if (x > x1) x1 = x;
+                    if (y > y1) y1 = y;
+                });
+
+                const dx = Math.max(40, x1 - x0);
+                const dy = Math.max(40, y1 - y0);
+                // Se o trajeto cruza quase todo o planisfério horizontalmente (ex: Espanha -> Coreia), reduz zoom para não cortar
+                if (dx > w * 0.78) {
+                    svg.transition().duration(450).call(zoomBehavior.transform, d3.zoomIdentity);
+                    return;
+                }
+
+                const cx = (x0 + x1) / 2;
+                const cy = (y0 + y1) / 2;
+                const scale = Math.max(1, Math.min(5.5, 0.78 / Math.max(dx / w, dy / h)));
+                const tx = w / 2 - scale * cx;
+                const ty = h / 2 - scale * cy;
+
+                svg.transition().duration(450).call(
+                    zoomBehavior.transform,
+                    d3.zoomIdentity.translate(tx, ty).scale(scale)
+                );
+            }
+
+            function atualizarMapaVisual(comEnquadramento = false) {
+                if (!gPaises) return;
+                const caminhoSet = new Set(estado.caminho || []);
+
+                gPaises.selectAll('path')
+                    .attr('class', d => {
+                        const iso = isoByFeature.get(d);
+                        if (iso === estado.origem) return 'country-poly country-origin';
+                        if (iso === estado.destino) return 'country-poly country-dest';
+                        if (caminhoSet.has(iso)) return 'country-poly country-step';
+                        return 'country-poly';
+                    });
+
+                // Desenhar arcos da rota
+                gRotas.selectAll('*').remove();
+                gPins.selectAll('*').remove();
+
+                if (estado.caminho && estado.caminho.length > 1) {
+                    for (let i = 0; i < estado.caminho.length - 1; i++) {
+                        const p1 = paisByIso.get(estado.caminho[i]);
+                        const p2 = paisByIso.get(estado.caminho[i + 1]);
+                        if (!p1 || !p2) continue;
+
+                        const k = edgeKey(p1.iso2, p2.iso2);
+                        const ehPonte = Boolean(NOTAS_PONTES[k]);
+
+                        const geoLine = {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'LineString',
+                                coordinates: [[p1.lng, p1.lat], [p2.lng, p2.lat]]
+                            }
+                        };
+
+                        gRotas.append('path')
+                            .datum(geoLine)
+                            .attr('d', pathGen)
+                            .attr('class', ehPonte ? 'route-arc route-arc-bridge' : 'route-arc');
+                    }
+                }
+
+                // Desenhar nós pontuais para países no trajeto (ou origem/destino sem polígono próprio)
+                const pontos = (estado.caminho && estado.caminho.length > 0)
+                    ? estado.caminho
+                    : [estado.origem, estado.destino];
+
+                pontos.forEach((iso, idx) => {
+                    const p = paisByIso.get(iso);
+                    if (!p) return;
+                    const xy = projecao([p.lng, p.lat]);
+                    if (!xy) return;
+                    const ehOrigem = iso === estado.origem;
+                    const ehDestino = iso === estado.destino;
+
+                    gPins.append('circle')
+                        .attr('cx', xy[0])
+                        .attr('cy', xy[1])
+                        .attr('r', ehOrigem || ehDestino ? 5.5 : 3.5)
+                        .attr('fill', ehDestino ? '#C8102E' : (ehOrigem ? '#0A192F' : '#F5F2EB'))
+                        .attr('stroke', ehOrigem ? '#F5F2EB' : '#0A192F')
+                        .attr('stroke-width', 1.6)
+                        .style('pointer-events', 'none');
+                });
+
+                if (comEnquadramento) {
+                    enquadrarRota();
+                }
+            }
+
+            // =========================================================================
+            // ATUALIZAÇÃO DE INTERFACE, PASSOS & COMPARTILHAMENTO
+            // =========================================================================
+            function atualizarTudo(enquadrar = false) {
+                const pOrig = paisByIso.get(estado.origem);
+                const pDest = paisByIso.get(estado.destino);
+                if (!pOrig || !pDest) return;
+
+                inputOrigem.value = pOrig.nome;
+                inputDestino.value = pDest.nome;
+                flagOrigem.src = `/assets/flags/${pOrig.iso2}.svg`;
+                flagDestino.src = `/assets/flags/${pDest.iso2}.svg`;
+                atualizarBotoesModo();
+                atualizarAlvoMapa();
+
+                // Atualiza URL sem recarregar
+                const urlObj = new URL(window.location.href);
+                urlObj.searchParams.set('de', estado.origem);
+                urlObj.searchParams.set('para', estado.destino);
+                urlObj.searchParams.set('modo', estado.modo);
+                window.history.replaceState({}, '', urlObj.toString());
+
+                // Calcula caminho mínimo
+                const caminho = calcularMenorCaminho(estado.origem, estado.destino, estado.modo);
+                estado.caminho = caminho;
+
+                document.getElementById('badgeModoAtivo').textContent = estado.modo === 'walk' ? 'Contínuo a Pé' : 'Soberania Completa';
+                document.getElementById('resumoTitulo').textContent = `${pOrig.nome} até ${pDest.nome}`;
+
+                const alertaSemRota = document.getElementById('alertaSemRota');
+                const btnSugerirSoberania = document.getElementById('btnSugerirSoberania');
+                const badgePonte = document.getElementById('badgePonteSoberana');
+                const secaoPassos = document.getElementById('secaoPassos');
+
+                if (caminho) {
+                    alertaSemRota.classList.add('hidden');
+                    secaoPassos.classList.remove('hidden');
+
+                    const fronteiras = caminho.length - 1;
+                    document.getElementById('statFronteiras').textContent = fronteiras;
+                    document.getElementById('statFronteirasLabel').textContent = fronteiras === 1 ? 'fronteira' : 'fronteiras';
+                    document.getElementById('statPaises').textContent = caminho.length;
+
+                    // Distância encadeada e área somada
+                    let distTotal = 0;
+                    let areaTotal = 0;
+                    const pontesUsadas = [];
+
+                    for (let i = 0; i < caminho.length; i++) {
+                        const cPais = paisByIso.get(caminho[i]);
+                        areaTotal += (cPais.area_km2 || 0);
+                        if (i < caminho.length - 1) {
+                            const proxPais = paisByIso.get(caminho[i + 1]);
+                            distTotal += distanciaHaversineKm(cPais.lat, cPais.lng, proxPais.lat, proxPais.lng);
+                            const nota = NOTAS_PONTES[edgeKey(cPais.iso2, proxPais.iso2)];
+                            if (nota) pontesUsadas.push(nota);
+                        }
+                    }
+
+                    document.getElementById('statDistancia').textContent = `${distTotal.toLocaleString('pt-BR')} km`;
+                    document.getElementById('statArea').textContent = formatarArea(areaTotal);
+
+                    if (pontesUsadas.length > 0) {
+                        badgePonte.textContent = pontesUsadas[0];
+                        badgePonte.classList.remove('hidden');
+                    } else {
+                        badgePonte.classList.add('hidden');
+                    }
+
+                    // Renderiza cards de cada etapa
+                    document.getElementById('passosSubtitulo').textContent =
+                        fronteiras === 0
+                            ? 'Mesmo país selecionado'
+                            : `${fronteiras} ${fronteiras === 1 ? 'fronteira cruzada' : 'fronteiras cruzadas'}`;
+
+                    const listaPassos = document.getElementById('listaPassos');
+                    listaPassos.innerHTML = caminho.map((iso, idx) => {
+                        const p = paisByIso.get(iso);
+                        const ehOrigem = idx === 0;
+                        const ehDestino = idx === caminho.length - 1;
+                        const proxIso = idx < caminho.length - 1 ? caminho[idx + 1] : null;
+                        const proxPais = proxIso ? paisByIso.get(proxIso) : null;
+                        const legKm = proxPais ? distanciaHaversineKm(p.lat, p.lng, proxPais.lat, proxPais.lng) : null;
+                        const notaPonte = proxPais ? NOTAS_PONTES[edgeKey(iso, proxIso)] : null;
+
+                        let badgeClass = 'bg-[#A8C3A6]/35 text-[#0A192F] border-[#A8C3A6]';
+                        let badgeTxt = String(idx).padStart(2, '0');
+                        let cardBorder = 'border-[#0A192F]/12 bg-[#F5F2EB]/40';
+
+                        if (ehOrigem) {
+                            badgeClass = 'bg-[#0A192F] text-white border-[#0A192F]';
+                            badgeTxt = 'ORIGEM';
+                            cardBorder = 'border-[#0A192F]/35 bg-[#F5F2EB]/70';
+                        } else if (ehDestino) {
+                            badgeClass = 'bg-[#C8102E] text-white border-[#C8102E]';
+                            badgeTxt = 'DESTINO';
+                            cardBorder = 'border-[#C8102E]/35 bg-[#C8102E]/[0.03]';
+                        }
+
+                        return `
+                            <article class="p-3.5 rounded-xl border ${cardBorder} flex flex-col justify-between gap-2">
+                                <div class="flex items-start justify-between gap-2">
+                                    <div class="flex items-center gap-2.5 min-w-0">
+                                        <img src="/assets/flags/${p.iso2}.svg" alt="Bandeira de ${p.nome}" class="w-8 h-5 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="font-heading font-bold text-sm text-[#0A192F] truncate">${p.nome}</h4>
+                                            <span class="text-[11px] font-mono text-[#53647C] block truncate">${p.capital} · ${p.continente}</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded-md border text-[10px] font-mono font-bold shrink-0 ${badgeClass}">${badgeTxt}</span>
+                                </div>
+                                ${proxPais ? `
+                                    <div class="pt-2 border-t border-[#0A192F]/10 flex items-center justify-between text-[11px] font-mono text-[#53647C]">
+                                        <span class="truncate inline-flex items-center gap-1">
+                                            <i class="ph-bold ph-arrow-right text-[#C8102E]"></i>
+                                            ${proxPais.nome}
+                                        </span>
+                                        <span class="shrink-0 font-semibold text-[#0A192F]">~${legKm.toLocaleString('pt-BR')} km</span>
+                                    </div>
+                                    ${notaPonte ? `<div class="text-[10px] font-mono font-semibold text-[#C8102E]">${notaPonte}</div>` : ''}
+                                ` : `
+                                    <div class="pt-2 border-t border-[#0A192F]/10 text-[11px] font-mono text-[#53647C]">
+                                        Área: ${formatarArea(p.area_km2)}
+                                    </div>
+                                `}
+                            </article>
+                        `;
+                    }).join('');
+
+                    // WhatsApp Share
+                    const nomes = caminho.map(iso => paisByIso.get(iso).nome).join(' → ');
+                    const msg = `De ${pOrig.nome} até ${pDest.nome} são ${fronteiras} ${fronteiras === 1 ? 'fronteira terrestre' : 'fronteiras terrestres'} (${caminho.length} países: ${nomes}). Calcule qualquer trajeto no VitaleGeo:`;
+                    document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg + ' ' + window.location.href)}`;
+                } else {
+                    // Sem caminho terrestre
+                    document.getElementById('statFronteiras').textContent = '—';
+                    document.getElementById('statFronteirasLabel').textContent = 'sem ligação';
+                    document.getElementById('statPaises').textContent = '0';
+                    document.getElementById('statDistancia').textContent = '—';
+                    document.getElementById('statArea').textContent = '—';
+                    badgePonte.classList.add('hidden');
+                    secaoPassos.classList.add('hidden');
+                    alertaSemRota.classList.remove('hidden');
+
+                    const origViz = (grafoSovereign.get(pOrig.iso2) || new Set()).size;
+                    const destViz = (grafoSovereign.get(pDest.iso2) || new Set()).size;
+
+                    let titulo = 'Sem ligação terrestre contínua';
+                    let desc = `${pOrig.nome} e ${pDest.nome} pertencem a massas terrestres separadas por oceanos ou mares.`;
+
+                    if (origViz === 0 || destViz === 0) {
+                        const ilha = origViz === 0 ? pOrig.nome : pDest.nome;
+                        titulo = `${ilha} é um território insular`;
+                        desc = `${ilha} não possui fronteiras terrestres internacionais com nenhum outro país.`;
+                    }
+
+                    // Verifica se existe rota no modo Soberania Completa
+                    const caminhoAlternativo = estado.modo === 'walk'
+                        ? calcularMenorCaminho(estado.origem, estado.destino, 'sovereign')
+                        : null;
+
+                    if (caminhoAlternativo) {
+                        desc = `Não há caminho contínuo a pé entre ${pOrig.nome} e ${pDest.nome}, mas existe ligação legal considerando territórios ultramarinos ou exclaves (${caminhoAlternativo.length - 1} fronteiras).`;
+                        btnSugerirSoberania.classList.remove('hidden');
+                    } else {
+                        btnSugerirSoberania.classList.add('hidden');
+                    }
+
+                    document.getElementById('semRotaTitulo').textContent = titulo;
+                    document.getElementById('semRotaDesc').textContent = desc;
+
+                    const msg = `Não existe caminho terrestre contínuo entre ${pOrig.nome} e ${pDest.nome}. Teste rotas entre países no VitaleGeo:`;
+                    document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg + ' ' + window.location.href)}`;
+                }
+
+                atualizarMapaVisual(enquadrar);
+            }
+
+            // Inicialização
+            window.addEventListener('DOMContentLoaded', async () => {
+                atualizarTudo(false);
+
+                try {
+                    let res = await fetch('/data/maps/countries-110m.json');
+                    if (!res.ok) {
+                        res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                    }
+                    const world = await res.json();
+                    document.getElementById('loadingMap').style.display = 'none';
+                    inicializarMapa(world);
+                } catch (err) {
+                    console.error('Erro ao carregar mapa local, tentando fallback...', err);
+                    try {
+                        const resFallback = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+                        const worldFallback = await resFallback.json();
+                        document.getElementById('loadingMap').style.display = 'none';
+                        inicializarMapa(worldFallback);
+                    } catch (e) {
+                        document.getElementById('loadingMap').innerHTML = '<span class="text-xs font-mono text-[#C8102E]">Falha ao carregar os dados vetoriais do mapa.</span>';
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

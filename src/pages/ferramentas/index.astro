@@ -14,6 +14,50 @@ const canonicalUrl = 'https://www.vitalegeo.com.br/ferramentas/';
   description="Simuladores de projeção, comparadores territoriais e métricas geoespaciais interativas organizadas por categoria e busca."
   canonical={canonicalUrl}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.vitalegeo.com.br/ferramentas/#collection",
+        "url": canonicalUrl,
+        "name": "Ferramentas & Simuladores Cartográficos | VitaleGeo",
+        "description": "Simuladores de projeção, comparadores territoriais e métricas geoespaciais interativas.",
+        "inLanguage": "pt-BR",
+        "isPartOf": { "@id": "https://www.vitalegeo.com.br/#website" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "numberOfItems": toolsDB.length,
+          "itemListElement": toolsDB.map((t, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "item": {
+              "@type": "WebApplication",
+              "name": t.titulo,
+              "description": t.desc,
+              "url": `https://www.vitalegeo.com.br${t.link}`,
+              "applicationCategory": "EducationalApplication",
+              "operatingSystem": "Web",
+              "inLanguage": "pt-BR",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "BRL"
+              }
+            }
+          }))
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.vitalegeo.com.br/" },
+          { "@type": "ListItem", "position": 2, "name": "Ferramentas", "item": canonicalUrl }
+        ]
+      }
+    ]
+  })} />
+
   <main class="page-content">
     <header class="relative pt-36 sm:pt-44 pb-12 px-6 text-center overflow-hidden">
       <TopoRipplesCorner position="top-left" size={360} opacity={0.20} />

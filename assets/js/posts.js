@@ -3,6 +3,711 @@
 
 const blogPosts = [
     {
+        titulo: "Como Seis Tratados e Compras Bilionárias Transformaram Treze Colônias nos Estados Unidos Continentais?",
+        categoria: "História",
+        data: "18 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-dos-estados-unidos-compra-louisiana-alaska-fronteiras.png",
+        link: "historia-dos-estados-unidos-compra-louisiana-alaska-fronteiras/",
+        resumo: "Do Tratado de Paris de 1783 às compras da Louisiana (1803) e Alasca (1867): como seis tratados multiplicaram o território americano até 9,83 milhões de km²."
+    },
+    {
+        titulo: "Por Que a Pequena Dinamarca Controla a Saída Naval Russa no Báltico e a Disputa Pela Groenlândia?",
+        categoria: "Geopolítica",
+        data: "18 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-dinamarca-groenlandia-estreitos-balticos-artico.jpg",
+        link: "geopolitica-da-dinamarca-groenlandia-estreitos-balticos-artico/",
+        resumo: "Com apenas 42.952 km² na Europa, a Dinamarca guarda os Estreitos Dinamarqueses que bloqueiam a Frota do Báltico e exerce soberania sobre a Groenlândia."
+    },
+    {
+        titulo: "Como Um País Sem Petróleo Nem Minério Passou a Dominar os Semicondutores e Estaleiros do Mundo?",
+        categoria: "Geoeconomia",
+        data: "18 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-coreia-do-sul-semicondutores-estaleiros-rotas.jpg",
+        link: "geoeconomia-da-coreia-do-sul-semicondutores-estaleiros-rotas/",
+        resumo: "Sem petróleo nem minério, a Coreia do Sul importa mais de 94% da sua energia, mas domina mais de 70% das memórias DRAM e lidera a construção naval de GNL."
+    },
+    {
+        titulo: "Por Que Duas Ilhas Desertas no Estreito de Tiran Decidem o Acesso Marítimo de Israel e da Jordânia?",
+        categoria: "Geopolítica",
+        data: "18 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-tiran-golfo-acaba-ilhas-egito-arabia-saudita.jpg",
+        link: "estreito-de-tiran-golfo-acaba-ilhas-egito-arabia-saudita/",
+        resumo: "Com canais navegáveis de 1,3 km entre recifes de coral, o Estreito de Tiran decide o acesso de Israel e Jordânia ao Mar Vermelho e abriga tropas da MFO."
+    },
+    {
+        titulo: "Por Que a Maior Hidrelétrica da África no Rio Nilo Azul Colocou Etiópia, Sudão e Egito em Atrito?",
+        categoria: "Geopolítica",
+        data: "18 Nov 2026 - 14:30",
+        img: "/assets/img/blog/barragem-da-renascenca-gerd-rio-nilo-etiopia-egito-sudao.jpg",
+        link: "barragem-da-renascenca-gerd-rio-nilo-etiopia-egito-sudao/",
+        resumo: "Inaugurada em 2025 com 5.150 MW e reservatório de 74 bilhões de m³, a Barragem da Renascença no Nilo Azul redefiniu o equilíbrio entre Etiópia, Sudão e Egito."
+    },
+    {
+        titulo: "Como Duas Linhas Traçadas Pelos Britânicos Criaram o Disputado Triângulo de Halaib no Mar Vermelho?",
+        categoria: "Fronteiras",
+        data: "18 Nov 2026 - 16:15",
+        img: "/assets/img/blog/triangulo-de-halaib-fronteira-egito-sudao-mar-vermelho.png",
+        link: "triangulo-de-halaib-fronteira-egito-sudao-mar-vermelho/",
+        resumo: "Egito e Sudão disputam desde 1958 os 20.580 km² do Triângulo de Halaib no Mar Vermelho, nascidos do choque entre o limite político de 1899 e o mapa de 1902."
+    },
+    {
+        titulo: "Como a Fronteira Pavimentada Mais Alta do Mundo a 4.693 Metros Liga a China ao Oceano Índico?",
+        categoria: "Fronteiras",
+        data: "18 Nov 2026 - 18:00",
+        img: "/assets/img/blog/passo-khunjerab-fronteira-mais-alta-china-paquistao-cpec.jpg",
+        link: "passo-khunjerab-fronteira-mais-alta-china-paquistao-cpec/",
+        resumo: "Erguida a 4.693 metros no Caracórum após o acordo de 1963, a fronteira do Passo de Khunjerab liga o oeste da China ao Porto de Gwadar no Oceano Índico."
+    },
+    {
+        titulo: "Por Que Dois Vizinhos Separados Por Setenta Quilômetros no Pacífico Vivem em Dias Diferentes?",
+        categoria: "Curiosidades",
+        data: "18 Nov 2026 - 19:30",
+        img: "/assets/img/blog/linha-internacional-de-data-samoa-ilhas-fenix-salto-tempo.png",
+        link: "linha-internacional-de-data-samoa-ilhas-fenix-salto-tempo/",
+        resumo: "Separadas por 70 km no Pacífico, Samoa e Samoa Americana têm 24 horas de diferença desde que Apia pulou 30 de dezembro de 2011 para negociar com a Austrália."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Urânio do Mundo na Corrida Nuclear Global?",
+        categoria: "Rankings",
+        data: "18 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-uranio-do-mundo-energia-nuclear.png",
+        link: "ranking-maiores-reservas-de-uranio-do-mundo-energia-nuclear/",
+        resumo: "Da liderança geológica da Austrália ao domínio produtivo do Cazaquistão e ao 9º lugar do Brasil: o ranking das dez maiores reservas de urânio segundo o Red Book."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Cobre do Mundo Onde Nasce a Eletrificação?",
+        categoria: "Rankings",
+        data: "18 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-cobre-do-mundo-minerais-criticos.jpg",
+        link: "ranking-maiores-reservas-de-cobre-do-mundo-minerais-criticos/",
+        resumo: "Dos 180 milhões de toneladas do Chile à ascensão da RD Congo e à força de Austrália e Peru: as dez maiores reservas de cobre do mundo segundo o USGS."
+    },
+
+    {
+        titulo: "Como o Tratado de Madri e o Barão do Rio Branco Dobraram o Tamanho do Brasil?",
+        categoria: "História",
+        data: "17 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-do-brasil-tratado-de-madri-petropolis-fronteiras.jpg",
+        link: "historia-do-brasil-tratado-de-madri-petropolis-fronteiras/",
+        resumo: "Da linha imaginária de Tordesilhas em 1494 aos 8.515.770 quilômetros quadrados atuais: como o princípio do uti possidetis no Tratado de Madri e a diplomacia do Barão do Rio Branco no Tratado de Petrópolis consolidaram as fronteiras brasileiras com dez países."
+    },
+    {
+        titulo: "Por Que a Noruega Virou a Sentinela da OTAN no Ártico e o Principal Fornecedor de Gás da Europa?",
+        categoria: "Geopolítica",
+        data: "17 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-noruega-estreito-do-urso-otan-artico-gas.jpg",
+        link: "geopolitica-da-noruega-estreito-do-urso-otan-artico-gas/",
+        resumo: "Com 198 quilômetros de fronteira terrestre ao lado da Frota do Norte nuclear russa, o controle sobre o Estreito do Urso e 114,9 bilhões de metros cúbicos anuais de gás natural exportados por gasodutos submarinos, Oslo tornou-se peça central da segurança energética e militar europeia."
+    },
+    {
+        titulo: "Como os Emirados Árabes Transformaram Petróleo, Fundos Soberanos e o Porto de Fujairah em Poder Global?",
+        categoria: "Geoeconomia",
+        data: "17 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-dos-emirados-arabes-fundos-soberanos-oleoduto-fujairah.jpg",
+        link: "geoeconomia-dos-emirados-arabes-fundos-soberanos-oleoduto-fujairah/",
+        resumo: "Com 113 bilhões de barris em reservas provadas, fundos soberanos superiores a 1,7 trilhão de dólares e o oleoduto Habshan–Fujairah que contorna o Estreito de Ormuz pelo Golfo de Omã, os Emirados Árabes Unidos blindaram sua geoeconomia no centro das rotas entre Ásia e Europa."
+    },
+    {
+        titulo: "Por Que o Estreito de Luzón Entre Taiwan e as Filipinas Concentra Cabos Submarinos e Submarinos Nucleares?",
+        categoria: "Geopolítica",
+        data: "17 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-luzon-taiwan-filipinas-cabos-submarinos-pacifico.jpg",
+        link: "estreito-de-luzon-taiwan-filipinas-cabos-submarinos-pacifico/",
+        resumo: "Separando o extremo sul de Taiwan da ilha filipina de Luzón por cerca de 250 quilômetros recortados pelos canais de Bashi e Balintang, esse gargalo oceânico guarda dezenas de cabos de fibra óptica da internet asiática e é a única porta em águas profundas para os submarinos chineses saírem ao Pacífico."
+    },
+    {
+        titulo: "Como o Corredor Transcaspiano Virou a Rota Terrestre Entre China e Europa Que Contorna a Rússia?",
+        categoria: "Geopolítica",
+        data: "17 Nov 2026 - 14:30",
+        img: "/assets/img/blog/corredor-transcaspiano-rota-do-meio-china-europa-caucaso.png",
+        link: "corredor-transcaspiano-rota-do-meio-china-europa-caucaso/",
+        resumo: "Cruzando a fronteira sino-cazaque de Khorgos, o Mar Cáspio de balsa entre Aktau e Baku e as ferrovias do Cáucaso até a Turquia, a Rota do Meio reduziu o trânsito Eurásia–Europa para treze a vinte dias e cresceu mais de vinte por cento em 2026 ao evitar território russo e o Mar Vermelho."
+    },
+    {
+        titulo: "Por Que a Entrega do Arquipélago de Chagos e da Base de Diego Garcia Travou Entre Londres, Maurício e Washington?",
+        categoria: "Fronteiras",
+        data: "17 Nov 2026 - 16:15",
+        img: "/assets/img/blog/arquipelago-chagos-diego-garcia-reino-unido-mauricio-eua.jpg",
+        link: "arquipelago-chagos-diego-garcia-reino-unido-mauricio-eua/",
+        resumo: "Desmembrado das Ilhas Maurício em 1965 para abrigar a maior base militar anglo-americana no Oceano Índico, o Arquipélago de Chagos teve sua transferência negociada em 2025 com arrendamento de 99 anos para Diego Garcia, mas o tratado travou em 2026 entre o Parlamento britânico e o Pentágono."
+    },
+    {
+        titulo: "Como o Acordo de Hadda Criou o Zigue-Zague Desértico Apelidado de Soluço de Churchill Entre Jordânia e Arábia Saudita?",
+        categoria: "Fronteiras",
+        data: "17 Nov 2026 - 18:00",
+        img: "/assets/img/blog/soluco-de-churchill-fronteira-jordania-arabia-saudita-acordo-hadda.png",
+        link: "soluco-de-churchill-fronteira-jordania-arabia-saudita-acordo-hadda/",
+        resumo: "No meio do Deserto da Síria, uma cunha triangular de quase cem quilômetros corta o mapa da Jordânia como se uma régua tivesse escorregado. Conhecida pelo apelido falso de Soluço de Churchill, a anomalia nasceu do Acordo de Hadda de 1925 pela disputa estratégica do oásis de Kaf e do vale de Wadi Sirhan."
+    },
+    {
+        titulo: "Por Que Estados Unidos e México Cimentaram o Rio Grande Para Encerrar Cem Anos de Disputa Pelo Chamizal?",
+        categoria: "Fronteiras",
+        data: "17 Nov 2026 - 19:30",
+        img: "/assets/img/blog/disputa-do-chamizal-rio-grande-fronteira-eua-mexico-concreto.png",
+        link: "disputa-do-chamizal-rio-grande-fronteira-eua-mexico-concreto/",
+        resumo: "Quando enchentes do Rio Grande deslocaram o leito para o sul em 1864, centenas de acres mexicanos foram parar no Texas. Após cem anos de atrito e a rejeição de uma arbitragem em 1911, os dois países assinaram a Convenção do Chamizal de 1963 e concretaram sete quilômetros de canal artificial para travar a fronteira."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Lítio do Mundo Onde Nasce a Corrida Pelas Baterias?",
+        categoria: "Rankings",
+        data: "17 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-litio-do-mundo-baterias.jpg",
+        link: "ranking-maiores-reservas-de-litio-do-mundo-baterias/",
+        resumo: "Dos 9,2 milhões de toneladas do Chile nas salmouras do Atacama aos 8,4 milhões da Austrália e à ascensão estratégica de China, Argentina, Estados Unidos, Canadá e Brasil: o ranking oficial baseado nos dados do Serviço Geológico dos EUA (USGS) mostra quem controla o metal das baterias."
+    },
+    {
+        titulo: "Quais São os Dez Menores Países do Mundo Onde Estados Soberanos Cabem Dentro de Um Bairro Urbano?",
+        categoria: "Rankings",
+        data: "17 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-menores-paises-do-mundo-microestados-area.jpg",
+        link: "ranking-menores-paises-do-mundo-microestados-area/",
+        resumo: "Dos 0,44 quilômetros quadrados do Vaticano — que cabe 3,6 vezes dentro do Parque Ibirapuera — aos 2,02 km² de Mônaco e aos atóis ameaçados pelo mar em Tuvalu e nas Maldivas: o ranking exato dos dez menores países independentes da Terra com dados oficiais da ONU."
+    },
+    {
+        titulo: "Como Três Séculos da Dinastia Qing e os Tratados Desiguais Desenharam as Fronteiras da China Moderna?",
+        categoria: "História",
+        data: "16 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-china-dinastia-qing-tratados-desiguais-fronteiras.jpg",
+        link: "historia-da-china-dinastia-qing-tratados-desiguais-fronteiras/",
+        resumo: "Nove milhões e seiscentos mil quilômetros quadrados, as campanhas militares dos imperadores Kangxi e Qianlong, os Tratados de Nerchinsk, Aigun e Pequim e a herança cartográfica que fixou as fronteiras de Pequim com catorze nações vizinhas."
+    },
+    {
+        titulo: "Por Que a França Possui a Segunda Maior Zona Econômica Exclusiva do Mundo Espalhada por Três Oceanos?",
+        categoria: "Geopolítica",
+        data: "16 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-franca-zona-economica-exclusiva-oceanos-dissuasao.jpg",
+        link: "geopolitica-da-franca-zona-economica-exclusiva-oceanos-dissuasao/",
+        resumo: "Dez milhões e duzentos mil quilômetros quadrados de leito marinho, territórios ultramarinos da Polinésia Francesa às Ilhas Kerguelen e a Força de Dissuasão Nuclear: o império oceânico silencioso de Paris."
+    },
+    {
+        titulo: "Como o Monopólio Global do Níquel e o Banning de Minério Bruto Transformaram a Indonésia na Capital dos Carros Elétricos?",
+        categoria: "Geoeconomia",
+        data: "16 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-indonesia-niquel-baterias-minerais-estrategicos.jpg",
+        link: "geoeconomia-da-indonesia-niquel-baterias-minerais-estrategicos/",
+        resumo: "Vinte e um milhões de toneladas em reservas geológicas, o embargo de exportações in natura em 2020 e a atração de mais de trinta bilhões de dólares em fundições industriais: a estratégia geoeconômica de Jacarta."
+    },
+    {
+        titulo: "Como a Convenção de Montreux de 1936 Dá à Turquia a Chave Militar dos Estreitos do Bósforo e Dardanelos?",
+        categoria: "Geopolítica",
+        data: "16 Nov 2026 - 12:45",
+        img: "/assets/img/blog/convencao-de-montreux-estreitos-turcos-bosforo-dardanelos.jpg",
+        link: "convencao-de-montreux-estreitos-turcos-bosforo-dardanelos/",
+        resumo: "Apenas oitocentos metros na largura mínima do Bósforo, quarenta mil navios por ano ligando o Mar Negro ao Mediterrâneo e o poder discricionário de Ancara de fechar a passagem a navios de guerra em tempos de conflito."
+    },
+    {
+        titulo: "Por Que a Finlândia Fechou os Mais de Mil e Trezentos Quilômetros da Maior Fronteira da OTAN com a Rússia?",
+        categoria: "Fronteiras",
+        data: "16 Nov 2026 - 14:30",
+        img: "/assets/img/blog/fronteira-finlandia-russia-carelia-fechamento-cerca-otan.jpg",
+        link: "fronteira-finlandia-russia-carelia-fechamento-cerca-otan/",
+        resumo: "Mil trezentos e quarenta quilômetros de taiga boreal pantanosa, o trauma histórico da perda da Carélia e Petsamo na Guerra de Inverno e a construção de barreiras de segurança física após a adesão a Helsinque à OTAN."
+    },
+    {
+        titulo: "Como Três Mil Quilômetros de Linha Reta e o Tratado de 1825 Desenharam a Fronteira Entre o Alasca e o Canadá?",
+        categoria: "Fronteiras",
+        data: "16 Nov 2026 - 16:15",
+        img: "/assets/img/blog/fronteira-alasca-canada-meridiano-141-tratado-sao-petersburgo.jpg",
+        link: "fronteira-alasca-canada-meridiano-141-tratado-sao-petersburgo/",
+        resumo: "Dois mil quatrocentos e setenta e cinco quilômetros de divisa, a demarcação arbitrária do Meridiano 141° Oeste entre a Rússia czarista e o Império Britânico e a disputa do Panhandle na Corrida do Ouro de Klondike."
+    },
+    {
+        titulo: "Por Que a Norueguesa Ilha Bouvet É o Ponto de Terra Mais Isolado e Inóspito do Planeta Terra?",
+        categoria: "Curiosidades",
+        data: "16 Nov 2026 - 18:00",
+        img: "/assets/img/blog/ilha-bouvet-ponto-de-terra-mais-isolado-do-mundo-noruega.jpg",
+        link: "ilha-bouvet-ponto-de-terra-mais-isolado-do-mundo-noruega/",
+        resumo: "Dois mil e duzentos quilômetros de qualquer continente habitado, noventa e três por cento de superfície coberta por uma geleira eterna e o mistério de um bote salva-vidas abandonado na ilha mais inacessível do planeta."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Centrais Hidrelétricas do Mundo Onde Paredões de Concreto Represam Rios Titânicos?",
+        categoria: "Rankings",
+        data: "16 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-maiores-hidreletricas-do-mundo-geracao-energia.jpg",
+        link: "ranking-maiores-hidreletricas-do-mundo-geracao-energia/",
+        resumo: "Dos 22.500 megawatts da chinesa Três Gargantas aos gigantescos vertedouros de Itaipu Binacional e Belo Monte: o ranking definitivo das maiores megaestruturas hidrelétricas do planeta Terra."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Produtores de Petróleo do Mundo Onde Milhões de Barris Diários Sustentam o Transporte Global?",
+        categoria: "Rankings",
+        data: "16 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-produtores-de-petroleo-do-mundo-barris-dia.jpg",
+        link: "ranking-maiores-produtores-de-petroleo-do-mundo-barris-dia/",
+        resumo: "Dos mais de treze milhões de barris diários dos Estados Unidos aos poços do deserto saudita e às plataformas do Pré-Sal brasileiro: o ranking definitivo da extração diária de petróleo bruto no planeta."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Zonas Econômicas Exclusivas do Mundo Onde o Domínio Marítimo Supera a Terra Firme?",
+        categoria: "Rankings",
+        data: "16 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-zonas-economicas-exclusivas-do-mundo-zee.jpg",
+        link: "ranking-maiores-zonas-economicas-exclusivas-do-mundo-zee/",
+        resumo: "Dos onze milhões de quilômetros quadrados dos Estados Unidos e o império ultramarino da França às ZEEs colossais de Austrália, Rússia e a Amazônia Azul do Brasil: o ranking da soberania oceânica global."
+    },
+    {
+        titulo: "Como Três Partilhas e a Conferência de Potsdam Moveram a Polônia Duzentos Quilômetros Para o Oeste no Mapa Europeu?",
+        categoria: "História",
+        data: "15 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-polonia-partilhas-potsdam-fronteiras-oder-neisse.jpg",
+        link: "historia-da-polonia-partilhas-potsdam-fronteiras-oder-neisse/",
+        resumo: "Dezesseis milhões de pessoas deslocadas, o desaparecimento do mapa em 1795 e a translação de duzentos quilômetros para o oeste em 1945: como as Linhas Curzon e Oder-Neisse desenharam a Polônia moderna."
+    },
+    {
+        titulo: "Por Que o Cerco da Cadeia de Pérolas e as Montanhas do Himalaia Fazem da Índia a Chave da Segurança do Oceano Índico?",
+        categoria: "Geopolítica",
+        data: "15 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-india-oceano-indico-cadeia-perolas-himalaia.jpg",
+        link: "geopolitica-da-india-oceano-indico-cadeia-perolas-himalaia/",
+        resumo: "Sete mil e quinhentos quilômetros de litoral, 3.488 km de fronteira militarizada no Himalaia e o controle das rotas navais em Malaca: o xadrez estratégico de Nova Délhi contra a expansão chinesa."
+    },
+    {
+        titulo: "Como as Jazidas de Cobalto e Coltan de Katanga no Congo Sustentam a Indústria Global de Baterias e Smartphones?",
+        categoria: "Geoeconomia",
+        data: "15 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-republica-democratica-do-congo-cobalto-coltan-katanga.jpg",
+        link: "geoeconomia-da-republica-democratica-do-congo-cobalto-coltan-katanga/",
+        resumo: "Mais de setenta por cento do cobalto mundial, sessenta por cento do coltan e vinte e quatro trilhões de dólares em riquezas minerais subterrâneas: a anatomia geoeconômica de Katanga e do leste congolês."
+    },
+    {
+        titulo: "Como a Retificação do Rio Danúbio Criou Bolsões de Terra Nullius e a Disputa Entre Sérvia e Croácia?",
+        categoria: "Fronteiras",
+        data: "15 Nov 2026 - 12:45",
+        img: "/assets/img/blog/fronteira-servia-croacia-rio-danubio-terra-nullius-liberland.jpg",
+        link: "fronteira-servia-croacia-rio-danubio-terra-nullius-liberland/",
+        resumo: "Obras de dragagem do século XIX endireitaram o Rio Danúbio e geraram um paradoxo cartográfico: bolsões de terra que nenhum país reivindica onde ativistas criaram a micronação de Liberland."
+    },
+    {
+        titulo: "Por Que o Exclave de Oecusse Permanece Isolado a Setenta Quilômetros de Timor-Leste Dentro da Indonésia?",
+        categoria: "Fronteiras",
+        data: "15 Nov 2026 - 14:30",
+        img: "/assets/img/blog/exclave-de-oecusse-timor-leste-indonesia-fronteira-lisboa.jpg",
+        link: "exclave-de-oecusse-timor-leste-indonesia-fronteira-lisboa/",
+        resumo: "Oitocentos e quinze quilômetros quadrados cercados pela Indonésia e pelo Mar de Savu a setenta quilômetros de Díli: a história da colônia lusófona onde nasceu a identidade de Timor-Leste."
+    },
+    {
+        titulo: "Como o Paralelo Quarenta e Nove Criou a Maior Fronteira Desmilitarizada do Planeta e a Curiosidade do Northwest Angle?",
+        categoria: "Curiosidades",
+        data: "15 Nov 2026 - 16:15",
+        img: "/assets/img/blog/paralelo-49-fronteira-estados-unidos-canada-northwest-angle.jpg",
+        link: "paralelo-49-fronteira-estados-unidos-canada-northwest-angle/",
+        resumo: "Oito mil oitocentos e noventa e um quilômetros de raia pacífica, o corte florestal de seis metros de largura e a anomalia geográfica do Northwest Angle isolado pelo Tratado de Paris de 1783."
+    },
+    {
+        titulo: "Por Que Quatorze Quilômetros de Mar no Estreito de Gibraltar Permanecem no Centro de Disputas Entre Três Nações?",
+        categoria: "Geopolítica",
+        data: "15 Nov 2026 - 18:00",
+        img: "/assets/img/blog/estreito-de-gibraltar-geopolitica-chokepoint-espanha-marrocos-britanicos.jpg",
+        link: "estreito-de-gibraltar-geopolitica-chokepoint-espanha-marrocos-britanicos/",
+        resumo: "Quatorze quilômetros de água entre Europa e África por onde transitam 100 mil navios por ano: a disputa soberana secular entre Espanha, Grã-Bretanha e Marrocos na entrada do Mediterrâneo."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Aeroportos do Mundo em Área Territorial Onde Cidades Aéreas Superam Países Inteiros?",
+        categoria: "Rankings",
+        data: "15 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-aeroportos-do-mundo-em-area-territorial.jpg",
+        link: "ranking-maiores-aeroportos-do-mundo-em-area-territorial/",
+        resumo: "Dos estarrecedores 776 km² do Aeroporto Rei Fahd na Arábia Saudita aos 135 km² de Denver e os megacomplexos de Dallas e Orlando: o ranking dos maiores aeroportos do mundo em área física."
+    },
+    {
+        titulo: "Como Oito Séculos de Guerras e o Tratado dos Pirenéus Desenharam as Fronteiras da Espanha Moderna?",
+        categoria: "História",
+        data: "14 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-espanha-reconquista-utrecht-fronteiras-pireneus.jpg",
+        link: "historia-da-espanha-reconquista-utrecht-fronteiras-pireneus/",
+        resumo: "Da união dinástica de Castela e Aragão em 1469 à queda de Granada em 1492, do Tratado dos Pirenéus de 1659 às perdas de Gibraltar em Utrecht em 1713: como quinhentos mil quilômetros quadrados forjaram o mapa da Espanha."
+    },
+    {
+        titulo: "Por Que o Domínio do Indo-Pacífico e a Aliança AUKUS Transformaram a Austrália na Fortaleza do Sul Global?",
+        categoria: "Geopolítica",
+        data: "14 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-australia-indo-pacifico-aukus-oceano-indico.jpg",
+        link: "geopolitica-da-australia-indo-pacifico-aukus-oceano-indico/",
+        resumo: "Sete vírgula seis milhões de quilômetros quadrados cercados por dois oceanos, o Estreito de Torres, a barreira do Mar de Coral e a frota de submarinos de propulsão nuclear AUKUS: o xadrez estratégico de Camberra."
+    },
+    {
+        titulo: "Como o Gás da Sibéria e a Rota do Ártico Sustentam a Máquina Econômica e Mineral da Rússia?",
+        categoria: "Geoeconomia",
+        data: "14 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-russia-gas-siberia-petroleo-rota-artico.jpg",
+        link: "geoeconomia-da-russia-gas-siberia-petroleo-rota-artico/",
+        resumo: "Dezessete milhões de quilômetros quadrados, as jazidas monumentais de gás da Península de Yamal, o níquel de Norilsk e o degelo da Rota Marítima do Norte: os pilares de recursos do maior país do planeta."
+    },
+    {
+        titulo: "Por Que o Japão Reduziu Seu Próprio Mar Territorial no Estreito de Tsugaru Para Permitir Submarinos Nucleares?",
+        categoria: "Geopolítica",
+        data: "14 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-tsugaru-japao-hokkaido-honshu-mar-territorial-submarinos.jpg",
+        link: "estreito-de-tsugaru-japao-hokkaido-honshu-mar-territorial-submarinos/",
+        resumo: "Vinte quilômetros de largura entre Honshu e Hokkaido, o colossal túnel submarino Seikan e a anomalia jurídica de 1977 que manteve águas internacionais no coração do arquipélago japonês."
+    },
+    {
+        titulo: "Como o Sedimento de Um Rio Uniu Duas Ilhas e Criou a Única Fronteira Terrestre Entre a Argentina e o Uruguai?",
+        categoria: "Fronteiras",
+        data: "14 Nov 2026 - 14:30",
+        img: "/assets/img/blog/ilha-martin-garcia-timoteo-dominguez-fronteira-argentina-uruguai.jpg",
+        link: "ilha-martin-garcia-timoteo-dominguez-fronteira-argentina-uruguai/",
+        resumo: "Oitenta milhões de toneladas de aluvião despejadas anualmente pelo Rio Paraná soldaram a ilha argentina Martín García ao banco uruguaio Timoteo Domínguez: a fronteira seca mais bizarra da América do Sul."
+    },
+    {
+        titulo: "Como Três Países Dividiram a Terceira Maior Ilha do Mundo Entre Selvas e Monarquias Petrolíferas?",
+        categoria: "Curiosidades",
+        data: "14 Nov 2026 - 16:15",
+        img: "/assets/img/blog/ilha-de-borneu-divisao-indonesia-malasia-brunei-nusantara.jpg",
+        link: "ilha-de-borneu-divisao-indonesia-malasia-brunei-nusantara/",
+        resumo: "Setecentos e quarenta e três mil quilômetros quadrados de floresta equatorial partilhados entre Indonésia, Malásia e Brunei: dos acordos coloniais de 1824 e 1891 à nova capital Nusantara em Kalimantan."
+    },
+    {
+        titulo: "Por Que o Exclave de Musandam em Omã Guarda a Garganta Naval Mais Estratégica do Oriente Médio?",
+        categoria: "Fronteiras",
+        data: "14 Nov 2026 - 18:00",
+        img: "/assets/img/blog/exclave-de-musandam-oma-estreito-de-ormuz-geopolitica-golfo.jpg",
+        link: "exclave-de-musandam-oma-estreito-de-ormuz-geopolitica-golfo/",
+        resumo: "Montanhas áridas de dois mil metros despencando em fiordes desérticos a cem quilômetros do restante de Omã: como o enclave de Musandam vigia a passagem de vinte milhões de barris de petróleo por dia em Ormuz."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Terras Raras do Mundo Onde Minerais Críticos Movem a Tecnologia Global?",
+        categoria: "Rankings",
+        data: "14 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-terras-raras-do-mundo.jpg",
+        link: "ranking-maiores-reservas-de-terras-raras-do-mundo/",
+        resumo: "Dos 44 milhões de toneladas da China e as imensas jazidas inexploradas do Vietnã e Brasil às minas de Mountain Pass nos EUA e Mount Weld na Austrália: o ranking definitivo dos 17 elementos químicos da transição energética."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Canais Artificiais do Mundo Onde Obras Gigantescas Cortam Continentes?",
+        categoria: "Rankings",
+        data: "14 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-canais-artificiais-do-mundo.jpg",
+        link: "ranking-maiores-canais-artificiais-do-mundo/",
+        resumo: "Dos quase mil e oitocentos quilômetros do Grande Canal da China aos canais marítimos de Karakum, Suez, Kiel e Panamá: o ranking das maiores hidrovias artificiais escavadas pela engenharia humana."
+    },
+    {
+        titulo: "Quais São os Dez Países com o Maior Número de Vizinhos de Fronteira Terrestre no Mundo?",
+        categoria: "Rankings",
+        data: "14 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-com-mais-vizinhos-de-fronteira-no-mundo.jpg",
+        link: "ranking-paises-com-mais-vizinhos-de-fronteira-no-mundo/",
+        resumo: "China e Rússia dividem o topo histórico com catorze nações vizinhas cada uma, seguidas pelo Brasil com dez e potências europeias e africanas: o ranking dos maiores cruzamentos fronteiriços do planeta."
+    },
+    {
+        titulo: "Como o Tratado de Lausanne e a Queda do Império Otomano Desenharam as Fronteiras da Turquia Moderna Entre Dois Continentes?",
+        categoria: "História",
+        data: "13 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-turquia-imperio-otomano-lausanne-estreitos-bosforo.jpg",
+        link: "historia-da-turquia-imperio-otomano-lausanne-estreitos-bosforo/",
+        resumo: "Do desmembramento do Império Otomano pelo Tratado de Sèvres à Guerra de Independência liderada por Atatürk e ao Tratado de Lausanne de 1923: como 783 mil km² e o controle dos estreitos forjaram a Turquia moderna."
+    },
+    {
+        titulo: "Por Que o Relevo Acidentado e o Estreito de Cento e Sessenta Quilômetros Fazem de Taiwan a Ilha Mais Cobiçada e Perigosa do Planeta?",
+        categoria: "Geopolítica",
+        data: "13 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-de-taiwan-estreito-primeira-cadeia-ilhas-chips.jpg",
+        link: "geopolitica-de-taiwan-estreito-primeira-cadeia-ilhas-chips/",
+        resumo: "Cento e sessenta quilômetros de mar separando o continente, montanhas de quatro mil metros, o escudo de semicondutores da TSMC e a Primeira Cadeia de Ilhas: a complexa fortaleza geopolítica de Taiwan."
+    },
+    {
+        titulo: "Como as Maiores Minas de Cobre do Planeta e o Deserto de Atacama Transformaram o Chile na Potência Mineral da Eletrificação Global?",
+        categoria: "Geoeconomia",
+        data: "13 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-do-chile-cobre-atacama-triangulo-litio-riquezas.jpg",
+        link: "geoeconomia-do-chile-cobre-atacama-triangulo-litio-riquezas/",
+        resumo: "Mais de quatro mil quilômetros de extensão litorânea, as minas monumentais de Chuquicamata e Escondida e as salmouras de lítio do Atacama: como o Chile controla recursos cruciais para a transição energética do planeta."
+    },
+    {
+        titulo: "Por Que Vinte e Nove Quilômetros de Mar no Estreito de Bab el-Mandeb Podem Paralisar Doze Por Cento do Comércio Mundial?",
+        categoria: "Geopolítica",
+        data: "13 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-bab-el-mandeb-mar-vermelho-chokepoint-iemen-djibuti.jpg",
+        link: "estreito-de-bab-el-mandeb-mar-vermelho-chokepoint-iemen-djibuti/",
+        resumo: "A garganta naval entre o Iêmen e o Djibuti onde cargueiros cruzam o Mar Vermelho rumo a Suez: as rotas de contêineres, as bases militares internacionais e o impacto econômico dos desvios pelo Cabo da Boa Esperança."
+    },
+    {
+        titulo: "Como Vinte e Dois Quilômetros de Terra no Corredor de Siliguri Sustentam a Unidade Territorial de Quarenta e Cinco Milhões de Pessoas?",
+        categoria: "Fronteiras",
+        data: "13 Nov 2026 - 14:30",
+        img: "/assets/img/blog/corredor-de-siliguri-pescoco-de-galinha-fronteira-india-himalaia.jpg",
+        link: "corredor-de-siliguri-pescoco-de-galinha-fronteira-india-himalaia/",
+        resumo: "Espremido entre Nepal, Butão e Bangladesh, o Pescoço de Galinha liga a Índia continental aos seus oito estados do Nordeste sob a sombra do Vale de Chumbi: a anomalia geográfica mais vulnerável da Ásia Meridional."
+    },
+    {
+        titulo: "Por Que a Grécia Levou Mais de Dois Mil Anos Para Rasgar Vinte e Quatro Metros de Rocha e Transformar o Peloponeso em Uma Ilha?",
+        categoria: "Curiosidades",
+        data: "13 Nov 2026 - 16:15",
+        img: "/assets/img/blog/canal-de-corinto-grecia-peloponeso-istmo-engenharia.jpg",
+        link: "canal-de-corinto-grecia-peloponeso-istmo-engenharia/",
+        resumo: "Seis quilômetros de canal escavados em falésias de calcário de quase oitenta metros de altura: do diolkos da Grécia Antiga e das escavações do imperador Nero à conclusão em 1893 que redesenhou o Golfo de Corinto."
+    },
+    {
+        titulo: "Por Que Cidadãos Russos Podem Viver e Minerar Sem Visto Norueguês no Arquipélago Desmilitarizado de Svalbard no Ártico?",
+        categoria: "Fronteiras",
+        data: "13 Nov 2026 - 18:00",
+        img: "/assets/img/blog/tratado-de-svalbard-barentsburg-enclave-russo-noruega-artico.jpg",
+        link: "tratado-de-svalbard-barentsburg-enclave-russo-noruega-artico/",
+        resumo: "O Tratado de Paris de 1920 garantiu soberania norueguesa a Svalbard, mas concedeu direito de exploração econômica igualitária a dezenas de nações: a história do assentamento minerador russo de Barentsburg no Círculo Polar."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Frotas Mercantes do Mundo Onde Milhares de Navios Movem Noventa Por Cento do Comércio Global?",
+        categoria: "Rankings",
+        data: "13 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-frotas-mercantes-do-mundo.jpg",
+        link: "ranking-maiores-frotas-mercantes-do-mundo/",
+        resumo: "Das bandeiras de conveniência do Panamá, Libéria e Ilhas Marshall às frotas proprietárias de Grécia, China e Japão: o ranking das maiores potências navais comerciais que sustentam as cadeias de suprimentos globais."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Bacias Hidrográficas do Mundo Onde Rios Colossais Drenam Milhões de Quilômetros Quadrados de Continentes?",
+        categoria: "Rankings",
+        data: "13 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-bacias-hidrograficas-do-mundo.jpg",
+        link: "ranking-maiores-bacias-hidrograficas-do-mundo/",
+        resumo: "Dos 7 milhões de km² da Bacia Amazônica e os 4 milhões de km² do Rio Congo aos sistemas fluviais gigantescos do Mississippi, Rio da Prata, Ob e Yangtzé: o ranking das maiores bacias de drenagem da Terra."
+    },
+    {
+        titulo: "Como o Relevo Alpino, o Juramento de Rütli e o Congresso de Viena Desenharam as Fronteiras Intactas da Suíça Moderna?",
+        categoria: "História",
+        data: "12 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-suica-neutralidade-fronteiras-alpes-congresso-viena.jpg",
+        link: "historia-da-suica-neutralidade-fronteiras-alpes-congresso-viena/",
+        resumo: "Do Juramento de Rütli de 1291 e da Paz de Vestfália ao Congresso de Viena de 1815 e à doutrina do Reduto Nacional: como 41 mil km² de montanhas mantiveram suas fronteiras intocadas cercadas por guerras europeias."
+    },
+    {
+        titulo: "Por Que o Domínio de Três Estreitos Estratégicos e a Mudança da Capital Fazem da Indonésia o Pivô Naval do Indo-Pacífico?",
+        categoria: "Geopolítica",
+        data: "12 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-indonesia-estreitos-malaca-sunda-indo-pacifico.jpg",
+        link: "geopolitica-da-indonesia-estreitos-malaca-sunda-indo-pacifico/",
+        resumo: "Com mais de dezessete mil ilhas controlando os estreitos vitais de Malaca, Sunda e Lombok e transferindo sua capital de Jacarta para Nusantara em Bornéu: como Jacarta equilibra a pressão naval de China e EUA."
+    },
+    {
+        titulo: "Como o Nearshoring, a Fronteira Norte e o Corredor Interoceânico Transformaram o México no Gigante Industrial da América?",
+        categoria: "Geoeconomia",
+        data: "12 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-do-mexico-nearshoring-fronteira-corredor-interoceanico.jpg",
+        link: "geoeconomia-do-mexico-nearshoring-fronteira-corredor-interoceanico/",
+        resumo: "Com 3.145 km de fronteira com os EUA, o trem interoceânico do Istmo de Tehuantepec rivalizando com o Panamá e investimentos maciços em semicondutores e veículos: a reconfiguração industrial mexicana."
+    },
+    {
+        titulo: "Por Que a Itália Levou Mais de Um Século Para Tentar Construir a Maior Ponte Pênsil do Mundo no Estreito de Messina?",
+        categoria: "Geopolítica",
+        data: "12 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-messina-italia-sicilia-maior-ponte-pensil.jpg",
+        link: "estreito-de-messina-italia-sicilia-maior-ponte-pensil/",
+        resumo: "Três quilômetros de águas turbulentas entre a Calábria e a Sicília com correntes de nove nós e falhas sísmicas ativas: os desafios da megaponte pênsil de 3.300 metros de vão livre para unir a ilha ao continente."
+    },
+    {
+        titulo: "Como a Fronteira Fluvial do Rio Amur Separa Duas Cidades Gêmeas da Rússia e da China a Menos de Um Quilômetro?",
+        categoria: "Fronteiras",
+        data: "12 Nov 2026 - 14:30",
+        img: "/assets/img/blog/rio-amur-fronteira-russia-china-blagoveshchensk-heihe.jpg",
+        link: "rio-amur-fronteira-russia-china-blagoveshchensk-heihe/",
+        resumo: "Blagoveshchensk na Sibéria russa e Heihe na Manchúria chinesa encaram-se através de oitocentos metros de água: como o Tratado de Aigun de 1858 e uma nova ponte internacional desenham a fronteira no Extremo Oriente."
+    },
+    {
+        titulo: "Por Que o Atol de Scarborough no Mar da China Meridional Tornou-se o Ponto de Atrito Mais Perigoso do Sudeste Asiático?",
+        categoria: "Geopolítica",
+        data: "12 Nov 2026 - 16:15",
+        img: "/assets/img/blog/atol-de-scarborough-mar-da-china-meridional-filipinas.jpg",
+        link: "atol-de-scarborough-mar-da-china-meridional-filipinas/",
+        resumo: "Um anel de recifes a apenas duzentos e vinte quilômetros da ilha filipina de Luzon sob bloqueio contínuo da guarda costeira chinesa: onde manobras navais e disputas de pesca colocam o Tratado EUA-Filipinas à prova."
+    },
+    {
+        titulo: "Por Que a França e a Itália Disputam o Cume Exato do Mont Blanc a Mais de Quatro Mil e Oitocentos Metros de Altitude?",
+        categoria: "Fronteiras",
+        data: "12 Nov 2026 - 18:00",
+        img: "/assets/img/blog/disputa-fronteira-mont-blanc-franca-italia-cume-alpes.jpg",
+        link: "disputa-fronteira-mont-blanc-franca-italia-cume-alpes/",
+        resumo: "O Tratado de Turim de 1860 e mapas militares divergentes deixaram um impasse secular no teto da Europa Ocidental: afinal, o cume nevado de 4.808 metros pertence exclusivamente à França ou é compartilhado com a Itália?"
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Linhas de Costa do Planeta Onde Mares Gigantescos Contornam Continentes e Ilhas?",
+        categoria: "Rankings",
+        data: "12 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-maiores-linhas-de-costa-do-mundo.jpg",
+        link: "ranking-maiores-linhas-de-costa-do-mundo/",
+        resumo: "Do litoral colossal de 243 mil km do Canadá e os fiordes da Noruega aos arquipélagos da Indonésia, Filipinas e Japão: o ranking das dez nações com a maior extensão litorânea segundo dados da CIA e da ONU."
+    },
+    {
+        titulo: "Quais São as Dez Maiores Malhas Ferroviárias do Mundo Onde Centenas de Milhares de Quilômetros de Trilhos Movem Continentes?",
+        categoria: "Rankings",
+        data: "12 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-malhas-ferroviarias-do-mundo.jpg",
+        link: "ranking-maiores-malhas-ferroviarias-do-mundo/",
+        resumo: "Dos 250 mil km de ferrovias dos EUA e do salto pioneiro em alta velocidade da China aos trilhos transcontinentais da Rússia, Índia e Canadá: o ranking das dez maiores redes ferroviárias que sustentam o comércio planetário."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Produtores de Energia Renovável do Mundo Onde Ventos, Rios e Sol Redesenham a Matriz Global?",
+        categoria: "Rankings",
+        data: "12 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-produtores-de-energia-renovavel-do-mundo.jpg",
+        link: "ranking-maiores-produtores-de-energia-renovavel-do-mundo/",
+        resumo: "Da capacidade instalada de mais de 1.400 GW da China e da matriz hidrelétrica e eólica de ponta do Brasil aos parques solares e eólicos de EUA, Alemanha e Índia: o ranking dos dez líderes globais em energia limpa."
+    },
+    {
+        titulo: "Como a Restauração Meiji, a Expansão Imperial e o Tratado de Paz de 1951 Desenharam as Fronteiras do Japão Moderno?",
+        categoria: "História",
+        data: "11 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-do-japao-meiji-expansao-fronteiras-tratado-sao-francisco.jpg",
+        link: "historia-do-japao-meiji-expansao-fronteiras-tratado-sao-francisco/",
+        resumo: "Do isolamento Sakoku de 250 anos à anexação de Hokkaido e Okinawa, à expansão colonial na Ásia e ao Tratado de São Francisco de 1951: a forja territorial de 377 mil km² do arquipélago japonês."
+    },
+    {
+        titulo: "Por Que a Geografia Plana da Polônia e o Corredor de Suwalki Fazem de Varsóvia a Maior Fortaleza Militar da Europa?",
+        categoria: "Geopolítica",
+        data: "11 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-polonia-corredor-de-suwalki-planicie-otan.jpg",
+        link: "geopolitica-da-polonia-corredor-de-suwalki-planicie-otan/",
+        resumo: "Sem montanhas protetoras na Grande Planície Europeia e vigiando o estreito corredor de 65 km entre Kaliningrado e Belarus: como a Polônia investe quase 5% do PIB na maior força blindada da OTAN."
+    },
+    {
+        titulo: "Como as Minas de Ferro de Pilbara e o Lítio Fazem da Austrália o Motor Mineral da Economia Global?",
+        categoria: "Geoeconomia",
+        data: "11 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-australia-minerio-de-ferro-pilbara-litio-riquezas.jpg",
+        link: "geoeconomia-da-australia-minerio-de-ferro-pilbara-litio-riquezas/",
+        resumo: "A província geológica de Pilbara exporta quase 900 milhões de toneladas de minério por ano e a mina de Greenbushes domina o lítio: como um continente-ilha sustenta a indústria mundial e a transição verde."
+    },
+    {
+        titulo: "Como a Confluência dos Rios Paraná e Iguaçu Criou a Tríplice Fronteira Mais Movimentada da América do Sul?",
+        categoria: "Fronteiras",
+        data: "11 Nov 2026 - 12:45",
+        img: "/assets/img/blog/triplice-fronteira-brasil-argentina-paraguai-iguacu-itaipu.jpg",
+        link: "triplice-fronteira-brasil-argentina-paraguai-iguacu-itaipu/",
+        resumo: "O encontro hidrográfico de Foz do Iguaçu, Ciudad del Este e Puerto Iguazú ao lado dos 14 mil megawatts de Itaipu: a dinâmica de comércio, energia e segurança no marco geodésico de três nações."
+    },
+    {
+        titulo: "Por Que o Canal de Kiel Movimenta Mais Navios Que Suez e Panamá Sem Chamar a Atenção do Mundo?",
+        categoria: "Geopolítica",
+        data: "11 Nov 2026 - 14:30",
+        img: "/assets/img/blog/canal-de-kiel-alemanha-chokepoint-mar-do-norte-baltico.jpg",
+        link: "canal-de-kiel-alemanha-chokepoint-mar-do-norte-baltico/",
+        resumo: "Cortando a península da Jutlândia por 98 quilômetros, a hidrovia alemã economiza 460 km de circunavegação da Dinamarca e opera mais de trinta mil travessias anuais entre o Mar do Norte e o Báltico."
+    },
+    {
+        titulo: "Por Que a Ilha dos Faisões Muda de País a Cada Seis Meses Entre a França e a Espanha?",
+        categoria: "Fronteiras",
+        data: "11 Nov 2026 - 16:15",
+        img: "/assets/img/blog/ilha-dos-faisoes-condominio-fronteira-franca-espanha-rio-bidasoa.jpg",
+        link: "ilha-dos-faisoes-condominio-fronteira-franca-espanha-rio-bidasoa/",
+        resumo: "O mais antigo condomínio indiviso do planeta no rio Bidasoa: como o Tratado dos Pirenéus de 1659 criou uma soberania alternada sem habitantes permanentes e vigiada pelas marinhas de Paris e Madri."
+    },
+    {
+        titulo: "Por Que Apenas Quatro Quilômetros de Mar Separam os Estados Unidos e a Rússia no Estreito de Bering?",
+        categoria: "Geopolítica",
+        data: "11 Nov 2026 - 18:00",
+        img: "/assets/img/blog/estreito-de-bering-diomedes-fronteira-russia-estados-unidos.jpg",
+        link: "estreito-de-bering-diomedes-fronteira-russia-estados-unidos/",
+        resumo: "Entre a Grande Diomede russa e a Pequena Diomede americana correm a fronteira marítima internacional e 21 horas de fuso horário: o chokepoint polar de 82 km onde duas superpotências se encaram."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Produtores de Alimentos do Mundo Onde a Terra Alimenta Oito Bilhões de Pessoas?",
+        categoria: "Rankings",
+        data: "11 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-maiores-produtores-de-alimentos-do-mundo.jpg",
+        link: "ranking-maiores-produtores-de-alimentos-do-mundo/",
+        resumo: "Da imensa colheita de grãos da China e da Índia à potência exportadora de grãos e carnes do Brasil e dos EUA: o ranking dos dez países agrícolas que garantem a sobrevivência nutricional do planeta."
+    },
+    {
+        titulo: "Quais São os Dez Maiores Portos de Contêineres do Mundo Onde Milhões de Navios Movem o Comércio Global?",
+        categoria: "Rankings",
+        data: "11 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-portos-de-conteineres-do-mundo.jpg",
+        link: "ranking-maiores-portos-de-conteineres-do-mundo/",
+        resumo: "De Xangai com quase cinquenta milhões de TEUs a Singapura, Ningbo e Shenzhen: o ranking das dez megainfraestruturas portuárias que movimentam a espinha dorsal logística da economia global."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Densamente Povoados do Mundo Onde Milhares de Pessoas Disputam Cada Quilômetro Quadrado?",
+        categoria: "Rankings",
+        data: "11 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-mais-densamente-povoados-do-mundo.jpg",
+        link: "ranking-paises-mais-densamente-povoados-do-mundo/",
+        resumo: "De Mônaco com mais de vinte e seis mil habitantes por quilômetro quadrado a Singapura, Bahrein e ao gigante Bangladesh com 170 milhões de pessoas: os dez países com a maior densidade humana da Terra."
+    },
+    {
+        titulo: "Como o Risorgimento, as Guerras de Independência e os Tratados Alpinos Forjaram as Fronteiras da Itália Moderna?",
+        categoria: "História",
+        data: "09 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-italia-unificacao-risorgimento-fronteiras.jpg",
+        link: "historia-da-italia-unificacao-risorgimento-fronteiras/",
+        resumo: "Da mera expressão geográfica de Metternich à Expedição dos Mil de Garibaldi, à Brecha da Porta Pia em 1870 e à anexação alpina de Trieste: a unificação de 302 mil km²."
+    },
+    {
+        titulo: "Por Que a Diplomacia do Bambu e a Baía de Cam Ranh Fazem do Vietnã o Ponto de Equilíbrio Entre Washington e Pequim?",
+        categoria: "Geopolítica",
+        data: "09 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-do-vietna-mar-da-china-meridional-baia-cam-ranh.jpg",
+        link: "geopolitica-do-vietna-mar-da-china-meridional-baia-cam-ranh/",
+        resumo: "Com 3.260 km de litoral debruçados sobre a rota marítima mais disputada do mundo e o megaporto militar de Cam Ranh: como Hanói equilibra a superpotência vizinha e os Estados Unidos."
+    },
+    {
+        titulo: "Como as Maiores Reservas de Platina e Cromo do Planeta Fazem da África do Sul o Monopólio Mineral da Indústria Global?",
+        categoria: "Geoeconomia",
+        data: "09 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-africa-do-sul-platina-cromo-minerais-estrategicos.jpg",
+        link: "geoeconomia-da-africa-do-sul-platina-cromo-minerais-estrategicos/",
+        resumo: "O Complexo Ígneo de Bushveld concentra mais de 75% da platina e 80% do cromo da Terra: a geoeconomia do megadepósito geológico sem o qual a indústria moderna e a transição verde entram em colapso."
+    },
+    {
+        titulo: "Por Que as Ilhas da Austrália no Estreito de Torres Ficam a Menos de Quatro Quilômetros da Costa da Papua-Nova Guiné?",
+        categoria: "Fronteiras",
+        data: "09 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-torres-australia-papua-nova-guine-fronteira-recifes.jpg",
+        link: "estreito-de-torres-australia-papua-nova-guine-fronteira-recifes/",
+        resumo: "O Tratado de 1978 desenhou uma das fronteiras marítimas mais complexas do mundo: ilhas soberanas australianas coladas à costa de Papua, partilha do leito marinho e livre trânsito tribal."
+    },
+    {
+        titulo: "Como Três Países Sul-Americanos Se Encontram no Topo de Uma Fortaleza de Pedra Inacessível a Quase Três Mil Metros?",
+        categoria: "Fronteiras",
+        data: "09 Nov 2026 - 14:30",
+        img: "/assets/img/blog/triplice-fronteira-monte-roraima-brasil-venezuela-guiana.jpg",
+        link: "triplice-fronteira-monte-roraima-brasil-venezuela-guiana/",
+        resumo: "O platô tepui de 2.810 metros abriga o marco tríplice BV-0 erguido em 1931: onde as fronteiras de Brasil, Venezuela e Guiana convergem sobre falésias verticais e a disputa de Essequibo."
+    },
+    {
+        titulo: "Por Que Portugal Recusa Reconhecer a Soberania da Espanha Sobre Olivença Há Mais de Duzentos Anos?",
+        categoria: "Fronteiras",
+        data: "09 Nov 2026 - 16:15",
+        img: "/assets/img/blog/disputa-fronteira-olivenca-portugal-espanha-tratado-viena.jpg",
+        link: "disputa-fronteira-olivenca-portugal-espanha-tratado-viena/",
+        resumo: "Tomada por tropas espanholas na Guerra das Laranjas em 1801, Olivença é a pendência territorial mais duradoura da Europa: por que Lisboa não delimita a fronteira no Rio Guadiana até hoje."
+    },
+    {
+        titulo: "Por Que o Estreito de Bonifacio Entre a Córsega e a Sardenha É Uma das Passagens Marítimas Mais Perigosas da Europa?",
+        categoria: "Geopolítica",
+        data: "09 Nov 2026 - 18:00",
+        img: "/assets/img/blog/estreito-de-bonifacio-corsica-sardenha-franca-italia-canal.jpg",
+        link: "estreito-de-bonifacio-corsica-sardenha-franca-italia-canal/",
+        resumo: "Com apenas onze quilômetros de largura entre falésias e rochedos de granito submersos, a rota marítima que divide a Córsega francesa e a Sardenha italiana baniu petroleiros para evitar um desastre ecológico."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Ricos do Mundo por PIB per Capita Onde a Riqueza por Habitante Ultrapassa Cem Mil Dólares?",
+        categoria: "Rankings",
+        data: "09 Nov 2026 - 19:30",
+        img: "/assets/img/blog/ranking-paises-mais-ricos-do-mundo-pib-per-capita.jpg",
+        link: "ranking-paises-mais-ricos-do-mundo-pib-per-capita/",
+        resumo: "De Luxemburgo, Irlanda e Singapura aos petroestados do Golfo e aos cofres helvéticos: o ranking dos dez países com o maior PIB per capita em Paridade de Poder de Compra segundo o FMI."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Ouro do Mundo Onde Milhares de Toneladas Guardam o Poder Geopolítico?",
+        categoria: "Rankings",
+        data: "09 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-ouro-do-mundo.jpg",
+        link: "ranking-maiores-reservas-de-ouro-do-mundo/",
+        resumo: "De Fort Knox e do Federal Reserve de Nova York ao Bundesbank alemão e às compras maciças de China e Rússia: o ranking das mais de trinta e seis mil toneladas que protegem os bancos centrais mundiais."
+    },
+    {
+        titulo: "Quais São os Dez Países Mais Visitados do Mundo Onde Centenas de Milhões de Turistas Redefinem as Fronteiras das Viagens?",
+        categoria: "Rankings",
+        data: "09 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-mais-visitados-do-mundo.jpg",
+        link: "ranking-paises-mais-visitados-do-mundo/",
+        resumo: "Da marca histórica de cem milhões de turistas na França ao magnetismo de Espanha, Estados Unidos, Itália e Turquia: o ranking dos dez destinos que dominam a mobilidade humana global."
+    },
+    {
+        titulo: "A Fronteira Mais Louca do Mundo",
+        categoria: "Curiosidades",
+        data: "25 Jan 2026",
+        img: "/assets/img/blog/fronteira-mais-louca.jpg",
+        link: "fronteira-mais-louca/",
+        resumo: "Em Baarle, você pode dormir na Bélgica e tomar café na Holanda sem sair de casa. Conheça a cidade com a fronteira mais complexa do planeta."
+    },
+    {
         titulo: "Como a Conquista do Deserto e os Tratados de Fronteira Forjaram o Gigantesco Território da Argentina?",
         categoria: "História",
         data: "08 Nov 2026 - 07:30",

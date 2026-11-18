@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <pattern id="grid-cg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Bege Cartográfico Oficial -->
+  <rect width="800" height="500" fill="#F5F2EB"/>
+  <rect width="800" height="500" fill="url(#grid-cg)"/>
+
+  <!-- Curvas Topográficas Contínuas de Canto (Verde Sálvia) -->
+  <g fill="none" stroke="#A8C3A6" stroke-width="1.5" opacity="0.45">
+    <circle cx="0" cy="0" r="140"/>
+    <circle cx="0" cy="0" r="195"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="210"/>
+  </g>
+
+  <!-- Moldura Externa -->
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+  <!-- Cabeçalho Minimalista da Arte -->
+  <text x="400" y="68" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="3">MATRIZ DE ASSOCIAÇÃO 4 × 4</text>
+  <text x="400" y="102" font-family="Orbitron, sans-serif" font-size="26" font-weight="900" fill="#0A192F" text-anchor="middle" letter-spacing="1.5">CONEXÕES <tspan fill="#C8102E">GEOGRÁFICAS</tspan></text>
+
+  <!-- Grade 4x4 Representando os 4 Grupos de Dificuldade -->
+  <!-- Linha 1: Nível 1 (Verde Sálvia #A8C3A6) -->
+  <g transform="translate(110, 128)">
+    <line x1="65" y1="26" x2="515" y2="26" stroke="#0A192F" stroke-width="2" stroke-opacity="0.22" stroke-dasharray="5 4"/>
+    <rect x="0" y="0" width="130" height="52" rx="10" fill="#A8C3A6" stroke="#0A192F" stroke-width="2"/>
+    <rect x="150" y="0" width="130" height="52" rx="10" fill="#A8C3A6" stroke="#0A192F" stroke-width="2"/>
+    <rect x="300" y="0" width="130" height="52" rx="10" fill="#A8C3A6" stroke="#0A192F" stroke-width="2"/>
+    <rect x="450" y="0" width="130" height="52" rx="10" fill="#A8C3A6" stroke="#0A192F" stroke-width="2"/>
+    <!-- Marcadores geométricos internos -->
+    <circle cx="65" cy="26" r="7" fill="#0A192F"/>
+    <circle cx="215" cy="26" r="7" fill="#0A192F"/>
+    <circle cx="365" cy="26" r="7" fill="#0A192F"/>
+    <circle cx="515" cy="26" r="7" fill="#0A192F"/>
+  </g>
+
+  <!-- Linha 2: Nível 2 (Areia Cartográfica #E5DEC9) -->
+  <g transform="translate(110, 196)">
+    <line x1="65" y1="26" x2="515" y2="26" stroke="#0A192F" stroke-width="2" stroke-opacity="0.22" stroke-dasharray="5 4"/>
+    <rect x="0" y="0" width="130" height="52" rx="10" fill="#E5DEC9" stroke="#0A192F" stroke-width="2"/>
+    <rect x="150" y="0" width="130" height="52" rx="10" fill="#E5DEC9" stroke="#0A192F" stroke-width="2"/>
+    <rect x="300" y="0" width="130" height="52" rx="10" fill="#E5DEC9" stroke="#0A192F" stroke-width="2"/>
+    <rect x="450" y="0" width="130" height="52" rx="10" fill="#E5DEC9" stroke="#0A192F" stroke-width="2"/>
+    <rect x="57" y="18" width="16" height="16" rx="3" fill="#0A192F"/>
+    <rect x="207" y="18" width="16" height="16" rx="3" fill="#0A192F"/>
+    <rect x="357" y="18" width="16" height="16" rx="3" fill="#0A192F"/>
+    <rect x="507" y="18" width="16" height="16" rx="3" fill="#0A192F"/>
+  </g>
+
+  <!-- Linha 3: Nível 3 (Azul Marinho #0A192F) -->
+  <g transform="translate(110, 264)">
+    <line x1="65" y1="26" x2="515" y2="26" stroke="#F5F2EB" stroke-width="2" stroke-opacity="0.35"/>
+    <rect x="0" y="0" width="130" height="52" rx="10" fill="#0A192F" stroke="#0A192F" stroke-width="2"/>
+    <rect x="150" y="0" width="130" height="52" rx="10" fill="#0A192F" stroke="#0A192F" stroke-width="2"/>
+    <rect x="300" y="0" width="130" height="52" rx="10" fill="#0A192F" stroke="#0A192F" stroke-width="2"/>
+    <rect x="450" y="0" width="130" height="52" rx="10" fill="#0A192F" stroke="#0A192F" stroke-width="2"/>
+    <polygon points="65,16 75,26 65,36 55,26" fill="#A8C3A6"/>
+    <polygon points="215,16 225,26 215,36 205,26" fill="#A8C3A6"/>
+    <polygon points="365,16 375,26 365,36 355,26" fill="#A8C3A6"/>
+    <polygon points="515,16 525,26 515,36 505,26" fill="#A8C3A6"/>
+  </g>
+
+  <!-- Linha 4: Nível 4 (Vermelho Destaque #C8102E) -->
+  <g transform="translate(110, 332)">
+    <line x1="65" y1="26" x2="515" y2="26" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.45"/>
+    <rect x="0" y="0" width="130" height="52" rx="10" fill="#C8102E" stroke="#0A192F" stroke-width="2"/>
+    <rect x="150" y="0" width="130" height="52" rx="10" fill="#C8102E" stroke="#0A192F" stroke-width="2"/>
+    <rect x="300" y="0" width="130" height="52" rx="10" fill="#C8102E" stroke="#0A192F" stroke-width="2"/>
+    <rect x="450" y="0" width="130" height="52" rx="10" fill="#C8102E" stroke="#0A192F" stroke-width="2"/>
+    <path d="M 65 16 L 68 23 L 75 26 L 68 29 L 65 36 L 62 29 L 55 26 L 62 23 Z" fill="#FFFFFF"/>
+    <path d="M 215 16 L 218 23 L 225 26 L 218 29 L 215 36 L 212 29 L 205 26 L 212 23 Z" fill="#FFFFFF"/>
+    <path d="M 365 16 L 368 23 L 375 26 L 368 29 L 365 36 L 362 29 L 355 26 L 362 23 Z" fill="#FFFFFF"/>
+    <path d="M 515 16 L 518 23 L 525 26 L 518 29 L 515 36 L 512 29 L 505 26 L 512 23 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Barra Inferior -->
+  <rect x="210" y="416" width="380" height="36" rx="18" fill="#0A192F"/>
+  <text x="400" y="439" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="700" fill="#F5F2EB" text-anchor="middle" letter-spacing="1.5">4 GRUPOS • 16 PAÍSES • LÓGICA GEOPOLÍTICA</text>
+</svg>

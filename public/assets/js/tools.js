@@ -90,5 +90,12 @@ const toolsDB = [
         icon: "ph-bold ph-globe-stand",
         cover: "/assets/img/ferramentas/alternador-projecoes.svg",
         link: "/ferramentas/alternador-projecoes/"
+    },
+    {
+        titulo: "Graus de Separação de Fronteiras",
+        desc: "Calcule o menor caminho terrestre entre quaisquer dois países do planeta e visualize as fronteiras cruzadas no mapa.",
+        icon: "ph-bold ph-signpost",
+        cover: "/assets/img/ferramentas/graus-fronteiras.svg",
+        link: "/ferramentas/graus-fronteiras/"
     }
 ];
