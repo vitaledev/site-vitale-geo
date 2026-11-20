@@ -1,8 +1,9 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 181 Shorts
+// Total: 15 Longos + 182 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+    { titulo: "Por que a Índia pode ultrapassar a China (e a China não viu chegar)", id: "jJC7c00-53k", link: "https://www.youtube.com/watch?v=jJC7c00-53k" },
     { titulo: "Toda a História do Irã explicada em 12 Minutos!", id: "FxFveFDTo8k", link: "https://www.youtube.com/watch?v=FxFveFDTo8k" },
     { titulo: "Você vive num mundo maquiavélico (e nem sabe disso)", id: "yerRMDGkxrw", link: "https://www.youtube.com/watch?v=yerRMDGkxrw" },
     { titulo: "Por que a Argentina é tão estratégica na América do Sul?", id: "LHANhd4PMYk", link: "https://www.youtube.com/watch?v=LHANhd4PMYk" },
@@ -21,6 +22,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "A Índia pode ultrapassar a economia da China?", id: "n32CHz6DxeI", link: "https://www.youtube.com/watch?v=n32CHz6DxeI" },
     { titulo: "Você sabia que o mapa do GTA é feito de cidades reais dos EUA?", id: "VcbT0B7BRXM", link: "https://www.youtube.com/watch?v=VcbT0B7BRXM" },
     { titulo: "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.", id: "pYNyWyhVFr0", link: "https://www.youtube.com/watch?v=pYNyWyhVFr0" },
     { titulo: "Você imaginava que a chuva tinha um papel tão importante nessa rota?", id: "ffdNAeQltfo", link: "https://www.youtube.com/watch?v=ffdNAeQltfo" },
