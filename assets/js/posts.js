@@ -51,12 +51,12 @@ const blogPosts = [
         resumo: "Sem jamais pisar no subcontinente indiano, Sir Cyril Radcliffe riscou em 1947 uma linha sobre mapas defasados que dividiu 88 milhões de pessoas e gerou três guerras."
     },
     {
-        titulo: "Por Que a Terceira Maior Ilha do Mundo É Dividida Entre Três Países e Abriga Um Sultanato Fragmentado?",
+        titulo: "Como Um Erro de Bússola em Um Rio Amazônico Criou a Disputa do Triângulo de Tigri Entre Guiana e Suriname?",
         categoria: "Fronteiras",
         data: "21 Nov 2026 - 18:00",
-        img: "/assets/img/blog/ilha-de-borneu-tres-paises-indonesia-malasia-brunei-fronteiras.png",
-        link: "ilha-de-borneu-tres-paises-indonesia-malasia-brunei-fronteiras/",
-        resumo: "Com 743 mil km², Bornéu é a única ilha da Terra dividida entre três Estados soberanos — Indonésia, Malásia e Brunei — após tratados coloniais de 1824 e 1891."
+        img: "/assets/img/blog/triangulo-de-tigri-disputa-guiana-suriname-rio-courantyne.png",
+        link: "triangulo-de-tigri-disputa-guiana-suriname-rio-courantyne/",
+        resumo: "De um erro cartográfico de 1843 ao confronto militar de 1969: por que Guiana e Suriname disputam 15.603 km² de floresta amazônica entre os rios New e Kutari."
     },
     {
         titulo: "Por Que Cinco Fusos Geográficos na China Obedecem ao Mesmo Relógio de Pequim?",
