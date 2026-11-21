@@ -165,5 +165,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Geodésia & Rotas",
     badge: "FRONTEIRAS",
     tags: ["fronteiras", "caminho terrestre", "graus de separacao", "vizinhos", "rota terrestre", "geopolitica", "guiana francesa", "paises"]
+  },
+  {
+    id: "bandeiras-gemeas",
+    titulo: "Comparador de Bandeiras Gêmeas",
+    desc: "Coloque bandeiras quase idênticas sob a lupa de sobreposição, compare matizes em HEX, proporções oficiais e distância entre países.",
+    icon: "ph-bold ph-flag",
+    cover: "/assets/img/ferramentas/bandeiras-gemeas.svg",
+    link: "/ferramentas/bandeiras-gemeas/",
+    categoria: "Vexilologia & Bandeiras",
+    badge: "BANDEIRAS",
+    tags: ["bandeiras", "vexilologia", "chade", "romenia", "indonesia", "monaco", "irlanda", "costa do marfim", "comparador", "cores hex"]
   }
 ];

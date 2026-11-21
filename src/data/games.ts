@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "fuso-fracionado",
+    titulo: "Fuso Fracionado",
+    desc: "Descubra países com fusos de 30 e 45 minutos e anomalias geopolíticas onde o relógio oficial desafia a longitude solar.",
+    icon: "ph-fill ph-clock-countdown",
+    cover: "/assets/img/jogos/fuso-fracionado.svg",
+    link: "/jogos/fuso-fracionado/",
+    categoria: "Estatísticas & Dados",
+    badge: "DESAFIO DIÁRIO",
+    tags: ["fuso horario", "fuso fracionado", "utc", "relogio mundial", "longitude", "diario", "sobrevivencia", "blitz"]
+  },
+  {
     id: "conexoes-geograficas",
     titulo: "Conexões Geográficas",
     desc: "Agrupe 16 países em 4 conjuntos secretos ligados por fronteiras, coordenadas, bandeiras ou anomalias territoriais.",

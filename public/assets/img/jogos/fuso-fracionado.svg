@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <pattern id="grid-ff" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Bege Cartográfico Oficial -->
+  <rect width="800" height="500" fill="#F5F2EB"/>
+  <rect width="800" height="500" fill="url(#grid-ff)"/>
+
+  <!-- Curvas Topográficas Contínuas de Canto (Verde Sálvia) -->
+  <g fill="none" stroke="#A8C3A6" stroke-width="1.5" opacity="0.48">
+    <circle cx="0" cy="0" r="145"/>
+    <circle cx="0" cy="0" r="205"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="215"/>
+  </g>
+
+  <!-- Moldura Externa -->
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+  <!-- Cabeçalho Minimalista da Arte -->
+  <text x="400" y="68" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="3">CRONÔMETRO GEOPOLÍTICO • UTC</text>
+  <text x="400" y="102" font-family="Orbitron, sans-serif" font-size="27" font-weight="900" fill="#0A192F" text-anchor="middle" letter-spacing="1.5">FUSO <tspan fill="#C8102E">FRACIONADO</tspan></text>
+
+  <!-- Linha de Conexão Horizontal entre Relógio Referência (UTC) e Alvo -->
+  <line x1="255" y1="258" x2="545" y2="258" stroke="#0A192F" stroke-width="2" stroke-dasharray="6 5" stroke-opacity="0.35"/>
+
+  <!-- Relógio Esquerdo: Londres UTC 00:00 (12:00) -->
+  <g transform="translate(215, 258)">
+    <circle cx="0" cy="0" r="92" fill="#FFFFFF" stroke="#0A192F" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.14"/>
+    <!-- Ticks Cardinais -->
+    <line x1="0" y1="-82" x2="0" y2="-70" stroke="#0A192F" stroke-width="2.5"/>
+    <line x1="82" y1="0" x2="70" y2="0" stroke="#0A192F" stroke-width="2"/>
+    <line x1="0" y1="82" x2="0" y2="70" stroke="#0A192F" stroke-width="2"/>
+    <line x1="-82" y1="0" x2="-70" y2="0" stroke="#0A192F" stroke-width="2"/>
+    <!-- Ponteiros 12:00 -->
+    <line x1="0" y1="10" x2="0" y2="-46" stroke="#0A192F" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="12" x2="0" y2="-66" stroke="#0A192F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#0A192F"/>
+    <!-- Etiqueta -->
+    <rect x="-66" y="106" width="132" height="28" rx="14" fill="#FFFFFF" stroke="#0A192F" stroke-width="1.5"/>
+    <text x="0" y="124" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#0A192F" text-anchor="middle">LONDRES 12:00</text>
+  </g>
+
+  <!-- Pílula Central de Salto Fracionado -->
+  <g transform="translate(400, 258)">
+    <rect x="-56" y="-22" width="112" height="44" rx="22" fill="#0A192F"/>
+    <text x="0" y="5" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#F5F2EB" text-anchor="middle">+05:45</text>
+  </g>
+
+  <!-- Relógio Direito: Alvo Fracionado (17:45) com Arco de 45 min em Vermelho -->
+  <g transform="translate(585, 258)">
+    <circle cx="0" cy="0" r="92" fill="#FFFFFF" stroke="#C8102E" stroke-width="3"/>
+    <!-- Setor de 45 minutos (0 a 270 graus no sentido horário a partir das 12h) -->
+    <path d="M 0 0 L 0 -80 A 80 80 0 1 1 -80 0 Z" fill="#C8102E" fill-opacity="0.12"/>
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.14"/>
+    <!-- Ticks Cardinais -->
+    <line x1="0" y1="-82" x2="0" y2="-70" stroke="#0A192F" stroke-width="2.5"/>
+    <line x1="82" y1="0" x2="70" y2="0" stroke="#0A192F" stroke-width="2"/>
+    <line x1="0" y1="82" x2="0" y2="70" stroke="#0A192F" stroke-width="2"/>
+    <line x1="-82" y1="0" x2="-70" y2="0" stroke="#C8102E" stroke-width="3"/>
+    <!-- Ponteiro das Horas (~17:45 => 172.5 deg clockwise from 12h) -->
+    <line x1="0" y1="0" x2="6" y2="46" stroke="#0A192F" stroke-width="5" stroke-linecap="round"/>
+    <!-- Ponteiro dos Minutos (:45 => 270 deg => esquerda) -->
+    <line x1="12" y1="0" x2="-66" y2="0" stroke="#C8102E" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#C8102E"/>
+    <!-- Etiqueta -->
+    <rect x="-66" y="106" width="132" height="28" rx="14" fill="#C8102E"/>
+    <text x="0" y="124" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">ALVO 17:45</text>
+  </g>
+
+  <!-- Barra Inferior -->
+  <rect x="195" y="422" width="410" height="34" rx="17" fill="#0A192F"/>
+  <text x="400" y="443" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#F5F2EB" text-anchor="middle" letter-spacing="1.2">FUSOS :30 • :45 • ANOMALIAS SOLARES</text>
+</svg>

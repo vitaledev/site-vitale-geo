@@ -97,5 +97,12 @@ const toolsDB = [
         icon: "ph-bold ph-signpost",
         cover: "/assets/img/ferramentas/graus-fronteiras.svg",
         link: "/ferramentas/graus-fronteiras/"
+    },
+    {
+        titulo: "Comparador de Bandeiras Gêmeas",
+        desc: "Coloque bandeiras quase idênticas sob a lupa de sobreposição, compare matizes em HEX, proporções oficiais e distância entre países.",
+        icon: "ph-bold ph-flag",
+        cover: "/assets/img/ferramentas/bandeiras-gemeas.svg",
+        link: "/ferramentas/bandeiras-gemeas/"
     }
 ];

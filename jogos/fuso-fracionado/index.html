@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/jogos/fuso-fracionado/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fuso Fracionado | Arcade VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="São 12:00 em Londres e 17:45 no país misterioso. Descubra nações com fusos de 30 e 45 minutos e anomalias geopolíticas do relógio mundial no Arcade VitaleGeo.">
+    <meta name="keywords" content="fuso fracionado, fuso horario fracionado, nepal utc 5 45, jogo de fuso horario, geografia, anomalias de fuso, vitalegeo arcade">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Fuso Fracionado | VitaleGeo">
+    <meta property="og:description" content="Adivinhe o país pelo fuso horário de 30 e 45 minutos e desvende anomalias entre a hora oficial e o meridiano solar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/jogos/fuso-fracionado/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/jogos/fuso-fracionado.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Banco de Dados Geográfico Mestre (CerebroGeo - 198 Nações) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoNavyDark: '#112236',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .option-btn {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.2s ease,
+                        border-color 0.2s ease,
+                        box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            border-color: #C8102E;
+            box-shadow: 0 8px 20px -6px rgba(10, 25, 47, 0.14);
+        }
+        .option-btn:active:not(:disabled) {
+            transform: scale(0.985);
+        }
+        .option-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.35);
+        }
+        .clock-hand {
+            transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: 60px 60px;
+        }
+        @keyframes screen-shake {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-6px, 3px); }
+            40% { transform: translate(6px, -3px); }
+            60% { transform: translate(-4px, -2px); }
+            80% { transform: translate(4px, 2px); }
+        }
+        .shake-damage {
+            animation: screen-shake 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        @keyframes panel-reveal {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .panel-enter {
+            animation: panel-reveal 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#1F334E] select-none min-h-screen flex flex-col justify-between overflow-x-hidden font-sans antialiased selection:bg-[#C8102E] selection:text-white">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/70 p-1 rounded-full border border-[#0A192F]/10 shadow-xs">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <!-- Controles do Jogo no Header -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="alternarSom()" id="btn-sound" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition shadow-xs" title="Alternar Som" aria-label="Alternar Som">
+                    <i class="ph-bold ph-speaker-high" id="sound-icon"></i>
+                </button>
+                <button onclick="alternarTelaCheia()" class="p-1.5 sm:p-2 rounded-full bg-white hover:bg-[#FAF8F5] text-[#0A192F] border border-[#0A192F]/10 text-sm transition hidden sm:inline-flex shadow-xs" title="Tela Cheia" aria-label="Tela Cheia">
+                    <i class="ph-bold ph-arrows-out-simple"></i>
+                </button>
+                <a href="/jogos" class="inline-flex items-center gap-1 text-xs font-semibold text-[#53647C] hover:text-[#0A192F] transition px-2.5 py-1.5 rounded-full bg-white border border-[#0A192F]/10 shadow-xs">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span class="hidden sm:inline">Jogos</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WRAPPER 3 COLUNAS DESKTOP -->
+    <div class="w-full max-w-[1700px] mx-auto px-2 sm:px-4 pt-24 sm:pt-28 pb-12 flex items-start justify-center gap-4 flex-1">
+
+        <!-- ANÚNCIO LATERAL ESQUERDO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+        <!-- PALCO CENTRAL -->
+        <main class="w-full max-w-3xl px-1 sm:px-2 flex-1 flex flex-col justify-center" id="game-stage-container">
+
+            <!-- CARD DO PALCO ATIVO -->
+            <div id="stage-active" class="editorial-card p-4 sm:p-6 w-full flex flex-col justify-between relative shadow-sm overflow-hidden">
+
+                <!-- Barra de Status Superior -->
+                <div class="w-full flex flex-wrap items-center justify-between gap-2 text-xs font-mono pb-3 border-b border-[#0A192F]/10">
+                    <!-- Modos de Jogo -->
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                        <button onclick="mudarModoJogo('diario')" id="mode-btn-diario" class="px-3 py-1.5 rounded-full text-xs font-mono font-bold transition bg-[#C8102E] text-white shadow-xs inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-calendar-check"></i>
+                            <span>Diário</span>
+                        </button>
+                        <button onclick="mudarModoJogo('sobrevivencia')" id="mode-btn-sob" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10 inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-heart"></i>
+                            <span>Sobrevivência</span>
+                        </button>
+                        <button onclick="mudarModoJogo('blitz')" id="mode-btn-blitz" class="px-3 py-1.5 rounded-full text-xs font-mono font-medium transition bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10 inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-timer"></i>
+                            <span>Blitz 60s</span>
+                        </button>
+                    </div>
+
+                    <!-- Vidas / Timer, Streak, Recorde e Regras -->
+                    <div class="flex items-center gap-3">
+                        <div id="status-lives" class="flex items-center gap-1" title="Vidas restantes">
+                            <span id="vidas-container" class="flex gap-1 text-sm text-[#C8102E]">
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                                <i class="ph-fill ph-heart"></i>
+                            </span>
+                        </div>
+                        <div id="status-timer" class="hidden items-center gap-1 font-bold text-[#C8102E]">
+                            <i class="ph-bold ph-timer text-sm"></i>
+                            <span id="timer-val">60s</span>
+                        </div>
+
+                        <div class="flex items-center gap-2 pl-2 border-l border-[#0A192F]/10">
+                            <span class="text-[#53647C]">Streak:</span>
+                            <span id="score-val" class="font-bold text-[#0A192F] text-sm">0</span>
+                            <span class="text-slate-300 hidden sm:inline">|</span>
+                            <span class="text-emerald-700 font-bold hidden sm:inline" id="record-display">Rec: 0</span>
+                        </div>
+
+                        <!-- Hover Popover de Regras -->
+                        <div class="hover-info-container">
+                            <button type="button" class="hover-info-trigger" aria-label="Regras do Fuso Fracionado">
+                                <i class="ph-bold ph-info text-[#C8102E]"></i>
+                                <span>Regras</span>
+                            </button>
+                            <div class="hover-info-popover">
+                                <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <i class="ph-fill ph-clock-countdown text-[#C8102E]"></i> Fuso Fracionado
+                                </h4>
+                                <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2 text-left">
+                                    <li>• <strong>Relógios Sincronizados:</strong> Compare o horário de Londres (UTC 00:00) com o relógio local do destino para calcular o fuso exato.</li>
+                                    <li>• <strong>Frações &amp; Anomalias:</strong> Além dos raros fusos de 30 e 45 minutos, identifique países cuja hora oficial desafia a longitude solar.</li>
+                                    <li>• <strong>Modos:</strong> Diário (5 desafios do dia), Sobrevivência (3 vidas) e Blitz (60s com penalidade de 3s por erro).</li>
+                                    <li>• <strong>Atalhos:</strong> Teclas 1 a 4 (ou A–D) escolhem a opção, H revela a pista e Enter avança.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cabeçalho Compacto do Desafio -->
+                <div class="pt-3 pb-2 text-center">
+                    <div class="flex flex-wrap items-center justify-center gap-2 mb-1.5">
+                        <span id="round-type-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A192F]/5 border border-[#0A192F]/10 text-[#0A192F] text-[11px] font-mono font-bold uppercase tracking-wider">
+                            <i class="ph-bold ph-clock text-[#C8102E]"></i>
+                            <span id="round-type-text">FUSO FRACIONADO</span>
+                        </span>
+                        <span id="round-progress-badge" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#A8C3A6]/25 border border-[#0A192F]/10 text-[#0A192F] text-[11px] font-mono font-bold">
+                            RODADA 1/5
+                        </span>
+                    </div>
+                    <h1 class="font-heading font-black text-xl sm:text-2xl text-[#0A192F] tracking-tight">
+                        Que país marca este horário?
+                    </h1>
+                </div>
+
+                <!-- CRONÔMETRO DUPLO DE PRECISÃO (ELEMENTO FOCAL DA TELA) -->
+                <div class="bg-[#FAF8F5] border border-[#0A192F]/12 rounded-2xl p-3.5 sm:p-5 my-2 relative overflow-hidden">
+                    <!-- Curva topográfica sutil de canto -->
+                    <svg class="absolute -right-10 -top-10 w-44 h-44 text-[#A8C3A6] opacity-25 pointer-events-none" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+                        <circle cx="140" cy="20" r="65" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="140" cy="20" r="95" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="140" cy="20" r="125" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4 relative z-10">
+
+                        <!-- Relógio Referência: Londres (UTC 00:00) -->
+                        <div class="bg-white border border-[#0A192F]/12 rounded-xl p-3 sm:p-4 flex items-center sm:flex-col sm:text-center gap-3.5 sm:gap-2 shadow-xs">
+                            <svg class="w-16 h-16 sm:w-24 sm:h-24 shrink-0" viewBox="0 0 120 120" aria-hidden="true">
+                                <circle cx="60" cy="60" r="54" fill="#F5F2EB" stroke="#0A192F" stroke-width="2.5"/>
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#0A192F" stroke-width="0.8" stroke-opacity="0.16"/>
+                                <line x1="60" y1="10" x2="60" y2="17" stroke="#0A192F" stroke-width="2.5"/>
+                                <line x1="110" y1="60" x2="103" y2="60" stroke="#0A192F" stroke-width="2"/>
+                                <line x1="60" y1="110" x2="60" y2="103" stroke="#0A192F" stroke-width="2"/>
+                                <line x1="10" y1="60" x2="17" y2="60" stroke="#0A192F" stroke-width="2"/>
+                                <line id="ref-hour-hand" class="clock-hand" x1="60" y1="66" x2="60" y2="32" stroke="#0A192F" stroke-width="4" stroke-linecap="round"/>
+                                <line id="ref-min-hand" class="clock-hand" x1="60" y1="68" x2="60" y2="20" stroke="#53647C" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="60" cy="60" r="4" fill="#0A192F"/>
+                            </svg>
+                            <div class="text-left sm:text-center min-w-0">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-[#53647C] block font-bold">Londres · UTC 00:00</span>
+                                <span id="ref-digital-time" class="font-display font-black text-2xl sm:text-3xl text-[#0A192F] tracking-tight block mt-0.5">12:00</span>
+                                <span class="text-[10px] font-mono text-[#53647C] block">Referência de Greenwich</span>
+                            </div>
+                        </div>
+
+                        <!-- Conector Central com Diferença UTC -->
+                        <div class="flex sm:flex-col items-center justify-center gap-1.5 py-0.5">
+                            <span class="hidden sm:block text-[10px] font-mono uppercase tracking-widest text-[#53647C]">Desvio</span>
+                            <div id="utc-delta-pill" class="px-3.5 py-1.5 rounded-full bg-[#0A192F] text-[#F5F2EB] font-mono font-bold text-xs sm:text-sm tracking-wider shadow-xs inline-flex items-center gap-1.5">
+                                <i class="ph-bold ph-arrows-left-right text-[#A8C3A6]"></i>
+                                <span id="utc-delta-text">+05:45</span>
+                            </div>
+                            <span id="day-shift-label" class="text-[10px] font-mono font-bold text-[#C8102E] hidden">Dia seguinte</span>
+                        </div>
+
+                        <!-- Relógio Alvo Local -->
+                        <div class="bg-white border-2 border-[#C8102E]/40 rounded-xl p-3 sm:p-4 flex items-center sm:flex-col sm:text-center gap-3.5 sm:gap-2 shadow-xs">
+                            <svg class="w-16 h-16 sm:w-24 sm:h-24 shrink-0" viewBox="0 0 120 120" aria-hidden="true">
+                                <circle cx="60" cy="60" r="54" fill="#FFFFFF" stroke="#C8102E" stroke-width="2.5"/>
+                                <path id="target-minute-sector" d="" fill="#C8102E" fill-opacity="0.12"/>
+                                <circle cx="60" cy="60" r="46" fill="none" stroke="#0A192F" stroke-width="0.8" stroke-opacity="0.16"/>
+                                <line x1="60" y1="10" x2="60" y2="17" stroke="#0A192F" stroke-width="2.5"/>
+                                <line x1="110" y1="60" x2="103" y2="60" stroke="#0A192F" stroke-width="2"/>
+                                <line x1="60" y1="110" x2="60" y2="103" stroke="#0A192F" stroke-width="2"/>
+                                <line x1="10" y1="60" x2="17" y2="60" stroke="#0A192F" stroke-width="2"/>
+                                <line id="target-hour-hand" class="clock-hand" x1="60" y1="66" x2="60" y2="32" stroke="#0A192F" stroke-width="4" stroke-linecap="round"/>
+                                <line id="target-min-hand" class="clock-hand" x1="60" y1="68" x2="60" y2="20" stroke="#C8102E" stroke-width="2.8" stroke-linecap="round"/>
+                                <circle cx="60" cy="60" r="4.5" fill="#C8102E"/>
+                            </svg>
+                            <div class="text-left sm:text-center min-w-0">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-[#C8102E] block font-bold">Hora Local no Alvo</span>
+                                <span id="target-digital-time" class="font-display font-black text-2xl sm:text-3xl text-[#C8102E] tracking-tight block mt-0.5">17:45</span>
+                                <span id="target-sublabel" class="text-[10px] font-mono text-[#53647C] block">Fuso Oficial UTC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barra de Contexto e Pista Opcional -->
+                    <div class="mt-3 pt-3 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-between gap-2 relative z-10">
+                        <div class="flex items-center gap-2 text-xs font-mono text-[#0A192F]">
+                            <i class="ph-bold ph-globe-hemisphere-east text-[#C8102E]"></i>
+                            <span id="context-region">Região: Ásia</span>
+                        </div>
+                        <button onclick="revelarPista()" id="btn-hint" class="px-3 py-1 rounded-full bg-white hover:bg-[#0A192F] hover:text-white text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-bold inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-compass"></i>
+                            <span>Pista Geodésica</span>
+                        </button>
+                    </div>
+                    <div id="hint-box" class="hidden mt-2 p-2.5 rounded-xl bg-white border border-[#0A192F]/12 text-xs text-[#1F334E] font-sans leading-relaxed panel-enter">
+                        <strong class="font-mono text-[#C8102E] uppercase text-[10px] tracking-wider mr-1.5">Pista:</strong>
+                        <span id="hint-text"></span>
+                    </div>
+                </div>
+
+                <!-- GRADE 2x2 DE OPÇÕES DE PAÍSES -->
+                <div id="options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 my-2"></div>
+
+                <!-- PAINEL DE VERIFICAÇÃO & DESVIO SOLAR (REVELADO APÓS RESPOSTA) -->
+                <div id="reveal-panel" class="hidden mt-3 p-3.5 sm:p-4 rounded-xl bg-[#FAF8F5] border border-[#0A192F]/12 flex-col gap-3 panel-enter">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <i id="reveal-icon" class="ph-fill ph-check-circle text-emerald-700 text-lg"></i>
+                            <span id="reveal-title" class="font-heading font-bold text-sm text-[#0A192F]"></span>
+                        </div>
+                        <span id="reveal-utc-tag" class="px-2.5 py-0.5 rounded-full bg-[#0A192F] text-[#F5F2EB] text-xs font-mono font-bold"></span>
+                    </div>
+
+                    <!-- Comparativo: Horário Solar Astronômico vs. Horário Oficial -->
+                    <div class="w-full bg-white rounded-xl p-3 border border-[#0A192F]/10">
+                        <div class="grid grid-cols-3 gap-2 text-center pb-2.5 border-b border-[#0A192F]/10">
+                            <div>
+                                <span class="text-[10px] font-mono uppercase text-[#53647C] block">Longitude Real</span>
+                                <span id="solar-lng-val" class="font-mono font-bold text-xs sm:text-sm text-[#0A192F]">85.3° E</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono uppercase text-[#53647C] block">Fuso Solar</span>
+                                <span id="solar-utc-val" class="font-mono font-bold text-xs sm:text-sm text-emerald-700">UTC+05:41</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono uppercase text-[#53647C] block">Desvio Oficial</span>
+                                <span id="solar-diff-val" class="font-mono font-bold text-xs sm:text-sm text-[#C8102E]">+4 min</span>
+                            </div>
+                        </div>
+                        <p id="reveal-fact" class="text-xs text-[#1F334E] leading-relaxed font-sans mt-2.5"></p>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-[11px] font-mono text-[#53647C] hidden sm:inline">Atalho: Enter para avançar</span>
+                        <button onclick="proximaRodada()" id="btn-next-round" class="ml-auto px-5 py-2.5 rounded-xl bg-[#0A192F] hover:bg-[#112236] text-white font-heading font-bold text-xs flex items-center gap-1.5 transition shadow-xs">
+                            <span id="btn-next-label">Avançar</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TELA DE FIM DE JOGO / SCORECARD -->
+            <div id="stage-gameover" class="hidden editorial-card p-6 sm:p-8 w-full flex-col items-center text-center relative shadow-lg">
+                <div class="w-16 h-16 rounded-2xl bg-[#A8C3A6]/30 border border-[#0A192F]/15 flex items-center justify-center text-[#0A192F] text-3xl mb-4">
+                    <i class="ph-fill ph-trophy"></i>
+                </div>
+
+                <h2 id="gameover-title" class="text-2xl sm:text-3xl font-heading font-black text-[#0A192F] mb-1">
+                    Expedição Horária Concluída
+                </h2>
+                <p id="gameover-subtitle" class="text-sm text-[#53647C] mb-5 max-w-md">
+                    Seus cálculos de fuso fracionado e longitude solar foram registrados.
+                </p>
+
+                <!-- Quadro de Estatísticas -->
+                <div class="grid grid-cols-3 gap-2.5 sm:gap-3 w-full max-w-md mb-5">
+                    <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-3">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1 font-medium">Acertos</span>
+                        <span id="final-score" class="font-display font-black text-xl sm:text-2xl text-[#0A192F]">0</span>
+                    </div>
+                    <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-3">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1 font-medium">Precisão</span>
+                        <span id="final-accuracy" class="font-display font-black text-xl sm:text-2xl text-[#C8102E]">0%</span>
+                    </div>
+                    <div class="bg-[#FAF8F5] border border-[#0A192F]/10 rounded-xl p-3">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block mb-1 font-medium">Recorde</span>
+                        <span id="final-record" class="font-display font-black text-xl sm:text-2xl text-emerald-700">0</span>
+                    </div>
+                </div>
+
+                <!-- Título Honorífico -->
+                <div class="mb-6 px-4 py-2 rounded-xl bg-[#0A192F]/5 border border-[#0A192F]/15 text-[#0A192F] font-mono text-xs font-bold inline-flex items-center gap-2">
+                    <i class="ph-bold ph-compass text-[#C8102E]"></i>
+                    <span id="honorific-title">Cronometrista dos Meridianos</span>
+                </div>
+
+                <!-- Ações -->
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full max-w-md">
+                    <button onclick="compartilharResultado()" class="flex-1 min-w-[180px] bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 transition shadow-xs">
+                        <i class="ph-bold ph-whatsapp-logo"></i>
+                        <span>Desafiar no WhatsApp</span>
+                    </button>
+                    <button onclick="jogarNovamentePosFim()" class="flex-1 min-w-[180px] bg-[#C8102E] hover:bg-[#a60d26] text-white font-heading font-bold text-sm py-3.5 px-5 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+                        <i class="ph-bold ph-arrow-counter-clockwise"></i>
+                        <span id="btn-play-again-label">Jogar Sobrevivência</span>
+                    </button>
+                </div>
+
+                <!-- Ponte de Ecossistema VitaleGeo -->
+                <div class="mt-6 pt-4 border-t border-[#0A192F]/10 w-full flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-[#53647C]">
+                    <a href="/jogos/" class="hover:text-[#0A192F] transition inline-flex items-center gap-1">
+                        <i class="ph-bold ph-game-controller text-[#C8102E]"></i> Outros Jogos
+                    </a>
+                    <a href="/ferramentas/que-horas-sao/" class="hover:text-[#0A192F] transition inline-flex items-center gap-1">
+                        <i class="ph-bold ph-clock text-[#C8102E]"></i> Que Horas São no Mundo?
+                    </a>
+                    <a href="https://www.youtube.com/@vitalegeo" target="_blank" rel="noopener noreferrer" class="hover:text-[#0A192F] transition inline-flex items-center gap-1">
+                        <i class="ph-bold ph-youtube-logo text-[#C8102E]"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- PUBLICIDADE INFERIOR (ESPAÇO RESERVADO ANTI-CLS) -->
+            <section class="editorial-card p-3 text-center min-h-[90px] sm:min-h-[120px] flex flex-col justify-center items-center mt-3">
+                <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-1 font-mono font-medium">PUBLICIDADE</span>
+                <div class="w-full min-h-[90px] flex items-center justify-center">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6879770260785828"
+                         data-ad-slot="5140105675"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                    </script>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ANÚNCIO LATERAL DIREITO -->
+        <aside class="hidden xl:flex flex-col items-center justify-start w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 min-h-[600px] bg-white border border-[#0A192F]/10 rounded-2xl p-2 text-center text-xs font-mono text-[#53647C] shadow-xs">
+            <span class="text-[9px] uppercase tracking-widest text-[#53647C] block mb-2 font-medium">PUBLICIDADE</span>
+            <div class="w-full flex-1 flex items-center justify-center">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"></ins>
+                <script>
+                    try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé Oficial VitaleGeo em Azul Marinho -->
+    <footer class="site-footer">
+        <div class="max-w-5xl mx-auto">
+            <div class="site-footer__social">
+                <a href="https://github.com/vitaledev" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+                <a href="https://www.youtube.com/@vitalegeo" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+            <p class="site-footer__brand">VitaleGeo</p>
+            <p class="text-[#CBD5E1] text-xs">Observatório independente de geopolítica, cartografia e dados territoriais.</p>
+            <div class="site-footer__links">
+                <a href="/sobre/">Sobre</a>
+                <span>·</span>
+                <a href="/politica/">Privacidade</a>
+                <span>·</span>
+                <a href="/ferramentas/">Ferramentas</a>
+                <span>·</span>
+                <a href="/jogos/">Jogos</a>
+                <span>·</span>
+                <a href="/blog/">Posts</a>
+            </div>
+            <p class="text-[11px] text-[#53647C] mt-6">&copy; 2026 VitaleGeo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MOTOR DO JOGO JAVASCRIPT -->
+    <script>
+        // --- 1. CATÁLOGO VERIFICADO DE FUSOS FRACIONADOS & ANOMALIAS SOLARES ---
+        const DESAFIOS_FUSO = [
+            {
+                id: "nepal-545",
+                iso2: "np",
+                alvoLabel: "Nepal",
+                subLabel: "Horário Nacional Padrão (NPT)",
+                utcMinutos: 345,
+                utcLabel: "UTC+05:45",
+                tipo: "FRACIONADO :45",
+                regiao: "Ásia Meridional",
+                lngRef: 86.25,
+                solarOffsetMin: 345,
+                pista: "Encravado no Himalaia; é o único país soberano do planeta com deslocamento de +45 minutos.",
+                distratores: ["in", "bt", "bd"],
+                fato: "Em 1986, o Nepal adotou o meridiano do Monte Gaurishankar (86°15' Leste), resultando exatamente em UTC+05:45 — 15 minutos à frente da vizinha Índia."
+            },
+            {
+                id: "india-530",
+                iso2: "in",
+                alvoLabel: "Índia",
+                subLabel: "Indian Standard Time (IST)",
+                utcMinutos: 330,
+                utcLabel: "UTC+05:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Ásia Meridional",
+                lngRef: 82.5,
+                solarOffsetMin: 330,
+                pista: "Mais de 1,4 bilhão de habitantes compartilham o mesmo relógio de meia hora centrado perto de Prayagraj.",
+                distratores: ["pk", "bd", "np"],
+                fato: "Embora a Índia abranja quase 30° de longitude entre o Gujarate e Arunachal Pradesh, todo o país usa um único fuso de meia hora baseado no meridiano 82,5° Leste."
+            },
+            {
+                id: "ira-330",
+                iso2: "ir",
+                alvoLabel: "Irã",
+                subLabel: "Iran Standard Time (IRST)",
+                utcMinutos: 210,
+                utcLabel: "UTC+03:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Oriente Médio",
+                lngRef: 52.5,
+                solarOffsetMin: 210,
+                pista: "No Planalto Persa, o relógio marca 30 minutos a mais que todos os vizinhos árabes e a Turquia.",
+                distratores: ["iq", "sa", "tr"],
+                fato: "O fuso UTC+03:30 do Irã acompanha com precisão cirúrgica o meridiano 52,5° Leste, que atravessa a região próxima a Teerã."
+            },
+            {
+                id: "mianmar-630",
+                iso2: "mm",
+                alvoLabel: "Mianmar",
+                subLabel: "Myanmar Standard Time (MMT)",
+                utcMinutos: 390,
+                utcLabel: "UTC+06:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Sudeste Asiático",
+                lngRef: 96.15,
+                solarOffsetMin: 385,
+                pista: "Mantém meia hora de diferença tanto da Índia (+05:30) quanto da Tailândia (+07:00).",
+                distratores: ["th", "la", "bd"],
+                fato: "Adotado em 1920 com base no meridiano 97°30' Leste próximo a Yangon, o fuso +06:30 coloca Mianmar exatamente entre os dois gigantes regionais."
+            },
+            {
+                id: "afeganistao-430",
+                iso2: "af",
+                alvoLabel: "Afeganistão",
+                subLabel: "Afghanistan Time (AFT)",
+                utcMinutos: 270,
+                utcLabel: "UTC+04:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Ásia Central e do Sul",
+                lngRef: 69.2,
+                solarOffsetMin: 277,
+                pista: "Fica exatamente entre o Irã (+03:30) a oeste e o Paquistão (+05:00) a leste.",
+                distratores: ["pk", "tj", "uz"],
+                fato: "O horário oficial de Cabul (UTC+04:30) reflete quase perfeitamente a longitude da capital (69,2° Leste), mantendo uma diferença de 30 minutos para o Paquistão."
+            },
+            {
+                id: "sri-lanka-530",
+                iso2: "lk",
+                alvoLabel: "Sri Lanka",
+                subLabel: "Sri Lanka Standard Time (SLST)",
+                utcMinutos: 330,
+                utcLabel: "UTC+05:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Oceano Índico",
+                lngRef: 79.86,
+                solarOffsetMin: 319,
+                pista: "Nação insular que alternou entre +06:00, +06:30 e +05:30 antes de voltar a sincronizar com a Índia.",
+                distratores: ["mv", "bd", "mm"],
+                fato: "Entre 1996 e 2006, o Sri Lanka experimentou UTC+06:30 e UTC+06:00 para economizar energia, mas retornou a UTC+05:30 para unificar agendas comerciais na região."
+            },
+            {
+                id: "australia-acst-930",
+                iso2: "au",
+                alvoLabel: "Austrália (Centro)",
+                subLabel: "Adelaide e Darwin · ACST",
+                utcMinutos: 570,
+                utcLabel: "UTC+09:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Oceania",
+                lngRef: 138.6,
+                solarOffsetMin: 554,
+                pista: "Faixa central de um país continental que divide oeste (+08:00), centro (+09:30) e leste (+10:00).",
+                distratores: ["nz", "pg", "id"],
+                fato: "A Austrália Meridional e o Território do Norte operam em UTC+09:30 por decisão de 1899 para facilitar o comércio com Melbourne e Sydney com apenas 30 min de diferença."
+            },
+            {
+                id: "canada-terra-nova-330",
+                iso2: "ca",
+                alvoLabel: "Canadá (Terra Nova)",
+                subLabel: "St. John's · NST",
+                utcMinutos: -210,
+                utcLabel: "UTC-03:30",
+                tipo: "FRACIONADO :30",
+                regiao: "América do Norte",
+                lngRef: -52.71,
+                solarOffsetMin: -211,
+                pista: "Província atlântica no extremo leste da América do Norte, uma hora e meia à frente de Nova York.",
+                distratores: ["us", "mx", "br"],
+                fato: "A província canadense de Terra Nova e Labrador mantém o fuso -03:30 por estar próxima do meridiano 52,5° Oeste, quase alinhada ao extremo leste do continente."
+            },
+            {
+                id: "nova-zelandia-chatham-1245",
+                iso2: "nz",
+                alvoLabel: "Nova Zelândia (Ilhas Chatham)",
+                subLabel: "CHAST · Pacífico Sul",
+                utcMinutos: 765,
+                utcLabel: "UTC+12:45",
+                tipo: "FRACIONADO :45",
+                regiao: "Oceania",
+                lngRef: -176.5,
+                solarOffsetMin: 734,
+                pista: "Arquipélago a 800 km a leste de Wellington; tem exatamente 45 minutos de diferença para a capital do país.",
+                distratores: ["fj", "vu", "au"],
+                fato: "As Ilhas Chatham ficam no lado leste da Linha Internacional de Data prática da Nova Zelândia, ostentando um dos três únicos fusos :45 do planeta (UTC+12:45)."
+            },
+            {
+                id: "franca-marquesas-930",
+                iso2: "fr",
+                alvoLabel: "França (Ilhas Marquesas)",
+                subLabel: "Polinésia Francesa · MART",
+                utcMinutos: -570,
+                utcLabel: "UTC-09:30",
+                tipo: "FRACIONADO :30",
+                regiao: "Pacífico / Ultramar",
+                lngRef: -139.5,
+                solarOffsetMin: -558,
+                pista: "Território ultramarino do país que possui o maior número de fusos horários do mundo (12 ao todo).",
+                distratores: ["us", "nz", "cl"],
+                fato: "Enquanto o Taiti adota UTC-10:00, o arquipélago das Marquesas usa UTC-09:30. Somando suas coletividades no Pacífico, Índico e Atlântico, a França cobre 12 fusos."
+            },
+            {
+                id: "butao-600",
+                iso2: "bt",
+                alvoLabel: "Butão",
+                subLabel: "Bhutan Time (BTT)",
+                utcMinutos: 360,
+                utcLabel: "UTC+06:00",
+                tipo: "ANOMALIA DE FRONTEIRA",
+                regiao: "Ásia Meridional",
+                lngRef: 89.64,
+                solarOffsetMin: 359,
+                pista: "Reino himalaio que faz fronteira com a Índia (+05:30) ao sul e com a China (+08:00) ao norte.",
+                distratores: ["np", "in", "cn"],
+                fato: "Cruzar a fronteira norte do Butão com a China exige adiantar o relógio em 2 horas inteiras, enquanto ao sul com a Índia a diferença cai para 30 minutos."
+            },
+            {
+                id: "china-800",
+                iso2: "cn",
+                alvoLabel: "China",
+                subLabel: "Horário Nacional Único (CST)",
+                utcMinutos: 480,
+                utcLabel: "UTC+08:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "Ásia Oriental",
+                lngRef: 87.6,
+                solarOffsetMin: 350,
+                pista: "Estende-se por cinco zonas solares geográficas, mas todo o país segue um único decreto horário desde 1949.",
+                distratores: ["jp", "kr", "vn"],
+                fato: "Em Xinjiang, no extremo oeste chinês (longitude ~87°E), o sol nasce às 10h no inverno porque todo o território opera obrigatoriamente no horário de Pequim (UTC+08:00)."
+            },
+            {
+                id: "espanha-100",
+                iso2: "es",
+                alvoLabel: "Espanha",
+                subLabel: "Central European Time (CET)",
+                utcMinutos: 60,
+                utcLabel: "UTC+01:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "Europa Meridional",
+                lngRef: -3.7,
+                solarOffsetMin: -15,
+                pista: "Está na mesma longitude de Londres e Lisboa, mas adota o horário de Berlim e Roma.",
+                distratores: ["pt", "gb", "ie"],
+                fato: "Desde 1940, a Espanha permanece em UTC+01:00 apesar de Madri ficar a oeste de Greenwich. Esse desvio de mais de 1h explicaria refeições e jantares mais tardios."
+            },
+            {
+                id: "kiribati-1400",
+                iso2: "ki",
+                alvoLabel: "Kiribati (Ilhas da Linha)",
+                subLabel: "Line Islands Time (LINT)",
+                utcMinutos: 840,
+                utcLabel: "UTC+14:00",
+                tipo: "EXTREMO PLANETÁRIO",
+                regiao: "Oceania",
+                lngRef: -157.4,
+                solarOffsetMin: 810,
+                pista: "Detém o fuso mais adiantado da Terra: 24 horas à frente do Havaí, na mesma longitude.",
+                distratores: ["ws", "to", "fj"],
+                fato: "Em 1995, Kiribati dobrou a Linha Internacional de Data para o leste para que todas as suas ilhas vivessem no mesmo dia civil, inaugurando o fuso UTC+14:00."
+            },
+            {
+                id: "samoa-1300",
+                iso2: "ws",
+                alvoLabel: "Samoa",
+                subLabel: "West Samoa Time (WST)",
+                utcMinutos: 780,
+                utcLabel: "UTC+13:00",
+                tipo: "ANOMALIA DA LINHA DE DATA",
+                regiao: "Oceania",
+                lngRef: -172.1,
+                solarOffsetMin: 752,
+                pista: "Pulou diretamente o dia 30 de dezembro de 2011 para alinhar o comércio semanal com a Austrália.",
+                distratores: ["fj", "vu", "pg"],
+                fato: "Até 2011, Samoa estava em UTC-11:00 (quase um dia atrás da Nova Zelândia). Ao saltar para UTC+13:00, eliminou a defasagem de fim de semana com seus parceiros."
+            },
+            {
+                id: "islandia-000",
+                iso2: "is",
+                alvoLabel: "Islândia",
+                subLabel: "Greenwich Mean Time (GMT)",
+                utcMinutos: 0,
+                utcLabel: "UTC+00:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "Europa Nórdica",
+                lngRef: -21.94,
+                solarOffsetMin: -88,
+                pista: "Localizada perto do meridiano 22° Oeste, deveria estar em UTC-01:00 ou -02:00, mas segue Londres o ano inteiro.",
+                distratores: ["no", "se", "fi"],
+                fato: "Reykjavík fica 88 minutos atrasada em relação ao sol quando usa UTC+00:00 permanente, fazendo o meio-dia solar ocorrer perto das 13h30."
+            },
+            {
+                id: "cingapura-800",
+                iso2: "sg",
+                alvoLabel: "Cingapura",
+                subLabel: "Singapore Standard Time (SGT)",
+                utcMinutos: 480,
+                utcLabel: "UTC+08:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "Sudeste Asiático",
+                lngRef: 103.82,
+                solarOffsetMin: 415,
+                pista: "Situada na faixa solar de UTC+07:00, adiantou o relógio para se alinhar a Hong Kong e Xangai.",
+                distratores: ["th", "vn", "kh"],
+                fato: "Em 1982, Cingapura e a Malásia Penínsular mudaram de UTC+07:30 para UTC+08:00 para sincronizar seus mercados financeiros com o leste asiático."
+            },
+            {
+                id: "marrocos-100",
+                iso2: "ma",
+                alvoLabel: "Marrocos",
+                subLabel: "Horário Permanente UTC+01:00",
+                utcMinutos: 60,
+                utcLabel: "UTC+01:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "Norte da África",
+                lngRef: -7.09,
+                solarOffsetMin: -28,
+                pista: "Fica a oeste do Meridiano de Greenwich, mas mantém o relógio 1 hora à frente de Londres e Lisboa.",
+                distratores: ["pt", "gb", "ie"],
+                fato: "Em 2018, o Marrocos aboliu a mudança sazonal e fixou UTC+01:00 como horário permanente (exceto durante o Ramadã), criando quase 90 minutos de desvio solar em Casablanca."
+            },
+            {
+                id: "portugal-000",
+                iso2: "pt",
+                alvoLabel: "Portugal",
+                subLabel: "Western European Time (WET)",
+                utcMinutos: 0,
+                utcLabel: "UTC+00:00",
+                tipo: "CONTRASTE IBÉRICO",
+                regiao: "Europa Meridional",
+                lngRef: -9.14,
+                solarOffsetMin: -37,
+                pista: "Mantém o mesmo horário de Londres, ficando 1 hora atrás do país vizinho com quem divide toda a fronteira.",
+                distratores: ["es", "fr", "be"],
+                fato: "Ao cruzar a ponte sobre o Rio Guadiana entre Portugal e Espanha, o viajante precisa adiantar o relógio em 1 hora inteira apesar da distância de poucos metros."
+            },
+            {
+                id: "argentina-m300",
+                iso2: "ar",
+                alvoLabel: "Argentina",
+                subLabel: "Argentina Time (ART)",
+                utcMinutos: -180,
+                utcLabel: "UTC-03:00",
+                tipo: "ANOMALIA SOLAR",
+                regiao: "América do Sul",
+                lngRef: -63.62,
+                solarOffsetMin: -254,
+                pista: "Sua longitude central corresponde a UTC-04:00, mas adota o mesmo fuso oficial de Brasília.",
+                distratores: ["cl", "bo", "pe"],
+                fato: "Como grande parte do território argentino fica a oeste do meridiano 60°W (especialmente Mendoza e a Patagônia), o fuso UTC-03:00 equivale a um horário de verão permanente."
+            }
+        ];
+
+        // --- 2. SISTEMA DE ÁUDIO SINTETIZADO (WEB AUDIO API) ---
+        let audioCtx = null;
+        let somAtivo = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) audioCtx = new AudioCtx();
+            }
+        }
+
+        function playSound(type) {
+            if (!somAtivo) return;
+            initAudio();
+            if (!audioCtx) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const t = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'acerto') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, t);
+                osc.frequency.exponentialRampToValueAtTime(880, t + 0.12);
+                gain.gain.setValueAtTime(0.18, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.26);
+                osc.start(t);
+                osc.stop(t + 0.26);
+            } else if (type === 'erro') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(300, t);
+                osc.frequency.exponentialRampToValueAtTime(135, t + 0.22);
+                gain.gain.setValueAtTime(0.22, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.24);
+                osc.start(t);
+                osc.stop(t + 0.24);
+            } else if (type === 'combo') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, t);
+                osc.frequency.setValueAtTime(659.25, t + 0.08);
+                osc.frequency.setValueAtTime(783.99, t + 0.16);
+                osc.frequency.setValueAtTime(1046.50, t + 0.24);
+                gain.gain.setValueAtTime(0.22, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.44);
+                osc.start(t);
+                osc.stop(t + 0.44);
+            } else if (type === 'pista') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(660, t);
+                osc.frequency.exponentialRampToValueAtTime(740, t + 0.08);
+                gain.gain.setValueAtTime(0.1, t);
+                gain.gain.exponentialRampToValueAtTime(0.01, t + 0.12);
+                osc.start(t);
+                osc.stop(t + 0.12);
+            }
+        }
+
+        function alternarSom() {
+            somAtivo = !somAtivo;
+            const icon = document.getElementById('sound-icon');
+            if (somAtivo) {
+                icon.className = 'ph-bold ph-speaker-high';
+                playSound('acerto');
+            } else {
+                icon.className = 'ph-bold ph-speaker-slash text-slate-400';
+            }
+            try { localStorage.setItem('vg_som_fuso_fracionado', somAtivo ? '1' : '0'); } catch (e) {}
+        }
+
+        function alternarTelaCheia() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+
+        // --- 3. ESTADO GLOBAL DO JOGO ---
+        const DAILY_TOTAL = 5;
+        let modoJogo = 'diario'; // 'diario' | 'sobrevivencia' | 'blitz'
+        let filaRodadas = [];
+        let indiceRodada = 0;
+        let desafioAtual = null;
+        let opcoesAtuais = [];
+        let baseMinutosUTC = 720; // 12:00 padrão
+        let rodadaAtiva = false;
+        let vidas = 3;
+        let acertos = 0;
+        let tentativas = 0;
+        let streak = 0;
+        let melhorRecorde = 0;
+        let tempoRestante = 60;
+        let timerInterval = null;
+        let pistaRevelada = false;
+
+        try {
+            const recSalvo = localStorage.getItem('vg_recorde_fuso_fracionado');
+            if (recSalvo) melhorRecorde = parseInt(recSalvo, 10) || 0;
+            const somSalvo = localStorage.getItem('vg_som_fuso_fracionado');
+            if (somSalvo === '0') {
+                somAtivo = false;
+                document.getElementById('sound-icon').className = 'ph-bold ph-speaker-slash text-slate-400';
+            }
+        } catch (e) {}
+
+        function atualizarDisplayRecorde() {
+            document.getElementById('record-display').innerText = `Rec: ${melhorRecorde}`;
+            document.getElementById('final-record').innerText = melhorRecorde;
+        }
+
+        // PRNG determinístico para Desafio Diário
+        function getHojeKey() {
+            const d = new Date();
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function hashString(str) {
+            let h = 2166136261;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h = Math.imul(h, 16777619);
+            }
+            return h >>> 0;
+        }
+
+        function embaralharDeterministico(arr, seedStr) {
+            const copy = [...arr];
+            let s = hashString(seedStr);
+            for (let i = copy.length - 1; i > 0; i--) {
+                s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+                const j = s % (i + 1);
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function embaralhar(arr) {
+            if (window.CerebroGeo && typeof window.CerebroGeo.embaralhar === 'function') {
+                return window.CerebroGeo.embaralhar(arr);
+            }
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function obterDadosPais(iso2) {
+            if (window.CerebroGeo && typeof window.CerebroGeo.obterPaisPorIso2 === 'function') {
+                const pais = window.CerebroGeo.obterPaisPorIso2(iso2);
+                if (pais) return pais;
+            }
+            return { nome: iso2.toUpperCase(), continente: "Global", subregiao: "Mundo", iso2: iso2, lng: 0 };
+        }
+
+        function formatarHora(totalMin) {
+            let norm = ((totalMin % 1440) + 1440) % 1440;
+            const hh = Math.floor(norm / 60);
+            const mm = norm % 60;
+            return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+        }
+
+        function formatarDesvio(min) {
+            const sinal = min >= 0 ? '+' : '-';
+            const abs = Math.abs(min);
+            const hh = Math.floor(abs / 60);
+            const mm = abs % 60;
+            return `${sinal}${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+        }
+
+        function formatarLongitude(lng) {
+            const abs = Math.abs(lng).toFixed(1);
+            return `${abs}° ${lng >= 0 ? 'Leste' : 'Oeste'}`;
+        }
+
+        // Desenha setor SVG no relógio alvo destacando os minutos fracionados
+        function atualizarSetorMinutos(minutos) {
+            const sector = document.getElementById('target-minute-sector');
+            if (!sector) return;
+            const m = ((minutos % 60) + 60) % 60;
+            if (m === 0) {
+                sector.setAttribute('d', '');
+                return;
+            }
+            const angleDeg = (m / 60) * 360;
+            const angleRad = ((angleDeg - 90) * Math.PI) / 180;
+            const r = 46;
+            const x = 60 + r * Math.cos(angleRad);
+            const y = 60 + r * Math.sin(angleRad);
+            const largeArc = angleDeg > 180 ? 1 : 0;
+            sector.setAttribute('d', `M 60 60 L 60 ${60 - r} A ${r} ${r} 0 ${largeArc} 1 ${x.toFixed(2)} ${y.toFixed(2)} Z`);
+        }
+
+        function atualizarRelogioSVG(prefix, totalMin) {
+            let norm = ((totalMin % 1440) + 1440) % 1440;
+            const h = (norm / 60) % 12;
+            const m = norm % 60;
+            const hourAngle = h * 30;
+            const minAngle = m * 6;
+            const hourHand = document.getElementById(`${prefix}-hour-hand`);
+            const minHand = document.getElementById(`${prefix}-min-hand`);
+            if (hourHand) hourHand.style.transform = `rotate(${hourAngle}deg)`;
+            if (minHand) minHand.style.transform = `rotate(${minAngle}deg)`;
+        }
+
+        function renderizarVidas() {
+            const container = document.getElementById('vidas-container');
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < vidas) {
+                    html += '<i class="ph-fill ph-heart text-[#C8102E]"></i>';
+                } else {
+                    html += '<i class="ph-bold ph-heart text-slate-300"></i>';
+                }
+            }
+            container.innerHTML = html;
+        }
+
+        function prepararFila() {
+            if (modoJogo === 'diario') {
+                const fracionados = DESAFIOS_FUSO.filter(d => d.tipo.includes('FRACIONADO'));
+                const anomalias = DESAFIOS_FUSO.filter(d => !d.tipo.includes('FRACIONADO'));
+                const hoje = getHojeKey();
+                const selFrac = embaralharDeterministico(fracionados, hoje + '-f').slice(0, 3);
+                const selAnom = embaralharDeterministico(anomalias, hoje + '-a').slice(0, 2);
+                filaRodadas = embaralharDeterministico([...selFrac, ...selAnom], hoje + '-mix');
+            } else {
+                filaRodadas = embaralhar(DESAFIOS_FUSO);
+            }
+            indiceRodada = 0;
+        }
+
+        function carregarRodada() {
+            if (modoJogo === 'diario' && indiceRodada >= filaRodadas.length) {
+                finalizarJogo(true);
+                return;
+            }
+            if (indiceRodada >= filaRodadas.length) {
+                filaRodadas = embaralhar(DESAFIOS_FUSO);
+                indiceRodada = 0;
+            }
+
+            rodadaAtiva = true;
+            pistaRevelada = false;
+            desafioAtual = filaRodadas[indiceRodada];
+
+            // Limpar painéis anteriores
+            const revealPanel = document.getElementById('reveal-panel');
+            revealPanel.classList.add('hidden');
+            revealPanel.classList.remove('flex');
+            document.getElementById('hint-box').classList.add('hidden');
+            document.getElementById('btn-hint').disabled = false;
+            document.getElementById('btn-hint').classList.remove('opacity-40');
+
+            // Escolher hora base em Londres (09:00, 12:00, 14:00 ou 16:00)
+            const bases = [540, 720, 840, 960];
+            if (modoJogo === 'diario') {
+                baseMinutosUTC = bases[(hashString(getHojeKey() + desafioAtual.id)) % bases.length];
+            } else {
+                baseMinutosUTC = bases[Math.floor(Math.random() * bases.length)];
+            }
+
+            const localTotalMin = baseMinutosUTC + desafioAtual.utcMinutos;
+            document.getElementById('ref-digital-time').innerText = formatarHora(baseMinutosUTC);
+            document.getElementById('target-digital-time').innerText = formatarHora(localTotalMin);
+            document.getElementById('utc-delta-text').innerText = formatarDesvio(desafioAtual.utcMinutos);
+            document.getElementById('target-sublabel').innerText = desafioAtual.subLabel;
+            document.getElementById('context-region').innerText = `Região: ${desafioAtual.regiao}`;
+            document.getElementById('round-type-text').innerText = desafioAtual.tipo;
+            document.getElementById('hint-text').innerText = desafioAtual.pista;
+
+            const dayShift = document.getElementById('day-shift-label');
+            if (localTotalMin >= 1440) {
+                dayShift.innerText = '+1 dia civil';
+                dayShift.classList.remove('hidden');
+            } else if (localTotalMin < 0) {
+                dayShift.innerText = '-1 dia civil';
+                dayShift.classList.remove('hidden');
+            } else {
+                dayShift.classList.add('hidden');
+            }
+
+            if (modoJogo === 'diario') {
+                document.getElementById('round-progress-badge').innerText = `DIÁRIO ${indiceRodada + 1}/${DAILY_TOTAL}`;
+            } else if (modoJogo === 'sobrevivencia') {
+                document.getElementById('round-progress-badge').innerText = `DESAFIO #${tentativas + 1}`;
+            } else {
+                document.getElementById('round-progress-badge').innerText = `BLITZ #${tentativas + 1}`;
+            }
+
+            atualizarRelogioSVG('ref', baseMinutosUTC);
+            atualizarRelogioSVG('target', localTotalMin);
+            atualizarSetorMinutos(localTotalMin);
+
+            // Montar 4 opções (1 correta + 3 distratores curados)
+            const opcoesRaw = [
+                { iso2: desafioAtual.iso2, nomeExibicao: desafioAtual.alvoLabel, correta: true },
+                ...desafioAtual.distratores.map(iso => {
+                    const p = obterDadosPais(iso);
+                    return { iso2: iso, nomeExibicao: p.nome, correta: false };
+                })
+            ];
+
+            opcoesAtuais = modoJogo === 'diario'
+                ? embaralharDeterministico(opcoesRaw, getHojeKey() + desafioAtual.id + '-opts')
+                : embaralhar(opcoesRaw);
+
+            renderizarOpcoes();
+        }
+
+        function renderizarOpcoes() {
+            const grid = document.getElementById('options-grid');
+            const letras = ['1', '2', '3', '4'];
+            grid.innerHTML = opcoesAtuais.map((opt, idx) => {
+                const paisData = obterDadosPais(opt.iso2);
+                const sub = paisData.subregiao || paisData.continente || 'Mundo';
+                return `
+                    <button onclick="escolherOpcao(${idx})" id="opt-btn-${idx}" class="option-btn bg-white hover:bg-[#FAF8F5] border-2 border-[#0A192F]/15 rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-left shadow-xs">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <img src="https://flagcdn.com/w80/${opt.iso2.toLowerCase()}.png" alt="Bandeira de ${opt.nomeExibicao}" class="w-10 h-7 object-cover rounded border border-[#0A192F]/15 shrink-0" onerror="this.style.display='none'">
+                            <div class="min-w-0">
+                                <span class="font-heading font-bold text-sm sm:text-base text-[#0A192F] block truncate">${opt.nomeExibicao}</span>
+                                <span class="text-[11px] font-mono text-[#53647C] block truncate">${sub}</span>
+                            </div>
+                        </div>
+                        <span class="w-7 h-7 rounded-full bg-[#FAF8F5] border border-[#0A192F]/12 flex items-center justify-center text-xs font-mono font-bold text-[#53647C] shrink-0">${letras[idx]}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function revelarPista() {
+            if (!rodadaAtiva || pistaRevelada) return;
+            pistaRevelada = true;
+            playSound('pista');
+            document.getElementById('hint-box').classList.remove('hidden');
+            const btn = document.getElementById('btn-hint');
+            btn.disabled = true;
+            btn.classList.add('opacity-40');
+        }
+
+        function escolherOpcao(idx) {
+            if (!rodadaAtiva) return;
+            rodadaAtiva = false;
+            tentativas += 1;
+
+            const escolhida = opcoesAtuais[idx];
+            const acertou = Boolean(escolhida && escolhida.correta);
+
+            opcoesAtuais.forEach((opt, i) => {
+                const btn = document.getElementById(`opt-btn-${i}`);
+                if (!btn) return;
+                btn.disabled = true;
+                if (opt.correta) {
+                    btn.className = "option-btn bg-emerald-50 border-2 border-emerald-600 rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-left shadow-sm";
+                } else if (i === idx && !opt.correta) {
+                    btn.className = "option-btn bg-red-50 border-2 border-[#C8102E] rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-left shadow-sm";
+                } else {
+                    btn.className = "option-btn bg-[#FAF8F5] border-2 border-[#0A192F]/10 opacity-55 rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-left";
+                }
+            });
+
+            if (acertou) {
+                acertos += 1;
+                streak += 1;
+                document.getElementById('score-val').innerText = streak;
+
+                if (streak > melhorRecorde) {
+                    melhorRecorde = streak;
+                    try { localStorage.setItem('vg_recorde_fuso_fracionado', melhorRecorde.toString()); } catch (e) {}
+                    atualizarDisplayRecorde();
+                }
+
+                if (streak % 5 === 0) {
+                    playSound('combo');
+                    if (typeof confetti === 'function') {
+                        confetti({ particleCount: 55, spread: 65, origin: { y: 0.6 }, colors: ['#0A192F', '#C8102E', '#A8C3A6'] });
+                    }
+                } else {
+                    playSound('acerto');
+                }
+            } else {
+                streak = 0;
+                document.getElementById('score-val').innerText = '0';
+                playSound('erro');
+
+                const stage = document.getElementById('stage-active');
+                stage.classList.add('shake-damage');
+                setTimeout(() => stage.classList.remove('shake-damage'), 400);
+
+                if (modoJogo === 'blitz') {
+                    tempoRestante = Math.max(0, tempoRestante - 3);
+                    document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+                    if (tempoRestante <= 0) {
+                        exibirPainelRevelacao(acertou);
+                        setTimeout(() => finalizarJogo(false), 900);
+                        return;
+                    }
+                } else {
+                    vidas -= 1;
+                    renderizarVidas();
+                }
+            }
+
+            exibirPainelRevelacao(acertou);
+
+            if (modoJogo !== 'blitz' && vidas <= 0) {
+                document.getElementById('btn-next-label').innerText = 'Ver Resultado';
+            } else if (modoJogo === 'diario' && indiceRodada + 1 >= DAILY_TOTAL) {
+                document.getElementById('btn-next-label').innerText = 'Ver Placar Diário';
+            } else {
+                document.getElementById('btn-next-label').innerText = 'Avançar';
+            }
+        }
+
+        function exibirPainelRevelacao(acertou) {
+            const panel = document.getElementById('reveal-panel');
+            const icon = document.getElementById('reveal-icon');
+            const title = document.getElementById('reveal-title');
+            const utcTag = document.getElementById('reveal-utc-tag');
+
+            if (acertou) {
+                icon.className = "ph-fill ph-check-circle text-emerald-700 text-lg";
+                title.innerText = `Correto: ${desafioAtual.alvoLabel}`;
+                title.className = "font-heading font-bold text-sm text-emerald-800";
+            } else {
+                icon.className = "ph-fill ph-x-circle text-[#C8102E] text-lg";
+                title.innerText = `Resposta correta: ${desafioAtual.alvoLabel}`;
+                title.className = "font-heading font-bold text-sm text-[#C8102E]";
+            }
+
+            utcTag.innerText = desafioAtual.utcLabel;
+
+            // Dados solares vs oficiais
+            document.getElementById('solar-lng-val').innerText = formatarLongitude(desafioAtual.lngRef);
+            document.getElementById('solar-utc-val').innerText = `UTC${formatarDesvio(desafioAtual.solarOffsetMin)}`;
+
+            const diffSolar = desafioAtual.utcMinutos - desafioAtual.solarOffsetMin;
+            const sinalDiff = diffSolar >= 0 ? '+' : '';
+            document.getElementById('solar-diff-val').innerText = `${sinalDiff}${diffSolar} min`;
+
+            document.getElementById('reveal-fact').innerText = desafioAtual.fato;
+
+            panel.classList.remove('hidden');
+            panel.classList.add('flex');
+        }
+
+        function proximaRodada() {
+            if (modoJogo !== 'blitz' && vidas <= 0) {
+                finalizarJogo(false);
+                return;
+            }
+            indiceRodada += 1;
+            carregarRodada();
+        }
+
+        function iniciarTimerBlitz() {
+            tempoRestante = 60;
+            document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                tempoRestante -= 1;
+                document.getElementById('timer-val').innerText = `${tempoRestante}s`;
+                if (tempoRestante <= 0) {
+                    clearInterval(timerInterval);
+                    finalizarJogo(false);
+                }
+            }, 1000);
+        }
+
+        function mudarModoJogo(novoModo) {
+            modoJogo = novoModo;
+            const btnDiario = document.getElementById('mode-btn-diario');
+            const btnSob = document.getElementById('mode-btn-sob');
+            const btnBlitz = document.getElementById('mode-btn-blitz');
+            const statusLives = document.getElementById('status-lives');
+            const statusTimer = document.getElementById('status-timer');
+
+            const activeCls = 'px-3 py-1.5 rounded-full text-xs font-mono font-bold transition bg-[#C8102E] text-white shadow-xs inline-flex items-center gap-1.5';
+            const idleCls = 'px-3 py-1.5 rounded-full text-xs font-mono font-medium transition bg-[#FAF8F5] text-[#53647C] hover:bg-white border border-[#0A192F]/10 inline-flex items-center gap-1.5';
+
+            btnDiario.className = novoModo === 'diario' ? activeCls : idleCls;
+            btnSob.className = novoModo === 'sobrevivencia' ? activeCls : idleCls;
+            btnBlitz.className = novoModo === 'blitz' ? activeCls : idleCls;
+
+            if (novoModo === 'blitz') {
+                statusLives.classList.add('hidden');
+                statusTimer.classList.remove('hidden');
+                statusTimer.classList.add('flex');
+            } else {
+                statusLives.classList.remove('hidden');
+                statusTimer.classList.add('hidden');
+                statusTimer.classList.remove('flex');
+                if (timerInterval) clearInterval(timerInterval);
+            }
+
+            reiniciarJogo();
+        }
+
+        function finalizarJogo(vitoriaDiaria) {
+            rodadaAtiva = false;
+            if (timerInterval) clearInterval(timerInterval);
+
+            document.getElementById('stage-active').classList.add('hidden');
+            const overStage = document.getElementById('stage-gameover');
+            overStage.classList.remove('hidden');
+            overStage.classList.add('flex');
+
+            const precisao = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
+            document.getElementById('final-score').innerText = acertos;
+            document.getElementById('final-accuracy').innerText = `${precisao}%`;
+            document.getElementById('final-record').innerText = melhorRecorde;
+
+            const title = document.getElementById('gameover-title');
+            const subtitle = document.getElementById('gameover-subtitle');
+            const honorific = document.getElementById('honorific-title');
+            const playAgainLabel = document.getElementById('btn-play-again-label');
+
+            if (modoJogo === 'diario') {
+                title.innerText = vitoriaDiaria ? 'Desafio Diário Concluído' : 'Expedição Diária Encerrada';
+                subtitle.innerText = `Você acertou ${acertos} de ${DAILY_TOTAL} fusos horários do desafio de hoje.`;
+                playAgainLabel.innerText = 'Jogar Sobrevivência';
+                try {
+                    localStorage.setItem('vg_diario_fuso_fracionado_' + getHojeKey(), JSON.stringify({ acertos, precisao }));
+                } catch (e) {}
+            } else {
+                title.innerText = 'Fim da Expedição Horária';
+                subtitle.innerText = 'Seus reflexos sobre fusos fracionados e desvios solares foram testados.';
+                playAgainLabel.innerText = 'Jogar Novamente';
+            }
+
+            if (acertos >= 15 || (modoJogo === 'diario' && acertos === DAILY_TOTAL)) {
+                honorific.innerText = 'Navegador Supremo de Greenwich (Rank S)';
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 95, spread: 75, origin: { y: 0.55 }, colors: ['#0A192F', '#C8102E', '#A8C3A6'] });
+                }
+            } else if (acertos >= 8 || (modoJogo === 'diario' && acertos >= 4)) {
+                honorific.innerText = 'Estrategista dos Meridianos (Rank A)';
+            } else if (acertos >= 4) {
+                honorific.innerText = 'Observador de Fusos (Rank B)';
+            } else {
+                honorific.innerText = 'Aprendiz do Meridiano (Rank C)';
+            }
+        }
+
+        function jogarNovamentePosFim() {
+            if (modoJogo === 'diario') {
+                mudarModoJogo('sobrevivencia');
+            } else {
+                reiniciarJogo();
+            }
+        }
+
+        function reiniciarJogo() {
+            vidas = 3;
+            acertos = 0;
+            tentativas = 0;
+            streak = 0;
+            document.getElementById('score-val').innerText = '0';
+            renderizarVidas();
+            atualizarDisplayRecorde();
+
+            document.getElementById('stage-gameover').classList.add('hidden');
+            document.getElementById('stage-gameover').classList.remove('flex');
+            document.getElementById('stage-active').classList.remove('hidden');
+
+            prepararFila();
+            if (modoJogo === 'blitz') {
+                iniciarTimerBlitz();
+            }
+            carregarRodada();
+        }
+
+        function compartilharResultado() {
+            const precisao = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
+            const nomeModo = modoJogo === 'diario' ? 'Desafio Diário' : (modoJogo === 'blitz' ? 'Blitz 60s' : 'Sobrevivência');
+            const texto = `Fuso Fracionado — VitaleGeo Arcade\nModo: ${nomeModo} | Acertos: ${acertos} (${precisao}% de precisão)\nVocê sabia que o Nepal vive em UTC+05:45 e a China inteira em um único fuso?\nTeste seus conhecimentos: https://www.vitalegeo.com.br/jogos/fuso-fracionado/`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`, '_blank', 'noopener,noreferrer');
+        }
+
+        // Atalhos de teclado
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('stage-active').classList.contains('hidden')) return;
+            const k = e.key.toLowerCase();
+            if (rodadaAtiva) {
+                if (k === '1' || k === 'a') escolherOpcao(0);
+                else if (k === '2' || k === 'b') escolherOpcao(1);
+                else if (k === '3' || k === 'c') escolherOpcao(2);
+                else if (k === '4' || k === 'd') escolherOpcao(3);
+                else if (k === 'h') revelarPista();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                proximaRodada();
+            }
+        });
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            reiniciarJogo();
+        });
+    </script>
+</body>
+</html>

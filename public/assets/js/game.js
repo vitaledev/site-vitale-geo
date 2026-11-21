@@ -1,6 +1,14 @@
 // BANCO DE DADOS DE JOGOS — VITALEGEO ARCADE
 const gamesDB = [
     {
+        titulo: "Fuso Fracionado",
+        desc: "Descubra países com fusos de 30 e 45 minutos e anomalias geopolíticas onde o relógio oficial desafia a longitude solar.",
+        icon: "ph-fill ph-clock-countdown",
+        cover: "/assets/img/jogos/fuso-fracionado.svg",
+        link: "/jogos/fuso-fracionado/",
+        badge: "DESAFIO DIÁRIO"
+    },
+    {
         titulo: "Conexões Geográficas",
         desc: "Agrupe 16 países em 4 conjuntos secretos ligados por fronteiras, coordenadas, bandeiras ou anomalias territoriais.",
         icon: "ph-fill ph-squares-four",

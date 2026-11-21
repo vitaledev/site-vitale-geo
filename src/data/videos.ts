@@ -6,6 +6,11 @@ export interface VideoItem {
 
 export const videosLongos: VideoItem[] = [
   {
+    "titulo": "Por que a Índia pode ultrapassar a China (e a China não viu chegar)",
+    "id": "jJC7c00-53k",
+    "link": "https://www.youtube.com/watch?v=jJC7c00-53k"
+  },
+  {
     "titulo": "Toda a História do Irã explicada em 12 Minutos!",
     "id": "FxFveFDTo8k",
     "link": "https://www.youtube.com/watch?v=FxFveFDTo8k"
@@ -78,6 +83,36 @@ export const videosLongos: VideoItem[] = [
 ];
 
 export const videosShorts: VideoItem[] = [
+  {
+    "titulo": "Crescimento da Índia versus desaceleração chinesa",
+    "id": "SKaw6lda56U",
+    "link": "https://www.youtube.com/watch?v=SKaw6lda56U"
+  },
+  {
+    "titulo": "Quando a Índia realmente ultrapassará a China?",
+    "id": "ilPBoygZZGM",
+    "link": "https://www.youtube.com/watch?v=ilPBoygZZGM"
+  },
+  {
+    "titulo": "Por que a Apple está trocando a China pela Índia",
+    "id": "z4UftLUjBKQ",
+    "link": "https://www.youtube.com/watch?v=z4UftLUjBKQ"
+  },
+  {
+    "titulo": "A grande virada econômica da Índia em 1991",
+    "id": "770kgzERoc0",
+    "link": "https://www.youtube.com/watch?v=770kgzERoc0"
+  },
+  {
+    "titulo": "A Índia pode ultrapassar a economia da China?",
+    "id": "n32CHz6DxeI",
+    "link": "https://www.youtube.com/watch?v=n32CHz6DxeI"
+  },
+  {
+    "titulo": "Você sabia que o mapa do GTA é feito de cidades reais dos EUA?",
+    "id": "VcbT0B7BRXM",
+    "link": "https://www.youtube.com/watch?v=VcbT0B7BRXM"
+  },
   {
     "titulo": "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.",
     "id": "pYNyWyhVFr0",

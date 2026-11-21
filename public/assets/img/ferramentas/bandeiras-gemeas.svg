@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <!-- Fundo Bege Cartográfico -->
+  <rect width="1200" height="700" fill="#F5F2EB"/>
+
+  <!-- Curvas Topográficas Contínuas em Verde Sálvia -->
+  <path d="M-40 560C160 500 320 620 520 540s280-110 440-30 190 70 280 20v190H-40V560Z" fill="#A8C3A6" opacity="0.26"/>
+  <path d="M-40 140C180 90 360 190 580 120s290-60 440 20 150 50 220 10" stroke="#A8C3A6" stroke-width="2" opacity="0.55"/>
+  <path d="M-40 175C190 125 370 225 590 155s290-60 440 20 150 50 220 10" stroke="#A8C3A6" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Grade de Meridianos e Paralelos Cartográficos -->
+  <g stroke="#0A192F" stroke-width="1.5" opacity="0.10">
+    <path d="M0 110h1200M0 210h1200M0 310h1200M0 410h1200M0 510h1200M0 610h1200"/>
+    <path d="M120 0v700M240 0v700M360 0v700M480 0v700M600 0v700M720 0v700M840 0v700M960 0v700M1080 0v700"/>
+  </g>
+
+  <!-- Telemetria Superior -->
+  <text x="80" y="135" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" letter-spacing="4">VITALEGEO · VEXILOLOGIA COMPARADA</text>
+
+  <!-- Tipografia Monumental à Esquerda -->
+  <text x="74" y="336" fill="#0A192F" font-family="'Orbitron', Arial, sans-serif" font-size="162" font-weight="900" letter-spacing="-4">A<tspan fill="#C8102E">/</tspan>B</text>
+  <text x="80" y="405" fill="#0A192F" font-family="'Montserrat', Arial, sans-serif" font-size="40" font-weight="800" letter-spacing="0.5">BANDEIRAS GÊMEAS</text>
+  <text x="80" y="446" fill="#53647C" font-family="'Montserrat', Arial, sans-serif" font-size="22" font-weight="600">Lupa comparativa de cores e proporções</text>
+
+  <!-- Diagrama Vexilológico de Lupa e Sobreposição à Direita -->
+  <g transform="translate(875, 345)">
+    <!-- Anel de Mira Ótica -->
+    <circle cx="0" cy="0" r="220" stroke="#0A192F" stroke-width="1.5" stroke-dasharray="5 7" opacity="0.22"/>
+    <circle cx="0" cy="0" r="172" stroke="#A8C3A6" stroke-width="2" opacity="0.45"/>
+
+    <!-- Quadro da Bandeira Comparada (Split A | B) -->
+    <g transform="translate(-170, -112)">
+      <!-- Sombra Sólida Editorial -->
+      <rect x="10" y="10" width="340" height="224" rx="12" fill="#0A192F" opacity="0.14"/>
+
+      <!-- Metade Esquerda (Bandeira A - Tricolor Vertical Escura) -->
+      <clipPath id="clipLeft">
+        <rect x="0" y="0" width="170" height="224" rx="12"/>
+      </clipPath>
+      <g clip-path="url(#clipLeft)">
+        <rect x="0" y="0" width="113" height="224" fill="#0A192F"/>
+        <rect x="113" y="0" width="114" height="224" fill="#F5F2EB"/>
+      </g>
+
+      <!-- Metade Direita (Bandeira B - Matiz Diferente e Vermelho Destaque) -->
+      <clipPath id="clipRight">
+        <rect x="170" y="0" width="170" height="224" rx="12"/>
+      </clipPath>
+      <g clip-path="url(#clipRight)">
+        <rect x="113" y="0" width="114" height="224" fill="#A8C3A6"/>
+        <rect x="227" y="0" width="113" height="224" fill="#C8102E"/>
+      </g>
+
+      <!-- Moldura de Alta Precisão -->
+      <rect x="0" y="0" width="340" height="224" rx="12" stroke="#0A192F" stroke-width="4" fill="none"/>
+
+      <!-- Linha Divisória do Slider de Comparação -->
+      <line x1="170" y1="-22" x2="170" y2="246" stroke="#C8102E" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="170" cy="112" r="22" fill="#FFFFFF" stroke="#0A192F" stroke-width="3.5"/>
+      <path d="M161 112l-5 0m0 0l4-4m-4 4l4 4M179 112l5 0m0 0l-4-4m4 4l-4 4" stroke="#C8102E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Cotas de Razão de Aspecto -->
+      <text x="16" y="256" fill="#0A192F" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="700">2:3 · #002664</text>
+      <text x="324" y="256" fill="#C8102E" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="700" text-anchor="end">4:5 · #00319C</text>
+    </g>
+  </g>
+
+  <!-- Bússola Minimalista Superior Direita -->
+  <g transform="translate(1105, 85)">
+    <circle cx="0" cy="0" r="26" stroke="#0A192F" stroke-width="1.5" opacity="0.35"/>
+    <polygon points="0,-20 5,0 0,20 -5,0" fill="#0A192F"/>
+    <polygon points="0,-20 5,0 -5,0" fill="#C8102E"/>
+    <text x="0" y="-26" fill="#C8102E" font-family="'Orbitron', sans-serif" font-size="11" font-weight="800" text-anchor="middle">N</text>
+  </g>
+
+  <!-- Rodapé Editorial -->
+  <text x="80" y="625" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600" letter-spacing="3">LUPA DE SOBREPOSIÇÃO &amp; ANATOMIA HERÁLDICA</text>
+</svg>

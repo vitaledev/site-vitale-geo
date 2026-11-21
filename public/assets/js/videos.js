@@ -1,8 +1,9 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 14 Longos + 180 Shorts
+// Total: 15 Longos + 186 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+    { titulo: "Por que a Índia pode ultrapassar a China (e a China não viu chegar)", id: "jJC7c00-53k", link: "https://www.youtube.com/watch?v=jJC7c00-53k" },
     { titulo: "Toda a História do Irã explicada em 12 Minutos!", id: "FxFveFDTo8k", link: "https://www.youtube.com/watch?v=FxFveFDTo8k" },
     { titulo: "Você vive num mundo maquiavélico (e nem sabe disso)", id: "yerRMDGkxrw", link: "https://www.youtube.com/watch?v=yerRMDGkxrw" },
     { titulo: "Por que a Argentina é tão estratégica na América do Sul?", id: "LHANhd4PMYk", link: "https://www.youtube.com/watch?v=LHANhd4PMYk" },
@@ -21,6 +22,12 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Crescimento da Índia versus desaceleração chinesa", id: "SKaw6lda56U", link: "https://www.youtube.com/watch?v=SKaw6lda56U" },
+    { titulo: "Quando a Índia realmente ultrapassará a China?", id: "ilPBoygZZGM", link: "https://www.youtube.com/watch?v=ilPBoygZZGM" },
+    { titulo: "Por que a Apple está trocando a China pela Índia", id: "z4UftLUjBKQ", link: "https://www.youtube.com/watch?v=z4UftLUjBKQ" },
+    { titulo: "A grande virada econômica da Índia em 1991", id: "770kgzERoc0", link: "https://www.youtube.com/watch?v=770kgzERoc0" },
+    { titulo: "A Índia pode ultrapassar a economia da China?", id: "n32CHz6DxeI", link: "https://www.youtube.com/watch?v=n32CHz6DxeI" },
+    { titulo: "Você sabia que o mapa do GTA é feito de cidades reais dos EUA?", id: "VcbT0B7BRXM", link: "https://www.youtube.com/watch?v=VcbT0B7BRXM" },
     { titulo: "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.", id: "pYNyWyhVFr0", link: "https://www.youtube.com/watch?v=pYNyWyhVFr0" },
     { titulo: "Você imaginava que a chuva tinha um papel tão importante nessa rota?", id: "ffdNAeQltfo", link: "https://www.youtube.com/watch?v=ffdNAeQltfo" },
     { titulo: "Por que o mundo tem medo do Estreito de Ormuz?", id: "SNYjIJG-Mdw", link: "https://www.youtube.com/watch?v=SNYjIJG-Mdw" },
