@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 15 Longos + 182 Shorts
+// Total: 15 Longos + 184 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -22,6 +22,8 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Por que a Apple está trocando a China pela Índia", id: "z4UftLUjBKQ", link: "https://www.youtube.com/watch?v=z4UftLUjBKQ" },
+    { titulo: "A grande virada econômica da Índia em 1991", id: "770kgzERoc0", link: "https://www.youtube.com/watch?v=770kgzERoc0" },
     { titulo: "A Índia pode ultrapassar a economia da China?", id: "n32CHz6DxeI", link: "https://www.youtube.com/watch?v=n32CHz6DxeI" },
     { titulo: "Você sabia que o mapa do GTA é feito de cidades reais dos EUA?", id: "VcbT0B7BRXM", link: "https://www.youtube.com/watch?v=VcbT0B7BRXM" },
     { titulo: "O enclave que ficava dentro de outro enclave — Dahala Khagrabari.", id: "pYNyWyhVFr0", link: "https://www.youtube.com/watch?v=pYNyWyhVFr0" },
