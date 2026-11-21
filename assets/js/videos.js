@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 15 Longos + 184 Shorts
+// Total: 15 Longos + 186 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -22,6 +22,8 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "Crescimento da Índia versus desaceleração chinesa", id: "SKaw6lda56U", link: "https://www.youtube.com/watch?v=SKaw6lda56U" },
+    { titulo: "Quando a Índia realmente ultrapassará a China?", id: "ilPBoygZZGM", link: "https://www.youtube.com/watch?v=ilPBoygZZGM" },
     { titulo: "Por que a Apple está trocando a China pela Índia", id: "z4UftLUjBKQ", link: "https://www.youtube.com/watch?v=z4UftLUjBKQ" },
     { titulo: "A grande virada econômica da Índia em 1991", id: "770kgzERoc0", link: "https://www.youtube.com/watch?v=770kgzERoc0" },
     { titulo: "A Índia pode ultrapassar a economia da China?", id: "n32CHz6DxeI", link: "https://www.youtube.com/watch?v=n32CHz6DxeI" },
