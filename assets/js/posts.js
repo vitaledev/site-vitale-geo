@@ -3,6 +3,87 @@
 
 const blogPosts = [
     {
+        titulo: "Como Um Pequeno Principado em Moscou Expandiu-se por Onze Fusos Horários Até o Pacífico?",
+        categoria: "História",
+        data: "21 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-russia-principado-moscou-siberia-tratados-fronteiras.png",
+        link: "historia-da-russia-principado-moscou-siberia-tratados-fronteiras/",
+        resumo: "De um principado cercado por florestas no século XV aos 17,1 milhões de km² atuais: os tratados e marchas cossacas que levaram a Rússia até o Pacífico."
+    },
+    {
+        titulo: "Por Que a Arábia Saudita Construiu Oleodutos Para Contornar Dois Estreitos Vitais do Planeta?",
+        categoria: "Geopolítica",
+        data: "21 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-arabia-saudita-estreito-ormuz-mar-vermelho-oleodutos.png",
+        link: "geopolitica-da-arabia-saudita-estreito-ormuz-mar-vermelho-oleodutos/",
+        resumo: "Presa entre o Estreito de Ormuz e o Bab el-Mandeb, a Arábia Saudita converteu a Petroline Leste-Oeste de 1.200 km em escudo estratégico até o Mar Vermelho."
+    },
+    {
+        titulo: "Como Cobre Andino, Ouro e o Megaporto de Chancay Transformaram o Peru na Porta Asiática da América do Sul?",
+        categoria: "Geoeconomia",
+        data: "21 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-do-peru-cobre-porto-chancay-corredor-pacifico.jpg",
+        link: "geoeconomia-do-peru-cobre-porto-chancay-corredor-pacifico/",
+        resumo: "Com 85 milhões de toneladas em reservas de cobre e calado natural de 17,8 metros em Chancay, o Peru redesenha o eixo comercial entre os Andes e a Ásia."
+    },
+    {
+        titulo: "Por Que Quatro Ilhas Vulcânicas no Pacífico Impedem Japão e Rússia de Assinar a Paz Desde 1945?",
+        categoria: "Geopolítica",
+        data: "21 Nov 2026 - 12:45",
+        img: "/assets/img/blog/ilhas-curilas-disputa-japao-russia-mar-de-okhotsk-pacifico.png",
+        link: "ilhas-curilas-disputa-japao-russia-mar-de-okhotsk-pacifico/",
+        resumo: "Controlando o acesso militar ao Mar de Okhotsk, Etorofu, Kunashiri, Shikotan e Habomai bloqueiam há oito décadas o tratado de paz entre Tóquio e Moscou."
+    },
+    {
+        titulo: "Por Que Navios Gigantes Precisam Contornar o Sri Lanka Por Causa de Um Banco de Areia Milenar?",
+        categoria: "Geopolítica",
+        data: "21 Nov 2026 - 14:30",
+        img: "/assets/img/blog/estreito-de-palk-ponte-de-adao-india-sri-lanka-barreira-naval.jpg",
+        link: "estreito-de-palk-ponte-de-adao-india-sri-lanka-barreira-naval/",
+        resumo: "Com apenas 1 a 3 metros de profundidade sobre os recifes da Ponte de Adão, o Estreito de Palk obriga navios indianos a desviar até 400 milhas náuticas."
+    },
+    {
+        titulo: "Como Um Advogado Que Nunca Visitou a Índia Desenhou em Cinco Semanas Uma Fronteira Nuclear de Três Mil Quilômetros?",
+        categoria: "Fronteiras",
+        data: "21 Nov 2026 - 16:15",
+        img: "/assets/img/blog/linha-radcliffe-particao-india-paquistao-fronteira-wagah.png",
+        link: "linha-radcliffe-particao-india-paquistao-fronteira-wagah/",
+        resumo: "Sem jamais pisar no subcontinente indiano, Sir Cyril Radcliffe riscou em 1947 uma linha sobre mapas defasados que dividiu 88 milhões de pessoas e gerou três guerras."
+    },
+    {
+        titulo: "Por Que a Terceira Maior Ilha do Mundo É Dividida Entre Três Países e Abriga Um Sultanato Fragmentado?",
+        categoria: "Fronteiras",
+        data: "21 Nov 2026 - 18:00",
+        img: "/assets/img/blog/ilha-de-borneu-tres-paises-indonesia-malasia-brunei-fronteiras.png",
+        link: "ilha-de-borneu-tres-paises-indonesia-malasia-brunei-fronteiras/",
+        resumo: "Com 743 mil km², Bornéu é a única ilha da Terra dividida entre três Estados soberanos — Indonésia, Malásia e Brunei — após tratados coloniais de 1824 e 1891."
+    },
+    {
+        titulo: "Por Que Cinco Fusos Geográficos na China Obedecem ao Mesmo Relógio de Pequim?",
+        categoria: "Curiosidades",
+        data: "21 Nov 2026 - 19:30",
+        img: "/assets/img/blog/fuso-horario-unico-china-xinjiang-pequim-anomalia-cartografica.png",
+        link: "fuso-horario-unico-china-xinjiang-pequim-anomalia-cartografica/",
+        resumo: "De 1949 até hoje, toda a China usa apenas o horário UTC+8 de Pequim. Em Xinjiang, o sol nasce às 10h no inverno e atravessar ao Afeganistão salta 3h30."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Minério de Ferro do Mundo que Sustentam o Aço Global?",
+        categoria: "Rankings",
+        data: "21 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-ferro-do-mundo-siderurgia-usgs.jpg",
+        link: "ranking-maiores-reservas-de-ferro-do-mundo-siderurgia-usgs/",
+        resumo: "Dos 59 bilhões de toneladas da Austrália aos 34 bilhões do Brasil em Carajás e no Quadrilátero Ferrífero: os 10 maiores donos de minério de ferro segundo o USGS."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Água Doce Renovável do Planeta?",
+        categoria: "Rankings",
+        data: "21 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-agua-doce-do-mundo-fao-aquastat.png",
+        link: "ranking-maiores-reservas-de-agua-doce-do-mundo-fao-aquastat/",
+        resumo: "Com 5.661 km³/ano de água interna — ou 8.646 km³/ano com fluxos transfronteiriços — o Brasil lidera isolado o mapa hídrico mundial da FAO AQUASTAT."
+    },
+
+    {
         titulo: "Como Seis Tratados e Compras Bilionárias Transformaram Treze Colônias nos Estados Unidos Continentais?",
         categoria: "História",
         data: "18 Nov 2026 - 07:30",
