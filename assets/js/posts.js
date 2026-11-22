@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Como Três Tratados Imperiais Reduziram a Antiga Pérsia às Fronteiras Atuais do Irã?",
+        categoria: "História",
+        data: "22 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-do-ira-safavidas-tratado-turkmenchay-fronteiras.png",
+        link: "historia-do-ira-safavidas-tratado-turkmenchay-fronteiras/",
+        resumo: "Dos impérios safávida e afshárida aos tratados de Gulistan (1813), Turkmenchay (1828) e Erzurum (1847): como o Irã perdeu o Cáucaso e fixou 1.648.195 km²."
+    },
+    {
+        titulo: "Por Que o Segundo Maior País do Mundo Depende do Degelo Ártico e da Fronteira Mais Longa da Terra?",
+        categoria: "Geopolítica",
+        data: "22 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-do-canada-artico-passagem-noroeste-norad.png",
+        link: "geopolitica-do-canada-artico-passagem-noroeste-norad/",
+        resumo: "Com 243.042 km de litoral, a disputa jurídica pela Passagem do Noroeste, o acordo da Ilha Hans em 2022 e a blindagem do NORAD no Ártico."
+    },
+    {
+        titulo: "Como a Índia Transformou Portos Profundos, Refino de Petróleo e Semicondutores em Poder Geoeconômico?",
+        categoria: "Geoeconomia",
+        data: "22 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-india-portos-refino-semicondutores-imec.png",
+        link: "geoeconomia-da-india-portos-refino-semicondutores-imec/",
+        resumo: "Entre o Porto de Vizhinjam, o complexo de Mundra, o corredor IMEC de 4.800 km e o refino de petróleo russo, Nova Délhi redesenha o comércio entre Ásia e Europa."
+    },
+    {
+        titulo: "Por Que 145 Quilômetros Entre a Sicília e a Tunísia Dividem o Mediterrâneo em Dois Mundos Estratégicos?",
+        categoria: "Geopolítica",
+        data: "22 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-da-sicilia-italia-tunisia-gasodutos-mediterraneo.png",
+        link: "estreito-da-sicilia-italia-tunisia-gasodutos-mediterraneo/",
+        resumo: "Com 145 km de largura e 316 m de profundidade média, o Estreito da Sicília abriga o gasoduto TransMed de 2.475 km, cabos submarinos e rotas entre dois mares."
+    },
+    {
+        titulo: "Por Que Um Canal de 250 Quilômetros Perto de Okinawa Virou a Principal Porta Naval da China Para o Pacífico?",
+        categoria: "Geopolítica",
+        data: "22 Nov 2026 - 14:30",
+        img: "/assets/img/blog/estreito-de-miyako-okinawa-china-japao-primeira-cadeia-ilhas.png",
+        link: "estreito-de-miyako-okinawa-china-japao-primeira-cadeia-ilhas/",
+        resumo: "Entre Okinawa e Miyako-jima, o Estreito de Miyako abre 250 km de águas internacionais profundas para frotas chinesas cruzarem a Primeira Cadeia de Ilhas."
+    },
+    {
+        titulo: "Como Um Acordo Colonial de 1894 Deixou Um Dedo de Terra Congolesa Cortando a Zâmbia Ao Meio?",
+        categoria: "Fronteiras",
+        data: "22 Nov 2026 - 16:15",
+        img: "/assets/img/blog/pediculo-do-congo-zambia-fronteira-colonial-katanga.png",
+        link: "pediculo-do-congo-zambia-fronteira-colonial-katanga/",
+        resumo: "Com 200 km de extensão e 70 a 100 km de largura, o Pedículo do Congo nasceu em 1894 e obriga a Zâmbia a cruzar o vizinho ou contornar o Lago Bangweulu."
+    },
+    {
+        titulo: "Por Que Cinquenta Quilômetros de Gelo nos Andes Ainda Não Têm Fronteira Demarcada Entre Chile e Argentina?",
+        categoria: "Fronteiras",
+        data: "22 Nov 2026 - 18:00",
+        img: "/assets/img/blog/campos-de-gelo-patagonia-fronteira-indefinida-chile-argentina.png",
+        link: "campos-de-gelo-patagonia-fronteira-indefinida-chile-argentina/",
+        resumo: "Mesmo após o Tratado de 1881 e o acordo de 1998, cerca de 50 km entre o Monte Fitz Roy e o Cerro Murallón seguem em branco nos mapas oficiais sul-americanos."
+    },
+    {
+        titulo: "Por Que a África do Sul Divide o Poder em Três Capitais Separadas Por Até 1.460 Quilômetros?",
+        categoria: "Curiosidades",
+        data: "22 Nov 2026 - 19:30",
+        img: "/assets/img/blog/tres-capitais-africa-do-sul-pretoria-cabo-bloemfontein.png",
+        link: "tres-capitais-africa-do-sul-pretoria-cabo-bloemfontein/",
+        resumo: "Firmada pelo Ato da União de 1909 e em vigor desde 1910, a partilha entre Pretória, Cidade do Cabo e Bloemfontein separa os três poderes por até 1.460 km."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Fosfato do Mundo que Sustentam a Agricultura Global?",
+        categoria: "Rankings",
+        data: "22 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-fosfato-do-mundo-fertilizantes-usgs.jpg",
+        link: "ranking-maiores-reservas-de-fosfato-do-mundo-fertilizantes-usgs/",
+        resumo: "Com 50 bilhões de toneladas no Marrocos — 68% de todo o estoque mundial — o ranking do USGS revela quem controla o mineral insubstituível dos fertilizantes."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Áreas Florestais do Mundo Segundo o Censo da ONU?",
+        categoria: "Rankings",
+        data: "22 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-com-maiores-florestas-do-mundo-fao.png",
+        link: "ranking-paises-com-maiores-florestas-do-mundo-fao/",
+        resumo: "Dos 833 milhões de hectares da Rússia aos 486 milhões do Brasil e aos 369 milhões do Canadá: cinco nações concentram mais da metade das florestas do planeta."
+    },
+    {
         titulo: "Como Um Pequeno Principado em Moscou Expandiu-se por Onze Fusos Horários Até o Pacífico?",
         categoria: "História",
         data: "21 Nov 2026 - 07:30",

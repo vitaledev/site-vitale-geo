@@ -218,6 +218,106 @@
       <priority>0.8</priority>
    </url>
    <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-paises-com-maiores-florestas-do-mundo-fao/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ranking-paises-com-maiores-florestas-do-mundo-fao.png</image:loc>
+         <image:title>Quais São os Dez Países com as Maiores Áreas Florestais do Mundo Segundo o Censo da ONU?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-reservas-de-fosfato-do-mundo-fertilizantes-usgs/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/ranking-maiores-reservas-de-fosfato-do-mundo-fertilizantes-usgs.jpg</image:loc>
+         <image:title>Quais São os Dez Países com as Maiores Reservas de Fosfato do Mundo que Sustentam a Agricultura Global?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/tres-capitais-africa-do-sul-pretoria-cabo-bloemfontein/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/tres-capitais-africa-do-sul-pretoria-cabo-bloemfontein.png</image:loc>
+         <image:title>Por Que a África do Sul Divide o Poder em Três Capitais Separadas Por Até 1.460 Quilômetros?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/campos-de-gelo-patagonia-fronteira-indefinida-chile-argentina/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/campos-de-gelo-patagonia-fronteira-indefinida-chile-argentina.png</image:loc>
+         <image:title>Por Que Cinquenta Quilômetros de Gelo nos Andes Ainda Não Têm Fronteira Demarcada Entre Chile e Argentina?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/pediculo-do-congo-zambia-fronteira-colonial-katanga/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/pediculo-do-congo-zambia-fronteira-colonial-katanga.png</image:loc>
+         <image:title>Como Um Acordo Colonial de 1894 Deixou Um Dedo de Terra Congolesa Cortando a Zâmbia Ao Meio?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-de-miyako-okinawa-china-japao-primeira-cadeia-ilhas/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-de-miyako-okinawa-china-japao-primeira-cadeia-ilhas.png</image:loc>
+         <image:title>Por Que Um Canal de 250 Quilômetros Perto de Okinawa Virou a Principal Porta Naval da China Para o Pacífico?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/estreito-da-sicilia-italia-tunisia-gasodutos-mediterraneo/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/estreito-da-sicilia-italia-tunisia-gasodutos-mediterraneo.png</image:loc>
+         <image:title>Por Que 145 Quilômetros Entre a Sicília e a Tunísia Dividem o Mediterrâneo em Dois Mundos Estratégicos?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geoeconomia-da-india-portos-refino-semicondutores-imec/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geoeconomia-da-india-portos-refino-semicondutores-imec.png</image:loc>
+         <image:title>Como a Índia Transformou Portos Profundos, Refino de Petróleo e Semicondutores em Poder Geoeconômico?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/geopolitica-do-canada-artico-passagem-noroeste-norad/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/geopolitica-do-canada-artico-passagem-noroeste-norad.png</image:loc>
+         <image:title>Por Que o Segundo Maior País do Mundo Depende do Degelo Ártico e da Fronteira Mais Longa da Terra?</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://www.vitalegeo.com.br/blog/historia-do-ira-safavidas-tratado-turkmenchay-fronteiras/</loc>
+      <lastmod>2026-11-22</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.85</priority>
+      <image:image>
+         <image:loc>https://www.vitalegeo.com.br/assets/img/blog/historia-do-ira-safavidas-tratado-turkmenchay-fronteiras.png</image:loc>
+         <image:title>Como Três Tratados Imperiais Reduziram a Antiga Pérsia às Fronteiras Atuais do Irã?</image:title>
+      </image:image>
+   </url>
+   <url>
       <loc>https://www.vitalegeo.com.br/blog/ranking-maiores-reservas-de-agua-doce-do-mundo-fao-aquastat/</loc>
       <lastmod>2026-11-22</lastmod>
       <changefreq>weekly</changefreq>
