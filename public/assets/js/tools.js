@@ -104,5 +104,12 @@ const toolsDB = [
         icon: "ph-bold ph-flag",
         cover: "/assets/img/ferramentas/bandeiras-gemeas.svg",
         link: "/ferramentas/bandeiras-gemeas/"
+    },
+    {
+        titulo: "Verificador Universal de Tomadas & Voltagem",
+        desc: "Descubra se o seu plugue encaixa, veja o desenho da tomada (IEC A–O), a voltagem e se você precisa de adaptador ou transformador em 198 países.",
+        icon: "ph-bold ph-plug",
+        cover: "/assets/img/ferramentas/verificador-tomadas.svg",
+        link: "/ferramentas/verificador-tomadas/"
     }
 ];

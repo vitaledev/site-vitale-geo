@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/verificador-tomadas/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador Universal de Tomadas &amp; Voltagem por País | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Descubra em segundos se você precisa de adaptador de tomada ou transformador de voltagem em 198 países. Compare padrões IEC (A a O), 110V/220V e frequência no mapa mundial.">
+    <meta name="keywords" content="verificador de tomadas, tomada por pais, voltagem por pais, adaptador de tomada viagem, tomada eua brasil, tomada europa, tomada tipo n, padrao eletrico mundial, 110v 220v, vitalegeo">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Verificador Universal de Tomadas & Voltagem | VitaleGeo">
+    <meta property="og:description" content="Veja o desenho exato da tomada, voltagem (110V/220V), frequência (50/60 Hz) e se o seu plugue brasileiro encaixa em qualquer um dos 198 países do mundo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/verificador-tomadas/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/verificador-tomadas.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Verificador Universal de Tomadas & Voltagem | VitaleGeo">
+    <meta name="twitter:description" content="Compare padrões de tomadas (A a O), voltagem e necessidade de adaptador entre 198 países no mapa interativo.">
+    <meta name="twitter:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/verificador-tomadas.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Estilos VitaleGeo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7 & TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Base Geográfica Local (CerebroGeo) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <!-- Schema.org Estruturado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Verificador Universal de Tomadas & Voltagem",
+      "url": "https://www.vitalegeo.com.br/ferramentas/verificador-tomadas/",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-BR",
+      "description": "Verificador interativo de compatibilidade de plugues IEC (tipos A a O), tensão elétrica e frequência em 198 países com mapa cartográfico.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+            background: rgba(10, 25, 47, 0.25);
+            border-radius: 9999px;
+        }
+        .country-poly {
+            fill: #FFFFFF;
+            stroke: #0A192F;
+            stroke-width: 0.45;
+            stroke-opacity: 0.35;
+            transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.18s ease, stroke-width 0.18s ease;
+            cursor: pointer;
+        }
+        .country-poly:hover {
+            stroke-opacity: 0.95;
+            stroke-width: 1.05;
+        }
+        .country-compat-direct {
+            fill: #A8C3A6;
+        }
+        .country-compat-adapter {
+            fill: #0A192F;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-compat-voltage {
+            fill: #C8102E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-volt-low {
+            fill: #C8102E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-volt-high {
+            fill: #0A192F;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-volt-dual {
+            fill: #A8C3A6;
+        }
+        .country-freq-60 {
+            fill: #C8102E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-freq-50 {
+            fill: #0A192F;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.45;
+        }
+        .country-freq-dual {
+            fill: #A8C3A6;
+        }
+        .country-plug-match {
+            fill: #C8102E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.55;
+        }
+        .country-plug-dim {
+            fill: #FFFFFF;
+            opacity: 0.72;
+        }
+        .country-selected-dest {
+            stroke: #C8102E !important;
+            stroke-width: 2.1 !important;
+            stroke-opacity: 1 !important;
+        }
+        .country-selected-orig {
+            stroke: #0A192F !important;
+            stroke-width: 2.1 !important;
+            stroke-opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#0A192F] font-sans antialiased selection:bg-[#C8102E] selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-4 sm:px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/75 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 min-h-[44px] sm:min-h-[36px] rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Grade Desktop 3 Colunas com AdSense Lateral Não Intrusivo -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-12">
+
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Área Principal da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full min-w-0">
+
+            <!-- Cabeçalho Enxuto com Popover Explicativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/12">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-[0.15em] text-[#C8102E] block mb-1">
+                        Viagens &amp; Infraestrutura Elétrica
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Verificador Universal de Tomadas &amp; Voltagem
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Compare padrões de plugue (IEC A a O), tensão nominal e frequência entre dois países para saber se você precisa de adaptador ou transformador.
+                    </p>
+                </div>
+
+                <div class="hover-info-container self-start sm:self-end shrink-0">
+                    <button type="button" id="btnInfoPopover" class="hover-info-trigger min-h-[44px] sm:min-h-[38px]" aria-label="Como funciona a verificação elétrica">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como funciona?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-plug text-[#C8102E]"></i> Padrões IEC &amp; Tensão
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            O sistema cruza a geometria dos pinos oficiais (normas IEC A–O) e a rede elétrica nominal de 198 países e territórios.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li><strong>2 Pinos (Tipo C):</strong> Carregadores finos sem pino terra encaixam fisicamente em tomadas C, E, F, H, J, K, L, N e O.</li>
+                            <li><strong>3 Pinos (Tipo N):</strong> O plugue brasileiro NBR 14136 de 3 pinos encaixa diretamente apenas em tomadas N (Brasil e África do Sul).</li>
+                            <li><strong>Bivolt vs Monovolt:</strong> Fontes 100–240V dispensam transformador; secadores e chapinhas de 110V exigem atenção em redes 220–240V.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Painel de Controles (Acima da Dobra) -->
+            <section class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Seleção de países e tipo de aparelho">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-end">
+
+                    <!-- País de Origem -->
+                    <div class="relative" id="wrapOrigem">
+                        <label for="inputOrigem" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F] mb-1.5">
+                            Seu País de Origem (Aparelho)
+                        </label>
+                        <div class="relative flex items-center">
+                            <img id="flagOrigem" src="/assets/flags/br.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputOrigem" type="text" autocomplete="off" placeholder="Buscar país de origem..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/30 focus:border-[#0A192F] transition">
+                            <button type="button" id="toggleOrigem" aria-label="Abrir lista de origem" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listOrigem" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+
+                    <!-- Botão Inverter -->
+                    <div class="flex justify-center">
+                        <button type="button" id="btnInverter" aria-label="Inverter origem e destino"
+                                class="min-h-[44px] min-w-[44px] px-3 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 transition flex items-center justify-center gap-1.5 text-xs font-mono font-bold">
+                            <i class="ph-bold ph-arrows-left-right text-base"></i>
+                            <span class="md:hidden">Inverter</span>
+                        </button>
+                    </div>
+
+                    <!-- País de Destino -->
+                    <div class="relative" id="wrapDestino">
+                        <label for="inputDestino" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8102E] mb-1.5">
+                            País de Destino (Viagem)
+                        </label>
+                        <div class="relative flex items-center">
+                            <img id="flagDestino" src="/assets/flags/us.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputDestino" type="text" autocomplete="off" placeholder="Buscar país de destino..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#C8102E]/30 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] transition">
+                            <button type="button" id="toggleDestino" aria-label="Abrir lista de destino" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listDestino" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+                </div>
+
+                <!-- Perfil do Aparelho & Destinos Populares -->
+                <div class="mt-4 pt-3.5 border-t border-[#0A192F]/10 flex flex-col gap-3">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#53647C] mr-1">
+                                Seu aparelho:
+                            </span>
+                            <button type="button" data-device="bivolt" class="device-btn min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#0A192F] text-white shadow-xs">
+                                <i class="ph-bold ph-laptop"></i>
+                                <span>Bivolt (100–240V)</span>
+                            </button>
+                            <button type="button" data-device="110v" class="device-btn min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F]">
+                                <i class="ph-bold ph-lightning"></i>
+                                <span>Só 110–127V</span>
+                            </button>
+                            <button type="button" data-device="220v" class="device-btn min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F]">
+                                <i class="ph-bold ph-plug-charging"></i>
+                                <span>Só 220–240V</span>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <button type="button" data-preset="br:us" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → EUA
+                            </button>
+                            <button type="button" data-preset="br:pt" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → Portugal
+                            </button>
+                            <button type="button" data-preset="br:gb" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → Reino Unido
+                            </button>
+                            <button type="button" data-preset="br:jp" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → Japão
+                            </button>
+                            <button type="button" data-preset="br:ar" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → Argentina
+                            </button>
+                            <button type="button" data-preset="br:ch" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                                Brasil → Suíça
+                            </button>
+                            <button type="button" id="btnAleatorio" class="min-h-[36px] px-3 py-1 rounded-lg bg-[#C8102E]/10 hover:bg-[#C8102E] text-[#C8102E] hover:text-white border border-[#C8102E]/25 text-[11px] font-mono font-bold transition inline-flex items-center gap-1.5">
+                                <i class="ph-bold ph-shuffle"></i>
+                                <span>Aleatório</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Painel de Diagnóstico & Telemetria Elétrica -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-5" aria-label="Diagnóstico de compatibilidade elétrica">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-4 border-b border-[#0A192F]/10">
+                    <div class="flex items-start sm:items-center gap-4">
+                        <div id="vereditoBadgeBox" class="min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#C8102E]">
+                            <i id="vereditoIcon" class="ph-bold ph-plug text-3xl leading-none"></i>
+                            <span id="vereditoKicker" class="font-mono text-[10px] uppercase tracking-wider text-[#A8C3A6] mt-1.5 text-center">ADAPTADOR</span>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span id="badgeRotaViagem" class="px-2 py-0.5 rounded-md bg-[#F5F2EB] border border-[#0A192F]/12 font-mono text-[10px] font-bold uppercase text-[#0A192F]">
+                                    Brasil → Estados Unidos
+                                </span>
+                                <span id="badgeVoltagemStatus" class="px-2 py-0.5 rounded-md bg-[#A8C3A6]/30 border border-[#0A192F]/15 font-mono text-[10px] font-bold text-[#0A192F]">
+                                    Bivolt seguro
+                                </span>
+                            </div>
+                            <h2 id="vereditoTitulo" class="text-base sm:text-xl font-heading font-bold text-[#0A192F]">
+                                Precisa de adaptador de tomada
+                            </h2>
+                            <p id="vereditoResumo" class="text-xs sm:text-sm text-[#1F334E] mt-1 leading-relaxed max-w-2xl">
+                                Carregando comparação elétrica...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ações de Compartilhamento -->
+                    <div class="flex flex-wrap items-center gap-2 shrink-0">
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener"
+                           class="min-h-[44px] px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-base"></i>
+                            <span>Compartilhar no WhatsApp</span>
+                        </a>
+                        <button type="button" id="btnCopiarLink"
+                                class="min-h-[44px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-link"></i>
+                            <span id="txtCopiarLink">Copiar link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3 Cartões de Diagnóstico Rápido: 2 Pinos vs 3 Pinos vs Voltagem/Frequência -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/70 border border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#53647C]">Plugue 2 Pinos (Fino)</span>
+                            <span id="tagPlug2" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold"></span>
+                        </div>
+                        <p id="descPlug2" class="text-xs font-medium text-[#0A192F] leading-relaxed"></p>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/70 border border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#53647C]">Plugue 3 Pinos (Com Terra)</span>
+                            <span id="tagPlug3" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold"></span>
+                        </div>
+                        <p id="descPlug3" class="text-xs font-medium text-[#0A192F] leading-relaxed"></p>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/70 border border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#53647C]">Tensão &amp; Frequência</span>
+                            <span id="tagVolt" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold"></span>
+                        </div>
+                        <p id="descVolt" class="text-xs font-medium text-[#0A192F] leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- Comparação Visual das Tomadas Lado a Lado -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <!-- Origem -->
+                    <div class="p-4 rounded-xl border border-[#0A192F]/15 bg-[#F5F2EB]/45">
+                        <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-[#0A192F]/10">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <img id="cardOrigFlag" src="/assets/flags/br.svg" alt="" class="w-8 h-5 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#53647C] block">Origem</span>
+                                    <h3 id="cardOrigNome" class="font-heading font-bold text-sm sm:text-base text-[#0A192F] truncate">Brasil</h3>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <div id="cardOrigVolt" class="font-display font-black text-base sm:text-lg text-[#0A192F] leading-none">127 / 220V</div>
+                                <div id="cardOrigFreq" class="font-mono text-[11px] font-bold text-[#53647C] mt-0.5">60 Hz</div>
+                            </div>
+                        </div>
+
+                        <div id="origSocketsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                            <!-- SVGs das tomadas inseridos via JS -->
+                        </div>
+                        <p id="cardOrigNota" class="hidden mt-3 pt-2.5 border-t border-[#0A192F]/10 text-[11px] text-[#53647C] leading-relaxed"></p>
+                    </div>
+
+                    <!-- Destino -->
+                    <div class="p-4 rounded-xl border border-[#C8102E]/25 bg-[#F5F2EB]/45">
+                        <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-[#0A192F]/10">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <img id="cardDestFlag" src="/assets/flags/us.svg" alt="" class="w-8 h-5 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#C8102E] block">Destino</span>
+                                    <h3 id="cardDestNome" class="font-heading font-bold text-sm sm:text-base text-[#0A192F] truncate">Estados Unidos</h3>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <div id="cardDestVolt" class="font-display font-black text-base sm:text-lg text-[#C8102E] leading-none">120V</div>
+                                <div id="cardDestFreq" class="font-mono text-[11px] font-bold text-[#53647C] mt-0.5">60 Hz</div>
+                            </div>
+                        </div>
+
+                        <div id="destSocketsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                            <!-- SVGs das tomadas inseridos via JS -->
+                        </div>
+                        <p id="cardDestNota" class="hidden mt-3 pt-2.5 border-t border-[#0A192F]/10 text-[11px] text-[#53647C] leading-relaxed"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Palco do Mapa Mundial Interativo -->
+            <section class="bg-white p-3 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Mapa mundial de tomadas e voltagens">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3 pb-3 border-b border-[#0A192F]/10">
+                    <div>
+                        <h3 class="font-heading font-bold text-sm sm:text-base text-[#0A192F] flex items-center gap-2">
+                            <i class="ph-bold ph-globe-hemisphere-west text-[#C8102E]"></i>
+                            <span>Mapa Global de Padrões Elétricos</span>
+                        </h3>
+                        <p id="mapaSubtitulo" class="text-[11px] font-mono text-[#53647C] mt-0.5">
+                            Compatibilidade física e elétrica a partir da origem selecionada
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="inline-flex flex-wrap rounded-lg bg-[#F5F2EB] p-0.5 border border-[#0A192F]/10">
+                            <button type="button" data-mapmode="compat" class="map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition bg-[#0A192F] text-white">
+                                Compatibilidade
+                            </button>
+                            <button type="button" data-mapmode="voltage" class="map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]">
+                                Voltagem
+                            </button>
+                            <button type="button" data-mapmode="freq" class="map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]">
+                                50/60 Hz
+                            </button>
+                            <button type="button" data-mapmode="plug" class="map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]">
+                                Tipo <span id="lblMapPlug">N</span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-1">
+                            <button type="button" id="btnZoomIn" aria-label="Aproximar mapa" class="min-h-[36px] min-w-[36px] rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 flex items-center justify-center transition">
+                                <i class="ph-bold ph-plus"></i>
+                            </button>
+                            <button type="button" id="btnZoomOut" aria-label="Afastar mapa" class="min-h-[36px] min-w-[36px] rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 flex items-center justify-center transition">
+                                <i class="ph-bold ph-minus"></i>
+                            </button>
+                            <button type="button" id="btnResetZoom" title="Ver mapa completo" class="min-h-[36px] px-2.5 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/12 text-[11px] font-mono font-bold flex items-center gap-1 transition">
+                                <i class="ph-bold ph-arrows-in"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barra de Legenda & Alvo de Seleção -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3 text-[11px] font-mono text-[#53647C]">
+                    <div id="mapLegend" class="flex flex-wrap items-center gap-x-4 gap-y-1">
+                        <!-- Atualizado via JS -->
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span>Definir ao selecionar país:</span>
+                        <div class="inline-flex rounded-lg bg-[#F5F2EB] p-0.5 border border-[#0A192F]/10">
+                            <button type="button" id="mapTargetOrigem" class="min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]">
+                                Origem
+                            </button>
+                            <button type="button" id="mapTargetDestino" class="min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition bg-[#C8102E] text-white">
+                                Destino
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-[#EAE4D7] rounded-xl overflow-hidden border border-[#0A192F]/15">
+                    <div id="loadingMap" class="absolute inset-0 bg-[#EAE4D7] flex flex-col items-center justify-center gap-2 z-20">
+                        <div class="w-8 h-8 border-2 border-[#A8C3A6] border-t-[#C8102E] rounded-full animate-spin"></div>
+                        <span class="text-xs font-mono text-[#0A192F]">Carregando mapa mundial...</span>
+                    </div>
+
+                    <svg id="svgMapa" class="w-full h-[340px] sm:h-[440px] block cursor-grab active:cursor-grabbing select-none"></svg>
+
+                    <!-- Bússola Minimalista Canto Superior Direito -->
+                    <div class="absolute top-3 right-3 pointer-events-none opacity-80">
+                        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="24" stroke="#0A192F" stroke-width="1.2" opacity="0.35"/>
+                            <polygon points="32,12 36,32 32,52 28,32" fill="#0A192F"/>
+                            <polygon points="32,12 36,32 28,32" fill="#C8102E"/>
+                            <text x="32" y="9" fill="#C8102E" font-family="'Orbitron', sans-serif" font-size="9" font-weight="800" text-anchor="middle">N</text>
+                        </svg>
+                    </div>
+
+                    <!-- Tooltip Flutuante de País -->
+                    <div id="mapTooltip" class="hidden absolute bottom-3 left-3 z-10 bg-white/95 backdrop-blur-md border border-[#0A192F]/15 rounded-xl p-3 shadow-lg max-w-xs pointer-events-none">
+                        <div class="flex items-center gap-2 mb-1">
+                            <img id="ttFlag" src="" alt="" class="w-6 h-4 object-cover rounded-[2px] border border-[#0A192F]/15 hidden">
+                            <span id="ttNome" class="font-heading font-bold text-sm text-[#0A192F]"></span>
+                        </div>
+                        <div id="ttSpecs" class="text-[11px] font-mono text-[#0A192F] font-semibold"></div>
+                        <div id="ttCompat" class="text-[10px] font-mono text-[#53647C] mt-0.5"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Catálogo Visual dos 15 Padrões IEC (Tipos A a O) -->
+            <section class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-6" aria-label="Guia visual dos 15 padrões de tomadas IEC">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-2.5 border-b border-[#0A192F]/10">
+                    <div>
+                        <h3 class="font-heading font-bold text-sm sm:text-base text-[#0A192F] flex items-center gap-2">
+                            <i class="ph-bold ph-grid-four text-[#C8102E]"></i>
+                            <span>Os 15 Padrões Mundiais de Tomada (Tipos A a O)</span>
+                        </h3>
+                        <p class="text-[11px] font-mono text-[#53647C] mt-0.5">
+                            Selecione qualquer padrão para destacar todos os países que o adotam no mapa acima
+                        </p>
+                    </div>
+                    <span id="plugFilterActiveTag" class="hidden px-2.5 py-1 rounded-lg bg-[#C8102E]/10 border border-[#C8102E]/25 font-mono text-[11px] font-bold text-[#C8102E]"></span>
+                </div>
+
+                <div id="catalogoTomadas" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                    <!-- Cartões A-O gerados via JS -->
+                </div>
+            </section>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/50 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box Discreto de Retenção -->
+            <div class="p-5 rounded-2xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Planejando horários antes de embarcar?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Consulte o horário exato de qualquer um dos 198 países e compare a diferença para Brasília.</p>
+                </div>
+                <a href="/ferramentas/que-horas-sao/" class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-clock"></i>
+                    <span>Abrir Conversor de Horários</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Observatório &amp; Cartografia Independente</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const PAISES = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const paisByIso = new Map(PAISES.map(p => [p.iso2.toLowerCase(), p]));
+            const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // =========================================================================
+            // CATÁLOGO DOS 15 PADRÕES IEC (TIPOS A A O)
+            // =========================================================================
+            const PLUG_TYPES = {
+                A: { code: 'A', nome: 'NEMA 1-15', desc: '2 pinos planos paralelos, sem pino terra.', amps: '15A', regiao: 'EUA, Canadá, Japão, América Central' },
+                B: { code: 'B', nome: 'NEMA 5-15', desc: '2 pinos planos paralelos + pino terra redondo.', amps: '15A', regiao: 'EUA, Canadá, México, Colômbia' },
+                C: { code: 'C', nome: 'Europlug CEE 7/16', desc: '2 pinos redondos de 4,0 mm sem terra.', amps: '2,5A–10A', regiao: 'Europa, América do Sul, Ásia' },
+                D: { code: 'D', nome: 'BS 546 (5A)', desc: '3 pinos redondos grossos em triângulo.', amps: '5A', regiao: 'Índia, Nepal, Sri Lanka' },
+                E: { code: 'E', nome: 'Padrão Francês', desc: '2 pinos redondos + pino terra macho na tomada.', amps: '16A', regiao: 'França, Bélgica, Polônia, Tchéquia' },
+                F: { code: 'F', nome: 'Schuko CEE 7/4', desc: '2 pinos redondos + clipes de aterramento laterais.', amps: '16A', regiao: 'Alemanha, Portugal, Espanha, Coreia' },
+                G: { code: 'G', nome: 'BS 1363', desc: '3 pinos retangulares em triângulo com fusível.', amps: '13A', regiao: 'Reino Unido, Irlanda, Emirados, Singapura' },
+                H: { code: 'H', nome: 'SI 32', desc: '3 pinos em Y (aceita Europlug Tipo C).', amps: '16A', regiao: 'Israel e Palestina' },
+                I: { code: 'I', nome: 'AS/NZS 3112', desc: '2 ou 3 pinos planos inclinados em V invertido.', amps: '10A', regiao: 'Austrália, Nova Zelândia, Argentina, China' },
+                J: { code: 'J', nome: 'SEV 1011', desc: '3 pinos redondos (terra central deslocado 5 mm).', amps: '10A', regiao: 'Suíça e Liechtenstein' },
+                K: { code: 'K', nome: 'DS 60884-2-D1', desc: '2 pinos redondos + terra semicircular inferior.', amps: '16A', regiao: 'Dinamarca, Groenlândia, Senegal' },
+                L: { code: 'L', nome: 'CEI 23-50', desc: '3 pinos redondos alinhados na horizontal.', amps: '10A / 16A', regiao: 'Itália, Chile, Uruguai' },
+                M: { code: 'M', nome: 'BS 546 (15A)', desc: '3 pinos redondos bem espessos em triângulo.', amps: '15A', regiao: 'África do Sul, Namíbia, Índia' },
+                N: { code: 'N', nome: 'IEC 60906-1 / NBR 14136', desc: 'Poço hexagonal com 3 pinos redondos (terra deslocado 3 mm).', amps: '10A / 20A', regiao: 'Brasil e África do Sul' },
+                O: { code: 'O', nome: 'TIS 166-2549', desc: '3 pinos redondos em triângulo (terra superior).', amps: '16A', regiao: 'Tailândia' }
+            };
+
+            // Quais tomadas aceitam fisicamente um plugue 2 pinos fino (Europlug Tipo C)
+            const ACEITA_EUROPLUG_2_PINOS = new Set(['C', 'E', 'F', 'H', 'J', 'K', 'L', 'N', 'O']);
+
+            // =========================================================================
+            // BASE ELÉTRICA COMPLETA DOS 198 PAÍSES E TERRITÓRIOS (IEC / WORLDSTANDARDS)
+            // v: rótulo nominal | min/max: faixa em volts | f: 50, 60 ou '50/60' | p: tipos | n: nota técnica
+            // =========================================================================
+            const ELETRICA_DB = {
+                // América do Sul
+                br: { v: '127 / 220V', min: 127, max: 220, f: '60', p: ['N', 'C'], n: 'No Brasil a tensão varia por cidade: SP, RJ, MG e BA adotam majoritariamente 127V; DF, RS, SC e quase todo o Nordeste usam 220V.' },
+                ar: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'I'], n: 'O padrão Tipo I argentino possui polaridade (fase/neutro) invertida em relação ao padrão da Austrália.' },
+                co: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                pe: { v: '220V', min: 220, max: 220, f: '60', p: ['A', 'B', 'C'] },
+                cl: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'L'] },
+                ve: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                ec: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                bo: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'C'], n: 'Partes antigas de La Paz ainda utilizam 115V; o padrão nacional é 230V.' },
+                py: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                uy: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F', 'I', 'L'] },
+                gy: { v: '240V', min: 240, max: 240, f: '60', p: ['A', 'B', 'D', 'G'], n: 'Georgetown e áreas antigas apresentam mistura entre 110V e 240V.' },
+                sr: { v: '127V', min: 127, max: 127, f: '60', p: ['C', 'F'] },
+
+                // América do Norte, Central e Caribe
+                us: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                ca: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                mx: { v: '127V', min: 127, max: 127, f: '60', p: ['A', 'B'] },
+                pa: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                cr: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                gt: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                hn: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                sv: { v: '115V', min: 115, max: 115, f: '60', p: ['A', 'B'] },
+                ni: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                bz: { v: '110 / 220V', min: 110, max: 220, f: '60', p: ['A', 'B', 'G'] },
+                cu: { v: '110 / 220V', min: 110, max: 220, f: '60', p: ['A', 'B', 'C', 'L'], n: 'Residências operam em 110V (A/B), mas hotéis turísticos frequentemente têm 220V europeu.' },
+                do: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                ht: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                jm: { v: '110V', min: 110, max: 110, f: '50', p: ['A', 'B'] },
+                tt: { v: '115V', min: 115, max: 115, f: '60', p: ['A', 'B'] },
+                bs: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                bb: { v: '115V', min: 115, max: 115, f: '50', p: ['A', 'B'] },
+                lc: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                vc: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'C', 'E', 'G', 'I', 'K'] },
+                gd: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                ag: { v: '230V', min: 230, max: 230, f: '60', p: ['A', 'B'] },
+                dm: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G'] },
+                kn: { v: '230V', min: 230, max: 230, f: '60', p: ['D', 'G'] },
+
+                // Europa
+                pt: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                es: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                fr: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                gb: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                ie: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                de: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                it: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F', 'L'], n: 'Imóveis italianos alternam entre L de 10A/16A e tomadas universais Schuko (F/L).' },
+                ch: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'J'], n: 'O pino terra do Tipo J (Suíça) tem deslocamento diferente do Tipo N brasileiro; plugues de 3 pinos do Brasil não encaixam.' },
+                at: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                be: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                nl: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                lu: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                mc: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'E', 'F'] },
+                ad: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                li: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'J'] },
+                sm: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F', 'L'] },
+                va: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F', 'L'] },
+                mt: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                gr: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                cy: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                pl: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                cz: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                sk: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                hu: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ro: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                bg: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                no: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                se: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                fi: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                dk: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E', 'F', 'K'] },
+                is: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ee: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                lv: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                lt: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ua: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                by: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                md: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                al: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                mk: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                me: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                rs: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ba: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                hr: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                si: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                xk: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ru: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+
+                // Ásia e Oriente Médio
+                cn: { v: '220V', min: 220, max: 220, f: '50', p: ['A', 'C', 'I'], n: 'Tomadas chinesas combinam frequentemente encaixe Tipo A (2 pinos planos) e Tipo I (3 pinos em V).' },
+                jp: { v: '100V', min: 100, max: 100, f: '50/60', p: ['A', 'B'], n: 'O Japão é o único país grande em 100V e divide a frequência: 50 Hz no leste (Tóquio) e 60 Hz no oeste (Osaka/Quioto).' },
+                kr: { v: '220V', min: 220, max: 220, f: '60', p: ['C', 'F'] },
+                kp: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                in: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'M'] },
+                pk: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D'] },
+                id: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ph: { v: '220V', min: 220, max: 220, f: '60', p: ['A', 'B', 'C'] },
+                vn: { v: '220V', min: 220, max: 220, f: '50', p: ['A', 'C', 'F'] },
+                th: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'B', 'C', 'O'] },
+                my: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                sg: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                kz: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                uz: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                tm: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                kg: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                tj: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                sa: { v: '220V', min: 220, max: 220, f: '60', p: ['G'], n: 'O padrão oficial atual é 220V com tomada G; prédios antigos ainda podem ter 127V (A/B).' },
+                ir: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                iq: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'G'] },
+                tr: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                il: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'H'] },
+                ps: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'H'] },
+                jo: { v: '230V', min: 230, max: 230, f: '50', p: ['B', 'C', 'D', 'F', 'G', 'J'] },
+                lb: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'B', 'C', 'D', 'G'] },
+                sy: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E', 'L'] },
+                ae: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                qa: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                kw: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                om: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                ye: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'D', 'G'] },
+                bh: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                af: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                bd: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'D', 'G', 'K'] },
+                lk: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G', 'M'] },
+                np: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'M'] },
+                bt: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'F', 'G', 'M'] },
+                mv: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'G', 'J', 'K', 'L'] },
+                mn: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                tw: { v: '110V', min: 110, max: 110, f: '60', p: ['A', 'B'] },
+                mm: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'F', 'G'] },
+                kh: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'C', 'G'] },
+                la: { v: '230V', min: 230, max: 230, f: '50', p: ['A', 'B', 'C', 'E', 'F'] },
+                bn: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                tl: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E', 'F', 'I'] },
+                ge: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                am: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                az: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+
+                // África
+                eg: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                za: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'M', 'N'], n: 'A África do Sul adota oficialmente o novo padrão SANS 164-2 (Tipo N), compatível com o plugue brasileiro de 3 pinos.' },
+                ng: { v: '240V', min: 240, max: 240, f: '50', p: ['D', 'G'] },
+                dz: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                ma: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                et: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                ke: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                tz: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G'] },
+                cd: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'D', 'E'] },
+                cg: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                ao: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                gh: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G'] },
+                ci: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                sn: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'E', 'K'] },
+                gm: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                ml: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                bf: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                ne: { v: '220V', min: 220, max: 220, f: '50', p: ['A', 'B', 'C', 'D', 'E', 'F'] },
+                td: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'D', 'E', 'F'] },
+                sd: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D'] },
+                ss: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D'] },
+                ug: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                rw: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'J'] },
+                bi: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                so: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                dj: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                er: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'L'] },
+                mg: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                mz: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F', 'M'] },
+                zm: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'G'] },
+                zw: { v: '220V', min: 220, max: 220, f: '50', p: ['D', 'G'] },
+                na: { v: '220V', min: 220, max: 220, f: '50', p: ['D', 'M'] },
+                bw: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G', 'M'] },
+                ls: { v: '220V', min: 220, max: 220, f: '50', p: ['M'] },
+                sz: { v: '230V', min: 230, max: 230, f: '50', p: ['M'] },
+                ly: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'D', 'F', 'L'] },
+                tn: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'E'] },
+                mr: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                cm: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                ga: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                gq: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                cv: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] },
+                st: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F'] },
+                sc: { v: '240V', min: 240, max: 240, f: '50', p: ['G'] },
+                mu: { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'G'] },
+                km: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                cf: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                gn: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'F', 'K'] },
+                gw: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                lr: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                sl: { v: '230V', min: 230, max: 230, f: '50', p: ['D', 'G'] },
+                tg: { v: '220V', min: 220, max: 220, f: '50', p: ['C'] },
+                bj: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+                mw: { v: '230V', min: 230, max: 230, f: '50', p: ['G'] },
+                eh: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'E'] },
+
+                // Oceania
+                au: { v: '230V', min: 230, max: 230, f: '50', p: ['I'] },
+                nz: { v: '230V', min: 230, max: 230, f: '50', p: ['I'] },
+                pg: { v: '240V', min: 240, max: 240, f: '50', p: ['I'] },
+                fj: { v: '240V', min: 240, max: 240, f: '50', p: ['I'] },
+                sb: { v: '220V', min: 220, max: 220, f: '50', p: ['G', 'I'] },
+                vu: { v: '220V', min: 220, max: 220, f: '50', p: ['C', 'G', 'I'] },
+                ws: { v: '230V', min: 230, max: 230, f: '50', p: ['I'] },
+                to: { v: '240V', min: 240, max: 240, f: '50', p: ['I'] },
+                fm: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                pw: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                mh: { v: '120V', min: 120, max: 120, f: '60', p: ['A', 'B'] },
+                ki: { v: '240V', min: 240, max: 240, f: '50', p: ['I'] },
+                tv: { v: '220V', min: 220, max: 220, f: '50', p: ['I'] },
+                nr: { v: '240V', min: 240, max: 240, f: '50', p: ['I'] }
+            };
+
+            function getSpec(iso) {
+                return ELETRICA_DB[iso] || { v: '230V', min: 230, max: 230, f: '50', p: ['C', 'F'] };
+            }
+
+            // =========================================================================
+            // GERADOR VETORIAL DOS 15 DESENHOS DE TOMADA IEC (A A O)
+            // =========================================================================
+            function renderSocketSVG(type, accent = '#C8102E') {
+                const bg = '#FFFFFF';
+                const navy = '#0A192F';
+                const plate = '#F5F2EB';
+                let inner = '';
+
+                switch (type) {
+                    case 'A':
+                        inner = `
+                            <rect x="20" y="24" width="60" height="52" rx="14" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <rect x="35" y="40" width="6" height="20" rx="1.5" fill="${navy}"/>
+                            <rect x="59" y="40" width="6" height="20" rx="1.5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'B':
+                        inner = `
+                            <rect x="18" y="20" width="64" height="60" rx="16" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <rect x="34" y="34" width="5.5" height="18" rx="1.5" fill="${navy}"/>
+                            <rect x="60.5" y="34" width="5.5" height="18" rx="1.5" fill="${navy}"/>
+                            <path d="M44 64a6 6 0 0 1 12 0v5H44v-5Z" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'C':
+                        inner = `
+                            <circle cx="50" cy="50" r="32" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="37" cy="50" r="5" fill="${navy}"/>
+                            <circle cx="63" cy="50" r="5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'D':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="50" cy="32" r="6" fill="${accent}"/>
+                            <circle cx="34" cy="60" r="5.5" fill="${navy}"/>
+                            <circle cx="66" cy="60" r="5.5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'E':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="36" cy="52" r="5" fill="${navy}"/>
+                            <circle cx="64" cy="52" r="5" fill="${navy}"/>
+                            <circle cx="50" cy="32" r="4.5" fill="${accent}" stroke="${navy}" stroke-width="1.5"/>
+                        `;
+                        break;
+                    case 'F':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <rect x="46" y="16" width="8" height="9" rx="1.5" fill="${accent}"/>
+                            <rect x="46" y="75" width="8" height="9" rx="1.5" fill="${accent}"/>
+                            <circle cx="36" cy="50" r="5" fill="${navy}"/>
+                            <circle cx="64" cy="50" r="5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'G':
+                        inner = `
+                            <rect x="16" y="16" width="68" height="68" rx="12" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <rect x="46" y="26" width="8" height="16" rx="1.5" fill="${accent}"/>
+                            <rect x="26" y="57" width="15" height="8" rx="1.5" fill="${navy}"/>
+                            <rect x="59" y="57" width="15" height="8" rx="1.5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'H':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="36" cy="40" r="5" fill="${navy}"/>
+                            <circle cx="64" cy="40" r="5" fill="${navy}"/>
+                            <circle cx="50" cy="66" r="5" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'I':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <rect x="33" y="31" width="5.5" height="18" rx="1.5" transform="rotate(-30 35.7 40)" fill="${navy}"/>
+                            <rect x="61.5" y="31" width="5.5" height="18" rx="1.5" transform="rotate(30 64.2 40)" fill="${navy}"/>
+                            <rect x="47.2" y="57" width="5.5" height="16" rx="1.5" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'J':
+                        inner = `
+                            <polygon points="28,26 72,26 84,50 72,74 28,74 16,50" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="34" cy="46" r="4.8" fill="${navy}"/>
+                            <circle cx="66" cy="46" r="4.8" fill="${navy}"/>
+                            <circle cx="50" cy="60" r="4.8" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'K':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="36" cy="43" r="5" fill="${navy}"/>
+                            <circle cx="64" cy="43" r="5" fill="${navy}"/>
+                            <path d="M44 63a6 6 0 0 0 12 0H44Z" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'L':
+                        inner = `
+                            <rect x="16" y="30" width="68" height="40" rx="14" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="31" cy="50" r="4.8" fill="${navy}"/>
+                            <circle cx="50" cy="50" r="4.8" fill="${accent}"/>
+                            <circle cx="69" cy="50" r="4.8" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'M':
+                        inner = `
+                            <circle cx="50" cy="50" r="35" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="50" cy="30" r="7" fill="${accent}"/>
+                            <circle cx="32" cy="62" r="6.5" fill="${navy}"/>
+                            <circle cx="68" cy="62" r="6.5" fill="${navy}"/>
+                        `;
+                        break;
+                    case 'N':
+                        inner = `
+                            <polygon points="28,26 72,26 84,50 72,74 28,74 16,50" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="34" cy="54" r="4.8" fill="${navy}"/>
+                            <circle cx="66" cy="54" r="4.8" fill="${navy}"/>
+                            <circle cx="50" cy="42" r="4.8" fill="${accent}"/>
+                        `;
+                        break;
+                    case 'O':
+                        inner = `
+                            <circle cx="50" cy="50" r="34" fill="${plate}" stroke="${navy}" stroke-width="2.5"/>
+                            <circle cx="50" cy="33" r="5" fill="${accent}"/>
+                            <circle cx="36" cy="58" r="5" fill="${navy}"/>
+                            <circle cx="64" cy="58" r="5" fill="${navy}"/>
+                        `;
+                        break;
+                }
+
+                return `<svg viewBox="0 0 100 100" class="w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="92" height="92" rx="18" fill="${bg}" stroke="#0A192F" stroke-opacity="0.14" stroke-width="1.5"/>${inner}</svg>`;
+            }
+
+            // =========================================================================
+            // MOTOR DE ANÁLISE DE COMPATIBILIDADE ELÉTRICA
+            // =========================================================================
+            function analisarCompatibilidade(origIso, destIso, deviceMode) {
+                const orig = getSpec(origIso);
+                const dest = getSpec(destIso);
+
+                const pOrig = new Set(orig.p);
+                const pDest = new Set(dest.p);
+                const tiposComuns = orig.p.filter(t => pDest.has(t));
+
+                // Verifica encaixe de 2 pinos fino (Europlug C)
+                const origTem2PinosEuropeu = orig.p.some(t => ACEITA_EUROPLUG_2_PINOS.has(t));
+                const destAceitaEuroplug = dest.p.some(t => ACEITA_EUROPLUG_2_PINOS.has(t));
+                const encaixe2Pinos = tiposComuns.length > 0 || (origTem2PinosEuropeu && destAceitaEuroplug);
+
+                // Verifica encaixe com pino terra (3 pinos ou formato idêntico do país de origem)
+                // Se origem tem C+F e destino tem C+E, plugue Schuko (F) tem furo para o pino terra macho do E (híbrido CEE 7/7)
+                const hibridoEF = (pOrig.has('F') && pDest.has('E')) || (pOrig.has('E') && pDest.has('F'));
+                const plugPrincipalOrig = orig.p[0];
+                const encaixe3Pinos = pDest.has(plugPrincipalOrig) || hibridoEF;
+
+                // Análise de Voltagem contra o aparelho escolhido
+                let voltStatus = 'ok'; // 'ok' | 'underpower' | 'danger' | 'dual'
+                let voltResumo = '';
+                let voltBadge = '';
+
+                if (deviceMode === 'bivolt') {
+                    voltStatus = 'ok';
+                    voltBadge = 'Bivolt (100–240V)';
+                    voltResumo = `Aparelhos bivolt (celulares, notebooks e câmeras) funcionam normalmente em ${dest.v} (${dest.f} Hz) sem transformador.`;
+                } else if (deviceMode === '110v') {
+                    if (dest.max <= 130) {
+                        voltStatus = 'ok';
+                        voltBadge = 'Tensão compatível';
+                        voltResumo = `Seu aparelho 110–127V é compatível com a rede de ${dest.v} no destino.`;
+                    } else if (dest.min <= 130 && dest.max >= 200) {
+                        voltStatus = 'dual';
+                        voltBadge = 'Rede mista (127/220V)';
+                        voltResumo = `O destino opera tanto em 127V quanto em 220V. Confirme a tensão da tomada local antes de ligar aparelhos 110V.`;
+                    } else {
+                        voltStatus = 'danger';
+                        voltBadge = 'Exige transformador';
+                        voltResumo = `PERIGO DE QUEIMA: ligar aparelho só 110–127V na rede de ${dest.v} exige transformador abaixador de voltagem.`;
+                    }
+                } else {
+                    // Aparelho 220-240V
+                    if (dest.min >= 200) {
+                        voltStatus = 'ok';
+                        voltBadge = 'Tensão compatível';
+                        voltResumo = `Seu aparelho 220–240V funciona em plena carga na rede de ${dest.v} do destino.`;
+                    } else if (dest.min <= 130 && dest.max >= 200) {
+                        voltStatus = 'dual';
+                        voltBadge = 'Rede mista (127/220V)';
+                        voltResumo = `Em circuitos de 127V do destino o aparelho terá metade da potência; procure tomadas 220V ou use transformador.`;
+                    } else {
+                        voltStatus = 'underpower';
+                        voltBadge = 'Potência reduzida';
+                        voltResumo = `A rede do destino é de ${dest.v}: aparelhos só 220V não queimam, mas não alcançam potência nominal sem transformador elevador.`;
+                    }
+                }
+
+                // Nota de frequência (50 vs 60 Hz)
+                const freqDiff = orig.f !== dest.f && dest.f !== '50/60' && orig.f !== '50/60';
+                if (freqDiff) {
+                    voltResumo += ` Diferença de frequência (${orig.f} Hz → ${dest.f} Hz): relógios e motores síncronos podem variar rotação, mas eletrônicos DC não são afetados.`;
+                }
+
+                // Classe de compatibilidade global para colorir mapa e veredito
+                let nivel = 'direct'; // 'direct' | 'adapter' | 'voltage'
+                if (voltStatus === 'danger') {
+                    nivel = 'voltage';
+                } else if (!encaixe2Pinos || !encaixe3Pinos) {
+                    nivel = encaixe2Pinos ? 'partial' : 'adapter';
+                }
+
+                return {
+                    orig,
+                    dest,
+                    tiposComuns,
+                    encaixe2Pinos,
+                    encaixe3Pinos,
+                    voltStatus,
+                    voltBadge,
+                    voltResumo,
+                    freqDiff,
+                    nivel
+                };
+            }
+
+            // =========================================================================
+            // ESTADO DA APLICAÇÃO
+            // =========================================================================
+            const estado = {
+                origem: 'br',
+                destino: 'us',
+                device: 'bivolt', // 'bivolt' | '110v' | '220v'
+                mapMode: 'compat', // 'compat' | 'voltage' | 'freq' | 'plug'
+                plugFilter: 'N',
+                alvoMapa: 'destino'
+            };
+
+            (function lerQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                const de = (params.get('de') || '').toLowerCase();
+                const para = (params.get('para') || '').toLowerCase();
+                const ap = params.get('aparelho');
+                if (paisByIso.has(de)) estado.origem = de;
+                if (paisByIso.has(para)) estado.destino = para;
+                if (ap === 'bivolt' || ap === '110v' || ap === '220v') estado.device = ap;
+            })();
+
+            // Elementos DOM
+            const inputOrigem = document.getElementById('inputOrigem');
+            const inputDestino = document.getElementById('inputDestino');
+            const flagOrigem = document.getElementById('flagOrigem');
+            const flagDestino = document.getElementById('flagDestino');
+            const listOrigem = document.getElementById('listOrigem');
+            const listDestino = document.getElementById('listDestino');
+
+            function configurarCombobox(chave, inputEl, listEl, wrapId, toggleId) {
+                const ordenados = [...PAISES].sort((a, b) => a.nome.localeCompare(b.nome, 'pt'));
+
+                function render(filtro) {
+                    const q = norm(filtro);
+                    const filtrados = q
+                        ? ordenados.filter(p => norm(p.nome).includes(q) || norm(p.continente).includes(q) || norm(p.capital).includes(q))
+                        : ordenados;
+
+                    if (!filtrados.length) {
+                        listEl.innerHTML = '<div class="px-3 py-2 text-xs font-mono text-[#53647C]">Nenhum país encontrado.</div>';
+                        return;
+                    }
+
+                    listEl.innerHTML = filtrados.slice(0, 65).map(p => {
+                        const sp = getSpec(p.iso2);
+                        const ativo = estado[chave] === p.iso2;
+                        return `
+                            <button type="button" data-iso="${p.iso2}"
+                                    class="w-full px-2.5 py-2 rounded-lg text-left flex items-center justify-between gap-2 text-xs transition ${ativo ? 'bg-[#0A192F] text-white' : 'hover:bg-[#F5F2EB] text-[#0A192F]'}">
+                                <span class="flex items-center gap-2 min-w-0">
+                                    <img src="/assets/flags/${p.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                    <span class="font-semibold truncate">${p.nome}</span>
+                                </span>
+                                <span class="font-mono text-[10px] shrink-0 ${ativo ? 'text-[#A8C3A6]' : 'text-[#53647C]'}">
+                                    ${sp.v} · ${sp.p.join('/')}
+                                </span>
+                            </button>
+                        `;
+                    }).join('');
+
+                    listEl.querySelectorAll('button[data-iso]').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            estado[chave] = btn.getAttribute('data-iso');
+                            listEl.classList.add('hidden');
+                            atualizarTudo(true);
+                        });
+                    });
+                }
+
+                inputEl.addEventListener('focus', () => {
+                    inputEl.select();
+                    render('');
+                    listEl.classList.remove('hidden');
+                });
+
+                inputEl.addEventListener('input', () => {
+                    render(inputEl.value);
+                    listEl.classList.remove('hidden');
+                });
+
+                document.getElementById(toggleId).addEventListener('click', () => {
+                    if (listEl.classList.contains('hidden')) {
+                        render('');
+                        listEl.classList.remove('hidden');
+                        inputEl.focus();
+                    } else {
+                        listEl.classList.add('hidden');
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!document.getElementById(wrapId).contains(e.target)) {
+                        listEl.classList.add('hidden');
+                        const p = paisByIso.get(estado[chave]);
+                        if (p) inputEl.value = p.nome;
+                    }
+                });
+            }
+
+            configurarCombobox('origem', inputOrigem, listOrigem, 'wrapOrigem', 'toggleOrigem');
+            configurarCombobox('destino', inputDestino, listDestino, 'wrapDestino', 'toggleDestino');
+
+            document.getElementById('btnInverter').addEventListener('click', () => {
+                const tmp = estado.origem;
+                estado.origem = estado.destino;
+                estado.destino = tmp;
+                atualizarTudo(true);
+            });
+
+            document.querySelectorAll('.device-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.device = btn.getAttribute('data-device');
+                    atualizarTudo(true);
+                });
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const [de, para] = btn.getAttribute('data-preset').split(':');
+                    estado.origem = de;
+                    estado.destino = para;
+                    atualizarTudo(true);
+                });
+            });
+
+            document.getElementById('btnAleatorio').addEventListener('click', () => {
+                if (PAISES.length < 2) return;
+                let dest = PAISES[Math.floor(Math.random() * PAISES.length)];
+                while (dest.iso2 === estado.origem) {
+                    dest = PAISES[Math.floor(Math.random() * PAISES.length)];
+                }
+                estado.destino = dest.iso2;
+                atualizarTudo(true);
+            });
+
+            document.getElementById('btnCopiarLink').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const txt = document.getElementById('txtCopiarLink');
+                    txt.textContent = 'Copiado!';
+                    setTimeout(() => { txt.textContent = 'Copiar link'; }, 1800);
+                } catch (e) {}
+            });
+
+            // =========================================================================
+            // CATÁLOGO INTERATIVO DE TOMADAS (A–O)
+            // =========================================================================
+            const contagemPorPlug = {};
+            Object.keys(PLUG_TYPES).forEach(k => { contagemPorPlug[k] = 0; });
+            PAISES.forEach(p => {
+                const sp = getSpec(p.iso2);
+                sp.p.forEach(t => {
+                    if (contagemPorPlug[t] !== undefined) contagemPorPlug[t]++;
+                });
+            });
+
+            function renderCatalogoTomadas() {
+                const container = document.getElementById('catalogoTomadas');
+                const filtroAtivo = estado.mapMode === 'plug' ? estado.plugFilter : null;
+
+                container.innerHTML = Object.values(PLUG_TYPES).map(pt => {
+                    const ativo = filtroAtivo === pt.code;
+                    return `
+                        <button type="button" data-plug="${pt.code}"
+                                class="text-left p-3 rounded-xl border transition flex flex-col justify-between gap-2 ${ativo ? 'bg-[#0A192F] text-white border-[#0A192F] shadow-sm' : 'bg-[#F5F2EB]/60 hover:bg-white border-[#0A192F]/12 text-[#0A192F]'}">
+                            <div class="flex items-center justify-between w-full">
+                                <span class="font-display font-black text-sm ${ativo ? 'text-[#A8C3A6]' : 'text-[#0A192F]'}">TIPO ${pt.code}</span>
+                                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded ${ativo ? 'bg-[#C8102E] text-white' : 'bg-white border border-[#0A192F]/10 text-[#53647C]'}">${contagemPorPlug[pt.code]} países</span>
+                            </div>
+                            ${renderSocketSVG(pt.code)}
+                            <div>
+                                <div class="font-mono text-[10px] font-bold ${ativo ? 'text-[#A8C3A6]' : 'text-[#C8102E]'}">${pt.nome} · ${pt.amps}</div>
+                                <p class="text-[11px] leading-snug mt-0.5 ${ativo ? 'text-slate-200' : 'text-[#53647C]'}">${pt.desc}</p>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+
+                container.querySelectorAll('button[data-plug]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        estado.plugFilter = btn.getAttribute('data-plug');
+                        estado.mapMode = 'plug';
+                        atualizarControlesMapa();
+                        renderCatalogoTomadas();
+                        atualizarMapa();
+                        document.getElementById('svgMapa').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                });
+
+                const activeTag = document.getElementById('plugFilterActiveTag');
+                if (filtroAtivo) {
+                    activeTag.textContent = `Mapa filtrando Tipo ${filtroAtivo} (${contagemPorPlug[filtroAtivo]} países)`;
+                    activeTag.classList.remove('hidden');
+                } else {
+                    activeTag.classList.add('hidden');
+                }
+            }
+
+            // =========================================================================
+            // MAPA MUNDIAL D3 + TOPOJSON LOCAL
+            // =========================================================================
+            let svg, gMapa, gPaises, gPins, projecao, pathGen, zoomBehavior;
+            let featuresMundo = [];
+            let featureByIso = new Map();
+            let isoByFeature = new Map();
+
+            const MICROESTADOS_PINS = new Set([
+                'mc','ad','sm','va','li','sg','mt','bh','mv','sc','kn','ag','dm','lc','vc','gd','bb','ws','to','fm','pw','mh','ki','tv','nr'
+            ]);
+
+            function mapearFeatures(features) {
+                featureByIso.clear();
+                isoByFeature.clear();
+                const usados = new Set();
+
+                const fCyprus = features.find(f => String(f.id) === '196');
+                if (fCyprus) { featureByIso.set('cy', fCyprus); isoByFeature.set(fCyprus, 'cy'); usados.add(fCyprus); }
+                const fKosovo = features.find(f => f.properties && f.properties.name === 'Kosovo');
+                if (fKosovo) { featureByIso.set('xk', fKosovo); isoByFeature.set(fKosovo, 'xk'); usados.add(fKosovo); }
+
+                PAISES.forEach(p => {
+                    if (MICROESTADOS_PINS.has(p.iso2) || featureByIso.has(p.iso2)) return;
+                    let match = features.find(ft => !usados.has(ft) && d3.geoContains(ft, [p.lng, p.lat]));
+                    if (!match) {
+                        let best = null, bestD = Infinity;
+                        features.forEach(ft => {
+                            if (usados.has(ft)) return;
+                            const c = d3.geoCentroid(ft);
+                            const d = Math.hypot(c[0] - p.lng, c[1] - p.lat);
+                            if (d < bestD) { bestD = d; best = ft; }
+                        });
+                        if (bestD < 4.5) match = best;
+                    }
+                    if (match) {
+                        featureByIso.set(p.iso2, match);
+                        isoByFeature.set(match, p.iso2);
+                        usados.add(match);
+                    }
+                });
+            }
+
+            function inicializarMapa(world) {
+                featuresMundo = topojson.feature(world, world.objects.countries).features
+                    .filter(f => !(f.properties && f.properties.name === 'Antarctica'));
+                mapearFeatures(featuresMundo);
+
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 440;
+
+                svg = d3.select('#svgMapa').attr('viewBox', `0 0 ${w} ${h}`);
+                svg.selectAll('*').remove();
+
+                projecao = d3.geoNaturalEarth1().fitExtent([[18, 18], [w - 18, h - 18]], {
+                    type: 'FeatureCollection',
+                    features: featuresMundo
+                });
+                pathGen = d3.geoPath().projection(projecao);
+                gMapa = svg.append('g');
+
+                const graticule = d3.geoGraticule().step([20, 20]);
+                gMapa.append('path')
+                    .datum(graticule)
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.4)
+                    .attr('stroke-opacity', 0.12)
+                    .attr('stroke-dasharray', '3,4');
+
+                gPaises = gMapa.append('g');
+                gPins = gMapa.append('g');
+
+                const tooltip = document.getElementById('mapTooltip');
+                gPaises.selectAll('path')
+                    .data(featuresMundo)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'country-poly')
+                    .attr('d', pathGen)
+                    .on('mouseenter', (event, d) => {
+                        const iso = isoByFeature.get(d);
+                        const p = iso ? paisByIso.get(iso) : null;
+                        const ttFlag = document.getElementById('ttFlag');
+                        if (p) {
+                            const sp = getSpec(p.iso2);
+                            const res = analisarCompatibilidade(estado.origem, p.iso2, estado.device);
+                            ttFlag.src = `/assets/flags/${p.iso2}.svg`;
+                            ttFlag.classList.remove('hidden');
+                            document.getElementById('ttNome').textContent = p.nome;
+                            document.getElementById('ttSpecs').textContent = `${sp.v} · ${sp.f} Hz · Tomadas: ${sp.p.join(', ')}`;
+                            document.getElementById('ttCompat').textContent = res.encaixe3Pinos
+                                ? 'Encaixe direto com pino terra'
+                                : (res.encaixe2Pinos ? 'Aceita 2 pinos fino; 3 pinos exige adaptador' : 'Exige adaptador físico de tomada');
+                        } else {
+                            ttFlag.classList.add('hidden');
+                            document.getElementById('ttNome').textContent = (d.properties && d.properties.name) || 'Território';
+                            document.getElementById('ttSpecs').textContent = '';
+                            document.getElementById('ttCompat').textContent = '';
+                        }
+                        tooltip.classList.remove('hidden');
+                    })
+                    .on('mouseleave', () => tooltip.classList.add('hidden'))
+                    .on('click', (event, d) => {
+                        const iso = isoByFeature.get(d);
+                        if (!iso || !paisByIso.has(iso)) return;
+                        estado[estado.alvoMapa] = iso;
+                        atualizarTudo(true);
+                    });
+
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 8])
+                    .on('zoom', (event) => {
+                        gMapa.attr('transform', event.transform);
+                    });
+                svg.call(zoomBehavior);
+
+                document.getElementById('btnZoomIn').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 1.5);
+                document.getElementById('btnZoomOut').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 0.67);
+                document.getElementById('btnResetZoom').onclick = () => svg.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+
+                atualizarMapa();
+            }
+
+            function atualizarControlesMapa() {
+                document.getElementById('lblMapPlug').textContent = estado.plugFilter;
+                document.querySelectorAll('.map-mode-btn').forEach(btn => {
+                    const m = btn.getAttribute('data-mapmode');
+                    btn.className = m === estado.mapMode
+                        ? 'map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition bg-[#0A192F] text-white'
+                        : 'map-mode-btn min-h-[34px] px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]';
+                });
+
+                const legendEl = document.getElementById('mapLegend');
+                if (estado.mapMode === 'compat') {
+                    legendEl.innerHTML = `
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#A8C3A6] border border-[#0A192F]/30 inline-block"></span> Encaixe direto / 2 pinos</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#0A192F] inline-block"></span> Requer adaptador</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E] inline-block"></span> Alerta de voltagem</span>
+                    `;
+                } else if (estado.mapMode === 'voltage') {
+                    legendEl.innerHTML = `
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E] inline-block"></span> 100V – 127V</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#0A192F] inline-block"></span> 220V – 240V</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#A8C3A6] border border-[#0A192F]/30 inline-block"></span> Rede mista (110/220V)</span>
+                    `;
+                } else if (estado.mapMode === 'freq') {
+                    legendEl.innerHTML = `
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#0A192F] inline-block"></span> 50 Hz</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E] inline-block"></span> 60 Hz</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#A8C3A6] border border-[#0A192F]/30 inline-block"></span> 50 / 60 Hz (Japão)</span>
+                    `;
+                } else {
+                    legendEl.innerHTML = `
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E] inline-block"></span> Países que usam Tomada Tipo ${estado.plugFilter}</span>
+                        <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-white border border-[#0A192F]/30 inline-block"></span> Outros padrões</span>
+                    `;
+                }
+            }
+
+            document.querySelectorAll('.map-mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.mapMode = btn.getAttribute('data-mapmode');
+                    atualizarControlesMapa();
+                    renderCatalogoTomadas();
+                    atualizarMapa();
+                });
+            });
+
+            const btnMapOrig = document.getElementById('mapTargetOrigem');
+            const btnMapDest = document.getElementById('mapTargetDestino');
+            function atualizarAlvoMapa() {
+                if (estado.alvoMapa === 'origem') {
+                    btnMapOrig.className = 'min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition bg-[#0A192F] text-white';
+                    btnMapDest.className = 'min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]';
+                } else {
+                    btnMapDest.className = 'min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition bg-[#C8102E] text-white';
+                    btnMapOrig.className = 'min-h-[28px] px-2 py-0.5 rounded text-[10px] font-mono font-bold transition text-[#53647C] hover:text-[#0A192F]';
+                }
+            }
+            btnMapOrig.addEventListener('click', () => { estado.alvoMapa = 'origem'; atualizarAlvoMapa(); });
+            btnMapDest.addEventListener('click', () => { estado.alvoMapa = 'destino'; atualizarAlvoMapa(); });
+
+            function atualizarMapa() {
+                if (!gPaises) return;
+                const fOrig = featureByIso.get(estado.origem);
+                const fDest = featureByIso.get(estado.destino);
+
+                gPaises.selectAll('path').attr('class', d => {
+                    const iso = isoByFeature.get(d);
+                    let cls = 'country-poly';
+
+                    if (iso) {
+                        const sp = getSpec(iso);
+                        if (estado.mapMode === 'compat') {
+                            const res = analisarCompatibilidade(estado.origem, iso, estado.device);
+                            if (res.voltStatus === 'danger') cls += ' country-compat-voltage';
+                            else if (res.encaixe2Pinos || res.encaixe3Pinos) cls += ' country-compat-direct';
+                            else cls += ' country-compat-adapter';
+                        } else if (estado.mapMode === 'voltage') {
+                            if (sp.min <= 130 && sp.max >= 200) cls += ' country-volt-dual';
+                            else if (sp.max <= 130) cls += ' country-volt-low';
+                            else cls += ' country-volt-high';
+                        } else if (estado.mapMode === 'freq') {
+                            if (sp.f === '50/60') cls += ' country-freq-dual';
+                            else if (sp.f === '60') cls += ' country-freq-60';
+                            else cls += ' country-freq-50';
+                        } else if (estado.mapMode === 'plug') {
+                            cls += sp.p.includes(estado.plugFilter) ? ' country-plug-match' : ' country-plug-dim';
+                        }
+                    }
+
+                    if (d === fOrig) cls += ' country-selected-orig';
+                    if (d === fDest) cls += ' country-selected-dest';
+                    return cls;
+                });
+
+                gPins.selectAll('*').remove();
+                const pOrig = paisByIso.get(estado.origem);
+                const pDest = paisByIso.get(estado.destino);
+                const pins = [];
+                if (pOrig) pins.push({ p: pOrig, cor: '#0A192F', label: pOrig.nome });
+                if (pDest && pDest.iso2 !== estado.origem) pins.push({ p: pDest, cor: '#C8102E', label: pDest.nome });
+
+                pins.forEach(item => {
+                    const xy = projecao([item.p.lng, item.p.lat]);
+                    if (!xy) return;
+                    const g = gPins.append('g').attr('transform', `translate(${xy[0]},${xy[1]})`).style('pointer-events', 'none');
+                    g.append('circle').attr('r', 5.5).attr('fill', item.cor).attr('stroke', '#FFFFFF').attr('stroke-width', 2);
+                    g.append('text')
+                        .attr('y', -9)
+                        .attr('text-anchor', 'middle')
+                        .attr('fill', item.cor)
+                        .attr('stroke', '#F5F2EB')
+                        .attr('stroke-width', 2.5)
+                        .attr('paint-order', 'stroke')
+                        .attr('font-family', "'JetBrains Mono', monospace")
+                        .attr('font-size', '10px')
+                        .attr('font-weight', '700')
+                        .text(item.label);
+                });
+            }
+
+            // =========================================================================
+            // ATUALIZAÇÃO GERAL DA INTERFACE
+            // =========================================================================
+            function renderSocketCards(plugList, accentColor) {
+                return plugList.map(code => {
+                    const info = PLUG_TYPES[code];
+                    return `
+                        <button type="button" data-filterplug="${code}" title="Ver países com Tipo ${code} no mapa"
+                                class="socket-chip p-2.5 rounded-xl bg-white hover:border-[#C8102E] border border-[#0A192F]/12 text-center transition flex flex-col items-center gap-1.5">
+                            ${renderSocketSVG(code, accentColor)}
+                            <span class="font-display font-black text-xs text-[#0A192F]">TIPO ${code}</span>
+                            <span class="font-mono text-[10px] text-[#53647C] leading-tight">${info ? info.nome : ''}</span>
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            function atualizarTudo(atualizarUrl) {
+                const pOrig = paisByIso.get(estado.origem);
+                const pDest = paisByIso.get(estado.destino);
+                if (!pOrig || !pDest) return;
+
+                const analise = analisarCompatibilidade(estado.origem, estado.destino, estado.device);
+                const { orig, dest } = analise;
+
+                // Inputs & Bandeiras
+                inputOrigem.value = pOrig.nome;
+                inputDestino.value = pDest.nome;
+                flagOrigem.src = `/assets/flags/${pOrig.iso2}.svg`;
+                flagDestino.src = `/assets/flags/${pDest.iso2}.svg`;
+
+                // Botões de perfil de aparelho
+                document.querySelectorAll('.device-btn').forEach(btn => {
+                    const m = btn.getAttribute('data-device');
+                    btn.className = m === estado.device
+                        ? 'device-btn min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#0A192F] text-white shadow-xs'
+                        : 'device-btn min-h-[38px] px-3 py-1.5 rounded-lg text-xs font-semibold transition inline-flex items-center gap-1.5 bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F]';
+                });
+
+                // Veredito Principal
+                document.getElementById('badgeRotaViagem').textContent = `${pOrig.nome} → ${pDest.nome}`;
+                const badgeVolt = document.getElementById('badgeVoltagemStatus');
+                badgeVolt.textContent = analise.voltBadge;
+                badgeVolt.className = analise.voltStatus === 'danger'
+                    ? 'px-2 py-0.5 rounded-md bg-[#C8102E] font-mono text-[10px] font-bold text-white'
+                    : (analise.voltStatus === 'ok'
+                        ? 'px-2 py-0.5 rounded-md bg-[#A8C3A6]/35 border border-[#0A192F]/15 font-mono text-[10px] font-bold text-[#0A192F]'
+                        : 'px-2 py-0.5 rounded-md bg-[#F5F2EB] border border-[#C8102E]/40 font-mono text-[10px] font-bold text-[#C8102E]');
+
+                const badgeBox = document.getElementById('vereditoBadgeBox');
+                const vIcon = document.getElementById('vereditoIcon');
+                const vKicker = document.getElementById('vereditoKicker');
+                const vTitulo = document.getElementById('vereditoTitulo');
+                const vResumo = document.getElementById('vereditoResumo');
+
+                if (pOrig.iso2 === pDest.iso2) {
+                    badgeBox.className = 'min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#A8C3A6]';
+                    vIcon.className = 'ph-bold ph-check-circle text-3xl leading-none text-[#A8C3A6]';
+                    vKicker.textContent = 'MESMO PAÍS';
+                    vTitulo.textContent = 'Compatibilidade total (mesmo padrão)';
+                    vResumo.textContent = `Mesmo território selecionado (${pDest.nome}: ${dest.v} · ${dest.f} Hz · Tipo ${dest.p.join(', ')}).`;
+                } else if (analise.voltStatus === 'danger') {
+                    badgeBox.className = 'min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#C8102E] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#0A192F]';
+                    vIcon.className = 'ph-bold ph-warning-octagon text-3xl leading-none text-white';
+                    vKicker.textContent = 'TRANSFORMADOR';
+                    vTitulo.textContent = analise.encaixe2Pinos
+                        ? 'Atenção: exige transformador de voltagem'
+                        : 'Exige adaptador físico e transformador de voltagem';
+                    vResumo.textContent = analise.voltResumo;
+                } else if (analise.encaixe3Pinos) {
+                    badgeBox.className = 'min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#A8C3A6]';
+                    vIcon.className = 'ph-bold ph-check-circle text-3xl leading-none text-[#A8C3A6]';
+                    vKicker.textContent = 'COMPATÍVEL';
+                    vTitulo.textContent = 'Encaixe direto sem adaptador';
+                    vResumo.textContent = `As tomadas de ${pDest.nome} (${dest.p.join(', ')}) aceitam os plugues de ${pOrig.nome} diretamente. ${analise.voltResumo}`;
+                } else if (analise.encaixe2Pinos) {
+                    badgeBox.className = 'min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#A8C3A6]';
+                    vIcon.className = 'ph-bold ph-plug text-3xl leading-none text-[#A8C3A6]';
+                    vKicker.textContent = 'PARCIAL';
+                    vTitulo.textContent = '2 pinos encaixa direto; 3 pinos pede adaptador';
+                    vResumo.textContent = `Carregadores finos de 2 pinos entram sem adaptador nas tomadas ${dest.p.join('/')} de ${pDest.nome}. Plugues de 3 pinos com terra exigem adaptador. ${analise.voltResumo}`;
+                } else {
+                    badgeBox.className = 'min-w-[88px] h-[88px] px-3 rounded-2xl bg-[#0A192F] text-white flex flex-col items-center justify-center shrink-0 border-b-4 border-[#C8102E]';
+                    vIcon.className = 'ph-bold ph-plug-charging text-3xl leading-none text-white';
+                    vKicker.textContent = 'ADAPTADOR';
+                    vTitulo.textContent = `Leve adaptador para tomada Tipo ${dest.p.join(' / ')}`;
+                    vResumo.textContent = `Os pinos de ${pOrig.nome} (${orig.p.join('/')}) são fisicamente incompatíveis com ${pDest.nome} (${dest.p.join('/')}). ${analise.voltResumo}`;
+                }
+
+                // Cartões de 2 Pinos / 3 Pinos / Voltagem
+                const tag2 = document.getElementById('tagPlug2');
+                const desc2 = document.getElementById('descPlug2');
+                if (analise.encaixe2Pinos) {
+                    tag2.textContent = 'ENCAIXA';
+                    tag2.className = 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#A8C3A6]/40 text-[#0A192F]';
+                    desc2.textContent = `Plugues de 2 pinos finos encaixam nas tomadas de ${pDest.nome} (${dest.p.join(', ')}).`;
+                } else {
+                    tag2.textContent = 'ADAPTADOR';
+                    tag2.className = 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#C8102E]/15 text-[#C8102E]';
+                    desc2.textContent = `Tomadas ${dest.p.join(', ')} não recebem o padrão de 2 pinos de ${pOrig.nome} sem adaptador.`;
+                }
+
+                const tag3 = document.getElementById('tagPlug3');
+                const desc3 = document.getElementById('descPlug3');
+                if (analise.encaixe3Pinos) {
+                    tag3.textContent = 'ENCAIXA';
+                    tag3.className = 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#A8C3A6]/40 text-[#0A192F]';
+                    desc3.textContent = `Plugue completo com pino terra (${orig.p[0]}) compatível com ${pDest.nome}.`;
+                } else {
+                    tag3.textContent = 'ADAPTADOR';
+                    tag3.className = 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#C8102E]/15 text-[#C8102E]';
+                    desc3.textContent = `Plugues com pino terra (${orig.p[0]}) exigem adaptador para Tipo ${dest.p[0]} em ${pDest.nome}.`;
+                }
+
+                const tagV = document.getElementById('tagVolt');
+                const descV = document.getElementById('descVolt');
+                tagV.textContent = `${dest.v} · ${dest.f}Hz`;
+                tagV.className = analise.voltStatus === 'danger'
+                    ? 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#C8102E] text-white'
+                    : 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#0A192F] text-white';
+                descV.textContent = analise.voltResumo;
+
+                // Cartões Origem vs Destino com SVGs
+                document.getElementById('cardOrigFlag').src = `/assets/flags/${pOrig.iso2}.svg`;
+                document.getElementById('cardOrigNome').textContent = pOrig.nome;
+                document.getElementById('cardOrigVolt').textContent = orig.v;
+                document.getElementById('cardOrigFreq').textContent = `${orig.f} Hz`;
+                document.getElementById('origSocketsGrid').innerHTML = renderSocketCards(orig.p, '#0A192F');
+                const notaOrig = document.getElementById('cardOrigNota');
+                if (orig.n) { notaOrig.textContent = orig.n; notaOrig.classList.remove('hidden'); }
+                else notaOrig.classList.add('hidden');
+
+                document.getElementById('cardDestFlag').src = `/assets/flags/${pDest.iso2}.svg`;
+                document.getElementById('cardDestNome').textContent = pDest.nome;
+                document.getElementById('cardDestVolt').textContent = dest.v;
+                document.getElementById('cardDestFreq').textContent = `${dest.f} Hz`;
+                document.getElementById('destSocketsGrid').innerHTML = renderSocketCards(dest.p, '#C8102E');
+                const notaDest = document.getElementById('cardDestNota');
+                if (dest.n) { notaDest.textContent = dest.n; notaDest.classList.remove('hidden'); }
+                else notaDest.classList.add('hidden');
+
+                // Clique nos chips de tomada dentro dos cartões filtra no mapa
+                document.querySelectorAll('.socket-chip').forEach(ch => {
+                    ch.addEventListener('click', () => {
+                        estado.plugFilter = ch.getAttribute('data-filterplug');
+                        estado.mapMode = 'plug';
+                        atualizarControlesMapa();
+                        renderCatalogoTomadas();
+                        atualizarMapa();
+                    });
+                });
+
+                // Atualiza URL & WhatsApp
+                if (atualizarUrl) {
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('de', pOrig.iso2);
+                    url.searchParams.set('para', pDest.iso2);
+                    url.searchParams.set('aparelho', estado.device);
+                    window.history.replaceState({}, '', url.toString());
+                }
+
+                const resumoShare = analise.encaixe3Pinos
+                    ? `encaixa direto sem adaptador`
+                    : (analise.encaixe2Pinos ? `2 pinos encaixa direto, mas 3 pinos precisa de adaptador` : `exige adaptador para Tipo ${dest.p.join('/')}`);
+                const msg = `Viajando de ${pOrig.nome} para ${pDest.nome}? A tomada lá é Tipo ${dest.p.join('/')} (${dest.v}, ${dest.f} Hz): ${resumoShare}. Confira no VitaleGeo: ${window.location.href}`;
+                document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
+                atualizarControlesMapa();
+                atualizarMapa();
+            }
+
+            // Inicialização
+            atualizarAlvoMapa();
+            renderCatalogoTomadas();
+            atualizarTudo(false);
+
+            fetch('/data/maps/countries-110m.json')
+                .then(res => res.json())
+                .then(world => {
+                    document.getElementById('loadingMap').classList.add('hidden');
+                    inicializarMapa(world);
+                })
+                .catch(() => {
+                    document.getElementById('loadingMap').innerHTML = '<span class="text-xs font-mono text-[#C8102E]">Falha ao carregar o mapa local.</span>';
+                });
+        })();
+    </script>
+</body>
+</html>

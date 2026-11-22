@@ -176,5 +176,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Vexilologia & Bandeiras",
     badge: "BANDEIRAS",
     tags: ["bandeiras", "vexilologia", "chade", "romenia", "indonesia", "monaco", "irlanda", "costa do marfim", "comparador", "cores hex"]
+  },
+  {
+    id: "verificador-tomadas",
+    titulo: "Verificador Universal de Tomadas & Voltagem",
+    desc: "Descubra se o seu plugue encaixa, veja o desenho da tomada (IEC A–O), a voltagem e se você precisa de adaptador ou transformador em 198 países.",
+    icon: "ph-bold ph-plug",
+    cover: "/assets/img/ferramentas/verificador-tomadas.svg",
+    link: "/ferramentas/verificador-tomadas/",
+    categoria: "Cultura & Viagens",
+    badge: "TOMADAS & VOLTS",
+    tags: ["tomadas", "voltagem", "adaptador", "transformador", "110v", "220v", "viagem", "padrao iec", "tipo n", "frequencia"]
   }
 ];

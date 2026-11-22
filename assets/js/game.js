@@ -1,6 +1,14 @@
 // BANCO DE DADOS DE JOGOS — VITALEGEO ARCADE
 const gamesDB = [
     {
+        titulo: "Caça ao Enclave no Mapa",
+        desc: "O radar aproxima um enclave ou fronteira anômala no satélite. Identifique o país soberano em 15 segundos.",
+        icon: "ph-fill ph-crosshair",
+        cover: "/assets/img/jogos/caca-ao-enclave.svg",
+        link: "/jogos/caca-ao-enclave/",
+        badge: "DESAFIO DIÁRIO"
+    },
+    {
         titulo: "Fuso Fracionado",
         desc: "Descubra países com fusos de 30 e 45 minutos e anomalias geopolíticas onde o relógio oficial desafia a longitude solar.",
         icon: "ph-fill ph-clock-countdown",

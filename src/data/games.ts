@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "caca-ao-enclave",
+    titulo: "Caça ao Enclave no Mapa",
+    desc: "O radar aproxima um enclave ou fronteira anômala no satélite. Identifique o país soberano em 15 segundos.",
+    icon: "ph-fill ph-crosshair",
+    cover: "/assets/img/jogos/caca-ao-enclave.svg",
+    link: "/jogos/caca-ao-enclave/",
+    categoria: "Fronteiras & Território",
+    badge: "DESAFIO DIÁRIO",
+    tags: ["enclave", "exclave", "fronteiras", "satelite", "anomalias", "diario", "sobrevivencia", "blitz"]
+  },
+  {
     id: "fuso-fracionado",
     titulo: "Fuso Fracionado",
     desc: "Descubra países com fusos de 30 e 45 minutos e anomalias geopolíticas onde o relógio oficial desafia a longitude solar.",
