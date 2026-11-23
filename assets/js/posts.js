@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Como o Antigo Sião Cedeu Metade do Território Para Sobreviver Sem Nunca Ser Colonizado?",
+        categoria: "História",
+        data: "23 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-tailandia-siao-tratados-franca-inglaterra-fronteiras.png",
+        link: "historia-da-tailandia-siao-tratados-franca-inglaterra-fronteiras/",
+        resumo: "Entre 1893 e 1909, o Reino de Sião cedeu mais de 200 mil km² no Laos, Camboja e Malaia à França e à Grã-Bretanha para evitar a colonização e fixar 513.120 km²."
+    },
+    {
+        titulo: "Por Que Uma Ilha Fora da União Europeia Ainda Controla Três Portas Navais Estratégicas do Planeta?",
+        categoria: "Geopolítica",
+        data: "23 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-do-reino-unido-giuk-gap-gibraltar-atlantico.png",
+        link: "geopolitica-do-reino-unido-giuk-gap-gibraltar-atlantico/",
+        resumo: "Ancorado na brecha GIUK, em Gibraltar e nas bases de Chipre, o Reino Unido mantém vigilância sobre três portões marítimos cruciais mesmo após o Brexit."
+    },
+    {
+        titulo: "Como Petróleo em Águas Profundas, Diamantes e o Corredor do Lobito Reposicionaram Angola no Mapa Global?",
+        categoria: "Geoeconomia",
+        data: "23 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-de-angola-petroleo-diamantes-corredor-lobito.png",
+        link: "geoeconomia-de-angola-petroleo-diamantes-corredor-lobito/",
+        resumo: "Com 1,1 milhão de barris diários de petróleo, a megamina de diamantes de Catoca e os 1.344 km do Corredor do Lobito, Angola virou peça-chave no Atlântico Sul."
+    },
+    {
+        titulo: "Por Que Dois Estreitos Entre a Dinamarca e a Suécia São a Única Saída Naval da Rússia no Mar Báltico?",
+        categoria: "Geopolítica",
+        data: "23 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreitos-skagerrak-kattegat-mar-baltico-otan-russia.png",
+        link: "estreitos-skagerrak-kattegat-mar-baltico-otan-russia/",
+        resumo: "Regulados pela Convenção de Copenhague de 1857 e cercados por membros da OTAN, o Skagerrak, o Kattegat e os estreitos dinamarqueses controlam o acesso ao Báltico."
+    },
+    {
+        titulo: "Por Que Um Corredor de Mil e Seiscentos Quilômetros Entre a África e Madagascar Virou Rota Vital de Gás e Petróleo?",
+        categoria: "Geopolítica",
+        data: "23 Nov 2026 - 14:30",
+        img: "/assets/img/blog/canal-de-mocambique-chokepoint-gnl-rotas-oceano-indico.jpg",
+        link: "canal-de-mocambique-chokepoint-gnl-rotas-oceano-indico/",
+        resumo: "Com 419 km na parte mais estreita, até 160 trilhões de pés cúbicos de gás em Rovuma e ilhas administradas por Paris, o Canal de Moçambique virou eixo do Índico."
+    },
+    {
+        titulo: "Como Um Acordo Não Ratificado de 1935 Criou Uma Faixa Desértica Disputada Entre a Líbia e o Chade?",
+        categoria: "Fronteiras",
+        data: "23 Nov 2026 - 16:15",
+        img: "/assets/img/blog/faixa-de-aouzou-fronteira-libia-chade-guerra-toyotas.png",
+        link: "faixa-de-aouzou-fronteira-libia-chade-guerra-toyotas/",
+        resumo: "Com 114.000 km² no norte do Chade, a Faixa de Aouzou nasceu de um pacto colonial de 1935 jamais ratificado, motivou a Guerra dos Toyotas e foi julgada pela CIJ em 1994."
+    },
+    {
+        titulo: "Por Que Quênia e Uganda Disputam Um Rochedo de Dois Mil Metros Quadrados no Meio do Lago Vitória?",
+        categoria: "Fronteiras",
+        data: "23 Nov 2026 - 18:00",
+        img: "/assets/img/blog/ilha-migingo-lago-vitoria-fronteira-quenia-uganda.png",
+        link: "ilha-migingo-lago-vitoria-fronteira-quenia-uganda/",
+        resumo: "Com apenas 2.000 m² — metade de um campo de futebol — a Ilha Migingo concentra centenas de pescadores de perca-do-Nilo e um impasse colonial de 1926 entre Quênia e Uganda."
+    },
+    {
+        titulo: "Por Que a Espanha Vive No Horário de Berlim Embora Seu Território Fique Sobre o Meridiano de Londres?",
+        categoria: "Curiosidades",
+        data: "23 Nov 2026 - 19:30",
+        img: "/assets/img/blog/fuso-horario-da-espanha-meridiano-greenwich-1940.png",
+        link: "fuso-horario-da-espanha-meridiano-greenwich-1940/",
+        resumo: "Cortada pelo Meridiano de Greenwich, a Espanha adiantou os relógios em 60 minutos em 16 de março de 1940 e jamais voltou atrás, criando até 2 horas de desvio solar."
+    },
+    {
+        titulo: "Quais São os Dez Países com Mais Reatores Nucleares em Operação no Mundo Segundo a Agência Atômica da ONU?",
+        categoria: "Rankings",
+        data: "23 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-paises-com-mais-reatores-nucleares-do-mundo-iaea.png",
+        link: "ranking-paises-com-mais-reatores-nucleares-do-mundo-iaea/",
+        resumo: "Com base no sistema PRIS da IAEA, Estados Unidos (94), China (61) e França (57) lideram o ranking global dos dez países com mais reatores nucleares operacionais."
+    },
+    {
+        titulo: "Quais São as Dez Cidades com as Maiores Redes de Metrô do Mundo em Extensão de Trilhos?",
+        categoria: "Rankings",
+        data: "23 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-maiores-redes-de-metro-do-mundo-extensao.png",
+        link: "ranking-maiores-redes-de-metro-do-mundo-extensao/",
+        resumo: "Pequim (~909 km) e Xangai (~906 km) lideram o ranking mundial de extensão metroviária em uma lista dominada por metrópoles chinesas e pela rede de Moscou."
+    },
+    {
         titulo: "Como Três Tratados Imperiais Reduziram a Antiga Pérsia às Fronteiras Atuais do Irã?",
         categoria: "História",
         data: "22 Nov 2026 - 07:30",
