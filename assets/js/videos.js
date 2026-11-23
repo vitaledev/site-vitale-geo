@@ -1,8 +1,9 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 15 Longos + 186 Shorts
+// Total: 16 Longos + 186 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+    { titulo: "Por que o Vietnã pode ser a nova potência da Ásia?", id: "hmXR0EkCcsU", link: "https://www.youtube.com/watch?v=hmXR0EkCcsU" },
     { titulo: "Por que a Índia pode ultrapassar a China (e a China não viu chegar)", id: "jJC7c00-53k", link: "https://www.youtube.com/watch?v=jJC7c00-53k" },
     { titulo: "Toda a História do Irã explicada em 12 Minutos!", id: "FxFveFDTo8k", link: "https://www.youtube.com/watch?v=FxFveFDTo8k" },
     { titulo: "Você vive num mundo maquiavélico (e nem sabe disso)", id: "yerRMDGkxrw", link: "https://www.youtube.com/watch?v=yerRMDGkxrw" },
