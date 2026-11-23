@@ -706,9 +706,9 @@
             setTier(['pk','bd','lk','np','mm','kp','ir','iq','sy','ye','af','sd','ss','so','er','ly','cf','ps','eh'], 6);
 
             // Políticas de abertura de cada país de destino
-            const DEST_OPEN_ALL_FREE = new Set(['dm','ht','bb','gd','lc','vc','kn','ag','fj','ws','fm','pw','mh','tv','nr','ki','ec','sr','mu','sc']);
-            const DEST_OPEN_VOA = new Set(['mv','kh','la','np','bd','tl','mg','km','mz','zw','tg','cv','gw','mr','bo','st','bi','dj']);
-            const DEST_EVISA_BROAD = new Set(['in','lk','ke','ug','rw','et','tz','zm','az','am','uz','kg','tj','bh','om','sa','qa','vn','id','ph','ci','bj','gn','sl','ga','pg','eg','jo']);
+            const DEST_OPEN_ALL_FREE = new Set(['dm','ht','bb','gd','lc','vc','kn','ag','fj','ws','fm','pw','mh','tv','nr','ki','ec','sr','mu','sc','ck','nu']);
+            const DEST_OPEN_VOA = new Set(['mv','kh','la','np','bd','tl','mg','km','mz','zw','tg','cv','gw','mr','bo','st','bi','dj','rw','ug','et','so','sl','sb','vu','to','pg','sn']);
+            const DEST_EVISA_BROAD = new Set(['in','lk','ke','tz','zm','az','am','uz','kg','tj','bh','om','sa','qa','vn','id','ph','ci','bj','gn','ga','eg','jo','lb','pk','mm','ao','na','bw','mw']);
 
             // Exceções bilaterais de destaque (notas pedagógicas para tooltip e inspetor)
             const NOTAS_ESPECIAIS = {
@@ -747,52 +747,43 @@
                 if (SADC_CORE.has(orig) && SADC_CORE.has(dest) && orig !== 'ao' && dest !== 'ao') return 'free';
                 if (CIS.has(orig) && CIS.has(dest)) {
                     if ((orig === 'ru' && dest === 'ua') || (orig === 'ua' && dest === 'ru')) return 'visa';
-                    if (orig === 'ru' && dest === 'ge') return 'free';
-                    if (orig === 'ge' && dest === 'ru') return 'free';
                     return 'free';
                 }
                 if (orig === 'us' && ['fm','pw','mh'].includes(dest)) return 'free';
                 if (['fm','pw','mh'].includes(orig) && dest === 'us') return 'free';
 
                 // 2. Regras específicas por destino de alto interesse
-                // Estados Unidos
                 if (dest === 'us') {
                     if (SCHENGEN_EU.has(orig) && !['ro','bg','cy'].includes(orig)) return 'free';
                     if (['gb','ie','au','nz','jp','kr','sg','bn','tw','il','cl','ca'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Canadá
                 if (dest === 'ca') {
                     if (SCHENGEN_EU.has(orig) || ['us','gb','ie','au','nz','jp','kr','sg','bn','tw','il','cl','ae','bs','bb'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Austrália & Nova Zelândia
                 if (dest === 'au' || dest === 'nz') {
                     if (SCHENGEN_EU.has(orig) || ['gb','ie','us','ca','au','nz','jp','kr','sg','bn','my','tw','il','ae'].includes(orig)) return 'free';
                     if (dest === 'nz' && ['br','ar','cl','uy','mx','om','qa','sa','bh','kw'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Espaço Schengen / UE
                 if (SCHENGEN_EU.has(dest)) {
                     if (tOrig === 1) return 'free';
                     if (['br','ar','cl','uy','mx','cr','pa','co','pe','py','ve','gt','hn','sv','ni','my','bn','tw','il','ae','ua','ge','md','al','rs','ba','me','mk','bs','bb','kn','ag','lc','vc','gd','dm','tt','mu','sc','jp','kr','sg'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Reino Unido & Irlanda
                 if (dest === 'gb' || dest === 'ie') {
                     if (tOrig === 1) return 'free';
                     if (['br','ar','cl','uy','mx','cr','pa','co','pe','py','gt','hn','sv','ni','my','bn','tw','il','ae','qa','sa','om','kw','bh','bs','bb','kn','ag','lc','vc','gd','dm','tt','mu','sc'].includes(orig)) return 'free';
                     if (dest === 'ie' && ['ua','za','bw','na'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Brasil (reciprocidade estrita com EUA, Canadá e Austrália)
                 if (dest === 'br') {
                     if (['us','ca','au'].includes(orig)) return 'evisa';
                     if (tOrig <= 2 || ['ua','rs','me','mk','al','ba','ge','ru','tr','za','ma','tn','na','bw','gt','hn','sv','ni','bz','do','jm','qa','ae','om','kw','bh','th','id','ph','cn'].includes(orig)) return 'free';
                     if (['in','eg','sa'].includes(orig)) return 'evisa';
                     return 'visa';
                 }
-                // Japão & Coreia do Sul
                 if (dest === 'jp' || dest === 'kr') {
                     if (tOrig === 1 || ['br','ar','cl','uy','mx','cr','pa','my','bn','tw','il','ae','tr','rs','ua','bs','bb','do','gt','hn','sv'].includes(orig)) {
                         if (dest === 'jp' && ['ua','co','pe'].includes(orig)) return 'visa';
@@ -801,31 +792,26 @@
                     if (dest === 'kr' && ['co','pe','py','ec','za','ma','sa','qa','om','kw','bh'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // China
                 if (dest === 'cn') {
                     if (['sg','bn','ae','qa','bs','bb','gd','dm','fj','ws','to','by','rs','ba','al','am','ge','az','kz','uz','th','my','mv','sc','mu'].includes(orig)) return 'free';
                     if (['fr','de','it','es','nl','ch','ie','hu','at','be','lu','pl','pt','gr','cy','si','sk','hr','bg','ro','ee','lv','no','fi','dk','is','jp','kr','au','nz','br','ar','cl','pe','uy'].includes(orig)) return 'free';
                     return 'visa';
                 }
-                // Rússia
                 if (dest === 'ru') {
                     if (['br','ar','cl','uy','py','bo','pe','co','ec','ve','mx','cr','pa','gt','hn','sv','ni','do','jm','cu','il','ae','qa','th','za','na','bw','rs','ba','me','mk','kr','bn','fj','ws','vu'].includes(orig)) return 'free';
                     if (SCHENGEN_EU.has(orig) || ['jp','sg','my','cn','in','id','ph','tr','sa','om','kw','bh','ir','vn','tw','kp'].includes(orig)) return 'evisa';
                     return 'visa';
                 }
-                // Turquia
                 if (dest === 'tr') {
-                    if (tOrig <= 2 || ['ua','rs','me','mk','al','ba','md','ge','ru','pe','co','ec','py','ve','gt','hn','sv','ni','bz','qa','kw','bh','om','sa','ma','tn','za'].includes(orig)) return 'free';
-                    if (['cn','id','ph','in','mx','au'].includes(orig)) return 'evisa';
+                    if (tOrig <= 2 || ['ua','rs','me','mk','al','ba','md','ge','ru','pe','co','ec','py','ve','gt','hn','sv','ni','bz','qa','kw','bh','om','sa','ma','tn','za','cn','az','kz','uz','kg','tj'].includes(orig)) return 'free';
+                    if (['id','ph','in','mx','au'].includes(orig)) return 'evisa';
                     return 'visa';
                 }
-                // Emirados Árabes & Catar
                 if (dest === 'ae' || dest === 'qa') {
                     if (tOrig <= 2 || ['ru','cn','ua','rs','me','kz','co','pe','ec','py'].includes(orig)) return 'free';
                     if (tOrig === 3 || tOrig === 4) return 'voa';
                     return 'visa';
                 }
-                // Índia
                 if (dest === 'in') {
                     if (['np','bt','mv'].includes(orig)) return 'free';
                     if (['pk','kp','af','sy','ye','iq','sd','so'].includes(orig)) return 'visa';
@@ -833,59 +819,61 @@
                 }
 
                 // 3. Destinos muito restritos / fechados
-                if (['kp','tm','er','af','sy','ye','ly','cf','td','ss','so','gq','eh','ps'].includes(dest)) {
-                    if (dest === 'kp' && orig === 'cn') return 'visa';
+                if (['kp','tm','er','af','sy','ye','ly','cf','td','ss','gq','eh','ps'].includes(dest)) {
                     if (dest === 'ps' && orig === 'jo') return 'free';
                     return 'visa';
                 }
 
                 // 4. Destinos abertos globais
                 if (DEST_OPEN_ALL_FREE.has(dest)) {
-                    if (tOrig === 6 && !['ht','dm','ec'].includes(dest)) return 'evisa';
+                    if (tOrig === 6 && !['dm','ht','bb','lc','vc','kn','fj','ws','fm','pw','mh','tv','ec'].includes(dest)) return 'evisa';
                     return 'free';
                 }
                 if (DEST_OPEN_VOA.has(dest)) {
-                    if (tOrig <= 2) return dest === 'bo' || dest === 'cv' ? 'free' : 'voa';
-                    if (tOrig <= 4) return 'voa';
-                    return tOrig === 6 ? 'visa' : 'voa';
+                    if (tOrig === 6 && !['mv','kh','la','np','bd','tl','mg','km','mz','cv','gw','mr','bi','dj','rw','ug'].includes(dest)) return 'visa';
+                    if (dest === 'so') return tOrig <= 4 ? 'voa' : 'visa';
+                    if (tOrig <= 2 && ['bo','cv','sn','st','bw'].includes(dest)) return 'free';
+                    return 'voa';
                 }
                 if (DEST_EVISA_BROAD.has(dest)) {
-                    if (tOrig === 1) {
-                        if (['th','my','sg','id','ph','ma','tn','za','na','bw','mu','sc','jo'].includes(dest)) return 'free';
-                        if (['eg','jo','lb','tz','zw','mg','kh','la','np'].includes(dest)) return 'voa';
-                        if (['sa','om','bh','qa'].includes(dest)) return 'voa';
+                    if (tOrig <= 2) {
+                        if (['th','my','sg','id','ph','ma','tn','za','na','bw','mw','ao','vn'].includes(dest)) {
+                            if (dest === 'vn' && !['sg','my','th','id','ph','fr','de','it','es','gb','jp','kr','se','no','fi','dk','ru','by','cl','pa'].includes(orig)) return 'evisa';
+                            return 'free';
+                        }
+                        if (['eg','jo','lb','tz','zm','sa','om','bh','qa','lk'].includes(dest)) return 'voa';
+                        if (['ke','uz','kg','tj','am','az'].includes(dest) && tOrig === 1) return 'free';
                         return 'evisa';
                     }
-                    if (tOrig === 2) {
-                        if (['id','ph','th','ma','tn','za','tr'].includes(dest)) return 'free';
-                        if (['eg','jo','tz','rw','zm'].includes(dest)) return 'voa';
+                    if (tOrig === 3) {
+                        if (['id','ph','eg','jo','lb','tz','zm'].includes(dest)) return 'voa';
                         return 'evisa';
                     }
-                    if (tOrig <= 4) return 'evisa';
+                    if (tOrig === 4) {
+                        if (['id','eg','jo','tz'].includes(dest)) return 'voa';
+                        return 'evisa';
+                    }
                     return tOrig === 6 ? 'visa' : 'evisa';
                 }
 
-                // 5. Destinos de abertura moderada (América Latina, Sudeste Asiático, África Austral, Leste Europeu)
+                // 5. Destinos de abertura moderada
                 if (tOrig === 1) {
-                    if (['dz','ao','cg','cd','cm','gn','lr','ne','ng','sl','sd','by','pk','mm','cu'].includes(dest)) {
-                        if (dest === 'by') return 'free';
-                        if (dest === 'cu') return 'evisa';
-                        if (dest === 'pk' || dest === 'mm') return 'evisa';
-                        return 'visa';
-                    }
+                    if (['dz','cg','cd','cm','gn','lr','ne','ng','sl','sd'].includes(dest)) return 'visa';
+                    if (['cu'].includes(dest)) return 'evisa';
                     return 'free';
                 }
                 if (tOrig === 2) {
-                    if (['dz','ao','cg','cd','cm','gn','lr','ne','ng','sl','sd','jp','us','ca','au'].includes(dest)) return 'visa';
-                    if (['cu','pk','mm'].includes(dest)) return 'evisa';
+                    if (['dz','cg','cd','cm','gn','lr','ne','ng','sl','sd','jp','us','ca','au'].includes(dest)) return 'visa';
+                    if (['cu'].includes(dest)) return 'evisa';
                     return 'free';
                 }
                 if (tOrig === 3) {
-                    if (['ma','tn','za','th','id','ph','pe','co','ec','py','bo','gt','hn','sv','ni','do','jm','bs','bb','tr','rs','al','ba','me','mk','ua','ge','md'].includes(dest)) return 'free';
+                    if (['ma','tn','za','th','id','ph','pe','co','ec','py','bo','gt','hn','sv','ni','do','jm','bs','bb','tr','rs','al','ba','me','mk','ua','ge','md','az','am','kz','uz','kg','tj','by','pa','cr','mx','ar','br','cl','uy','ve','gy','sr'].includes(dest)) return 'free';
+                    if (['ae','qa','om','bh','sa','kw','eg','jo','lb'].includes(dest)) return 'voa';
                     return 'visa';
                 }
                 if (tOrig === 4) {
-                    if (['ma','tn','th','id','ph','fj','ws','to'].includes(dest) && ['cn','th','id','ph','my','ru','kz'].includes(orig)) return 'voa';
+                    if (['ma','tn','th','id','ph','fj','ws','to','bo','pe','ec','co','tr','ge','am','az','by','kz'].includes(dest) && ['cn','th','id','ph','my','ru','kz','by','az','am','ma','tn','bo','sr','gy'].includes(orig)) return 'voa';
                     return 'visa';
                 }
                 return 'visa';
