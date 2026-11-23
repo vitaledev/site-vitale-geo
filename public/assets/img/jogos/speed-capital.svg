@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <pattern id="grid-sc" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Bege Cartográfico Oficial -->
+  <rect width="800" height="500" fill="#F5F2EB"/>
+  <rect width="800" height="500" fill="url(#grid-sc)"/>
+
+  <!-- Curvas Topográficas Contínuas de Canto (Verde Sálvia) -->
+  <g fill="none" stroke="#A8C3A6" stroke-width="1.5" opacity="0.48">
+    <circle cx="0" cy="0" r="145"/>
+    <circle cx="0" cy="0" r="205"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="215"/>
+  </g>
+
+  <!-- Moldura Externa -->
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+  <!-- Cabeçalho Minimalista da Arte -->
+  <text x="400" y="66" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="3">DESAFIO CRONOMETRADO • 10 CAPITAIS</text>
+  <text x="400" y="102" font-family="Orbitron, sans-serif" font-size="30" font-weight="900" fill="#0A192F" text-anchor="middle" letter-spacing="1.8">SPEED <tspan fill="#C8102E">CAPITAL</tspan></text>
+
+  <!-- Linha Conectora Horizontal -->
+  <line x1="295" y1="258" x2="365" y2="258" stroke="#0A192F" stroke-width="2" stroke-dasharray="6 5" stroke-opacity="0.35"/>
+
+  <!-- Cronômetro de Sprint (Esquerda) -->
+  <g transform="translate(205, 258)">
+    <!-- Base circular -->
+    <circle cx="0" cy="0" r="98" fill="#FFFFFF" stroke="#0A192F" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="84" fill="none" stroke="#0A192F" stroke-width="6" stroke-opacity="0.08"/>
+    <!-- Arco de Progresso Ativo em Vermelho Destaque (270 graus) -->
+    <path d="M 0 -84 A 84 84 0 1 1 -84 0" fill="none" stroke="#C8102E" stroke-width="6" stroke-linecap="round"/>
+    <!-- Pino Superior do Cronômetro -->
+    <rect x="-14" y="-112" width="28" height="10" rx="4" fill="#0A192F"/>
+    <rect x="-5" y="-102" width="10" height="6" fill="#0A192F"/>
+    <!-- Ticks Cardinais -->
+    <line x1="0" y1="-74" x2="0" y2="-65" stroke="#0A192F" stroke-width="2.5"/>
+    <line x1="74" y1="0" x2="65" y2="0" stroke="#0A192F" stroke-width="2"/>
+    <line x1="0" y1="74" x2="0" y2="65" stroke="#0A192F" stroke-width="2"/>
+    <line x1="-74" y1="0" x2="-65" y2="0" stroke="#0A192F" stroke-width="2"/>
+    <!-- Leitura Digital Central -->
+    <text x="0" y="6" font-family="Orbitron, sans-serif" font-size="32" font-weight="900" fill="#0A192F" text-anchor="middle">30.0<tspan font-size="16" fill="#C8102E">s</tspan></text>
+    <text x="0" y="28" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="1.5">CONTAGEM ATIVA</text>
+    <!-- Pílula Inferior -->
+    <rect x="-66" y="108" width="132" height="26" rx="13" fill="#0A192F"/>
+    <text x="0" y="125" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#F5F2EB" text-anchor="middle">COMBO 10/10</text>
+  </g>
+
+  <!-- Painel de Seleção Rápida (Direita) -->
+  <g transform="translate(365, 146)">
+    <rect x="0" y="0" width="335" height="236" rx="18" fill="#FFFFFF" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+    <!-- Cabeçalho do País Alvo -->
+    <rect x="18" y="18" width="299" height="64" rx="12" fill="#FAF8F5" stroke="#0A192F" stroke-width="1.2" stroke-opacity="0.12"/>
+    <!-- Ícone Vetorial de Domo/Capital -->
+    <g transform="translate(46, 50)" fill="none" stroke="#0A192F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M -12 10 L 12 10"/>
+      <path d="M -9 10 L -9 0 L 9 0 L 9 10"/>
+      <path d="M -7 0 A 7 7 0 0 1 7 0"/>
+      <line x1="0" y1="-7" x2="0" y2="-13" stroke="#C8102E" stroke-width="2.2"/>
+      <circle cx="0" cy="-14" r="2" fill="#C8102E" stroke="none"/>
+    </g>
+    <text x="72" y="42" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#53647C" letter-spacing="1.5">ALVO 07/10 • OCEANIA</text>
+    <text x="72" y="64" font-family="Montserrat, sans-serif" font-size="20" font-weight="800" fill="#0A192F">Austrália</text>
+
+    <!-- Grade 2x2 de Alternativas -->
+    <g transform="translate(18, 98)">
+      <!-- Opção 1 -->
+      <rect x="0" y="0" width="144" height="52" rx="11" fill="#FFFFFF" stroke="#0A192F" stroke-width="1.5" stroke-opacity="0.18"/>
+      <text x="72" y="31" font-family="Montserrat, sans-serif" font-size="14" font-weight="700" fill="#0A192F" text-anchor="middle">Sydney</text>
+
+      <!-- Opção 2 -->
+      <rect x="155" y="0" width="144" height="52" rx="11" fill="#FFFFFF" stroke="#0A192F" stroke-width="1.5" stroke-opacity="0.18"/>
+      <text x="227" y="31" font-family="Montserrat, sans-serif" font-size="14" font-weight="700" fill="#0A192F" text-anchor="middle">Melbourne</text>
+
+      <!-- Opção 3 (Correta Destacada em Azul Marinho com Acento Vermelho) -->
+      <rect x="0" y="64" width="144" height="52" rx="11" fill="#0A192F"/>
+      <circle cx="22" cy="90" r="7" fill="#C8102E"/>
+      <path d="M 18.5 90 L 21 92.5 L 25.5 87.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="95" font-family="Montserrat, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">Canberra</text>
+
+      <!-- Opção 4 -->
+      <rect x="155" y="64" width="144" height="52" rx="11" fill="#FFFFFF" stroke="#0A192F" stroke-width="1.5" stroke-opacity="0.18"/>
+      <text x="227" y="95" font-family="Montserrat, sans-serif" font-size="14" font-weight="700" fill="#0A192F" text-anchor="middle">Perth</text>
+    </g>
+  </g>
+
+  <!-- Barra Inferior -->
+  <rect x="180" y="422" width="440" height="34" rx="17" fill="#0A192F"/>
+  <text x="400" y="443" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#F5F2EB" text-anchor="middle" letter-spacing="1.2">10 CAPITAIS • 30 SEGUNDOS • COMBO VELOZ</text>
+</svg>

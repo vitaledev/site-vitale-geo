@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "speed-capital",
+    titulo: "Speed Capital",
+    desc: "Crave 10 capitais oficiais em 30 segundos contra o relógio. Cuidado com metrópoles que fingem ser capitais.",
+    icon: "ph-fill ph-lightning",
+    cover: "/assets/img/jogos/speed-capital.svg",
+    link: "/jogos/speed-capital/",
+    categoria: "Símbolos & Capitais",
+    badge: "DESAFIO 30S",
+    tags: ["speed capital", "capitais", "30 segundos", "sprint", "diario", "sobrevivencia", "cidades", "pegadinhas"]
+  },
+  {
     id: "caca-ao-enclave",
     titulo: "Caça ao Enclave no Mapa",
     desc: "O radar aproxima um enclave ou fronteira anômala no satélite. Identifique o país soberano em 15 segundos.",

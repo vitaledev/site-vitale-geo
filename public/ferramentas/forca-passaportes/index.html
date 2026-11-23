@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/forca-passaportes/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador e Rastreador de Força de Passaportes | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Consulte quais países exigem visto, simulando passaporte único ou dupla cidadania (como Brasil + Itália ou Portugal) no mapa mundial interativo com ranking dos 198 países.">
+    <meta name="keywords" content="forca de passaportes, ranking passaportes, passaporte brasileiro paises sem visto, dupla cidadania brasil italia, comparador de passaportes, visto na chegada, e-visa, vitalegeo">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Comparador e Rastreador de Força de Passaportes | VitaleGeo">
+    <meta property="og:description" content="Descubra quantos países você visita sem visto com seu passaporte ou combinando dupla cidadania no mapa mundial interativo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/forca-passaportes/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/forca-passaportes.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Comparador e Rastreador de Força de Passaportes | VitaleGeo">
+    <meta name="twitter:description" content="Simule isenção de vistos para 198 países, compare passaportes lado a lado e teste combinações de dupla cidadania.">
+    <meta name="twitter:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/forca-passaportes.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Estilos VitaleGeo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7 & TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Base Geográfica Local (CerebroGeo) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <!-- Schema.org Estruturado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Comparador e Rastreador de Força de Passaportes",
+      "url": "https://www.vitalegeo.com.br/ferramentas/forca-passaportes/",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-BR",
+      "description": "Simulador interativo de reciprocidade de vistos, ranking global de mobilidade e combinador de dupla cidadania em 198 países.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+            background: rgba(10, 25, 47, 0.25);
+            border-radius: 9999px;
+        }
+        .country-poly {
+            fill: #FFFFFF;
+            stroke: #0A192F;
+            stroke-width: 0.5;
+            stroke-opacity: 0.42;
+            transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease, stroke-width 0.18s ease;
+            cursor: pointer;
+        }
+        .country-poly:hover {
+            stroke-opacity: 0.95;
+            stroke-width: 1.15;
+        }
+        .visa-free {
+            fill: #A8C3A6;
+        }
+        .visa-voa {
+            fill: #53647C;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.55;
+        }
+        .visa-evisa {
+            fill: #1F334E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.55;
+        }
+        .visa-required {
+            fill: #C8102E;
+            stroke: #F5F2EB;
+            stroke-opacity: 0.5;
+        }
+        .visa-self {
+            fill: #0A192F;
+            stroke: #F5F2EB;
+            stroke-width: 1.25;
+            stroke-opacity: 1;
+        }
+        .visa-dimmed {
+            opacity: 0.22;
+        }
+        .country-inspected {
+            stroke: #0A192F !important;
+            stroke-width: 2.2 !important;
+            stroke-opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#0A192F] font-sans antialiased selection:bg-[#C8102E] selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-4 sm:px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/75 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 min-h-[44px] sm:min-h-[36px] rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Grade Desktop 3 Colunas com AdSense Lateral Não Intrusivo -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-12">
+
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Área Principal da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full min-w-0">
+
+            <!-- Cabeçalho Enxuto com Popover Explicativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/12">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-[0.15em] text-[#C8102E] block mb-1">
+                        Diplomacia &amp; Mobilidade Global
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Comparador e Rastreador de Força de Passaportes
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Visualize exigências de visto em 198 países, compare passaportes lado a lado e simule o ganho real de uma dupla cidadania.
+                    </p>
+                </div>
+
+                <div class="hover-info-container self-start sm:self-end shrink-0">
+                    <button type="button" id="btnInfoPopover" class="hover-info-trigger min-h-[44px] sm:min-h-[38px]" aria-label="Como funciona o índice de passaportes">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como funciona?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-passport text-[#C8102E]"></i> Critérios de Mobilidade
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            O índice cruza acordos de livre circulação (Mercosul, Schengen, GCC, ASEAN, ECOWAS) e reciprocidade consular bilateral entre 198 territórios.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li><strong>Sem Visto / ETA:</strong> Entrada livre ou mediante autorização eletrônica prévia simplificada (como ESTA ou UK ETA).</li>
+                            <li><strong>Visto na Chegada / e-Visa:</strong> Emissão no aeroporto de desembarque ou portal digital oficial antes do embarque.</li>
+                            <li><strong>Dupla Cidadania:</strong> O sistema aplica automaticamente o melhor status de entrada entre os dois passaportes selecionados.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Painel de Controles (Acima da Dobra) -->
+            <section class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Seleção de passaporte principal e dupla cidadania">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-end">
+
+                    <!-- Passaporte Principal -->
+                    <div class="relative" id="wrapPass1">
+                        <label for="inputPass1" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F] mb-1.5">
+                            Passaporte Principal
+                        </label>
+                        <div class="relative flex items-center">
+                            <img id="flagPass1" src="/assets/flags/br.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputPass1" type="text" autocomplete="off" placeholder="Buscar passaporte..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/30 focus:border-[#0A192F] transition">
+                            <button type="button" id="togglePass1" aria-label="Abrir lista do passaporte principal" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listPass1" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+
+                    <!-- Botão Trocar / Limpar -->
+                    <div class="flex justify-center">
+                        <button type="button" id="btnInverter" aria-label="Trocar passaporte principal e secundário"
+                                class="min-h-[44px] min-w-[44px] px-3 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 transition flex items-center justify-center gap-1.5 text-xs font-mono font-bold">
+                            <i class="ph-bold ph-arrows-left-right text-base"></i>
+                            <span class="md:hidden">Trocar</span>
+                        </button>
+                    </div>
+
+                    <!-- Segundo Passaporte (Dupla Cidadania Opcional) -->
+                    <div class="relative" id="wrapPass2">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label for="inputPass2" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8102E]">
+                                2º Passaporte (Dupla Cidadania)
+                            </label>
+                            <button type="button" id="btnLimparPass2" class="hidden text-[10px] font-mono font-bold text-[#53647C] hover:text-[#C8102E] transition">
+                                Remover 2º
+                            </button>
+                        </div>
+                        <div class="relative flex items-center">
+                            <img id="flagPass2" src="/assets/flags/it.svg" alt="" class="hidden w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <i id="iconPass2Empty" class="ph-bold ph-plus-circle text-[#53647C] text-lg absolute left-3 pointer-events-none"></i>
+                            <input id="inputPass2" type="text" autocomplete="off" placeholder="Opcional: adicione uma 2ª cidadania..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#C8102E]/25 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] transition">
+                            <button type="button" id="togglePass2" aria-label="Abrir lista do segundo passaporte" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listPass2" class="hidden absolute z-40 mt-1.5 w-full max-h-64 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+                </div>
+
+                <!-- Presets Populares & Ação Rápida -->
+                <div class="mt-4 pt-3.5 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#53647C] mr-1">
+                            Simulações:
+                        </span>
+                        <button type="button" data-preset="br:" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil
+                        </button>
+                        <button type="button" data-preset="br:it" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil + Itália
+                        </button>
+                        <button type="button" data-preset="br:pt" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil + Portugal
+                        </button>
+                        <button type="button" data-preset="br:jp" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Brasil + Japão
+                        </button>
+                        <button type="button" data-preset="sg:" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Singapura
+                        </button>
+                        <button type="button" data-preset="us:" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Estados Unidos
+                        </button>
+                    </div>
+
+                    <button type="button" id="btnAleatorio" class="min-h-[36px] px-3 py-1 rounded-lg bg-[#C8102E]/10 hover:bg-[#C8102E] text-[#C8102E] hover:text-white border border-[#C8102E]/25 text-[11px] font-mono font-bold transition inline-flex items-center gap-1.5">
+                        <i class="ph-bold ph-shuffle"></i>
+                        <span>Aleatório</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Cartões de Métricas de Mobilidade + Compartilhamento -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-5" aria-label="Resumo de força do passaporte">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-4 border-b border-[#0A192F]/10">
+                    <div class="flex items-center gap-3.5 min-w-0">
+                        <div class="flex items-center -space-x-2 shrink-0">
+                            <img id="resumoFlag1" src="/assets/flags/br.svg" alt="" class="w-11 h-7 object-cover rounded border border-[#0A192F]/20 shadow-xs relative z-10">
+                            <img id="resumoFlag2" src="/assets/flags/it.svg" alt="" class="hidden w-11 h-7 object-cover rounded border border-[#C8102E]/40 shadow-xs relative z-0">
+                        </div>
+                        <div class="min-w-0">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <h2 id="resumoTitulo" class="text-base sm:text-xl font-heading font-bold text-[#0A192F] truncate">
+                                    Passaporte do Brasil
+                                </h2>
+                                <span id="badgeDuplaGanho" class="hidden px-2 py-0.5 rounded-md bg-[#A8C3A6]/35 border border-[#0A192F]/15 font-mono text-[10px] font-bold text-[#0A192F]">
+                                    +0 destinos extras
+                                </span>
+                            </div>
+                            <p id="resumoSubtitulo" class="text-xs text-[#53647C] mt-0.5">
+                                Carregando cobertura diplomática global...
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 shrink-0">
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener"
+                           class="min-h-[44px] px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-base"></i>
+                            <span>Compartilhar no WhatsApp</span>
+                        </a>
+                        <button type="button" id="btnCopiarLink"
+                                class="min-h-[44px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-link"></i>
+                            <span id="txtCopiarLink">Copiar link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4 Indicadores Objetivos -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="p-3.5 rounded-xl bg-[#0A192F] text-white flex flex-col justify-between">
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-[#A8C3A6]">Ranking Global</span>
+                        <div class="flex items-baseline justify-between mt-1.5">
+                            <span id="statRank" class="font-display font-black text-2xl sm:text-3xl leading-none">#—</span>
+                            <span id="statScore" class="font-mono text-xs text-slate-300">— pts</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/75 border border-[#0A192F]/12 flex flex-col justify-between">
+                        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#53647C]">Livre de Visto</span>
+                        <div class="flex items-baseline justify-between mt-1.5">
+                            <span id="statFree" class="font-display font-black text-2xl sm:text-3xl text-[#0A192F] leading-none">—</span>
+                            <span id="statFreePct" class="font-mono text-xs font-bold text-[#53647C]">—%</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/75 border border-[#0A192F]/12 flex flex-col justify-between">
+                        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#53647C]">Na Chegada / e-Visa</span>
+                        <div class="flex items-baseline justify-between mt-1.5">
+                            <span id="statVoaEvisa" class="font-display font-black text-2xl sm:text-3xl text-[#0A192F] leading-none">—</span>
+                            <span id="statVoaSplit" class="font-mono text-[11px] text-[#53647C]">—</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-[#F5F2EB]/75 border border-[#C8102E]/25 flex flex-col justify-between">
+                        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#C8102E]">Visto Consular</span>
+                        <div class="flex items-baseline justify-between mt-1.5">
+                            <span id="statVisa" class="font-display font-black text-2xl sm:text-3xl text-[#C8102E] leading-none">—</span>
+                            <span id="statVisaPct" class="font-mono text-xs font-bold text-[#53647C]">—%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mapa Cartográfico Interativo -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm overflow-hidden mb-5" aria-label="Mapa mundial de exigência de vistos">
+                <!-- Legenda Interativa & Controles de Zoom -->
+                <div class="px-4 py-3 border-b border-[#0A192F]/10 bg-[#F5F2EB]/60 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filtrar legenda no mapa">
+                        <button type="button" data-map-filter="all" class="map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-[#0A192F] text-white text-[11px] font-mono font-bold transition">
+                            Todos
+                        </button>
+                        <button type="button" data-map-filter="free" class="map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-white hover:bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-medium inline-flex items-center gap-1.5 transition">
+                            <span class="w-2.5 h-2.5 rounded-xs bg-[#A8C3A6] border border-[#0A192F]/25"></span>
+                            <span>Sem Visto</span>
+                        </button>
+                        <button type="button" data-map-filter="voa" class="map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-white hover:bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-medium inline-flex items-center gap-1.5 transition">
+                            <span class="w-2.5 h-2.5 rounded-xs bg-[#53647C]"></span>
+                            <span>Na Chegada</span>
+                        </button>
+                        <button type="button" data-map-filter="evisa" class="map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-white hover:bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-medium inline-flex items-center gap-1.5 transition">
+                            <span class="w-2.5 h-2.5 rounded-xs bg-[#1F334E]"></span>
+                            <span>e-Visa</span>
+                        </button>
+                        <button type="button" data-map-filter="visa" class="map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-white hover:bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-medium inline-flex items-center gap-1.5 transition">
+                            <span class="w-2.5 h-2.5 rounded-xs bg-[#C8102E]"></span>
+                            <span>Visto Prévio</span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" id="btnZoomIn" aria-label="Aumentar zoom" class="w-9 h-9 rounded-lg bg-white hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 flex items-center justify-center transition">
+                            <i class="ph-bold ph-plus"></i>
+                        </button>
+                        <button type="button" id="btnZoomOut" aria-label="Diminuir zoom" class="w-9 h-9 rounded-lg bg-white hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 flex items-center justify-center transition">
+                            <i class="ph-bold ph-minus"></i>
+                        </button>
+                        <button type="button" id="btnResetZoom" aria-label="Centralizar mapa" class="h-9 px-2.5 rounded-lg bg-white hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono text-[11px] font-bold flex items-center gap-1 transition">
+                            <i class="ph-bold ph-arrows-in"></i>
+                            <span class="hidden sm:inline">Enquadrar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Container SVG do Mapa -->
+                <div class="relative w-full h-[52vh] min-h-[380px] lg:h-[540px] bg-[#F5F2EB]/45 overflow-hidden select-none">
+                    <div id="loadingMap" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-xs font-mono text-[#53647C] z-10">
+                        <i class="ph-bold ph-globe-hemisphere-west text-2xl text-[#0A192F] animate-spin"></i>
+                        <span>Carregando atlas vetorial...</span>
+                    </div>
+
+                    <svg id="svgMapa" class="w-full h-full block" role="img" aria-label="Mapa mundial colorido por exigência de visto"></svg>
+
+                    <!-- Tooltip Flutuante no Hover -->
+                    <div id="mapTooltip" class="hidden pointer-events-none absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-sm border border-[#0A192F]/15 rounded-xl px-3.5 py-2.5 shadow-lg max-w-[280px]">
+                        <div class="flex items-center gap-2">
+                            <img id="ttFlag" src="" alt="" class="w-6 h-4 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                            <span id="ttNome" class="font-heading font-bold text-xs text-[#0A192F] truncate"></span>
+                        </div>
+                        <div class="mt-1.5 flex items-center justify-between gap-2">
+                            <span id="ttStatusBadge" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold"></span>
+                            <span id="ttViaPass" class="font-mono text-[10px] text-[#53647C]"></span>
+                        </div>
+                        <p id="ttNota" class="hidden mt-1.5 text-[11px] text-[#53647C] leading-snug"></p>
+                    </div>
+
+                    <!-- Rosa dos Ventos Minimalista -->
+                    <img src="/brand/shapes/compass-minimal.svg" alt="" aria-hidden="true" class="pointer-events-none absolute bottom-3 right-3 w-12 h-12 opacity-60">
+                </div>
+
+                <!-- Barra de Inspeção do País Clicado no Mapa -->
+                <div id="inspectorBar" class="hidden px-4 py-3 bg-[#F5F2EB]/80 border-t border-[#0A192F]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img id="inspFlag" src="" alt="" class="w-8 h-5 object-cover rounded-[3px] border border-[#0A192F]/20 shrink-0">
+                        <div class="min-w-0">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span id="inspNome" class="font-heading font-bold text-sm text-[#0A192F]"></span>
+                                <span id="inspStatusBadge" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold"></span>
+                            </div>
+                            <p id="inspDetalhe" class="text-xs text-[#53647C] mt-0.5 truncate"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" id="btnUsarComoPass1" class="min-h-[38px] px-3 py-1.5 rounded-lg bg-[#0A192F] hover:bg-[#C8102E] text-white font-mono font-bold text-[11px] transition inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-identification-card"></i>
+                            <span>Usar este passaporte</span>
+                        </button>
+                        <button type="button" id="btnUsarComoPass2" class="min-h-[38px] px-3 py-1.5 rounded-lg bg-white hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-[11px] transition">
+                            + 2ª cidadania
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Explorador em Abas: Destinos / Ranking Global / Comparação Direta -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-6" aria-label="Detalhamento de destinos e ranking global">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#0A192F]/10">
+                    <div class="flex flex-wrap items-center gap-1.5" role="tablist">
+                        <button type="button" data-tab="destinos" role="tab" aria-selected="true"
+                                class="tab-btn min-h-[40px] px-3.5 py-2 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-airplane-takeoff"></i>
+                            <span>Destinos por Visto</span>
+                        </button>
+                        <button type="button" data-tab="ranking" role="tab" aria-selected="false"
+                                class="tab-btn min-h-[40px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-ranking"></i>
+                            <span>Ranking Mundial</span>
+                        </button>
+                        <button type="button" data-tab="duelo" role="tab" aria-selected="false"
+                                class="tab-btn min-h-[40px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-scales"></i>
+                            <span>Comparação Direta</span>
+                        </button>
+                    </div>
+
+                    <div id="tabCountLabel" class="font-mono text-[11px] text-[#53647C]"></div>
+                </div>
+
+                <!-- ABA 1: Lista de Destinos -->
+                <div id="panelDestinos">
+                    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-2.5 mb-4">
+                        <div class="relative flex items-center">
+                            <i class="ph-bold ph-magnifying-glass text-[#53647C] absolute left-3 pointer-events-none"></i>
+                            <input id="buscaDestino" type="text" placeholder="Filtrar destino ou capital..."
+                                   class="w-full min-h-[42px] pl-9 pr-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs sm:text-sm font-medium text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                        </div>
+
+                        <select id="filtroStatus" aria-label="Filtrar por exigência de visto"
+                                class="min-h-[42px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                            <option value="all">Todas as regras</option>
+                            <option value="free">Sem Visto / ETA</option>
+                            <option value="voa">Visto na Chegada</option>
+                            <option value="evisa">e-Visa</option>
+                            <option value="visa">Visto Consular Prévio</option>
+                            <option value="unlocked" class="hidden" id="optDesbloqueados">Desbloqueados pelo 2º Passaporte</option>
+                        </select>
+
+                        <select id="filtroContinente" aria-label="Filtrar por continente"
+                                class="min-h-[42px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                            <option value="all">Todos os continentes</option>
+                            <option value="América do Sul">América do Sul</option>
+                            <option value="América do Norte">América do Norte</option>
+                            <option value="América Central">América Central &amp; Caribe</option>
+                            <option value="Europa">Europa</option>
+                            <option value="Ásia">Ásia</option>
+                            <option value="África">África</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+
+                    <div id="gridDestinos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[520px] overflow-y-auto dropdown-scroll pr-1"></div>
+                </div>
+
+                <!-- ABA 2: Ranking Global -->
+                <div id="panelRanking" class="hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2.5 mb-4">
+                        <div class="relative flex items-center">
+                            <i class="ph-bold ph-magnifying-glass text-[#53647C] absolute left-3 pointer-events-none"></i>
+                            <input id="buscaRanking" type="text" placeholder="Buscar país no ranking global..."
+                                   class="w-full min-h-[42px] pl-9 pr-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs sm:text-sm font-medium text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                        </div>
+                        <select id="filtroRankContinente" aria-label="Filtrar ranking por continente"
+                                class="min-h-[42px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                            <option value="all">Todos os continentes</option>
+                            <option value="América do Sul">América do Sul</option>
+                            <option value="América do Norte">América do Norte</option>
+                            <option value="América Central">América Central &amp; Caribe</option>
+                            <option value="Europa">Europa</option>
+                            <option value="Ásia">Ásia</option>
+                            <option value="África">África</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+                    <div id="listaRanking" class="divide-y divide-[#0A192F]/10 max-h-[520px] overflow-y-auto dropdown-scroll pr-1"></div>
+                </div>
+
+                <!-- ABA 3: Comparação Direta -->
+                <div id="panelDuelo" class="hidden">
+                    <div id="dueloSemPass2" class="hidden p-6 rounded-xl bg-[#F5F2EB]/70 border border-[#0A192F]/10 text-center">
+                        <i class="ph-bold ph-identification-card text-3xl text-[#C8102E] mb-2"></i>
+                        <h3 class="font-heading font-bold text-sm text-[#0A192F]">Selecione um 2º passaporte para comparar</h3>
+                        <p class="text-xs text-[#53647C] mt-1 max-w-md mx-auto">
+                            Escolha um segundo país acima ou teste rapidamente uma combinação popular de dupla cidadania.
+                        </p>
+                        <div class="mt-3 flex flex-wrap justify-center gap-2">
+                            <button type="button" data-preset="br:it" class="preset-btn min-h-[38px] px-3 py-1.5 rounded-lg bg-[#0A192F] text-white text-xs font-mono font-bold transition">
+                                Brasil vs Itália
+                            </button>
+                            <button type="button" data-preset="br:pt" class="preset-btn min-h-[38px] px-3 py-1.5 rounded-lg bg-white text-[#0A192F] border border-[#0A192F]/15 text-xs font-mono font-bold transition">
+                                Brasil vs Portugal
+                            </button>
+                            <button type="button" data-preset="br:us" class="preset-btn min-h-[38px] px-3 py-1.5 rounded-lg bg-white text-[#0A192F] border border-[#0A192F]/15 text-xs font-mono font-bold transition">
+                                Brasil vs Estados Unidos
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="dueloConteudo" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-[#F5F2EB]/60 border border-[#0A192F]/12">
+                            <div class="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-[#0A192F]/10">
+                                <h3 id="dueloTitulo1" class="font-heading font-bold text-xs sm:text-sm text-[#0A192F]">Vantagens do Passaporte 1</h3>
+                                <span id="dueloCount1" class="px-2 py-0.5 rounded bg-[#0A192F] text-white font-mono text-[10px] font-bold">0</span>
+                            </div>
+                            <div id="dueloLista1" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[420px] overflow-y-auto dropdown-scroll pr-1"></div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-[#F5F2EB]/60 border border-[#C8102E]/25">
+                            <div class="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-[#0A192F]/10">
+                                <h3 id="dueloTitulo2" class="font-heading font-bold text-xs sm:text-sm text-[#C8102E]">Desbloqueados pelo 2º Passaporte</h3>
+                                <span id="dueloCount2" class="px-2 py-0.5 rounded bg-[#C8102E] text-white font-mono text-[10px] font-bold">0</span>
+                            </div>
+                            <div id="dueloLista2" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[420px] overflow-y-auto dropdown-scroll pr-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/50 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box Discreto de Retenção -->
+            <div class="p-5 rounded-2xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Preparando a mala para o exterior?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Veja se o seu plugue encaixa na parede e confira a voltagem elétrica em 198 países.</p>
+                </div>
+                <a href="/ferramentas/verificador-tomadas/" class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-plug"></i>
+                    <span>Abrir Verificador de Tomadas</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Observatório &amp; Cartografia Independente</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const PAISES = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const paisByIso = new Map(PAISES.map(p => [p.iso2.toLowerCase(), p]));
+            const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // =========================================================================
+            // MOTOR GEOPOLÍTICO DE RECIPROCIDADE CONSULAR (198 x 198)
+            // Códigos de acesso: 'free' (3), 'voa' (2), 'evisa' (1), 'visa' (0), 'self' (4)
+            // =========================================================================
+            const RANK_VAL = { visa: 0, evisa: 1, voa: 2, free: 3, self: 4 };
+
+            const STATUS_META = {
+                free:  { label: 'Sem Visto', badgeCls: 'bg-[#A8C3A6]/40 text-[#0A192F] border border-[#0A192F]/20', polyCls: 'visa-free' },
+                voa:   { label: 'Visto na Chegada', badgeCls: 'bg-[#53647C] text-white', polyCls: 'visa-voa' },
+                evisa: { label: 'e-Visa', badgeCls: 'bg-[#1F334E] text-white', polyCls: 'visa-evisa' },
+                visa:  { label: 'Visto Exigido', badgeCls: 'bg-[#C8102E] text-white', polyCls: 'visa-required' },
+                self:  { label: 'Seu Passaporte', badgeCls: 'bg-[#0A192F] text-white', polyCls: 'visa-self' }
+            };
+
+            // Blocos de livre circulação / acordos multilaterais
+            const SCHENGEN_EU = new Set([
+                'pt','es','fr','de','it','ch','at','be','nl','lu','mc','ad','li','sm','va','mt','gr','cy',
+                'pl','cz','sk','hu','ro','bg','no','se','fi','dk','is','ee','lv','lt','hr','si'
+            ]);
+            const FIVE_EYES = new Set(['us','gb','ca','au','nz']);
+            const MERCOSUR_PLUS = new Set(['br','ar','py','uy','bo','cl','co','ec','pe']);
+            const CA4 = new Set(['gt','hn','sv','ni']);
+            const CARICOM = new Set(['jm','tt','bs','bb','lc','vc','gd','ag','dm','kn','bz','gy','sr']);
+            const GCC = new Set(['sa','ae','qa','kw','om','bh']);
+            const ASEAN = new Set(['id','ph','vn','th','my','sg','mm','kh','la','bn']);
+            const ECOWAS = new Set(['ng','gh','ci','sn','gm','ml','bf','ne','gn','gw','lr','sl','tg','bj','cv']);
+            const EAC = new Set(['ke','tz','ug','rw','bi','ss','cd']);
+            const SADC_CORE = new Set(['za','na','bw','ls','sz','zm','zw','mw','mz','ao','mu','sc','mg']);
+            const CIS = new Set(['ru','by','kz','kg','tj','am','az','md','uz','ge']);
+
+            // Perfis de força diplomática do passaporte emissor (Tier 1 = máxima aceitação, Tier 6 = máxima restrição)
+            const TIER_MAP = new Map();
+            const setTier = (list, t) => list.forEach(c => TIER_MAP.set(c, t));
+
+            setTier(['sg','jp','fr','de','it','es','fi','se','kr','at','ie','lu','nl','dk','be','pt','gb','no','ch','gr','pl','cz','hu','mt','cy','au','nz','us','ca','is','li','mc','ad','sm','va','ee','lv','lt','si','sk','hr'], 1);
+            setTier(['ae','ro','bg','cl','br','ar','uy','mx','cr','il','my','bn','tw','pa','bs','bb','kn','ag','lc','vc','gd','dm','tt'], 2);
+            setTier(['ua','rs','me','mk','al','ba','md','ge','tr','ru','mu','sc','za','pe','co','ec','py','ve','gt','hn','sv','ni','bz','do','jm','qa','kw','bh','om','sa','pw','mh','fm','ws','to','vu','sb','fj','tv','nr','ki'], 3);
+            setTier(['cn','th','id','ph','kz','by','az','am','bw','na','sz','ls','mw','zm','ke','tz','ug','rw','gh','cv','tn','ma','pg','mv','tl','gy','sr','bo','cu'], 4);
+            setTier(['in','vn','kh','la','mn','bt','uz','kg','tj','tm','eg','jo','lb','dz','ci','sn','gm','ml','bf','ne','td','cm','ga','gq','cg','cd','ao','mz','mg','st','km','bj','tg','sl','lr','gw','gn','ng','et','dj','bi','zw','ht','mr'], 5);
+            setTier(['pk','bd','lk','np','mm','kp','ir','iq','sy','ye','af','sd','ss','so','er','ly','cf','ps','eh'], 6);
+
+            // Políticas de abertura de cada país de destino
+            const DEST_OPEN_ALL_FREE = new Set(['dm','ht','bb','gd','lc','vc','kn','ag','fj','ws','fm','pw','mh','tv','nr','ki','ec','sr','mu','sc']);
+            const DEST_OPEN_VOA = new Set(['mv','kh','la','np','bd','tl','mg','km','mz','zw','tg','cv','gw','mr','bo','st','bi','dj']);
+            const DEST_EVISA_BROAD = new Set(['in','lk','ke','ug','rw','et','tz','zm','az','am','uz','kg','tj','bh','om','sa','qa','vn','id','ph','ci','bj','gn','sl','ga','pg','eg','jo']);
+
+            // Exceções bilaterais de destaque (notas pedagógicas para tooltip e inspetor)
+            const NOTAS_ESPECIAIS = {
+                'br->us': 'Requer visto consular B1/B2 emitido em embaixada ou consulado.',
+                'br->ca': 'Requer visto consular (ou eTA caso possua visto americano válido).',
+                'br->au': 'Requer visto Visitor (Subclass 600) solicitado online antes da viagem.',
+                'br->jp': 'Acordo bilateral de isenção de visto para estadias curtas (até 90 dias).',
+                'br->cn': 'Isenção unilateral para turismo e negócios (até 30 dias).',
+                'br->gb': 'Isento de visto consular; exige autorização eletrônica prévia (UK ETA).',
+                'us->br': 'Exige e-Visa brasileiro por princípio de reciprocidade diplomática.',
+                'ca->br': 'Exige e-Visa brasileiro por princípio de reciprocidade diplomática.',
+                'au->br': 'Exige e-Visa brasileiro por princípio de reciprocidade diplomática.',
+                'it->us': 'Elegível ao Visa Waiver Program mediante autorização eletrônica ESTA.',
+                'pt->us': 'Elegível ao Visa Waiver Program mediante autorização eletrônica ESTA.',
+                'it->cn': 'Isenção unilateral de visto por até 30 dias.',
+                'pt->cn': 'Isenção unilateral de visto por até 30 dias.'
+            };
+
+            function calcularRegraBilateral(orig, dest) {
+                if (orig === dest) return 'self';
+
+                const tOrig = TIER_MAP.get(orig) || 5;
+
+                // 1. Acordos de livre circulação regionais e bilaterais imediatos
+                if (SCHENGEN_EU.has(orig) && SCHENGEN_EU.has(dest)) return 'free';
+                if (FIVE_EYES.has(orig) && FIVE_EYES.has(dest)) return 'free';
+                if ((orig === 'gb' || orig === 'ie') && (SCHENGEN_EU.has(dest) || dest === 'gb' || dest === 'ie')) return 'free';
+                if (SCHENGEN_EU.has(orig) && (dest === 'gb' || dest === 'ie')) return 'free';
+                if (MERCOSUR_PLUS.has(orig) && MERCOSUR_PLUS.has(dest)) return 'free';
+                if (CA4.has(orig) && CA4.has(dest)) return 'free';
+                if (CARICOM.has(orig) && CARICOM.has(dest)) return 'free';
+                if (GCC.has(orig) && GCC.has(dest)) return 'free';
+                if (ASEAN.has(orig) && ASEAN.has(dest)) return (dest === 'mm' && orig !== 'sg' && orig !== 'my' && orig !== 'th') ? 'evisa' : 'free';
+                if (ECOWAS.has(orig) && ECOWAS.has(dest)) return 'free';
+                if (EAC.has(orig) && EAC.has(dest)) return 'free';
+                if (SADC_CORE.has(orig) && SADC_CORE.has(dest) && orig !== 'ao' && dest !== 'ao') return 'free';
+                if (CIS.has(orig) && CIS.has(dest)) {
+                    if ((orig === 'ru' && dest === 'ua') || (orig === 'ua' && dest === 'ru')) return 'visa';
+                    if (orig === 'ru' && dest === 'ge') return 'free';
+                    if (orig === 'ge' && dest === 'ru') return 'free';
+                    return 'free';
+                }
+                if (orig === 'us' && ['fm','pw','mh'].includes(dest)) return 'free';
+                if (['fm','pw','mh'].includes(orig) && dest === 'us') return 'free';
+
+                // 2. Regras específicas por destino de alto interesse
+                // Estados Unidos
+                if (dest === 'us') {
+                    if (SCHENGEN_EU.has(orig) && !['ro','bg','cy'].includes(orig)) return 'free';
+                    if (['gb','ie','au','nz','jp','kr','sg','bn','tw','il','cl','ca'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Canadá
+                if (dest === 'ca') {
+                    if (SCHENGEN_EU.has(orig) || ['us','gb','ie','au','nz','jp','kr','sg','bn','tw','il','cl','ae','bs','bb'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Austrália & Nova Zelândia
+                if (dest === 'au' || dest === 'nz') {
+                    if (SCHENGEN_EU.has(orig) || ['gb','ie','us','ca','au','nz','jp','kr','sg','bn','my','tw','il','ae'].includes(orig)) return 'free';
+                    if (dest === 'nz' && ['br','ar','cl','uy','mx','om','qa','sa','bh','kw'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Espaço Schengen / UE
+                if (SCHENGEN_EU.has(dest)) {
+                    if (tOrig === 1) return 'free';
+                    if (['br','ar','cl','uy','mx','cr','pa','co','pe','py','ve','gt','hn','sv','ni','my','bn','tw','il','ae','ua','ge','md','al','rs','ba','me','mk','bs','bb','kn','ag','lc','vc','gd','dm','tt','mu','sc','jp','kr','sg'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Reino Unido & Irlanda
+                if (dest === 'gb' || dest === 'ie') {
+                    if (tOrig === 1) return 'free';
+                    if (['br','ar','cl','uy','mx','cr','pa','co','pe','py','gt','hn','sv','ni','my','bn','tw','il','ae','qa','sa','om','kw','bh','bs','bb','kn','ag','lc','vc','gd','dm','tt','mu','sc'].includes(orig)) return 'free';
+                    if (dest === 'ie' && ['ua','za','bw','na'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Brasil (reciprocidade estrita com EUA, Canadá e Austrália)
+                if (dest === 'br') {
+                    if (['us','ca','au'].includes(orig)) return 'evisa';
+                    if (tOrig <= 2 || ['ua','rs','me','mk','al','ba','ge','ru','tr','za','ma','tn','na','bw','gt','hn','sv','ni','bz','do','jm','qa','ae','om','kw','bh','th','id','ph','cn'].includes(orig)) return 'free';
+                    if (['in','eg','sa'].includes(orig)) return 'evisa';
+                    return 'visa';
+                }
+                // Japão & Coreia do Sul
+                if (dest === 'jp' || dest === 'kr') {
+                    if (tOrig === 1 || ['br','ar','cl','uy','mx','cr','pa','my','bn','tw','il','ae','tr','rs','ua','bs','bb','do','gt','hn','sv'].includes(orig)) {
+                        if (dest === 'jp' && ['ua','co','pe'].includes(orig)) return 'visa';
+                        return 'free';
+                    }
+                    if (dest === 'kr' && ['co','pe','py','ec','za','ma','sa','qa','om','kw','bh'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // China
+                if (dest === 'cn') {
+                    if (['sg','bn','ae','qa','bs','bb','gd','dm','fj','ws','to','by','rs','ba','al','am','ge','az','kz','uz','th','my','mv','sc','mu'].includes(orig)) return 'free';
+                    if (['fr','de','it','es','nl','ch','ie','hu','at','be','lu','pl','pt','gr','cy','si','sk','hr','bg','ro','ee','lv','no','fi','dk','is','jp','kr','au','nz','br','ar','cl','pe','uy'].includes(orig)) return 'free';
+                    return 'visa';
+                }
+                // Rússia
+                if (dest === 'ru') {
+                    if (['br','ar','cl','uy','py','bo','pe','co','ec','ve','mx','cr','pa','gt','hn','sv','ni','do','jm','cu','il','ae','qa','th','za','na','bw','rs','ba','me','mk','kr','bn','fj','ws','vu'].includes(orig)) return 'free';
+                    if (SCHENGEN_EU.has(orig) || ['jp','sg','my','cn','in','id','ph','tr','sa','om','kw','bh','ir','vn','tw','kp'].includes(orig)) return 'evisa';
+                    return 'visa';
+                }
+                // Turquia
+                if (dest === 'tr') {
+                    if (tOrig <= 2 || ['ua','rs','me','mk','al','ba','md','ge','ru','pe','co','ec','py','ve','gt','hn','sv','ni','bz','qa','kw','bh','om','sa','ma','tn','za'].includes(orig)) return 'free';
+                    if (['cn','id','ph','in','mx','au'].includes(orig)) return 'evisa';
+                    return 'visa';
+                }
+                // Emirados Árabes & Catar
+                if (dest === 'ae' || dest === 'qa') {
+                    if (tOrig <= 2 || ['ru','cn','ua','rs','me','kz','co','pe','ec','py'].includes(orig)) return 'free';
+                    if (tOrig === 3 || tOrig === 4) return 'voa';
+                    return 'visa';
+                }
+                // Índia
+                if (dest === 'in') {
+                    if (['np','bt','mv'].includes(orig)) return 'free';
+                    if (['pk','kp','af','sy','ye','iq','sd','so'].includes(orig)) return 'visa';
+                    return 'evisa';
+                }
+
+                // 3. Destinos muito restritos / fechados
+                if (['kp','tm','er','af','sy','ye','ly','cf','td','ss','so','gq','eh','ps'].includes(dest)) {
+                    if (dest === 'kp' && orig === 'cn') return 'visa';
+                    if (dest === 'ps' && orig === 'jo') return 'free';
+                    return 'visa';
+                }
+
+                // 4. Destinos abertos globais
+                if (DEST_OPEN_ALL_FREE.has(dest)) {
+                    if (tOrig === 6 && !['ht','dm','ec'].includes(dest)) return 'evisa';
+                    return 'free';
+                }
+                if (DEST_OPEN_VOA.has(dest)) {
+                    if (tOrig <= 2) return dest === 'bo' || dest === 'cv' ? 'free' : 'voa';
+                    if (tOrig <= 4) return 'voa';
+                    return tOrig === 6 ? 'visa' : 'voa';
+                }
+                if (DEST_EVISA_BROAD.has(dest)) {
+                    if (tOrig === 1) {
+                        if (['th','my','sg','id','ph','ma','tn','za','na','bw','mu','sc','jo'].includes(dest)) return 'free';
+                        if (['eg','jo','lb','tz','zw','mg','kh','la','np'].includes(dest)) return 'voa';
+                        if (['sa','om','bh','qa'].includes(dest)) return 'voa';
+                        return 'evisa';
+                    }
+                    if (tOrig === 2) {
+                        if (['id','ph','th','ma','tn','za','tr'].includes(dest)) return 'free';
+                        if (['eg','jo','tz','rw','zm'].includes(dest)) return 'voa';
+                        return 'evisa';
+                    }
+                    if (tOrig <= 4) return 'evisa';
+                    return tOrig === 6 ? 'visa' : 'evisa';
+                }
+
+                // 5. Destinos de abertura moderada (América Latina, Sudeste Asiático, África Austral, Leste Europeu)
+                if (tOrig === 1) {
+                    if (['dz','ao','cg','cd','cm','gn','lr','ne','ng','sl','sd','by','pk','mm','cu'].includes(dest)) {
+                        if (dest === 'by') return 'free';
+                        if (dest === 'cu') return 'evisa';
+                        if (dest === 'pk' || dest === 'mm') return 'evisa';
+                        return 'visa';
+                    }
+                    return 'free';
+                }
+                if (tOrig === 2) {
+                    if (['dz','ao','cg','cd','cm','gn','lr','ne','ng','sl','sd','jp','us','ca','au'].includes(dest)) return 'visa';
+                    if (['cu','pk','mm'].includes(dest)) return 'evisa';
+                    return 'free';
+                }
+                if (tOrig === 3) {
+                    if (['ma','tn','za','th','id','ph','pe','co','ec','py','bo','gt','hn','sv','ni','do','jm','bs','bb','tr','rs','al','ba','me','mk','ua','ge','md'].includes(dest)) return 'free';
+                    return 'visa';
+                }
+                if (tOrig === 4) {
+                    if (['ma','tn','th','id','ph','fj','ws','to'].includes(dest) && ['cn','th','id','ph','my','ru','kz'].includes(orig)) return 'voa';
+                    return 'visa';
+                }
+                return 'visa';
+            }
+
+            // Pré-computa matriz e ranking global dos 198 países em memória (< 5ms)
+            const MATRIX = new Map();
+            const GLOBAL_RANKING = [];
+
+            function precomputarIndice() {
+                PAISES.forEach(pOrig => {
+                    const orig = pOrig.iso2;
+                    const row = new Map();
+                    let free = 0, voa = 0, evisa = 0, visa = 0;
+
+                    PAISES.forEach(pDest => {
+                        const dest = pDest.iso2;
+                        const st = calcularRegraBilateral(orig, dest);
+                        row.set(dest, st);
+                        if (st === 'free') free++;
+                        else if (st === 'voa') voa++;
+                        else if (st === 'evisa') evisa++;
+                        else if (st === 'visa') visa++;
+                    });
+
+                    MATRIX.set(orig, row);
+                    GLOBAL_RANKING.push({
+                        pais: pOrig,
+                        free,
+                        voa,
+                        evisa,
+                        visa,
+                        score: free + voa // Pontuação clássica Henley/Mobility (Sem Visto + VoA)
+                    });
+                });
+
+                GLOBAL_RANKING.sort((a, b) => (b.score - a.score) || (b.free - a.free) || a.pais.nome.localeCompare(b.pais.nome, 'pt-BR'));
+
+                let pos = 1;
+                for (let i = 0; i < GLOBAL_RANKING.length; i++) {
+                    if (i > 0 && GLOBAL_RANKING[i].score < GLOBAL_RANKING[i - 1].score) {
+                        pos = i + 1;
+                    }
+                    GLOBAL_RANKING[i].rank = pos;
+                }
+            }
+
+            precomputarIndice();
+            const rankByIso = new Map(GLOBAL_RANKING.map(r => [r.pais.iso2, r]));
+
+            function obterRankCombinado(score) {
+                for (let i = 0; i < GLOBAL_RANKING.length; i++) {
+                    if (score >= GLOBAL_RANKING[i].score) return GLOBAL_RANKING[i].rank;
+                }
+                return GLOBAL_RANKING.length;
+            }
+
+            // =========================================================================
+            // ESTADO DA APLICAÇÃO
+            // =========================================================================
+            const params = new URLSearchParams(window.location.search);
+            const initP1 = (params.get('p') || 'br').toLowerCase();
+            const initP2 = (params.get('p2') || '').toLowerCase();
+
+            const estado = {
+                pass1: paisByIso.has(initP1) ? initP1 : 'br',
+                pass2: (initP2 && paisByIso.has(initP2) && initP2 !== initP1) ? initP2 : '',
+                mapFilter: 'all',
+                activeTab: 'destinos',
+                inspectedIso: null,
+                destinosCombinados: new Map()
+            };
+
+            // =========================================================================
+            // SELETORES COM BUSCA E BANDEIRA
+            // =========================================================================
+            function setupSearchDropdown(inputId, listId, toggleId, allowEmpty, onSelect) {
+                const input = document.getElementById(inputId);
+                const list = document.getElementById(listId);
+                const toggle = document.getElementById(toggleId);
+
+                function renderList(filterText) {
+                    const q = norm(filterText);
+                    const matches = PAISES
+                        .filter(p => !q || norm(p.nome).includes(q) || norm(p.capital).includes(q) || p.iso2.includes(q))
+                        .slice(0, 60);
+
+                    let html = '';
+                    if (allowEmpty) {
+                        html += `
+                            <button type="button" data-iso="" class="w-full px-3 py-2 rounded-lg text-left text-xs font-mono font-semibold text-[#53647C] hover:bg-[#F5F2EB] flex items-center gap-2 transition">
+                                <i class="ph-bold ph-prohibit text-sm"></i>
+                                <span>Nenhum (Passaporte Único)</span>
+                            </button>
+                        `;
+                    }
+
+                    html += matches.map(p => {
+                        const r = rankByIso.get(p.iso2);
+                        return `
+                            <button type="button" data-iso="${p.iso2}" class="w-full px-3 py-2 rounded-lg text-left hover:bg-[#F5F2EB] flex items-center justify-between gap-2 transition">
+                                <span class="flex items-center gap-2.5 min-w-0">
+                                    <img src="/assets/flags/${p.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                    <span class="text-xs font-semibold text-[#0A192F] truncate">${p.nome}</span>
+                                </span>
+                                <span class="font-mono text-[10px] text-[#53647C] shrink-0">#${r.rank} · ${r.score}</span>
+                            </button>
+                        `;
+                    }).join('');
+
+                    list.innerHTML = html || '<div class="px-3 py-2 text-xs text-[#53647C]">Nenhum país encontrado.</div>';
+
+                    list.querySelectorAll('button[data-iso]').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            const iso = btn.getAttribute('data-iso');
+                            list.classList.add('hidden');
+                            onSelect(iso);
+                        });
+                    });
+                }
+
+                input.addEventListener('focus', () => {
+                    input.select();
+                    renderList('');
+                    list.classList.remove('hidden');
+                });
+
+                input.addEventListener('input', () => {
+                    renderList(input.value);
+                    list.classList.remove('hidden');
+                });
+
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = list.classList.contains('hidden');
+                    document.querySelectorAll('#listPass1, #listPass2').forEach(el => el.classList.add('hidden'));
+                    if (isHidden) {
+                        renderList('');
+                        list.classList.remove('hidden');
+                        input.focus();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!list.parentElement.contains(e.target)) {
+                        list.classList.add('hidden');
+                    }
+                });
+            }
+
+            setupSearchDropdown('inputPass1', 'listPass1', 'togglePass1', false, (iso) => {
+                if (!iso) return;
+                estado.pass1 = iso;
+                if (estado.pass2 === iso) estado.pass2 = '';
+                atualizarTudo();
+            });
+
+            setupSearchDropdown('inputPass2', 'listPass2', 'togglePass2', true, (iso) => {
+                if (iso === estado.pass1) return;
+                estado.pass2 = iso || '';
+                atualizarTudo();
+            });
+
+            document.getElementById('btnLimparPass2').addEventListener('click', () => {
+                estado.pass2 = '';
+                atualizarTudo();
+            });
+
+            document.getElementById('btnInverter').addEventListener('click', () => {
+                if (!estado.pass2) return;
+                const tmp = estado.pass1;
+                estado.pass1 = estado.pass2;
+                estado.pass2 = tmp;
+                atualizarTudo();
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const [p1, p2] = btn.getAttribute('data-preset').split(':');
+                    estado.pass1 = p1 || 'br';
+                    estado.pass2 = (p2 && p2 !== p1) ? p2 : '';
+                    atualizarTudo();
+                });
+            });
+
+            document.getElementById('btnAleatorio').addEventListener('click', () => {
+                const rand = PAISES[Math.floor(Math.random() * PAISES.length)];
+                estado.pass1 = rand.iso2;
+                if (estado.pass2 === rand.iso2) estado.pass2 = '';
+                atualizarTudo();
+            });
+
+            document.getElementById('btnCopiarLink').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const txt = document.getElementById('txtCopiarLink');
+                    txt.textContent = 'Copiado!';
+                    setTimeout(() => { txt.textContent = 'Copiar link'; }, 1800);
+                } catch (e) {}
+            });
+
+            // Filtros de Legenda no Mapa
+            document.querySelectorAll('.map-filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.mapFilter = btn.getAttribute('data-map-filter');
+                    document.querySelectorAll('.map-filter-btn').forEach(b => {
+                        const active = b === btn;
+                        b.className = active
+                            ? 'map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-[#0A192F] text-white text-[11px] font-mono font-bold inline-flex items-center gap-1.5 transition'
+                            : 'map-filter-btn min-h-[34px] px-2.5 py-1 rounded-lg bg-white hover:bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 text-[11px] font-mono font-medium inline-flex items-center gap-1.5 transition';
+                    });
+                    atualizarMapaVisual();
+                });
+            });
+
+            // Abas do Explorador
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.activeTab = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.tab-btn').forEach(b => {
+                        const active = b === btn;
+                        b.setAttribute('aria-selected', active ? 'true' : 'false');
+                        b.className = active
+                            ? 'tab-btn min-h-[40px] px-3.5 py-2 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition'
+                            : 'tab-btn min-h-[40px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition';
+                    });
+                    document.getElementById('panelDestinos').classList.toggle('hidden', estado.activeTab !== 'destinos');
+                    document.getElementById('panelRanking').classList.toggle('hidden', estado.activeTab !== 'ranking');
+                    document.getElementById('panelDuelo').classList.toggle('hidden', estado.activeTab !== 'duelo');
+                    renderTabAtiva();
+                });
+            });
+
+            ['buscaDestino', 'filtroStatus', 'filtroContinente'].forEach(id => {
+                document.getElementById(id).addEventListener('input', renderDestinos);
+                document.getElementById(id).addEventListener('change', renderDestinos);
+            });
+            ['buscaRanking', 'filtroRankContinente'].forEach(id => {
+                document.getElementById(id).addEventListener('input', renderRanking);
+                document.getElementById(id).addEventListener('change', renderRanking);
+            });
+
+            // =========================================================================
+            // CÁLCULO COMBINADO & ATUALIZAÇÃO DA UI
+            // =========================================================================
+            function atualizarTudo() {
+                const p1 = paisByIso.get(estado.pass1);
+                const p2 = estado.pass2 ? paisByIso.get(estado.pass2) : null;
+                if (!p1) return;
+
+                // Atualiza URL sem reload
+                const urlObj = new URL(window.location.href);
+                urlObj.searchParams.set('p', estado.pass1);
+                if (p2) urlObj.searchParams.set('p2', estado.pass2);
+                else urlObj.searchParams.delete('p2');
+                window.history.replaceState({}, '', urlObj.toString());
+
+                // Inputs e bandeiras
+                document.getElementById('inputPass1').value = p1.nome;
+                document.getElementById('flagPass1').src = `/assets/flags/${p1.iso2}.svg`;
+                document.getElementById('resumoFlag1').src = `/assets/flags/${p1.iso2}.svg`;
+
+                const flagPass2 = document.getElementById('flagPass2');
+                const iconPass2Empty = document.getElementById('iconPass2Empty');
+                const btnLimparPass2 = document.getElementById('btnLimparPass2');
+                const resumoFlag2 = document.getElementById('resumoFlag2');
+
+                if (p2) {
+                    document.getElementById('inputPass2').value = p2.nome;
+                    flagPass2.src = `/assets/flags/${p2.iso2}.svg`;
+                    flagPass2.classList.remove('hidden');
+                    iconPass2Empty.classList.add('hidden');
+                    btnLimparPass2.classList.remove('hidden');
+                    resumoFlag2.src = `/assets/flags/${p2.iso2}.svg`;
+                    resumoFlag2.classList.remove('hidden');
+                    document.getElementById('optDesbloqueados').classList.remove('hidden');
+                } else {
+                    document.getElementById('inputPass2').value = '';
+                    flagPass2.classList.add('hidden');
+                    iconPass2Empty.classList.remove('hidden');
+                    btnLimparPass2.classList.add('hidden');
+                    resumoFlag2.classList.add('hidden');
+                    document.getElementById('optDesbloqueados').classList.add('hidden');
+                    if (document.getElementById('filtroStatus').value === 'unlocked') {
+                        document.getElementById('filtroStatus').value = 'all';
+                    }
+                }
+
+                // Calcula matriz combinada
+                const m1 = MATRIX.get(p1.iso2);
+                const m2 = p2 ? MATRIX.get(p2.iso2) : null;
+                estado.destinosCombinados.clear();
+
+                let free = 0, voa = 0, evisa = 0, visa = 0;
+                let extrasDesbloqueados = 0;
+                let totalDestinos = 0;
+
+                PAISES.forEach(dest => {
+                    const iso = dest.iso2;
+                    const s1 = m1.get(iso);
+                    const s2 = m2 ? m2.get(iso) : null;
+
+                    let best = s1;
+                    let via = p1.iso2;
+                    let unlocked = false;
+
+                    if (p2 && iso === p2.iso2) {
+                        best = 'free';
+                        via = p2.iso2;
+                        if (RANK_VAL[s1] < RANK_VAL.free) unlocked = true;
+                    } else if (m2 && s2 && RANK_VAL[s2] > RANK_VAL[s1]) {
+                        best = s2;
+                        via = p2.iso2;
+                        if (RANK_VAL[s1] < RANK_VAL.voa && RANK_VAL[s2] >= RANK_VAL.voa) {
+                            unlocked = true;
+                        }
+                    }
+
+                    if (unlocked) extrasDesbloqueados++;
+
+                    estado.destinosCombinados.set(iso, {
+                        status: best,
+                        s1,
+                        s2,
+                        via,
+                        unlocked
+                    });
+
+                    if (best !== 'self') {
+                        totalDestinos++;
+                        if (best === 'free') free++;
+                        else if (best === 'voa') voa++;
+                        else if (best === 'evisa') evisa++;
+                        else if (best === 'visa') visa++;
+                    }
+                });
+
+                const score = free + voa;
+                const rankAtual = p2 ? obterRankCombinado(score) : rankByIso.get(p1.iso2).rank;
+                const r1Single = rankByIso.get(p1.iso2);
+
+                // Títulos & Badges
+                document.getElementById('resumoTitulo').textContent = p2
+                    ? `Dupla Cidadania: ${p1.nome} + ${p2.nome}`
+                    : `Passaporte: ${p1.nome}`;
+
+                document.getElementById('resumoSubtitulo').textContent = p2
+                    ? `Combinação alcança ${score} destinos sem visto consular (${free} isentos + ${voa} na chegada) entre ${totalDestinos} territórios.`
+                    : `${p1.nome} ocupa a #${rankAtual}ª posição global com ${score} destinos liberados sem visto consular prévio.`;
+
+                const badgeDuplaGanho = document.getElementById('badgeDuplaGanho');
+                if (p2) {
+                    const diffScore = score - r1Single.score;
+                    badgeDuplaGanho.textContent = diffScore > 0
+                        ? `+${diffScore} destinos liberados`
+                        : 'Cobertura combinada';
+                    badgeDuplaGanho.classList.remove('hidden');
+                } else {
+                    badgeDuplaGanho.classList.add('hidden');
+                }
+
+                // KPI Cards
+                document.getElementById('statRank').textContent = `#${rankAtual}`;
+                document.getElementById('statScore').textContent = `${score} pts`;
+                document.getElementById('statFree').textContent = free;
+                document.getElementById('statFreePct').textContent = `${Math.round((free / totalDestinos) * 100)}%`;
+                document.getElementById('statVoaEvisa').textContent = voa + evisa;
+                document.getElementById('statVoaSplit').textContent = `${voa} VoA · ${evisa} e-Visa`;
+                document.getElementById('statVisa').textContent = visa;
+                document.getElementById('statVisaPct').textContent = `${Math.round((visa / totalDestinos) * 100)}%`;
+
+                // WhatsApp Share
+                const msg = p2
+                    ? `Com dupla cidadania ${p1.nome} + ${p2.nome}, o acesso sobe para ${score} destinos sem visto prévio (#${rankAtual} no ranking mundial)! Simule seu passaporte no VitaleGeo:`
+                    : `O passaporte de ${p1.nome} ocupa o #${rankAtual}º lugar no ranking global com ${score} destinos sem visto consular prévio! Simule no VitaleGeo:`;
+                document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg + ' ' + window.location.href)}`;
+
+                atualizarMapaVisual();
+                atualizarInspector();
+                renderTabAtiva();
+            }
+
+            function renderTabAtiva() {
+                if (estado.activeTab === 'destinos') renderDestinos();
+                else if (estado.activeTab === 'ranking') renderRanking();
+                else renderDuelo();
+            }
+
+            function renderDestinos() {
+                const q = norm(document.getElementById('buscaDestino').value);
+                const fSt = document.getElementById('filtroStatus').value;
+                const fCont = document.getElementById('filtroContinente').value;
+                const p1 = paisByIso.get(estado.pass1);
+                const p2 = estado.pass2 ? paisByIso.get(estado.pass2) : null;
+
+                const lista = PAISES.filter(dest => {
+                    if (dest.iso2 === estado.pass1) return false;
+                    const info = estado.destinosCombinados.get(dest.iso2);
+                    if (!info) return false;
+                    if (fCont !== 'all' && dest.continente !== fCont) return false;
+                    if (fSt === 'unlocked' && !info.unlocked) return false;
+                    if (fSt !== 'all' && fSt !== 'unlocked' && info.status !== fSt) return false;
+                    if (q && !norm(dest.nome).includes(q) && !norm(dest.capital).includes(q)) return false;
+                    return true;
+                }).sort((a, b) => {
+                    const ia = estado.destinosCombinados.get(a.iso2);
+                    const ib = estado.destinosCombinados.get(b.iso2);
+                    return (RANK_VAL[ib.status] - RANK_VAL[ia.status]) || a.nome.localeCompare(b.nome, 'pt-BR');
+                });
+
+                document.getElementById('tabCountLabel').textContent = `${lista.length} destinos listados`;
+
+                const grid = document.getElementById('gridDestinos');
+                if (lista.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full p-6 text-center text-xs text-[#53647C]">Nenhum destino corresponde aos filtros selecionados.</div>';
+                    return;
+                }
+
+                grid.innerHTML = lista.map(dest => {
+                    const info = estado.destinosCombinados.get(dest.iso2);
+                    const meta = STATUS_META[info.status];
+                    const viaPais = paisByIso.get(info.via);
+                    return `
+                        <article class="p-3 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/45 hover:bg-white transition flex items-center justify-between gap-2.5">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <img src="/assets/flags/${dest.iso2}.svg" alt="" class="w-7 h-5 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <h4 class="font-heading font-bold text-xs text-[#0A192F] truncate">${dest.nome}</h4>
+                                    <span class="font-mono text-[10px] text-[#53647C] block truncate">
+                                        ${p2 && info.via === p2.iso2 ? `Via ${viaPais.nome}` : dest.continente}
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded-md font-mono text-[10px] font-bold shrink-0 ${meta.badgeCls}">${meta.label}</span>
+                        </article>
+                    `;
+                }).join('');
+            }
+
+            function renderRanking() {
+                const q = norm(document.getElementById('buscaRanking').value);
+                const fCont = document.getElementById('filtroRankContinente').value;
+
+                const lista = GLOBAL_RANKING.filter(item => {
+                    if (fCont !== 'all' && item.pais.continente !== fCont) return false;
+                    if (q && !norm(item.pais.nome).includes(q) && !norm(item.pais.capital).includes(q)) return false;
+                    return true;
+                });
+
+                document.getElementById('tabCountLabel').textContent = `${lista.length} passaportes no ranking`;
+
+                const container = document.getElementById('listaRanking');
+                container.innerHTML = lista.map(item => {
+                    const isSel = item.pais.iso2 === estado.pass1;
+                    return `
+                        <button type="button" data-select-pass="${item.pais.iso2}"
+                                class="w-full py-2.5 px-3 flex items-center justify-between gap-3 text-left hover:bg-[#F5F2EB]/70 transition rounded-lg ${isSel ? 'bg-[#F5F2EB] ring-1 ring-[#0A192F]/20' : ''}">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <span class="w-9 font-display font-black text-xs sm:text-sm ${item.rank <= 10 ? 'text-[#C8102E]' : 'text-[#0A192F]'} shrink-0">#${item.rank}</span>
+                                <img src="/assets/flags/${item.pais.iso2}.svg" alt="" class="w-7 h-5 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <div class="font-heading font-bold text-xs sm:text-sm text-[#0A192F] truncate">${item.pais.nome}</div>
+                                    <div class="font-mono text-[10px] text-[#53647C] truncate">${item.pais.continente} · ${item.free} isentos + ${item.voa} na chegada</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <span class="px-2.5 py-1 rounded-lg bg-[#0A192F] text-white font-mono text-xs font-bold">${item.score}</span>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+
+                container.querySelectorAll('button[data-select-pass]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const iso = btn.getAttribute('data-select-pass');
+                        estado.pass1 = iso;
+                        if (estado.pass2 === iso) estado.pass2 = '';
+                        atualizarTudo();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }
+
+            function renderDuelo() {
+                const p1 = paisByIso.get(estado.pass1);
+                const p2 = estado.pass2 ? paisByIso.get(estado.pass2) : null;
+                const boxSem = document.getElementById('dueloSemPass2');
+                const boxCont = document.getElementById('dueloConteudo');
+
+                if (!p2) {
+                    boxSem.classList.remove('hidden');
+                    boxCont.classList.add('hidden');
+                    document.getElementById('tabCountLabel').textContent = 'Selecione um 2º passaporte';
+                    return;
+                }
+
+                boxSem.classList.add('hidden');
+                boxCont.classList.remove('hidden');
+
+                const m1 = MATRIX.get(p1.iso2);
+                const m2 = MATRIX.get(p2.iso2);
+                const vant1 = [];
+                const vant2 = [];
+
+                PAISES.forEach(dest => {
+                    const iso = dest.iso2;
+                    if (iso === p1.iso2 || iso === p2.iso2) return;
+                    const s1 = m1.get(iso);
+                    const s2 = m2.get(iso);
+                    if (RANK_VAL[s1] > RANK_VAL[s2]) vant1.push({ dest, status: s1, outro: s2 });
+                    else if (RANK_VAL[s2] > RANK_VAL[s1]) vant2.push({ dest, status: s2, outro: s1 });
+                });
+
+                document.getElementById('dueloTitulo1').textContent = `Vantagens de ${p1.nome}`;
+                document.getElementById('dueloCount1').textContent = vant1.length;
+                document.getElementById('dueloTitulo2').textContent = `Vantagens de ${p2.nome}`;
+                document.getElementById('dueloCount2').textContent = vant2.length;
+                document.getElementById('tabCountLabel').textContent = `${vant1.length + vant2.length} diferenças bilaterais`;
+
+                const renderItems = (arr) => arr.length === 0
+                    ? '<div class="col-span-full text-xs text-[#53647C] py-4 text-center">Nenhuma vantagem exclusiva neste sentido.</div>'
+                    : arr.map(x => `
+                        <div class="p-2.5 rounded-lg bg-white border border-[#0A192F]/10 flex items-center justify-between gap-2">
+                            <span class="flex items-center gap-2 min-w-0">
+                                <img src="/assets/flags/${x.dest.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                <span class="text-xs font-semibold text-[#0A192F] truncate">${x.dest.nome}</span>
+                            </span>
+                            <span class="px-1.5 py-0.5 rounded font-mono text-[10px] font-bold shrink-0 ${STATUS_META[x.status].badgeCls}">${STATUS_META[x.status].label}</span>
+                        </div>
+                    `).join('');
+
+                document.getElementById('dueloLista1').innerHTML = renderItems(vant1);
+                document.getElementById('dueloLista2').innerHTML = renderItems(vant2);
+            }
+
+            // =========================================================================
+            // MOTOR CARTOGRÁFICO D3 + TOPOJSON
+            // =========================================================================
+            let svg, gMapa, gPaises, projecao, pathGen, zoomBehavior;
+            let featuresMundo = [];
+            const featureByIso = new Map();
+            const isoByFeature = new Map();
+
+            const MICROESTADOS_PINS = new Set([
+                'mc','ad','sm','va','li','sg','mt','bh','mv','sc','kn','ag','dm','lc','vc','gd','bb','ws','to','fm','pw','mh','ki','tv','nr'
+            ]);
+
+            function mapearFeaturesParaPaises(features) {
+                featureByIso.clear();
+                isoByFeature.clear();
+                const usados = new Set();
+
+                const fCyprus = features.find(f => String(f.id) === '196');
+                if (fCyprus) { featureByIso.set('cy', fCyprus); isoByFeature.set(fCyprus, 'cy'); usados.add(fCyprus); }
+                const fKosovo = features.find(f => f.properties && f.properties.name === 'Kosovo');
+                if (fKosovo) { featureByIso.set('xk', fKosovo); isoByFeature.set(fKosovo, 'xk'); usados.add(fKosovo); }
+
+                PAISES.forEach(p => {
+                    if (MICROESTADOS_PINS.has(p.iso2) || featureByIso.has(p.iso2)) return;
+                    let match = features.find(ft => !usados.has(ft) && d3.geoContains(ft, [p.lng, p.lat]));
+                    if (!match) {
+                        let best = null, bestD = Infinity;
+                        features.forEach(ft => {
+                            if (usados.has(ft)) return;
+                            const c = d3.geoCentroid(ft);
+                            const d = Math.hypot(c[0] - p.lng, c[1] - p.lat);
+                            if (d < bestD) { bestD = d; best = ft; }
+                        });
+                        if (bestD < 4.5) match = best;
+                    }
+                    if (match) {
+                        featureByIso.set(p.iso2, match);
+                        isoByFeature.set(match, p.iso2);
+                        usados.add(match);
+                    }
+                });
+            }
+
+            function inicializarMapa(world) {
+                featuresMundo = topojson.feature(world, world.objects.countries).features
+                    .filter(f => !(f.properties && f.properties.name === 'Antarctica'));
+                mapearFeaturesParaPaises(featuresMundo);
+
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 500;
+
+                svg = d3.select('#svgMapa').attr('viewBox', `0 0 ${w} ${h}`);
+                svg.selectAll('*').remove();
+
+                projecao = d3.geoNaturalEarth1().fitExtent([[16, 16], [w - 16, h - 16]], {
+                    type: 'FeatureCollection',
+                    features: featuresMundo
+                });
+                pathGen = d3.geoPath().projection(projecao);
+
+                gMapa = svg.append('g');
+
+                const graticule = d3.geoGraticule().step([20, 20]);
+                gMapa.append('path')
+                    .datum(graticule)
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.4)
+                    .attr('stroke-opacity', 0.12)
+                    .attr('stroke-dasharray', '3,4');
+
+                gPaises = gMapa.append('g');
+                const tooltip = document.getElementById('mapTooltip');
+
+                gPaises.selectAll('path')
+                    .data(featuresMundo)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'country-poly')
+                    .attr('d', pathGen)
+                    .on('mouseenter', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        const p = iso ? paisByIso.get(iso) : null;
+                        const ttFlag = document.getElementById('ttFlag');
+                        const ttStatus = document.getElementById('ttStatusBadge');
+                        const ttVia = document.getElementById('ttViaPass');
+                        const ttNota = document.getElementById('ttNota');
+
+                        if (p) {
+                            const info = estado.destinosCombinados.get(p.iso2);
+                            const meta = info ? STATUS_META[info.status] : STATUS_META.visa;
+                            ttFlag.src = `/assets/flags/${p.iso2}.svg`;
+                            ttFlag.classList.remove('hidden');
+                            document.getElementById('ttNome').textContent = p.nome;
+                            ttStatus.textContent = meta.label;
+                            ttStatus.className = `px-2 py-0.5 rounded font-mono text-[10px] font-bold ${meta.badgeCls}`;
+                            ttVia.textContent = (estado.pass2 && info && info.via !== estado.pass1)
+                                ? `via ${paisByIso.get(info.via).nome}`
+                                : p.continente;
+                            const nota = NOTAS_ESPECIAIS[`${info ? info.via : estado.pass1}->${p.iso2}`];
+                            if (nota) {
+                                ttNota.textContent = nota;
+                                ttNota.classList.remove('hidden');
+                            } else {
+                                ttNota.classList.add('hidden');
+                            }
+                        } else {
+                            ttFlag.classList.add('hidden');
+                            document.getElementById('ttNome').textContent = (d.properties && d.properties.name) || 'Território';
+                            ttStatus.textContent = 'Território';
+                            ttStatus.className = 'px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-[#F5F2EB] text-[#53647C]';
+                            ttVia.textContent = '';
+                            ttNota.classList.add('hidden');
+                        }
+                        tooltip.classList.remove('hidden');
+                    })
+                    .on('mouseleave', () => {
+                        tooltip.classList.add('hidden');
+                    })
+                    .on('click', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        if (!iso || !paisByIso.has(iso)) return;
+                        estado.inspectedIso = iso;
+                        atualizarMapaVisual();
+                        atualizarInspector();
+                    });
+
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 8])
+                    .on('zoom', (event) => {
+                        gMapa.attr('transform', event.transform);
+                        const k = event.transform.k;
+                        gPaises.selectAll('path').style('stroke-width', (0.55 / Math.sqrt(k)) + 'px');
+                    });
+
+                svg.call(zoomBehavior);
+
+                document.getElementById('btnZoomIn').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 1.5);
+                document.getElementById('btnZoomOut').onclick = () => svg.transition().duration(250).call(zoomBehavior.scaleBy, 0.67);
+                document.getElementById('btnResetZoom').onclick = () => svg.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+
+                atualizarMapaVisual();
+            }
+
+            function atualizarMapaVisual() {
+                if (!gPaises) return;
+                gPaises.selectAll('path')
+                    .attr('class', d => {
+                        const iso = isoByFeature.get(d);
+                        const info = iso ? estado.destinosCombinados.get(iso) : null;
+                        if (!info) return 'country-poly';
+                        const cls = ['country-poly', STATUS_META[info.status].polyCls];
+                        if (estado.mapFilter !== 'all' && info.status !== estado.mapFilter && info.status !== 'self') {
+                            cls.push('visa-dimmed');
+                        }
+                        if (estado.inspectedIso === iso) {
+                            cls.push('country-inspected');
+                        }
+                        return cls.join(' ');
+                    });
+            }
+
+            function atualizarInspector() {
+                const bar = document.getElementById('inspectorBar');
+                if (!estado.inspectedIso || !paisByIso.has(estado.inspectedIso)) {
+                    bar.classList.add('hidden');
+                    return;
+                }
+                const p = paisByIso.get(estado.inspectedIso);
+                const info = estado.destinosCombinados.get(p.iso2);
+                const meta = info ? STATUS_META[info.status] : STATUS_META.visa;
+                const r = rankByIso.get(p.iso2);
+
+                document.getElementById('inspFlag').src = `/assets/flags/${p.iso2}.svg`;
+                document.getElementById('inspNome').textContent = p.nome;
+                const badge = document.getElementById('inspStatusBadge');
+                badge.textContent = meta.label;
+                badge.className = `px-2 py-0.5 rounded font-mono text-[10px] font-bold ${meta.badgeCls}`;
+
+                const nota = NOTAS_ESPECIAIS[`${info ? info.via : estado.pass1}->${p.iso2}`];
+                document.getElementById('inspDetalhe').textContent = nota
+                    ? nota
+                    : `Capital: ${p.capital} · Ranking do passaporte local: #${r.rank} (${r.score} destinos sem visto prévio).`;
+
+                document.getElementById('btnUsarComoPass1').onclick = () => {
+                    estado.pass1 = p.iso2;
+                    if (estado.pass2 === p.iso2) estado.pass2 = '';
+                    atualizarTudo();
+                };
+                document.getElementById('btnUsarComoPass2').onclick = () => {
+                    if (p.iso2 !== estado.pass1) {
+                        estado.pass2 = p.iso2;
+                        atualizarTudo();
+                    }
+                };
+                bar.classList.remove('hidden');
+            }
+
+            // Inicialização
+            window.addEventListener('DOMContentLoaded', async () => {
+                atualizarTudo();
+
+                try {
+                    let res = await fetch('/data/maps/countries-110m.json');
+                    if (!res.ok) {
+                        res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                    }
+                    const world = await res.json();
+                    document.getElementById('loadingMap').style.display = 'none';
+                    inicializarMapa(world);
+                } catch (err) {
+                    try {
+                        const resFallback = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+                        const worldFallback = await resFallback.json();
+                        document.getElementById('loadingMap').style.display = 'none';
+                        inicializarMapa(worldFallback);
+                    } catch (e) {
+                        document.getElementById('loadingMap').innerHTML = '<span class="text-xs font-mono text-[#C8102E]">Falha ao carregar os dados vetoriais do mapa.</span>';
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

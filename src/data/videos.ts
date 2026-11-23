@@ -6,6 +6,11 @@ export interface VideoItem {
 
 export const videosLongos: VideoItem[] = [
   {
+    "titulo": "Por que o Vietnã pode ser a nova potência da Ásia?",
+    "id": "hmXR0EkCcsU",
+    "link": "https://www.youtube.com/watch?v=hmXR0EkCcsU"
+  },
+  {
     "titulo": "Por que a Índia pode ultrapassar a China (e a China não viu chegar)",
     "id": "jJC7c00-53k",
     "link": "https://www.youtube.com/watch?v=jJC7c00-53k"
@@ -83,6 +88,11 @@ export const videosLongos: VideoItem[] = [
 ];
 
 export const videosShorts: VideoItem[] = [
+  {
+    "titulo": "A virada do Vietnã no sudeste asiático",
+    "id": "dZVty_J2Epc",
+    "link": "https://www.youtube.com/watch?v=dZVty_J2Epc"
+  },
   {
     "titulo": "Crescimento da Índia versus desaceleração chinesa",
     "id": "SKaw6lda56U",

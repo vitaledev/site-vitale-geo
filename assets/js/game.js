@@ -1,6 +1,14 @@
 // BANCO DE DADOS DE JOGOS — VITALEGEO ARCADE
 const gamesDB = [
     {
+        titulo: "Speed Capital",
+        desc: "Crave 10 capitais oficiais em 30 segundos contra o relógio. Cuidado com metrópoles que fingem ser capitais.",
+        icon: "ph-fill ph-lightning",
+        cover: "/assets/img/jogos/speed-capital.svg",
+        link: "/jogos/speed-capital/",
+        badge: "DESAFIO 30S"
+    },
+    {
         titulo: "Caça ao Enclave no Mapa",
         desc: "O radar aproxima um enclave ou fronteira anômala no satélite. Identifique o país soberano em 15 segundos.",
         icon: "ph-fill ph-crosshair",

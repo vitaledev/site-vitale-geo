@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 16 Longos + 186 Shorts
+// Total: 16 Longos + 187 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -23,6 +23,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "A virada do Vietnã no sudeste asiático", id: "dZVty_J2Epc", link: "https://www.youtube.com/watch?v=dZVty_J2Epc" },
     { titulo: "Crescimento da Índia versus desaceleração chinesa", id: "SKaw6lda56U", link: "https://www.youtube.com/watch?v=SKaw6lda56U" },
     { titulo: "Quando a Índia realmente ultrapassará a China?", id: "ilPBoygZZGM", link: "https://www.youtube.com/watch?v=ilPBoygZZGM" },
     { titulo: "Por que a Apple está trocando a China pela Índia", id: "z4UftLUjBKQ", link: "https://www.youtube.com/watch?v=z4UftLUjBKQ" },

@@ -1,8 +1,9 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 15 Longos + 186 Shorts
+// Total: 16 Longos + 187 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+    { titulo: "Por que o Vietnã pode ser a nova potência da Ásia?", id: "hmXR0EkCcsU", link: "https://www.youtube.com/watch?v=hmXR0EkCcsU" },
     { titulo: "Por que a Índia pode ultrapassar a China (e a China não viu chegar)", id: "jJC7c00-53k", link: "https://www.youtube.com/watch?v=jJC7c00-53k" },
     { titulo: "Toda a História do Irã explicada em 12 Minutos!", id: "FxFveFDTo8k", link: "https://www.youtube.com/watch?v=FxFveFDTo8k" },
     { titulo: "Você vive num mundo maquiavélico (e nem sabe disso)", id: "yerRMDGkxrw", link: "https://www.youtube.com/watch?v=yerRMDGkxrw" },
@@ -22,6 +23,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "A virada do Vietnã no sudeste asiático", id: "dZVty_J2Epc", link: "https://www.youtube.com/watch?v=dZVty_J2Epc" },
     { titulo: "Crescimento da Índia versus desaceleração chinesa", id: "SKaw6lda56U", link: "https://www.youtube.com/watch?v=SKaw6lda56U" },
     { titulo: "Quando a Índia realmente ultrapassará a China?", id: "ilPBoygZZGM", link: "https://www.youtube.com/watch?v=ilPBoygZZGM" },
     { titulo: "Por que a Apple está trocando a China pela Índia", id: "z4UftLUjBKQ", link: "https://www.youtube.com/watch?v=z4UftLUjBKQ" },
