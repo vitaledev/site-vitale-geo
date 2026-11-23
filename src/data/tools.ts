@@ -187,5 +187,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Cultura & Viagens",
     badge: "TOMADAS & VOLTS",
     tags: ["tomadas", "voltagem", "adaptador", "transformador", "110v", "220v", "viagem", "padrao iec", "tipo n", "frequencia"]
+  },
+  {
+    id: "forca-passaportes",
+    titulo: "Comparador e Rastreador de Força de Passaportes",
+    desc: "Veja quais países exigem visto, simule dupla cidadania (como Brasil + Itália ou Portugal) e explore o ranking global de mobilidade no mapa.",
+    icon: "ph-bold ph-passport",
+    cover: "/assets/img/ferramentas/forca-passaportes.svg",
+    link: "/ferramentas/forca-passaportes/",
+    categoria: "Cultura & Viagens",
+    badge: "PASSAPORTES",
+    tags: ["passaporte", "vistos", "dupla cidadania", "ranking passaportes", "viagem", "isencao de visto", "e-visa", "brasil italia", "mobilidade"]
   }
 ];

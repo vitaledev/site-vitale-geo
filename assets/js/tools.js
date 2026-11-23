@@ -111,5 +111,12 @@ const toolsDB = [
         icon: "ph-bold ph-plug",
         cover: "/assets/img/ferramentas/verificador-tomadas.svg",
         link: "/ferramentas/verificador-tomadas/"
+    },
+    {
+        titulo: "Comparador e Rastreador de Força de Passaportes",
+        desc: "Veja quais países exigem visto, simule dupla cidadania (como Brasil + Itália ou Portugal) e explore o ranking global no mapa.",
+        icon: "ph-bold ph-passport",
+        cover: "/assets/img/ferramentas/forca-passaportes.svg",
+        link: "/ferramentas/forca-passaportes/"
     }
 ];
