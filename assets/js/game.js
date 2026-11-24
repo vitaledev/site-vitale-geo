@@ -1,6 +1,14 @@
 // BANCO DE DADOS DE JOGOS — VITALEGEO ARCADE
 const gamesDB = [
     {
+        titulo: "Quebra-Cabeça Cartográfico",
+        desc: "Arraste e encaixe as silhuetas reais dos países no mapa mudo antes do tempo acabar. Cinco regiões do globo para dominar.",
+        icon: "ph-fill ph-puzzle-piece",
+        cover: "/assets/img/jogos/quebra-cabeca-cartografico.svg",
+        link: "/jogos/quebra-cabeca-cartografico/",
+        badge: "DESAFIO DIÁRIO"
+    },
+    {
         titulo: "Speed Capital",
         desc: "Crave 10 capitais oficiais em 30 segundos contra o relógio. Cuidado com metrópoles que fingem ser capitais.",
         icon: "ph-fill ph-lightning",

@@ -198,5 +198,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Cultura & Viagens",
     badge: "PASSAPORTES",
     tags: ["passaporte", "vistos", "dupla cidadania", "ranking passaportes", "viagem", "isencao de visto", "e-visa", "brasil italia", "mobilidade"]
+  },
+  {
+    id: "criador-bandeiras",
+    titulo: "Criador e Estilizador de Bandeiras",
+    desc: "Monte bandeiras personalizadas com divisões heráldicas, símbolos vetoriais, auditoria NAVA em tempo real e exportação em SVG e PNG.",
+    icon: "ph-bold ph-flag-pennant",
+    cover: "/assets/img/ferramentas/criador-bandeiras.svg",
+    link: "/ferramentas/criador-bandeiras/",
+    categoria: "Vexilologia & Bandeiras",
+    badge: "SVG & PNG",
+    tags: ["criador de bandeiras", "flag maker", "bandeira personalizada", "vexilologia", "nava", "heraldica", "svg", "png", "bandeiras"]
   }
 ];

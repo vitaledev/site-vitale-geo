@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "quebra-cabeca-cartografico",
+    titulo: "Quebra-Cabeça Cartográfico",
+    desc: "Arraste e encaixe as silhuetas reais dos países no mapa mudo antes do tempo acabar. Cinco regiões do globo para dominar.",
+    icon: "ph-fill ph-puzzle-piece",
+    cover: "/assets/img/jogos/quebra-cabeca-cartografico.svg",
+    link: "/jogos/quebra-cabeca-cartografico/",
+    categoria: "Mapa Mudo & Localização",
+    badge: "DESAFIO DIÁRIO",
+    tags: ["quebra-cabeca", "cartografico", "mapa mudo", "encaixe", "continentes", "africa ocidental", "america do sul", "diario"]
+  },
+  {
     id: "speed-capital",
     titulo: "Speed Capital",
     desc: "Crave 10 capitais oficiais em 30 segundos contra o relógio. Cuidado com metrópoles que fingem ser capitais.",

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <pattern id="grid-qcc" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Bege Cartográfico Oficial -->
+  <rect width="800" height="500" fill="#F5F2EB"/>
+  <rect width="800" height="500" fill="url(#grid-qcc)"/>
+
+  <!-- Curvas Topográficas Contínuas de Canto (Verde Sálvia) -->
+  <g fill="none" stroke="#A8C3A6" stroke-width="1.5" opacity="0.48">
+    <circle cx="0" cy="0" r="145"/>
+    <circle cx="0" cy="0" r="205"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="215"/>
+  </g>
+
+  <!-- Moldura Externa -->
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+  <!-- Cabeçalho Minimalista da Arte -->
+  <text x="400" y="66" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="3">DESAFIO DE MONTAGEM • MAPA MUDO</text>
+  <text x="400" y="102" font-family="Orbitron, sans-serif" font-size="26" font-weight="900" fill="#0A192F" text-anchor="middle" letter-spacing="1.4">QUEBRA-CABEÇA <tspan fill="#C8102E">CARTOGRÁFICO</tspan></text>
+
+  <!-- Prancha Central do Quebra-Cabeça -->
+  <g transform="translate(120, 126)">
+    <rect x="0" y="0" width="560" height="274" rx="18" fill="#FFFFFF" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+    <!-- Grade Geodésica Interna -->
+    <g stroke="#0A192F" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="4 4">
+      <line x1="140" y1="0" x2="140" y2="274"/>
+      <line x1="280" y1="0" x2="280" y2="274"/>
+      <line x1="420" y1="0" x2="420" y2="274"/>
+      <line x1="0" y1="90" x2="560" y2="90"/>
+      <line x1="0" y1="184" x2="560" y2="184"/>
+    </g>
+
+    <!-- Peças já encaixadas no mapa (Verde Sálvia) -->
+    <g stroke="#0A192F" stroke-width="2" stroke-linejoin="round">
+      <!-- Região Noroeste -->
+      <path d="M 105 46 L 165 34 L 185 74 L 152 108 L 98 92 Z" fill="#A8C3A6" fill-opacity="0.58"/>
+      <!-- Região Norte -->
+      <path d="M 165 34 L 242 42 L 258 84 L 185 74 Z" fill="#A8C3A6" fill-opacity="0.42"/>
+      <!-- Região Oeste -->
+      <path d="M 98 92 L 152 108 L 164 166 L 122 184 L 88 142 Z" fill="#A8C3A6" fill-opacity="0.7"/>
+      <!-- Região Sul -->
+      <path d="M 122 184 L 164 166 L 210 194 L 190 242 L 132 238 Z" fill="#A8C3A6" fill-opacity="0.5"/>
+    </g>
+
+    <!-- Slot Vazio do País-Alvo (Contorno Tracejado) -->
+    <path d="M 185 74 L 258 84 L 314 114 L 298 176 L 210 194 L 164 166 L 152 108 Z"
+          fill="#FAF8F5" stroke="#0A192F" stroke-width="2" stroke-dasharray="6 4" stroke-opacity="0.45"/>
+
+    <!-- Mira no Centro do Slot -->
+    <circle cx="232" cy="134" r="18" fill="none" stroke="#C8102E" stroke-width="1.5" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+    <circle cx="232" cy="134" r="3.5" fill="#C8102E"/>
+
+    <!-- Linha de Encaixe (Guia de Drag & Snap) -->
+    <path d="M 382 126 Q 312 102 252 128" fill="none" stroke="#C8102E" stroke-width="2.2" stroke-dasharray="5 4"/>
+    <polygon points="246,130 257,122 255,134" fill="#C8102E"/>
+
+    <!-- Peça Ativa Sendo Arrastada (Vermelho Destaque) -->
+    <g transform="translate(205, 18)">
+      <path d="M 185 74 L 258 84 L 314 114 L 298 176 L 210 194 L 164 166 L 152 108 Z"
+            fill="#C8102E" fill-opacity="0.16" stroke="#C8102E" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="234" cy="134" r="5" fill="#C8102E"/>
+    </g>
+
+    <!-- Etiquetas de Telemetria -->
+    <rect x="18" y="18" width="136" height="24" rx="12" fill="#0A192F"/>
+    <text x="86" y="34" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#F5F2EB" text-anchor="middle">ENCAIXE 08/12</text>
+
+    <rect x="404" y="232" width="138" height="24" rx="12" fill="#FAF8F5" stroke="#0A192F" stroke-width="1.2" stroke-opacity="0.22"/>
+    <text x="473" y="248" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0A192F" text-anchor="middle">PRECISÃO 94%</text>
+  </g>
+
+  <!-- Barra Inferior -->
+  <rect x="155" y="422" width="490" height="34" rx="17" fill="#0A192F"/>
+  <text x="400" y="443" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#F5F2EB" text-anchor="middle" letter-spacing="1.2">ARRASTE E ENCAIXE • 5 REGIÕES • CONTRA O RELÓGIO</text>
+</svg>

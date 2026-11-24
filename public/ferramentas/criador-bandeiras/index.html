@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/criador-bandeiras/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador e Estilizador de Bandeiras (SVG &amp; PNG) | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Crie bandeiras personalizadas com divisões heráldicas, paletas oficiais, símbolos vetoriais, auditoria NAVA em tempo real, inspiração em 198 países e exportação em SVG e PNG.">
+    <meta name="keywords" content="criador de bandeiras, flag maker, fazer bandeira online, gerador de bandeira, vexilologia, regras nava, bandeira personalizada svg png, vitalegeo">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Criador e Estilizador de Bandeiras | VitaleGeo">
+    <meta property="og:description" content="Desenhe sua própria bandeira com divisões heráldicas, símbolos vetoriais, nota NAVA automática e exportação em SVG e PNG.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/criador-bandeiras/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/criador-bandeiras.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Criador e Estilizador de Bandeiras | VitaleGeo">
+    <meta name="twitter:description" content="Monte sua bandeira em SVG/PNG, teste nas regras da vexilologia (NAVA) e visualize no atlas mundial.">
+    <meta name="twitter:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/criador-bandeiras.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Estilos VitaleGeo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7 & TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Base Geográfica Local (CerebroGeo) -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+
+    <!-- Schema.org Estruturado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Criador e Estilizador de Bandeiras",
+      "url": "https://www.vitalegeo.com.br/ferramentas/criador-bandeiras/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-BR",
+      "description": "Estúdio interativo para criar bandeiras com divisões heráldicas, símbolos vetoriais, auditoria NAVA, referência de 198 países e exportação em SVG e PNG.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+            background: rgba(10, 25, 47, 0.25);
+            border-radius: 9999px;
+        }
+        .flag-cloth-overlay {
+            background: linear-gradient(
+                115deg,
+                rgba(255, 255, 255, 0.16) 0%,
+                rgba(10, 25, 47, 0.08) 24%,
+                rgba(255, 255, 255, 0.12) 48%,
+                rgba(10, 25, 47, 0.10) 74%,
+                rgba(255, 255, 255, 0.08) 100%
+            );
+            pointer-events: none;
+        }
+        .flag-grid-overlay {
+            background-image:
+                linear-gradient(to right, rgba(10, 25, 47, 0.16) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(10, 25, 47, 0.16) 1px, transparent 1px);
+            background-size: 16.666% 16.666%;
+            pointer-events: none;
+        }
+        .country-poly {
+            fill: #FFFFFF;
+            stroke: #0A192F;
+            stroke-width: 0.5;
+            stroke-opacity: 0.42;
+            transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 0.18s ease;
+            cursor: pointer;
+        }
+        .country-poly:hover {
+            fill: #EDE8DF;
+            stroke-opacity: 0.95;
+            stroke-width: 1.15;
+        }
+        .country-selected {
+            stroke: #C8102E !important;
+            stroke-width: 1.9 !important;
+            stroke-opacity: 1 !important;
+        }
+        input[type="color"] {
+            -webkit-appearance: none;
+            appearance: none;
+            border: none;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid rgba(10, 25, 47, 0.22);
+            border-radius: 0.5rem;
+        }
+        input[type="range"] {
+            accent-color: #C8102E;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#0A192F] font-sans antialiased selection:bg-[#C8102E] selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-4 sm:px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/75 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 min-h-[44px] sm:min-h-[36px] rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Grade Desktop 3 Colunas com AdSense Lateral Não Intrusivo -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-12">
+
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Área Principal da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full min-w-0">
+
+            <!-- Cabeçalho Enxuto com Popover Explicativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/12">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-[0.15em] text-[#C8102E] block mb-1">
+                        Vexilologia &amp; Desenho Heráldico
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Criador e Estilizador de Bandeiras
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Monte bandeiras vetoriais com divisões heráldicas, símbolos geométricos, auditoria NAVA automática e exportação em SVG e PNG.
+                    </p>
+                </div>
+
+                <div class="hover-info-container self-start sm:self-end shrink-0">
+                    <button type="button" id="btnInfoPopover" class="hover-info-trigger min-h-[44px] sm:min-h-[38px]" aria-label="Como funcionam as regras da vexilologia">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como funciona?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-flag-pennant text-[#C8102E]"></i> Os 5 Princípios da NAVA
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            O auditor avalia sua criação segundo o manual <em>Good Flag, Bad Flag</em> da Associação Vexilológica Norte-Americana:
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li><strong>1. Simplicidade:</strong> Formas limpas reconhecíveis mesmo à distância.</li>
+                            <li><strong>2. Simbolismo:</strong> Divisões e figuras centrais com leitura imediata.</li>
+                            <li><strong>3. Até 3 Cores:</strong> Paleta enxuta com contraste claro entre faixas.</li>
+                            <li><strong>4. Sem Selos Complexos:</strong> Zero textos ou brasões ilegíveis.</li>
+                            <li><strong>5. Distintividade:</strong> Proporção e contraste nítido entre adjacências.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Estúdio Principal (Acima da Dobra): Prancheta + Controles -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5" aria-label="Estúdio de criação da bandeira">
+
+                <!-- Coluna Esquerda: Prancheta Visual, Exportação & Auditor NAVA -->
+                <div class="lg:col-span-7 flex flex-col gap-4">
+
+                    <!-- Prancheta da Bandeira -->
+                    <div class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[#0A192F]/10">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <span id="badgeRatio" class="px-2.5 py-1 rounded-md bg-[#0A192F] text-white font-mono text-[11px] font-bold">2:3</span>
+                                <span id="labelNomeTerritorio" class="font-heading font-bold text-sm text-[#0A192F] truncate">Nova República</span>
+                            </div>
+
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" id="btnToggleTecido" aria-pressed="true"
+                                        class="min-h-[36px] px-2.5 py-1 rounded-lg bg-[#0A192F] text-white font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition">
+                                    <i class="ph-bold ph-wind"></i>
+                                    <span>Tecido</span>
+                                </button>
+                                <button type="button" id="btnToggleGrade" aria-pressed="false"
+                                        class="min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition">
+                                    <i class="ph-bold ph-grid-four"></i>
+                                    <span>Grade</span>
+                                </button>
+                                <button type="button" id="btnAleatorio"
+                                        class="min-h-[36px] px-2.5 py-1 rounded-lg bg-[#C8102E]/10 hover:bg-[#C8102E] text-[#C8102E] hover:text-white border border-[#C8102E]/25 font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition">
+                                    <i class="ph-bold ph-shuffle"></i>
+                                    <span>Aleatória</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Área de Renderização SVG -->
+                        <div class="bg-[#F5F2EB]/70 rounded-xl border border-[#0A192F]/10 p-4 sm:p-6 flex items-center justify-center min-h-[240px] sm:min-h-[310px] relative overflow-hidden">
+                            <img src="/brand/shapes/topo-ripples-corner.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-10 -left-10 w-44 h-44 opacity-25">
+                            <div id="flagStage" class="relative w-full max-w-[440px] shadow-[0_18px_40px_-14px_rgba(10,25,47,0.35)] border border-[#0A192F]/25 rounded-[3px] overflow-hidden transition-all duration-300" style="aspect-ratio: 3 / 2;">
+                                <svg id="flagSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" class="w-full h-full block"></svg>
+                                <div id="overlayTecido" class="flag-cloth-overlay absolute inset-0"></div>
+                                <div id="overlayGrade" class="flag-grid-overlay absolute inset-0 hidden"></div>
+                            </div>
+                        </div>
+
+                        <!-- Ações de Exportação & Compartilhamento -->
+                        <div class="mt-4 pt-4 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-between gap-2.5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button type="button" id="btnDownloadSvg"
+                                        class="min-h-[44px] px-4 py-2 rounded-xl bg-[#0A192F] hover:bg-[#1F334E] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                                    <i class="ph-bold ph-file-svg text-base"></i>
+                                    <span>Baixar SVG</span>
+                                </button>
+                                <button type="button" id="btnDownloadPng"
+                                        class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-xs">
+                                    <i class="ph-bold ph-download-simple text-base"></i>
+                                    <span>Baixar PNG</span>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2">
+                                <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener"
+                                   class="min-h-[44px] px-3.5 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-1.5 transition shadow-xs">
+                                    <i class="ph-bold ph-whatsapp-logo text-base"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                                <button type="button" id="btnCopiarLink"
+                                        class="min-h-[44px] px-3 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-xs inline-flex items-center gap-1.5 transition">
+                                    <i class="ph-bold ph-link"></i>
+                                    <span id="txtCopiarLink">Copiar link</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auditor Vexilológico NAVA em Tempo Real -->
+                    <div class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5" aria-label="Auditoria vexilológica NAVA">
+                        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 mb-3 border-b border-[#0A192F]/10">
+                            <div>
+                                <span class="font-mono text-[10px] uppercase tracking-wider text-[#53647C] block">Auditoria Vexilológica (NAVA)</span>
+                                <h2 id="navaVeredito" class="font-heading font-bold text-sm sm:text-base text-[#0A192F] mt-0.5">Excelência Vexilológica</h2>
+                            </div>
+                            <div class="flex items-baseline gap-1 bg-[#0A192F] text-white px-3.5 py-2 rounded-xl">
+                                <span id="navaScore" class="font-display font-black text-xl sm:text-2xl leading-none">9.5</span>
+                                <span class="font-mono text-[11px] text-[#A8C3A6]">/ 10</span>
+                            </div>
+                        </div>
+
+                        <div id="navaChecklist" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Painel de Engenharia da Bandeira -->
+                <div class="lg:col-span-5 bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 flex flex-col gap-4">
+
+                    <!-- Identificação & Proporção -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <div class="sm:col-span-2">
+                            <label for="inputNome" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F] mb-1">
+                                Nome da Nação
+                            </label>
+                            <input id="inputNome" type="text" maxlength="40" value="Nova República" placeholder="Ex: República Atlântica"
+                                   class="w-full min-h-[44px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs sm:text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                        </div>
+                        <div>
+                            <label for="selectRatio" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F] mb-1">
+                                Proporção
+                            </label>
+                            <select id="selectRatio"
+                                    class="w-full min-h-[44px] px-2.5 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-bold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                                <option value="2:3">2:3 (Clássica)</option>
+                                <option value="3:5">3:5 (Harmônica)</option>
+                                <option value="1:2">1:2 (Alongada)</option>
+                                <option value="7:10">7:10 (Brasil)</option>
+                                <option value="1:1">1:1 (Quadrada)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Divisão Heráldica (12 Layouts) -->
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F]">Divisão Heráldica</span>
+                            <span id="labelLayoutAtual" class="font-mono text-[10px] text-[#53647C]">Tricolor Vertical</span>
+                        </div>
+                        <div id="gridLayouts" class="grid grid-cols-4 gap-1.5"></div>
+                    </div>
+
+                    <!-- Cores das Camadas -->
+                    <div class="pt-3 border-t border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F]">Paleta &amp; Camadas</span>
+                            <button type="button" id="btnInverterCores" class="text-[11px] font-mono font-bold text-[#C8102E] hover:underline inline-flex items-center gap-1">
+                                <i class="ph-bold ph-arrows-clockwise"></i>
+                                <span>Rodar cores</span>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 mb-2.5">
+                            <label class="p-2 rounded-xl bg-[#F5F2EB]/60 border border-[#0A192F]/12 flex flex-col gap-1 cursor-pointer">
+                                <span class="font-mono text-[10px] text-[#53647C]">Cor 1</span>
+                                <div class="flex items-center gap-1.5">
+                                    <input id="color1" type="color" value="#0A192F" class="w-7 h-7 shrink-0">
+                                    <span id="hex1" class="font-mono text-[10px] font-bold text-[#0A192F] uppercase">#0A192F</span>
+                                </div>
+                            </label>
+
+                            <label id="wrapColor2" class="p-2 rounded-xl bg-[#F5F2EB]/60 border border-[#0A192F]/12 flex flex-col gap-1 cursor-pointer">
+                                <span class="font-mono text-[10px] text-[#53647C]">Cor 2</span>
+                                <div class="flex items-center gap-1.5">
+                                    <input id="color2" type="color" value="#F5F2EB" class="w-7 h-7 shrink-0">
+                                    <span id="hex2" class="font-mono text-[10px] font-bold text-[#0A192F] uppercase">#F5F2EB</span>
+                                </div>
+                            </label>
+
+                            <label id="wrapColor3" class="p-2 rounded-xl bg-[#F5F2EB]/60 border border-[#0A192F]/12 flex flex-col gap-1 cursor-pointer">
+                                <span class="font-mono text-[10px] text-[#53647C]">Cor 3</span>
+                                <div class="flex items-center gap-1.5">
+                                    <input id="color3" type="color" value="#C8102E" class="w-7 h-7 shrink-0">
+                                    <span id="hex3" class="font-mono text-[10px] font-bold text-[#0A192F] uppercase">#C8102E</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Amostras Rápidas Vexilológicas -->
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <span class="font-mono text-[10px] text-[#53647C] mr-1">Aplicar na Cor 1–3:</span>
+                            <select id="targetColorSlot" aria-label="Escolher camada de cor" class="px-2 py-1 rounded-lg bg-[#F5F2EB] border border-[#0A192F]/15 font-mono text-[10px] font-bold text-[#0A192F]">
+                                <option value="1">Cor 1</option>
+                                <option value="2">Cor 2</option>
+                                <option value="3">Cor 3</option>
+                                <option value="sym">Símbolo</option>
+                            </select>
+                            <div id="swatchesRow" class="flex flex-wrap items-center gap-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Símbolo & Geometria -->
+                    <div class="pt-3 border-t border-[#0A192F]/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F]">Símbolo Central</span>
+                            <label class="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#53647C] cursor-pointer">
+                                <span>Cor</span>
+                                <input id="colorSym" type="color" value="#0A192F" class="w-6 h-6">
+                            </label>
+                        </div>
+
+                        <div id="gridSymbols" class="grid grid-cols-4 sm:grid-cols-6 gap-1.5 mb-3"></div>
+
+                        <div id="symbolControls" class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl bg-[#F5F2EB]/60 border border-[#0A192F]/10">
+                            <div>
+                                <div class="flex justify-between text-[10px] font-mono text-[#53647C] mb-1">
+                                    <span>Tamanho</span>
+                                    <span id="valSymSize" class="font-bold text-[#0A192F]">34%</span>
+                                </div>
+                                <input id="rangeSymSize" type="range" min="14" max="76" value="34" class="w-full h-2 cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] font-mono text-[#53647C] mb-1">
+                                    <span>Rotação</span>
+                                    <span id="valSymRot" class="font-bold text-[#0A192F]">0°</span>
+                                </div>
+                                <input id="rangeSymRot" type="range" min="-180" max="180" step="5" value="0" class="w-full h-2 cursor-pointer">
+                            </div>
+                            <div>
+                                <label for="selectSymPos" class="block text-[10px] font-mono text-[#53647C] mb-1">Posição</label>
+                                <select id="selectSymPos" class="w-full min-h-[36px] px-2 rounded-lg bg-white border border-[#0A192F]/15 font-mono text-[11px] font-bold text-[#0A192F]">
+                                    <option value="center">Centro</option>
+                                    <option value="hoist">Mastro (Esquerda)</option>
+                                    <option value="canton">Cantão Superior</option>
+                                    <option value="fly">Extremidade (Direita)</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <label class="w-full min-h-[36px] px-2.5 rounded-lg bg-white border border-[#0A192F]/15 flex items-center justify-between gap-2 cursor-pointer text-[11px] font-mono font-bold text-[#0A192F]">
+                                    <span>Fio de Borda</span>
+                                    <input id="checkSymStroke" type="checkbox" class="w-4 h-4 accent-[#C8102E]">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Explorador em Abas: Inspirações de 198 Países / Visualizar no Atlas Mundial -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-6" aria-label="Inspirações de bandeiras reais e visualização no atlas">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#0A192F]/10">
+                    <div class="flex flex-wrap items-center gap-1.5" role="tablist">
+                        <button type="button" data-tab="inspiracoes" role="tab" aria-selected="true"
+                                class="tab-btn min-h-[44px] sm:min-h-[40px] px-3.5 py-2 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-flag"></i>
+                            <span>Inspirar-se em Países Reais</span>
+                        </button>
+                        <button type="button" data-tab="atlas" role="tab" aria-selected="false"
+                                class="tab-btn min-h-[44px] sm:min-h-[40px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-globe-hemisphere-west"></i>
+                            <span>Posicionar no Atlas Mundial</span>
+                        </button>
+                    </div>
+                    <div id="tabStatusLabel" class="font-mono text-[11px] text-[#53647C]">198 bandeiras oficiais locais</div>
+                </div>
+
+                <!-- ABA 1: Inspirações Reais (CerebroGeo + /assets/flags/) -->
+                <div id="panelInspiracoes">
+                    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2.5 mb-4">
+                        <div class="relative flex items-center">
+                            <i class="ph-bold ph-magnifying-glass text-[#53647C] absolute left-3 pointer-events-none"></i>
+                            <input id="buscaPais" type="text" placeholder="Buscar país ou capital para carregar esquema de cores e layout..."
+                                   class="w-full min-h-[44px] pl-9 pr-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs sm:text-sm font-medium text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                        </div>
+                        <select id="filtroContinente" aria-label="Filtrar países por continente"
+                                class="min-h-[44px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                            <option value="all">Todos os continentes</option>
+                            <option value="América do Sul">América do Sul</option>
+                            <option value="América do Norte">América do Norte</option>
+                            <option value="América Central">América Central &amp; Caribe</option>
+                            <option value="Europa">Europa</option>
+                            <option value="Ásia">Ásia</option>
+                            <option value="África">África</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+
+                    <div id="gridPaises" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[380px] overflow-y-auto dropdown-scroll pr-1"></div>
+                </div>
+
+                <!-- ABA 2: Visualizar no Atlas Mundial (/data/maps/countries-110m.json) -->
+                <div id="panelAtlas" class="hidden">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <p class="text-xs text-[#53647C]">
+                            Selecione um território no mapa para testar sua bandeira sobre ele ou comparar com a bandeira oficial do país.
+                        </p>
+                        <div class="flex items-center gap-1.5">
+                            <button type="button" id="btnZoomIn" aria-label="Aumentar zoom" class="w-9 h-9 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 flex items-center justify-center transition">
+                                <i class="ph-bold ph-plus"></i>
+                            </button>
+                            <button type="button" id="btnZoomOut" aria-label="Diminuir zoom" class="w-9 h-9 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 flex items-center justify-center transition">
+                                <i class="ph-bold ph-minus"></i>
+                            </button>
+                            <button type="button" id="btnResetZoom" aria-label="Enquadrar mapa" class="h-9 px-2.5 rounded-lg bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono text-[11px] font-bold flex items-center gap-1 transition">
+                                <i class="ph-bold ph-arrows-in"></i>
+                                <span class="hidden sm:inline">Enquadrar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full h-[46vh] min-h-[340px] lg:h-[440px] bg-[#F5F2EB]/45 rounded-xl border border-[#0A192F]/12 overflow-hidden select-none">
+                        <div id="loadingMap" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-xs font-mono text-[#53647C] z-10">
+                            <i class="ph-bold ph-globe-hemisphere-west text-2xl text-[#0A192F] animate-spin"></i>
+                            <span>Carregando atlas vetorial...</span>
+                        </div>
+                        <svg id="svgMapa" class="w-full h-full block" role="img" aria-label="Atlas mundial para posicionar ou inspirar bandeira"></svg>
+
+                        <div id="mapTooltip" class="hidden pointer-events-none absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-sm border border-[#0A192F]/15 rounded-xl px-3 py-2 shadow-lg max-w-[240px]">
+                            <div class="flex items-center gap-2">
+                                <img id="ttFlag" src="" alt="" class="w-6 h-4 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                <span id="ttNome" class="font-heading font-bold text-xs text-[#0A192F] truncate"></span>
+                            </div>
+                            <span id="ttCapital" class="font-mono text-[10px] text-[#53647C] block mt-1"></span>
+                        </div>
+
+                        <img src="/brand/shapes/compass-minimal.svg" alt="" aria-hidden="true" class="pointer-events-none absolute bottom-3 right-3 w-11 h-11 opacity-60">
+                    </div>
+
+                    <!-- Barra de Território Selecionado no Atlas -->
+                    <div id="atlasInspector" class="hidden mt-3 p-3.5 rounded-xl bg-[#F5F2EB]/75 border border-[#0A192F]/12 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <img id="atlasRealFlag" src="" alt="" class="w-10 h-7 object-cover rounded border border-[#0A192F]/20 shrink-0">
+                            <div class="min-w-0">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span id="atlasPaisNome" class="font-heading font-bold text-sm text-[#0A192F]"></span>
+                                    <span id="atlasPaisMeta" class="font-mono text-[10px] text-[#53647C]"></span>
+                                </div>
+                                <p id="atlasPaisFato" class="text-xs text-[#1F334E] mt-0.5 line-clamp-2"></p>
+                            </div>
+                        </div>
+                        <button type="button" id="btnRemixarAtlas" class="min-h-[40px] px-3.5 py-2 rounded-xl bg-[#0A192F] hover:bg-[#C8102E] text-white font-mono font-bold text-xs inline-flex items-center gap-1.5 transition shrink-0">
+                            <i class="ph-bold ph-palette"></i>
+                            <span>Usar como inspiração</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/50 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box Discreto de Retenção -->
+            <div class="p-5 rounded-2xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Curioso sobre bandeiras reais quase idênticas?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Coloque pares como Chade e Romênia ou Irlanda e Costa do Marfim sob a lupa de sobreposição.</p>
+                </div>
+                <a href="/ferramentas/bandeiras-gemeas/" class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-flag"></i>
+                    <span>Abrir Bandeiras Gêmeas</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Observatório &amp; Cartografia Independente</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const PAISES = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const paisByIso = new Map(PAISES.map(p => [p.iso2.toLowerCase(), p]));
+            const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // =========================================================================
+            // CATÁLOGO DE DIVISÕES HERÁLDICAS, PALETA E SÍMBOLOS VETORIAIS
+            // =========================================================================
+            const RATIOS = {
+                '2:3':  { w: 900, h: 600, css: '3 / 2' },
+                '3:5':  { w: 900, h: 540, css: '5 / 3' },
+                '1:2':  { w: 900, h: 450, css: '2 / 1' },
+                '7:10': { w: 900, h: 630, css: '10 / 7' },
+                '1:1':  { w: 600, h: 600, css: '1 / 1' }
+            };
+
+            const LAYOUTS = [
+                { id: 'tricolor-v', name: 'Tricolor Vertical', colors: 3 },
+                { id: 'tricolor-h', name: 'Tricolor Horizontal', colors: 3 },
+                { id: 'bicolor-h',  name: 'Bicolor Horizontal', colors: 2 },
+                { id: 'bicolor-v',  name: 'Bicolor Vertical', colors: 2 },
+                { id: 'nordic',     name: 'Cruz Nórdica', colors: 3 },
+                { id: 'cross',      name: 'Cruz Simétrica', colors: 2 },
+                { id: 'saltire',    name: 'Cruz de Santo André', colors: 3 },
+                { id: 'chevron',    name: 'Triângulo Lateral', colors: 3 },
+                { id: 'canton',     name: 'Cantão & Listras', colors: 3 },
+                { id: 'diagonal',   name: 'Banda Diagonal', colors: 3 },
+                { id: 'quarter',    name: 'Quartelado', colors: 3 },
+                { id: 'solid',      name: 'Campo Único', colors: 1 }
+            ];
+
+            const SWATCHES = [
+                { hex: '#0A192F', nome: 'Azul Marinho' },
+                { hex: '#C8102E', nome: 'Vermelho Destaque' },
+                { hex: '#F5F2EB', nome: 'Bege Cartográfico' },
+                { hex: '#A8C3A6', nome: 'Verde Sálvia' },
+                { hex: '#FFFFFF', nome: 'Branco Puro' },
+                { hex: '#111827', nome: 'Preto Heráldico' },
+                { hex: '#D4AF37', nome: 'Ouro Real' },
+                { hex: '#009C3B', nome: 'Verde Bandeira' },
+                { hex: '#003399', nome: 'Azul Cobalto' },
+                { hex: '#EA580C', nome: 'Laranja Náutico' }
+            ];
+
+            const SYMBOLS = [
+                { id: 'none',        label: 'Sem',      icon: 'ph-bold ph-prohibit' },
+                { id: 'star5',       label: 'Estrela',  icon: 'ph-fill ph-star' },
+                { id: 'star8',       label: '8 Pontas', icon: 'ph-fill ph-sparkle' },
+                { id: 'sun-disc',    label: 'Disco',    icon: 'ph-fill ph-circle' },
+                { id: 'sun-rays',    label: 'Sol',      icon: 'ph-fill ph-sun' },
+                { id: 'crescent',    label: 'Crescente',icon: 'ph-fill ph-moon-stars' },
+                { id: 'compass',     label: 'Bússola',  icon: 'ph-fill ph-compass' },
+                { id: 'cross-patee', label: 'Malta',    icon: 'ph-fill ph-cross' },
+                { id: 'shield',      label: 'Escudo',   icon: 'ph-fill ph-shield' },
+                { id: 'crown',       label: 'Coroa',    icon: 'ph-fill ph-crown' },
+                { id: 'diamond',     label: 'Losango',  icon: 'ph-fill ph-diamond' },
+                { id: 'anchor',      label: 'Âncora',   icon: 'ph-bold ph-anchor' }
+            ];
+
+            // Presets fiéis para inspiração de países reais
+            const PRESETS_PAISES = {
+                br: { layout: 'solid', c1: '#009C3B', c2: '#FFDF00', c3: '#002776', sym: 'diamond', symColor: '#FFDF00', ratio: '7:10', symSize: 64, symPos: 'center' },
+                jp: { layout: 'solid', c1: '#FFFFFF', c2: '#BC002D', c3: '#BC002D', sym: 'sun-disc', symColor: '#BC002D', ratio: '2:3', symSize: 42, symPos: 'center' },
+                fr: { layout: 'tricolor-v', c1: '#002395', c2: '#FFFFFF', c3: '#ED2939', sym: 'none', symColor: '#FFFFFF', ratio: '2:3', symSize: 30, symPos: 'center' },
+                de: { layout: 'tricolor-h', c1: '#111827', c2: '#DD0000', c3: '#FFCE00', sym: 'none', symColor: '#111827', ratio: '3:5', symSize: 30, symPos: 'center' },
+                it: { layout: 'tricolor-v', c1: '#009246', c2: '#FFFFFF', c3: '#CE2B37', sym: 'none', symColor: '#009246', ratio: '2:3', symSize: 30, symPos: 'center' },
+                pt: { layout: 'bicolor-v', c1: '#006600', c2: '#FF0000', c3: '#FFCC00', sym: 'shield', symColor: '#FFCC00', ratio: '2:3', symSize: 34, symPos: 'center' },
+                ar: { layout: 'tricolor-h', c1: '#74ACDF', c2: '#FFFFFF', c3: '#74ACDF', sym: 'sun-rays', symColor: '#F6B40E', ratio: '3:5', symSize: 28, symPos: 'center' },
+                no: { layout: 'nordic', c1: '#BA0C2F', c2: '#FFFFFF', c3: '#00205B', sym: 'none', symColor: '#FFFFFF', ratio: '2:3', symSize: 28, symPos: 'center' },
+                se: { layout: 'nordic', c1: '#006AA7', c2: '#FECC00', c3: '#FECC00', sym: 'none', symColor: '#FECC00', ratio: '3:5', symSize: 28, symPos: 'center' },
+                ch: { layout: 'cross', c1: '#D52B1E', c2: '#FFFFFF', c3: '#FFFFFF', sym: 'none', symColor: '#FFFFFF', ratio: '1:1', symSize: 30, symPos: 'center' },
+                gb: { layout: 'saltire', c1: '#012169', c2: '#FFFFFF', c3: '#C8102E', sym: 'none', symColor: '#FFFFFF', ratio: '1:2', symSize: 28, symPos: 'center' },
+                jm: { layout: 'saltire', c1: '#009B3A', c2: '#FED100', c3: '#111827', sym: 'none', symColor: '#FED100', ratio: '1:2', symSize: 28, symPos: 'center' },
+                cu: { layout: 'chevron', c1: '#002A8F', c2: '#FFFFFF', c3: '#CF142B', sym: 'star5', symColor: '#FFFFFF', ratio: '1:2', symSize: 26, symPos: 'hoist' },
+                cz: { layout: 'chevron', c1: '#FFFFFF', c2: '#D7141A', c3: '#11457E', sym: 'none', symColor: '#FFFFFF', ratio: '2:3', symSize: 28, symPos: 'hoist' },
+                us: { layout: 'canton', c1: '#B22234', c2: '#FFFFFF', c3: '#3C3B6E', sym: 'star5', symColor: '#FFFFFF', ratio: '1:2', symSize: 26, symPos: 'canton' },
+                cl: { layout: 'canton', c1: '#D52B1E', c2: '#FFFFFF', c3: '#0039A6', sym: 'star5', symColor: '#FFFFFF', ratio: '2:3', symSize: 26, symPos: 'canton' },
+                tr: { layout: 'solid', c1: '#E30A17', c2: '#FFFFFF', c3: '#FFFFFF', sym: 'crescent', symColor: '#FFFFFF', ratio: '2:3', symSize: 42, symPos: 'center' },
+                tz: { layout: 'diagonal', c1: '#1EB53A', c2: '#00A3DD', c3: '#111827', sym: 'none', symColor: '#FCD116', ratio: '2:3', symSize: 28, symPos: 'center' },
+                pa: { layout: 'quarter', c1: '#FFFFFF', c2: '#005293', c3: '#D21034', sym: 'star5', symColor: '#005293', ratio: '2:3', symSize: 24, symPos: 'canton' },
+                uy: { layout: 'canton', c1: '#0038A8', c2: '#FFFFFF', c3: '#FFFFFF', sym: 'sun-rays', symColor: '#FCD116', ratio: '2:3', symSize: 30, symPos: 'canton' },
+                ua: { layout: 'bicolor-h', c1: '#0057B7', c2: '#FFD700', c3: '#FFFFFF', sym: 'none', symColor: '#FFFFFF', ratio: '2:3', symSize: 30, symPos: 'center' },
+                pl: { layout: 'bicolor-h', c1: '#FFFFFF', c2: '#DC143C', c3: '#DC143C', sym: 'none', symColor: '#FFFFFF', ratio: '3:5', symSize: 30, symPos: 'center' },
+                ca: { layout: 'tricolor-v', c1: '#FF0000', c2: '#FFFFFF', c3: '#FF0000', sym: 'star8', symColor: '#FF0000', ratio: '1:2', symSize: 36, symPos: 'center' },
+                kr: { layout: 'solid', c1: '#FFFFFF', c2: '#CD2E3A', c3: '#0047A0', sym: 'compass', symColor: '#0047A0', ratio: '2:3', symSize: 42, symPos: 'center' },
+                ma: { layout: 'solid', c1: '#C1272D', c2: '#006233', c3: '#006233', sym: 'star5', symColor: '#006233', ratio: '2:3', symSize: 36, symPos: 'center' }
+            };
+
+            // =========================================================================
+            // ESTADO DA BANDEIRA & SINCRONIZAÇÃO DE URL
+            // =========================================================================
+            const params = new URLSearchParams(window.location.search);
+            const cleanHex = (v, fallback) => /^#?[0-9A-Fa-f]{6}$/.test(v || '') ? (v.startsWith('#') ? v.toUpperCase() : '#' + v.toUpperCase()) : fallback;
+
+            const estado = {
+                nome: params.get('n') || 'Nova República',
+                ratio: RATIOS[params.get('r')] ? params.get('r') : '2:3',
+                layout: LAYOUTS.some(l => l.id === params.get('l')) ? params.get('l') : 'chevron',
+                c1: cleanHex(params.get('c1'), '#0A192F'),
+                c2: cleanHex(params.get('c2'), '#F5F2EB'),
+                c3: cleanHex(params.get('c3'), '#C8102E'),
+                sym: SYMBOLS.some(s => s.id === params.get('sym')) ? params.get('sym') : 'compass',
+                symColor: cleanHex(params.get('sc'), '#F5F2EB'),
+                symSize: Math.min(76, Math.max(14, parseInt(params.get('sz'), 10) || 28)),
+                symRot: Math.min(180, Math.max(-180, parseInt(params.get('rot'), 10) || 0)),
+                symPos: ['center','hoist','canton','fly'].includes(params.get('pos')) ? params.get('pos') : 'hoist',
+                symStroke: params.get('st') === '1',
+                showCloth: true,
+                showGrid: false,
+                activeTab: 'inspiracoes',
+                selectedAtlasIso: null
+            };
+
+            // =========================================================================
+            // GERADOR VETORIAL DA BANDEIRA (SVG PURO)
+            // =========================================================================
+            function buildLayoutShapes(layout, W, H, c1, c2, c3) {
+                switch (layout) {
+                    case 'tricolor-v':
+                        return `
+                            <rect x="0" y="0" width="${W / 3}" height="${H}" fill="${c1}"/>
+                            <rect x="${W / 3}" y="0" width="${W / 3}" height="${H}" fill="${c2}"/>
+                            <rect x="${(2 * W) / 3}" y="0" width="${W / 3}" height="${H}" fill="${c3}"/>
+                        `;
+                    case 'tricolor-h':
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H / 3}" fill="${c1}"/>
+                            <rect x="0" y="${H / 3}" width="${W}" height="${H / 3}" fill="${c2}"/>
+                            <rect x="0" y="${(2 * H) / 3}" width="${W}" height="${H / 3}" fill="${c3}"/>
+                        `;
+                    case 'bicolor-h':
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H / 2}" fill="${c1}"/>
+                            <rect x="0" y="${H / 2}" width="${W}" height="${H / 2}" fill="${c2}"/>
+                        `;
+                    case 'bicolor-v':
+                        return `
+                            <rect x="0" y="0" width="${W / 2}" height="${H}" fill="${c1}"/>
+                            <rect x="${W / 2}" y="0" width="${W / 2}" height="${H}" fill="${c2}"/>
+                        `;
+                    case 'nordic': {
+                        const cx = W * 0.34;
+                        const cy = H * 0.5;
+                        const outer = H * 0.24;
+                        const inner = H * 0.13;
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H}" fill="${c1}"/>
+                            <rect x="${cx - outer / 2}" y="0" width="${outer}" height="${H}" fill="${c2}"/>
+                            <rect x="0" y="${cy - outer / 2}" width="${W}" height="${outer}" fill="${c2}"/>
+                            <rect x="${cx - inner / 2}" y="0" width="${inner}" height="${H}" fill="${c3}"/>
+                            <rect x="0" y="${cy - inner / 2}" width="${W}" height="${inner}" fill="${c3}"/>
+                        `;
+                    }
+                    case 'cross': {
+                        const t = H * 0.22;
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H}" fill="${c1}"/>
+                            <rect x="${W / 2 - t / 2}" y="0" width="${t}" height="${H}" fill="${c2}"/>
+                            <rect x="0" y="${H / 2 - t / 2}" width="${W}" height="${t}" fill="${c2}"/>
+                        `;
+                    }
+                    case 'saltire':
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H}" fill="${c1}"/>
+                            <line x1="0" y1="0" x2="${W}" y2="${H}" stroke="${c2}" stroke-width="${H * 0.20}"/>
+                            <line x1="${W}" y1="0" x2="0" y2="${H}" stroke="${c2}" stroke-width="${H * 0.20}"/>
+                            <line x1="0" y1="0" x2="${W}" y2="${H}" stroke="${c3}" stroke-width="${H * 0.10}"/>
+                            <line x1="${W}" y1="0" x2="0" y2="${H}" stroke="${c3}" stroke-width="${H * 0.10}"/>
+                        `;
+                    case 'chevron':
+                        return `
+                            <rect x="0" y="0" width="${W}" height="${H / 2}" fill="${c1}"/>
+                            <rect x="0" y="${H / 2}" width="${W}" height="${H / 2}" fill="${c2}"/>
+                            <polygon points="0,0 ${W * 0.44},${H / 2} 0,${H}" fill="${c3}"/>
+                        `;
+                    case 'canton': {
+                        const stripes = 7;
+                        const sh = H / stripes;
+                        let rects = '';
+                        for (let i = 0; i < stripes; i++) {
+                            rects += `<rect x="0" y="${i * sh}" width="${W}" height="${sh + 0.5}" fill="${i % 2 === 0 ? c1 : c2}"/>`;
+                        }
+                        return `
+                            ${rects}
+                            <rect x="0" y="0" width="${W * 0.45}" height="${sh * 4}" fill="${c3}"/>
+                        `;
+                    }
+                    case 'diagonal':
+                        return `
+                            <polygon points="0,0 ${W},0 0,${H}" fill="${c1}"/>
+                            <polygon points="${W},0 ${W},${H} 0,${H}" fill="${c2}"/>
+                            <line x1="0" y1="${H}" x2="${W}" y2="0" stroke="${c2}" stroke-width="${H * 0.26}"/>
+                            <line x1="0" y1="${H}" x2="${W}" y2="0" stroke="${c3}" stroke-width="${H * 0.17}"/>
+                        `;
+                    case 'quarter':
+                        return `
+                            <rect x="0" y="0" width="${W / 2}" height="${H / 2}" fill="${c1}"/>
+                            <rect x="${W / 2}" y="0" width="${W / 2}" height="${H / 2}" fill="${c2}"/>
+                            <rect x="0" y="${H / 2}" width="${W / 2}" height="${H / 2}" fill="${c3}"/>
+                            <rect x="${W / 2}" y="${H / 2}" width="${W / 2}" height="${H / 2}" fill="${c1}"/>
+                        `;
+                    case 'solid':
+                    default:
+                        return `<rect x="0" y="0" width="${W}" height="${H}" fill="${c1}"/>`;
+                }
+            }
+
+            function buildSymbolShape(sym, color, strokeOn) {
+                const strokeAttr = strokeOn ? `stroke="#0A192F" stroke-width="4" stroke-linejoin="round"` : '';
+                switch (sym) {
+                    case 'star5':
+                        return `<polygon points="0,-50 11.8,-16.2 47.6,-15.5 19,6.2 29.4,40.5 0,20 -29.4,40.5 -19,6.2 -47.6,-15.5 -11.8,-16.2" fill="${color}" ${strokeAttr}/>`;
+                    case 'star8':
+                        return `<polygon points="0,-52 10,-22 37,-37 22,-10 52,0 22,10 37,37 10,22 0,52 -10,22 -37,37 -22,10 -52,0 -22,-10 -37,-37 -10,-22" fill="${color}" ${strokeAttr}/>`;
+                    case 'sun-disc':
+                        return `<circle cx="0" cy="0" r="44" fill="${color}" ${strokeAttr}/>`;
+                    case 'sun-rays': {
+                        let rays = '';
+                        for (let i = 0; i < 12; i++) {
+                            const a = (i * 30) * Math.PI / 180;
+                            const a1 = a - 0.11, a2 = a + 0.11;
+                            const x1 = Math.cos(a1) * 30, y1 = Math.sin(a1) * 30;
+                            const x2 = Math.cos(a) * 54, y2 = Math.sin(a) * 54;
+                            const x3 = Math.cos(a2) * 30, y3 = Math.sin(a2) * 30;
+                            rays += `<polygon points="${x1.toFixed(1)},${y1.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)} ${x3.toFixed(1)},${y3.toFixed(1)}" fill="${color}"/>`;
+                        }
+                        return `${rays}<circle cx="0" cy="0" r="26" fill="${color}" ${strokeAttr}/>`;
+                    }
+                    case 'crescent':
+                        return `
+                            <path d="M 8,-44 A 44,44 0 1,0 8,44 A 34,34 0 1,1 8,-44 Z" fill="${color}" ${strokeAttr}/>
+                            <polygon points="24,-18 28,-6 40,-6 30,2 34,14 24,7 14,14 18,2 8,-6 20,-6" fill="${color}" ${strokeAttr}/>
+                        `;
+                    case 'compass':
+                        return `
+                            <circle cx="0" cy="0" r="46" fill="none" stroke="${color}" stroke-width="5"/>
+                            <polygon points="0,-46 10,-10 46,0 10,10 0,46 -10,10 -46,0 -10,-10" fill="${color}" ${strokeAttr}/>
+                            <circle cx="0" cy="0" r="7" fill="${strokeOn ? '#0A192F' : color}"/>
+                        `;
+                    case 'cross-patee':
+                        return `<path d="M-18,-46 L18,-46 L10,-10 L46,-18 L46,18 L10,10 L18,46 L-18,46 L-10,10 L-46,18 L-46,-18 L-10,-10 Z" fill="${color}" ${strokeAttr}/>`;
+                    case 'shield':
+                        return `<path d="M-36,-44 L36,-44 L36,2 C36,26 14,42 0,48 C-14,42 -36,26 -36,2 Z" fill="${color}" ${strokeAttr}/>`;
+                    case 'crown':
+                        return `<path d="M-42,24 L-46,-18 L-20,4 L0,-30 L20,4 L46,-18 L42,24 Z M-42,32 L42,32 L42,42 L-42,42 Z" fill="${color}" ${strokeAttr}/>`;
+                    case 'diamond':
+                        return `<polygon points="0,-44 68,0 0,44 -68,0" fill="${color}" ${strokeAttr}/>`;
+                    case 'anchor':
+                        return `
+                            <circle cx="0" cy="-34" r="10" fill="none" stroke="${color}" stroke-width="7"/>
+                            <rect x="-4.5" y="-24" width="9" height="58" fill="${color}"/>
+                            <rect x="-24" y="-12" width="48" height="8" rx="4" fill="${color}"/>
+                            <path d="M-36,12 C-32,36 -14,44 0,44 C14,44 32,36 36,12 L24,18 C20,30 10,34 0,34 C-10,34 -20,30 -24,18 Z" fill="${color}"/>
+                        `;
+                    case 'none':
+                    default:
+                        return '';
+                }
+            }
+
+            function getSymbolAnchor(pos, layout, W, H) {
+                if (pos === 'hoist') {
+                    return { x: layout === 'chevron' ? W * 0.16 : W * 0.22, y: H * 0.5 };
+                }
+                if (pos === 'canton') {
+                    return { x: W * 0.225, y: H * 0.285 };
+                }
+                if (pos === 'fly') {
+                    return { x: W * 0.78, y: H * 0.5 };
+                }
+                return { x: W * 0.5, y: H * 0.5 };
+            }
+
+            function buildFlagSvgString() {
+                const dim = RATIOS[estado.ratio];
+                const W = dim.w;
+                const H = dim.h;
+                const base = buildLayoutShapes(estado.layout, W, H, estado.c1, estado.c2, estado.c3);
+                let symGroup = '';
+
+                if (estado.sym !== 'none') {
+                    const anchor = getSymbolAnchor(estado.symPos, estado.layout, W, H);
+                    const scale = (H * (estado.symSize / 100)) / 100;
+                    const symMarkup = buildSymbolShape(estado.sym, estado.symColor, estado.symStroke);
+                    symGroup = `<g transform="translate(${anchor.x.toFixed(1)}, ${anchor.y.toFixed(1)}) rotate(${estado.symRot}) scale(${scale.toFixed(3)})">${symMarkup}</g>`;
+                }
+
+                return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}">${base}${symGroup}</svg>`;
+            }
+
+            // =========================================================================
+            // AUDITORIA VEXILOLÓGICA NAVA EM TEMPO REAL (0 a 10)
+            // =========================================================================
+            function hexLuminance(hex) {
+                const c = hex.replace('#', '');
+                const r = parseInt(c.slice(0, 2), 16) / 255;
+                const g = parseInt(c.slice(2, 4), 16) / 255;
+                const b = parseInt(c.slice(4, 6), 16) / 255;
+                const f = v => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+                return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+            }
+
+            function contrastRatio(h1, h2) {
+                const l1 = hexLuminance(h1);
+                const l2 = hexLuminance(h2);
+                return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+            }
+
+            function calcularNavaAudit() {
+                const layoutObj = LAYOUTS.find(l => l.id === estado.layout);
+                const usedColors = new Set([estado.c1]);
+                if (layoutObj.colors >= 2) usedColors.add(estado.c2);
+                if (layoutObj.colors >= 3) usedColors.add(estado.c3);
+                if (estado.sym !== 'none') usedColors.add(estado.symColor);
+
+                const numColors = usedColors.size;
+                const okColors = numColors <= 3;
+
+                // Regra 1: Simplicidade
+                const okSimple = !(estado.layout === 'canton' && estado.sym === 'sun-rays' && estado.symSize > 48);
+
+                // Regra 2: Simbolismo / Foco claro
+                const okSymbolism = estado.sym !== 'none' || layoutObj.colors >= 2;
+
+                // Regra 4: Sem textos/selos poluídos (garantido pela geometria vetorial pura)
+                const okNoText = true;
+
+                // Regra 5: Contraste entre faixas principais
+                let minContrast = 4.5;
+                if (layoutObj.colors >= 2) {
+                    minContrast = Math.min(minContrast, contrastRatio(estado.c1, estado.c2));
+                }
+                if (layoutObj.colors >= 3) {
+                    minContrast = Math.min(minContrast, contrastRatio(estado.c2, estado.c3));
+                }
+                if (estado.sym !== 'none') {
+                    const cSymContrast = Math.max(
+                        contrastRatio(estado.symColor, estado.c1),
+                        contrastRatio(estado.symColor, estado.c2),
+                        contrastRatio(estado.symColor, estado.c3)
+                    );
+                    if (cSymContrast < 1.8) minContrast = Math.min(minContrast, cSymContrast);
+                }
+                const okContrast = minContrast >= 2.2;
+
+                let score = 0;
+                score += okSimple ? 2.0 : 1.0;
+                score += okSymbolism ? 2.0 : 0.8;
+                score += okColors ? 2.5 : (numColors === 4 ? 1.5 : 0.5);
+                score += okNoText ? 1.5 : 0;
+                score += okContrast ? 2.0 : 0.7;
+                score = Math.min(10, Math.round(score * 10) / 10);
+
+                let veredito = 'Excelência Vexilológica';
+                if (score < 7) veredito = 'Precisa de Mais Contraste';
+                else if (score < 8.5) veredito = 'Aprovada com Ressalvas';
+
+                return {
+                    score,
+                    veredito,
+                    checks: [
+                        { ok: okSimple,    label: 'Simplicidade geométrica limpa' },
+                        { ok: okSymbolism, label: 'Composição com foco simbólico' },
+                        { ok: okColors,    label: `${numColors} cor(es) — ideal até 3` },
+                        { ok: okContrast,  label: okContrast ? 'Contraste nítido entre campos' : 'Baixo contraste entre cores' }
+                    ]
+                };
+            }
+
+            // =========================================================================
+            // RENDERIZAÇÃO DOS CONTROLES E ATUALIZAÇÃO GERAL
+            // =========================================================================
+            function buildLayoutMiniSvg(layoutId) {
+                const shapes = buildLayoutShapes(layoutId, 60, 40, '#0A192F', '#F5F2EB', '#C8102E');
+                return `<svg viewBox="0 0 60 40" class="w-full h-7 rounded-[3px] border border-[#0A192F]/20">${shapes}</svg>`;
+            }
+
+            function renderStaticGrids() {
+                document.getElementById('gridLayouts').innerHTML = LAYOUTS.map(l => `
+                    <button type="button" data-layout="${l.id}" title="${l.name}" aria-label="${l.name}"
+                            class="layout-btn p-1.5 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/60 hover:bg-white transition flex flex-col items-center gap-1">
+                        ${buildLayoutMiniSvg(l.id)}
+                        <span class="font-mono text-[9px] text-[#0A192F] truncate w-full text-center">${l.name.split(' ')[0]}</span>
+                    </button>
+                `).join('');
+
+                document.getElementById('gridLayouts').querySelectorAll('.layout-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        estado.layout = btn.getAttribute('data-layout');
+                        if (estado.layout === 'chevron' && estado.symPos === 'center') estado.symPos = 'hoist';
+                        if (estado.layout === 'canton' && estado.symPos === 'center') estado.symPos = 'canton';
+                        atualizarTudo();
+                    });
+                });
+
+                document.getElementById('swatchesRow').innerHTML = SWATCHES.map(sw => `
+                    <button type="button" data-swatch="${sw.hex}" title="${sw.nome} (${sw.hex})" aria-label="${sw.nome}"
+                            class="w-6 h-6 rounded-md border border-[#0A192F]/25 hover:scale-110 transition" style="background:${sw.hex};"></button>
+                `).join('');
+
+                document.getElementById('swatchesRow').querySelectorAll('button[data-swatch]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const hex = btn.getAttribute('data-swatch');
+                        const slot = document.getElementById('targetColorSlot').value;
+                        if (slot === '1') estado.c1 = hex;
+                        else if (slot === '2') estado.c2 = hex;
+                        else if (slot === '3') estado.c3 = hex;
+                        else estado.symColor = hex;
+                        atualizarTudo();
+                    });
+                });
+
+                document.getElementById('gridSymbols').innerHTML = SYMBOLS.map(s => `
+                    <button type="button" data-sym="${s.id}" title="${s.label}" aria-label="${s.label}"
+                            class="sym-btn min-h-[44px] p-1.5 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/60 hover:bg-white text-[#0A192F] transition flex flex-col items-center justify-center gap-0.5">
+                        <i class="${s.icon} text-base"></i>
+                        <span class="font-mono text-[9px] truncate w-full text-center">${s.label}</span>
+                    </button>
+                `).join('');
+
+                document.getElementById('gridSymbols').querySelectorAll('.sym-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        estado.sym = btn.getAttribute('data-sym');
+                        atualizarTudo();
+                    });
+                });
+            }
+
+            function atualizarUrl() {
+                const urlObj = new URL(window.location.href);
+                urlObj.searchParams.set('n', estado.nome);
+                urlObj.searchParams.set('r', estado.ratio);
+                urlObj.searchParams.set('l', estado.layout);
+                urlObj.searchParams.set('c1', estado.c1.replace('#', ''));
+                urlObj.searchParams.set('c2', estado.c2.replace('#', ''));
+                urlObj.searchParams.set('c3', estado.c3.replace('#', ''));
+                urlObj.searchParams.set('sym', estado.sym);
+                urlObj.searchParams.set('sc', estado.symColor.replace('#', ''));
+                urlObj.searchParams.set('sz', String(estado.symSize));
+                urlObj.searchParams.set('rot', String(estado.symRot));
+                urlObj.searchParams.set('pos', estado.symPos);
+                if (estado.symStroke) urlObj.searchParams.set('st', '1');
+                else urlObj.searchParams.delete('st');
+                window.history.replaceState({}, '', urlObj.toString());
+            }
+
+            function atualizarTudo() {
+                const dim = RATIOS[estado.ratio];
+                const layoutObj = LAYOUTS.find(l => l.id === estado.layout);
+
+                // Sincroniza controles de formulário
+                document.getElementById('inputNome').value = estado.nome;
+                document.getElementById('selectRatio').value = estado.ratio;
+                document.getElementById('badgeRatio').textContent = estado.ratio;
+                document.getElementById('labelNomeTerritorio').textContent = estado.nome.trim() || 'Bandeira Sem Nome';
+                document.getElementById('labelLayoutAtual').textContent = layoutObj.name;
+
+                document.getElementById('color1').value = estado.c1;
+                document.getElementById('hex1').textContent = estado.c1;
+                document.getElementById('color2').value = estado.c2;
+                document.getElementById('hex2').textContent = estado.c2;
+                document.getElementById('color3').value = estado.c3;
+                document.getElementById('hex3').textContent = estado.c3;
+                document.getElementById('colorSym').value = estado.symColor;
+
+                document.getElementById('wrapColor2').classList.toggle('opacity-45', layoutObj.colors < 2);
+                document.getElementById('wrapColor3').classList.toggle('opacity-45', layoutObj.colors < 3);
+
+                document.getElementById('rangeSymSize').value = estado.symSize;
+                document.getElementById('valSymSize').textContent = `${estado.symSize}%`;
+                document.getElementById('rangeSymRot').value = estado.symRot;
+                document.getElementById('valSymRot').textContent = `${estado.symRot}°`;
+                document.getElementById('selectSymPos').value = estado.symPos;
+                document.getElementById('checkSymStroke').checked = estado.symStroke;
+                document.getElementById('symbolControls').classList.toggle('opacity-45', estado.sym === 'none');
+
+                // Destaca botão de layout e símbolo ativos
+                document.querySelectorAll('.layout-btn').forEach(btn => {
+                    const active = btn.getAttribute('data-layout') === estado.layout;
+                    btn.className = active
+                        ? 'layout-btn p-1.5 rounded-xl border-2 border-[#C8102E] bg-white shadow-xs transition flex flex-col items-center gap-1'
+                        : 'layout-btn p-1.5 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/60 hover:bg-white transition flex flex-col items-center gap-1';
+                });
+
+                document.querySelectorAll('.sym-btn').forEach(btn => {
+                    const active = btn.getAttribute('data-sym') === estado.sym;
+                    btn.className = active
+                        ? 'sym-btn min-h-[44px] p-1.5 rounded-xl border-2 border-[#C8102E] bg-[#0A192F] text-white transition flex flex-col items-center justify-center gap-0.5'
+                        : 'sym-btn min-h-[44px] p-1.5 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/60 hover:bg-white text-[#0A192F] transition flex flex-col items-center justify-center gap-0.5';
+                });
+
+                // Renderiza SVG da bandeira na prancheta
+                const stage = document.getElementById('flagStage');
+                stage.style.aspectRatio = dim.css;
+                const svgEl = document.getElementById('flagSvg');
+                svgEl.setAttribute('viewBox', `0 0 ${dim.w} ${dim.h}`);
+                const base = buildLayoutShapes(estado.layout, dim.w, dim.h, estado.c1, estado.c2, estado.c3);
+                let symGroup = '';
+                if (estado.sym !== 'none') {
+                    const anchor = getSymbolAnchor(estado.symPos, estado.layout, dim.w, dim.h);
+                    const scale = (dim.h * (estado.symSize / 100)) / 100;
+                    const symMarkup = buildSymbolShape(estado.sym, estado.symColor, estado.symStroke);
+                    symGroup = `<g transform="translate(${anchor.x.toFixed(1)}, ${anchor.y.toFixed(1)}) rotate(${estado.symRot}) scale(${scale.toFixed(3)})">${symMarkup}</g>`;
+                }
+                svgEl.innerHTML = base + symGroup;
+
+                // Atualiza auditoria NAVA
+                const nava = calcularNavaAudit();
+                document.getElementById('navaScore').textContent = nava.score.toFixed(1);
+                document.getElementById('navaVeredito').textContent = nava.veredito;
+                document.getElementById('navaChecklist').innerHTML = nava.checks.map(ch => `
+                    <div class="px-3 py-2 rounded-xl border ${ch.ok ? 'bg-[#A8C3A6]/20 border-[#0A192F]/12 text-[#0A192F]' : 'bg-[#C8102E]/10 border-[#C8102E]/25 text-[#C8102E]'} flex items-center gap-2">
+                        <i class="ph-bold ${ch.ok ? 'ph-check-circle text-[#0A192F]' : 'ph-warning-circle text-[#C8102E]'} text-base shrink-0"></i>
+                        <span class="font-medium leading-tight">${ch.label}</span>
+                    </div>
+                `).join('');
+
+                atualizarUrl();
+
+                // Atualiza link viral do WhatsApp com a bandeira parametrizada
+                const nomeLimpo = estado.nome.trim() || 'Minha Nação';
+                const msg = `Criei a bandeira "${nomeLimpo}" (nota ${nava.score.toFixed(1)}/10 nas regras da NAVA) no VitaleGeo! Veja e remixe a sua: ${window.location.href}`;
+                document.getElementById('btnShareWhatsApp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
+                atualizarPatternNoAtlas();
+            }
+
+            // =========================================================================
+            // EXPORTAÇÃO SVG & PNG
+            // =========================================================================
+            function nomeArquivoBase() {
+                const slug = norm(estado.nome).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                return slug || 'bandeira-vitalegeo';
+            }
+
+            document.getElementById('btnDownloadSvg').addEventListener('click', () => {
+                const svgStr = buildFlagSvgString();
+                const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${nomeArquivoBase()}.svg`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+
+            document.getElementById('btnDownloadPng').addEventListener('click', () => {
+                const dim = RATIOS[estado.ratio];
+                const exportW = 1800;
+                const exportH = Math.round((dim.h / dim.w) * exportW);
+                const svgStr = buildFlagSvgString();
+                const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(svgBlob);
+
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = exportW;
+                    canvas.height = exportH;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, exportW, exportH);
+                    URL.revokeObjectURL(url);
+
+                    canvas.toBlob((pngBlob) => {
+                        if (!pngBlob) return;
+                        const pngUrl = URL.createObjectURL(pngBlob);
+                        const a = document.createElement('a');
+                        a.href = pngUrl;
+                        a.download = `${nomeArquivoBase()}.png`;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(pngUrl);
+                    }, 'image/png');
+                };
+                img.src = url;
+            });
+
+            // =========================================================================
+            // EVENTOS DOS CONTROLES DO ESTÚDIO
+            // =========================================================================
+            document.getElementById('inputNome').addEventListener('input', (e) => {
+                estado.nome = e.target.value;
+                atualizarTudo();
+            });
+            document.getElementById('selectRatio').addEventListener('change', (e) => {
+                estado.ratio = e.target.value;
+                atualizarTudo();
+            });
+            ['1','2','3'].forEach(n => {
+                document.getElementById(`color${n}`).addEventListener('input', (e) => {
+                    estado[`c${n}`] = e.target.value.toUpperCase();
+                    atualizarTudo();
+                });
+            });
+            document.getElementById('colorSym').addEventListener('input', (e) => {
+                estado.symColor = e.target.value.toUpperCase();
+                atualizarTudo();
+            });
+            document.getElementById('rangeSymSize').addEventListener('input', (e) => {
+                estado.symSize = parseInt(e.target.value, 10);
+                atualizarTudo();
+            });
+            document.getElementById('rangeSymRot').addEventListener('input', (e) => {
+                estado.symRot = parseInt(e.target.value, 10);
+                atualizarTudo();
+            });
+            document.getElementById('selectSymPos').addEventListener('change', (e) => {
+                estado.symPos = e.target.value;
+                atualizarTudo();
+            });
+            document.getElementById('checkSymStroke').addEventListener('change', (e) => {
+                estado.symStroke = e.target.checked;
+                atualizarTudo();
+            });
+
+            document.getElementById('btnInverterCores').addEventListener('click', () => {
+                const tmp = estado.c1;
+                estado.c1 = estado.c2;
+                estado.c2 = estado.c3;
+                estado.c3 = tmp;
+                atualizarTudo();
+            });
+
+            document.getElementById('btnToggleTecido').addEventListener('click', (e) => {
+                estado.showCloth = !estado.showCloth;
+                document.getElementById('overlayTecido').classList.toggle('hidden', !estado.showCloth);
+                e.currentTarget.setAttribute('aria-pressed', estado.showCloth ? 'true' : 'false');
+                e.currentTarget.className = estado.showCloth
+                    ? 'min-h-[36px] px-2.5 py-1 rounded-lg bg-[#0A192F] text-white font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition'
+                    : 'min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition';
+            });
+
+            document.getElementById('btnToggleGrade').addEventListener('click', (e) => {
+                estado.showGrid = !estado.showGrid;
+                document.getElementById('overlayGrade').classList.toggle('hidden', !estado.showGrid);
+                e.currentTarget.setAttribute('aria-pressed', estado.showGrid ? 'true' : 'false');
+                e.currentTarget.className = estado.showGrid
+                    ? 'min-h-[36px] px-2.5 py-1 rounded-lg bg-[#0A192F] text-white font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition'
+                    : 'min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB] text-[#0A192F] border border-[#0A192F]/15 font-mono text-[11px] font-bold inline-flex items-center gap-1.5 transition';
+            });
+
+            document.getElementById('btnAleatorio').addEventListener('click', () => {
+                const paletas = [
+                    ['#0A192F', '#F5F2EB', '#C8102E'],
+                    ['#0057B7', '#FFD700', '#FFFFFF'],
+                    ['#111827', '#A8C3A6', '#F5F2EB'],
+                    ['#006600', '#FFFFFF', '#D4AF37'],
+                    ['#C8102E', '#FFFFFF', '#0A192F'],
+                    ['#003399', '#F5F2EB', '#EA580C']
+                ];
+                const pal = paletas[Math.floor(Math.random() * paletas.length)];
+                const lay = LAYOUTS[Math.floor(Math.random() * LAYOUTS.length)];
+                const syms = SYMBOLS.filter(s => s.id !== 'none');
+                const sym = syms[Math.floor(Math.random() * syms.length)];
+
+                estado.layout = lay.id;
+                estado.c1 = pal[0];
+                estado.c2 = pal[1];
+                estado.c3 = pal[2];
+                estado.sym = sym.id;
+                estado.symColor = contrastRatio(pal[0], '#F5F2EB') > 4 ? '#F5F2EB' : '#0A192F';
+                estado.symPos = lay.id === 'chevron' ? 'hoist' : (lay.id === 'canton' ? 'canton' : 'center');
+                estado.symSize = 30;
+                estado.symRot = 0;
+                atualizarTudo();
+            });
+
+            document.getElementById('btnCopiarLink').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const txt = document.getElementById('txtCopiarLink');
+                    txt.textContent = 'Copiado!';
+                    setTimeout(() => { txt.textContent = 'Copiar link'; }, 1800);
+                } catch (e) {}
+            });
+
+            // =========================================================================
+            // INSPIRAÇÕES DE PAÍSES REAIS (CEREBROGEO + /assets/flags/)
+            // =========================================================================
+            function aplicarInspiracaoPais(p) {
+                const preset = PRESETS_PAISES[p.iso2];
+                if (preset) {
+                    estado.layout = preset.layout;
+                    estado.c1 = preset.c1;
+                    estado.c2 = preset.c2;
+                    estado.c3 = preset.c3;
+                    estado.sym = preset.sym;
+                    estado.symColor = preset.symColor;
+                    estado.ratio = preset.ratio;
+                    estado.symSize = preset.symSize;
+                    estado.symPos = preset.symPos;
+                    estado.symRot = 0;
+                } else {
+                    // Deriva layout determinístico e harmônico por país do CerebroGeo
+                    const hash = p.iso2.charCodeAt(0) * 31 + p.iso2.charCodeAt(1);
+                    const layoutsBase = ['tricolor-v', 'tricolor-h', 'bicolor-h', 'chevron', 'nordic', 'diagonal'];
+                    const paletas = [
+                        ['#0A192F', '#F5F2EB', '#C8102E'],
+                        ['#006600', '#FCD116', '#CE1126'],
+                        ['#0038A8', '#FFFFFF', '#D52B1E'],
+                        ['#111827', '#FCD116', '#009B3A'],
+                        ['#005293', '#FFFFFF', '#A8C3A6']
+                    ];
+                    const pal = paletas[hash % paletas.length];
+                    estado.layout = layoutsBase[hash % layoutsBase.length];
+                    estado.c1 = pal[0];
+                    estado.c2 = pal[1];
+                    estado.c3 = pal[2];
+                    estado.sym = (hash % 3 === 0) ? 'star5' : 'none';
+                    estado.symColor = pal[1];
+                    estado.symPos = estado.layout === 'chevron' ? 'hoist' : 'center';
+                    estado.ratio = '2:3';
+                }
+                estado.nome = `Nova ${p.nome}`;
+                atualizarTudo();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function renderPaisesGrid() {
+                const q = norm(document.getElementById('buscaPais').value);
+                const cont = document.getElementById('filtroContinente').value;
+
+                const lista = PAISES.filter(p => {
+                    if (cont !== 'all' && p.continente !== cont) return false;
+                    if (q && !norm(p.nome).includes(q) && !norm(p.capital).includes(q)) return false;
+                    return true;
+                });
+
+                document.getElementById('tabStatusLabel').textContent = `${lista.length} bandeiras disponíveis`;
+
+                const grid = document.getElementById('gridPaises');
+                if (lista.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full p-6 text-center text-xs text-[#53647C]">Nenhum país encontrado.</div>';
+                    return;
+                }
+
+                grid.innerHTML = lista.map(p => `
+                    <button type="button" data-inspire="${p.iso2}"
+                            class="p-3 rounded-xl border border-[#0A192F]/12 bg-[#F5F2EB]/45 hover:bg-white hover:border-[#C8102E]/40 transition flex items-center justify-between gap-2.5 text-left group">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <img src="/assets/flags/${p.iso2}.svg" alt="" class="w-9 h-6 object-cover rounded-[3px] border border-[#0A192F]/20 shrink-0">
+                            <div class="min-w-0">
+                                <div class="font-heading font-bold text-xs text-[#0A192F] truncate">${p.nome}</div>
+                                <div class="font-mono text-[10px] text-[#53647C] truncate">${p.capital} · ${p.continente}</div>
+                            </div>
+                        </div>
+                        <span class="px-2 py-1 rounded-md bg-white group-hover:bg-[#0A192F] text-[#0A192F] group-hover:text-white border border-[#0A192F]/15 font-mono text-[10px] font-bold shrink-0 transition">
+                            Remixar
+                        </span>
+                    </button>
+                `).join('');
+
+                grid.querySelectorAll('button[data-inspire]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const p = paisByIso.get(btn.getAttribute('data-inspire'));
+                        if (p) aplicarInspiracaoPais(p);
+                    });
+                });
+            }
+
+            ['buscaPais', 'filtroContinente'].forEach(id => {
+                document.getElementById(id).addEventListener('input', renderPaisesGrid);
+                document.getElementById(id).addEventListener('change', renderPaisesGrid);
+            });
+
+            // =========================================================================
+            // ATLAS MUNDIAL D3 + TOPOJSON (/data/maps/countries-110m.json)
+            // =========================================================================
+            let mapInitialized = false;
+            let worldCache = null;
+            let svgMapa, gMapa, gPaises, zoomBehavior;
+            const featureByIso = new Map();
+            const isoByFeature = new Map();
+
+            function mapearFeatures(features) {
+                featureByIso.clear();
+                isoByFeature.clear();
+                const usados = new Set();
+                const fCyprus = features.find(f => String(f.id) === '196');
+                if (fCyprus) { featureByIso.set('cy', fCyprus); isoByFeature.set(fCyprus, 'cy'); usados.add(fCyprus); }
+                const fKosovo = features.find(f => f.properties && f.properties.name === 'Kosovo');
+                if (fKosovo) { featureByIso.set('xk', fKosovo); isoByFeature.set(fKosovo, 'xk'); usados.add(fKosovo); }
+
+                PAISES.forEach(p => {
+                    if (featureByIso.has(p.iso2)) return;
+                    let match = features.find(ft => !usados.has(ft) && d3.geoContains(ft, [p.lng, p.lat]));
+                    if (!match) {
+                        let best = null, bestD = Infinity;
+                        features.forEach(ft => {
+                            if (usados.has(ft)) return;
+                            const c = d3.geoCentroid(ft);
+                            const d = Math.hypot(c[0] - p.lng, c[1] - p.lat);
+                            if (d < bestD) { bestD = d; best = ft; }
+                        });
+                        if (bestD < 4.5) match = best;
+                    }
+                    if (match) {
+                        featureByIso.set(p.iso2, match);
+                        isoByFeature.set(match, p.iso2);
+                        usados.add(match);
+                    }
+                });
+            }
+
+            function atualizarPatternNoAtlas() {
+                if (!mapInitialized || !svgMapa || !gPaises) return;
+                const svgStr = buildFlagSvgString();
+                const encoded = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+                let defs = svgMapa.select('defs');
+                if (defs.empty()) defs = svgMapa.append('defs');
+
+                let pat = defs.select('#customFlagPattern');
+                if (pat.empty()) {
+                    pat = defs.append('pattern')
+                        .attr('id', 'customFlagPattern')
+                        .attr('patternContentUnits', 'objectBoundingBox')
+                        .attr('width', 1)
+                        .attr('height', 1);
+                    pat.append('image')
+                        .attr('width', 1)
+                        .attr('height', 1)
+                        .attr('preserveAspectRatio', 'xMidYMid slice');
+                }
+                pat.select('image').attr('href', encoded);
+
+                gPaises.selectAll('path')
+                    .attr('class', d => {
+                        const iso = isoByFeature.get(d);
+                        return (iso && iso === estado.selectedAtlasIso) ? 'country-poly country-selected' : 'country-poly';
+                    })
+                    .style('fill', d => {
+                        const iso = isoByFeature.get(d);
+                        return (iso && iso === estado.selectedAtlasIso) ? 'url(#customFlagPattern)' : null;
+                    });
+            }
+
+            function inicializarMapa(world) {
+                const features = topojson.feature(world, world.objects.countries).features
+                    .filter(f => !(f.properties && f.properties.name === 'Antarctica'));
+                mapearFeatures(features);
+
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 440;
+
+                svgMapa = d3.select('#svgMapa').attr('viewBox', `0 0 ${w} ${h}`);
+                svgMapa.selectAll('*').remove();
+
+                const projecao = d3.geoNaturalEarth1().fitExtent([[14, 14], [w - 14, h - 14]], {
+                    type: 'FeatureCollection',
+                    features
+                });
+                const pathGen = d3.geoPath().projection(projecao);
+
+                gMapa = svgMapa.append('g');
+                gMapa.append('path')
+                    .datum(d3.geoGraticule().step([20, 20]))
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.4)
+                    .attr('stroke-opacity', 0.12)
+                    .attr('stroke-dasharray', '3,4');
+
+                gPaises = gMapa.append('g');
+                const tooltip = document.getElementById('mapTooltip');
+
+                gPaises.selectAll('path')
+                    .data(features)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'country-poly')
+                    .attr('d', pathGen)
+                    .on('mouseenter', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        const p = iso ? paisByIso.get(iso) : null;
+                        if (p) {
+                            document.getElementById('ttFlag').src = `/assets/flags/${p.iso2}.svg`;
+                            document.getElementById('ttFlag').classList.remove('hidden');
+                            document.getElementById('ttNome').textContent = p.nome;
+                            document.getElementById('ttCapital').textContent = `Capital: ${p.capital}`;
+                        } else {
+                            document.getElementById('ttFlag').classList.add('hidden');
+                            document.getElementById('ttNome').textContent = (d.properties && d.properties.name) || 'Território';
+                            document.getElementById('ttCapital').textContent = '';
+                        }
+                        tooltip.classList.remove('hidden');
+                    })
+                    .on('mouseleave', () => tooltip.classList.add('hidden'))
+                    .on('click', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        if (!iso || !paisByIso.has(iso)) return;
+                        estado.selectedAtlasIso = iso;
+                        const p = paisByIso.get(iso);
+                        document.getElementById('atlasRealFlag').src = `/assets/flags/${p.iso2}.svg`;
+                        document.getElementById('atlasPaisNome').textContent = p.nome;
+                        document.getElementById('atlasPaisMeta').textContent = `${p.capital} · ${p.area_km2.toLocaleString('pt-BR')} km²`;
+                        document.getElementById('atlasPaisFato').textContent = p.fato || '';
+                        document.getElementById('btnRemixarAtlas').onclick = () => aplicarInspiracaoPais(p);
+                        document.getElementById('atlasInspector').classList.remove('hidden');
+                        atualizarPatternNoAtlas();
+                    });
+
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 8])
+                    .on('zoom', (event) => {
+                        gMapa.attr('transform', event.transform);
+                        gPaises.selectAll('path').style('stroke-width', (0.55 / Math.sqrt(event.transform.k)) + 'px');
+                    });
+
+                svgMapa.call(zoomBehavior);
+                document.getElementById('btnZoomIn').onclick = () => svgMapa.transition().duration(250).call(zoomBehavior.scaleBy, 1.5);
+                document.getElementById('btnZoomOut').onclick = () => svgMapa.transition().duration(250).call(zoomBehavior.scaleBy, 0.67);
+                document.getElementById('btnResetZoom').onclick = () => svgMapa.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+
+                mapInitialized = true;
+                atualizarPatternNoAtlas();
+            }
+
+            async function garantirMapaCarregado() {
+                if (mapInitialized) return;
+                try {
+                    if (!worldCache) {
+                        let res = await fetch('/data/maps/countries-110m.json');
+                        if (!res.ok) res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                        worldCache = await res.json();
+                    }
+                    document.getElementById('loadingMap').style.display = 'none';
+                    inicializarMapa(worldCache);
+                } catch (err) {
+                    document.getElementById('loadingMap').innerHTML = '<span class="text-xs font-mono text-[#C8102E]">Não foi possível carregar o atlas vetorial.</span>';
+                }
+            }
+
+            // Abas do Explorador
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.activeTab = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.tab-btn').forEach(b => {
+                        const active = b === btn;
+                        b.setAttribute('aria-selected', active ? 'true' : 'false');
+                        b.className = active
+                            ? 'tab-btn min-h-[44px] sm:min-h-[40px] px-3.5 py-2 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition'
+                            : 'tab-btn min-h-[44px] sm:min-h-[40px] px-3.5 py-2 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition';
+                    });
+
+                    document.getElementById('panelInspiracoes').classList.toggle('hidden', estado.activeTab !== 'inspiracoes');
+                    document.getElementById('panelAtlas').classList.toggle('hidden', estado.activeTab !== 'atlas');
+
+                    if (estado.activeTab === 'atlas') {
+                        document.getElementById('tabStatusLabel').textContent = 'Atlas vetorial interativo';
+                        garantirMapaCarregado();
+                    } else {
+                        renderPaisesGrid();
+                    }
+                });
+            });
+
+            // Inicialização
+            window.addEventListener('DOMContentLoaded', () => {
+                renderStaticGrids();
+                atualizarTudo();
+                renderPaisesGrid();
+            });
+        })();
+    </script>
+</body>
+</html>

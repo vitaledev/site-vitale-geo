@@ -118,5 +118,12 @@ const toolsDB = [
         icon: "ph-bold ph-passport",
         cover: "/assets/img/ferramentas/forca-passaportes.svg",
         link: "/ferramentas/forca-passaportes/"
+    },
+    {
+        titulo: "Criador e Estilizador de Bandeiras",
+        desc: "Monte bandeiras personalizadas com divisões heráldicas, símbolos vetoriais, auditoria NAVA em tempo real e exportação em SVG e PNG.",
+        icon: "ph-bold ph-flag-pennant",
+        cover: "/assets/img/ferramentas/criador-bandeiras.svg",
+        link: "/ferramentas/criador-bandeiras/"
     }
 ];

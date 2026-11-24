@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <!-- Fundo Bege Cartográfico -->
+  <rect width="1200" height="700" fill="#F5F2EB"/>
+
+  <!-- Curvas Topográficas Contínuas em Verde Sálvia -->
+  <path d="M-40 560C160 500 320 620 520 540s280-110 440-30 190 70 280 20v190H-40V560Z" fill="#A8C3A6" opacity="0.26"/>
+  <path d="M-40 140C180 90 360 190 580 120s290-60 440 20 150 50 220 10" stroke="#A8C3A6" stroke-width="2" opacity="0.55"/>
+  <path d="M-40 175C190 125 370 225 590 155s290-60 440 20 150 50 220 10" stroke="#A8C3A6" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Grade de Meridianos e Paralelos Cartográficos -->
+  <g stroke="#0A192F" stroke-width="1.5" opacity="0.10">
+    <path d="M0 110h1200M0 210h1200M0 310h1200M0 410h1200M0 510h1200M0 610h1200"/>
+    <path d="M120 0v700M240 0v700M360 0v700M480 0v700M600 0v700M720 0v700M840 0v700M960 0v700M1080 0v700"/>
+  </g>
+
+  <!-- Telemetria Superior -->
+  <text x="80" y="135" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" letter-spacing="4">VITALEGEO · ESTÚDIO VEXILOLÓGICO</text>
+
+  <!-- Tipografia Monumental à Esquerda -->
+  <text x="74" y="336" fill="#0A192F" font-family="'Orbitron', Arial, sans-serif" font-size="148" font-weight="900" letter-spacing="-4">2<tspan fill="#C8102E">:</tspan>3</text>
+  <text x="80" y="405" fill="#0A192F" font-family="'Montserrat', Arial, sans-serif" font-size="38" font-weight="800" letter-spacing="0.5">CRIADOR DE BANDEIRAS</text>
+  <text x="80" y="446" fill="#53647C" font-family="'Montserrat', Arial, sans-serif" font-size="22" font-weight="600">Desenho heráldico, auditoria NAVA e atlas</text>
+
+  <!-- Diagrama Construtivo de Bandeira à Direita -->
+  <g transform="translate(880, 345)">
+    <!-- Anéis de Precisão -->
+    <circle cx="0" cy="0" r="222" stroke="#0A192F" stroke-width="1.5" stroke-dasharray="5 7" opacity="0.22"/>
+    <circle cx="0" cy="0" r="172" stroke="#A8C3A6" stroke-width="2" opacity="0.45"/>
+
+    <!-- Prancheta da Bandeira em Construção (330x220 = 2:3) -->
+    <g transform="translate(-165, -110)">
+      <!-- Sombra Sólida -->
+      <rect x="10" y="12" width="330" height="220" rx="10" fill="#0A192F" opacity="0.16"/>
+
+      <!-- Bandeira Base Recortada -->
+      <clipPath id="clipFlag">
+        <rect x="0" y="0" width="330" height="220" rx="10"/>
+      </clipPath>
+      <g clip-path="url(#clipFlag)">
+        <!-- Campo Superior e Inferior -->
+        <rect x="0" y="0" width="330" height="110" fill="#0A192F"/>
+        <rect x="0" y="110" width="330" height="110" fill="#F5F2EB"/>
+        <!-- Chevrão Lateral Vermelho Destaque -->
+        <polygon points="0,0 145,110 0,220" fill="#C8102E"/>
+        <!-- Faixa Fina Separadora em Verde Sálvia -->
+        <rect x="145" y="102" width="185" height="16" fill="#A8C3A6"/>
+        <!-- Estrela/Rosa Central no Chevrão -->
+        <polygon points="54,84 61,103 81,103 65,115 71,134 54,122 37,134 43,115 27,103 47,103" fill="#F5F2EB"/>
+      </g>
+
+      <!-- Grade Construtiva Vexilológica -->
+      <line x1="0" y1="110" x2="330" y2="110" stroke="#0A192F" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.45"/>
+      <line x1="165" y1="-16" x2="165" y2="236" stroke="#C8102E" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.7"/>
+
+      <!-- Moldura de Alta Precisão -->
+      <rect x="0" y="0" width="330" height="220" rx="10" stroke="#0A192F" stroke-width="4" fill="none"/>
+
+      <!-- Cotas Técnicas -->
+      <text x="0" y="250" fill="#0A192F" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700">SVG · PNG</text>
+      <text x="330" y="250" fill="#C8102E" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" text-anchor="end">NAVA 10/10</text>
+    </g>
+
+    <!-- Selo de Pontuação Vexilológica -->
+    <g transform="translate(125, -108)">
+      <circle cx="0" cy="0" r="36" fill="#FFFFFF" stroke="#0A192F" stroke-width="3"/>
+      <text x="0" y="-3" fill="#0A192F" font-family="'Orbitron', sans-serif" font-size="16" font-weight="900" text-anchor="middle">10</text>
+      <text x="0" y="13" fill="#C8102E" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">NAVA</text>
+    </g>
+  </g>
+
+  <!-- Bússola Minimalista Superior Direita -->
+  <g transform="translate(1105, 85)">
+    <circle cx="0" cy="0" r="26" stroke="#0A192F" stroke-width="1.5" opacity="0.35"/>
+    <polygon points="0,-20 5,0 0,20 -5,0" fill="#0A192F"/>
+    <polygon points="0,-20 5,0 -5,0" fill="#C8102E"/>
+    <text x="0" y="-26" fill="#C8102E" font-family="'Orbitron', sans-serif" font-size="11" font-weight="800" text-anchor="middle">N</text>
+  </g>
+
+  <!-- Rodapé Editorial -->
+  <text x="80" y="625" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600" letter-spacing="3">DIVISÕES HERÁLDICAS, SÍMBOLOS &amp; EXPORTAÇÃO VETORIAL</text>
+</svg>
