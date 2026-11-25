@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Como Um Tratado de 1824 Entre Londres e Haia Desenhou o Maior Arquipélago do Mundo?",
+        categoria: "História",
+        data: "24 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-da-indonesia-tratado-anglo-holandes-1824-fronteiras.png",
+        link: "historia-da-indonesia-tratado-anglo-holandes-1824-fronteiras/",
+        resumo: "Do Tratado Anglo-Holandês de 1824 ao Acordo de Nova York de 1962: como potências coloniais e guerras moldaram as 17.508 ilhas e os 1.904.569 km² da Indonésia."
+    },
+    {
+        titulo: "Como o Maior País Sem Saída Para o Mar Se Equilibra Entre Rússia, China e o Mar Cáspio?",
+        categoria: "Geopolítica",
+        data: "24 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-do-cazaquistao-russia-china-mar-caspio-corredor-meio.jpg",
+        link: "geopolitica-do-cazaquistao-russia-china-mar-caspio-corredor-meio/",
+        resumo: "Com 2.724.900 km², 7.644 km de divisa russa e o Porto de Aktau, o Cazaquistão usa o Corredor do Meio e a Convenção do Cáspio de 2018 para ganhar autonomia."
+    },
+    {
+        titulo: "Por Que o Maior Produtor de Petróleo da África Importava Combustível Até Construir Uma Megarrefinaria em Lagos?",
+        categoria: "Geoeconomia",
+        data: "24 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-nigeria-petroleo-delta-niger-refinaria-dangote.jpg",
+        link: "geoeconomia-da-nigeria-petroleo-delta-niger-refinaria-dangote/",
+        resumo: "Com 37 bilhões de barris em reservas e 210 Tcf de gás, a Nigéria rompeu décadas de importação com os 650 mil barris/dia da Refinaria Dangote e o Porto de Lekki."
+    },
+    {
+        titulo: "Por Que o Japão Reduziu Seu Mar Territorial Para Três Milhas em Um Estreito Usado Pela Frota Russa?",
+        categoria: "Geopolítica",
+        data: "24 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-la-perouse-soya-japao-russia-sacalina-pacifico.jpg",
+        link: "estreito-de-la-perouse-soya-japao-russia-sacalina-pacifico/",
+        resumo: "Com 42 km entre Hokkaido e Sacalina, o Estreito de La Pérouse (Soya) tem mar territorial japonês reduzido a 3 milhas náuticas para liberar o trânsito entre o Mar do Japão e o Pacífico."
+    },
+    {
+        titulo: "Por Que Submarinos e Superpetroleiros Trocam Malaca Por Um Canal Profundo Diante da Nova Capital da Indonésia?",
+        categoria: "Geopolítica",
+        data: "24 Nov 2026 - 14:30",
+        img: "/assets/img/blog/estreito-de-makassar-borneu-sulawesi-rotas-submarinas-nusantara.png",
+        link: "estreito-de-makassar-borneu-sulawesi-rotas-submarinas-nusantara/",
+        resumo: "Com até 2.500 metros de profundidade e rota oficial ALKI II, o Estreito de Makassar absorve navios gigantes e fica exatamente diante da nova capital Nusantara."
+    },
+    {
+        titulo: "Como Um Rio de Duzentos Quilômetros e Uma Costa de Cinquenta e Oito Quilômetros Decidiram Uma Guerra Entre Irã e Iraque?",
+        categoria: "Fronteiras",
+        data: "24 Nov 2026 - 16:15",
+        img: "/assets/img/blog/shatt-al-arab-fronteira-fluvial-ira-iraque-acordo-argel-1975.jpg",
+        link: "shatt-al-arab-fronteira-fluvial-ira-iraque-acordo-argel-1975/",
+        resumo: "Do Tratado de Erzurum de 1847 ao Acordo de Argel de 1975 pelo talvegue do Shatt al-Arab: entenda por que a única saída marítima do Iraque detonou uma guerra de oito anos."
+    },
+    {
+        titulo: "Como Um Meridiano Riscado em 1881 Cortou a Terra do Fogo Ao Meio e Isolou Uma Província Por Terra?",
+        categoria: "Fronteiras",
+        data: "24 Nov 2026 - 18:00",
+        img: "/assets/img/blog/terra-do-fogo-fronteira-meridiano-68-chile-argentina-exclave.jpg",
+        link: "terra-do-fogo-fronteira-meridiano-68-chile-argentina-exclave/",
+        resumo: "Traçada em 23 de julho de 1881 do Cabo Espírito Santo ao Canal de Beagle, a linha reta dividiu a Ilha Grande da Terra do Fogo e obrigou argentinos a cruzar o Chile e o Estreito de Magalhães."
+    },
+    {
+        titulo: "Por Que o Nepal Vive Quinze Minutos à Frente da Índia em Um Fuso Horário Ancorado em Uma Montanha?",
+        categoria: "Curiosidades",
+        data: "24 Nov 2026 - 19:30",
+        img: "/assets/img/blog/fuso-horario-do-nepal-utc-545-gaurishankar-anomalia.png",
+        link: "fuso-horario-do-nepal-utc-545-gaurishankar-anomalia/",
+        resumo: "Adotado em 1º de janeiro de 1986 e calculado sobre o meridiano do Monte Gaurishankar (86°15'E), o horário UTC+5:45 coloca o Nepal 15 minutos à frente da Índia o ano todo."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Bauxita do Mundo que Controlam o Alumínio Global?",
+        categoria: "Rankings",
+        data: "24 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-bauxita-do-mundo-aluminio-usgs.jpg",
+        link: "ranking-maiores-reservas-de-bauxita-do-mundo-aluminio-usgs/",
+        resumo: "Segundo o USGS, a Guiné concentra 7,4 bilhões de toneladas de bauxita — quase um quarto do planeta — seguida por Austrália, Vietnã, Indonésia, Jamaica e Brasil."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Populações Mais Envelhecidas do Mundo Segundo a ONU?",
+        categoria: "Rankings",
+        data: "24 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-mais-envelhecidos-do-mundo-onu.png",
+        link: "ranking-paises-mais-envelhecidos-do-mundo-onu/",
+        resumo: "De acordo com o World Population Prospects da ONU, Mônaco, Japão, San Marino, Itália, Portugal, Grécia, Espanha e Coreia do Sul lideram o envelhecimento demográfico global."
+    },
+    {
         titulo: "Como o Antigo Sião Cedeu Metade do Território Para Sobreviver Sem Nunca Ser Colonizado?",
         categoria: "História",
         data: "23 Nov 2026 - 07:30",
