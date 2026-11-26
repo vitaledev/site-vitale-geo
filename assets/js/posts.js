@@ -3,6 +3,86 @@
 
 const blogPosts = [
     {
+        titulo: "Como Tratados no Pacífico, na Amazônia e nos Andes Desenharam as Fronteiras do Peru?",
+        categoria: "História",
+        data: "26 Nov 2026 - 07:30",
+        img: "/assets/img/blog/historia-do-peru-tratado-lima-protocolo-rio-fronteiras.png",
+        link: "historia-do-peru-tratado-lima-protocolo-rio-fronteiras/",
+        resumo: "Do Tratado de Ancón de 1883 ao Ato Presidencial de Brasília de 1998: entenda como guerras no Pacífico e cinco acordos amazônicos fixaram os 1.285.216 km² do Peru."
+    },
+    {
+        titulo: "Por Que a Península Italiana Divide o Mediterrâneo e Controla as Rotas Entre Europa, Suez e África?",
+        categoria: "Geopolítica",
+        data: "26 Nov 2026 - 09:15",
+        img: "/assets/img/blog/geopolitica-da-italia-mediterraneo-central-otan-rotas-africa.jpg",
+        link: "geopolitica-da-italia-mediterraneo-central-otan-rotas-africa/",
+        resumo: "Com 145 km no Estreito da Sicília, bases da OTAN em Nápoles e Sigonella, gasodutos africanos e os portos de Trieste e Gênova, a Itália comanda o centro do Mediterrâneo."
+    },
+    {
+        titulo: "Como Semicondutores em Penang e Plataformas no Mar do Sul Sustentam a Economia da Malásia?",
+        categoria: "Geoeconomia",
+        data: "26 Nov 2026 - 11:00",
+        img: "/assets/img/blog/geoeconomia-da-malasia-semicondutores-estreito-malaca-petroleo.jpg",
+        link: "geoeconomia-da-malasia-semicondutores-estreito-malaca-petroleo/",
+        resumo: "Respondendo por 13% da embalagem e testes globais de chips em Penang, reservas offshore da Petronas e megaportos no Estreito de Malaca, a Malásia virou elo vital da Ásia."
+    },
+    {
+        titulo: "Por Que Setenta e Dois Quilômetros de Mar no Estreito de Otranto Trancam Todo o Mar Adriático?",
+        categoria: "Geopolítica",
+        data: "26 Nov 2026 - 12:45",
+        img: "/assets/img/blog/estreito-de-otranto-mar-adriatico-italia-albania-otan-rotas.png",
+        link: "estreito-de-otranto-mar-adriatico-italia-albania-otan-rotas/",
+        resumo: "Separando a Itália da Albânia por apenas 72 km, o Estreito de Otranto abriga o gasoduto submarino TAP, vigia os portos da Europa Central e transforma o Adriático em área fechada da OTAN."
+    },
+    {
+        titulo: "Por Que o Canal de Yucatán é a Porta Obrigatória do Petróleo e dos Furacões no Golfo do México?",
+        categoria: "Geopolítica",
+        data: "26 Nov 2026 - 14:30",
+        img: "/assets/img/blog/canal-de-yucatan-mexico-cuba-golfo-mexico-petroleo-rotas.png",
+        link: "canal-de-yucatan-mexico-cuba-golfo-mexico-petroleo-rotas/",
+        resumo: "Com 217 km entre o México e Cuba e até 2.779 m de profundidade, o Canal de Yucatán injeta a corrente quente que alimenta a Corrente do Golfo e guia navios rumo ao Panamá."
+    },
+    {
+        titulo: "Por Que Um Tratado Colonial de 1890 Deu ao Malawi o Controle da Água Até a Margem da Tanzânia?",
+        categoria: "Fronteiras",
+        data: "26 Nov 2026 - 16:15",
+        img: "/assets/img/blog/lago-malawi-niassa-fronteira-tratado-1890-malawi-tanzania.jpg",
+        link: "lago-malawi-niassa-fronteira-tratado-1890-malawi-tanzania/",
+        resumo: "Assinado em 1º de julho de 1890, o Tratado de Heligoland–Zanzibar colocou a fronteira na margem leste do Lago Malawi, gerando uma disputa histórica com a Tanzânia por petróleo e pesca."
+    },
+    {
+        titulo: "Como Uma Ilha Grega a Dois Quilômetros da Turquia Reivindica Um Quarto do Mediterrâneo Oriental?",
+        categoria: "Fronteiras",
+        data: "26 Nov 2026 - 18:00",
+        img: "/assets/img/blog/ilha-de-kastellorizo-mar-egeu-grecia-turquia-zona-economica.jpg",
+        link: "ilha-de-kastellorizo-mar-egeu-grecia-turquia-zona-economica/",
+        resumo: "A apenas 2 km da costa turca de Kaş e a 570 km da Grécia continental, a pequena ilha de Kastellorizo (Meis) está no centro da maior disputa de fronteira marítima do Mediterrâneo Oriental."
+    },
+    {
+        titulo: "Por Que o Meridiano Zero Real Fica a Cento e Dois Metros da Linha Turística de Greenwich?",
+        categoria: "Curiosidades",
+        data: "26 Nov 2026 - 19:30",
+        img: "/assets/img/blog/meridiano-de-greenwich-deslocamento-102-metros-gps-wgs84.jpg",
+        link: "meridiano-de-greenwich-deslocamento-102-metros-gps-wgs84/",
+        resumo: "Quem coloca um pé em cada hemisfério no pátio do Observatório de Greenwich nota no GPS um erro de 5,3 segundos de arco: entenda como a gravidade deslocou o marco de 1884 em 102 metros."
+    },
+    {
+        titulo: "Quais São os Dez Países com as Maiores Reservas de Níquel do Mundo Que Movem Baterias Elétricas?",
+        categoria: "Rankings",
+        data: "26 Nov 2026 - 21:00",
+        img: "/assets/img/blog/ranking-maiores-reservas-de-niquel-do-mundo-baterias-usgs.jpg",
+        link: "ranking-maiores-reservas-de-niquel-do-mundo-baterias-usgs/",
+        resumo: "Segundo o USGS, a Indonésia detém 62 milhões de toneladas de níquel — quase metade do planeta — seguida por Austrália, Brasil (3º lugar com 16 milhões de t), Rússia e Nova Caledônia."
+    },
+    {
+        titulo: "Quais São os Dez Países com Mais Idiomas Falados no Mundo Segundo o Ethnologue?",
+        categoria: "Rankings",
+        data: "26 Nov 2026 - 22:30",
+        img: "/assets/img/blog/ranking-paises-com-mais-idiomas-do-mundo-diversidade-linguistica.png",
+        link: "ranking-paises-com-mais-idiomas-do-mundo-diversidade-linguistica/",
+        resumo: "Com cerca de 841 idiomas vivos em 462 mil km², a Papua-Nova Guiné lidera a diversidade linguística global, seguida por Indonésia, Nigéria, Índia e Brasil em 10º lugar com ~240 línguas."
+    },
+    {
         titulo: "Como Um Tratado de 1824 Entre Londres e Haia Desenhou o Maior Arquipélago do Mundo?",
         categoria: "História",
         data: "24 Nov 2026 - 07:30",

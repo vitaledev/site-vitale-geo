@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth bg-[#F5F2EB]">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://www.vitalegeo.com.br/ferramentas/fuso-solar-real/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra Seu Fuso Horário Solar Real | VitaleGeo</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="VitaleGeo | Feed RSS" href="https://www.vitalegeo.com.br/rss.xml">
+    <meta name="description" content="Compare o relógio oficial da sua cidade com o horário solar astronômico real. Descubra o meio-dia solar exato, nascer e pôr do sol e anomalias geopolíticas de fuso horário.">
+    <meta name="keywords" content="fuso horario solar real, meio dia solar, horario astronomico, desvio solar, geopolitica dos fusos, fuso horario espanha, fuso horario china, ritmo circadiano, vitalegeo">
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Descubra Seu Fuso Horário Solar Real | VitaleGeo">
+    <meta property="og:description" content="O relógio da sua cidade está mentindo para você? Compare o horário oficial com o meio-dia solar astronômico em qualquer ponto do planeta.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vitalegeo.com.br/ferramentas/fuso-solar-real/">
+    <meta property="og:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/fuso-solar-real.svg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Descubra Seu Fuso Horário Solar Real | VitaleGeo">
+    <meta name="twitter:description" content="Compare o horário oficial com o fuso solar astronômico, calcule o meio-dia solar exato e explore anomalias de fuso no mapa.">
+    <meta name="twitter:image" content="https://www.vitalegeo.com.br/assets/img/ferramentas/fuso-solar-real.svg">
+
+    <!-- Google AdSense Oficial VitaleGeo -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6879770260785828" crossorigin="anonymous"></script>
+
+    <!-- Tailwind CSS & Estilos VitaleGeo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Tipografia Oficial VitaleGeo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- D3.js v7 & TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- Bases Geográficas Locais -->
+    <script src="/assets/js/cerebro-geo.js"></script>
+    <script src="/ferramentas/que-horas-sao/paises-fusos.js"></script>
+
+    <!-- Schema.org Estruturado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Descubra Seu Fuso Horário Solar Real",
+      "url": "https://www.vitalegeo.com.br/ferramentas/fuso-solar-real/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "pt-BR",
+      "description": "Calculadora astronômica e geopolítica que compara o horário oficial do relógio com o horário solar verdadeiro e revela desvios circadianos no mapa mundial.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "VitaleGeo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      }
+    }
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+                        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+                        display: ['Orbitron', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        geoBg: '#F5F2EB',
+                        geoCard: '#FFFFFF',
+                        geoNavy: '#0A192F',
+                        geoSage: '#A8C3A6',
+                        geoRed: '#C8102E',
+                        geoSlate: '#53647C'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+            background: rgba(10, 25, 47, 0.25);
+            border-radius: 9999px;
+        }
+        .country-poly {
+            fill: #FFFFFF;
+            stroke: #0A192F;
+            stroke-width: 0.45;
+            stroke-opacity: 0.45;
+            transition: fill 0.18s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 0.18s ease;
+            cursor: crosshair;
+        }
+        .country-poly:hover {
+            fill: #EDE8DF;
+            stroke-opacity: 0.95;
+            stroke-width: 1.05;
+        }
+        .country-anomaly-high {
+            fill: rgba(200, 16, 46, 0.14);
+        }
+        .country-selected {
+            fill: rgba(168, 195, 166, 0.55) !important;
+            stroke: #0A192F !important;
+            stroke-width: 1.35 !important;
+            stroke-opacity: 1 !important;
+        }
+        .solar-band-even {
+            fill: rgba(10, 25, 47, 0.025);
+        }
+        .solar-band-odd {
+            fill: transparent;
+        }
+        .solar-band-active {
+            fill: rgba(168, 195, 166, 0.24);
+        }
+    </style>
+</head>
+<body class="bg-[#F5F2EB] text-[#0A192F] font-sans antialiased selection:bg-[#C8102E] selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navegação Flutuante em Pílula -->
+    <nav class="floating-pill-nav">
+        <div class="px-4 sm:px-6 h-16 flex justify-between items-center w-full">
+            <a href="/" class="flex items-center gap-2.5 group" aria-label="VitaleGeo Início">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#0A192F] group-hover:text-[#C8102E] group-hover:scale-105 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-full h-full" fill="none">
+                        <path stroke="currentColor" stroke-width="15" stroke-linecap="butt" stroke-linejoin="miter" d="M 193 63 A 92 92 0 1 0 220 128 L 154 128" />
+                        <rect x="123" y="14" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="123" y="222" width="10" height="20" rx="2" fill="currentColor"/>
+                        <rect x="14" y="123" width="20" height="10" rx="2" fill="currentColor"/>
+                        <ellipse cx="128" cy="128" rx="48" ry="92" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <line x1="128" y1="36" x2="128" y2="220" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 5" opacity="0.35"/>
+                        <line x1="36" y1="128" x2="136" y2="128" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5" opacity="0.4"/>
+                        <path fill="currentColor" d="M 74 76 L 94 76 L 118 156 L 142 76 L 162 76 L 128 180 C 124 190 112 190 108 180 Z"/>
+                    </svg>
+                </div>
+                <span class="text-base sm:text-lg font-['Orbitron',sans-serif] font-black tracking-wider leading-none text-[#0A192F] group-hover:text-[#C8102E] transition">
+                    VITALEGEO
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 text-xs font-medium text-[#53647C] bg-white/75 p-1 rounded-full border border-[#0A192F]/10 shadow-sm">
+                <a href="/" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Início</a>
+                <a href="/blog" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Posts</a>
+                <a href="/ferramentas" class="px-3 py-1 rounded-full text-[#0A192F] bg-white font-semibold shadow-xs">Ferramentas</a>
+                <a href="/jogos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Jogos</a>
+                <a href="/videos" class="px-3 py-1 rounded-full hover:text-[#0A192F] hover:bg-white transition">Vídeos</a>
+            </div>
+
+            <a href="/ferramentas" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A192F] hover:text-[#C8102E] transition px-3 min-h-[44px] sm:min-h-[36px] rounded-full bg-white border border-[#0A192F]/10 shadow-sm">
+                <i class="ph-bold ph-arrow-left"></i>
+                <span class="hidden sm:inline">Ferramentas</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Grade Desktop 3 Colunas com AdSense Lateral Não Intrusivo -->
+    <div class="w-full max-w-[1700px] mx-auto flex justify-center gap-6 px-4 pt-28 sm:pt-32 pb-12">
+
+        <!-- Skyscraper AdSense Lateral Esquerdo (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+        <!-- Área Principal da Ferramenta -->
+        <main class="max-w-5xl flex-1 w-full min-w-0">
+
+            <!-- Cabeçalho Enxuto com Popover Explicativo -->
+            <header class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-[#0A192F]/12">
+                <div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-[0.15em] text-[#C8102E] block mb-1">
+                        Astronomia &amp; Geopolítica dos Fusos
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-heading font-extrabold text-[#0A192F] tracking-tight">
+                        Fuso Horário Solar Real
+                    </h1>
+                    <p class="text-xs sm:text-sm text-[#53647C] mt-1 max-w-2xl">
+                        Compare o relógio oficial com a posição astronômica do Sol, descubra o meio-dia solar exato e identifique desvios geopolíticos no mapa.
+                    </p>
+                </div>
+
+                <div class="hover-info-container self-start sm:self-end shrink-0">
+                    <button type="button" id="btnInfoPopover" class="hover-info-trigger min-h-[44px] sm:min-h-[38px]" aria-label="Como o fuso solar é calculado">
+                        <i class="ph-bold ph-info text-[#C8102E]"></i>
+                        <span>Como funciona?</span>
+                    </button>
+                    <div class="hover-info-popover">
+                        <h4 class="font-heading font-bold text-[#0A192F] text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="ph-fill ph-sun-horizon text-[#C8102E]"></i> A Regra dos 15° por Hora
+                        </h4>
+                        <p class="mb-2 text-[#1F334E]">
+                            A Terra gira 360° em 24 horas (<strong>15° por hora</strong> ou <strong>4 minutos por grau</strong> de longitude). Cada meridiano múltiplo de 15° define o centro de um fuso solar teórico.
+                        </p>
+                        <ul class="space-y-1.5 text-[11px] text-[#53647C] border-t border-[#0A192F]/10 pt-2">
+                            <li><strong>Horário Solar Médio:</strong> Calculado diretamente pela sua longitude exata (`longitude / 15`).</li>
+                            <li><strong>Horário Solar Verdadeiro:</strong> Soma a <em>Equação do Tempo</em> (variação orbital da Terra ao longo do ano, até ±16 min).</li>
+                            <li><strong>Desvio Político:</strong> Governos deslocam fronteiras horárias por razões econômicas ou históricas, atrasando ou adiantando o meio-dia solar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Painel de Seleção de Cidade, País e GPS (Acima da Dobra) -->
+            <section class="bg-white p-4 sm:p-5 rounded-2xl border border-[#0A192F]/12 shadow-sm mb-5" aria-label="Selecionar localização ou coordenadas">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 items-end">
+
+                    <!-- Busca de Cidade ou País -->
+                    <div class="relative" id="wrapBuscaLocal">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label for="inputLocal" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#0A192F]">
+                                Cidade, País ou Coordenada
+                            </label>
+                            <span id="badgeSubzonaWrap" class="hidden text-[10px] font-mono font-semibold text-[#53647C]">
+                                Fuso regional ativo
+                            </span>
+                        </div>
+                        <div class="relative flex items-center">
+                            <img id="flagLocal" src="/assets/flags/br.svg" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 absolute left-3 pointer-events-none">
+                            <input id="inputLocal" type="text" autocomplete="off" placeholder="Buscar cidade (ex: Madri, Kashgar, Manaus) ou país..."
+                                   class="w-full min-h-[44px] pl-11 pr-9 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-sm font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/30 focus:border-[#0A192F] transition">
+                            <button type="button" id="toggleListaLocal" aria-label="Abrir lista de cidades e países" class="absolute right-2 w-8 h-8 flex items-center justify-center text-[#53647C] hover:text-[#C8102E] transition">
+                                <i class="ph-bold ph-caret-down"></i>
+                            </button>
+                        </div>
+                        <div id="listaLocal" class="hidden absolute z-40 mt-1.5 w-full max-h-72 overflow-y-auto dropdown-scroll bg-white border border-[#0A192F]/15 rounded-xl shadow-xl p-1.5"></div>
+                    </div>
+
+                    <!-- Ação GPS + Fuso Regional -->
+                    <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+                        <div id="wrapSelectSubzona" class="hidden w-full sm:w-52">
+                            <label for="selectSubzona" class="block text-[11px] font-mono font-bold uppercase tracking-wider text-[#53647C] mb-1.5">
+                                Zona Oficial
+                            </label>
+                            <select id="selectSubzona" aria-label="Selecionar fuso oficial do país"
+                                    class="w-full min-h-[44px] px-3 py-2 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-mono font-semibold text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25"></select>
+                        </div>
+
+                        <button type="button" id="btnMinhaLocalizacao"
+                                class="w-full sm:w-auto min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center justify-center gap-2 transition shadow-xs shrink-0">
+                            <i class="ph-bold ph-crosshair text-base"></i>
+                            <span id="txtBtnGps">Minha Localização</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Anomalias Famosas (Atalhos Rápidos) -->
+                <div class="mt-3.5 pt-3 border-t border-[#0A192F]/10 flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#53647C] mr-1">
+                            Anomalias:
+                        </span>
+                        <button type="button" data-preset="kashgar" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Kashgar, China
+                        </button>
+                        <button type="button" data-preset="vigo" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Vigo, Espanha
+                        </button>
+                        <button type="button" data-preset="mendoza" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Mendoza, Argentina
+                        </button>
+                        <button type="button" data-preset="reykjavik" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Reykjavík, Islândia
+                        </button>
+                        <button type="button" data-preset="rio-branco" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Rio Branco, Brasil
+                        </button>
+                        <button type="button" data-preset="recife" class="preset-btn min-h-[36px] px-2.5 py-1 rounded-lg bg-[#F5F2EB]/80 hover:bg-[#0A192F] hover:text-white border border-[#0A192F]/10 text-[11px] font-mono font-medium text-[#0A192F] transition">
+                            Recife, Brasil
+                        </button>
+                    </div>
+
+                    <div id="coordTelemetria" class="font-mono text-[11px] text-[#53647C]">
+                        23.55° S, 46.63° W
+                    </div>
+                </div>
+            </section>
+
+            <!-- Painel Monumental Comparativo: Relógio Oficial vs Desvio vs Horário Solar -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-5 items-stretch" aria-label="Comparativo entre relógio oficial e horário solar">
+
+                <!-- Cartão Esquerdo: Horário Oficial do Relógio -->
+                <div class="lg:col-span-4 bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-5 flex flex-col justify-between relative overflow-hidden">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#53647C] inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-clock text-[#0A192F]"></i>
+                            Relógio Oficial
+                        </span>
+                        <span id="badgeOfficialUtc" class="px-2 py-0.5 rounded bg-[#0A192F] text-white font-mono text-[11px] font-bold">
+                            UTC-3
+                        </span>
+                    </div>
+
+                    <div class="my-auto py-2">
+                        <div id="clockOfficial" class="font-display font-black text-3xl sm:text-4xl text-[#0A192F] tracking-tight leading-none">
+                            --:--:--
+                        </div>
+                        <p id="labelOfficialZone" class="font-mono text-[11px] text-[#53647C] mt-2 truncate">
+                            America/Sao_Paulo
+                        </p>
+                    </div>
+
+                    <div class="pt-3 mt-3 border-t border-[#0A192F]/10 flex items-center justify-between text-[11px] font-mono">
+                        <span class="text-[#53647C]">Meridiano oficial</span>
+                        <span id="labelOfficialMeridian" class="font-bold text-[#0A192F]">45.0° W</span>
+                    </div>
+                </div>
+
+                <!-- Cartão Central: O Desvio do Relógio (Hero Analítico) -->
+                <div class="lg:col-span-4 bg-[#0A192F] text-white rounded-2xl shadow-sm p-5 flex flex-col justify-between relative overflow-hidden">
+                    <img src="/brand/shapes/compass-minimal.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -top-6 -right-6 w-28 h-28 opacity-15 invert">
+
+                    <div class="flex items-center justify-between gap-2 mb-2 relative z-10">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#A8C3A6]">
+                            Desvio do Relógio
+                        </span>
+                        <span id="badgeVeredito" class="px-2 py-0.5 rounded bg-[#A8C3A6]/20 text-[#A8C3A6] font-mono text-[10px] font-bold uppercase">
+                            Alinhado
+                        </span>
+                    </div>
+
+                    <div class="my-auto py-2 text-center relative z-10">
+                        <div id="valDeviation" class="font-display font-black text-3xl sm:text-4xl text-white tracking-tight leading-none">
+                            +0 min
+                        </div>
+                        <p id="txtDeviationExplain" class="text-xs text-[#CBD5E1] mt-2 leading-snug">
+                            Calculando diferença entre o relógio civil e o Sol...
+                        </p>
+                    </div>
+
+                    <div class="pt-3 mt-3 border-t border-white/15 grid grid-cols-2 gap-2 text-[11px] font-mono relative z-10">
+                        <div>
+                            <span class="text-white/60 block text-[10px]">Meio-dia solar</span>
+                            <span id="valSolarNoon" class="font-bold text-[#A8C3A6] text-sm">12:00</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-white/60 block text-[10px]">Fuso solar ideal</span>
+                            <span id="valIdealUtc" class="font-bold text-white text-sm">UTC-3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartão Direito: Horário Solar Astronômico Real -->
+                <div class="lg:col-span-4 bg-white rounded-2xl border border-[#C8102E]/25 shadow-sm p-5 flex flex-col justify-between relative overflow-hidden">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#C8102E] inline-flex items-center gap-1.5">
+                            <i class="ph-bold ph-sun text-[#C8102E]"></i>
+                            Horário Solar Real
+                        </span>
+                        <span id="badgeSolarExactUtc" class="px-2 py-0.5 rounded bg-[#C8102E]/10 text-[#C8102E] border border-[#C8102E]/20 font-mono text-[11px] font-bold">
+                            UTC-3.11
+                        </span>
+                    </div>
+
+                    <div class="my-auto py-2">
+                        <div id="clockSolarTrue" class="font-display font-black text-3xl sm:text-4xl text-[#C8102E] tracking-tight leading-none">
+                            --:--:--
+                        </div>
+                        <p id="labelSolarMean" class="font-mono text-[11px] text-[#53647C] mt-2">
+                            Médio: --:--:-- · EoT: +0.0 min
+                        </p>
+                    </div>
+
+                    <div class="pt-3 mt-3 border-t border-[#0A192F]/10 grid grid-cols-3 gap-1 text-[11px] font-mono">
+                        <div>
+                            <span class="text-[#53647C] block text-[10px]">Nascer</span>
+                            <span id="valSunrise" class="font-bold text-[#0A192F]">--:--</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-[#53647C] block text-[10px]">Luz do dia</span>
+                            <span id="valDayLength" class="font-bold text-[#0A192F]">--h--</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[#53647C] block text-[10px]">Pôr do sol</span>
+                            <span id="valSunset" class="font-bold text-[#0A192F]">--:--</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Régua Astronómica do Meio-Dia Solar & Compartilhamento -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-5" aria-label="Linha do meio-dia solar e compartilhamento">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <div>
+                        <h2 class="font-heading font-bold text-sm text-[#0A192F] flex items-center gap-2">
+                            <i class="ph-bold ph-compass text-[#C8102E]"></i>
+                            <span id="tituloAnaliseLocal">Análise do Meridiano — São Paulo</span>
+                        </h2>
+                        <p id="subtituloAnaliseLocal" class="text-xs text-[#53647C] mt-0.5">
+                            Comparação entre o meio-dia do relógio (12:00) e o zênite solar astronômico no local.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 shrink-0">
+                        <a id="btnShareWhatsApp" href="#" target="_blank" rel="noopener"
+                           class="min-h-[44px] sm:min-h-[38px] px-3.5 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs inline-flex items-center gap-1.5 transition shadow-xs">
+                            <i class="ph-bold ph-whatsapp-logo text-base"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <button type="button" id="btnCopiarResumo"
+                                class="min-h-[44px] sm:min-h-[38px] px-3 py-2 rounded-xl bg-[#F5F2EB] hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 font-mono font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-copy"></i>
+                            <span id="txtCopiarResumo">Copiar resumo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gráfico SVG de Desvio Solar (09:00 às 16:00) -->
+                <div class="bg-[#F5F2EB]/70 rounded-xl border border-[#0A192F]/10 p-3 sm:p-4">
+                    <svg id="svgSolarRuler" viewBox="0 0 840 108" class="w-full h-auto block" role="img" aria-label="Gráfico comparativo entre 12:00 oficial e o meio-dia solar real"></svg>
+                </div>
+
+                <!-- Nota Histórica / Geopolítica Contextual (aparece quando o local tem anomalia conhecida) -->
+                <div id="boxFatoGeopolitico" class="hidden mt-3 p-3.5 rounded-xl bg-[#F5F2EB] border-l-4 border-[#C8102E] text-xs text-[#1F334E] leading-relaxed"></div>
+            </section>
+
+            <!-- Mapa Mundial Interativo das 24 Faixas Solares -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-6" aria-label="Mapa mundial de faixas solares e desvios">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-[#0A192F]/10">
+                    <div>
+                        <h2 class="font-heading font-bold text-sm sm:text-base text-[#0A192F] flex items-center gap-2">
+                            <i class="ph-bold ph-globe-hemisphere-east text-[#C8102E]"></i>
+                            <span>Mapa das Faixas Solares de 15°</span>
+                        </h2>
+                        <p class="text-[11px] font-mono text-[#53647C] mt-0.5">
+                            Meridianos solares de 15° e países com maior desvio entre o relógio e o Sol
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3 text-[11px] font-mono text-[#53647C]">
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-sm bg-[#C8102E]/25 border border-[#C8102E]/40 inline-block"></span>
+                            Desvio &gt; 45 min
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-sm bg-[#A8C3A6]/55 border border-[#0A192F] inline-block"></span>
+                            País selecionado
+                        </span>
+                    </div>
+                </div>
+
+                <div class="relative bg-[#F5F2EB]/60 rounded-xl border border-[#0A192F]/10 overflow-hidden h-[44vh] min-h-[300px] sm:h-[420px]">
+                    <img src="/brand/shapes/topo-ripples-corner.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -top-12 -right-12 w-52 h-52 opacity-20">
+
+                    <div id="loadingMap" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-xs font-mono text-[#53647C] bg-[#F5F2EB]/85 z-20">
+                        <i class="ph-bold ph-spinner-gap animate-spin text-2xl text-[#C8102E]"></i>
+                        <span>Carregando atlas mundial de fusos...</span>
+                    </div>
+
+                    <!-- Controles de Zoom -->
+                    <div class="absolute top-3 right-3 z-20 flex flex-col gap-1.5">
+                        <button type="button" id="btnZoomIn" aria-label="Aproximar mapa" class="w-10 h-10 rounded-xl bg-white/95 hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 shadow-sm flex items-center justify-center transition">
+                            <i class="ph-bold ph-plus"></i>
+                        </button>
+                        <button type="button" id="btnZoomOut" aria-label="Afastar mapa" class="w-10 h-10 rounded-xl bg-white/95 hover:bg-[#0A192F] text-[#0A192F] hover:text-white border border-[#0A192F]/15 shadow-sm flex items-center justify-center transition">
+                            <i class="ph-bold ph-minus"></i>
+                        </button>
+                        <button type="button" id="btnResetZoom" aria-label="Centralizar mapa" class="w-10 h-10 rounded-xl bg-white/95 hover:bg-[#C8102E] text-[#0A192F] hover:text-white border border-[#0A192F]/15 shadow-sm flex items-center justify-center transition">
+                            <i class="ph-bold ph-arrows-out"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tooltip do Mapa -->
+                    <div id="mapTooltip" class="hidden pointer-events-none absolute left-3 bottom-3 z-20 bg-white/95 backdrop-blur-sm border border-[#0A192F]/15 rounded-xl px-3 py-2 shadow-md flex items-center gap-2.5 max-w-[270px]">
+                        <img id="ttFlag" src="" alt="" class="w-6 h-4 object-cover rounded-[3px] border border-[#0A192F]/15 shrink-0">
+                        <div class="min-w-0">
+                            <div id="ttNome" class="font-heading font-bold text-xs text-[#0A192F] truncate">País</div>
+                            <div id="ttInfo" class="font-mono text-[10px] text-[#53647C] truncate">Fuso</div>
+                        </div>
+                    </div>
+
+                    <svg id="svgMapa" class="w-full h-full block"></svg>
+                </div>
+            </section>
+
+            <!-- Catálogo Interativo de Anomalias, Brasil e 198 Países -->
+            <section class="bg-white rounded-2xl border border-[#0A192F]/12 shadow-sm p-4 sm:p-5 mb-6" aria-label="Diretório de desvios solares">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-4 border-b border-[#0A192F]/10">
+                    <div class="flex flex-wrap items-center gap-1.5" role="tablist">
+                        <button type="button" role="tab" aria-selected="true" data-tab="anomalias"
+                                class="tab-btn min-h-[44px] sm:min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-warning-circle"></i>
+                            <span>Maiores Desvios</span>
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" data-tab="brasil"
+                                class="tab-btn min-h-[44px] sm:min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-map-pin"></i>
+                            <span>Cidades do Brasil</span>
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" data-tab="paises"
+                                class="tab-btn min-h-[44px] sm:min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-globe"></i>
+                            <span>Todos os Países</span>
+                        </button>
+                    </div>
+
+                    <div class="relative w-full sm:w-64">
+                        <i class="ph-bold ph-magnifying-glass text-[#53647C] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-sm"></i>
+                        <input id="buscaTabela" type="search" placeholder="Filtrar cidade ou país..."
+                               class="w-full min-h-[40px] pl-9 pr-3 py-1.5 bg-[#F5F2EB]/60 border border-[#0A192F]/15 rounded-xl text-xs font-medium text-[#0A192F] focus:outline-none focus:ring-2 focus:ring-[#0A192F]/25">
+                    </div>
+                </div>
+
+                <div id="gridLocais" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[460px] overflow-y-auto dropdown-scroll pr-1"></div>
+            </section>
+
+            <!-- Banner AdSense Inferior Responsivo -->
+            <div class="w-full my-6 text-center min-h-[120px] sm:min-h-[250px] bg-white/50 rounded-xl border border-[#0A192F]/10 flex items-center justify-center overflow-hidden">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6879770260785828"
+                     data-ad-slot="5140105675"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+                </script>
+            </div>
+
+            <!-- Box Discreto de Retenção -->
+            <div class="p-5 rounded-2xl bg-[#0A192F] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-heading font-bold text-sm text-white">Quer converter a hora oficial de qualquer país?</h4>
+                    <p class="text-xs text-slate-300 mt-1">Consulte os relógios em tempo real e compare a diferença para Brasília em 198 países.</p>
+                </div>
+                <a href="/ferramentas/que-horas-sao/" class="min-h-[44px] px-4 py-2 rounded-xl bg-[#C8102E] hover:bg-[#A00D24] text-white font-heading font-bold text-xs inline-flex items-center gap-2 transition shadow-sm shrink-0">
+                    <i class="ph-bold ph-globe-hemisphere-east"></i>
+                    <span>Abrir Conversor Mundial</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Skyscraper AdSense Lateral Direito (Desktop xl:) -->
+        <aside class="hidden xl:flex flex-col w-[160px] 2xl:w-[200px] shrink-0 sticky top-24 h-[600px] items-center justify-center bg-white/50 rounded-xl border border-[#0A192F]/10 overflow-hidden text-center text-xs text-[#53647C]">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6879770260785828"
+                 data-ad-slot="5140105675"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+            </script>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé VitaleGeo -->
+    <footer class="border-t border-[#0A192F]/10 bg-white py-8 px-6 text-center text-xs text-[#53647C]">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="font-mono">© 2026 VitaleGeo — Observatório &amp; Cartografia Independente</span>
+            <div class="flex items-center gap-4">
+                <a href="/sobre" class="hover:text-[#0A192F] transition">Sobre</a>
+                <a href="/politica" class="hover:text-[#0A192F] transition">Privacidade</a>
+                <a href="/ferramentas" class="hover:text-[#0A192F] transition">Ferramentas</a>
+                <a href="/jogos" class="hover:text-[#0A192F] transition">Jogos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const PAISES_FUSOS = window.PAISES_FUSOS || [];
+            const CEREBRO_PAISES = (window.CerebroGeo && window.CerebroGeo.paises) ? window.CerebroGeo.paises : [];
+            const fusoByIso = new Map(PAISES_FUSOS.map(p => [p.iso2.toLowerCase(), p]));
+            const norm = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+            // =========================================================================
+            // BASE CURADA DE CIDADES & ANOMALIAS GEOPOLÍTICAS DE FUSO HORÁRIO
+            // =========================================================================
+            const CIDADES_CURADAS = [
+                // Anomalias Mundiais Famosas
+                { id: 'kashgar', nome: 'Kashgar (Xinjiang)', pais: 'China', iso2: 'cn', lat: 39.4704, lng: 75.9897, zone: 'Asia/Shanghai', tag: 'Anomalia Extrema', cat: 'anomalia', nota: 'A China adota um único fuso oficial (UTC+8, de Pequim) para um território de 5.000 km. Em Kashgar, no extremo oeste, o meio-dia solar ocorre perto das 15h.' },
+                { id: 'urumqi', nome: 'Ürümqi', pais: 'China', iso2: 'cn', lat: 43.8256, lng: 87.6168, zone: 'Asia/Shanghai', tag: 'Anomalia Extrema', cat: 'anomalia', nota: 'Embora situada no meridiano solar UTC+6, a capital de Xinjiang segue o fuso oficial de Pequim (UTC+8), gerando mais de 2 horas de desvio diário.' },
+                { id: 'vigo', nome: 'Vigo (Galícia)', pais: 'Espanha', iso2: 'es', lat: 42.2406, lng: -8.7207, zone: 'Europe/Madrid', tag: 'Decreto 1940', cat: 'anomalia', nota: 'Em 1940, o regime de Franco adiantou o relógio da Espanha para igualar ao de Berlim (UTC+1). Na Galícia atlântica, o Sol atrasa mais de 1h35 no inverno e 2h35 no verão.' },
+                { id: 'madri', nome: 'Madri', pais: 'Espanha', iso2: 'es', lat: 40.4168, lng: -3.7038, zone: 'Europe/Madrid', tag: 'Decreto 1940', cat: 'anomalia', nota: 'Geograficamente alinhada a Londres (UTC±0), Madri opera no fuso da Europa Central (UTC+1/+2), o que explica os jantares tardios espanhóis.' },
+                { id: 'mendoza', nome: 'Mendoza', pais: 'Argentina', iso2: 'ar', lat: -32.8895, lng: -68.8458, zone: 'America/Argentina/Buenos_Aires', tag: 'Desvio Andino', cat: 'anomalia', nota: 'Localizada aos pés dos Andes quase no meridiano UTC-5, toda a Argentina opera em UTC-3. Em Mendoza, o Sol cruza o zênite depois das 13h30.' },
+                { id: 'rio-gallegos', nome: 'El Calafate / Patagônia', pais: 'Argentina', iso2: 'ar', lat: -50.3379, lng: -72.2648, zone: 'America/Argentina/Buenos_Aires', tag: 'Desvio Extremo', cat: 'anomalia', nota: 'Na Patagônia ocidental, o desvio em relação ao meridiano solar de 45° W supera 1h49 minutos no relógio civil.' },
+                { id: 'reykjavik', nome: 'Reykjavík', pais: 'Islândia', iso2: 'is', lat: 64.1466, lng: -21.9426, zone: 'Atlantic/Reykjavik', tag: 'Ártico UTC±0', cat: 'anomalia', nota: 'A capital da Islândia está a 21.9° Oeste (fuso solar UTC-1/-2), mas mantém UTC±0 fixo o ano inteiro para alinhar-se às bolsas europeias.' },
+                { id: 'paris', nome: 'Paris', pais: 'França', iso2: 'fr', lat: 48.8566, lng: 2.3522, zone: 'Europe/Paris', tag: 'Europa Ocidental', cat: 'anomalia', nota: 'Assim como a Espanha, a França permaneceu no horário da Europa Central (UTC+1/+2) desde a década de 1940, apesar de situar-se no meridiano de Greenwich.' },
+                { id: 'brest', nome: 'Brest (Bretanha)', pais: 'França', iso2: 'fr', lat: 48.3904, lng: -4.4861, zone: 'Europe/Paris', tag: 'Extremo Oeste UE', cat: 'anomalia', nota: 'Na ponta atlântica da França, o Sol atinge o zênite mais de 1h18 depois do meio-dia oficial no inverno (e mais de 2h18 no horário de verão).' },
+                { id: 'katmandu', nome: 'Katmandu', pais: 'Nepal', iso2: 'np', lat: 27.7172, lng: 85.3240, zone: 'Asia/Kathmandu', tag: 'Fuso UTC+5:45', cat: 'anomalia', nota: 'O Nepal adotou o fuso fracionado UTC+5:45 baseado no pico Gaurishankar (86°20′ Leste), mantendo precisão quase cirúrgica com o Sol.' },
+                { id: 'ahmedabad', nome: 'Ahmedabad (Gujarat)', pais: 'Índia', iso2: 'in', lat: 23.0225, lng: 72.5714, zone: 'Asia/Kolkata', tag: 'Fuso Único UTC+5:30', cat: 'anomalia', nota: 'A Índia inteira usa UTC+5:30 (baseado em 82.5° Leste). No oeste indiano, o relógio está adiantado em cerca de 40 minutos.' },
+                { id: 'dibrugarh', nome: 'Dibrugarh (Assam)', pais: 'Índia', iso2: 'in', lat: 27.4728, lng: 94.9120, zone: 'Asia/Kolkata', tag: 'Extremo Leste Índia', cat: 'anomalia', nota: 'No extremo nordeste indiano, o Sol nasce muito cedo (às vezes antes das 4h30 no verão) porque o relógio segue UTC+5:30 em vez de UTC+6:30.' },
+                { id: 'nome', nome: 'Nome (Alasca)', pais: 'Estados Unidos', iso2: 'us', lat: 64.5011, lng: -165.4064, zone: 'America/Anchorage', tag: 'Fuso Alasca', cat: 'anomalia', nota: 'No extremo oeste do Alasca continental, o fuso único estadual deixa o relógio quase 2 horas à frente do Sol.' },
+                { id: 'anadyr', nome: 'Anadyr (Chukotka)', pais: 'Rússia', iso2: 'ru', lat: 64.7337, lng: 177.5089, zone: 'Asia/Anadyr', tag: 'Extremo Leste', cat: 'anomalia', nota: 'Em 177.5° Leste, Anadyr fica na borda do Antimeridiano (180°) e praticamente encosta no fuso solar UTC+12.' },
+                { id: 'kuala-lumpur', nome: 'Kuala Lumpur', pais: 'Malásia', iso2: 'my', lat: 3.1390, lng: 101.6869, zone: 'Asia/Kuala_Lumpur', tag: 'Desvio Asiático', cat: 'anomalia', nota: 'A Malásia Peninsular fica no meridiano UTC+7, mas adotou UTC+8 em 1982 para alinhar mercados com Hong Kong, Singapura e Bornéu.' },
+                { id: 'singapura', nome: 'Singapura', pais: 'Cingapura', iso2: 'sg', lat: 1.3521, lng: 103.8198, zone: 'Asia/Singapore', tag: 'Desvio Comercial', cat: 'anomalia', nota: 'Situada a 103.8° Leste (fuso solar UTC+7), Singapura mantém UTC+8 desde 1982 para sincronizar seu centro financeiro com Pequim e Hong Kong.' },
+
+                // Cidades do Brasil (de Fernando de Noronha ao Acre)
+                { id: 'sao-paulo', nome: 'São Paulo', pais: 'Brasil', iso2: 'br', lat: -23.5505, lng: -46.6333, zone: 'America/Sao_Paulo', tag: 'Brasil', cat: 'brasil', nota: 'Muito próxima do meridiano central de 45° Oeste (UTC-3), São Paulo apresenta um dos menores desvios solares do país.' },
+                { id: 'brasilia', nome: 'Brasília', pais: 'Brasil', iso2: 'br', lat: -15.7975, lng: -47.8919, zone: 'America/Sao_Paulo', tag: 'Brasil', cat: 'brasil', nota: 'Apenas 2.9° a oeste do meridiano de referência do horário de Brasília (45° W), com meio-dia solar médio por volta de 12h11.' },
+                { id: 'rio-de-janeiro', nome: 'Rio de Janeiro', pais: 'Brasil', iso2: 'br', lat: -22.9068, lng: -43.1729, zone: 'America/Sao_Paulo', tag: 'Brasil', cat: 'brasil', nota: 'Situada a 43.17° W, ligeiramente a leste do meridiano de 45° W: o Sol passa pelo zênite cerca de 7 minutos antes do meio-dia médio.' },
+                { id: 'recife', nome: 'Recife', pais: 'Brasil', iso2: 'br', lat: -8.0476, lng: -34.8770, zone: 'America/Recife', tag: 'Extremo Leste BR', cat: 'brasil', nota: 'A 34.88° W, Recife está mais perto do meridiano UTC-2 (30° W) do que de Brasília (45° W), recebendo o nascer do sol mais cedo entre as grandes metrópoles.' },
+                { id: 'joao-pessoa', nome: 'João Pessoa (Ponta do Seixas)', pais: 'Brasil', iso2: 'br', lat: -7.1195, lng: -34.8450, zone: 'America/Fortaleza', tag: 'Ponto Oriental', cat: 'brasil', nota: 'Ponto mais oriental das Américas continentais: o meio-dia solar médio ocorre por volta das 11h19 no horário oficial de Brasília.' },
+                { id: 'salvador', nome: 'Salvador', pais: 'Brasil', iso2: 'br', lat: -12.9714, lng: -38.5014, zone: 'America/Bahia', tag: 'Brasil', cat: 'brasil', nota: 'Com longitude de 38.5° W dentro do fuso UTC-3, Salvador tem meio-dia solar médio cerca de 26 minutos antes do relógio.' },
+                { id: 'fortaleza', nome: 'Fortaleza', pais: 'Brasil', iso2: 'br', lat: -3.7319, lng: -38.5267, zone: 'America/Fortaleza', tag: 'Brasil', cat: 'brasil', nota: 'Próxima à Linha do Equador e a 38.5° W, mantém dias e noites de ~12h durante todo o ano, com Sol adiantado em ~26 min.' },
+                { id: 'macapa', nome: 'Macapá', pais: 'Brasil', iso2: 'br', lat: 0.0349, lng: -51.0694, zone: 'America/Belem', tag: 'Linha do Equador', cat: 'brasil', nota: 'Cortada pelo Equador, Macapá segue UTC-3 (45° W) apesar de estar a 51° W: o relógio oficial fica ~24 min adiantado em relação ao Sol.' },
+                { id: 'belem', nome: 'Belém', pais: 'Brasil', iso2: 'br', lat: -1.4558, lng: -48.4902, zone: 'America/Belem', tag: 'Brasil', cat: 'brasil', nota: 'Situada a 48.5° W no fuso UTC-3, com variação anual mínima na duração do dia por estar quase sobre a Linha do Equador.' },
+                { id: 'porto-alegre', nome: 'Porto Alegre', pais: 'Brasil', iso2: 'br', lat: -30.0346, lng: -51.2177, zone: 'America/Sao_Paulo', tag: 'Sul do Brasil', cat: 'brasil', nota: 'A 51.2° W e latitude 30° S, o meio-dia solar médio ocorre perto de 12h25 e a duração do dia varia mais de 3 horas entre verão e inverno.' },
+                { id: 'cuiaba', nome: 'Cuiabá', pais: 'Brasil', iso2: 'br', lat: -15.6014, lng: -56.0979, zone: 'America/Cuiaba', tag: 'Fuso Amazonas', cat: 'brasil', nota: 'No fuso UTC-4 (meridiano de 60° W), Cuiabá está a 56.1° W: o Sol passa pelo zênite ~15 minutos antes do meio-dia do relógio.' },
+                { id: 'manaus', nome: 'Manaus', pais: 'Brasil', iso2: 'br', lat: -3.1190, lng: -60.0217, zone: 'America/Manaus', tag: 'Meridiano Exato', cat: 'brasil', nota: 'Localizada quase exatamente sobre o meridiano de 60° Oeste no fuso UTC-4, Manaus é a capital brasileira mais alinhada ao seu fuso oficial!' },
+                { id: 'boa-vista', nome: 'Boa Vista', pais: 'Brasil', iso2: 'br', lat: 2.8235, lng: -60.6758, zone: 'America/Boa_Vista', tag: 'Hemisfério Norte', cat: 'brasil', nota: 'Única capital brasileira totalmente no Hemisfério Norte, alinhada com grande precisão ao meridiano de 60° W (UTC-4).' },
+                { id: 'rio-branco', nome: 'Rio Branco (Acre)', pais: 'Brasil', iso2: 'br', lat: -9.9754, lng: -67.8249, zone: 'America/Rio_Branco', tag: 'Fuso Acre UTC-5', cat: 'brasil', nota: 'No fuso UTC-5 (meridiano 75° W), Rio Branco está a 67.8° W: o Sol aparece mais cedo que o relógio em ~29 minutos. Em 2008-2013, quando usou UTC-4, tinha desvio oposto.' },
+                { id: 'cruzeiro-do-sul', nome: 'Cruzeiro do Sul (AC)', pais: 'Brasil', iso2: 'br', lat: -7.6309, lng: -72.6700, zone: 'America/Rio_Branco', tag: 'Extremo Oeste BR', cat: 'brasil', nota: 'Na ponta mais ocidental do Brasil (72.7° W), alinha-se quase perfeitamente ao fuso solar UTC-5 (75° W).' },
+                { id: 'noronha', nome: 'Fernando de Noronha', pais: 'Brasil', iso2: 'br', lat: -3.8549, lng: -32.4233, zone: 'America/Noronha', tag: 'Fuso Oceânico UTC-2', cat: 'brasil', nota: 'Único arquipélago habitado do Brasil com fuso UTC-2 (meridiano 30° W), ficando apenas ~10 minutos atrasado em relação ao meridiano central.' },
+
+                // Grandes Metrópoles Mundiais
+                { id: 'londres', nome: 'Londres (Greenwich)', pais: 'Reino Unido', iso2: 'gb', lat: 51.4779, lng: -0.0015, zone: 'Europe/London', tag: 'Meridiano 0°', cat: 'mundo', nota: 'Marco zero da longitude mundial (0°). No inverno (GMT), o relógio coincide exatamente com o Sol; no verão (BST, UTC+1), adianta 1 hora.' },
+                { id: 'lisboa', nome: 'Lisboa', pais: 'Portugal', iso2: 'pt', lat: 38.7223, lng: -9.1393, zone: 'Europe/Lisbon', tag: 'Europa Atlântica', cat: 'mundo', nota: 'Ao contrário da vizinha Espanha, Portugal manteve o fuso UTC±0 (Londres), embora a 9.1° Oeste ainda tenha ~36 min de desvio solar no inverno.' },
+                { id: 'nova-york', nome: 'Nova York', pais: 'Estados Unidos', iso2: 'us', lat: 40.7128, lng: -74.0060, zone: 'America/New_York', tag: 'Costa Leste', cat: 'mundo', nota: 'Situada a 74° W no fuso UTC-5 (75° W), Nova York tem alinhamento solar quase perfeito no horário padrão de inverno.' },
+                { id: 'los-angeles', nome: 'Los Angeles', pais: 'Estados Unidos', iso2: 'us', lat: 34.0522, lng: -118.2437, zone: 'America/Los_Angeles', tag: 'Costa Oeste', cat: 'mundo', nota: 'A 118.2° W no fuso do Pacífico (120° W, UTC-8), tem desvio mínimo no inverno.' },
+                { id: 'toquio', nome: 'Tóquio', pais: 'Japão', iso2: 'jp', lat: 35.6762, lng: 139.6503, zone: 'Asia/Tokyo', tag: 'Terra do Sol Nascente', cat: 'mundo', nota: 'O Japão usa o meridiano de Akashi (135° E, UTC+9). Em Tóquio (139.6° E), o Sol nasce e atinge o pico ~19 minutos antes do meio-dia.' },
+                { id: 'pequim', nome: 'Pequim', pais: 'China', iso2: 'cn', lat: 39.9042, lng: 116.4074, zone: 'Asia/Shanghai', tag: 'Capital UTC+8', cat: 'mundo', nota: 'A 116.4° Leste, Pequim fica próxima ao meridiano de 120° E que define o horário único de toda a China.' },
+                { id: 'berlim', nome: 'Berlim', pais: 'Alemanha', iso2: 'de', lat: 52.5200, lng: 13.4050, zone: 'Europe/Berlin', tag: 'Europa Central', cat: 'mundo', nota: 'A 13.4° Leste, Berlim situa-se quase no centro geométrico do fuso da Europa Central (15° E, UTC+1).' },
+                { id: 'roma', nome: 'Roma', pais: 'Itália', iso2: 'it', lat: 41.9028, lng: 12.4964, zone: 'Europe/Rome', tag: 'Europa Central', cat: 'mundo', nota: 'A 12.5° Leste no fuso UTC+1 (15° E), o meio-dia solar médio ocorre por volta das 12h10 no inverno.' },
+                { id: 'moscou', nome: 'Moscou', pais: 'Rússia', iso2: 'ru', lat: 55.7558, lng: 37.6173, zone: 'Europe/Moscow', tag: 'UTC+3 Permanente', cat: 'mundo', nota: 'Geograficamente em 37.6° E (entre UTC+2 e UTC+3), Moscou aboliu o horário de verão e fixou UTC+3 permanente, deixando o Sol ~30 min atrasado.' },
+                { id: 'cairo', nome: 'Cairo', pais: 'Egito', iso2: 'eg', lat: 30.0444, lng: 31.2357, zone: 'Africa/Cairo', tag: 'Norte da África', cat: 'mundo', nota: 'A 31.2° Leste, alinha-se muito bem ao fuso UTC+2 (30° E).' },
+                { id: 'sydney', nome: 'Sydney', pais: 'Austrália', iso2: 'au', lat: -33.8688, lng: 151.2093, zone: 'Australia/Sydney', tag: 'Oceania', cat: 'mundo', nota: 'A 151.2° Leste, quase coincide com o meridiano padrão de 150° E (UTC+10).' },
+                { id: 'tromso', nome: 'Tromsø', pais: 'Noruega', iso2: 'no', lat: 69.6492, lng: 18.9553, zone: 'Europe/Oslo', tag: 'Círculo Polar', cat: 'mundo', nota: 'Acima do Círculo Polar Ártico: experimenta Sol da Meia-Noite no verão e Noite Polar no inverno, mesmo com longitude alinhada a UTC+1.' },
+                { id: 'buenos-aires', nome: 'Buenos Aires', pais: 'Argentina', iso2: 'ar', lat: -34.6037, lng: -58.3816, zone: 'America/Argentina/Buenos_Aires', tag: 'Cone Sul', cat: 'mundo', nota: 'Situada a 58.4° Oeste (fuso solar UTC-4), a capital argentina adota UTC-3 (45° W), ficando quase 54 min adiantada em relação ao Sol.' }
+            ];
+
+            // Estado Atual
+            const estado = {
+                nome: 'São Paulo',
+                subtitulo: 'Brasil',
+                iso2: 'br',
+                lat: -23.5505,
+                lng: -46.6333,
+                zone: 'America/Sao_Paulo',
+                nota: CIDADES_CURADAS.find(c => c.id === 'sao-paulo').nota,
+                countryObj: fusoByIso.get('br') || null,
+                activeTab: 'anomalias'
+            };
+
+            // =========================================================================
+            // MOTOR ASTRONÔMICO NOAA (EQUAÇÃO DO TEMPO, DECLINAÇÃO, NASCER/PÔR DO SOL)
+            // =========================================================================
+            function getDayOfYear(date) {
+                const start = Date.UTC(date.getUTCFullYear(), 0, 0);
+                const curr = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+                return Math.floor((curr - start) / 86400000);
+            }
+
+            function isLeapYear(year) {
+                return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            }
+
+            function getSolarParams(date) {
+                const doy = getDayOfYear(date);
+                const daysInYear = isLeapYear(date.getUTCFullYear()) ? 366 : 365;
+                const utcHours = date.getUTCHours() + date.getUTCMinutes() / 60 + date.getUTCSeconds() / 3600;
+                const gamma = (2 * Math.PI / daysInYear) * (doy - 1 + (utcHours - 12) / 24);
+
+                const eot = 229.18 * (
+                    0.000075
+                    + 0.001868 * Math.cos(gamma)
+                    - 0.032077 * Math.sin(gamma)
+                    - 0.014615 * Math.cos(2 * gamma)
+                    - 0.040849 * Math.sin(2 * gamma)
+                );
+
+                const decl = 0.006918
+                    - 0.399912 * Math.cos(gamma)
+                    + 0.070257 * Math.sin(gamma)
+                    - 0.006758 * Math.cos(2 * gamma)
+                    + 0.000907 * Math.sin(2 * gamma)
+                    - 0.002697 * Math.cos(3 * gamma)
+                    + 0.00148 * Math.sin(3 * gamma);
+
+                return { eot, decl };
+            }
+
+            function getOfficialOffsetMinutes(date, timeZone) {
+                try {
+                    const fmt = new Intl.DateTimeFormat('en-US', {
+                        timeZone,
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hourCycle: 'h23'
+                    });
+                    const parts = {};
+                    fmt.formatToParts(date).forEach(p => { parts[p.type] = p.value; });
+                    const asUtc = Date.UTC(
+                        Number(parts.year),
+                        Number(parts.month) - 1,
+                        Number(parts.day),
+                        Number(parts.hour) % 24,
+                        Number(parts.minute),
+                        Number(parts.second)
+                    );
+                    return Math.round((asUtc - Math.floor(date.getTime() / 1000) * 1000) / 60000);
+                } catch (e) {
+                    return Math.round(estado.lng / 15) * 60;
+                }
+            }
+
+            function formatHMSFromOffset(now, offsetMinutes) {
+                const shifted = new Date(now.getTime() + offsetMinutes * 60000);
+                const hh = String(shifted.getUTCHours()).padStart(2, '0');
+                const mm = String(shifted.getUTCMinutes()).padStart(2, '0');
+                const ss = String(shifted.getUTCSeconds()).padStart(2, '0');
+                return `${hh}:${mm}:${ss}`;
+            }
+
+            function formatHMFromDayMinutes(totalMin) {
+                const m = ((Math.round(totalMin) % 1440) + 1440) % 1440;
+                const hh = String(Math.floor(m / 60)).padStart(2, '0');
+                const mm = String(m % 60).padStart(2, '0');
+                return `${hh}:${mm}`;
+            }
+
+            function formatUtcOffset(offsetMin) {
+                const sign = offsetMin >= 0 ? '+' : '-';
+                const abs = Math.abs(Math.round(offsetMin));
+                const h = Math.floor(abs / 60);
+                const m = abs % 60;
+                if (abs === 0) return 'UTC±0';
+                return m > 0 ? `UTC${sign}${h}:${String(m).padStart(2, '0')}` : `UTC${sign}${h}`;
+            }
+
+            function formatDeviation(diffMin) {
+                const rounded = Math.round(diffMin);
+                if (rounded === 0) return '0 min';
+                const sign = rounded > 0 ? '+' : '-';
+                const abs = Math.abs(rounded);
+                const h = Math.floor(abs / 60);
+                const m = abs % 60;
+                if (h === 0) return `${sign}${m} min`;
+                if (m === 0) return `${sign}${h}h`;
+                return `${sign}${h}h ${String(m).padStart(2, '0')}min`;
+            }
+
+            function formatLatLng(lat, lng) {
+                const latStr = `${Math.abs(lat).toFixed(2)}° ${lat >= 0 ? 'N' : 'S'}`;
+                const lngStr = `${Math.abs(lng).toFixed(2)}° ${lng >= 0 ? 'E' : 'W'}`;
+                return `${latStr}, ${lngStr}`;
+            }
+
+            function computeLocationSolarData(lat, lng, zone, now) {
+                const { eot, decl } = getSolarParams(now);
+                const officialOffsetMin = zone ? getOfficialOffsetMinutes(now, zone) : Math.round(lng / 15) * 60;
+                const meanSolarOffsetMin = lng * 4;
+                const trueSolarOffsetMin = meanSolarOffsetMin + eot;
+
+                // Desvio médio (civil vs fuso solar geográfico) e desvio aparente (agora com EoT)
+                const meanDeviationMin = officialOffsetMin - meanSolarOffsetMin;
+                const apparentDeviationMin = officialOffsetMin - trueSolarOffsetMin;
+
+                // Meio-dia solar no relógio oficial
+                const solarNoonUtcMin = 720 - 4 * lng - eot;
+                const solarNoonOfficialMin = ((solarNoonUtcMin + officialOffsetMin) % 1440 + 1440) % 1440;
+
+                // Fuso solar teórico (faixas de 15°)
+                let idealHours = Math.round(lng / 15);
+                if (Object.is(idealHours, -0)) idealHours = 0;
+
+                // Nascer e Pôr do Sol (NOAA zenith = 90.833°)
+                const latRad = lat * Math.PI / 180;
+                const zenithRad = 90.833 * Math.PI / 180;
+                const cosHa = (Math.cos(zenithRad) / (Math.cos(latRad) * Math.cos(decl))) - Math.tan(latRad) * Math.tan(decl);
+
+                let sunriseStr = '--:--';
+                let sunsetStr = '--:--';
+                let dayLengthStr = '--h--';
+
+                if (cosHa > 1) {
+                    sunriseStr = 'Noite';
+                    sunsetStr = 'Polar';
+                    dayLengthStr = '0h 00m';
+                } else if (cosHa < -1) {
+                    sunriseStr = 'Sol';
+                    sunsetStr = 'Contínuo';
+                    dayLengthStr = '24h 00m';
+                } else {
+                    const haDeg = Math.acos(cosHa) * 180 / Math.PI;
+                    const sunriseUtc = 720 - 4 * (lng + haDeg) - eot;
+                    const sunsetUtc = 720 - 4 * (lng - haDeg) - eot;
+                    sunriseStr = formatHMFromDayMinutes(sunriseUtc + officialOffsetMin);
+                    sunsetStr = formatHMFromDayMinutes(sunsetUtc + officialOffsetMin);
+                    const durMin = Math.round(8 * haDeg);
+                    dayLengthStr = `${Math.floor(durMin / 60)}h ${String(durMin % 60).padStart(2, '0')}m`;
+                }
+
+                return {
+                    eot,
+                    officialOffsetMin,
+                    meanSolarOffsetMin,
+                    trueSolarOffsetMin,
+                    meanDeviationMin,
+                    apparentDeviationMin,
+                    solarNoonOfficialMin,
+                    idealHours,
+                    sunriseStr,
+                    sunsetStr,
+                    dayLengthStr
+                };
+            }
+
+            // =========================================================================
+            // RENDERIZAÇÃO DOS INSTRUMENTOS & GRÁFICO SOLAR
+            // =========================================================================
+            function renderSolarRuler(solarData) {
+                const svg = document.getElementById('svgSolarRuler');
+                const noonMin = solarData.solarNoonOfficialMin;
+                const minHour = Math.min(9, Math.floor((noonMin - 35) / 60));
+                const maxHour = Math.max(16, Math.ceil((noonMin + 35) / 60));
+                const minAxis = minHour * 60;
+                const maxAxis = maxHour * 60;
+                const width = 840;
+                const padX = 36;
+                const trackW = width - padX * 2;
+                const toX = (m) => {
+                    const clamped = Math.max(minAxis, Math.min(maxAxis, m));
+                    return padX + ((clamped - minAxis) / (maxAxis - minAxis)) * trackW;
+                };
+
+                const x12 = toX(720);
+                const xSolar = toX(noonMin);
+                const solarNoonFmt = formatHMFromDayMinutes(noonMin);
+                const gapLeft = Math.min(x12, xSolar);
+                const gapW = Math.max(2, Math.abs(xSolar - x12));
+                const absDev = Math.abs(Math.round(solarData.apparentDeviationMin));
+                const devColor = absDev > 45 ? '#C8102E' : (absDev > 15 ? '#0A192F' : '#5E8C5B');
+
+                let ticksHtml = '';
+                for (let h = minHour; h <= maxHour; h++) {
+                    const tx = toX(h * 60);
+                    const isNoon = h === 12;
+                    ticksHtml += `
+                        <line x1="${tx}" y1="36" x2="${tx}" y2="${isNoon ? 68 : 56}" stroke="#0A192F" stroke-width="${isNoon ? 2.5 : 1.2}" opacity="${isNoon ? 0.9 : 0.35}" />
+                        <text x="${tx}" y="84" text-anchor="middle" fill="${isNoon ? '#0A192F' : '#53647C'}" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="${isNoon ? 700 : 500}">${String(((h % 24) + 24) % 24).padStart(2, '0')}:00</text>
+                    `;
+                }
+
+                const label12Anchor = xSolar < x12 ? 'start' : 'end';
+                const labelSolarAnchor = xSolar >= x12 ? 'start' : 'end';
+                const x12Offset = xSolar < x12 ? 6 : -6;
+                const xSolarOffset = xSolar >= x12 ? 6 : -6;
+
+                svg.innerHTML = `
+                    <line x1="${padX}" y1="48" x2="${width - padX}" y2="48" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18" />
+                    <rect x="${gapLeft}" y="42" width="${gapW}" height="12" rx="4" fill="${devColor}" fill-opacity="0.28" />
+                    ${ticksHtml}
+                    <!-- Marcador 12:00 Oficial -->
+                    <circle cx="${x12}" cy="48" r="6" fill="#0A192F" stroke="#F5F2EB" stroke-width="2" />
+                    <text x="${x12 + (Math.abs(xSolar - x12) < 60 ? x12Offset : 0)}" y="24" text-anchor="${Math.abs(xSolar - x12) < 60 ? label12Anchor : 'middle'}" fill="#0A192F" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">12:00 OFICIAL</text>
+                    <!-- Marcador Meio-Dia Solar Real -->
+                    <line x1="${xSolar}" y1="26" x2="${xSolar}" y2="68" stroke="#C8102E" stroke-width="2.5" stroke-dasharray="3 2" />
+                    <circle cx="${xSolar}" cy="48" r="7.5" fill="#C8102E" stroke="#F5F2EB" stroke-width="2.5" />
+                    <text x="${xSolar + (Math.abs(xSolar - x12) < 60 ? xSolarOffset : 0)}" y="102" text-anchor="${Math.abs(xSolar - x12) < 60 ? labelSolarAnchor : 'middle'}" fill="#C8102E" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">MEIO-DIA SOLAR (${solarNoonFmt})</text>
+                `;
+            }
+
+            let lastRulerMinute = -1;
+
+            function atualizarPainel() {
+                const now = new Date();
+                const d = computeLocationSolarData(estado.lat, estado.lng, estado.zone, now);
+
+                // Relógios ao vivo
+                document.getElementById('clockOfficial').textContent = formatHMSFromOffset(now, d.officialOffsetMin);
+                document.getElementById('clockSolarTrue').textContent = formatHMSFromOffset(now, d.trueSolarOffsetMin);
+                document.getElementById('labelSolarMean').textContent = `Médio: ${formatHMSFromOffset(now, d.meanSolarOffsetMin)} · EoT: ${d.eot >= 0 ? '+' : ''}${d.eot.toFixed(1)} min`;
+
+                const currMin = Math.floor(now.getTime() / 60000);
+                if (currMin !== lastRulerMinute) {
+                    lastRulerMinute = currMin;
+
+                    document.getElementById('badgeOfficialUtc').textContent = formatUtcOffset(d.officialOffsetMin);
+                    document.getElementById('labelOfficialZone').textContent = estado.zone || 'Fuso Náutico Estimado';
+                    const officialMeridian = (d.officialOffsetMin / 60) * 15;
+                    document.getElementById('labelOfficialMeridian').textContent = `${Math.abs(officialMeridian).toFixed(1)}° ${officialMeridian >= 0 ? 'E' : 'W'}`;
+
+                    const exactSolarHours = d.trueSolarOffsetMin / 60;
+                    const exactSign = exactSolarHours >= 0 ? '+' : '-';
+                    document.getElementById('badgeSolarExactUtc').textContent = `UTC${exactSign}${Math.abs(exactSolarHours).toFixed(2)}`;
+
+                    // Desvio central
+                    document.getElementById('valDeviation').textContent = formatDeviation(d.apparentDeviationMin);
+                    document.getElementById('valSolarNoon').textContent = formatHMFromDayMinutes(d.solarNoonOfficialMin);
+                    document.getElementById('valIdealUtc').textContent = formatUtcOffset(d.idealHours * 60);
+
+                    const absMean = Math.abs(Math.round(d.meanDeviationMin));
+                    const badgeVer = document.getElementById('badgeVeredito');
+                    const txtExp = document.getElementById('txtDeviationExplain');
+
+                    if (absMean <= 15) {
+                        badgeVer.textContent = 'Alinhado ao Sol';
+                        badgeVer.className = 'px-2 py-0.5 rounded bg-[#A8C3A6]/25 text-[#A8C3A6] font-mono text-[10px] font-bold uppercase';
+                    } else if (absMean <= 45) {
+                        badgeVer.textContent = 'Desvio Moderado';
+                        badgeVer.className = 'px-2 py-0.5 rounded bg-white/15 text-white font-mono text-[10px] font-bold uppercase';
+                    } else {
+                        badgeVer.textContent = 'Anomalia Solar';
+                        badgeVer.className = 'px-2 py-0.5 rounded bg-[#C8102E] text-white font-mono text-[10px] font-bold uppercase';
+                    }
+
+                    const absApp = Math.abs(Math.round(d.apparentDeviationMin));
+                    if (absApp <= 3) {
+                        txtExp.textContent = 'O relógio oficial coincide quase exatamente com a passagem do Sol.';
+                    } else if (d.apparentDeviationMin > 0) {
+                        txtExp.textContent = `O relógio oficial está ${absApp} min adiantado: o Sol nasce e atinge o pico mais tarde.`;
+                    } else {
+                        txtExp.textContent = `O relógio oficial está ${absApp} min atrasado: o Sol nasce e atinge o pico mais cedo.`;
+                    }
+
+                    document.getElementById('valSunrise').textContent = d.sunriseStr;
+                    document.getElementById('valSunset').textContent = d.sunsetStr;
+                    document.getElementById('valDayLength').textContent = d.dayLengthStr;
+
+                    renderSolarRuler(d);
+                    atualizarLinksCompartilhamento(d);
+                }
+            }
+
+            function atualizarCabecalhoLocal() {
+                document.getElementById('inputLocal').value = estado.subtitulo ? `${estado.nome} (${estado.subtitulo})` : estado.nome;
+                const flagEl = document.getElementById('flagLocal');
+                if (estado.iso2) {
+                    flagEl.src = `/assets/flags/${estado.iso2}.svg`;
+                    flagEl.classList.remove('hidden');
+                } else {
+                    flagEl.classList.add('hidden');
+                }
+
+                document.getElementById('coordTelemetria').textContent = formatLatLng(estado.lat, estado.lng);
+                document.getElementById('tituloAnaliseLocal').textContent = `Análise do Meridiano — ${estado.nome}`;
+                document.getElementById('subtituloAnaliseLocal').textContent = `Comparação entre 12:00 no relógio (${estado.zone || 'Nautico'}) e o zênite solar na longitude ${Math.abs(estado.lng).toFixed(2)}° ${estado.lng >= 0 ? 'E' : 'W'}.`;
+
+                const boxFato = document.getElementById('boxFatoGeopolitico');
+                if (estado.nota) {
+                    boxFato.textContent = estado.nota;
+                    boxFato.classList.remove('hidden');
+                } else {
+                    boxFato.classList.add('hidden');
+                }
+
+                // Subzonas se o país tiver mais de 1 fuso em PAISES_FUSOS
+                const wrapSub = document.getElementById('wrapSelectSubzona');
+                const selSub = document.getElementById('selectSubzona');
+                const badgeSub = document.getElementById('badgeSubzonaWrap');
+                if (estado.countryObj && estado.countryObj.zones && estado.countryObj.zones.length > 1) {
+                    wrapSub.classList.remove('hidden');
+                    badgeSub.classList.remove('hidden');
+                    selSub.innerHTML = estado.countryObj.zones.map(z =>
+                        `<option value="${z.id}" ${z.id === estado.zone ? 'selected' : ''}>${z.label}</option>`
+                    ).join('');
+                } else {
+                    wrapSub.classList.add('hidden');
+                    badgeSub.classList.add('hidden');
+                    selSub.innerHTML = '';
+                }
+
+                // Atualiza URL sem recarregar
+                if (window.history && window.history.replaceState) {
+                    const params = new URLSearchParams();
+                    params.set('lat', estado.lat.toFixed(4));
+                    params.set('lng', estado.lng.toFixed(4));
+                    params.set('nome', estado.nome);
+                    if (estado.iso2) params.set('iso', estado.iso2);
+                    if (estado.zone) params.set('tz', estado.zone);
+                    window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                }
+
+                lastRulerMinute = -1;
+                atualizarPainel();
+                atualizarMarcadorMapa();
+            }
+
+            function atualizarLinksCompartilhamento(solarData) {
+                const shareUrl = window.location.href;
+                const devText = formatDeviation(solarData.apparentDeviationMin);
+                const noonText = formatHMFromDayMinutes(solarData.solarNoonOfficialMin);
+                const idealText = formatUtcOffset(solarData.idealHours * 60);
+                const officialText = formatUtcOffset(solarData.officialOffsetMin);
+
+                const msg = `Em ${estado.nome}, o relógio oficial (${officialText}) tem um desvio solar de ${devText}. O meio-dia solar real acontece às ${noonText} e o fuso astronômico ideal seria ${idealText}. Veja o da sua cidade no VitaleGeo: ${shareUrl}`;
+
+                document.getElementById('btnShareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+                document.getElementById('btnCopiarResumo').dataset.summary = msg;
+            }
+
+            function selecionarCidadeCurada(c) {
+                estado.nome = c.nome;
+                estado.subtitulo = c.pais;
+                estado.iso2 = c.iso2;
+                estado.lat = c.lat;
+                estado.lng = c.lng;
+                estado.zone = c.zone;
+                estado.nota = c.nota || '';
+                estado.countryObj = fusoByIso.get(c.iso2) || null;
+                atualizarCabecalhoLocal();
+            }
+
+            function selecionarPais(p) {
+                estado.nome = p.capital || p.nome;
+                estado.subtitulo = p.nome;
+                estado.iso2 = p.iso2;
+                estado.lat = p.lat;
+                estado.lng = p.lng;
+                estado.zone = p.defaultZone;
+                const cp = CEREBRO_PAISES.find(x => x.iso2 === p.iso2);
+                estado.nota = (cp && cp.fato) ? cp.fato : '';
+                estado.countryObj = p;
+                atualizarCabecalhoLocal();
+            }
+
+            // =========================================================================
+            // BUSCA & DROPDOWN DE CIDADES E PAÍSES
+            // =========================================================================
+            const inputLocal = document.getElementById('inputLocal');
+            const listaLocal = document.getElementById('listaLocal');
+
+            function renderDropdownLocais(query) {
+                const q = norm(query);
+                const itensCidades = CIDADES_CURADAS.filter(c =>
+                    !q || norm(c.nome).includes(q) || norm(c.pais).includes(q)
+                ).slice(0, 14);
+
+                const itensPaises = PAISES_FUSOS.filter(p =>
+                    !q || norm(p.nome).includes(q) || norm(p.capital).includes(q) || (p.synonyms && p.synonyms.some(s => norm(s).includes(q)))
+                ).slice(0, 16);
+
+                let html = '';
+                if (itensCidades.length) {
+                    html += '<div class="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#C8102E]">Cidades &amp; Anomalias</div>';
+                    html += itensCidades.map(c => `
+                        <button type="button" data-city="${c.id}" class="w-full text-left px-2.5 py-2 rounded-lg hover:bg-[#F5F2EB] flex items-center justify-between gap-2 transition">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <img src="/assets/flags/${c.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <div class="text-xs font-bold text-[#0A192F] truncate">${c.nome}</div>
+                                    <div class="text-[10px] font-mono text-[#53647C] truncate">${c.pais} · ${c.tag}</div>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] text-[#53647C] shrink-0">${c.lng.toFixed(1)}°</span>
+                        </button>
+                    `).join('');
+                }
+
+                if (itensPaises.length) {
+                    html += '<div class="px-2.5 py-1 mt-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#53647C] border-t border-[#0A192F]/10">Países (Capitais)</div>';
+                    html += itensPaises.map(p => `
+                        <button type="button" data-iso="${p.iso2}" class="w-full text-left px-2.5 py-2 rounded-lg hover:bg-[#F5F2EB] flex items-center justify-between gap-2 transition">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <img src="/assets/flags/${p.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                <div class="min-w-0">
+                                    <div class="text-xs font-bold text-[#0A192F] truncate">${p.nome}</div>
+                                    <div class="text-[10px] font-mono text-[#53647C] truncate">${p.capital}</div>
+                                </div>
+                            </div>
+                            <span class="font-mono text-[10px] text-[#53647C] shrink-0">${p.defaultZone}</span>
+                        </button>
+                    `).join('');
+                }
+
+                if (!html) {
+                    html = '<div class="p-3 text-xs font-mono text-[#53647C] text-center">Nenhum local encontrado.</div>';
+                }
+
+                listaLocal.innerHTML = html;
+                listaLocal.classList.remove('hidden');
+
+                listaLocal.querySelectorAll('button[data-city]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const c = CIDADES_CURADAS.find(x => x.id === btn.getAttribute('data-city'));
+                        if (c) selecionarCidadeCurada(c);
+                        listaLocal.classList.add('hidden');
+                    });
+                });
+                listaLocal.querySelectorAll('button[data-iso]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const p = fusoByIso.get(btn.getAttribute('data-iso'));
+                        if (p) selecionarPais(p);
+                        listaLocal.classList.add('hidden');
+                    });
+                });
+            }
+
+            inputLocal.addEventListener('focus', () => {
+                inputLocal.select();
+                renderDropdownLocais('');
+            });
+            inputLocal.addEventListener('input', (e) => renderDropdownLocais(e.target.value));
+            document.getElementById('toggleListaLocal').addEventListener('click', () => {
+                if (listaLocal.classList.contains('hidden')) {
+                    renderDropdownLocais('');
+                } else {
+                    listaLocal.classList.add('hidden');
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!document.getElementById('wrapBuscaLocal').contains(e.target)) {
+                    listaLocal.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('selectSubzona').addEventListener('change', (e) => {
+                estado.zone = e.target.value;
+                lastRulerMinute = -1;
+                atualizarCabecalhoLocal();
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const c = CIDADES_CURADAS.find(x => x.id === btn.getAttribute('data-preset'));
+                    if (c) selecionarCidadeCurada(c);
+                });
+            });
+
+            // =========================================================================
+            // GEOLOCALIZAÇÃO DO NAVEGADOR
+            // =========================================================================
+            document.getElementById('btnMinhaLocalizacao').addEventListener('click', () => {
+                const txt = document.getElementById('txtBtnGps');
+                if (!navigator.geolocation) {
+                    txt.textContent = 'GPS Indisponível';
+                    setTimeout(() => { txt.textContent = 'Minha Localização'; }, 2200);
+                    return;
+                }
+                txt.textContent = 'Localizando...';
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const lat = pos.coords.latitude;
+                        const lng = pos.coords.longitude;
+                        const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                        let matchedIso = '';
+                        let matchedCountry = null;
+
+                        if (mapInitialized && featuresGlobal.length) {
+                            const hit = featuresGlobal.find(f => d3.geoContains(f, [lng, lat]));
+                            if (hit && isoByFeature.has(hit)) {
+                                matchedIso = isoByFeature.get(hit);
+                                matchedCountry = fusoByIso.get(matchedIso) || null;
+                            }
+                        }
+
+                        estado.nome = 'Sua Posição Atual';
+                        estado.subtitulo = matchedCountry ? matchedCountry.nome : 'Coordenadas GPS';
+                        estado.iso2 = matchedIso;
+                        estado.lat = lat;
+                        estado.lng = lng;
+                        estado.zone = browserTz || (matchedCountry ? matchedCountry.defaultZone : '');
+                        estado.nota = 'Coordenadas obtidas pelo dispositivo e cruzadas com o fuso horário oficial configurado no navegador.';
+                        estado.countryObj = matchedCountry;
+
+                        txt.textContent = 'Localizado';
+                        setTimeout(() => { txt.textContent = 'Minha Localização'; }, 2200);
+                        atualizarCabecalhoLocal();
+                    },
+                    () => {
+                        txt.textContent = 'Permissão negada';
+                        setTimeout(() => { txt.textContent = 'Minha Localização'; }, 2400);
+                    },
+                    { enableHighAccuracy: false, timeout: 8000 }
+                );
+            });
+
+            // Botão Copiar Resumo
+            document.getElementById('btnCopiarResumo').addEventListener('click', async () => {
+                const btn = document.getElementById('btnCopiarResumo');
+                const txt = document.getElementById('txtCopiarResumo');
+                const summary = btn.dataset.summary || window.location.href;
+                try {
+                    await navigator.clipboard.writeText(summary);
+                    txt.textContent = 'Copiado!';
+                    setTimeout(() => { txt.textContent = 'Copiar resumo'; }, 2000);
+                } catch {
+                    txt.textContent = 'Use Ctrl+C';
+                }
+            });
+
+            // =========================================================================
+            // CATÁLOGO DE DESVIOS SOLARES (ABAS)
+            // =========================================================================
+            function renderGridLocais() {
+                const grid = document.getElementById('gridLocais');
+                const q = norm(document.getElementById('buscaTabela').value);
+                const now = new Date();
+
+                let lista = [];
+                if (estado.activeTab === 'anomalias') {
+                    lista = CIDADES_CURADAS.filter(c => c.cat === 'anomalia' || c.cat === 'mundo').map(c => ({
+                        tipo: 'city',
+                        ref: c,
+                        nome: c.nome,
+                        sub: c.pais,
+                        iso2: c.iso2,
+                        lat: c.lat,
+                        lng: c.lng,
+                        zone: c.zone
+                    }));
+                } else if (estado.activeTab === 'brasil') {
+                    lista = CIDADES_CURADAS.filter(c => c.cat === 'brasil').map(c => ({
+                        tipo: 'city',
+                        ref: c,
+                        nome: c.nome,
+                        sub: c.tag,
+                        iso2: c.iso2,
+                        lat: c.lat,
+                        lng: c.lng,
+                        zone: c.zone
+                    }));
+                } else {
+                    lista = PAISES_FUSOS.map(p => ({
+                        tipo: 'country',
+                        ref: p,
+                        nome: p.nome,
+                        sub: p.capital,
+                        iso2: p.iso2,
+                        lat: p.lat,
+                        lng: p.lng,
+                        zone: p.defaultZone
+                    }));
+                }
+
+                const calculados = lista
+                    .filter(item => !q || norm(item.nome).includes(q) || norm(item.sub).includes(q))
+                    .map(item => {
+                        const d = computeLocationSolarData(item.lat, item.lng, item.zone, now);
+                        return { ...item, d };
+                    });
+
+                if (estado.activeTab === 'anomalias') {
+                    calculados.sort((a, b) => Math.abs(b.d.meanDeviationMin) - Math.abs(a.d.meanDeviationMin));
+                } else if (estado.activeTab === 'paises') {
+                    calculados.sort((a, b) => Math.abs(b.d.meanDeviationMin) - Math.abs(a.d.meanDeviationMin));
+                }
+
+                if (!calculados.length) {
+                    grid.innerHTML = '<div class="col-span-full py-8 text-center text-xs font-mono text-[#53647C]">Nenhum resultado para este filtro.</div>';
+                    return;
+                }
+
+                grid.innerHTML = calculados.map((item, idx) => {
+                    const absMean = Math.abs(Math.round(item.d.meanDeviationMin));
+                    const badgeCls = absMean > 45
+                        ? 'bg-[#C8102E] text-white'
+                        : (absMean > 15 ? 'bg-[#0A192F] text-white' : 'bg-[#A8C3A6]/45 text-[#0A192F]');
+
+                    return `
+                        <button type="button" data-idx="${idx}"
+                                class="card-local text-left p-3 rounded-xl bg-[#F5F2EB]/60 hover:bg-[#F5F2EB] border border-[#0A192F]/12 hover:border-[#C8102E]/40 transition flex flex-col justify-between gap-2">
+                            <div class="flex items-start justify-between gap-2 w-full">
+                                <div class="flex items-center gap-2 min-w-0">
+                                    <img src="/assets/flags/${item.iso2}.svg" alt="" class="w-5 h-3.5 object-cover rounded-[2px] border border-[#0A192F]/15 shrink-0">
+                                    <div class="min-w-0">
+                                        <div class="font-heading font-bold text-xs text-[#0A192F] truncate">${item.nome}</div>
+                                        <div class="font-mono text-[10px] text-[#53647C] truncate">${item.sub}</div>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-0.5 rounded font-mono text-[10px] font-bold shrink-0 ${badgeCls}">
+                                    ${formatDeviation(item.d.meanDeviationMin)}
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] font-mono text-[#53647C] pt-1.5 border-t border-[#0A192F]/8 w-full">
+                                <span>Oficial: <strong class="text-[#0A192F]">${formatUtcOffset(item.d.officialOffsetMin)}</strong></span>
+                                <span>Meio-dia solar: <strong class="text-[#C8102E]">${formatHMFromDayMinutes(item.d.solarNoonOfficialMin)}</strong></span>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+
+                grid.querySelectorAll('.card-local').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const item = calculados[Number(btn.getAttribute('data-idx'))];
+                        if (!item) return;
+                        if (item.tipo === 'city') {
+                            selecionarCidadeCurada(item.ref);
+                        } else {
+                            selecionarPais(item.ref);
+                        }
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    estado.activeTab = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.tab-btn').forEach(b => {
+                        const active = b === btn;
+                        b.setAttribute('aria-selected', active ? 'true' : 'false');
+                        b.className = active
+                            ? 'tab-btn min-h-[44px] sm:min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#0A192F] text-white font-heading font-bold text-xs inline-flex items-center gap-1.5 transition'
+                            : 'tab-btn min-h-[44px] sm:min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#F5F2EB] text-[#53647C] hover:text-[#0A192F] font-heading font-bold text-xs inline-flex items-center gap-1.5 transition';
+                    });
+                    renderGridLocais();
+                });
+            });
+            document.getElementById('buscaTabela').addEventListener('input', renderGridLocais);
+
+            // =========================================================================
+            // ATLAS MUNDIAL INTERATIVO (D3 + TOPOJSON + BANDAS SOLARES DE 15°)
+            // =========================================================================
+            let mapInitialized = false;
+            let featuresGlobal = [];
+            let svgMapa, gMapa, gBands, gPaises, gOverlay, projecao, pathGen, zoomBehavior;
+            const featureByIso = new Map();
+            const isoByFeature = new Map();
+            const ANOMALY_ISOS = new Set(['es', 'fr', 'ar', 'cn', 'is', 'my', 'sg', 'by', 'ru', 'in', 'ge', 'pk']);
+
+            function mapearFeatures(features) {
+                featureByIso.clear();
+                isoByFeature.clear();
+                const usados = new Set();
+
+                const fCyprus = features.find(f => String(f.id) === '196');
+                if (fCyprus) { featureByIso.set('cy', fCyprus); isoByFeature.set(fCyprus, 'cy'); usados.add(fCyprus); }
+                const fKosovo = features.find(f => f.properties && f.properties.name === 'Kosovo');
+                if (fKosovo) { featureByIso.set('xk', fKosovo); isoByFeature.set(fKosovo, 'xk'); usados.add(fKosovo); }
+
+                PAISES_FUSOS.forEach(p => {
+                    if (featureByIso.has(p.iso2)) return;
+                    let match = features.find(ft => !usados.has(ft) && d3.geoContains(ft, [p.lng, p.lat]));
+                    if (!match) {
+                        let best = null, bestD = Infinity;
+                        features.forEach(ft => {
+                            if (usados.has(ft)) return;
+                            const c = d3.geoCentroid(ft);
+                            const d = Math.hypot(c[0] - p.lng, c[1] - p.lat);
+                            if (d < bestD) { bestD = d; best = ft; }
+                        });
+                        if (bestD < 4.5) match = best;
+                    }
+                    if (match) {
+                        featureByIso.set(p.iso2, match);
+                        isoByFeature.set(match, p.iso2);
+                        usados.add(match);
+                    }
+                });
+            }
+
+            function atualizarMarcadorMapa() {
+                if (!mapInitialized || !gOverlay || !projecao) return;
+
+                // Destaca país selecionado e faixa solar ativa
+                const idealBandIdx = Math.round(estado.lng / 15);
+                gBands.selectAll('path')
+                    .attr('class', d => d.band === idealBandIdx ? 'solar-band-active' : (Math.abs(d.band) % 2 === 0 ? 'solar-band-even' : 'solar-band-odd'));
+
+                gPaises.selectAll('path')
+                    .attr('class', d => {
+                        const iso = isoByFeature.get(d);
+                        if (iso && iso === estado.iso2) return 'country-poly country-selected';
+                        if (iso && ANOMALY_ISOS.has(iso)) return 'country-poly country-anomaly-high';
+                        return 'country-poly';
+                    });
+
+                gOverlay.selectAll('*').remove();
+
+                // Linha do meridiano exato da longitude selecionada
+                const meridianLine = {
+                    type: 'LineString',
+                    coordinates: d3.range(-84, 85, 4).map(la => [estado.lng, la])
+                };
+                gOverlay.append('path')
+                    .datum(meridianLine)
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#C8102E')
+                    .attr('stroke-width', 1.6)
+                    .attr('stroke-dasharray', '4,3')
+                    .attr('pointer-events', 'none');
+
+                // Pinpoint geodésico
+                const pt = projecao([estado.lng, estado.lat]);
+                if (pt) {
+                    const gPin = gOverlay.append('g')
+                        .attr('transform', `translate(${pt[0]}, ${pt[1]})`)
+                        .attr('pointer-events', 'none');
+                    gPin.append('circle').attr('r', 8.5).attr('fill', '#C8102E').attr('fill-opacity', 0.22);
+                    gPin.append('circle').attr('r', 4.5).attr('fill', '#C8102E').attr('stroke', '#FFFFFF').attr('stroke-width', 1.8);
+                }
+            }
+
+            function inicializarMapa(world) {
+                const features = topojson.feature(world, world.objects.countries).features
+                    .filter(f => !(f.properties && f.properties.name === 'Antarctica'));
+                featuresGlobal = features;
+                mapearFeatures(features);
+
+                const svgEl = document.getElementById('svgMapa');
+                const w = svgEl.clientWidth || 880;
+                const h = svgEl.clientHeight || 420;
+
+                svgMapa = d3.select('#svgMapa').attr('viewBox', `0 0 ${w} ${h}`);
+                svgMapa.selectAll('*').remove();
+
+                projecao = d3.geoNaturalEarth1().fitExtent([[12, 12], [w - 12, h - 12]], {
+                    type: 'FeatureCollection',
+                    features
+                });
+                pathGen = d3.geoPath().projection(projecao);
+
+                gMapa = svgMapa.append('g');
+
+                // 24 Faixas Solares de 15° (de -180° a +180°)
+                const bands = [];
+                for (let b = -12; b <= 12; b++) {
+                    const minLon = Math.max(-180, b * 15 - 7.5);
+                    const maxLon = Math.min(180, b * 15 + 7.5);
+                    if (maxLon <= minLon) continue;
+                    bands.push({
+                        band: b === -12 || b === 12 ? 12 : b,
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Polygon',
+                            coordinates: [[
+                                [minLon, -85], [maxLon, -85], [maxLon, 85], [minLon, 85], [minLon, -85]
+                            ]]
+                        }
+                    });
+                }
+
+                gBands = gMapa.append('g');
+                gBands.selectAll('path')
+                    .data(bands)
+                    .enter()
+                    .append('path')
+                    .attr('d', pathGen)
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.35)
+                    .attr('stroke-opacity', 0.14)
+                    .style('cursor', 'crosshair');
+
+                // Linha do Equador e Greenwich
+                gMapa.append('path')
+                    .datum({ type: 'LineString', coordinates: [[-180, 0], [180, 0]] })
+                    .attr('d', pathGen)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#0A192F')
+                    .attr('stroke-width', 0.6)
+                    .attr('stroke-opacity', 0.22)
+                    .attr('stroke-dasharray', '3,4')
+                    .attr('pointer-events', 'none');
+
+                gPaises = gMapa.append('g');
+                const tooltip = document.getElementById('mapTooltip');
+
+                gPaises.selectAll('path')
+                    .data(features)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'country-poly')
+                    .attr('d', pathGen)
+                    .on('mouseenter', function(event, d) {
+                        const iso = isoByFeature.get(d);
+                        const p = iso ? fusoByIso.get(iso) : null;
+                        if (p) {
+                            document.getElementById('ttFlag').src = `/assets/flags/${p.iso2}.svg`;
+                            document.getElementById('ttFlag').classList.remove('hidden');
+                            document.getElementById('ttNome').textContent = p.nome;
+                            const ideal = Math.round(p.lng / 15);
+                            const off = getOfficialOffsetMinutes(new Date(), p.defaultZone);
+                            document.getElementById('ttInfo').textContent = `Oficial ${formatUtcOffset(off)} · Solar ideal ${formatUtcOffset(ideal * 60)}`;
+                        } else {
+                            document.getElementById('ttFlag').classList.add('hidden');
+                            document.getElementById('ttNome').textContent = (d.properties && d.properties.name) || 'Território';
+                            document.getElementById('ttInfo').textContent = 'Clique para medir longitude';
+                        }
+                        tooltip.classList.remove('hidden');
+                    })
+                    .on('mouseleave', () => tooltip.classList.add('hidden'));
+
+                gOverlay = gMapa.append('g');
+
+                // Clique em qualquer ponto do mapa (terra ou oceano)
+                svgMapa.on('click', function(event) {
+                    if (event.defaultPrevented) return;
+                    const [mx, my] = d3.pointer(event, gMapa.node());
+                    const coords = projecao.invert([mx, my]);
+                    if (!coords || isNaN(coords[0]) || isNaN(coords[1])) return;
+                    const [lng, lat] = coords;
+                    if (lng < -180 || lng > 180 || lat < -85 || lat > 85) return;
+
+                    const hit = features.find(f => d3.geoContains(f, [lng, lat]));
+                    const iso = hit ? isoByFeature.get(hit) : '';
+                    const p = iso ? fusoByIso.get(iso) : null;
+
+                    if (p) {
+                        estado.nome = `${p.nome} (Ponto no Mapa)`;
+                        estado.subtitulo = formatLatLng(lat, lng);
+                        estado.iso2 = p.iso2;
+                        estado.lat = lat;
+                        estado.lng = lng;
+                        estado.zone = p.defaultZone;
+                        const cp = CEREBRO_PAISES.find(x => x.iso2 === p.iso2);
+                        estado.nota = (cp && cp.fato) ? cp.fato : '';
+                        estado.countryObj = p;
+                    } else {
+                        const idealH = Math.round(lng / 15);
+                        estado.nome = 'Ponto Oceânico / Náutico';
+                        estado.subtitulo = formatLatLng(lat, lng);
+                        estado.iso2 = '';
+                        estado.lat = lat;
+                        estado.lng = lng;
+                        estado.zone = '';
+                        estado.nota = `Fora de território continental mapeado: aplica-se o fuso náutico padrão (${formatUtcOffset(idealH * 60)}).`;
+                        estado.countryObj = null;
+                    }
+                    atualizarCabecalhoLocal();
+                });
+
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 8])
+                    .on('zoom', (event) => {
+                        gMapa.attr('transform', event.transform);
+                        gPaises.selectAll('path').style('stroke-width', (0.45 / Math.sqrt(event.transform.k)) + 'px');
+                    });
+
+                svgMapa.call(zoomBehavior);
+                document.getElementById('btnZoomIn').onclick = () => svgMapa.transition().duration(250).call(zoomBehavior.scaleBy, 1.5);
+                document.getElementById('btnZoomOut').onclick = () => svgMapa.transition().duration(250).call(zoomBehavior.scaleBy, 0.67);
+                document.getElementById('btnResetZoom').onclick = () => svgMapa.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+
+                mapInitialized = true;
+                atualizarMarcadorMapa();
+            }
+
+            async function carregarMapa() {
+                try {
+                    let res = await fetch('/data/maps/countries-110m.json');
+                    if (!res.ok) res = await fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json');
+                    const world = await res.json();
+                    document.getElementById('loadingMap').style.display = 'none';
+                    inicializarMapa(world);
+                } catch (err) {
+                    document.getElementById('loadingMap').innerHTML = '<span class="text-xs font-mono text-[#C8102E]">Não foi possível carregar o atlas vetorial.</span>';
+                }
+            }
+
+            // =========================================================================
+            // INICIALIZAÇÃO & RESTAURAÇÃO POR URL
+            // =========================================================================
+            function carregarDeParametrosUrl() {
+                const params = new URLSearchParams(window.location.search);
+                const presetId = params.get('local');
+                if (presetId) {
+                    const c = CIDADES_CURADAS.find(x => x.id === presetId);
+                    if (c) { selecionarCidadeCurada(c); return; }
+                }
+                const latP = parseFloat(params.get('lat'));
+                const lngP = parseFloat(params.get('lng'));
+                if (!isNaN(latP) && !isNaN(lngP) && latP >= -90 && latP <= 90 && lngP >= -180 && lngP <= 180) {
+                    const isoP = (params.get('iso') || '').toLowerCase();
+                    const tzP = params.get('tz') || '';
+                    const nomeP = params.get('nome') || 'Ponto Personalizado';
+                    const country = fusoByIso.get(isoP) || null;
+                    estado.nome = nomeP;
+                    estado.subtitulo = country ? country.nome : formatLatLng(latP, lngP);
+                    estado.iso2 = isoP;
+                    estado.lat = latP;
+                    estado.lng = lngP;
+                    estado.zone = tzP || (country ? country.defaultZone : '');
+                    estado.countryObj = country;
+                    estado.nota = '';
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                carregarDeParametrosUrl();
+                atualizarCabecalhoLocal();
+                renderGridLocais();
+                carregarMapa();
+                setInterval(atualizarPainel, 1000);
+            });
+        })();
+    </script>
+</body>
+</html>

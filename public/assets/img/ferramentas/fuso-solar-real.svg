@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <!-- Fundo Bege Cartográfico -->
+  <rect width="1200" height="700" fill="#F5F2EB"/>
+
+  <!-- Curvas Topográficas Contínuas em Verde Sálvia -->
+  <path d="M-40 565C170 505 330 615 540 535s285-105 445-25 180 65 255 15v195H-40V565Z" fill="#A8C3A6" opacity="0.24"/>
+  <path d="M-40 135C180 85 370 185 590 115s285-55 435 25 150 45 215 10" stroke="#A8C3A6" stroke-width="2" opacity="0.55"/>
+  <path d="M-40 170C190 120 380 220 600 150s285-55 435 25 150 45 215 10" stroke="#A8C3A6" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Grade de Meridianos e Paralelos Cartográficos -->
+  <g stroke="#0A192F" stroke-width="1.5" opacity="0.10">
+    <path d="M0 110h1200M0 210h1200M0 310h1200M0 410h1200M0 510h1200M0 610h1200"/>
+    <path d="M120 0v700M240 0v700M360 0v700M480 0v700M600 0v700M720 0v700M840 0v700M960 0v700M1080 0v700"/>
+  </g>
+
+  <!-- Telemetria Superior -->
+  <text x="80" y="135" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" letter-spacing="4">VITALEGEO · ASTRONOMIA &amp; FUSOS</text>
+
+  <!-- Tipografia Monumental à Esquerda -->
+  <text x="72" y="336" fill="#0A192F" font-family="'Orbitron', Arial, sans-serif" font-size="144" font-weight="900" letter-spacing="-4">15<tspan fill="#C8102E">°</tspan></text>
+  <text x="80" y="405" fill="#0A192F" font-family="'Montserrat', Arial, sans-serif" font-size="38" font-weight="800" letter-spacing="0.5">FUSO SOLAR REAL</text>
+  <text x="80" y="446" fill="#53647C" font-family="'Montserrat', Arial, sans-serif" font-size="22" font-weight="600">Relógio oficial vs. meio-dia astronômico</text>
+
+  <!-- Diagrama Técnico do Meridiano Solar à Direita -->
+  <g transform="translate(885, 345)">
+    <!-- Anéis Exteriores de Azimute Horário (24h) -->
+    <circle cx="0" cy="0" r="224" stroke="#0A192F" stroke-width="1.5" stroke-dasharray="5 7" opacity="0.22"/>
+    <circle cx="0" cy="0" r="186" fill="#FFFFFF" fill-opacity="0.72" stroke="#0A192F" stroke-width="3"/>
+    <circle cx="0" cy="0" r="154" stroke="#A8C3A6" stroke-width="2" opacity="0.65"/>
+
+    <!-- Setor de Desvio de Fuso (entre 12h Oficial e Solar) -->
+    <path d="M 0 0 L 0 -154 A 154 154 0 0 1 118 -99 Z" fill="#C8102E" fill-opacity="0.14"/>
+
+    <!-- Globo Reticulado Interno -->
+    <circle cx="0" cy="0" r="92" fill="#F5F2EB" stroke="#0A192F" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="46" ry="92" stroke="#0A192F" stroke-width="1.5" opacity="0.35"/>
+    <ellipse cx="0" cy="0" rx="22" ry="92" stroke="#A8C3A6" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-92" y1="0" x2="92" y2="0" stroke="#0A192F" stroke-width="1.5" opacity="0.35"/>
+    <path d="M-80 -44h160M-80 44h160" stroke="#0A192F" stroke-width="1.2" opacity="0.22"/>
+
+    <!-- Eixo Meridiano Oficial (Vertical 12:00) -->
+    <line x1="0" y1="-198" x2="0" y2="198" stroke="#0A192F" stroke-width="2.5" stroke-dasharray="6 5" opacity="0.65"/>
+
+    <!-- Vetor Solar Real Desviado (+37° / Anomalia) -->
+    <line x1="0" y1="0" x2="142" y2="-120" stroke="#C8102E" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="9" fill="#0A192F" stroke="#F5F2EB" stroke-width="3"/>
+
+    <!-- Sol Astronômico no Topo do Vetor -->
+    <g transform="translate(142, -120)">
+      <circle cx="0" cy="0" r="26" fill="#F5F2EB" stroke="#C8102E" stroke-width="3"/>
+      <circle cx="0" cy="0" r="12" fill="#C8102E"/>
+      <g stroke="#C8102E" stroke-width="2.5" stroke-linecap="round">
+        <line x1="0" y1="-36" x2="0" y2="-30"/>
+        <line x1="0" y1="30" x2="0" y2="36"/>
+        <line x1="-36" y1="0" x2="-30" y2="0"/>
+        <line x1="30" y1="0" x2="36" y2="0"/>
+      </g>
+    </g>
+
+    <!-- Marcações Cardinais de Relógio -->
+    <g fill="#0A192F" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" text-anchor="middle">
+      <text x="0" y="-164">12:00</text>
+      <text x="0" y="176">00:00</text>
+      <text x="166" y="5">18:00</text>
+      <text x="-166" y="5">06:00</text>
+    </g>
+
+    <!-- Pílula de Telemetria do Desvio -->
+    <g transform="translate(-140, 128)">
+      <rect x="0" y="0" width="168" height="44" rx="10" fill="#0A192F"/>
+      <text x="84" y="28" fill="#F5F2EB" font-family="'JetBrains Mono', monospace" font-size="16" font-weight="700" text-anchor="middle">15° = 1h SOLAR</text>
+    </g>
+  </g>
+
+  <!-- Bússola Minimalista Superior Direita -->
+  <g transform="translate(1105, 85)">
+    <circle cx="0" cy="0" r="26" stroke="#0A192F" stroke-width="1.5" opacity="0.35"/>
+    <polygon points="0,-20 5,0 0,20 -5,0" fill="#0A192F"/>
+    <polygon points="0,-20 5,0 -5,0" fill="#C8102E"/>
+    <text x="0" y="-26" fill="#C8102E" font-family="'Orbitron', sans-serif" font-size="11" font-weight="800" text-anchor="middle">N</text>
+  </g>
+
+  <!-- Rodapé Editorial -->
+  <text x="80" y="625" fill="#53647C" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600" letter-spacing="3">MERIDIANO LOCAL &amp; DESVIO CIRCADIANO</text>
+</svg>

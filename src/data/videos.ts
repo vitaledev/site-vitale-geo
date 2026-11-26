@@ -6,6 +6,11 @@ export interface VideoItem {
 
 export const videosLongos: VideoItem[] = [
   {
+    "titulo": "Por Que a Rússia Acredita que Pode Enfrentar a Europa e Vencer",
+    "id": "QUC-MSP9JEM",
+    "link": "https://www.youtube.com/watch?v=QUC-MSP9JEM"
+  },
+  {
     "titulo": "Por que o Vietnã pode ser a nova potência da Ásia?",
     "id": "hmXR0EkCcsU",
     "link": "https://www.youtube.com/watch?v=hmXR0EkCcsU"
@@ -88,6 +93,21 @@ export const videosLongos: VideoItem[] = [
 ];
 
 export const videosShorts: VideoItem[] = [
+  {
+    "titulo": "O Vietnã será a nova potência da Ásia?",
+    "id": "8n0nyCrfK9o",
+    "link": "https://www.youtube.com/watch?v=8n0nyCrfK9o"
+  },
+  {
+    "titulo": "O desafio demográfico do Vietnã",
+    "id": "qCRLOhXgmOc",
+    "link": "https://www.youtube.com/watch?v=qCRLOhXgmOc"
+  },
+  {
+    "titulo": "Por que as empresas estão saindo da China?",
+    "id": "aFoyPogABJo",
+    "link": "https://www.youtube.com/watch?v=aFoyPogABJo"
+  },
   {
     "titulo": "A reforma que mudou a economia do Vietnã",
     "id": "4QtYJWlGNj0",

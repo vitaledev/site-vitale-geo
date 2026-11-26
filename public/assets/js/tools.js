@@ -125,5 +125,12 @@ const toolsDB = [
         icon: "ph-bold ph-flag-pennant",
         cover: "/assets/img/ferramentas/criador-bandeiras.svg",
         link: "/ferramentas/criador-bandeiras/"
+    },
+    {
+        titulo: "Fuso Horário Solar Real",
+        desc: "Compare o relógio oficial com a posição astronômica do Sol, descubra o meio-dia solar exato e explore anomalias de fuso horário no mapa.",
+        icon: "ph-bold ph-sun-horizon",
+        cover: "/assets/img/ferramentas/fuso-solar-real.svg",
+        link: "/ferramentas/fuso-solar-real/"
     }
 ];

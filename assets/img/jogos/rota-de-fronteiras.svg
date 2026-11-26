@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <pattern id="grid-rdf" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A192F" stroke-width="1" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Bege Cartográfico Oficial -->
+  <rect width="800" height="500" fill="#F5F2EB"/>
+  <rect width="800" height="500" fill="url(#grid-rdf)"/>
+
+  <!-- Curvas Topográficas Contínuas de Canto (Verde Sálvia) -->
+  <g fill="none" stroke="#A8C3A6" stroke-width="1.5" opacity="0.48">
+    <circle cx="0" cy="0" r="145"/>
+    <circle cx="0" cy="0" r="205"/>
+    <circle cx="800" cy="500" r="150"/>
+    <circle cx="800" cy="500" r="215"/>
+  </g>
+
+  <!-- Moldura Externa -->
+  <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+  <!-- Cabeçalho Minimalista da Arte -->
+  <text x="400" y="66" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#53647C" text-anchor="middle" letter-spacing="3">TRAVESSIA TERRESTRE • GRAFO SOBERANO</text>
+  <text x="400" y="102" font-family="Orbitron, sans-serif" font-size="27" font-weight="900" fill="#0A192F" text-anchor="middle" letter-spacing="1.4">ROTA DE <tspan fill="#C8102E">FRONTEIRAS</tspan></text>
+
+  <!-- Prancha Central Cartográfica -->
+  <g transform="translate(110, 126)">
+    <rect x="0" y="0" width="580" height="274" rx="18" fill="#FFFFFF" stroke="#0A192F" stroke-width="2" stroke-opacity="0.18"/>
+
+    <!-- Grade Geodésica Interna -->
+    <g stroke="#0A192F" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="4 4">
+      <line x1="145" y1="0" x2="145" y2="274"/>
+      <line x1="290" y1="0" x2="290" y2="274"/>
+      <line x1="435" y1="0" x2="435" y2="274"/>
+      <line x1="0" y1="92" x2="580" y2="92"/>
+      <line x1="0" y1="184" x2="580" y2="184"/>
+    </g>
+
+    <!-- Territórios de Contexto Neutros -->
+    <g stroke="#0A192F" stroke-width="1.5" stroke-opacity="0.22" fill="#FAF8F5" stroke-linejoin="round">
+      <path d="M 62 42 L 138 30 L 160 72 L 94 94 Z"/>
+      <path d="M 190 184 L 275 170 L 296 226 L 210 242 Z"/>
+      <path d="M 332 46 L 418 36 L 430 88 L 352 98 Z"/>
+    </g>
+
+    <!-- Território Origem (Azul Marinho) -->
+    <path d="M 52 104 L 132 88 L 164 136 L 146 196 L 76 188 L 46 144 Z"
+          fill="#0A192F" stroke="#0A192F" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Território Passo 1 (Verde Sálvia com borda Azul Marinho) -->
+    <path d="M 164 136 L 222 88 L 288 106 L 275 170 L 190 184 L 146 196 Z"
+          fill="#A8C3A6" fill-opacity="0.68" stroke="#0A192F" stroke-width="2.2" stroke-linejoin="round"/>
+
+    <!-- Território Passo 2 (Verde Sálvia com borda Azul Marinho) -->
+    <path d="M 288 106 L 352 98 L 408 134 L 386 196 L 296 226 L 275 170 Z"
+          fill="#A8C3A6" fill-opacity="0.52" stroke="#0A192F" stroke-width="2.2" stroke-linejoin="round"/>
+
+    <!-- Território Separador Neutro entre Passo 2 e Destino para manter contraste editorial -->
+    <path d="M 408 134 L 444 96 L 462 128 L 430 182 L 386 196 Z"
+          fill="#F5F2EB" stroke="#0A192F" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Território Destino (Vermelho Destaque com contorno Azul Marinho) -->
+    <path d="M 444 96 L 526 84 L 542 152 L 492 204 L 430 182 L 462 128 Z"
+          fill="#C8102E" fill-opacity="0.16" stroke="#C8102E" stroke-width="2.8" stroke-linejoin="round"/>
+
+    <!-- Arco de Rota Terrestre Conectada -->
+    <path d="M 108 142 Q 168 118 224 138 T 340 156 T 492 142"
+          fill="none" stroke="#0A192F" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>
+
+    <!-- Nós da Rota -->
+    <circle cx="108" cy="142" r="9" fill="#F5F2EB" stroke="#0A192F" stroke-width="3"/>
+    <circle cx="108" cy="142" r="3.5" fill="#0A192F"/>
+
+    <circle cx="224" cy="138" r="7" fill="#FFFFFF" stroke="#0A192F" stroke-width="2.5"/>
+    <circle cx="340" cy="156" r="7" fill="#FFFFFF" stroke="#0A192F" stroke-width="2.5"/>
+
+    <circle cx="492" cy="142" r="10" fill="#FFFFFF" stroke="#C8102E" stroke-width="3"/>
+    <circle cx="492" cy="142" r="4.5" fill="#C8102E"/>
+
+    <!-- Pílulas de Telemetria -->
+    <rect x="20" y="18" width="112" height="24" rx="12" fill="#0A192F"/>
+    <text x="76" y="34" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#F5F2EB" text-anchor="middle">ORIGEM (A)</text>
+
+    <rect x="442" y="18" width="118" height="24" rx="12" fill="#C8102E"/>
+    <text x="501" y="34" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">DESTINO (B)</text>
+
+    <rect x="202" y="232" width="176" height="24" rx="12" fill="#FAF8F5" stroke="#0A192F" stroke-width="1.2" stroke-opacity="0.22"/>
+    <text x="290" y="248" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0A192F" text-anchor="middle">PAR ÓTIMO: 3 FRONTEIRAS</text>
+  </g>
+
+  <!-- Barra Inferior -->
+  <rect x="145" y="422" width="510" height="34" rx="17" fill="#0A192F"/>
+  <text x="400" y="443" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#F5F2EB" text-anchor="middle" letter-spacing="1.2">CONECTE POR TERRA • DIÁRIO • SOBREVIVÊNCIA • BLITZ</text>
+</svg>

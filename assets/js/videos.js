@@ -1,8 +1,9 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 16 Longos + 189 Shorts
+// Total: 17 Longos + 192 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
+    { titulo: "Por Que a Rússia Acredita que Pode Enfrentar a Europa e Vencer", id: "QUC-MSP9JEM", link: "https://www.youtube.com/watch?v=QUC-MSP9JEM" },
     { titulo: "Por que o Vietnã pode ser a nova potência da Ásia?", id: "hmXR0EkCcsU", link: "https://www.youtube.com/watch?v=hmXR0EkCcsU" },
     { titulo: "Por que a Índia pode ultrapassar a China (e a China não viu chegar)", id: "jJC7c00-53k", link: "https://www.youtube.com/watch?v=jJC7c00-53k" },
     { titulo: "Toda a História do Irã explicada em 12 Minutos!", id: "FxFveFDTo8k", link: "https://www.youtube.com/watch?v=FxFveFDTo8k" },
@@ -23,6 +24,9 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "O Vietnã será a nova potência da Ásia?", id: "8n0nyCrfK9o", link: "https://www.youtube.com/watch?v=8n0nyCrfK9o" },
+    { titulo: "O desafio demográfico do Vietnã", id: "qCRLOhXgmOc", link: "https://www.youtube.com/watch?v=qCRLOhXgmOc" },
+    { titulo: "Por que as empresas estão saindo da China?", id: "aFoyPogABJo", link: "https://www.youtube.com/watch?v=aFoyPogABJo" },
     { titulo: "A reforma que mudou a economia do Vietnã", id: "4QtYJWlGNj0", link: "https://www.youtube.com/watch?v=4QtYJWlGNj0" },
     { titulo: "A disputa comercial entre Vietnã e EUA", id: "e8izaV_b9Qw", link: "https://www.youtube.com/watch?v=e8izaV_b9Qw" },
     { titulo: "A virada do Vietnã no sudeste asiático", id: "dZVty_J2Epc", link: "https://www.youtube.com/watch?v=dZVty_J2Epc" },

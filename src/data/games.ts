@@ -12,6 +12,17 @@ export interface GameItem {
 
 export const gamesDB: GameItem[] = [
   {
+    id: "rota-de-fronteiras",
+    titulo: "Rota de Fronteiras",
+    desc: "Conecte dois países por terra cruzando o menor número possível de fronteiras internacionais no mapa interativo.",
+    icon: "ph-fill ph-path",
+    cover: "/assets/img/jogos/rota-de-fronteiras.svg",
+    link: "/jogos/rota-de-fronteiras/",
+    categoria: "Fronteiras & Território",
+    badge: "DESAFIO DIÁRIO",
+    tags: ["rota de fronteiras", "travessia terrestre", "fronteiras", "travle", "menor caminho", "diario", "sobrevivencia", "blitz"]
+  },
+  {
     id: "quebra-cabeca-cartografico",
     titulo: "Quebra-Cabeça Cartográfico",
     desc: "Arraste e encaixe as silhuetas reais dos países no mapa mudo antes do tempo acabar. Cinco regiões do globo para dominar.",

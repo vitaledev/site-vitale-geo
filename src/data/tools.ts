@@ -209,5 +209,16 @@ export const toolsDB: ToolItem[] = [
     categoria: "Vexilologia & Bandeiras",
     badge: "SVG & PNG",
     tags: ["criador de bandeiras", "flag maker", "bandeira personalizada", "vexilologia", "nava", "heraldica", "svg", "png", "bandeiras"]
+  },
+  {
+    id: "fuso-solar-real",
+    titulo: "Fuso Horário Solar Real",
+    desc: "Compare o relógio oficial com a posição astronômica do Sol, descubra o meio-dia solar exato e explore anomalias de fuso horário no mapa.",
+    icon: "ph-bold ph-sun-horizon",
+    cover: "/assets/img/ferramentas/fuso-solar-real.svg",
+    link: "/ferramentas/fuso-solar-real/",
+    categoria: "Tempo & Fusos",
+    badge: "FUSO SOLAR",
+    tags: ["fuso solar", "horario solar", "meio dia solar", "astronomia", "meridiano", "desvio horario", "espanha", "china", "brasil"]
   }
 ];

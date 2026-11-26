@@ -1,6 +1,14 @@
 // BANCO DE DADOS DE JOGOS — VITALEGEO ARCADE
 const gamesDB = [
     {
+        titulo: "Rota de Fronteiras",
+        desc: "Conecte dois países por terra cruzando o menor número possível de fronteiras internacionais no mapa interativo.",
+        icon: "ph-fill ph-path",
+        cover: "/assets/img/jogos/rota-de-fronteiras.svg",
+        link: "/jogos/rota-de-fronteiras/",
+        badge: "DESAFIO DIÁRIO"
+    },
+    {
         titulo: "Quebra-Cabeça Cartográfico",
         desc: "Arraste e encaixe as silhuetas reais dos países no mapa mudo antes do tempo acabar. Cinco regiões do globo para dominar.",
         icon: "ph-fill ph-puzzle-piece",
