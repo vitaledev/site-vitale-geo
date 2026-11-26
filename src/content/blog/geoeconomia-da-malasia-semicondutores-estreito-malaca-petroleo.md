@@ -122,4 +122,7 @@ Quase todo servidor de inteligência artificial, carro elétrico ou smartphone m
 <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Fontes Consultadas</h4>
 <ul class="space-y-1 text-xs font-mono text-slate-400">
 <li>• <a href="https://unctad.org/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">UNCTAD — Global Semiconductor Value Chain and Back-end Market Share</a></li>
-<li>• <a href="https://www.petronas.com/" target="_blank" rel="noope
+<li>• <a href="https://www.petronas.com/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">Petronas — Upstream Reserves, Bintulu LNG and Pengerang Integrated Complex</a></li>
+<li>• <a href="https://www.eia.gov/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">U.S. Energy Information Administration (EIA) — South China Sea and Strait of Malacca Transit Data</a></li>
+</ul>
+</div>

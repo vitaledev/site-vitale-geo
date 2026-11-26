@@ -74,7 +74,8 @@ Sem níquel não há aço inoxidável resistente à corrosão, turbinas de avia�
 
 <h2>A guerra silenciosa entre laterita e sulfeto pelas baterias</h2>
 <p>Nem todo níquel serve automaticamente para baterias de carros elétricos. Tradicionalmente, depósitos sulfetados — abundantes no Canadá, na Rússia e em parte da Austrália — eram os preferidos para produzir níquel de alta pureza (Classe 1), enquanto minérios lateríticos tropicais (como os da Indonésia e das Filipinas) iam para o aço inoxidável.</p>
-<p>A grande reviravolta veio com o investimento de bilhões de dólares na tecnologia de lixiviação ácida sob alta pressão (HPAL) em parques industriais como Morowali, na Indonésia. A técnica permitiu converter laterita abundante em sulfato de níquel próprio para cátodos de baterias NCM (níquel-cobalto-manganês), derrubando o custo global e forçando Estados Unidos e União Europeia a buscar cadeias alternativas em países aliados como Austrália, Canadá e Brasil.</p>
+<p>A grande reviravolta veio com o investimento de bilhões de dólares na tecnologia de lixiviação ácida sob alta pressão (HPAL) em parques industriais como Morowali e Weda Bay, na Indonésia. A técnica permitiu converter laterita abundante em sulfato de níquel próprio para cátodos de baterias NCM (níquel-cobalto-manganês), derrubando o custo global e forçando Estados Unidos e União Europeia a buscar cadeias alternativas em países aliados como Austrália, Canadá e Brasil.</p>
+<p>Esse choque de oferta derrubou preços internacionais entre 2023 e 2025, pressionando operações mais caras na Austrália Ocidental e na Nova Caledônia — onde conflitos sociais também paralisaram usinas — e consolidando o peso estratégico de quem domina tanto a mina quanto o refino químico próximo ao mar.</p>
 
 <div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
 <h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">

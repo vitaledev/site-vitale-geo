@@ -75,6 +75,7 @@ Em uma única ilha montanhosa do Pacífico com área equivalente à metade do es
 <p>Um padrão cartográfico chama atenção imediata: quase toda a lista concentra-se perto da faixa tropical ou em territórios cortados por barreiras naturais extremas. Toda a Europa reunida possui menos de trezentas línguas autóctones — menos do que um único país como Camarões ou México.</p>
 <p>A explicação mistura ecologia e geografia humana. Em climas tropicais com chuva e alimento disponíveis o ano inteiro, grupos humanos pequenos conseguiam sobreviver em territórios reduzidos sem depender de grandes impérios agrícolas nem de trocas constantes a longa distância.</p>
 <p>Quando esse fator soma-se a barreiras de relevo — como as cordilheiras da Nova Guiné, os desfiladeiros de Oaxaca no México ou os rios densos da Amazônia brasileira —, cada vale ou igarapé desenvolveu fonética, gramática e vocabulário próprios ao longo de milhares de anos.</p>
+<p>Ao mesmo tempo, a urbanização acelerada e a expansão rodoviária criaram uma corrida contra o relógio: enquanto idiomas globais como inglês, mandarim, espanhol e português avançam pelas escolas e redes digitais, mais de três mil línguas minoritárias no planeta dependem hoje de comunidades com poucos milhares — ou poucas dezenas — de falantes ativos para não desaparecer ainda neste século.</p>
 
 <div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
 <h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">

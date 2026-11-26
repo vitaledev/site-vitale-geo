@@ -117,4 +117,11 @@ Todo navio que parte de Veneza, Trieste, Koper ou Rijeka carregando mercadorias 
 </div>
 </div>
 
-<div class="my-8 p-4 bg-white/[0.02] border border-white/5 rounded-xl not-p
+<div class="my-8 p-4 bg-white/[0.02] border border-white/5 rounded-xl not-prose">
+<h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Fontes Consultadas</h4>
+<ul class="space-y-1 text-xs font-mono text-slate-400">
+<li>• <a href="https://www.tap-ag.com/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">Trans Adriatic Pipeline (TAP) — Offshore Section Between Albania and Italy</a></li>
+<li>• <a href="https://mc.nato.int/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">NATO Allied Maritime Command (MARCOM) — Adriatic Sea and Critical Undersea Infrastructure</a></li>
+<li>• <a href="https://www.britannica.com/" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline">Encyclopaedia Britannica — Strait of Otranto (Geography and WWI Barrage)</a></li>
+</ul>
+</div>
