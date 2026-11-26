@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 16 Longos + 190 Shorts
+// Total: 16 Longos + 191 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -23,6 +23,7 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "O desafio demográfico do Vietnã", id: "qCRLOhXgmOc", link: "https://www.youtube.com/watch?v=qCRLOhXgmOc" },
     { titulo: "Por que as empresas estão saindo da China?", id: "aFoyPogABJo", link: "https://www.youtube.com/watch?v=aFoyPogABJo" },
     { titulo: "A reforma que mudou a economia do Vietnã", id: "4QtYJWlGNj0", link: "https://www.youtube.com/watch?v=4QtYJWlGNj0" },
     { titulo: "A disputa comercial entre Vietnã e EUA", id: "e8izaV_b9Qw", link: "https://www.youtube.com/watch?v=e8izaV_b9Qw" },
