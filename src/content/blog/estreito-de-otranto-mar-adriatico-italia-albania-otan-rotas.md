@@ -78,6 +78,7 @@ Todo navio que parte de Veneza, Trieste, Koper ou Rijeka carregando mercadorias 
 <h2>Cabos submarinos e o corredor de energia elétrica Itália–Bálcãs</h2>
 <p>Além do gás do Mar Cáspio e dos cargueiros de contêineres, o leito do Estreito de Otranto e do Baixo Adriático concentra ligações elétricas e de fibra óptica essenciais entre a Europa Ocidental e os Bálcãs. O cabo submarino de corrente contínua entre Itália e Montenegro — com 445 quilômetros entre Pescara e Kotor e capacidade de 600 MW — integra a rede elétrica balcânica ao mercado europeu, reduzindo gargalos históricos de transmissão.</p>
 <p>Paralelamente, Roma e Tirana negociam interconexões diretas através dos 72 quilômetros do estreito para escoar energia renovável dos Bálcãs para o sul italiano, reforçando ainda mais a densidade de cabos críticos concentrados nessa garganta marítima.</p>
+<p>Sem o trânsito livre pelo Estreito de Otranto, navios mercantes destinados à Áustria, à Hungria e ao sul da Alemanha perderiam o acesso mais curto pelo Adriático, obrigando cadeias inteiras de suprimento centro-europeias a desviar semanas de navegação rumo ao Mar do Norte.</p>
 
 <div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
 <h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">

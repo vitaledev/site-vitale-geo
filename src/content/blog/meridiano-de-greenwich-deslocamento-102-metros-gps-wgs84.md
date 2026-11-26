@@ -73,6 +73,7 @@ Milhares de visitantes viajam todos os dias ao Observatório Real de Greenwich, 
 <h2>Por que o Brasil e a França resistiram em 1884?</h2>
 <p>A votação de Washington não foi unânime por motivos científicos e geopolíticos claros. A delegação francesa defendeu um "meridiano neutro" — passando pelo Estreito de Bering ou pelas Ilhas dos Açores — para evitar que a cartografia mundial ficasse atrelada à hegemonia naval britânica, mantendo o Meridiano de Paris em mapas civis franceses até 1911.</p>
 <p>O representante brasileiro em 1884, Luís Cruls — diretor do Imperial Observatório do Rio de Janeiro —, acompanhou o argumento técnico francês em defesa de um meridiano puramente geográfico e neutro, resultando na abstenção histórica do Brasil e da França. Mesmo assim, a rede britânica de cabos telegráficos submarinos e cartas do Almirantado consolidou Greenwich como padrão prático da navegação e do tempo universal até a chegada dos relógios atômicos e dos satélites do século XX.</p>
+<p>Hoje, quem caminha exatos cento e dois metros para leste da faixa metálica no parque encontra a placa que marca o Meridiano de Referência IERS — lembrando que o mapa digital contemporâneo não nasce de uma linha pintada no chão, mas da geometria gravitacional invisível da Terra vista do espaço.</p>
 
 <div class="my-8 p-6 bg-slate-800/60 border border-amber-400/20 rounded-xl not-prose">
 <h4 class="text-amber-400 font-mono uppercase text-xs tracking-wider mb-2 flex items-center gap-2">
