@@ -1,5 +1,5 @@
 // BANCO DE DADOS DE VÍDEOS - VITALEGEO
-// Total: 17 Longos + 192 Shorts
+// Total: 17 Longos + 194 Shorts
 
 // 1. VÍDEOS LONGOS (Análises, Documentários - Formato 16:9)
 const videosLongos = [
@@ -24,6 +24,8 @@ const videosLongos = [
 
 // 2. SHORTS (Vídeos Curtos Verticais - Formato 9:16)
 const videosShorts = [
+    { titulo: "A geografia que facilita invasões na Europa", id: "L7jMsqQ8Aes", link: "https://www.youtube.com/watch?v=L7jMsqQ8Aes" },
+    { titulo: "Por que a Rússia desafia o orçamento da OTAN", id: "sNcVwqkY9V0", link: "https://www.youtube.com/watch?v=sNcVwqkY9V0" },
     { titulo: "O Vietnã será a nova potência da Ásia?", id: "8n0nyCrfK9o", link: "https://www.youtube.com/watch?v=8n0nyCrfK9o" },
     { titulo: "O desafio demográfico do Vietnã", id: "qCRLOhXgmOc", link: "https://www.youtube.com/watch?v=qCRLOhXgmOc" },
     { titulo: "Por que as empresas estão saindo da China?", id: "aFoyPogABJo", link: "https://www.youtube.com/watch?v=aFoyPogABJo" },
